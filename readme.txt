@@ -1,0 +1,73 @@
+.append("g")                                      -       This adds a <g> element that is used to group several svg elements together.
+.attr("transform", translate(23,34))              -       Generally applied to a <g> to do a translation of the element. if called with translate, just put the g element a bit more right and down.
+
+SVG object                                        -       Circle, Rect, Path
+
+var                                               -       Create a variable. It can be 
+                                                                  -> just a value: var height = 200
+                                                                  -> a list : var data = [12,20,23,11,33]
+                                                                  -> a function: var myfunction = d3.timeParse("%d-%b-%y"), then I can call myfunction
+
+console.log("my message"                          -       To output something in the javascript console
+
+.sort                                             -       To sort your array. Use then a weird syntax I don't understand at all.
+
+data.myFunction                                   -       This is gonna apply myFunction to data, and directly change data! no need to redirect it in another object.
+
+.extent                                           -       Find minimum and maximum
+
+compute the maximum of a column:                  -       d3.csv("file.csv", function(data) {var mymax = d3.max(data, function(d) { return +d.Value;} ); })
+
+dd                                                -       dddd
+
+dd                                                -       dddd
+
+dd                                                -       dddd
+
+dd                                                -       dddd
+
+dd                                                -       dddd
+
+dd                                                -       dddd
+
+
+
+
+
+
+
+
+
+AXIS
+--------------
+
+domain                                            -       From what value to what values the data goes, like 0 to 100 for a %
+range                                             -       From where to where the svg element goes in the viewport in pixel
+
+
+
+
+
+
+
+ARRAYS
+--------------
+
+var cars = ["Saab", "Volvo", "BMW"]               -       Create a simple array
+cars[0]                                           -       First element of the array
+cars[0] = "Opel"                                  -       Change the first element of the list
+cars.length                                		  -       Get the length
+cars.sort()                               		  -       Sort the list
+
+
+
+
+
+
+
+
+
+
+
+
+

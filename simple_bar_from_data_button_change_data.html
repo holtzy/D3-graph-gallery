@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Inspired from http://christopheviau.com/d3_tutorial/ -->
+
+
+<head>
+  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+  <p> A few bars mapped on data </p>
+</head>
+
+<body>
+
+  <!-- Add a button -->
+  <button onclick="changeData1()">data1</button>
+  <button onclick="changeData2()">data2</button>
+
+	<!--- Create a graphic zone: -->
+	<div id="viz"></div>
+
+	<!--- Add a circle using d3 -->
+	<script>
+		
+    // Create data: just an X axis with 5 values:
+    var data1 = [10,100,300,200,150]
+    var data2 = [20,90,320,480,710]
+
+    // create svg element
+    var mysvg = d3.select("#viz")
+			.append("svg")
+      .attr("width", 1000)
+      .attr("height", 500)
+      .style("background-color", "grey")
+
+    // For each element of data, add a circle
+		mysvg.selectAll("rect")
+      .data(data1)
+      .enter()
+      .append("rect")	
+			.style("stroke", "black")
+      .attr("y", 10 )
+      .attr("x", function(i){return i} )
+      .attr("width", 10)
+      .attr("height", function(i){return i} )
+
+    
+    // A function to switch to second data frame
+    function changeData2(){
+      d3.select("#viz")
+        .transition()
+        .selectAll("rect")  
+        .data(data2)
+        .enter().append("rect") 
+        .style("stroke", "black")
+        .attr("y", 100 )
+        .attr("x", function(i){return i} )
+        .attr("width", 10)
+        .attr("height", function(i){return i} )
+   }
+
+ 	</script>
+
+
+
+</body>
+
+</html>
