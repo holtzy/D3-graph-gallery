@@ -1,4 +1,5 @@
 .append("g")                                      -       This adds a <g> element that is used to group several svg elements together.
+
 .attr("transform", translate(23,34))              -       Generally applied to a <g> to do a translation of the element. if called with translate, just put the g element a bit more right and down.
 
 SVG object                                        -       Circle, Rect, Path
@@ -8,7 +9,7 @@ var                                               -       Create a variable. It 
                                                                   -> a list : var data = [12,20,23,11,33]
                                                                   -> a function: var myfunction = d3.timeParse("%d-%b-%y"), then I can call myfunction
 
-console.log("my message"                          -       To output something in the javascript console
+console.log("my message")                         -       To output something in the javascript console
 
 .sort                                             -       To sort your array. Use then a weird syntax I don't understand at all.
 
@@ -18,7 +19,8 @@ data.myFunction                                   -       This is gonna apply my
 
 compute the maximum of a column:                  -       d3.csv("file.csv", function(data) {var mymax = d3.max(data, function(d) { return +d.Value;} ); })
 
-function (d, i)                                   -       When reading data, d is the element in the data, i is the iteration of the loop.
+function (d, i)                                   -       When reading data, d is the element in the data, i is the iteration of the loop. I can give the names I want, only the position matter: first element is value, second is index.
+
 
 .attr("class", function (d, i) { return ((i >= 0) ? "A" : "B"); })   -       This is a ifelse statement to attr the class of the object
 
@@ -26,7 +28,9 @@ function (d, i)                                   -       When reading data, d i
 
 Math.floor                                        -       gives the closest integer: Math.floor(3.7) gives 3
 
-dd                                                -       dddd
+Javascript as object types as well. If I have like "23300" -> then it is not a number!
+
+concept of dot notation                           -       in Javascript we can use object.property, like console.log, or d.columnName
 
 dd                                                -       dddd
 
@@ -58,6 +62,53 @@ cars[0]                                           -       First element of the a
 cars[0] = "Opel"                                  -       Change the first element of the list
 cars.length                                		  -       Get the length
 cars.sort()                               		  -       Sort the list
+
+
+
+READ TABLE
+--------------
+d3.csv("data.csv", function(d) {
+  return {
+    city : d.city,
+    state : d.state,
+  };
+})
+
+
+COLOR SCALE
+--------------
+Several color scale exist. They allow to map a value to a color:
+
+var colorScale = d3.scale.quantile()
+              .domain([0, nb_bucket, max_of_colorscale)
+              .range(col1, col2, col3, col4);
+
+Once I've got my color scale, I can call it to fill an element with the proper color:
+.style("fill", function(d) { return colorScale(d.value); })
+
+
+CREATE DATA
+-------------
+d3.range(1000)				create an array from 0 to 1000
+
+
+
+
+
+BASIC FEATURE OF SVG OBJECT
+---------------------------
+circle --> r, cx, cy
+
+
+EASEING FUNCTION
+----------------
+.ease(d3.easeBounceOut)
+.ease(d3.easeBounceIn)
+.ease(d3.easeLinear)
+See all at https://bl.ocks.org/mbostock/248bac3b8e354a9103c4
+
+
+
 
 
 

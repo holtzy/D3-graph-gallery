@@ -3,15 +3,16 @@
 <html>
 
 <script src="http://d3js.org/d3.v3.js"></script>
-<script src="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/LIB/colorbrewer.min.js"></script>
+<script src="LIB/colorbrewer.min.js"></script>
 
   <body>
+
     <div id="chart"></div>
 
     <script type="text/javascript">
 
       // Feature of the SVG area:
-      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+      var margin = { top: 50, right: 0, bottom: 100, left: 130 },
           width = 960 - margin.left - margin.right,
           height = 430 - margin.top - margin.bottom
 
@@ -25,10 +26,9 @@
       // Related to heatmap
       var gridSize = Math.floor(width / 24) // 24 is the number of square per line. gridSize is the size of a square in px
           buckets = 9,
-          colors = colorbrewer.YlGnBu[9],
+          colors = colorbrewer.Blues[9],  // This gets 9 colors from the Blues color palette of ColorBrewer
           days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
           times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
-          datasets = ["https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_simple_heatmap.tsv"];
 
 
       // Y axis
@@ -40,7 +40,6 @@
             .attr("y", function (d, i) { return i * gridSize; })
             .style("text-anchor", "end")
             .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
-            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
 
       // X axis
       var timeLabels = svg.selectAll(".timeLabel")
@@ -51,10 +50,9 @@
             .attr("y", 0)
             .style("text-anchor", "middle")
             .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
 
       // add heatmap cells
-      var heatmapChart = d3.tsv(datasets[0],
+      var heatmapChart = d3.tsv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_simple_heatmap.tsv",
         function(d) {
           return {
             day: +d.day,
@@ -67,25 +65,17 @@
               .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
               .range(colors);
 
-          var cards = svg.selectAll(".hour")
-              .data(data, function(d) {return d.day+':'+d.hour;});
-
-          cards.append("title");
-
-          cards.enter().append("rect")
+          svg.selectAll()
+              .data(data, function(d) {return d.day+':'+d.hour;})
+              .enter()
+              .append("rect")
               .attr("x", function(d) { return (d.hour - 1) * gridSize; })
               .attr("y", function(d) { return (d.day - 1) * gridSize; })
-              .attr("rx", 4)
-              .attr("ry", 4)
-              .attr("class", "hour bordered")
               .attr("width", gridSize)
               .attr("height", gridSize)
               .style("fill", function(d) { return colorScale(d.value); });
         });  
       
-
-      
-
     </script>
   </body>
 </html>
