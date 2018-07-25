@@ -18,13 +18,13 @@ data.myFunction                                   -       This is gonna apply my
 
 compute the maximum of a column:                  -       d3.csv("file.csv", function(data) {var mymax = d3.max(data, function(d) { return +d.Value;} ); })
 
-dd                                                -       dddd
+function (d, i)                                   -       When reading data, d is the element in the data, i is the iteration of the loop.
 
-dd                                                -       dddd
+.attr("class", function (d, i) { return ((i >= 0) ? "A" : "B"); })   -       This is a ifelse statement to attr the class of the object
 
-dd                                                -       dddd
+.style("text-anchor", "middle")                   -       The equivalent of hjust to control how text annotation is aligned.
 
-dd                                                -       dddd
+Math.floor                                        -       gives the closest integer: Math.floor(3.7) gives 3
 
 dd                                                -       dddd
 
