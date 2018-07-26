@@ -1,160 +1,74 @@
 <!DOCTYPE html>
-<!--The code is modified from: https://jasonneylon.wordpress.com/2013/09/05/two-sided-horizontal-barchart-using-d3-js/-->
-<html>
-<head>
-    <title>Bar Chart</title>
-    <script src="//d3js.org/d3.v3.min.js"></script>
-    <style type="text/css">
-        .chart {
-            margin: 10px;
-            padding-top: 10px;
-        }
-
-        .chart .right {
-            stroke: white;
-            fill: indianred;
-        }
-
-        .chart .left {
-            stroke: white;
-            fill: steelblue;
-        }
-
-        .chart rect:hover {
-            fill: #64707d;
-        }
-
-        .chart text {
-            fill: #24da82;
-        }
-
-        .chart text.name {
-            fill: black;
-        }
-
-        .chart text.title {
-            fill: #2216ff;
-        }
-    </style>
-</head>
-<body>
-<h1>Two sided horiztontal bar chart</h1>
-<script type="text/javascript">
+<meta charset="utf-8">
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
 
-    var labelArea = 160;
-    var chart,
-            width = 400,
-            bar_height = 20,
-            height = bar_height * 200;
-    var rightOffset = width + labelArea;
+<div id="option">
+    <input name="data1" type="button" value="data1" onclick="myfuntodo()" />
+    <input name="data1" type="button" value="data1" onclick="myfuntodo()" />
+</div>
 
-    var lCol = "infant.mortality";
-    var rCol = "gdp";
-    var xFrom = d3.scale.linear()
-            .range([0, width]);
-    var xTo = d3.scale.linear()
-            .range([0, width]);
-    var y = d3.scale.ordinal()
-            .rangeBands([20, height]);
-
-    function render(data) {
-        var chart = d3.select("body")
-                .append('svg')
-                .attr('class', 'chart')
-                .attr('width', labelArea + width + width)
-                .attr('height', height);
-
-        xFrom.domain(d3.extent(data, function (d) {
-            return d[lCol];
-        }));
-        xTo.domain(d3.extent(data, function (d) {
-            return d[rCol];
-        }));
-
-        y.domain(data.map(function (d) {
-            return d.countries;
-        }));
-
-        var yPosByIndex = function (d) {
-            return y(d.countries);
-        };
-        chart.selectAll("rect.left")
-                .data(data)
-                .enter().append("rect")
-                .attr("x", function (d) {
-                    return width - xFrom(d[lCol]);
-                })
-                .attr("y", yPosByIndex)
-                .attr("class", "left")
-                .attr("width", function (d) {
-                    return xFrom(d[lCol]);
-                })
-                .attr("height", y.rangeBand());
-        chart.selectAll("text.leftscore")
-                .data(data)
-                .enter().append("text")
-                .attr("x", function (d) {
-                    return width - xFrom(d[lCol])-40;
-                })
-                .attr("y", function (d) {
-                    return y(d.countries) + y.rangeBand() / 2;
-                })
-                .attr("dx", "20")
-                .attr("dy", ".36em")
-                .attr("text-anchor", "end")
-                .attr('class', 'leftscore')
-                .text(function(d){return d[lCol];});
-        chart.selectAll("text.name")
-                .data(data)
-                .enter().append("text")
-                .attr("x", (labelArea / 2) + width)
-                .attr("y", function (d) {
-                    return y(d.countries) + y.rangeBand() / 2;
-                })
-                .attr("dy", ".20em")
-                .attr("text-anchor", "middle")
-                .attr('class', 'name')
-                .text(function(d){return d.countries;});
-
-        chart.selectAll("rect.right")
-                .data(data)
-                .enter().append("rect")
-                .attr("x", rightOffset)
-                .attr("y", yPosByIndex)
-                .attr("class", "right")
-                .attr("width", function (d) {
-                    return xTo(d[rCol]);
-                })
-                .attr("height", y.rangeBand());
-        chart.selectAll("text.score")
-                .data(data)
-                .enter().append("text")
-                .attr("x", function (d) {
-                    return xTo(d[rCol]) + rightOffset+40;
-                })
-                .attr("y", function (d) {
-                    return y(d.countries) + y.rangeBand() / 2;
-                })
-                .attr("dx", -5)
-                .attr("dy", ".36em")
-                .attr("text-anchor", "end")
-                .attr('class', 'score')
-                .text(function(d){return d[rCol];});
-        chart.append("text").attr("x",width/3).attr("y", 10).attr("class","title").text("Infant Mortality");
-        chart.append("text").attr("x",width/3+rightOffset).attr("y", 10).attr("class","title").text("GDP");
-        chart.append("text").attr("x",width+labelArea/3).attr("y", 10).attr("class","title").text("Countries");
+<svg width="1100" height="600"></svg>
 
 
-    }
 
-    function type(d) {
-        d["gdp"] = +d["gdp"];
-        d["infant.mortality"] = +d["infant.mortality"];
-        return d;
-    }
 
-    d3.csv("https://gist.githubusercontent.com/kaijiezhou/b0a1959aad60346f806a/raw/80b02e59b380ca5f86a841fb6066bc9cd147ff51/UN.csv", type, render);
+<script>
+
+// the svg area
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height"),
+    margin = {top: 20, right: 50, bottom: 50, left: 50};
+
+// Set range and domain for both X axis
+var x1 = d3.scaleLinear()
+    .domain([40, 0])
+    .range([50, 400]);
+var x2 = d3.scaleLinear()
+    .domain([0, 40])
+    .range([600, 950]);
+
+// Set range and domain for Y axis
+var y = d3.scaleLinear()
+    .domain([0, 10])
+    .range([height - margin.bottom, margin.top]);
+
+// Add the 2 X axis, with their label
+svg.append("g")
+    .attr("transform", "translate(0," + (height - margin.bottom) + ")")
+    .call(d3.axisBottom(x1))
+  .append("text")
+    .attr("x", 50)
+    .attr("y", 40)
+    .attr("fill", "#000")
+    .attr("text-anchor", "start")
+    .attr("font-weight", "bold")
+    .text("Hazard ratio");
+
+svg.append("g")
+    .attr("transform", "translate(0," + (height - margin.bottom) + ")")
+    .call(d3.axisBottom(x2))
+  .append("text")
+    .attr("x", 950)
+    .attr("y", 40)
+    .attr("fill", "#000")
+    .attr("text-anchor", "end")
+    .attr("font-weight", "bold")
+    .text("Hazard ratio");
+
+//Read data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/pairwiseHR.txt", function(d) {
+  return {
+    outcome : d.outcome2,
+    exposure : d.exposure2,
+    hr : d.HR
+  },
+  console.log(d[0])
+})
+
+
+
+
+
 </script>
-</body>
-</html>
