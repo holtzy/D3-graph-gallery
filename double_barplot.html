@@ -58,16 +58,26 @@ svg.append("g")
     .text("Hazard ratio");
 
 //Read data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/pairwiseHR.txt", function(d) {
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/HR.csv", convertNumbers, function(d) {
   return {
     outcome : d.outcome2,
     exposure : d.exposure2,
-    hr : d.HR
+    hr : +d["HR"]
   },
-  console.log(d[0])
+  console.log(d[1])
 })
 
-
+// convert strings to numbers in CSV
+function convertNumbers(row) {
+  var r = {};
+  for (var k in row) {
+    r[k] = +row[k];
+    if (isNaN(r[k])) {
+      r[k] = row[k];
+    }
+  }
+  return r;
+}
 
 
 
