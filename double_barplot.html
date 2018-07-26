@@ -23,10 +23,10 @@ var svg = d3.select("svg"),
 
 // Set range and domain for both X axis
 var x1 = d3.scaleLinear()
-    .domain([40, 0])
+    .domain([400, 0])
     .range([50, 400]);
 var x2 = d3.scaleLinear()
-    .domain([0, 40])
+    .domain([0, 400])
     .range([600, 950]);
 
 // Set range and domain for Y axis
@@ -57,6 +57,9 @@ svg.append("g")
     .attr("font-weight", "bold")
     .text("Hazard ratio");
 
+
+
+
 //Read data
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/HR.csv", convertNumbers, function(d) {
   return {
@@ -64,8 +67,32 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/HR
     exposure : d.exposure2,
     hr : +d["HR"]
   },
-  console.log(d[1])
+  
+  // Show data
+  console.log(d[0]),
+  console.log(d.length),
+
+  // Add bars
+  svg.selectAll(".bar")
+    .data(d.filter(function(d){return d.outcome2 == "Organic disorders";}))
+    .enter()
+    .append("rect")
+      .attr("class", "bar")
+      .attr("x", 600)
+      .attr("y", function(d, i) { console.log(i); return y(i); })
+      .attr("width", function(d) { return x2(d["HR"]); })
+      .attr("height",30);
+
 })
+
+
+
+
+
+
+
+
+
 
 // convert strings to numbers in CSV
 function convertNumbers(row) {

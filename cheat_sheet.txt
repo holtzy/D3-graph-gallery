@@ -62,7 +62,7 @@ cars[0]                                           -       First element of the a
 cars[0] = "Opel"                                  -       Change the first element of the list
 cars.length                                		  -       Get the length
 cars.sort()                               		  -       Sort the list
-
+data.col1 can also be written data["col1"]
 
 
 READ TABLE
