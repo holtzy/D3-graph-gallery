@@ -32,11 +32,14 @@ Javascript as object types as well. If I have like "23300" -> then it is not a n
 
 concept of dot notation                           -       in Javascript we can use object.property, like console.log, or d.columnName
 
-dd                                                -       dddd
+select(".bar")                                    -       this will select the FIRST element that has the class bar
+selectAll(".bar")                                 -       this will select all elements with the bar class.
 
+.enter()										  -       If I got 4 divs and 5 data items, then I have no space left for 1. this data is available in the enter() selection. When I load data for the first time with no DOM element preexisting, I have to enter all of them!
 
+update()										  -       We call update the selection that is present in the DOM. They have a chair!
 
-
+.exit()											  -  	  Opposite of enter: remove the DOM elements that are not used by data.
 
 
 
@@ -63,6 +66,10 @@ cars[0] = "Opel"                                  -       Change the first eleme
 cars.length                                		  -       Get the length
 cars.sort()                               		  -       Sort the list
 data.col1 can also be written data["col1"]
+
+
+
+
 
 
 READ TABLE

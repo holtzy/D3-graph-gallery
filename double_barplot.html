@@ -4,8 +4,11 @@
 
 
 <div id="option">
-    <input name="data1" type="button" value="data1" onclick="myfuntodo()" />
-    <input name="data1" type="button" value="data1" onclick="myfuntodo()" />
+    <input name="data1" type="button" value="Schizophrenia" onclick="show1('Exposed to Schizophrenia and related')" />
+    <input name="data1" type="button" value="Organic disorder" onclick="show1('Exposed to Organic disorders')" />
+    <input name="data1" type="button" value="Substance Use" onclick="show1('Exposed to Substance use')" />
+    <input name="data1" type="button" value="Eating disorder" onclick="show1('Exposed to Eating disorders')" />
+    <input name="data1" type="button" value="Organic disorder" onclick="show1('Exposed to Organic disorders')" />
 </div>
 
 <svg width="1100" height="600"></svg>
@@ -60,36 +63,78 @@ svg.append("g")
 
 
 
-//Read data
+// Initialize the barplot with bars of length 0
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/HR.csv", convertNumbers, function(d) {
-  return {
-    outcome : d.outcome2,
-    exposure : d.exposure2,
-    hr : +d["HR"]
-  },
-  
-  // Show data
-  console.log(d[0]),
-  console.log(d.length),
 
-  // Add bars
-  svg.selectAll(".bar")
+    d.forEach(function(d) {
+        d.outcome = d.outcome2,
+        d.exposure = d.exposure2,
+        d.hr = +d.HR
+    });
+
+  
+  // Add bars graph 1
+  svg.selectAll(".bar1")
+    .data(d.filter(function(d){return d.exposure2 == "Exposed to Organic disorders";}))
+    .enter()
+    .append("rect")
+      .attr("class", "bar1")
+      .attr("x", function(d) { return x1(0) } )
+      .attr("y", function(d, i) { return y(i+1); })
+      .attr("width", function(d) { return  400 - x1(0) })
+      .attr("height",30)
+
+  // Add bars graph 2
+  svg.selectAll(".bar2")
     .data(d.filter(function(d){return d.outcome2 == "Organic disorders";}))
     .enter()
     .append("rect")
-      .attr("class", "bar")
+      .attr("class", "bar2")
       .attr("x", 600)
-      .attr("y", function(d, i) { console.log(i); return y(i); })
-      .attr("width", function(d) { return x2(d["HR"]); })
-      .attr("height",30);
+      .attr("y", function(d, i) { return y(i+1); })
+      .attr("width", function(d) { return x2(0)-600; })
+      .attr("height",30)
 
+  // Add text in the middle
+  svg.selectAll(".textMiddle")
+    .data(d.filter(function(d){return d.exposure2 == "Exposed to Organic disorders";}))
+    .enter()
+    .append("text")
+      .attr("x", 500)
+      .attr("y", function(d, i) { return y(i+1)+15; })
+      .text(function(d){ return d.outcome2 })
+      .attr("text-anchor", "middle")
 })
 
 
 
 
+// A function to show Schizo
+function show1(myDisease) {
 
+    d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/HR.csv", convertNumbers, function(d) {
 
+        d.forEach(function(d) {
+            d.outcome = d.outcome2,
+            d.exposure = d.exposure2,
+            d.hr = +d.HR
+        });
+    
+    svg.selectAll(".bar1")
+        .data(d.filter(function(d){return d.exposure2 == myDisease}))
+        .transition()
+        .duration(1000)
+        .attr("width", function(d) { return x2(d["HR"])-600; })
+        .attr("x", function(d) { return x1(d["HR"]) } )
+
+    svg.selectAll(".bar2")
+        .data(d.filter(function(d){return d.exposure2 == myDisease;}))
+        .transition()
+        .duration(1000)
+        .attr("width", function(d) { return x2(d["HR"])-600; })
+
+    })
+}
 
 
 
