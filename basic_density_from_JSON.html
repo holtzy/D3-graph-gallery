@@ -29,7 +29,7 @@ svg.append("g")
     .call(d3.axisBottom(x))
   .append("text")
     .attr("x", width - margin.right)
-    .attr("y", -6)
+    .attr("y", 30)
     .attr("fill", "#000")
     .attr("text-anchor", "end")
     .attr("font-weight", "bold")
@@ -40,28 +40,17 @@ svg.append("g")
     .attr("transform", "translate(" + margin.left + ",0)")
     .call(d3.axisLeft(y).ticks(null, "%"));
 
-d3.json("faithful.json", function(error, faithful) {
-  if (error) throw error;
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/faithful.json", function(faithful) {
 
   var n = faithful.length,
-      bins = d3.histogram().domain(x.domain()).thresholds(40)(faithful),
       density = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40))(faithful);
-
-  svg.insert("g", "*")
-      .attr("fill", "#bbb")
-    .selectAll("rect")
-    .data(bins)
-    .enter().append("rect")
-      .attr("x", function(d) { return x(d.x0) + 1; })
-      .attr("y", function(d) { return y(d.length / n); })
-      .attr("width", function(d) { return x(d.x1) - x(d.x0) - 1; })
-      .attr("height", function(d) { return y(0) - y(d.length / n); });
 
   svg.append("path")
       .datum(density)
-      .attr("fill", "none")
+      .attr("fill", "#69b3a2")
+      .attr("opacity", ".8")
       .attr("stroke", "#000")
-      .attr("stroke-width", 1.5)
+      .attr("stroke-width", .5)
       .attr("stroke-linejoin", "round")
       .attr("d",  d3.line()
           .curve(d3.curveBasis)
