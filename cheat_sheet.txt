@@ -39,7 +39,7 @@ selectAll(".bar")                                 -       this will select all e
 
 update()										  -       We call update the selection that is present in the DOM. They have a chair!
 
-.exit()											  -  	  Opposite of enter: remove the DOM elements that are not used by data.
+.exit()											  -  	  Opposite of enter: remove the DOM elements that are not used by data. Usually it is just usefull to do selection.exit().remove() --> delete the unneeded chair
 
 
 
