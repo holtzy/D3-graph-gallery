@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+  <!-- PRISM is a tool to make the code chunks pretty -->
+  <script src="prism.js"></script>
+  <link href="prism.css" rel="stylesheet" />
+</head>
+
+
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+
+<!-- Graph takes place here -->
+<svg width=700 height=300 style="background-color: grey"></svg>
+
+
+
+
+
+
+<!-- ========= The code that is always the same ============== -->
+<pre class="language-html"><code><xmp>
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+
+<!-- start using Javascript-->
+script
+</xmp></code></pre>
+
+
+
+
+
+
+
+<!-- ========= The code of the chart ============== -->
+<pre class="language-js"><code id="code" contenteditable="true">
+// here is a comment
+d3.selectAll('svg')
+  .append('circle')
+  .attr('cx', '90')
+  .attr('cy', '50')
+  .attr('r', '10')
+</code></pre>
+
+
+
+
+
+<!-- ========= The code that is always the same at the end ============== -->
+<pre class="language-html"><code><xmp>
+
+<!-- close script area-->
+script
+
+html
+</xmp></code></pre>
+
+
+
+<!-- ========= Eval the code ============== -->
+<script>
+// when the page load, the script part is evaluated
+var command = document.getElementById('code').innerHTML;
+command = command.replace(/<\/?span[^>]*>/g,"");
+eval(command)
+
+// If the user modify the code, the the script part is evaluated again
+document.getElementById("code").addEventListener("input", function() {
+  var command = document.getElementById('code').innerHTML;
+  command = command.replace(/<\/?span[^>]*>/g,"");
+  eval(command)
+}, false);
+</script>
+
+
+

@@ -51,7 +51,13 @@ AXIS
 domain                                            -       From what value to what values the data goes, like 0 to 100 for a %
 range                                             -       From where to where the svg element goes in the viewport in pixel
 
+Different type of scale:
+  - d3.scalePoint()
+  - scaleLinear()
 
+Custom scale:
+  - .padding([.9]) -> add space between the axis and the first element. between 0 and 1. Does not work for scaleLinear
+  -
 
 
 
@@ -125,7 +131,7 @@ A list of stuff you can "append" and the argument you can provide:
 g      --> .attr = class, transform,
 circle --> r, cx, cy
 text   --> .attr = x, y, fill, text-anchor, font-weight | .text = text to display
-line   -->
+line   --> x1, y1, x2, y2, stroke, stroke-width, fill
 
 
 
