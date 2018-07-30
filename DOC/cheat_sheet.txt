@@ -137,24 +137,14 @@ line   --> x1, y1, x2, y2, stroke, stroke-width, fill
 
 
 
-ANIMATION FUNCTION
+EASEING FUNCTION
 ----------------
-.transition()
-.delay(0) --> to wait a little bit, useful to wait for the first anim to be finished
-.duration() 
-
-Easing function:
-  - .ease(d3.easeBounceOut)
-  - .ease(d3.easeBounceIn)
-  - .ease(d3.easeLinear)
-  - See all at https://bl.ocks.org/mbostock/248bac3b8e354a9103c4
+.ease(d3.easeBounceOut)
+.ease(d3.easeBounceIn)
+.ease(d3.easeLinear)
+See all at https://bl.ocks.org/mbostock/248bac3b8e354a9103c4
 
 
-MOUSE RESPONSIVNESS:
-----------------------
-.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-.on("mouseout", function(){d3.select(this).style("fill", "white");})
-.on("mousedown", animateFirstStep);
 
 
 

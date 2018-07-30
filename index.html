@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>Crypto Arbitrage &#8211; A feasibility analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Using real data to assess the feasibility of crypto arbitrage">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Crypto,Arbitrage,Bitcoin,Etherum">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="Crypto Arbitrage &#8211; A feasibility analysis">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="Crypto Arbitrage &#8211; A feasibility analysis">
+    <title>Data to Viz</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/agency.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <a class="js-scroll-trigger" href="#page-top">HOME</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/public_API.html">Get data</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/differences.html">Price differences</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/definition.html">Arbitrage?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/optimization.html">Simulation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/private_API.html">private API</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">run the bot</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+     <div class="parallax">
+     <div class="container">
+        <div class="intro-text">
+          <br><br><br><br><br><br>
+          <h1>Crypto arbitrage: a feasibility analysis</h1>
+          <div class="center-block col-lg-5" style="margin: 0 auto;">
+            <hr>
+          </div>
+          <br>
+          <div class="center-block col-lg-5" style="margin: 0 auto;">
+            <p style="color: grey; font-size: 12px">Arbitrage is defined as the simultaneous buying and selling of currency in different platforms in order to take advantage of differing prices. This document gives a few insight on its potential application on crypto currencies.</p> 
+          </div>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Tell me more</a>
+          <br><br>
+        </div>
+      </div>
+      </div>
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------- PORTFOLIO SECTION ------------------------------------------------------------------------------ -->
+
+    <!-- ANCHOR -->
+    <a name="portfolioanchor"></a>
+
+    <style>
+    .textExplanation{ 
+      color: black; 
+      font-size: 15px 
+    }
+    .titleExplanation{
+      border-bottom: solid; 
+      border-width: 1px; 
+      font-size: 16px; 
+      padding: 30px; 
+      padding-bottom: 20px;
+    }
+
+
+
+    </style>
+
+
+
+    <section class="bg-light" id="portfolio" style="padding-top: 60px">
+        <div class="container" >
+
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              <h2 class="section-heading text-uppercase">Table of contents</h2>
+              <div class="center-block col-lg-5" style="margin: 0 auto;">
+                <hr>
+              </div>
+              <div class="center-block col-lg-8" style="margin: 0 auto;">
+                 <p class="section-subheading text-muted">This work is organized in several section, each describing in depth a part of the analysis. Click the section that interests you for result and code.</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row text-center" style="padding-top: 2%">
+
+            <div class="col-lg-4 col-md-6 text-center">
+              <a href="CONTENT/public_API.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important; background-color: white">
+                <p class="text-uppercase titleExplanation mytitlerelated">Recovering prices</p>
+                <p class="textExplanation">I recovered prices of 5 currencies for several weeks, and provide an output without thousands of data points</p>
+                READ
+              </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6 text-center">
+              <a href="CONTENT/differences.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
+                <p class="text-uppercase titleExplanation mytitlerelated">Comparing prices</p>
+                <p class="textExplanation">A comparison of prices on the long and on the short term. Is there any differences between exchanges?</p>
+                READ
+              </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6 text-center">
+              <a href="CONTENT/definition.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
+                <p class="text-uppercase titleExplanation mytitlerelated">What is arbitrage</p>
+                <p class="textExplanation">A quick introduction to arbitrage: what it is and what are the potential limitations</p>
+                READ
+              </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6 text-center">
+              <a href="CONTENT/optimization.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
+                <p class="text-uppercase titleExplanation mytitlerelated">Arbitrage Simulation</p>
+                <p class="textExplanation">Simulating an arbitrage algorithm on the dataset to assess potential benefit and optimize parameters</p>
+                READ
+              </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6 text-center">
+              <a href="CONTENT/private_API.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
+                <p class="text-uppercase titleExplanation mytitlerelated">the private API</p>
+                <p class="textExplanation">How to buy and sell crypto currencies using programing and private APIs?</p>
+                READ
+              </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6 text-center">
+              <a href="CONTENT/arbitrage.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
+                <p class="text-uppercase titleExplanation mytitlerelated">Running the bot - for real</p>
+                <p class="textExplanation">The algorithm is finally run for real. Does it make any money?</p>
+                READ
+              </a>
+            </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+<!-- ---------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------- CONTACT SECTION ------------------------------------------------------------------------------ -->
+
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
+
+
+  <section id="contact" class="" style="background-color: white">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-2 text-center"></div>
+         <div class="col-lg-8 text-center">
+           <br><br><br>
+           <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
+           <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
+           <div style="text-align:center">
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
+            </div>
+
+         </div>
+       </div>
+    </div>
+  </section>
+
+
+
+
+
+<!-- --------------------------- FOOTER SECTION ------------------------------------------------------------------- -->
+    <footer class="bg-light">
+      <div class="container" >
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Copyright &copy; crypto project 2018</span>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="https://twitter.com/R_Graph_Gallery">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/holtzy">
+                  <i class="fa fa-github"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+<!-- ---------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ------------------------ JAVASCRIPT SECTION ----------------------------- -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>
+
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+	$(function () {
+  		$('[data-toggle="tooltip"]').tooltip()
+	})
+	</script>
+
+
+    <!-- Script for animated portfolio with filter. Found here: https://codepen.io/pramodkumarboda/pen/XdgxmQ -->
+    <script>
+  	$(window).load(function(){
+  	    var $container = $('.portfolioContainer');
+  	    $container.isotope({
+  	        filter: '*',
+  	        animationOptions: {
+  	            duration: 750,
+  	            easing: 'linear',
+  	            queue: false
+  	        }
+  	    });
+  	 
+  	    $('.portfolioFilter a').click(function(){
+  	        $('.portfolioFilter .current').removeClass('current');
+  	        $(this).addClass('current');
+  	 
+  	        var selector = $(this).attr('data-filter');
+  	        $container.isotope({
+  	            filter: selector,
+  	            animationOptions: {
+  	                duration: 750,
+  	                easing: 'linear',
+  	                queue: false
+  	            }
+  	         });
+  	         return false;
+  	    }); 
+  	});
+	</script>
+
+
+
+
+    <!-- Script to give a specific URL to every Modal. TODO: improve it with https://stackoverflow.com/questions/34154370/bootstrap-3-x-how-to-have-url-change-upon-clicking-modal-trigger -->
+    <script>
+      $(document).ready(function(){
+        $(window.location.hash).modal('show');
+        $('a[data-toggle="modal"]').click(function(){
+           window.location.hash = $(this).attr('href');
+        });
+      });
+
+      $('button[data-dismiss="modal"]').click(function(){
+           var original = window.location.href.substr(0, window.location.href.indexOf('#'))
+           history.replaceState({}, document.title, original);
+       });
+
+      $(window.location.hash).modal('show');
+      $('a[data-toggle="modal"]').click(function(){
+          window.location.hash = $(this).attr('href');
+      });
+
+      function revertToOriginalURL() {
+          var original = window.location.href.substr(0, window.location.href.indexOf('#'))
+          history.replaceState({}, document.title, original);
+      }
+
+      $('.modal').on('hidden.bs.modal', function () {
+          revertToOriginalURL();
+      });
+
+  </script>
+
+
+  <script>
+    $('.tip').each(function () {
+      $(this).tooltip(
+      {
+        html: true,
+          title: $('#' + $(this).data('tip')).html()
+      });
+    });
+  </script>
+
+
+
+
+
+
+<!----------------------------------------------------------------------------------------------- -->
+
+
+
+  </body>
+
+</html>
