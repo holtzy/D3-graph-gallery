@@ -9,7 +9,7 @@ p {
 }
 
 a {
-  color: #69b3a2;
+  color: #b35900;
 }
 
 a:hover {
@@ -17,7 +17,7 @@ a:hover {
 }
 
 .text-primary {
-  color: #69b3a2 !important;
+  color: #b35900 !important;
 }
 
 h1,
@@ -71,14 +71,14 @@ section h3.section-subheading {
 
 .btn-primary {
   background-color: transparent;
-  border-color: #69b3a2;
-  color: #69b3a2;
+  border-color: #b35900;
+  color: #b35900;
   border-width: medium;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: #69b3a2 !important;
-  border-color: #69b3a2 !important;
+  background-color: #b35900 !important;
+  border-color: #b35900 !important;
   color: white;
 }
 
@@ -89,36 +89,36 @@ section h3.section-subheading {
 
 .btn-secondary {
   background-color: transparent;
-  border-color: #69b3a2;
-  color: #69b3a2;
+  border-color: #b35900;
+  color: #b35900;
   border-width: small;
 }
 
 .btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
-  background-color: #69b3a2 !important;
-  border-color: #69b3a2 !important;
+  background-color: #b35900 !important;
+  border-color: #b35900 !important;
   color: white;
 }
 
 .btn-secondary:active, .btn-secondary:focus {
-  background-color: #69b3a2 !important;
+  background-color: #b35900 !important;
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active {
-  background-color: #69b3a2 !important;
-  border-color: #69b3a2 !important;
+  background-color: #b35900 !important;
+  border-color: #b35900 !important;
   color: white;
 }
 
 
 
 ::-moz-selection {
-  background: #69b3a2;
+  background: #b35900;
   text-shadow: none;
 }
 
 ::selection {
-  background: #69b3a2;
+  background: #b35900;
   text-shadow: none;
 }
 
@@ -141,7 +141,7 @@ img::-moz-selection {
   text-transform: uppercase;
   color: white;
   border: 0;
-  background-color: #69b3a2;
+  background-color: #b35900;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -149,9 +149,9 @@ img::-moz-selection {
 
 
 
-/* Color of 'from data to viz' on the top left */
+/* Color of brand on the top left */
 #mainNav .navbar-brand {
-  color: #69b3a2;
+  color: #b35900;
   font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
 }
 
@@ -177,9 +177,9 @@ img::-moz-selection {
 }
 
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #69b3a2;
+  color: #b35900;
   background-color: white;
-  border-bottom: 5px solid #69b3a2;
+  border-bottom: 5px solid #b35900;
 }
 
 
@@ -221,6 +221,7 @@ img::-moz-selection {
   overflow: hidden;
 }
 
+
 .parallax {
     /* The image used (faded with convert overview_RGG.png  -fill white -colorize 50%  overview_RGG_faded.png*/
     background-image: url("../img/area_bitcoin_fadded.png");
@@ -235,33 +236,6 @@ img::-moz-selection {
     background-size: cover;
 }
 
-.parallaxstory {
-    /* The image used (faded with convert overview_RGG.png  -fill white -colorize 50%  overview_RGG_faded.png*/
-    background-image: url("../img/parallax/story_fading.png");
-
-    /* Set a specific height */
-    min-height: 500px; 
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.parallaxcontact {
-    /* The image used (faded with convert overview_RGG.png  -fill white -colorize 50%  overview_RGG_faded.png*/
-    background-image: url("../img/parallax/surf_fading.png");
-
-    /* Set a specific height */
-    min-height: 500px; 
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 header.masthead .intro-text {
   padding-top: 150px;
@@ -312,6 +286,17 @@ header.masthead .intro-text .intro-heading {
   margin: 15px 0;
 }
 
+
+
+
+
+
+
+
+/* -------------------- PORTOFOLIO ------------------ */
+
+
+
 #portfolio .portfolio-item {
   right: 0;
   margin: 0 0 15px;
@@ -320,22 +305,22 @@ header.masthead .intro-text .intro-heading {
 #portfolio .portfolio-item .portfolio-link {
   position: relative;
   display: block;
-  max-width: 130px;
   margin: 0 auto;
   cursor: pointer;
+  border-radius: 2%;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-transition: all ease 0.5s;
-  -moz-transition: all ease 0.5s;
-  transition: all ease 0.5s;
+  -webkit-transition: all ease 1s;
+  -moz-transition: all ease 1s;
+  transition: all ease 1s;
   opacity: 0;
-  background: rgba(254, 209, 54, 0.9);
-  border-radius: 100%;
-  background-color: grey !important;
+  background: rgba(88, 170, 151, 0.7);
+  border-radius: 2%;
+  background-color: #b35900 !important;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
@@ -343,9 +328,9 @@ header.masthead .intro-text .intro-heading {
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
-  font-size: 20px;
+  font-size: 22px;
   position: absolute;
-  top: 50%;
+  top: 20%;
   width: 100%;
   height: 20px;
   margin-top: -12px;
@@ -401,6 +386,12 @@ header.masthead .intro-text .intro-heading {
 
 
 
+
+
+
+
+
+
 /* -------------------- TOOLTIP ------------------ */
 
 
@@ -423,336 +414,6 @@ header.masthead .intro-text .intro-heading {
 
 
 
-
-
-
-
-
-/* -------------------- MODAL ------------------ */
-
-
-.portfolio-modal {
-  padding-right: 0px !important;
-}
-
-
-
-/* width of modal: different following the device: small (100%), medium(50%), large(30%); */
-
-.portfolio-modal .modal-dialog {
-  margin: 3rem;
-  max-width: 100vw;
-  max-height: 95vh;
-  overflow-y: auto;
-}
-
-@media (min-width: 1000px) {
-  .portfolio-modal .modal-dialog {
-    max-width: 50vw;
-  }
-}
-
-@media (min-width: 1800px) {
-  .portfolio-modal .modal-dialog {
-    max-width: 30vw;
-  }
-}
-
-.portfolio-modal .modal-content {
-  padding: 10px 0;
-  text-align: center;
-}
-
-.portfolio-modal .modal-content h2 {
-  font-size: 2em;
-  margin-bottom: 15px;
-}
-
-.portfolio-modal .modal-content p {
-  margin-bottom: 30px;
-}
-
-.portfolio-modal .modal-content p.item-intro {
-  font-size: 16px;
-  font-style: italic;
-  margin: 20px 0 30px;
-  font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-.portfolio-modal .modal-content ul.list-inline {
-  margin-top: 0;
-  margin-bottom: 30px;
-}
-
-.portfolio-modal .modal-content img {
-  margin-bottom: 30px;
-}
-
-.portfolio-modal .modal-content button {
-  cursor: pointer;
-}
-
-
-
-
-
-
-/* -------------------- CLOSING MODAL ------------------ */
-
-
-.portfolio-modal .close-modal {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  width: 75px;
-  height: 75px;
-  cursor: pointer;
-  background-color: transparent;
-}
-
-.portfolio-modal .close-modal:hover {
-  opacity: 0.3;
-}
-
-.portfolio-modal .close-modal .lr {
-  /* Safari and Chrome */
-  z-index: 1051;
-  width: 1px;
-  height: 75px;
-  margin-left: 35px;
-  /* IE 9 */
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background-color: #212529;
-}
-
-.portfolio-modal .close-modal .lr .rl {
-  /* Safari and Chrome */
-  z-index: 1052;
-  width: 1px;
-  height: 75px;
-  /* IE 9 */
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  background-color: #212529;
-}
-
-
-
-
-
-
-
-
-
-.timeline {
-  position: relative;
-  padding: 0;
-  list-style: none;
-}
-
-.timeline:before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 40px;
-  width: 2px;
-  margin-left: -1.5px;
-  content: '';
-  background-color: #e9ecef;
-}
-
-.timeline > li {
-  position: relative;
-  min-height: 50px;
-  margin-bottom: 50px;
-}
-
-.timeline > li:after, .timeline > li:before {
-  display: table;
-  content: ' ';
-}
-
-.timeline > li:after {
-  clear: both;
-}
-
-.timeline > li .timeline-panel {
-  position: relative;
-  float: right;
-  width: 100%;
-  padding: 0 20px 0 100px;
-  text-align: left;
-}
-
-.timeline > li .timeline-panel:before {
-  right: auto;
-  left: -15px;
-  border-right-width: 15px;
-  border-left-width: 0;
-}
-
-.timeline > li .timeline-panel:after {
-  right: auto;
-  left: -14px;
-  border-right-width: 14px;
-  border-left-width: 0;
-}
-
-.timeline > li .timeline-image {
-  position: absolute;
-  z-index: 100;
-  left: 0;
-  width: 80px;
-  height: 80px;
-  margin-left: 0;
-  text-align: center;
-  color: white;
-  border: 7px solid #e9ecef;
-  border-radius: 100%;
-  background-color: #fed136;
-}
-
-.timeline > li .timeline-image h4 {
-  font-size: 10px;
-  line-height: 14px;
-  margin-top: 12px;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel {
-  float: right;
-  padding: 0 20px 0 100px;
-  text-align: left;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel:before {
-  right: auto;
-  left: -15px;
-  border-right-width: 15px;
-  border-left-width: 0;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel:after {
-  right: auto;
-  left: -14px;
-  border-right-width: 14px;
-  border-left-width: 0;
-}
-
-.timeline > li:last-child {
-  margin-bottom: 0;
-}
-
-.timeline .timeline-heading h4 {
-  margin-top: 0;
-  color: inherit;
-}
-
-.timeline .timeline-heading h4.subheading {
-  text-transform: none;
-}
-
-.timeline .timeline-body > ul,
-.timeline .timeline-body > p {
-  margin-bottom: 0;
-}
-
-@media (min-width: 768px) {
-  .timeline:before {
-    left: 50%;
-  }
-  .timeline > li {
-    min-height: 100px;
-    margin-bottom: 100px;
-  }
-  .timeline > li .timeline-panel {
-    float: left;
-    width: 41%;
-    padding: 0 20px 20px 30px;
-    text-align: right;
-  }
-  .timeline > li .timeline-image {
-    left: 50%;
-    width: 100px;
-    height: 100px;
-    margin-left: -50px;
-  }
-  .timeline > li .timeline-image h4 {
-    font-size: 13px;
-    line-height: 18px;
-    margin-top: 16px;
-  }
-  .timeline > li.timeline-inverted > .timeline-panel {
-    float: right;
-    padding: 0 30px 20px 20px;
-    text-align: left;
-  }
-}
-
-@media (min-width: 992px) {
-  .timeline > li {
-    min-height: 150px;
-  }
-  .timeline > li .timeline-panel {
-    padding: 0 20px 20px;
-  }
-  .timeline > li .timeline-image {
-    width: 150px;
-    height: 150px;
-    margin-left: -75px;
-  }
-  .timeline > li .timeline-image h4 {
-    font-size: 18px;
-    line-height: 26px;
-    margin-top: 30px;
-  }
-  .timeline > li.timeline-inverted > .timeline-panel {
-    padding: 0 20px 20px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .timeline > li {
-    min-height: 170px;
-  }
-  .timeline > li .timeline-panel {
-    padding: 0 20px 20px 100px;
-  }
-  .timeline > li .timeline-image {
-    width: 170px;
-    height: 170px;
-    margin-left: -85px;
-  }
-  .timeline > li .timeline-image h4 {
-    margin-top: 40px;
-  }
-  .timeline > li.timeline-inverted > .timeline-panel {
-    padding: 0 100px 20px 20px;
-  }
-}
-
-.team-member {
-  margin-bottom: 50px;
-  text-align: center;
-}
-
-.team-member img {
-  width: 225px;
-  height: 225px;
-  border: 7px solid #fff;
-}
-
-.team-member h4 {
-  margin-top: 25px;
-  margin-bottom: 0;
-  text-transform: none;
-}
-
-.team-member p {
-  margin-top: 0;
-}
 
 section#contact {
   background-color: #212529;
@@ -865,123 +526,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 
 
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-/* CSS for the image caroussell (poster) */
-/** {box-sizing: border-box}
-    body {font-family: Verdana, sans-serif; margin:0}
-    .mySlides {display: none}
-    img {vertical-align: middle;}*/
-
-    /* Slideshow container */
-    .slideshow-container {
-      max-width: 1000px;
-      position: relative;
-      margin: auto;
-    }
-
-    /* Next & previous buttons */
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -22px;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-    }
-
-    /* Position the "next button" to the right */
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
-    }
-
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover, .next:hover {
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    /* Caption text */
-    .text {
-      color: #f2f2f2;
-      font-size: 15px;
-      padding: 8px 12px;
-      position: absolute;
-      bottom: 8px;
-      width: 100%;
-      text-align: center;
-    }
-
-
-    /* The dots/bullets/indicators */
-    .dot {
-      cursor: pointer;
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #69b3a2;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.6s ease;
-    }
-
-    .active, .dot:hover {
-      background-color: white;
-    }
-
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-
-
-
-
-
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-
-
-    /*Tree Style*/
-
-    .graphtypelogo:hover {
-      opacity: 0.5;
-    }
-
-
-    .graphtypelogo {
-      opacity: 1
-    }    
-
-
-    #NumCat{
-      color: red;
-    }
-
-    .astext {
-    background:none;
-    border:none;
-    font-weight: 900;
-    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
-
-
-    .mystory {
-      fill: #69b3a2;
-      font-size: 16px;
-      text-align: center;  
-    }
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-
-
-
-
-
-
 
 
 /* ------------------------------------------------------------------------------------------------------------------- */
@@ -1012,57 +556,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 
 
-
-
-
-
-
-/* ------------------------------------------------------------------------------------------------------------------- */
-/* BUTTON TREE CHOICE
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-.treeHead {
-  border-style: solid; 
-  border-color: rgba(0, 0, 0, 1);
-  border-radius: 25px;
-}
-
-.tree {
-  opacity: 0;
-}
-
-
-
-
-
-
-
-
-
-
-/* ------------------------------------------------------------------------------------------------------------------- */
-/* TOOLTIP WITH DATA EXAMPLE
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-.tooltip {
-  max-width:510px;   
-  padding:3px 8px;   
-  color:white;   
-  text-align:center;   
-  background-color:white;  
-  -webkit-border-radius:5px;   
-  -moz-border-radius:5px;  
-  border-radius:5px 
-}
-
-.tooltip-inner {
-  max-width:510px;
-  color:black;
-  background-color: white;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-}
 
 
 
@@ -1114,6 +607,8 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 
 
+
+
 /* ------------------------------------------------------------------------------------------------------------------- */
 /* DROPDOWN BUTTON
 /* ------------------------------------------------------------------------------------------------------------------- */
@@ -1127,20 +622,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 
 
-
-
-
-
-
-/* ------------------------------------------------------------------------------------------------------------------- */
-/* LOST
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-
-    .cardtitle {
-      color: orange;
-      text-align: left;
-    }
 
 
 

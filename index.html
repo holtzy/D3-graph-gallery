@@ -4,13 +4,13 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Crypto Arbitrage &#8211; A feasibility analysis</title>
+    <title>The D3 Graph Gallery &#8211; Simple charts made in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using real data to assess the feasibility of crypto arbitrage">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Crypto,Arbitrage,Bitcoin,Etherum">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js">
     <meta name="author" content="Yan Holtz">
 
-    <meta property="og:title" content="Crypto Arbitrage &#8211; A feasibility analysis">
+    <meta property="og:title" content="The D3 Graph Gallery &#8211; Simple charts made in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Crypto Arbitrage &#8211; A feasibility analysis">
     <title>Data to Viz</title>
@@ -46,25 +46,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="CONTENT/public_API.html">Get data</a>
+              <a class="nav-link" href="CONTENT/optimization.html">R</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="CONTENT/differences.html">Price differences</a>
+              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="CONTENT/definition.html">Arbitrage?</a>
+              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="CONTENT/optimization.html">Simulation</a>
+              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="CONTENT/private_API.html">private API</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">run the bot</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
             </li>
           </ul>
         </div>
@@ -76,23 +70,30 @@
 
 
     <!-- Header -->
-    <header class="masthead">
-     <div class="parallax">
-     <div class="container">
-        <div class="intro-text">
-          <br><br><br><br><br><br>
-          <h1>Crypto arbitrage: a feasibility analysis</h1>
-          <div class="center-block col-lg-5" style="margin: 0 auto;">
-            <hr>
-          </div>
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <p style="display:inline; font-size: 35px">The D3 Graph Gallery</p>
+          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
-          <div class="center-block col-lg-5" style="margin: 0 auto;">
-            <p style="color: grey; font-size: 12px">Arbitrage is defined as the simultaneous buying and selling of currency in different platforms in order to take advantage of differing prices. This document gives a few insight on its potential application on crypto currencies.</p> 
-          </div>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Tell me more</a>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
           <br><br>
-        </div>
-      </div>
+          <p>Welcome the D3.js graph gallery: a collection of <u>simple</u> charts made with d3.</p>
       </div>
     </header>
 
@@ -112,98 +113,470 @@
 
 <!-- ---------------- PORTFOLIO SECTION ------------------------------------------------------------------------------ -->
 
-    <!-- ANCHOR -->
-    <a name="portfolioanchor"></a>
+<section class="bg" id="portfolio" style="padding-top: 60px">
+  <div class="container">
 
-    <style>
-    .textExplanation{ 
-      color: black; 
-      font-size: 15px 
-    }
-    .titleExplanation{
-      border-bottom: solid; 
-      border-width: 1px; 
-      font-size: 16px; 
-      padding: 30px; 
-      padding-bottom: 20px;
-    }
-
-
-
-    </style>
-
-
-
-    <section class="bg-light" id="portfolio" style="padding-top: 60px">
-        <div class="container" >
-
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <h2 class="section-heading text-uppercase">Table of contents</h2>
-              <div class="center-block col-lg-5" style="margin: 0 auto;">
-                <hr>
-              </div>
-              <div class="center-block col-lg-8" style="margin: 0 auto;">
-                 <p class="section-subheading text-muted">This work is organized in several section, each describing in depth a part of the analysis. Click the section that interests you for result and code.</p>
-              </div>
+    <p>Distribution</p>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-sm-4 portfolio-item" >
+        <a class="portfolio-link" data-toggle="modal" href="violin.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
             </div>
           </div>
-
-
-          <div class="row text-center" style="padding-top: 2%">
-
-            <div class="col-lg-4 col-md-6 text-center">
-              <a href="CONTENT/public_API.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important; background-color: white">
-                <p class="text-uppercase titleExplanation mytitlerelated">Recovering prices</p>
-                <p class="textExplanation">I recovered prices of 5 currencies for several weeks, and provide an output without thousands of data points</p>
-                READ
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6 text-center">
-              <a href="CONTENT/differences.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
-                <p class="text-uppercase titleExplanation mytitlerelated">Comparing prices</p>
-                <p class="textExplanation">A comparison of prices on the long and on the short term. Is there any differences between exchanges?</p>
-                READ
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6 text-center">
-              <a href="CONTENT/definition.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
-                <p class="text-uppercase titleExplanation mytitlerelated">What is arbitrage</p>
-                <p class="textExplanation">A quick introduction to arbitrage: what it is and what are the potential limitations</p>
-                READ
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6 text-center">
-              <a href="CONTENT/optimization.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
-                <p class="text-uppercase titleExplanation mytitlerelated">Arbitrage Simulation</p>
-                <p class="textExplanation">Simulating an arbitrage algorithm on the dataset to assess potential benefit and optimize parameters</p>
-                READ
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6 text-center">
-              <a href="CONTENT/private_API.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
-                <p class="text-uppercase titleExplanation mytitlerelated">the private API</p>
-                <p class="textExplanation">How to buy and sell crypto currencies using programing and private APIs?</p>
-                READ
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6 text-center">
-              <a href="CONTENT/arbitrage.html" class="btn btn-primary mybtnrelated" style="margin-bottom:4px;white-space: normal !important;">
-                <p class="text-uppercase titleExplanation mytitlerelated">Running the bot - for real</p>
-                <p class="textExplanation">The algorithm is finally run for real. Does it make any money?</p>
-                READ
-              </a>
-            </div>
-
-        </div>
-
+          <img class="img-fluid" src="img/section/Violin150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Violin</div>
       </div>
-    </section>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#density">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Density150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Density</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" href="histogram.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Histogram150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Histogram</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#boxplot">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Box1150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Boxplot</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#ridgeline">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Joyplot150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Ridgeline</div>
+      </div>
+    </div>
+
+
+    <p>Correlation</p>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-sm-4 portfolio-item ">
+        <a class="portfolio-link" data-toggle="modal" href="#scatter">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/ScatterPlot150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Scatter</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#heatmap">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Heatmap150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Heatmap</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#correlogram">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Correlogram150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Correlogram</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#bubble">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/BubblePlot150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Bubble</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item ">
+        <a class="portfolio-link" data-toggle="modal" href="#connectedscatter">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/ScatterConnected150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Connected scatter</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item show column correlation numonly bigdata">
+        <a class="portfolio-link" data-toggle="modal" href="#density2d">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/2dDensity150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Density 2d</div>
+      </div>
+    </div>
+
+
+    <p>Ranking</p>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-sm-4 portfolio-item ">
+        <a class="portfolio-link" data-toggle="modal" href="#barplot">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Bar150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Barplot</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item ">
+        <a class="portfolio-link" data-toggle="modal" href="#spider">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Spider150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Spider / Radar</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item ">
+        <a class="portfolio-link" data-toggle="modal" href="#wordcloud">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Wordcloud150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Wordcloud</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item ">
+        <a class="portfolio-link" data-toggle="modal" href="#parallel">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Parallel1150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Parallel</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item ">
+        <a class="portfolio-link" data-toggle="modal" href="#lollipop">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Lollipop150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Lollipop</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item ">
+        <a class="portfolio-link" data-toggle="modal" href="#circularbarplot">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/CircularBarplot150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Circular Barplot</div>
+      </div>
+    </div>
+
+
+    <p>Part of a whole</p>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#treemap">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Tree150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Treemap</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#donut">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Doughnut150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Doughnut</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#pie">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Pie150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Pie chart</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#dendrogram">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Dendrogram150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Dendrogram</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#circularpacking">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/CircularPacking150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Circular packing</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#sunburst">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Sunburst150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Sunburst</div>
+      </div>
+    </div>
+
+
+    <p>Evolution</p>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#line">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Line150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Line plot</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#area">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Area150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Area</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#stackedarea">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/StackedArea150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Stacked area</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#streamgraph">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Stream150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Streamchart</div>
+      </div>
+    </div>
+
+
+    <p>Map</p>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#map">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Map150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Map</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#choropleth">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Choropleth150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Choropleth</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#hexbinmap">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/MapHexbin150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Hexbin map</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#cartogram">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Cartogram150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Cartogram</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#connection">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/ConnectedMap150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Connection</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#bubblemap">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/BubbleMap150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Bubble map</div>
+      </div>
+    </div>
+
+
+    <p>Flow</p>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#chord">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Chord150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Chord diagram</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#network">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Network150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Network</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#sankey">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Sankey150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Sankey</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#arc">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Arc150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Arc diagram</div>
+      </div>
+      <div class="col-md-2 col-sm-4 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#bundle">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/section/Bundle150.png" alt="">
+        </a>
+        <div class="captionPortfolio">Edge bundling</div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
 
@@ -227,7 +600,7 @@
     <a name="contactanchor"></a>
 
 
-  <section id="contact" class="" style="background-color: white">
+  <section id="contact" class="bg-light" style="background-color: white">
      <div class="container">
        <div class="row">
          <div class="col-lg-2 text-center"></div>
@@ -254,7 +627,7 @@
       <div class="container" >
         <div class="row">
           <div class="col-md-4">
-            <span class="copyright">Copyright &copy; crypto project 2018</span>
+            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
           </div>
           <div class="col-md-4">
             <ul class="list-inline social-buttons">
@@ -328,86 +701,10 @@
 
     <!-- Activate the bootstrap tooltip, must be after jQuery load -->
     <script>
-	$(function () {
-  		$('[data-toggle="tooltip"]').tooltip()
-	})
-	</script>
-
-
-    <!-- Script for animated portfolio with filter. Found here: https://codepen.io/pramodkumarboda/pen/XdgxmQ -->
-    <script>
-  	$(window).load(function(){
-  	    var $container = $('.portfolioContainer');
-  	    $container.isotope({
-  	        filter: '*',
-  	        animationOptions: {
-  	            duration: 750,
-  	            easing: 'linear',
-  	            queue: false
-  	        }
-  	    });
-  	 
-  	    $('.portfolioFilter a').click(function(){
-  	        $('.portfolioFilter .current').removeClass('current');
-  	        $(this).addClass('current');
-  	 
-  	        var selector = $(this).attr('data-filter');
-  	        $container.isotope({
-  	            filter: selector,
-  	            animationOptions: {
-  	                duration: 750,
-  	                easing: 'linear',
-  	                queue: false
-  	            }
-  	         });
-  	         return false;
-  	    }); 
-  	});
-	</script>
-
-
-
-
-    <!-- Script to give a specific URL to every Modal. TODO: improve it with https://stackoverflow.com/questions/34154370/bootstrap-3-x-how-to-have-url-change-upon-clicking-modal-trigger -->
-    <script>
-      $(document).ready(function(){
-        $(window.location.hash).modal('show');
-        $('a[data-toggle="modal"]').click(function(){
-           window.location.hash = $(this).attr('href');
-        });
-      });
-
-      $('button[data-dismiss="modal"]').click(function(){
-           var original = window.location.href.substr(0, window.location.href.indexOf('#'))
-           history.replaceState({}, document.title, original);
-       });
-
-      $(window.location.hash).modal('show');
-      $('a[data-toggle="modal"]').click(function(){
-          window.location.hash = $(this).attr('href');
-      });
-
-      function revertToOriginalURL() {
-          var original = window.location.href.substr(0, window.location.href.indexOf('#'))
-          history.replaceState({}, document.title, original);
-      }
-
-      $('.modal').on('hidden.bs.modal', function () {
-          revertToOriginalURL();
-      });
-
-  </script>
-
-
-  <script>
-    $('.tip').each(function () {
-      $(this).tooltip(
-      {
-        html: true,
-          title: $('#' + $(this).data('tip')).html()
-      });
-    });
-  </script>
+    	$(function () {
+      		$('[data-toggle="tooltip"]').tooltip()
+    	})
+	 </script>
 
 
 

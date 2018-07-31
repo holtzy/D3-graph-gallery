@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>Very basic histogram in d3.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Using d3.js to create a very basic histogram">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="Very basic histogram in d3.js">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="Using d3.js to create a very basic histogram">
+    <title>Very basic histogram in d3.js</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet">
+
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
+
+  </head>
+
+  <body id="page-top">
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <a class="js-scroll-trigger" href="../index.html">D3.js Graph Gallery</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/optimization.html">R</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <p style="display:inline; font-size: 35px">A very basic histogram in d3.js</p>
+          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
+          <br>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+          <br><br>
+          <p style="max-width: 700px; margin: auto">This is the most basic histogram you can do in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
+          <br>
+          <a class="btn btn-primary btn-xl text-uppercase" href="../histogram.html">Histogram section</a>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact">Download code</a>
+      </div>
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- CONTENT -->
+
+
+<section class="bg" id="portfolio" style="padding-top: 20px">
+  <div class="container" >
+
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+
+<!-- Graph takes place here -->
+<center>
+<svg width=800 height=400 style="background-color: grey"></svg>
+</center>
+
+
+<!-- Description -->
+<p>This is a very basic histogram made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.
+
+
+
+
+<!-- ========= The code that is always the same ============== -->
+<pre class="language-html"><code><xmp>
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+
+<!-- start using Javascript-->
+<script>
+</xmp></code></pre>
+
+
+  
+
+
+
+
+<!-- ========= The code of the chart ============== -->
+<pre class="language-js"><code id="code" contenteditable="true">
+// here is a comment
+d3.selectAll('svg')
+  .append('circle')
+  .attr('cx', '90')
+  .attr('cy', '50')
+  .attr('r', '10')
+</code></pre>
+
+
+
+
+
+<!-- ========= The code that is always the same at the end ============== -->
+<pre class="language-html"><code><xmp>
+</script>
+</html>
+</xmp></code></pre>
+
+
+
+<!-- ========= Eval the code ============== -->
+<script>
+// when the page load, the script part is evaluated
+var command = document.getElementById('code').innerHTML;
+command = command.replace(/<\/?span[^>]*>/g,"");
+eval(command)
+// If the user modify the code, the the script part is evaluated again
+document.getElementById("code").addEventListener("input", function() {
+  var command = document.getElementById('code').innerHTML;
+  command = command.replace(/<\/?span[^>]*>/g,"");
+  eval(command)
+}, false);
+</script>
+
+
+
+  </div>
+</section>
+
+
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+<!-- RELATED BLOCKS -->
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
+
+
+  <section id="contact" class="bg-light" style="background-color: white">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-2 text-center"></div>
+         <div class="col-lg-8 text-center">
+           <br><br><br>
+           <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
+           <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
+           <div style="text-align:center">
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
+            </div>
+
+         </div>
+       </div>
+    </div>
+  </section>
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light">
+      <div class="container" >
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="https://twitter.com/R_Graph_Gallery">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/holtzy">
+                  <i class="fa fa-github"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ JAVASCRIPT SECTION ============================ -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact form JavaScript -->
+    <script src="../js/jqBootstrapValidation.js"></script>
+    <script src="../js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="../js/agency.min.js"></script>
+
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
+   </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+</html>
