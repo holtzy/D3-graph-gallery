@@ -7,6 +7,6 @@ Here is a collection of *simple* graphics made with D3.
 
 This repo is unorganized, it is just personal notes.
 
-
+https://holtzy.github.io/D3-graph-gallery/
 
 

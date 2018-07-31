@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
   <head>
 
     <meta charset="utf-8">
@@ -19,7 +21,6 @@
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -32,7 +33,13 @@
     <script src="../LIB/prism.js"></script>
     <link href="../LIB/prism.css" rel="stylesheet" />
 
+    <!-- D3.JS v4 -->
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+
   </head>
+
+
+
 
   <body id="page-top">
 
@@ -98,8 +105,8 @@
           <br><br>
           <p style="max-width: 700px; margin: auto">This is the most basic histogram you can do in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
           <br>
-          <a class="btn btn-primary btn-xl text-uppercase" href="../histogram.html">Histogram section</a>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact">Download code</a>
+          <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
+          <button class="btn btn-secondary btn-md text-uppercase" onclick="download()">Download code</button>
       </div>
     </header>
 
@@ -113,28 +120,22 @@
 
 
 
-
-
-
-
-
-
-<!-- CONTENT -->
+<!-- ==================== CONTENT ==================== -->
 
 
 <section class="bg" id="portfolio" style="padding-top: 20px">
   <div class="container" >
 
-<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
 
 <!-- Graph takes place here -->
 <center>
-<svg width=800 height=400 style="background-color: grey"></svg>
+<svg width=800 height=400 style="background-color: grey" id="content"></svg>
 </center>
 
 
 <!-- Description -->
-<p>This is a very basic histogram made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.
+<br>
+<p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.
 
 
 
@@ -146,6 +147,9 @@
 
 <!-- Load d3.js -->
 <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+
+<!-- Create a svg area to build the plot in -->
+<svg width=800 height=400></svg>
 
 <!-- start using Javascript-->
 <script>
@@ -179,18 +183,29 @@ d3.selectAll('svg')
 
 
 
+
+
+
 <!-- ========= Eval the code ============== -->
 <script>
+
 // when the page load, the script part is evaluated
 var command = document.getElementById('code').innerHTML;
 command = command.replace(/<\/?span[^>]*>/g,"");
 eval(command)
+
 // If the user modify the code, the the script part is evaluated again
 document.getElementById("code").addEventListener("input", function() {
+
+  // delete the content of the previous graph
+  d3.selectAll('svg').html("");
+
+  // get the new command and build the new graph
   var command = document.getElementById('code').innerHTML;
   command = command.replace(/<\/?span[^>]*>/g,"");
   eval(command)
-}, false);
+  
+  }, false);
 </script>
 
 
@@ -201,6 +216,10 @@ document.getElementById("code").addEventListener("input", function() {
 
 
 <!-- ============================ -->
+
+
+
+
 
 
 
@@ -318,7 +337,6 @@ document.getElementById("code").addEventListener("input", function() {
 
     <!-- Contact form JavaScript -->
     <script src="../js/jqBootstrapValidation.js"></script>
-    <script src="../js/contact_me.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="../js/agency.min.js"></script>
@@ -328,8 +346,22 @@ document.getElementById("code").addEventListener("input", function() {
       $(function () {
           $('[data-toggle="tooltip"]').tooltip()
       })
-   </script>
+    </script>
 
+
+    <!-- Function to download the content of the div -->
+    <script>
+    function download(){
+        var a = document.body.appendChild(
+            document.createElement("a")
+        );
+        a.download = "export.html";
+        var command = document.getElementById('code').innerHTML;
+        command = command.replace(/<\/?span[^>]*>/g,"");
+        a.href = "data:html" + command
+        a.click(); // Trigger a click on the element
+    }
+    </script>
 
 
 
