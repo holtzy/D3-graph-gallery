@@ -58,6 +58,10 @@ section h3.section-subheading {
 
 
 
+
+
+
+
 /* ---------- Button ----------------- */
 .btn {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -112,6 +116,13 @@ section h3.section-subheading {
 
 
 
+
+
+
+
+
+/* ---------- Menu ----------------- */
+
 ::-moz-selection {
   background: #b35900;
   text-shadow: none;
@@ -145,10 +156,6 @@ img::-moz-selection {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-
-
-
-
 /* Color of brand on the top left */
 #mainNav .navbar-brand {
   color: #b35900;
@@ -158,12 +165,6 @@ img::-moz-selection {
 #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
   color: #251667;
 }
-
-
-
-
-
-
 
 /* Color of the TEXT of the menu top right*/
 #mainNav .navbar-nav .nav-item .nav-link {
@@ -181,7 +182,6 @@ img::-moz-selection {
   background-color: white;
   border-bottom: 5px solid #b35900;
 }
-
 
 
 @media (min-width: 992px) {
@@ -222,6 +222,13 @@ img::-moz-selection {
 }
 
 
+
+
+
+
+
+/* ---------- Parallax if needed ----------------- */
+
 .parallax {
     /* The image used (faded with convert overview_RGG.png  -fill white -colorize 50%  overview_RGG_faded.png*/
     background-image: url("../img/area_bitcoin_fadded.png");
@@ -235,6 +242,15 @@ img::-moz-selection {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+
+
+
+
+
+
+/* ---------- Landing page top ----------------- */
 
 
 header.masthead .intro-text {
@@ -293,9 +309,10 @@ header.masthead .intro-text .intro-heading {
 
 
 
-/* -------------------- PORTOFOLIO ------------------ */
 
 
+
+/* -------------------- ID PORTOFOLIO = For graph pages ------------------ */
 
 #portfolio .portfolio-item {
   right: 0;
@@ -377,6 +394,138 @@ header.masthead .intro-text .intro-heading {
   }
 }
 
+#portfolio .explanation_portfolio{
+  font-size: 17px;
+  margin: 20px;
+}
+
+
+
+
+
+
+
+
+/* -------------------- ID portfolio_landing = For the landing page ------------------ */
+
+
+#portfolio_landing .portfolio-item {
+  right: 0;
+  margin: 0 0 15px;
+}
+
+#portfolio_landing .portfolio-item .portfolio-link {
+  position: relative;
+  display: block;
+  max-width: 130px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+#portfolio_landing .portfolio-item .portfolio-link .portfolio-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+  opacity: 0;
+  background: rgba(254, 209, 54, 0.9);
+  border-radius: 100%;
+  background-color: grey !important;
+}
+
+#portfolio_landing .portfolio-item .portfolio-link .portfolio-hover:hover {
+  opacity: 0.8;
+}
+
+#portfolio_landing .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 20px;
+  margin-top: -12px;
+  text-align: center;
+  color: white;
+}
+
+#portfolio_landing .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
+  margin-top: -12px;
+}
+
+#portfolio_landing .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
+#portfolio_landing .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
+  margin: 0;
+}
+
+#portfolio_landing .portfolio-item .portfolio-caption {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 25px;
+  text-align: center;
+  background-color: 'none';
+}
+
+#portfolio_landing .portfolio-item .portfolio-caption h4 {
+  margin: 0;
+  text-transform: none;
+}
+
+#portfolio_landing .portfolio-item .portfolio-caption p {
+  font-size: 16px;
+  font-style: italic;
+  margin: 0;
+  font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#portfolio_landing * {
+  z-index: 2;
+}
+
+@media (min-width: 767px) {
+  #portfolio_landing .portfolio-item {
+    margin: 0 0 30px;
+  }
+}
+
+
+
+
+
+/* -------------------- GENERAL ------------------ */
+/* Colors: distribution:  #e0ac2b / correlation: #7f7f7f / ranking : #a4c969 / part of a whole: #e85252 / evolution: #6689c6 / map: #9a6fb0 / flow: #a53253 */
+
+.mySeryTitle {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.grpdependant.distribution {
+  color: #e0ac2b;
+}
+.grpdependant.correlation {
+  color: #7f7f7f;
+}
+.grpdependant.ranking {
+  color: #a4c969;
+}
+.grpdependant.partofawhole {
+  color: #e85252;
+}
+.grpdependant.evolution {
+  color: #6689c6;
+}
+.grpdependant.map {
+  color: #9a6fb0;
+}
+.grpdependant.flow {
+  color: #a53253;
+}
+
+
+
+
 
 
 
@@ -393,7 +542,6 @@ header.masthead .intro-text .intro-heading {
 
 
 /* -------------------- TOOLTIP ------------------ */
-
 
 .data-tooltip{
   color: black;
@@ -414,6 +562,11 @@ header.masthead .intro-text .intro-heading {
 
 
 
+
+
+
+
+/* ---------- Probably useless ----------------- */
 
 section#contact {
   background-color: #212529;
@@ -556,66 +709,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 
 
-
-
-
-
-
-
-
-/* ------------------------------------------------------------------------------------------------------------------- */
-/* MISTAKE CAROUSSEL CUSTOM
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-
-.carousel-control-next, .carousel-control-prev {
-  color: black;
-}
-
-.carousel-control-prev-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
-}
-
-.carousel-control-next-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-}
-
-.carousel-control-prev {
-    left: -121px;
-}
-.carousel-control-next {
-    right: -121px;
-}
-
-.mytextrelated {
-  text-transform: none; 
-  font-weight: normal !important; 
-  color: black;
-}
-
-.mytitlerelated {
-  margin: 10px 0 10px;
-  font-size: 14px;
-}
-
-.mybtnrelated {
-  height: 280px;
-  margin-top: 24px;
-  padding-top: 24px;
-}
-
-
-
-
-
-
-/* ------------------------------------------------------------------------------------------------------------------- */
-/* DROPDOWN BUTTON
-/* ------------------------------------------------------------------------------------------------------------------- */
-
-.dropdown-item {
-  margin-left: 30px;
-}
 
 
 

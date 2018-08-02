@@ -53,7 +53,8 @@ range                                             -       From where to where th
 
 Different type of scale:
   - d3.scalePoint()
-  - scaleLinear()
+  - d3.scaleLinear()
+  - d3.scaleBand()
 
 Custom scale:
   - .padding([.9]) -> add space between the axis and the first element. between 0 and 1. Does not work for scaleLinear
@@ -128,14 +129,21 @@ d3.range(1000)				create an array from 0 to 1000
 BASIC FEATURE OF SVG OBJECT
 ---------------------------
 A list of stuff you can "append" and the argument you can provide:
-g      --> .attr = class, transform,
-circle --> r, cx, cy
-text   --> .attr = x, y, fill, text-anchor, font-weight | .text = text to display
-line   --> x1, y1, x2, y2, stroke, stroke-width, fill
+  g      --> .attr = class, transform,
+  circle --> r, cx, cy
+  text   --> .attr = x, y, fill, text-anchor, font-weight | .text = text to display
+  line   --> x1, y1, x2, y2, stroke, stroke-width, fill
+  Path   --> d : it gives the way to follow for the path. Like d = "M150 0 L75 200 L225 200 Z" means I start at 0, I move to 150;0, Then I do a line until 75;200, Then another line until 225 200, then I close.  Other letters allow more complicated stuff like curve. D3 has some function to build Paths.
 
 
-
-
+FUNCTION TO BUILD THESE SVG SHAPE MORE EASILY
+-------------------------
+See here: https://github.com/d3/d3-shape
+- d3.area() 
+- d3.lineRadial()
+- d3.line()
+- d3.linkVertical() 
+- d3.symbol()
 
 ANIMATION FUNCTION
 ----------------
