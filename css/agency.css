@@ -30,6 +30,16 @@ h6 {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+
+aside {
+  float: right; 
+  margin-right: -190px; 
+  width: 180px; 
+  color: red;
+}
+
+
+
 section {
   padding: 100px 0;
 }
