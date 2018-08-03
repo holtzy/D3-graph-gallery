@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Very basic histogram in d3.js</title>
+    <title>A basic barplot made using d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Very basic histogram in d3.js</title>
+    <title>A basic barplot made using d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic histogram in d3.js</p>
+          <p style="display:inline; font-size: 35px">A very basic barplot in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is the most basic histogram you can do in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="download()">Download code</button>
@@ -148,7 +148,7 @@
 
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">barplot</a> made using d3.js. The data comes from here.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -169,7 +169,7 @@
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
+var margin = {top: 10, right: 30, bottom: 90, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -182,50 +182,40 @@ var svg = d3.select("#my_dataviz")
     .attr("transform", 
           "translate(" + margin.left + "," + margin.top + ")");
 
-// get the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv", function(data) {
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv", function(data) {
 
-  // set the scales
-  var x = d3.scaleLinear()
-            .domain([0, 1000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
-            .range([0, width]);
-  var y = d3.scaleLinear()
-            .range([height, 0]);   // the domain will be specified later, we need to compute the binning first
+// X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(data.map(function(d) { return d.Country; }))
+  .padding(0.2);
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
 
-  // set the parameters for the histogram
-  var histogram = d3.histogram()
-      .value(function(d) { return d.price; })   // I need to give the vector of value
-      .domain(x.domain())  // then the domain of the graphic
-      .thresholds(x.ticks(70)); // then the numbers of bins
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, 13000])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y));
 
-  // group the data for the bars
-  var bins = histogram(data);
+// Bars
+svg.selectAll("mybar")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d.Country); })
+    .attr("y", function(d) { return y(d.Value); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.Value); })
+    .attr("fill", "#69b3a2")
 
-  // Scale the range of the data in the y domain
-  y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // here is the Y domain !
-
-  // append the bar rectangles to the svg element
-  svg.selectAll("rect")
-      .data(bins)
-      .enter()
-      .append("rect")
-        .attr("class", "bar")
-        .attr("x", 1)
-        .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
-        .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
-        .attr("height", function(d) { return height - y(d.length); })
-        .style("fill", "#69b3a2")
-
-  // add the x Axis
-  svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-  // add the y Axis
-  svg.append("g")
-      .call(d3.axisLeft(y));
-      
-});
+})
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
