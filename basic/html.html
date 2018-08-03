@@ -43,6 +43,9 @@
     <!-- HTML TO CANVAS -->
     <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
 
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
   </head>
 
 
@@ -137,19 +140,13 @@
 <section class="bg" id="portfolio" style="padding-top: 20px">
   <div class="container" >
 
-
-
-
 <!-- Description -->
 <br>
 
 
-
-
-
-
 <!-- ========= show html code ============== -->
-<p>This is a very basic piece of html.</p>
+<p>This is a very basic piece of html. Basically it is composed by different elements. Like <code>p</code> tells that you're gonna write a paragraph.</p>
+<aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
@@ -161,10 +158,9 @@
 <!-- ==================================== -->
 
 
-
-
 <!-- ========= show JS code ==============  -->
 <p>And a bit of Javascript on top of it:</p>
+<aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp>
 <script>
 d3.select("#mytext").style("color", "blue")
@@ -178,8 +174,9 @@ d3.select("#mytext").style("color", "blue")
 
 <!-- ========= This is where the result is gonna be shown ============== -->
 <p>And this is what it gives</p>
+<aside>&larr; Check the result! </aside>
 <div id="result" style="border: solid; border-width: 1px; padding: 20px"></div>
-<p>Wonderful</p>
+<p>Wonderful. You can now have a look to what CSS is to pimp your page.</p>
 <!-- ==================================== -->
 
 
@@ -187,34 +184,7 @@ d3.select("#mytext").style("color", "blue")
 
 
 
-<script>
-function myHtmlParser(divFrom, divTo){
-  // get the content of the origin div (first argument)
-  var content = document.getElementById(divFrom).innerText;
-  // remove the xmp tag
-  content = content.replace(/<xmp>/,"").replace(/<.xmp>/,"").replace(/<\/?span[^>]*>/g,"");
-  console.log("This is the content of the html fragment!; ")
-  console.log(content)
-  // write the content in the destination div (second argument)
-  document.getElementById(divTo).innerHTML = content;
-}
-</script>
-
-
-<script>
-function myJSParser(divFrom, divTo){
-  // get the content of the origin div (first argument)
-  var command = document.getElementById(divFrom).innerText;
-  // remove the xmp tag and the script tags
-  command = command.replace(/<xmp>/,"").replace(/<.xmp>/,"").replace(/<script>/,"").replace(/<.script>/,"").replace(/<\/?span[^>]*>/g,"");
-  console.log("This is the content of the JS fragment!; ")
-  console.log(command)
-  // run the JS code
-  eval(command);
-}
-</script>
-
-
+<!-- ==================== JAVASCRIPT SECTION ==================== -->
 <script>
 // At the beginning, I read the html and JS fragments
 myHtmlParser('code', 'result')
@@ -223,7 +193,6 @@ myJSParser('codejs', 'result')
 // If the user change the JS fragment, I run it again:
 document.getElementById('codejs').addEventListener("input", function() {
   d3.select('#result').html("");
-  console.log("empty the result area oK");
   myHtmlParser('code', 'result');
   myJSParser('codejs', 'result');
 })
@@ -231,7 +200,6 @@ document.getElementById('codejs').addEventListener("input", function() {
 // If the user change the HTML fragment, I run it again:
 document.getElementById('code').addEventListener("input", function() {
   d3.select('#result').html("");
-  console.log("empty the result area oK");
   myHtmlParser('code', 'result');
   myJSParser('codejs', 'result');
 })
@@ -284,6 +252,11 @@ document.getElementById('code').addEventListener("input", function() {
        </div>
     </div>
   </section>
+
+
+
+
+
 
 
 

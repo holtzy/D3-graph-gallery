@@ -43,6 +43,9 @@
     <!-- HTML TO CANVAS -->
     <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
 
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
   </head>
 
 
@@ -138,42 +141,16 @@
   <div class="container" >
 
 
-
-
-<!-- Graph takes place here -->
-<center>
-    <div id="my_dataviz"></div>  
-</center>
-<script>
-
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
-</script>
+<!-- ========= This is where the result is gonna be shown ============== -->
+<div id="result"></div>
+<!-- ==================================== -->
 
 
 
-<!-- Description -->
-<br>
-<p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
-
-
-
-
-
-<!-- ========= The code that is always the same ============== -->
-<aside>&larr; Always the same</aside>
-<pre class="language-html" style="max-height: 108px"><code><xmp><!DOCTYPE html>
+<!-- ========= show html code ============== -->
+<br><p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<aside>&larr; Edit me! </aside>
+<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -182,7 +159,15 @@ var svg = d3.select("#my_dataviz")
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>  
 
-<script>
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<p>And a bit of Javascript on top of it:</p>
+<aside>&larr; Edit me! </aside>
+<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
@@ -197,21 +182,8 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform", 
           "translate(" + margin.left + "," + margin.top + ")");
-</script>
 
-<!-- start using Javascript-->
-<script>
-</xmp></code></pre>
-
-
-  
-
-
-
-
-<!-- ========= The code of the chart ============== -->
-<aside>&larr; Edit me! </aside>
-<pre class="language-js" style="max-height: 300px"><code id="code" contenteditable="true">// get the data
+// get the data
 d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv", function(data) {
 
   // set the scales
@@ -256,44 +228,36 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
       
 });
 
-
-</code></pre>
-
-
-
-
-
-<!-- ========= The code that is always the same at the end ============== -->
-<pre class="language-html"><code><xmp></script>
-</html>
-</xmp></code></pre>
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
 
 
 
-<!-- ========= Eval the code ============== -->
+<!-- ==================== JAVASCRIPT SECTION ==================== -->
 <script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code', 'result')
+myJSParser('codejs', 'result')
 
-// when the page load, the script part is evaluated
-var command = document.getElementById('code').innerHTML;
-command = command.replace(/<\/?span[^>]*>/g,"");
-eval(command)
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs').addEventListener("input", function() {
+  d3.select('#result').html("");
+  myHtmlParser('code', 'result');
+  myJSParser('codejs', 'result');
+})
 
-// If the user modify the code, the the script part is evaluated again
-document.getElementById("code").addEventListener("input", function() {
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code').addEventListener("input", function() {
+  d3.select('#result').html("");
+  myHtmlParser('code', 'result');
+  myJSParser('codejs', 'result');
+})
 
-  // delete the content of the previous graph
-  d3.selectAll('svg').html("");
-
-  // get the new command and build the new graph
-  var command = document.getElementById('code').innerHTML;
-  command = command.replace(/<\/?span[^>]*>/g,"");
-  eval(command)
-  
-  }, false);
 </script>
+
 
 
 
