@@ -22,4 +22,28 @@ function myJSParser(divFrom, divTo){
 }
 
 
+function myPngExporter(output, mydiv, mytime){
+
+  // We need for the javascript to be executed before exporting to png
+  var millisecondsToWait = mytime;
+  setTimeout(function() {
+
+    // export the div called mydiv
+    html2canvas($(mydiv), 
+      {
+        onrendered: function (canvas) {
+          var a = document.createElement('a');
+          // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+          a.href = canvas.toDataURL("image/png") //.replace("image/png", "image/octet-stream");
+          a.download = output;
+          a.click();
+        }
+      });
+
+  }, millisecondsToWait);
+}
+
+
+
+
 

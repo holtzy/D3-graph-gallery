@@ -142,7 +142,7 @@
 
 
 <!-- ========= This is where the result is gonna be shown ============== -->
-<div id="result"></div>
+<center><div id="result"></div></center>
 <!-- ==================================== -->
 
 
@@ -170,8 +170,8 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 700 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -409,29 +409,6 @@ document.getElementById('code').addEventListener("input", function() {
         a.click(); // Trigger a click on the element
     }
     </script>
-
-
-    <!-- Function to download the graphic as png automatically -->
-<!--     <script>
-        html2canvas($('#content'), 
-        {
-          onrendered: function (canvas) {
-            var a = document.createElement('a');
-            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            a.download = 'somefilename.jpg';
-            a.click();
-          }
-        });
-    </script> -->
-
-
-
-
-
-
-
-
 
 
   </body>
