@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>give me a title</title>
+    <title>Basic upset plot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>give me a title</title>
+    <title>Basic upset plot</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
     
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script> 
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic histogram in d3.js</p>
+          <p style="display:inline; font-size: 35px">Basic upset plot in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -161,10 +161,13 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>  
+<div id="my_dataviz" style="border: solid; border-width: 1px"></div>  
 
 </xmp></code></pre>
 <!-- ==================================== -->
+
+
+
 
 
 
@@ -172,27 +175,75 @@
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+// set the dimensions and margins of the whole graph
+var width = 960,
+    height = 700;
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
+// set the other dimension
+var margin = {left: 10, top: 10, between: 10, right: 10},
+    heightTop = 400,
+    widthLeft = 400;
+    widthRight = width - margin.left - widthLeft - margin.between - margin.right
+
+
+// append the first area: top left. This area will be empty
+var topLeft = d3.select("#my_dataviz")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", widthLeft)
+    .attr("height", heightTop)
   .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-svg.append("circle")
-  .attr("cx", 100)
-  .attr("cy", 100)
-  .attr("r", 40)
+topLeft.append("rect")
+  .attr("x", 0)
+  .attr("y", 0)
+  .attr("height", heightTop)
+  .attr("width", widthLeft)
+  .style("stroke", "green")
+  .style("fill", "none")
+  .style("stroke-width", "2px");
+
+
+
+
+
+
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv", function(data) {
+
+// X axis of Main graphic
+var x = d3.scaleBand()
+  .range([ 0, widthMain ])
+  .domain(data.map(function(d) { return d.Country; }))
+  .padding(0.2);
+
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, 13000])
+  .range([ heightTop, 0]);
+Main.append("g")
+  .call(d3.axisLeft(y));
+
+// Bars
+Main.selectAll("mybar")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d.Country); })
+    .attr("y", function(d) { return y(d.Value); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.Value); })
+    .attr("fill", "#69b3a2")
+
+})
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
+
+
+
+
+
 
 
 

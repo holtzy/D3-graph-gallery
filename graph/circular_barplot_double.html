@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>give me a title</title>
+    <title>Double circular barplot with d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>give me a title</title>
+    <title>Double circular barplot with d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script> 
@@ -45,6 +45,10 @@
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
+
+    <!-- Function for radial charts -->
+    <script src="../LIB/d3-scale-radial.js"></script>
+
 
   </head>
 
@@ -92,7 +96,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic histogram in d3.js</p>
+          <p style="display:inline; font-size: 35px">A double circular barplot with d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +117,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the circular barplot section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -134,31 +138,31 @@
 
 
 
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+<!-- ==================== CONTENT ==================== -->
 
-<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
+
+<section class="bg" id="portfolio" style="padding-top: 20px">
   <div class="container" >
-    <center><div id="result"></div></center>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
 
 
+<!-- ========= This is where the result is gonna be shown ============== -->
+<center><div id="result"></div><center>
+<!-- ==================================== -->
 
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
-<div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">circular barplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Load a few functions necessary for radial coordinates: -->
+<script src="../LIB/d3-scale-radial.js"></script>
+<!--<script src="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/LIB/d3-scale-radial.js"></script>-->
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>  
@@ -173,30 +177,94 @@
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 100, right: 0, bottom: 0, left: 0},
+    width = 800 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom,
+    innerRadius = 160,
+    outerRadius = Math.min(width, height) / 2;   // the outerRadius goes from the middle of the SVG area to the border
 
-// append the svg object to the body of the page
+// append the svg object
 var svg = d3.select("#my_dataviz")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + (width / 2 + margin.left) + "," + (height / 2 + margin.top) + ")"); 
 
-svg.append("circle")
-  .attr("cx", 100)
-  .attr("cy", 100)
-  .attr("r", 40)
+// Scales
+var x = d3.scaleBand()
+    .range([0, 2 * Math.PI])    // X axis goes from 0 to 2pi = all around the circle. If I stop at 1Pi, it will be around a half circle
+    .align(0);                  // This does nothing
+var y = d3.scaleRadial()
+    .range([innerRadius, outerRadius]);   // Domain will be define later.
+
+// Second barplot Scales
+var ybis = d3.scaleRadial()
+    .range([155, 5]);   // Domain will be defined later.
+
+
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv", function(data) {
+
+  x.domain(data.map(function(d) { return d.Country; })); // The domain of the X axis is the list of states.
+  y.domain([0, 13000]); // Domain of Y is from 0 to the max seen in the data
+  ybis.domain([0, 13000]);
+
+  // Add the bars
+  svg.append("g")
+    .selectAll("path")
+    .data(data)
+    .enter()
+    .append("path")
+      .attr("fill", "#69b3a2")
+      .attr("class", "yo")
+      .attr("d", d3.arc()     // imagine your doing a part of a donut plot
+          .innerRadius(innerRadius)
+          .outerRadius(function(d) { return y(d['Value']); })
+          .startAngle(function(d) { return x(d.Country); })
+          .endAngle(function(d) { return x(d.Country) + x.bandwidth(); })
+          .padAngle(0.01)
+          .padRadius(innerRadius))
+
+  // Add the labels
+  svg.append("g")
+      .selectAll("g")
+      .data(data)
+      .enter()
+      .append("g")
+        .attr("text-anchor", function(d) { return (x(d.Country) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
+        .attr("transform", function(d) { return "rotate(" + ((x(d.Country) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")"+"translate(" + (y(d['Value'])+10) + ",0)"; })
+      .append("text")
+        .text(function(d){return(d.Country)})
+        .attr("transform", function(d) { return (x(d.Country) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
+        .style("font-size", "11px")
+        .attr("alignment-baseline", "middle")
+
+  // Add the second serie
+  svg.append("g")
+    .selectAll("path")
+    .data(data)
+    .enter()
+    .append("path")
+      .attr("fill", "red")
+      .attr("d", d3.arc()     // imagine your doing a part of a donut plot
+          .innerRadius( function(d) { return ybis(0) })
+          .outerRadius( function(d) { return ybis(d['Value']); })
+          .startAngle(function(d) { console.log("ok") ; return x(d.Country); })
+          .endAngle(function(d) { return x(d.Country) + x.bandwidth(); })
+          .padAngle(0.01)
+          .padRadius(innerRadius))
+
+});
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
 
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+
+
+
+<!-- ==================== JAVASCRIPT SECTION ==================== -->
 <script>
 // At the beginning, I read the html and JS fragments
 myHtmlParser('code', 'result')
@@ -215,6 +283,7 @@ document.getElementById('code').addEventListener("input", function() {
   myHtmlParser('code', 'result');
   myJSParser('codejs', 'result');
 })
+
 </script>
 
 
@@ -232,34 +301,6 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
-            <br>
-            <li>yo</li>
-            <br>
-            <li>ll</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
@@ -276,7 +317,7 @@ document.getElementById('code').addEventListener("input", function() {
     <a name="contactanchor"></a>
 
 
-  <section id="contact" class="bg" style="background-color: white">
+  <section id="contact" class="bg-light" style="background-color: white">
      <div class="container">
        <div class="row">
          <div class="col-lg-2 text-center"></div>
