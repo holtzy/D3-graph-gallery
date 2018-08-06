@@ -204,6 +204,19 @@ topLeft.append("rect")
   .style("stroke-width", "2px");
 
 
+// append the second area: top right. This area will have the main chart
+var topright = d3.select("#my_dataviz")
+    .attr("width", widthRight)
+    .attr("height", heightTop)
+
+topright.append("rect")
+  .attr("x", 0)
+  .attr("y", 0)
+  .attr("height", heightTop)
+  .attr("width", widthRight)
+  .style("stroke", "red")
+  .style("fill", "none")
+  .style("stroke-width", "2px");
 
 
 
