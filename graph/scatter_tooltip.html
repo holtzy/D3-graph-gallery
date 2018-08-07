@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Most basic scatterplot with d3.js</title>
+    <title>Scatterplot with tooltip in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Most basic scatterplot with d3.js</title>
+    <title>Scatterplot with tooltip in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Most basic scatterplot with d3.js</p>
+          <p style="display:inline; font-size: 35px">Scatterplot with tooltip in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -204,6 +204,36 @@ var y = d3.scaleLinear()
 svg.append("g")
   .call(d3.axisLeft(y));
 
+// Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point. 
+// Its opacity is set to 0: we don't see it by default.
+var tooltip = d3.select("#my_dataviz")
+  .append("div")
+  .style("opacity", 0)
+  .attr("class", "tooltip")
+  .style("background-color", "white")
+  .style("border", "solid")
+  .style("border-width", "1px")
+  .style("border-radius", "5px")
+  .style("padding", "10px")
+
+// A function that change this tooltip when the user hover a point. 
+// Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+var showTooltip = function(d) {
+  tooltip
+    .style("opacity", 1)
+    .html("The exact value of<br>the Ground Living area is: " + d.GrLivArea) 
+    .style("left", (d3.event.pageX + 15) + "px")
+    .style("top", (d3.event.pageY - 28) + "px")
+}
+
+// A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+var hideTooltip = function(d) {
+  tooltip
+    .transition()
+    .duration(1000)
+    .style("opacity", 0)
+}
+
 // Add dots
 svg.append('g')
   .selectAll("dot")
@@ -214,7 +244,8 @@ svg.append('g')
     .attr("cy", function (d) { return y(d.SalePrice); } )
     .attr("r", 1.5)
     .style("fill", "#69b3a2")
-
+  .on("mouseover", showTooltip )
+  .on("mouseleave", hideTooltip )
 })
 
 </script></xmp></code></pre>
@@ -274,7 +305,7 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
+            <li><i>d3 scatterplot with tooltips - </i><a href="http://bl.ocks.org/williaster/af5b855651ffe29bdca1">link</a></li>
             <br>
             <li>yo</li>
             <br>

@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Most basic scatterplot with d3.js</title>
+    <title>Basic tooltip in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Most basic scatterplot with d3.js</title>
+    <title>Basic tooltip in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
     
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script> 
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Most basic scatterplot with d3.js</p>
+          <p style="display:inline; font-size: 35px">Basic tooltip in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the scatterplot section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the tooltip section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -152,7 +152,7 @@
 <div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">scatterplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic tooltip example made using d3.js. Hover the circle to see the tooltip</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -172,53 +172,43 @@
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
+// Start by creating the svg area
 var svg = d3.select("#my_dataviz")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("width", 800)
+    .attr("height", 400)
 
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
+// Append a circle
+svg.append("circle")
+  .attr("cx", 400)
+  .attr("cy", 200)
+  .attr("r", 40)
+  .attr("fill", "#69b3a2")
 
-// Add X axis
-var x = d3.scaleLinear()
-  .domain([0, 4000])
-  .range([ 0, width ]);
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
-
-// Add Y axis
-var y = d3.scaleLinear()
-  .domain([0, 500000])
-  .range([ height, 0]);
-svg.append("g")
-  .call(d3.axisLeft(y));
-
-// Add dots
-svg.append('g')
-  .selectAll("dot")
-  .data(data)
-  .enter()
-  .append("circle")       
-    .attr("cx", function (d) { return x(d.GrLivArea); } )
-    .attr("cy", function (d) { return y(d.SalePrice); } )
-    .attr("r", 1.5)
-    .style("fill", "#69b3a2")
-
-})
+// create a tooltip
+var tooltip = d3.select("#my_dataviz")
+  .append("div")
+  .style("position", "absolute")
+  .style("z-index", "10")
+  .style("visibility", "hidden")
+  .style("background-color", "white")
+  .style("border", "solid")
+  .style("border-width", "1px")
+  .style("border-radius", "5px")
+  .style("padding", "10px")
+  .text("I'm a circle!");
+  
+// 
+d3.select("circle")
+  .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+  .on("mousemove", function(){return tooltip.style("top", (event.pageY-30)+"px").style("left",(event.pageX+30)+"px");})
+  .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
+
+
+
 
 
 
@@ -274,7 +264,7 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
+            <li><i>Simple D3 tooltip - </i><a href="http://bl.ocks.org/biovisualize/1016860">link</a></li>
             <br>
             <li>yo</li>
             <br>
