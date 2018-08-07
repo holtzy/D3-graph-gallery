@@ -134,21 +134,25 @@
 
 
 
-<!-- ==================== CONTENT ==================== -->
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-
-<section class="bg" id="portfolio" style="padding-top: 20px">
+<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
+    <center><div id="result"></div></center>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
 
 
-<!-- ========= This is where the result is gonna be shown ============== -->
-<div id="result"></div>
-<!-- ==================================== -->
 
 
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">transision</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -158,10 +162,10 @@
 
 <!-- Create a div with just a rect in svg -->
 <div id="my_dataviz" >
-  <svg width="960px" height="100px">
-      <rect id="my_rect" x="10" y="10" width="200" height="30" stroke="black" fill="#69b3a2" stroke-width="1"/>
+  <svg width="960px" height="400px">
+      <rect id="my_rect" x="10" y="200" width="200" height="30" stroke="black" fill="#69b3a2" stroke-width="1"/>
   </svg>
-</div>  
+</div> 
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -175,18 +179,15 @@
 d3.select("#my_rect")
   .transition()
   .duration(2000)
+  .delay(1000)
   .attr("width", "700")
-
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
 
 
-
-
-
-<!-- ==================== JAVASCRIPT SECTION ==================== -->
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
 <script>
 // At the beginning, I read the html and JS fragments
 myHtmlParser('code', 'result')
@@ -205,7 +206,6 @@ document.getElementById('code').addEventListener("input", function() {
   myHtmlParser('code', 'result');
   myJSParser('codejs', 'result');
 })
-
 </script>
 
 
@@ -223,6 +223,34 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
+            <br>
+            <li>yo</li>
+            <br>
+            <li>ll</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -239,7 +267,7 @@ document.getElementById('code').addEventListener("input", function() {
     <a name="contactanchor"></a>
 
 
-  <section id="contact" class="bg-light" style="background-color: white">
+  <section id="contact" class="bg" style="background-color: white">
      <div class="container">
        <div class="row">
          <div class="col-lg-2 text-center"></div>

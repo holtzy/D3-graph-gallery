@@ -226,7 +226,7 @@ svg.selectAll("rect")
   .duration(800)
   .attr("y", function(d) { return y(d.Value); })
   .attr("height", function(d) { return height - y(d.Value); })
-  .delay(function(d,i){console.log(i) ; return(10000 + i*100)})
+  .delay(function(d,i){console.log(i) ; return(i*100)})
 
 
 

@@ -150,7 +150,7 @@
 
 
 
-<section class="" id="portfolio" style="padding-top: 20px">
+<section class="" id="portfolio" style="padding-top: 20px; padding-bottom: 0px">
   <div class="container" >
 
 <!-- ========= show html code ============== -->
@@ -164,7 +164,7 @@
 
 <!-- Create a div with just a rect in svg -->
 <div id="my_dataviz">
-  <svg width="500px" height="500px"></svg>
+  <svg width="500px" height="320px"></svg>
 </div>  
 
 </xmp></code></pre>
@@ -193,7 +193,7 @@ d3.select("svg")
 d3.selectAll("circle")
   .transition()
   .duration(2000)
-  .attr("cy", 400)
+  .attr("cy", 300)
   .delay(function(i){return(i*10)})
 
 
