@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Understanding margins</title>
+    <title>Scatterplot with brushing in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Understanding margins</title>
+    <title>Scatterplot with brushing in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
     
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script> 
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Understanding margins in d3.js</p>
+          <p style="display:inline; font-size: 35px">Scatterplot with brushing in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the basic section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the scatterplot section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -138,7 +138,7 @@
 
 <section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
-    <div id="result"></div>
+    <center><div id="result"></div></center>
   </div>
 </section>
 
@@ -152,15 +152,7 @@
 <div class="container" >
 
 <!-- ========= show html code ============== -->
-<br>
-<div>
-  <p>This examples aim to describe how margins work. Explanation:</p>
-  <ul>
-    <li><span style="color: red;">Red</span>: the boundary of the div that contains all our d3 work</li>
-    <li><span style="color: blue;">Blue</span>: the boundary of the <code>svg</code> area built at the beginning</li>
-    <li><span style="color: green;">Green</span>: the boundary of the svg area, translated to put a bit of margin</li>
-  </ul>
-</div>
+<br><p>This is a very basic <a href="">scatterplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -168,8 +160,8 @@
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
 
-<!-- Create a div where the graph will take place. Give it a red border -->
-<div id="my_dataviz" style="border: solid; border-width: 2px; border-color: red"></div>  
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>  
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -181,42 +173,87 @@
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 20, bottom: 20, left: 20},
-    width = 500 - margin.left - margin.right,
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-// append a svg element with these width and height:
+// append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", 
+          "translate(" + margin.left + "," + margin.top + ")")
 
-// Show where this svg area is with a blue border:
-svg.append("rect")
-  .attr("x", 0)
-  .attr("y", 0)
-  .attr("height", height)
-  .attr("width", width)
-  .style("stroke", "blue")
-  .style("fill", "none")
-  .style("stroke-width", "2px");
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
 
-// Now create the graph area: it is the same but with a transition to respect margin !
-var graphArea = svg.append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([0, 4000])
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("class", "myXaxis")   // Note that here we give a class to the X axis, to be able to call it later and modify it
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
 
-// And show it in green
-graphArea.append("rect")
-  .attr("x", 0)
-  .attr("y", 0)
-  .attr("height", height)
-  .attr("width", width)
-  .style("stroke", "green")
-  .style("fill", "none")
-  .style("stroke-width", "2px");
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 500000])
+    .range([ height, 0]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
 
-// Plot a few points:
-graphArea.append("circle").attr("cx", 0).attr("cy", 0).attr("r", 10)
+  // Add dots
+  var circles = svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")       
+      .attr("cx", function (d) { return x(d.GrLivArea); } )
+      .attr("cy", function (d) { return y(d.SalePrice); } )
+      .attr("r", 1.5)
+      .style("fill", "#69b3a2")
+
+  // create the d3-brush generator
+  svg.append('g')
+    .call( d3.brush()                     // Add the brush feature using the d3.brush function
+      .extent([[0, 0], [width, height]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+      .on('brush end', updateBrush)       // When the selection is done, we run the function updaeBrush
+    )                                      // Now that this is done, each time you brush on the plot, there is a variable called d3.event.selection that is provided, with the coordinate of the selection!
+
+
+
+  // The updataBrush function
+  function updateBrush() {
+
+    // I turn all the dots in grey
+    d3.selectAll("circle").style("fill", "grey").attr("r", "1.5")
+
+    // Find the points that are in the brush selection: I need to apply the 'isBrushed' function to all of them
+    var selectedCircles = circles.filter(function (){
+      var cx = d3.select(this).attr("cx"),
+          cy = d3.select(this).attr("cy");
+      return isBrushed(d3.event.selection, cx, cy);
+    })
+
+    // Change the features of the selected items:
+    selectedCircles.style("fill", "#69b3a2").attr("r", "8")
+  }
+
+})
+
+
+// A function that return TRUE or FALSE according if a dot is in the selection or not
+function isBrushed(brush_coords, cx, cy) {
+     var x0 = brush_coords[0][0],
+         x1 = brush_coords[1][0],
+         y0 = brush_coords[0][1],
+         y1 = brush_coords[1][1];
+    return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;    // This return TRUE or FALSE depending on if the points is in the selected area
+}
+
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -275,9 +312,9 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>add border to svg container in d3 - </i><a href="http://bl.ocks.org/AndrewStaroscik/5222370">link</a></li>
+            <li><i>Brushing in Scatterplots with D3 and Quadtrees - </i><a href="https://peterbeshai.com/brushing-in-scatterplots-with-d3-and-quadtrees.html">link</a></li>
             <br>
-            <li><i>Margin Convention - </i><a href="https://bl.ocks.org/mbostock/3019563">link</a></li>
+            <li><i>Scatter plot + Brush - </i><a href="http://bl.ocks.org/feyderm/6bdbc74236c27a843db633981ad22c1b">link</a></li>
             <br>
             <li>ll</li>
             </ul>
@@ -287,6 +324,7 @@ document.getElementById('code').addEventListener("input", function() {
     </div>
   </div>
 </section>
+
 
 
 
