@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Very basic density plot in d3.js</title>
+    <title>Basic density plot in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Very basic density plot in d3.js</title>
+    <title>Basic density plot in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="http://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
     
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script> 
@@ -58,7 +58,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
       <div class="container">
-        <a class="js-scroll-trigger" href="../index.html">D3.js Graph Gallery</a>
+        <a href="../index.html">D3.js Graph Gallery</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic density plot in d3.js</p>
+          <p style="display:inline; font-size: 35px">A very basic histogram in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is the most basic density plot you can do in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the density section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -134,21 +134,25 @@
 
 
 
-<!-- ==================== CONTENT ==================== -->
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-
-<section class="bg" id="portfolio" style="padding-top: 20px">
+<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
+    <center><div id="result"></div></center>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
 
 
-<!-- ========= This is where the result is gonna be shown ============== -->
-<div id="result"></div>
-<!-- ==================================== -->
 
 
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">density plot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">density</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -169,7 +173,7 @@
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
+var margin = {top: 30, right: 30, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -190,22 +194,17 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
         d.price = +d.price;
     });
 
-  console.log("data:")
-  console.log(data)
-
   // set the scales
   var x = d3.scaleLinear()
             .domain([0, 1000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
             .range([0, width]);
   var y = d3.scaleLinear()
             .range([height, 0])   // the domain will be specified later, we need to compute the binning first
-            .domain([0, 0.02]);
+            .domain([0, 0.01]);
 
   // Compute kernel density estimation
   var kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40))
   var density =  kde( data.map(function(d){  return d.price; }) )
-  console.log("density:")
-  console.log(density)
 
   svg.append("path")
       .attr("class", "mypath")
@@ -213,7 +212,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
       .attr("fill", "#69b3a2")
       .attr("opacity", ".8")
       .attr("stroke", "#000")
-      .attr("stroke-width", 5)
+      .attr("stroke-width", 1)
       .attr("stroke-linejoin", "round")
       .attr("d",  d3.line()
           .curve(d3.curveBasis)
@@ -248,16 +247,12 @@ function kernelEpanechnikov(k) {
   };
 }
 
-
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
 
 
-
-
-
-<!-- ==================== JAVASCRIPT SECTION ==================== -->
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
 <script>
 // At the beginning, I read the html and JS fragments
 myHtmlParser('code', 'result')
@@ -276,7 +271,6 @@ document.getElementById('code').addEventListener("input", function() {
   myHtmlParser('code', 'result');
   myJSParser('codejs', 'result');
 })
-
 </script>
 
 
@@ -294,6 +288,34 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
+            <br>
+            <li>yo</li>
+            <br>
+            <li>ll</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -310,7 +332,7 @@ document.getElementById('code').addEventListener("input", function() {
     <a name="contactanchor"></a>
 
 
-  <section id="contact" class="bg-light" style="background-color: white">
+  <section id="contact" class="bg" style="background-color: white">
      <div class="container">
        <div class="row">
          <div class="col-lg-2 text-center"></div>
