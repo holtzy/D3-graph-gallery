@@ -144,6 +144,9 @@ See here: https://github.com/d3/d3-shape
 - d3.line()
 - d3.linkVertical() 
 - d3.symbol()
+- d3.pie()
+- d3.entries()
+
 
 ANIMATION FUNCTION
 ----------------
