@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Most basic transition using d3.js</title>
+    <title>Trigger transition using d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Most basic transition using d3.js</title>
+    <title>Trigger transition using d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Most basic transition using d3.js</p>
+          <p style="display:inline; font-size: 35px">Trigger transition using d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -116,7 +116,7 @@
           <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the transition section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
-          <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+          <button class="btn btn-secondary btn-md text-uppercase" onclick="download()">Download code</button>
       </div>
     </header>
 
@@ -134,25 +134,21 @@
 
 
 
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+<!-- ==================== CONTENT ==================== -->
 
-<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
+
+<section class="bg" id="portfolio" style="padding-top: 20px">
   <div class="container" >
-    <center><div id="result"></div></center>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
 
 
+<!-- ========= This is where the result is gonna be shown ============== -->
+<div id="result"></div>
+<!-- ==================================== -->
 
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
-<div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">transision</a> made using d3.js using a button. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -160,12 +156,16 @@
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
 
+<!-- Create a button to trigger the transition -->
+<button onclick="triggerTransition()">Trigger transition</button>
+
 <!-- Create a div with just a rect in svg -->
 <div id="my_dataviz" >
-  <svg width="960px" height="400px">
-      <rect id="my_rect" x="10" y="200" width="200" height="30" stroke="black" fill="#69b3a2" stroke-width="1"/>
+  <svg width="960px" height="100px">
+      <rect id="my_rect" x="10" y="10" width="200" height="30" stroke="black" fill="#69b3a2" stroke-width="1"/>
   </svg>
-</div> 
+</div>  
+
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -176,19 +176,23 @@
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-d3.select("#my_rect")
-  .transition()
-  .delay(1000)
-  .duration(2000)
-  .delay(1000)
-  .attr("width", "700")
-
+function triggerTransition(){
+  d3.select("#my_rect")
+    .transition()
+    .delay(100)
+    .duration(2000)
+    .attr("width", "700")
+}
+console.log("function OK")
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
 
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+
+
+
+<!-- ==================== JAVASCRIPT SECTION ==================== -->
 <script>
 // At the beginning, I read the html and JS fragments
 myHtmlParser('code', 'result')
@@ -207,6 +211,7 @@ document.getElementById('code').addEventListener("input", function() {
   myHtmlParser('code', 'result');
   myJSParser('codejs', 'result');
 })
+
 </script>
 
 
@@ -224,34 +229,6 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
-            <br>
-            <li>yo</li>
-            <br>
-            <li>ll</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
@@ -268,7 +245,7 @@ document.getElementById('code').addEventListener("input", function() {
     <a name="contactanchor"></a>
 
 
-  <section id="contact" class="bg" style="background-color: white">
+  <section id="contact" class="bg-light" style="background-color: white">
      <div class="container">
        <div class="row">
          <div class="col-lg-2 text-center"></div>
