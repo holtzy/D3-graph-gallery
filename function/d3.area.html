@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Basic chord diagram in d3.js</title>
+    <title>The d3.area() function</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Basic chord diagram in d3.js</title>
+    <title>The d3.area() function</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
     
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script> 
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Basic chord diagram in d3.js</p>
+          <p style="display:inline; font-size: 35px">The d3.area() function</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the chord diagram section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">The d3 library provides helpers function to draw elements more easily. Here is a description of the <code>d3.area()</code> funcion.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -152,7 +152,7 @@
 <div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">chord diagram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>It is possible to draw a line in pure<code>svg</code> like in the following example:</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -161,12 +161,10 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+<svg width=1000 height=110></svg>  
 
 </xmp></code></pre>
 <!-- ==================================== -->
-
-
 
 
 
@@ -174,57 +172,12 @@
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// create the svg area
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
-  .append("g")
-    .attr("transform", "translate(250,250)")
-
-// create a matrix 
-var matrix = [
-  [11975,  5871, 8916, 2868],
-  [ 1951, 10048, 2060, 6171],
-  [ 8010, 16145, 8090, 8045],
-  [ 1013,   990,  940, 6907]
-];
-
-// give this matrix to d3.chord(): it will calculates all the info we need to draw arc and ribbon
-var res = d3.chord()
-    .padAngle(0.05)
-    .sortSubgroups(d3.descending)
-    (matrix)
-
-// add the groups on the inner part of the circle
-svg
-  .datum(res)
-  .append("g")
-  .selectAll("g")
-  .data(function(d) { return d.groups; })
-  .enter()
-  .append("g")
+// Draw the line segment per segment
+d3.select("svg")
   .append("path")
-    .style("fill", "grey")
-    .style("stroke", "black")
-    .attr("d", d3.arc()
-      .innerRadius(230)
-      .outerRadius(240)
-    )
-
-// Add the links between groups
-svg
-  .datum(res)
-  .append("g")
-  .selectAll("path")
-  .data(function(d) { return d; })
-  .enter()
-  .append("path")
-    .attr("d", d3.ribbon()
-      .radius(220)
-    )
-    .style("fill", "#69b3a2")
-    .style("stroke", "black");
+    .attr("d", "M100 100 L100 30 L200 50 L300 90 L400 20 L500 10 L600 60 L700 50 L800 30 L900 50 L900 100 Z")
+    .attr("stroke", "black")
+    .attr("fill", "#69b3a2")
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -261,6 +214,110 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 <!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+
+<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+    <center><div id="result2"></div></center>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<section class="code-area2" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+
+<!-- ========= show html code ============== -->
+<br><p>It is not veyr convenient, thus d3.js offer helper function that help to do that more easily</p>
+<aside>&larr; Edit me! </aside>
+<pre class="language-html"><code id="code2" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<svg width=1000 height=110 id="my_dataviz"></svg>  
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<aside>&larr; Edit me! </aside>
+<pre class="language-js"><code id="codejs2" contenteditable="true"><xmp><script>
+
+// The data
+var data = [ {x: 100, y: 30}, {x: 200, y: 10}, {x: 300, y: 90}, {x: 400, y: 20}, {x: 500, y: 80}, {x: 600, y: 20}, {x: 700, y: 90}, {x: 800, y: 20}, {x: 900, y: 29}]
+
+// Draw the line segment per segment
+d3.select("#my_dataviz")
+  .append("path")
+  .datum(data)
+    .attr("d", d3.area()
+      .x(function(d) { return d.x })
+      .y1(function(d) { return d.y })
+      .y0(100)
+    )
+  .attr("fill", "#69a3b2")
+  .attr("stroke", "black")
+
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code2', 'result2')
+myJSParser('codejs2', 'result2')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs2').addEventListener("input", function() {
+  d3.select('#result2').html("");
+  myHtmlParser('code2', 'result2');
+  myJSParser('codejs2', 'result2');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code2').addEventListener("input", function() {
+  d3.select('#result2').html("");
+  myHtmlParser('code2', 'result2');
+  myJSParser('codejs2', 'result2');
+})
+</script>
+
+
+
+
+  </div>
+</section>
+
+
+
+<!-- ============================ -->
+
 
 
 
