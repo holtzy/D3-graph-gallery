@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Basic line plot with d3.js</title>
+    <title>The d3.line() function</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Basic line plot with d3.js</title>
+    <title>The d3.line() function</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
     
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script> 
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic line plot in d3.js</p>
+          <p style="display:inline; font-size: 35px">The d3.line() function</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the lineplot section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">The d3 library provides helpers function to draw elements more easily. Here is a description of the <code>d3.line()</code> funcion.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -152,7 +152,7 @@
 <div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">lineplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>It is possible to draw a line in pure<code>svg</code> like in the following example:</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -161,7 +161,7 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>  
+<svg width=1000 height=100></svg>  
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -172,66 +172,15 @@
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv", 
-
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
-  },
-
-  // Now I can use this dataset:
-  function(data) {
-
-    console.log(data)
-
-    // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
-      .range([ 0, width ]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.value; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
-
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
-        )
-
-})
-
+// Draw the line segment per segment
+d3.select("svg")
+  .append("path")
+    .attr("d", "M100 30 L200 50 L300 90 L400 20 L500 10 L600 60 L700 50 L800 30 L900 50")
+    .attr("stroke", "black")
+    .attr("fill", "none")
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
-
-
 
 
 
@@ -271,6 +220,108 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
+
+
+
+
+
+
+
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+
+<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+    <center><div id="result2"></div></center>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<section class="code-area2" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+
+<!-- ========= show html code ============== -->
+<br><p>It is not veyr convenient, thus d3.js offer helper function that help to do that more easily</p>
+<aside>&larr; Edit me! </aside>
+<pre class="language-html"><code id="code2" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<svg width=1000 height=100 id="my_dataviz"></svg>  
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<aside>&larr; Edit me! </aside>
+<pre class="language-js"><code id="codejs2" contenteditable="true"><xmp><script>
+
+// The data
+var data = [ {x: 100, y: 30}, {x: 200, y: 10}, {x: 300, y: 90}, {x: 400, y: 20}, {x: 500, y: 80}, {x: 600, y: 20}, {x: 700, y: 90}, {x: 800, y: 20}, {x: 900, y: 29}]
+
+// Draw the line segment per segment
+d3.select("#my_dataviz")
+  .append("path")
+  .datum(data)
+    .attr("d", d3.line()
+      .x(function(d) { return d.x })
+      .y(function(d) { return d.y })
+    )
+  .attr("fill", "none")
+  .attr("stroke", "black")
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code2', 'result2')
+myJSParser('codejs2', 'result2')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs2').addEventListener("input", function() {
+  d3.select('#result2').html("");
+  myHtmlParser('code2', 'result2');
+  myJSParser('codejs2', 'result2');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code2').addEventListener("input", function() {
+  d3.select('#result2').html("");
+  myHtmlParser('code2', 'result2');
+  myJSParser('codejs2', 'result2');
+})
+</script>
+
+
+
+
+  </div>
+</section>
+
+
+
+<!-- ============================ -->
+
+
+
+
+
+
+
 <!-- ============================ RELATED BLOCKS ============================ -->
 
 <section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
@@ -287,7 +338,7 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>Line Chart - </i><a href="https://bl.ocks.org/mbostock/3883245">Link</a></li>
+            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
             <br>
             <li>yo</li>
             <br>

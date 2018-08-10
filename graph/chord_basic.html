@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Basic line plot with d3.js</title>
+    <title>Basic chord diagram in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Basic line plot with d3.js</title>
+    <title>Basic chord diagram in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic line plot in d3.js</p>
+          <p style="display:inline; font-size: 35px">Basic chord diagram in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the lineplot section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the chord diagram section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -145,6 +145,8 @@
 <!-- ================================================================================= -->
 
 
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="https://rawgit.com/sghall/7859113/raw/422da4401f7d4fc0352a7c49961d24f03716be7a/gistfile1.js"></script>
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
@@ -152,7 +154,7 @@
 <div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">lineplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">chord diagram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -161,7 +163,7 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>  
+<div id="my_dataviz"></div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -171,67 +173,23 @@
 <!-- ========= show JS code ==============  -->
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+//d3.csv('https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/13_AdjacencyDirectedWeighted_long.csv', function(error, data) {
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+// create data
+var matrix = [
+  [11975,  5871, 8916, 2868],
+  [ 1951, 10048, 2060, 6171],
+  [ 8010, 16145, 8090, 8045],
+  [ 1013,   990,  940, 6907]
+];
+console.log(matrix)
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv", 
-
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
-  },
-
-  // Now I can use this dataset:
-  function(data) {
-
-    console.log(data)
-
-    // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
-      .range([ 0, width ]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.value; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
-
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
-        )
-
-})
-
+// Use the d3.chord function
+var res = d3.chord(matrix)
+console.log(res)
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
-
-
 
 
 
@@ -287,7 +245,7 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>Line Chart - </i><a href="https://bl.ocks.org/mbostock/3883245">Link</a></li>
+            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
             <br>
             <li>yo</li>
             <br>

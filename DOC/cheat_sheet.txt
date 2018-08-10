@@ -115,7 +115,10 @@ var colorScale = d3.scale.quantile()
 Once I've got my color scale, I can call it to fill an element with the proper color:
 .style("fill", function(d) { return colorScale(d.value); })
 
-
+Handy for a color scale on ordinal variable:
+var fill = d3.scale.ordinal()
+    .domain(d3.range(4))
+    .range(["#000000", "#FFDD89", "#957244", "#F26223"]);
 
 
 CREATE DATA
@@ -146,7 +149,8 @@ See here: https://github.com/d3/d3-shape
 - d3.symbol()
 - d3.pie()
 - d3.entries()
-
+- d3.ribbon()
+- d3.chord()
 
 ANIMATION FUNCTION
 ----------------
