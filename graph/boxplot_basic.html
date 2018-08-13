@@ -36,9 +36,9 @@
 
     <!-- D3.JS v4 -->
     <script src="https://d3js.org/d3.v5.js"></script>
-    
+
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script> 
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
     <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
@@ -161,7 +161,7 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>  
+<div id="my_dataviz"></div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -183,7 +183,7 @@ var svg = d3.select("#my_dataviz")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", 
+    .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
 // create dummy data
@@ -220,6 +220,8 @@ console.log(chart)
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
+
+
 
 
 
@@ -428,7 +430,7 @@ document.getElementById('code').addEventListener("input", function() {
 
     <!-- Function to download the graphic as png automatically -->
 <!--     <script>
-        html2canvas($('#content'), 
+        html2canvas($('#content'),
         {
           onrendered: function (canvas) {
             var a = document.createElement('a');
