@@ -55,7 +55,8 @@ Different type of scale:
   - d3.scalePoint()
   - d3.scaleLinear() -> scatterplot
   - d3.scaleBand() -> barplot
-
+  - d3.scale.threshold()
+  
 Custom scale:
   - .padding([.9]) -> add space between the axis and the first element. between 0 and 1. Does not work for scaleLinear
   -
