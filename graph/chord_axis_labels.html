@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Basic chord diagram in d3.js</title>
+    <title>Labels on chord diagram in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Basic chord diagram in d3.js</title>
+    <title>Labels on chord diagram in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Basic chord diagram in d3.js</p>
+          <p style="display:inline; font-size: 35px">Labels on chord diagram in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -152,7 +152,7 @@
 <div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">chord diagram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">chord diagram</a> made using d3.js. It is exactly the same as the previous step, except that ticks and labels are provided for each group.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -177,17 +177,17 @@
 // create the svg area
 var svg = d3.select("#my_dataviz")
   .append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
+    .attr("width", 550)
+    .attr("height", 550)
   .append("g")
-    .attr("transform", "translate(250,250)")
+    .attr("transform", "translate(275,275)")
 
 // create a matrix 
 var matrix = [
-  [11975,  5871, 8916, 2868],
-  [ 1951, 10048, 2060, 6171],
-  [ 8010, 16145, 8090, 8045],
-  [ 1013,   990,  940, 6907]
+  [11,  58, 89, 28],
+  [ 51, 18, 20, 61],
+  [ 80, 145, 80, 85],
+  [ 103,   99,  40, 71]
 ];
 
 // give this matrix to d3.chord(): it will calculates all the info we need to draw arc and ribbon
@@ -195,22 +195,6 @@ var res = d3.chord()
     .padAngle(0.05)
     .sortSubgroups(d3.descending)
     (matrix)
-
-// add the groups on the inner part of the circle
-svg
-  .datum(res)
-  .append("g")
-  .selectAll("g")
-  .data(function(d) { return d.groups; })
-  .enter()
-  .append("g")
-  .append("path")
-    .style("fill", "grey")
-    .style("stroke", "black")
-    .attr("d", d3.arc()
-      .innerRadius(230)
-      .outerRadius(240)
-    )
 
 // Add the links between groups
 svg
@@ -225,6 +209,59 @@ svg
     )
     .style("fill", "#69b3a2")
     .style("stroke", "black");
+
+// this group object use each group of the data.groups object
+var group = svg
+  .datum(res)
+  .append("g")
+  .selectAll("g")
+  .data(function(d) { return d.groups; })
+  .enter()
+  
+// add the group arcs on the outer part of the circle
+group.append("g")
+    .append("path")
+    .style("fill", "grey")
+    .style("stroke", "black")
+    .attr("d", d3.arc()
+      .innerRadius(230)
+      .outerRadius(240)
+    )
+
+// Add the ticks
+group
+  .selectAll(".group-tick")
+  .data(function(d) { return groupTicks(d, 25); })
+  .enter()
+  .append("g")
+    .attr("transform", function(d) { console.log(d); return "rotate(" + (d.angle * 180 / Math.PI - 90) + ") translate(" + 240 + ",0)"; })
+  .append("line")               // By default, x1 = y1 = y2 = 0, so no need to specify it.
+    .attr("x2", 6)
+    .attr("stroke", "black")
+
+// Add the labels of a few ticks:
+group
+  .selectAll(".group-tick-label")
+  .data(function(d) { return groupTicks(d, 25); })
+  .enter()
+  .filter(function(d) { return d.value % 25 === 0; })
+  .append("g")
+    .attr("transform", function(d) { console.log(d); return "rotate(" + (d.angle * 180 / Math.PI - 90) + ") translate(" + 240 + ",0)"; })
+  .append("text")
+    .attr("x", 8)
+    .attr("dy", ".35em")
+    .attr("transform", function(d) { return d.angle > Math.PI ? "rotate(180) translate(-16)" : null; })
+    .style("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+    .text(function(d) { return d.value });
+
+
+// Returns an array of tick angles and values for a given group and step.
+function groupTicks(d, step) {
+  var k = (d.endAngle - d.startAngle) / d.value;
+  return d3.range(0, d.value, step).map(function(value) {
+    return {value: value, angle: value * k + d.startAngle};
+  });
+}
 
 </script></xmp></code></pre>
 <!-- ==================================== -->

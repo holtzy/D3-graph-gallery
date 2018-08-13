@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Basic chord diagram in d3.js</title>
+    <title>Control colors in chord diagrams in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Basic chord diagram in d3.js</title>
+    <title>Control colors in chord diagrams in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Basic chord diagram in d3.js</p>
+          <p style="display:inline; font-size: 35px">Control colors in chord diagrams in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -184,11 +184,14 @@ var svg = d3.select("#my_dataviz")
 
 // create a matrix 
 var matrix = [
-  [11975,  5871, 8916, 2868],
-  [ 1951, 10048, 2060, 6171],
-  [ 8010, 16145, 8090, 8045],
-  [ 1013,   990,  940, 6907]
+  [0,  5871, 8916, 2868],
+  [ 1951, 0, 2060, 6171],
+  [ 8010, 16145, 0, 8045],
+  [ 1013,   990,  940, 0]
 ];
+
+// 4 groups, so create a vector of 4 colors
+var colors = [ "#440154ff", "#31668dff", "#37b578ff", "#fde725ff"]
 
 // give this matrix to d3.chord(): it will calculates all the info we need to draw arc and ribbon
 var res = d3.chord()
@@ -196,7 +199,7 @@ var res = d3.chord()
     .sortSubgroups(d3.descending)
     (matrix)
 
-// add the groups on the inner part of the circle
+// add the groups on the outer part of the circle
 svg
   .datum(res)
   .append("g")
@@ -205,7 +208,7 @@ svg
   .enter()
   .append("g")
   .append("path")
-    .style("fill", "grey")
+    .style("fill", function(d,i){ return colors[i] })
     .style("stroke", "black")
     .attr("d", d3.arc()
       .innerRadius(230)
@@ -223,7 +226,7 @@ svg
     .attr("d", d3.ribbon()
       .radius(220)
     )
-    .style("fill", "#69b3a2")
+    .style("fill", function(d){ return(colors[d.source.index]) }) // colors depend on the source group. Change to target otherwise.
     .style("stroke", "black");
 
 </script></xmp></code></pre>
