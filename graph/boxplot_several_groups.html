@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>basic boxplot in d3.js</title>
+    <title>Boxplot with several groups in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>basic boxplot in d3.js</title>
+    <title>Boxplot with several groups in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">basic boxplot in d3.js</p>
+          <p style="display:inline; font-size: 35px">Boxplot with several groups</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -186,8 +186,11 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// create dummy data
-var data = [12,19,11,13,12,22,13,4,15,16,18,19,20,12,11,9]
+// Read the data and compute summary statistics:
+d3.csv("data.csv", function(d) {
+
+  
+})
 
 // Compute summary statistics used for the box:
 var data_sorted = data.sort(d3.ascending)

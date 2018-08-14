@@ -4,7 +4,7 @@
 
 SVG object                                        -       Circle, Rect, Path
 
-var                                               -       Create a variable. It can be 
+var                                               -       Create a variable. It can be
                                                                   -> just a value: var height = 200
                                                                   -> a list : var data = [12,20,23,11,33]
                                                                   -> a function: var myfunction = d3.timeParse("%d-%b-%y"), then I can call myfunction
@@ -77,6 +77,15 @@ data.col1 can also be written data["col1"]
 
 
 
+CALCULATION
+--------------
+var data = [12, 14, 29]
+  d3.min(data)
+  d3.max(data)
+  data.sort(d3.ascending)
+  d3.quantile(data_sorted, 0.25)
+NOTE: if I have a csv file and not an array, I need to transform the column to array with the map function
+
 
 
 
@@ -138,15 +147,15 @@ A list of stuff you can "append" and the argument you can provide:
   text   --> .attr = x, y, fill, text-anchor, font-weight | .text = text to display
   line   --> x1, y1, x2, y2, stroke, stroke-width, fill
   Path   --> d : it gives the way to follow for the path. Like d = "M150 0 L75 200 L225 200 Z" means I start at 0, I move to 150;0, Then I do a line until 75;200, Then another line until 225 200, then I close.  Other letters allow more complicated stuff like curve. D3 has some function to build Paths.
-
+  rect   --> x, y, height, width
 
 FUNCTION TO BUILD THESE SVG SHAPE MORE EASILY
 -------------------------
 See here: https://github.com/d3/d3-shape
-- d3.area() 
+- d3.area()
 - d3.lineRadial()
 - d3.line()
-- d3.linkVertical() 
+- d3.linkVertical()
 - d3.symbol()
 - d3.pie()
 - d3.entries()
@@ -157,7 +166,7 @@ ANIMATION FUNCTION
 ----------------
 .transition()
 .delay(0) --> to wait a little bit, useful to wait for the first anim to be finished
-.duration() 
+.duration()
 
 Easing function:
   - .ease(d3.easeBounceOut)
@@ -171,17 +180,3 @@ MOUSE RESPONSIVNESS:
 .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
 .on("mouseout", function(){d3.select(this).style("fill", "white");})
 .on("mousedown", animateFirstStep);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
