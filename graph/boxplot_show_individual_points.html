@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Boxplot with several groups in d3.js</title>
+    <title>Show individual datapoints on boxplot in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Boxplot with several groups in d3.js</title>
+    <title>Show individual datapoints on boxplot in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Boxplot with several groups</p>
+          <p style="display:inline; font-size: 35px">Show individual datapoints on boxplot</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -258,7 +258,23 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
       .attr("y2", function(d){return(y(d.value.median))})
       .attr("stroke", "black")
       .style("width", 80)
+
+// Add individual points with jitter
+var jitterWidth = 50
+svg
+  .selectAll("indPoints")
+  .data(data)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){return(x(d.Species) - jitterWidth/2 + Math.random()*jitterWidth )})
+    .attr("cy", function(d){return(y(d.Sepal_Length))})
+    .attr("r", 4)
+    .style("fill", "white")
+    .attr("stroke", "black")
+
+
 })
+
 
 </script></xmp></code></pre>
 <!-- ==================================== -->

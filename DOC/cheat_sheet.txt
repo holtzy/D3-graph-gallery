@@ -54,7 +54,8 @@ range                                             -       From where to where th
 Different type of scale:
   - d3.scalePoint()
   - d3.scaleLinear() -> scatterplot
-  - d3.scaleBand() -> barplot
+  - d3.scaleBand() -> barplot, make bands
+  - d3.scaleOrdinal()
   - d3.scale.threshold() --> for colors
 
 Custom scale:
@@ -86,6 +87,7 @@ var data = [12, 14, 29]
   d3.quantile(data_sorted, 0.25)
 NOTE: if I have a csv file and not an array, I need to transform the column to array with the map function
 
+d3.nest() --> Allows to do like group_by() in dplyr.
 
 
 
@@ -110,7 +112,10 @@ d3.tsv("data/data-alt.tsv", function(error, data) {
 --> For JSON: d3.json()
 --> For TSV: D3.tsv()
 
-
+Compute the mean of a column in a csv:
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris_wide.csv", function(data) {
+  mean = d3.mean(data,function(d) { return +d.virginica})
+})
 
 
 
@@ -129,6 +134,8 @@ Handy for a color scale on ordinal variable:
 var fill = d3.scale.ordinal()
     .domain(d3.range(4))
     .range(["#000000", "#FFDD89", "#957244", "#F26223"]);
+
+
 
 
 CREATE DATA
