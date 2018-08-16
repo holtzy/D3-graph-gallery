@@ -201,6 +201,7 @@ var x = d3.scaleLinear()
     .range([0, width]);
 
 
+
 // Compute kernel density estimation
 var kde = kernelDensityEstimator(kernelEpanechnikov(7), y.ticks(40))
 var density =  kde( data )
