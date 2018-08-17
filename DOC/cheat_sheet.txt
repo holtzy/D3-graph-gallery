@@ -103,7 +103,8 @@ Array.every()                                      -       Check if every elemen
 
 Array.some()                                      -       Check if some elements pass a test:
 
-numbers1.indexOf(25)                              -       return the index of the number 25
+numbers1.indexOf(25)                              -       return the index of the number 25. See also
+numbers1.lastIndexOf()
 
 
 CALCULATION
