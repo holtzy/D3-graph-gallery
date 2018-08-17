@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Line plot withseveral groups in d3.js</title>
+    <title>Basic stacked area chart in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Line plot withseveral groups in d3.js</title>
+    <title>Basic stacked area chart in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Line plot with several groups</p>
+          <p style="display:inline; font-size: 35px">Basic stacked area chart</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -152,7 +152,7 @@
 <div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">lineplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">stacked area chart</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -191,8 +191,27 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // group the data: I want to draw one line per group
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
-    .key(function(d) { return d.name;})
+    .key(function(d) { return d.year;})
     .entries(data);
+
+  // Stack the data
+  var mygroup = ["Helen", "Amanda"] // list of group names
+  var stack = d3.stack()
+    .keys(mygroup)
+    .value(function(d,key){console.log(d.values[0]) ; return(d.values[key].n)})
+    (sumstat)
+        //.x(function(d) { return d.year; })
+      //   .y(function(d) { return d.n; });
+  //var result = stack(stack)
+
+
+
+
+
+
+
+
+
 
   // Add X axis --> it is a date format
   var x = d3.scaleLinear()
@@ -214,21 +233,21 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
   var color = d3.scaleOrdinal()
     .domain(res)
     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
-
-  // Draw the line
-  svg.selectAll(".line")
-      .data(sumstat)
-      .enter()
-      .append("path")
-        .attr("fill", "none")
-        .attr("stroke", function(d){ return color(d.key) })
-        .attr("stroke-width", 1.5)
-        .attr("d", function(d){
-          return d3.line()
-            .x(function(d) { return x(d.year); })
-            .y(function(d) { return y(+d.n); })
-            (d.values)
-        })
+  //
+  // // Draw the line
+  // svg.selectAll(".line")
+  //     .data(stack(sumstat))
+  //     .enter()
+  //     .append("path")
+  //       .attr("fill", "none")
+  //       .attr("stroke", function(d){ console.log(d) ; return color(d.key) })
+  //       .attr("stroke-width", 1.5)
+  //       .attr("d", function(d){
+  //         return d3.line()
+  //           .x(function(d) { return x(d.year); })
+  //           .y(function(d) { return y(+d.n); })
+  //           (d.values)
+  //       })
 
 })
 

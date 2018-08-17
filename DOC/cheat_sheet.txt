@@ -42,7 +42,7 @@ update()										  -       We call update the selection that is present in the 
 .exit()											  -  	  Opposite of enter: remove the DOM elements that are not used by data. Usually it is just usefull to do selection.exit().remove() --> delete the unneeded chair
 
 
-
+(d) => d.routeTag)   equivalent of function(d){ return d.routeTag}
 
 
 AXIS
@@ -88,6 +88,18 @@ var data = [12, 14, 29]
 NOTE: if I have a csv file and not an array, I need to transform the column to array with the map function
 
 d3.nest() --> Allows to do like group_by() in dplyr.
+
+d3.stack() --> Allow to stack variables
+Basic example:
+          var data = [
+            {time: 1, A: 10, B: 20},
+            {time: 2, A: 5, B: 10}
+          ];
+          console.log(data)
+          var series = d3.stack()
+              .keys(["A","B"])
+              (data);
+          console.log(series)
 
 
 
