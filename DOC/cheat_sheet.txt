@@ -65,17 +65,45 @@ Custom scale:
 
 
 
+OBJECT
+----------------
+an object use named indexes: each part has a name.
+var person = {firstName:"John", lastName:"Doe"}       -       This is an OBJECT with 2 properties. Note the curly braces
+person.firstName   <- same as -> person["firstName"]  -       2 ways of accessing object property
+
+
 
 ARRAYS
 --------------
-
-var cars = ["Saab", "Volvo", "BMW"]               -       Create a simple array
-cars[0]                                           -       First element of the array
+an array is a special type of object. It is composed by several elements. It is NOT possible to give name to elements, they are just number 0, 1, 2...
+var cars = ["Saab", "Volvo", "BMW"]               -       This is an ARRAY with 3 elements.
+cars[0]                                           -       First element of the array, javascript starts counting at 0.
 cars[0] = "Opel"                                  -       Change the first element of the list
-cars.length                                		  -       Get the length
-cars.sort()                               		  -       Sort the list
-data.col1 can also be written data["col1"]
+cars.length                                		    -       Get the length
+cars.sort()                               		    -       Sort the array alphabetically
+cars.reverse()                                    -       reverse order of elements
+data.col1                                         -       can also be written data["col1"]
+cars.slice(1)                                     -       remove the first n elements
+cars.push("newelement")                           -       Add new element to the array
+cars.pop()                                        -       remove last element
 
+an array element can be an object
+
+Array.forEach()                                   -       calls a function once for each array elements
+Array.map()                                       -       return a new array by performing a function on each elements
+    var numbers1 = [4, 9, 16, 25];
+    var numbers2 = numbers1.map(function(d){return d*2});     --> multiply each element by 2
+    var numbers3 = numbers1.map(function(d,i){return d*i});   --> I can also use i: the index: 0 to length.
+
+Array.filter()                                    -        creates new array with elements that pass a animateFirstStep
+    var numbers4 = numbers1.filter(function(d){return d>8})
+
+Array.every()                                      -       Check if every elements pass a test:
+    var numbers5 = numbers1.every(function(d){return d>8})
+
+Array.some()                                      -       Check if some elements pass a test:
+
+numbers1.indexOf(25)                              -       return the index of the number 25
 
 
 CALCULATION
@@ -129,6 +157,10 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
   mean = d3.mean(data,function(d) { return +d.virginica})
 })
 
+Get column names:
+d3.csv("file.csv", function(data) {
+  var keys = data.columns
+}
 
 
 COLOR SCALE

@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Basic stacked area chart in d3.js</title>
+    <title>A basic stacked barplot made using d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Basic stacked area chart in d3.js</title>
+    <title>A basic stacked barplot made using d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="http://d3js.org/d3.v4.js"></script>
 
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -58,7 +58,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
       <div class="container">
-        <a href="../index.html">D3.js Graph Gallery</a>
+        <a class="js-scroll-trigger" href="../index.html">D3.js Graph Gallery</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Basic stacked area chart</p>
+          <p style="display:inline; font-size: 35px">A very basic stacked barplot in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,10 +113,10 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the lineplot section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the barplot section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
-          <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+          <button class="btn btn-secondary btn-md text-uppercase" onclick="download()">Download code</button>
       </div>
     </header>
 
@@ -134,25 +134,21 @@
 
 
 
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+<!-- ==================== CONTENT ==================== -->
 
-<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
+
+<section class="bg" id="portfolio" style="padding-top: 20px">
   <div class="container" >
-    <center><div id="result"></div></center>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
 
 
+<!-- ========= This is where the result is gonna be shown ============== -->
+<div id="result"></div>
+<!-- ==================================== -->
 
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
-<div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">stacked area chart</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">barplot</a> made using d3.js. The data comes from here.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
@@ -173,7 +169,7 @@
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
+var margin = {top: 10, right: 30, bottom: 90, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -186,28 +182,13 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered.csv", function(data) {
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
 
-console.log( d3.set(data.map( function(d){return d.name})).values() )
+  // List of groups = header of the csv files
+  var keys = data.columns.slice(1)
 
-  // group the data: one array for each value of the X axis.
-  var sumstat = d3.nest()
-    .key(function(d) { return d.year;})
-    .entries(data);
-
-
-  // Stack the data: each group will be represented on top of each other
-  var mygroups = ["Helen", "Amanda", "Ashley"] // list of group names
-  var mygroup = [1,2,3] // list of group names
-  var stackedData = d3.stack()
-    .keys(mygroup)
-    .value(function(d, key){
-      return d.values[key].n
-    })
-    (sumstat)
-
-  // Add X axis --> it is a date format
+  // Add X axis
   var x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d.year; }))
     .range([ 0, width ]);
@@ -217,29 +198,35 @@ console.log( d3.set(data.map( function(d){return d.name})).values() )
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) { return +d.n; })])
+    .domain([0, 200000])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
 
   // color palette
   var color = d3.scaleOrdinal()
-    .domain(mygroups)
-    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+    .domain(keys)
+    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf'])
 
-  // Show the areas
-  svg
-    .selectAll("mylayers")
+  //stack the data?
+  var stackedData = d3.stack()
+    .keys(keys)
+    (data)
+  console.log("stacked data:", stackedData)
+
+  // Show the bars
+  svg.append("g")
+    .selectAll("g")
     .data(stackedData)
-    .enter()
-    .append("path")
-      .style("fill", function(d) { name = mygroups[d.key-1] ;  return color(name); })
-      .attr("d", d3.area()
-        .x(function(d, i) { return x(d.data.key); })
-        .y0(function(d) { return y(d[0]); })
-        .y1(function(d) { return y(d[1]); })
-    )
-
+    .enter().append("g")
+      .attr("fill", function(d) { console.log(d) ;  return color(d.key); })
+    .selectAll("rect")
+    .data(function(d) { return d; })
+    .enter().append("rect")
+      .attr("x", function(d) { return x(d.data.year); })
+      .attr("y", function(d) { return y(d[1]); })
+      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+      .attr("width",7)
 })
 
 </script></xmp></code></pre>
@@ -249,7 +236,8 @@ console.log( d3.set(data.map( function(d){return d.name})).values() )
 
 
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+
+<!-- ==================== JAVASCRIPT SECTION ==================== -->
 <script>
 // At the beginning, I read the html and JS fragments
 myHtmlParser('code', 'result')
@@ -268,6 +256,7 @@ document.getElementById('code').addEventListener("input", function() {
   myHtmlParser('code', 'result');
   myJSParser('codejs', 'result');
 })
+
 </script>
 
 
@@ -285,34 +274,6 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>Line Chart - </i><a href="https://bl.ocks.org/mbostock/3883245">Link</a></li>
-            <br>
-            <li>yo</li>
-            <br>
-            <li>ll</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
@@ -329,7 +290,7 @@ document.getElementById('code').addEventListener("input", function() {
     <a name="contactanchor"></a>
 
 
-  <section id="contact" class="bg" style="background-color: white">
+  <section id="contact" class="bg-light" style="background-color: white">
      <div class="container">
        <div class="row">
          <div class="col-lg-2 text-center"></div>

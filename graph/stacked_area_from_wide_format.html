@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Basic stacked area chart in d3.js</title>
+    <title>Stacked area chart from wide format in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Basic stacked area chart in d3.js</title>
+    <title>Stacked area chart from wide format in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Basic stacked area chart</p>
+          <p style="display:inline; font-size: 35px">Stacked area chart from wide format</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -172,8 +172,9 @@
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
+
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
+var margin = {top: 10, right: 30, bottom: 90, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -186,28 +187,13 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered.csv", function(data) {
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
 
-console.log( d3.set(data.map( function(d){return d.name})).values() )
+  // List of groups = header of the csv files
+  var keys = data.columns.slice(1)
 
-  // group the data: one array for each value of the X axis.
-  var sumstat = d3.nest()
-    .key(function(d) { return d.year;})
-    .entries(data);
-
-
-  // Stack the data: each group will be represented on top of each other
-  var mygroups = ["Helen", "Amanda", "Ashley"] // list of group names
-  var mygroup = [1,2,3] // list of group names
-  var stackedData = d3.stack()
-    .keys(mygroup)
-    .value(function(d, key){
-      return d.values[key].n
-    })
-    (sumstat)
-
-  // Add X axis --> it is a date format
+  // Add X axis
   var x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d.year; }))
     .range([ 0, width ]);
@@ -217,15 +203,21 @@ console.log( d3.set(data.map( function(d){return d.name})).values() )
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) { return +d.n; })])
+    .domain([0, 200000])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
 
   // color palette
   var color = d3.scaleOrdinal()
-    .domain(mygroups)
-    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+    .domain(keys)
+    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf'])
+
+  //stack the data?
+  var stackedData = d3.stack()
+    .keys(keys)
+    (data)
+    //console.log("This is the stack result: ", stackedData)
 
   // Show the areas
   svg
@@ -233,14 +225,15 @@ console.log( d3.set(data.map( function(d){return d.name})).values() )
     .data(stackedData)
     .enter()
     .append("path")
-      .style("fill", function(d) { name = mygroups[d.key-1] ;  return color(name); })
+      .style("fill", function(d) { console.log(d.key) ; return color(d.key); })
       .attr("d", d3.area()
-        .x(function(d, i) { return x(d.data.key); })
+        .x(function(d, i) { return x(d.data.year); })
         .y0(function(d) { return y(d[0]); })
         .y1(function(d) { return y(d[1]); })
     )
 
 })
+
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
