@@ -193,17 +193,24 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
     .key(function(d) { return d.year;})
     .entries(data);
+  console.log("this is how the sumstat looklike: " , sumstat)
 
   // Stack the data
-  var mygroup = ["Helen", "Amanda"] // list of group names
-  var stack = d3.stack()
+  var mygroups = ["Helen", "Amanda", "Ashley"] // list of group names
+  var mygroup = [1,2,3] // list of group names
+  var stackedData = d3.stack()
     .keys(mygroup)
-    .value(function(d,key){console.log(d.values[0]) ; return(d.values[key].n)})
+    .value(function(d, key){
+      //console.log("d is:", d) ;
+      //console.log("key is:", key) ;
+      //console.log("d.values is:", d.values)
+      //console.log("d.values[key] is:", d.values[key])
+      //console.log("d.values[key].n is:", d.values[key].n)
+      return d.values[key].n
+    })
     (sumstat)
-        //.x(function(d) { return d.year; })
-      //   .y(function(d) { return d.n; });
-  //var result = stack(stack)
 
+  console.log("This is the stack result: ", stackedData)
 
 
 
@@ -233,21 +240,18 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
   var color = d3.scaleOrdinal()
     .domain(res)
     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
-  //
-  // // Draw the line
-  // svg.selectAll(".line")
-  //     .data(stack(sumstat))
-  //     .enter()
-  //     .append("path")
-  //       .attr("fill", "none")
-  //       .attr("stroke", function(d){ console.log(d) ; return color(d.key) })
-  //       .attr("stroke-width", 1.5)
-  //       .attr("d", function(d){
-  //         return d3.line()
-  //           .x(function(d) { return x(d.year); })
-  //           .y(function(d) { return y(+d.n); })
-  //           (d.values)
-  //       })
+
+  // Draw the area
+  svg.selectAll(".line")
+      .data(stackedData)
+      .enter()
+      .append("g")
+        .attr("fill", function(d) { console.log("initial d is: ", d) ; console.log("d.key is :", d.key) ; return d.key })
+        .attr("stroke", "white")
+      .selectAll("rect")
+        .data(function(d) { console.log("the new d is: ",d) ; console.log("the d.data is: ",d.data) ; return d; })
+      .enter()
+      .append("rect")
 
 })
 
