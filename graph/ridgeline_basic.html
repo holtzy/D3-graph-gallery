@@ -6,15 +6,15 @@
   <head>
 
     <meta charset="utf-8">
-    <title>give me a title</title>
+    <title>Basic ridgeline plot in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
     <meta name="author" content="Yan Holtz">
-
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
+    <link rel="icon" href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/img/logo/logo_xxs.png">
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
 
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -91,7 +91,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic histogram in d3.js</p>
+          <p style="display:inline; font-size: 35px">Basic ridgeline plot in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -112,7 +112,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the ridgeline section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -172,9 +172,9 @@
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
+var margin = {top: 100, right: 30, bottom: 30, left: 100},
     width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 700 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -185,10 +185,74 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-svg.append("circle")
-  .attr("cx", 100)
-  .attr("cy", 100)
-  .attr("r", 40)
+//read data
+d3.csv("https://raw.githubusercontent.com/zonination/perceptions/master/probly.csv", function(data) {
+
+  // Get the different categories and count them
+  var categories = data.columns
+  var n = categories.length
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([-10, 140])
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Create a Y scale for densities
+  var y = d3.scaleLinear()
+    .domain([0, 0.4])
+    .range([ height, 0]);
+
+  // Create the Y axis for names
+  var yName = d3.scaleBand()
+    .domain(categories)
+    .range([0, height])
+    .paddingInner(1)
+  svg.append("g")
+    .call(d3.axisLeft(yName));
+
+  // Compute kernel density estimation for each column:
+  var kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40)) // increase this 40 for more accurate density.
+  var allDensity = []
+  for (i = 0; i < n; i++) {
+      key = categories[i]
+      density = kde( data.map(function(d){  return d[key]; }) )
+      allDensity.push({key: key, density: density})
+  }
+
+  // Add areas
+  svg.selectAll("areas")
+    .data(allDensity)
+    .enter()
+    .append("path")
+      .attr("transform", function(d){return("translate(0," + (yName(d.key)-height) +")" )})
+      .datum(function(d){return(d.density)})
+      .attr("fill", "#69b3a2")
+      .attr("stroke", "#000")
+      .attr("stroke-width", 1)
+      .attr("d",  d3.line()
+          .curve(d3.curveBasis)
+          .x(function(d) { return x(d[0]); })
+          .y(function(d) { return y(d[1]); })
+      )
+
+})
+
+// This is what I need to compute kernel density estimation
+function kernelDensityEstimator(kernel, X) {
+  return function(V) {
+    return X.map(function(x) {
+      return [x, d3.mean(V, function(v) { return kernel(x - v); })];
+    });
+  };
+}
+function kernelEpanechnikov(k) {
+  return function(v) {
+    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
+  };
+}
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
