@@ -194,25 +194,40 @@ console.log(data[0])
 
 // add X axis
 var x = d3.scaleLinear()
-    .rangeRound([margin.left, width - margin.right]);
-
+    .range([0, width])
+    .domain(0,30)
 var y = d3.scaleLinear()
-    .rangeRound([height - margin.bottom, margin.top]);
+    .range([height, 0])
+    .domain(0,30)
 
-var densityData = d3.contourDensity()
-          .x(function(d) { console.log(d) ; return x(d.x); })
-          .y(function(d) { return y(d.y); })
-          .size([width, height])
-          .bandwidth(40)
-          (data)
+// var densityData = d3.contourDensity()
+//           .x(function(d) { return x(d.x); })
+//           .y(function(d) { return y(d.y); })
+//           .size([width, height])
+//           .bandwidth(40)
+//           (data)
 
+
+            svg.append("g")
+                .attr("stroke", "white")
+              .selectAll("circle")
+              .data(data)
+              .enter().append("circle")
+                .attr("cx", function(d) { console.log(d.x) ; return x(d.x); })
+                .attr("cy", function(d) { return y(d.y); })
+                .attr("r", 2);
+
+
+// svg.insert("g", "g")
+//   .attr("fill", "none")
+//   .attr("stroke", "steelblue")
+//   .attr("stroke-linejoin", "round")
+//   .selectAll("path")
+//   .data(densityData)
+//   .enter().append("path")
+//   //.attr("class", function(d){ console.log(d) ; return("o")})
+//   .attr("d", d3.geoPath());
 })
-
-
-svg.append("circle")
-  .attr("cx", 100)
-  .attr("cy", 100)
-  .attr("r", 40)
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
