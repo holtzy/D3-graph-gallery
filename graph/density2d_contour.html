@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>give me a title</title>
+    <title>Density 2d: contour graph in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -35,6 +35,7 @@
 
     <!-- D3.JS v4 -->
     <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-contour.v1.min.js"></script>
 
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -91,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic histogram in d3.js</p>
+          <p style="display:inline; font-size: 35px">Density 2d: contour graph in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -112,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the density 2d section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -156,8 +157,9 @@
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js -->
+<!-- Load d3.js + a special function of d3-->
 <script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-contour.v1.min.js"></script>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -184,6 +186,28 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+// read data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_for_density2d.csv", function(data) {
+
+console.log(data[0])
+
+// add X axis
+var x = d3.scaleLinear()
+    .rangeRound([margin.left, width - margin.right]);
+
+var y = d3.scaleLinear()
+    .rangeRound([height - margin.bottom, margin.top]);
+
+var densityData = d3.contourDensity()
+          .x(function(d) { console.log(d) ; return x(d.x); })
+          .y(function(d) { return y(d.y); })
+          .size([width, height])
+          .bandwidth(40)
+          (data)
+
+})
+
 
 svg.append("circle")
   .attr("cx", 100)
