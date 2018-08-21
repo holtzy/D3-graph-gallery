@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Density 2d: contour graph in d3.js</title>
+    <title>Density 2d with shading in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Density 2d: contour graph in d3.js</p>
+          <p style="display:inline; font-size: 35px">Density 2d with shading</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -190,46 +190,47 @@ var svg = d3.select("#my_dataviz")
 // read data
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_for_density2d.csv", function(data) {
 
-console.log(data[0])
-data.forEach(function(d) {
-  d.x = +d.x
-  d.y = +d.y
-})
+  // why do I need that?
+  data.forEach(function(d) {
+    d.x = +d.x
+    d.y = +d.y
+  })
 
-// Add X axis
-var x = d3.scaleLinear()
-  .domain([5, 20])
-  .range([ margin.left, width - margin.right ]);
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([5, 20])
+    .range([ margin.left, width - margin.right ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
 
-// Add Y axis
-var y = d3.scaleLinear()
-  .domain([5, 25])
-  .range([ height - margin.bottom, margin.top ]);
-svg.append("g")
-  .call(d3.axisLeft(y));
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([5, 25])
+    .range([ height - margin.bottom, margin.top ]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
 
+  // Prepare a color palette
+  var color = d3.scaleLinear()
+      .domain([0, .5]) // Points per square pixel.
+      .range(["white", "#69b3a2"])
 
-// compute the density data
-var densityData = d3.contourDensity()
-  .x(function(d) { return x(d.x); })
-  .y(function(d) { return y(d.y); })
-  .size([width, height])
-  .bandwidth(40)
-  (data)
-console.log(densityData)
+  // compute the density data
+  var densityData = d3.contourDensity()
+    .x(function(d) { return x(d.x); })
+    .y(function(d) { return y(d.y); })
+    .size([width, height])
+    .bandwidth(20)
+    (data)
 
-svg.insert("g", "g")
-  .attr("fill", "none")
-  .attr("stroke", "steelblue")
-  .attr("stroke-linejoin", "round")
-  .selectAll("path")
-  .data(densityData)
-  .enter().append("path")
-  //.attr("class", function(d){ console.log(d) ; return("o")})
-  .attr("d", d3.geoPath());
+  // show the shape!
+  svg.insert("g", "g")
+    .selectAll("path")
+    .data(densityData)
+    .enter().append("path")
+      .attr("d", d3.geoPath())
+      .attr("fill", function(d) { return color(d.value); })
 })
 
 </script></xmp></code></pre>
@@ -289,7 +290,7 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>Density Contours - </i><a href="https://bl.ocks.org/mbostock/e3f4376d54e02d5d43ae32a7cf0e6aa9">link</a></li>
+            <li><i>Density Contours II - </i><a href="https://bl.ocks.org/mbostock/7f5f22524bd1d824dd53c535eda0187f">link</a></li>
             <br>
             <li>yo</li>
             <br>

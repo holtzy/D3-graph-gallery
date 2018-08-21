@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Density 2d: contour graph in d3.js</title>
+    <title>2d histogram in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -35,7 +35,7 @@
 
     <!-- D3.JS v4 -->
     <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://d3js.org/d3-contour.v1.min.js"></script>
+    <script src="https://cdn.rawgit.com/fabid/d3-rectbin/master/rectbin.js"></script>
 
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Density 2d: contour graph in d3.js</p>
+          <p style="display:inline; font-size: 35px">2d histogram in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -147,19 +147,20 @@
 
 
 
+
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
 <div class="container" >
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<br><p>This is a very basic <a href="">hexbin chart</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
 <aside>&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js + a special function of d3-->
 <script src="http://d3js.org/d3.v4.js"></script>
-<script src="https://d3js.org/d3-contour.v1.min.js"></script>
+<script src="https://cdn.rawgit.com/fabid/d3-rectbin/master/rectbin.js"></script>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -173,9 +174,10 @@
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
+
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
+var margin = {top: 10, right: 10, bottom: 40, left: 40},
+    width = 500 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -190,46 +192,73 @@ var svg = d3.select("#my_dataviz")
 // read data
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_for_density2d.csv", function(data) {
 
-console.log(data[0])
-data.forEach(function(d) {
-  d.x = +d.x
-  d.y = +d.y
-})
+  // Get max and min of data
+  //var xLim = d3.extent(data, function(d){return(+d.x)})
+  var yLim = d3.extent(data, function(d){return(+d.y)})
 
-// Add X axis
-var x = d3.scaleLinear()
-  .domain([5, 20])
-  .range([ margin.left, width - margin.right ]);
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
+  var xLim = [4,19]
+  var yLim = [6,21]
 
-// Add Y axis
-var y = d3.scaleLinear()
-  .domain([5, 25])
-  .range([ height - margin.bottom, margin.top ]);
-svg.append("g")
-  .call(d3.axisLeft(y));
+  // Add X axis
+  var x = d3.scaleLinear()
+    .nice()
+    .domain(xLim)
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
 
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .nice()
+    .domain(yLim)
+    .range([ height, 0 ]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
 
-// compute the density data
-var densityData = d3.contourDensity()
-  .x(function(d) { return x(d.x); })
-  .y(function(d) { return y(d.y); })
-  .size([width, height])
-  .bandwidth(40)
-  (data)
-console.log(densityData)
+  // Reformat the data: d3.rectbin() needs a specific format
+  var inputForRectBinning = []
+  data.forEach(function(d) {
+    inputForRectBinning.push( [+d.x, +d.y] )  // Note that we had the transform value of X and Y !
+  })
 
-svg.insert("g", "g")
-  .attr("fill", "none")
-  .attr("stroke", "steelblue")
-  .attr("stroke-linejoin", "round")
-  .selectAll("path")
-  .data(densityData)
-  .enter().append("path")
-  //.attr("class", function(d){ console.log(d) ; return("o")})
-  .attr("d", d3.geoPath());
+  // Compute the rectbin
+  var size = 0.5
+  var rectbinData = d3.rectbin()
+    .dx(size)
+    .dy(size)
+    (inputForRectBinning)
+
+  // Prepare a color palette
+  var color = d3.scaleLinear()
+      .domain([0, 350]) // Number of points in the bin?
+      .range(["transparent",  "#69a3b2"])
+
+  // What is the height of a square in px?
+  heightInPx = y( yLim[1]-size )
+
+  // What is the width of a square in px?
+  var widthInPx = x(xLim[0]+size)
+
+  // Now we can add the squares
+  svg.append("clipPath")
+      .attr("id", "clip")
+    .append("rect")
+      .attr("width", width)
+      .attr("height", height)
+  svg.append("g")
+      .attr("clip-path", "url(#clip)")
+    .selectAll("myRect")
+    .data(rectbinData)
+    .enter().append("rect")
+      .attr("x", function(d) { return x(d.x) })
+      .attr("y", function(d) { return y(d.y) - heightInPx })
+      .attr("width", widthInPx )
+      .attr("height", heightInPx )
+      .attr("fill", function(d) { return color(d.length); })
+      .attr("stroke", "black")
+      .attr("stroke-width", "0.4")
+
 })
 
 </script></xmp></code></pre>
@@ -289,7 +318,7 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>Density Contours - </i><a href="https://bl.ocks.org/mbostock/e3f4376d54e02d5d43ae32a7cf0e6aa9">link</a></li>
+            <li><i>Use the d3.rectbin() function by fabid - </i><a href="https://github.com/fabid/d3-rectbin">link</a></li>
             <br>
             <li>yo</li>
             <br>
