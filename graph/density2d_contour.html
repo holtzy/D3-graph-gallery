@@ -191,42 +191,46 @@ var svg = d3.select("#my_dataviz")
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_for_density2d.csv", function(data) {
 
 console.log(data[0])
+data.forEach(function(d) {
+  d.x = +d.x
+  d.y = +d.y
+})
 
 // add X axis
 var x = d3.scaleLinear()
     .range([0, width])
-    .domain(0,30)
+    .domain([0,20])
 var y = d3.scaleLinear()
     .range([height, 0])
-    .domain(0,30)
+    .domain([0,20])
 
-// var densityData = d3.contourDensity()
-//           .x(function(d) { return x(d.x); })
-//           .y(function(d) { return y(d.y); })
-//           .size([width, height])
-//           .bandwidth(40)
-//           (data)
-
+var densityData = d3.contourDensity()
+          .x(function(d) { return x(d.x); })
+          .y(function(d) { return y(d.y); })
+          .size([width, height])
+          .bandwidth(40)
+          (data)
+console.log(densityData)
 
             svg.append("g")
                 .attr("stroke", "white")
               .selectAll("circle")
               .data(data)
               .enter().append("circle")
-                .attr("cx", function(d) { console.log(d.x) ; return x(d.x); })
+                .attr("cx", function(d) { return x(d.x); })
                 .attr("cy", function(d) { return y(d.y); })
                 .attr("r", 2);
 
 
-// svg.insert("g", "g")
-//   .attr("fill", "none")
-//   .attr("stroke", "steelblue")
-//   .attr("stroke-linejoin", "round")
-//   .selectAll("path")
-//   .data(densityData)
-//   .enter().append("path")
-//   //.attr("class", function(d){ console.log(d) ; return("o")})
-//   .attr("d", d3.geoPath());
+svg.insert("g", "g")
+  .attr("fill", "none")
+  .attr("stroke", "steelblue")
+  .attr("stroke-linejoin", "round")
+  .selectAll("path")
+  .data(densityData)
+  .enter().append("path")
+  //.attr("class", function(d){ console.log(d) ; return("o")})
+  .attr("d", d3.geoPath());
 })
 
 </script></xmp></code></pre>
