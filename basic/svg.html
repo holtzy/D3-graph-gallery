@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>The very basic of SVG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Drawing axis with d3.js">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="Drawing axis with d3.js">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="Using d3.js to draw axis">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet">
+
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
+
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
+
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
+  </head>
+
+
+
+
+  <body id="page-top">
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <a class="js-scroll-trigger" href="../index.html">D3.js Graph Gallery</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/optimization.html">R</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+          <p style="display:inline; font-size: 35px">Drawing axis in d3.js</p>
+          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
+          <br>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+          <br><br>
+          <p style="max-width: 700px; margin: auto">The d3.js allows to draw shapes, that together build a graph. This shapes are most of the time svg elements. It is important to have a few basics concerning svg.</p>
+      </div>
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== Circle ==================== -->
+
+  <section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+
+    <h1>Circle</h1>
+    <hr>
+    <p>Allows to draw a circle. Works like that:</a>.</p>
+
+      <div>
+        <pre class="language-js"><code id="code-circle" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#circle")
+  .append("svg")
+    .attr("width", 1000)
+
+// add a circle
+svg
+  .append("circle")
+  .attr("cx", 300)
+  .attr("cy", 70)
+  .attr("r", 60)
+  // More customization
+  .attr("fill", "#69b3a2")
+  .attr("stroke", "black")
+  .attr("stroke-width", 5)
+</xmp></code></pre>
+      </div>
+
+
+      <div id="circle"></div>
+
+      <p> Note that this is exactly the same as writing this in your html file:</p>
+      <pre class="language-html"><code><xmp><circle cx="300" cy="70" r="60" fill="#69b3a2" stroke="black" stroke-width="5"></circle></xmp></code></pre>
+
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code-circle')
+document.getElementById('code-circle').addEventListener("input", function() {
+  d3.select('#circle').html("");
+  myJSParser('code-circle');
+})
+</script>
+
+
+<!-- ================================================================================= -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== rect ==================== -->
+
+  <section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+
+    <h1>Rect</h1>
+    <hr>
+    <p>Allows to draw a rectangle. Works like that:</a>.</p>
+
+      <div>
+        <pre class="language-js"><code id="code-rect" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#rect")
+  .append("svg")
+    .attr("width", 1000)
+
+// add a rect
+svg
+  .append("rect")
+    .attr("x", 100)
+    .attr("y", 10)
+    .attr("width", 460)
+    .attr("height", 80)
+    // More customization
+    .attr("fill", "#69b3a2")
+    .attr("stroke", "black")
+    .attr("stroke-width", 5)
+</xmp></code></pre>
+      </div>
+
+
+      <div id="rect"></div>
+
+      <p> Note that this is exactly the same as writing this in your html file:</p>
+      <pre class="language-html"><code><xmp><rect x="100" y="10" width="460" height="80" fill="#69b3a2" stroke="black" stroke-width="5"></rect></xmp></code></pre>
+
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code-rect')
+document.getElementById('code-rect').addEventListener("input", function() {
+  d3.select('#rect').html("");
+  myJSParser('code-rect');
+})
+</script>
+
+
+<!-- ================================================================================= -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== LINE ==================== -->
+
+  <section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+
+    <h1>line</h1>
+    <hr>
+    <p>Allows to draw a line. Works like that:</a>.</p>
+
+      <div>
+        <pre class="language-js"><code id="code-line" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#line")
+  .append("svg")
+    .attr("width", 1000)
+
+// add a line
+svg
+  .append("line")
+    .attr("x1", 100)
+    .attr("y1", 10)
+    .attr("x2", 560)
+    .attr("y2", 130)
+    // More customization
+    .attr("stroke", "red")
+    .attr("stroke-width", 8)
+</xmp></code></pre>
+      </div>
+
+
+      <div id="line"></div>
+
+      <p> Note that this is exactly the same as writing this in your html file:</p>
+      <pre class="language-html"><code><xmp><line x1="100" y1="10" x2="560" y2="130" stroke="red" stroke-width="8"></line></xmp></code></pre>
+
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code-line')
+document.getElementById('code-line').addEventListener("input", function() {
+  d3.select('#line').html("");
+  myJSParser('code-line');
+})
+</script>
+
+
+<!-- ================================================================================= -->
+
+
+
+
+
+
+
+
+
+<!-- ==================== PATH ==================== -->
+
+  <section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+
+    <h1>path</h1>
+    <hr>
+    <p>Allows to draw a path. A bit more complicated, but very powerfull. Works like that:</a>.</p>
+
+      <div>
+        <pre class="language-js"><code id="code-path" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#path")
+  .append("svg")
+  .attr("width", 1000)
+
+  // add a path
+  svg
+    .append("path").attr("stroke","black")
+    .attr("d","M0 0 L 150 150 L300 100")
+</xmp></code></pre>
+      </div>
+
+
+      <div id="path"></div>
+
+      <p> Note that this is exactly the same as writing this in your html file:</p>
+      <pre class="language-html"><code><xmp><path stroke="black" d="M0 0 L 150 150 L300 100"></path></xmp></code></pre>
+
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code-path')
+document.getElementById('code-path').addEventListener("input", function() {
+  d3.select('#path').html("");
+  myJSParser('code-path');
+})
+</script>
+
+
+<!-- ================================================================================= -->
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>add border to svg container in d3 - </i><a href="http://bl.ocks.org/AndrewStaroscik/5222370">link</a></li>
+            <br>
+            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
+            <br>
+            <li>ll</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
+
+
+  <section id="contact" class="bg" style="background-color: white">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-2 text-center"></div>
+         <div class="col-lg-8 text-center">
+           <br><br><br>
+           <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
+           <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
+           <div style="text-align:center">
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
+            </div>
+
+         </div>
+       </div>
+    </div>
+  </section>
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light">
+      <div class="container" >
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="https://twitter.com/R_Graph_Gallery">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/holtzy">
+                  <i class="fa fa-github"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ JAVASCRIPT SECTION ============================ -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+      <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+    <!-- Contact form JavaScript -->
+    <script src="../js/jqBootstrapValidation.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="../js/agency.min.js"></script>
+
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
+
+
+    <!-- Function to download the content of the div -->
+    <script>
+    function download(){
+        var a = document.body.appendChild(
+            document.createElement("a")
+        );
+        a.download = "export.html";
+        var command = document.getElementById('code').innerHTML;
+        command = command.replace(/<\/?span[^>]*>/g,"");
+        a.href = "data:html" + command
+        a.click(); // Trigger a click on the element
+    }
+    </script>
+
+
+    <!-- Function to download the graphic as png automatically -->
+<!--     <script>
+        html2canvas($('#content'),
+        {
+          onrendered: function (canvas) {
+            var a = document.createElement('a');
+            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            a.download = 'somefilename.jpg';
+            a.click();
+          }
+        });
+    </script> -->
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+</html>
