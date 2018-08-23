@@ -22,10 +22,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../css/agency.css" rel="stylesheet">
@@ -35,13 +31,13 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="../js/d3.v4.js"></script>
     
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script> 
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
-    <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+    <script src="../js/html2canvas.js"></script>
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
@@ -185,7 +181,7 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform", "translate(250,250)")
 
-// create a matrix 
+// create a matrix
 var matrix = [
   [11975,  5871, 8916, 2868],
   [ 1951, 10048, 2060, 6171],
@@ -216,7 +212,7 @@ svg
       .outerRadius(240)
     )
 
-// Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point. 
+// Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
 // Its opacity is set to 0: we don't see it by default.
 var tooltip = d3.select("#my_dataviz")
   .append("div")
@@ -228,12 +224,12 @@ var tooltip = d3.select("#my_dataviz")
   .style("border-radius", "5px")
   .style("padding", "10px")
 
-// A function that change this tooltip when the user hover a point. 
+// A function that change this tooltip when the user hover a point.
 // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
 var showTooltip = function(d) {
   tooltip
     .style("opacity", 1)
-    .html("Source: " + names[d.source.index] + "<br>Target: " + names[d.target.index]) 
+    .html("Source: " + names[d.source.index] + "<br>Target: " + names[d.target.index])
     .style("left", (d3.event.pageX + 15) + "px")
     .style("top", (d3.event.pageY - 28) + "px")
 }
@@ -472,7 +468,7 @@ document.getElementById('code').addEventListener("input", function() {
 
     <!-- Function to download the graphic as png automatically -->
 <!--     <script>
-        html2canvas($('#content'), 
+        html2canvas($('#content'),
         {
           onrendered: function (canvas) {
             var a = document.createElement('a');

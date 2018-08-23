@@ -22,10 +22,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../css/agency.css" rel="stylesheet">
@@ -35,13 +31,13 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="../js/d3.v4.js"></script>
     
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script> 
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
-    <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+    <script src="../js/html2canvas.js"></script>
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
@@ -161,7 +157,7 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>  
+<div id="my_dataviz"></div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -183,7 +179,7 @@ var svg = d3.select("#my_dataviz")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", 
+    .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")")
 
 //Read the data
@@ -210,7 +206,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .selectAll("dot")
     .data(data)
     .enter()
-    .append("circle")       
+    .append("circle")
       .attr("cx", function (d) { return x(d.GrLivArea); } )
       .attr("cy", function (d) { return y(d.SalePrice); } )
       .attr("r", 1.5)
@@ -465,7 +461,7 @@ document.getElementById('code').addEventListener("input", function() {
 
     <!-- Function to download the graphic as png automatically -->
 <!--     <script>
-        html2canvas($('#content'), 
+        html2canvas($('#content'),
         {
           onrendered: function (canvas) {
             var a = document.createElement('a');

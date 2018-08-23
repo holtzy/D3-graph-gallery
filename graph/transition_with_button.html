@@ -22,10 +22,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../css/agency.css" rel="stylesheet">
@@ -35,13 +31,13 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="../js/d3.v4.js"></script>
     
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script> 
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
-    <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+    <script src="../js/html2canvas.js"></script>
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
@@ -164,7 +160,7 @@
   <svg width="960px" height="100px">
       <rect id="my_rect" x="10" y="10" width="200" height="30" stroke="black" fill="#69b3a2" stroke-width="1"/>
   </svg>
-</div>  
+</div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -369,7 +365,7 @@ document.getElementById('code').addEventListener("input", function() {
 
     <!-- Function to download the graphic as png automatically -->
 <!--     <script>
-        html2canvas($('#content'), 
+        html2canvas($('#content'),
         {
           onrendered: function (canvas) {
             var a = document.createElement('a');

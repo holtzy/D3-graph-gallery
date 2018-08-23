@@ -22,10 +22,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../css/agency.css" rel="stylesheet">
@@ -35,13 +31,13 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="../js/d3.v4.js"></script>
     
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script> 
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
-    <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+    <script src="../js/html2canvas.js"></script>
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
@@ -161,7 +157,7 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>  
+<div id="my_dataviz"></div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -183,7 +179,7 @@ var svg = d3.select("#my_dataviz")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", 
+    .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
@@ -204,7 +200,7 @@ var y = d3.scaleLinear()
 svg.append("g")
   .call(d3.axisLeft(y));
 
-// Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point. 
+// Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
 // Its opacity is set to 0: we don't see it by default.
 var tooltip = d3.select("#my_dataviz")
   .append("div")
@@ -216,12 +212,12 @@ var tooltip = d3.select("#my_dataviz")
   .style("border-radius", "5px")
   .style("padding", "10px")
 
-// A function that change this tooltip when the user hover a point. 
+// A function that change this tooltip when the user hover a point.
 // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
 var showTooltip = function(d) {
   tooltip
     .style("opacity", 1)
-    .html("The exact value of<br>the Ground Living area is: " + d.GrLivArea) 
+    .html("The exact value of<br>the Ground Living area is: " + d.GrLivArea)
     .style("left", (d3.event.pageX + 15) + "px")
     .style("top", (d3.event.pageY - 28) + "px")
 }
@@ -239,7 +235,7 @@ svg.append('g')
   .selectAll("dot")
   .data(data)
   .enter()
-  .append("circle")       
+  .append("circle")
     .attr("cx", function (d) { return x(d.GrLivArea); } )
     .attr("cy", function (d) { return y(d.SalePrice); } )
     .attr("r", 1.5)
@@ -458,7 +454,7 @@ document.getElementById('code').addEventListener("input", function() {
 
     <!-- Function to download the graphic as png automatically -->
 <!--     <script>
-        html2canvas($('#content'), 
+        html2canvas($('#content'),
         {
           onrendered: function (canvas) {
             var a = document.createElement('a');

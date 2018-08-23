@@ -22,10 +22,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../css/agency.css" rel="stylesheet">
@@ -35,13 +31,13 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="../js/d3.v4.js"></script>
     
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script> 
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
-    <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+    <script src="../js/html2canvas.js"></script>
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
@@ -161,7 +157,7 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>  
+<div id="my_dataviz"></div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -173,7 +169,7 @@
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var width = 500 
+var width = 500
     height = 500
     margin = 20
 
@@ -186,7 +182,7 @@ var svg = d3.select("#my_dataviz")
     .attr("width", width)
     .attr("height", height)
   .append("g")
-    .attr("transform", 
+    .attr("transform",
           "translate(" + width / 2 + "," + height / 2 + ")");
 
 // Create dummy data
@@ -195,9 +191,9 @@ var data = {a: 9, b: 20, c:30, d:8, e:12}
 // set the colors
 var color = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"]
 
-// d3 offers the .pie() function, that helps building pie charts. 
+// d3 offers the .pie() function, that helps building pie charts.
 // As input it takes a list of proportion. For each it gives the features of the arc to draw.
-// Like a:9 becomes index:0 / padAngle:0 / startAngle: 0 / endAngle: 0.71 ... 
+// Like a:9 becomes index:0 / padAngle:0 / startAngle: 0 / endAngle: 0.71 ...
 var pie = d3.pie()
   .value(function(d) {return d.value; })
   .sort(null);
@@ -436,7 +432,7 @@ document.getElementById('code').addEventListener("input", function() {
 
     <!-- Function to download the graphic as png automatically -->
 <!--     <script>
-        html2canvas($('#content'), 
+        html2canvas($('#content'),
         {
           onrendered: function (canvas) {
             var a = document.createElement('a');
