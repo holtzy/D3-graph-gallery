@@ -22,10 +22,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../css/agency.css" rel="stylesheet">
@@ -35,13 +31,13 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="https://d3js.org/d3.v4.js"></script>
-    
+    <script src="../js/d3.v4.js"></script>
+
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script> 
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
-    <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+    <script src="../js/html2canvas.js"></script>
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
@@ -161,7 +157,7 @@
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz" style="border: solid; border-width: 1px"></div>  
+<div id="my_dataviz" style="border: solid; border-width: 1px"></div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -175,80 +171,105 @@
 <aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// set the dimensions and margins of the whole graph
-var width = 960,
-    height = 700;
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 30, left: 10},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom
+    proportionTop = 0.7
+    proportionLeft = 0.2
 
-// set the other dimension
-var margin = {left: 10, top: 10, between: 10, right: 10},
-    heightTop = 400,
-    widthLeft = 400;
-    widthRight = width - margin.left - widthLeft - margin.between - margin.right
-
-
-// append the first area: top left. This area will be empty
-var topLeft = d3.select("#my_dataviz")
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
   .append("svg")
-    .attr("width", widthLeft)
-    .attr("height", heightTop)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-topLeft.append("rect")
-  .attr("x", 0)
-  .attr("y", 0)
-  .attr("height", heightTop)
-  .attr("width", widthLeft)
-  .style("stroke", "green")
-  .style("fill", "none")
-  .style("stroke-width", "2px");
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
 
-// append the second area: top right. This area will have the main chart
-var topright = d3.select("#my_dataviz")
-    .attr("width", widthRight)
-    .attr("height", heightTop)
+// Compute summary variables
+var ngroups = 3
+var groupValue = [2,4,12]
+var groupNames = ["grpA", "grpB", "grpC"]
+var nkeys = 3
+var data = [
+  {key: 1, value: 35, selection: [1,0,1] },
+  {key: 2, value: 31, selection: [1,1,1] },
+  {key: 3, value: 5, selection: [0,0,1] }
+]
+var keys = data.map(function(d){return d.key})
 
-topright.append("rect")
-  .attr("x", 0)
-  .attr("y", 0)
-  .attr("height", heightTop)
-  .attr("width", widthRight)
-  .style("stroke", "red")
-  .style("fill", "none")
-  .style("stroke-width", "2px");
-
-
-
-
-// Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv", function(data) {
-
-// X axis of Main graphic
+// Add X axis of the main part. Used for both main bars and the dot grid
 var x = d3.scaleBand()
-  .range([ 0, widthMain ])
-  .domain(data.map(function(d) { return d.Country; }))
-  .padding(0.2);
+  .domain(keys)
+  .range([ 0+width*proportionLeft, width ])
+  .padding(0.2)
+svg.append("g")
+  .attr("transform", "translate(0," + height*proportionTop + ")")
+  .call(d3.axisBottom(x));
 
-// Add Y axis
+// Add Y axis of the main part. Used only for the top chart
 var y = d3.scaleLinear()
-  .domain([0, 13000])
-  .range([ heightTop, 0]);
-Main.append("g")
+  .domain([0, 37])
+  .range([ height*proportionTop, 0]);
+svg.append("g")
+  .attr("transform", "translate(" + width*proportionLeft +",0)")
   .call(d3.axisLeft(y));
 
-// Bars
-Main.selectAll("mybar")
+// Add X axis of the bottom left barplot
+var xSmall = d3.scaleLinear()
+  .domain([15, 0])
+  .range([ 0, width*proportionLeft ]);
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(xSmall));
+
+// Add X axis of the bottom left barplot
+var ySmall = d3.scaleBand()
+  .range([ height, height*proportionTop ])
+  .domain( groupNames )
+  .padding(0.2)
+svg.append("g")
+  .attr("transform", "translate(" + width*proportionLeft +",0)")
+  .call(d3.axisLeft(ySmall));
+
+// Barplot of groups (bottom left)
+svg.selectAll("barsTopLeft")
+  .data(groupValue)
+  .enter()
+  .append("rect")
+    .attr("x", function(d){ return(xSmall(d)) })
+    .attr("y", function(d,i){return(ySmall( groupNames[i] ))})
+    .attr("width", function(d){ return( xSmall(0) - xSmall(d) ) } )
+    .attr("height", ySmall.bandwidth())
+
+// Dot grid: add dots
+svg.selectAll("gridDots")
+
+// Main Barplot
+svg.selectAll("mainBars")
   .data(data)
   .enter()
   .append("rect")
-    .attr("x", function(d) { return x(d.Country); })
-    .attr("y", function(d) { return y(d.Value); })
+    .attr("x", function(d){ return(x(d.key)) })
+    .attr("y", function(d,i){ return( y(d.value) ) })
     .attr("width", x.bandwidth())
-    .attr("height", function(d) { return height - y(d.Value); })
-    .attr("fill", "#69b3a2")
+    .attr("height", function(d){ return(y(0)-y(d.value)) })
 
-})
+// Add dots for connection
+svg
+  .data(data)
+  .append("g")
+  .selectAll("blackDots")
+  .data(function(d){console.log("initial data row:" , d) ; return(d.selection)})
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){ console.log("second loop", d) ; return( x(d.key)+x.bandwidth()/2  ) })
+    .attr("cy", 20)
+    .attr("r", 50)
+
+
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -465,7 +486,7 @@ document.getElementById('code').addEventListener("input", function() {
 
     <!-- Function to download the graphic as png automatically -->
 <!--     <script>
-        html2canvas($('#content'), 
+        html2canvas($('#content'),
         {
           onrendered: function (canvas) {
             var a = document.createElement('a');

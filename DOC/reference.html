@@ -6,14 +6,14 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Density 2d: contour graph in d3.js</title>
+    <title>D3.js functions cheatsheet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
     <meta name="author" content="Yan Holtz">
-    <meta property="og:title" content="Very basic histogram in d3.js">
+    <meta property="og:title" content="D3.js functions cheatsheet">
     <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Using d3.js to create a very basic histogram">
+    <meta property="og:description" content="D3.js functions cheatsheet">
     <link rel="icon" href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/img/logo/logo_xxs.png">
 
     <!-- Bootstrap core CSS -->
@@ -21,10 +21,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../css/agency.css" rel="stylesheet">
@@ -34,14 +30,13 @@
     <link href="../LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="../js/d3.v4.js"></script>
-    <script src="https://d3js.org/d3-contour.v1.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
 
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
-    <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+    <script src="../js/html2canvas.js"></script>
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
@@ -92,7 +87,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Density 2d: contour graph in d3.js</p>
+          <p style="display:inline; font-size: 35px">My d3.js cheasheet</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +108,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the density 2d section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is my d3.js cheatsheet. Basically, it's a set of one-liner d3.js code that are often used in the gallery.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -123,12 +118,105 @@
 
 
 
+<style>
+
+</style>
+
+
+
+
+
+<!-- ==================== SECTION: SVG DRAWERS ==================== -->
+
+<section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container">
+    <h1>Basic SVG</h1>
+    <hr>
+    <p>Most of the time, elements are added to the chart using <code>svg</code>. Here is a list of elements you can add in svg, and their related attribute.</p>
+    <ul>
+
+      <li><div>
+        <p><code>Circle</code>: </p>
+        <pre class="language-js"><code id="code" contenteditable="true"><xmp>svg.append("circle")
+          .attr("cx", 10)   // x coordinate
+          .attr("cy", 10)   // y coordinate
+          .attr("r", 5)     // radius</xmp></code></pre>
+      </div></li>
+
+      <li><div>
+        <p><code>Rect</code>: </p>
+        <pre class="language-js"><code id="code" contenteditable="true"><xmp>svg.append("rect")
+          .attr("x", 10)      // x coordinate of bottom left corner
+          .attr("y", 10)      // y coordinate of bottom left corner
+          .attr("width", 25)  // width -> goes to the right
+          .attr("height", 40) // height -> goes to the bototm</xmp></code></pre>
+      </div></li>
+
+      <li><div>
+        <p><code>Text</code>: </p>
+        <pre class="language-js"><code id="code" contenteditable="true"><xmp>svg.append("text")
+          .attr("x", 10)  // x coordinate
+          .attr("y", 10)  // y coordinate</xmp></code></pre>
+      </div></li>
+
+      <li><div>
+        <p><code>line</code>: </p>
+        <pre class="language-js"><code id="code" contenteditable="true"><xmp>svg.append("text")
+          .attr("x1", 10)  // x coordinate of start
+          .attr("y1", 10)  // y coordinate of start
+          .attr("x2", 15)  // x coordinate of end
+          .attr("y2", 82)  // y coordinate of end
+        </xmp></code></pre>
+      </div></li>
+
+      <li><div>
+        <p><code>path</code>: </p>
+        <pre class="language-js"><code id="code" contenteditable="true"><xmp>svg.append("path")
+          .attr("d", "M150 0 L75 200 L225 200 Z")
+          // start at 150;0, Then I do a line until 75;200, Then another line until 225 200, then I close
+        </xmp></code></pre>
+      </div></li>
+
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
 
 
 
 
 
 
+
+
+
+<!-- ==================== SECTION: D3-SHAPE ==================== -->
+
+<section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container">
+    <h1>D3 Shape</h1>
+    <hr>
+    <p>D3 offers a set of helpers function allowing to draw svg elements from data more efficiently. The complete reference is available on the <a href="https://github.com/d3/d3-shape">d3 github repo.</a></p>
+    <ul>
+
+      <li><div>
+        <p><code>Area</code>: </p>
+        <pre class="language-js"><code id="code" contenteditable="true"><xmp>svg.append("circle")
+        </xmp></code></pre>
+      </div></li>
+
+      <div id="my_dataviz"></div>
+
+      <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+      Yo
+      </script></xmp></code></pre>
+
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
 
 
 
@@ -157,9 +245,8 @@
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js + a special function of d3-->
+<!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
-<script src="https://d3js.org/d3-contour.v1.min.js"></script>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -187,50 +274,10 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// read data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_for_density2d.csv", function(data) {
-
-console.log(data[0])
-data.forEach(function(d) {
-  d.x = +d.x
-  d.y = +d.y
-})
-
-// Add X axis
-var x = d3.scaleLinear()
-  .domain([5, 20])
-  .range([ margin.left, width - margin.right ]);
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
-
-// Add Y axis
-var y = d3.scaleLinear()
-  .domain([5, 25])
-  .range([ height - margin.bottom, margin.top ]);
-svg.append("g")
-  .call(d3.axisLeft(y));
-
-
-// compute the density data
-var densityData = d3.contourDensity()
-  .x(function(d) { return x(d.x); })
-  .y(function(d) { return y(d.y); })
-  .size([width, height])
-  .bandwidth(40)
-  (data)
-console.log(densityData)
-
-svg.insert("g", "g")
-  .attr("fill", "none")
-  .attr("stroke", "steelblue")
-  .attr("stroke-linejoin", "round")
-  .selectAll("path")
-  .data(densityData)
-  .enter().append("path")
-  //.attr("class", function(d){ console.log(d) ; return("o")})
-  .attr("d", d3.geoPath());
-})
+svg.append("circle")
+  .attr("cx", 100)
+  .attr("cy", 100)
+  .attr("r", 40)
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -289,7 +336,7 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>Density Contours - </i><a href="https://bl.ocks.org/mbostock/e3f4376d54e02d5d43ae32a7cf0e6aa9">link</a></li>
+            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
             <br>
             <li>yo</li>
             <br>

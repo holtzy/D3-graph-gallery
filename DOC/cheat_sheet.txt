@@ -45,6 +45,12 @@ update()										  -       We call update the selection that is present in the 
 (d) => d.routeTag)   equivalent of function(d){ return d.routeTag}
 
 
+
+
+
+
+
+
 AXIS
 --------------
 
@@ -107,6 +113,9 @@ numbers1.indexOf(25)                              -       return the index of th
 numbers1.lastIndexOf()
 
 
+
+
+
 CALCULATION
 --------------
 var data = [12, 14, 29]
@@ -129,6 +138,10 @@ Basic example:
               .keys(["A","B"])
               (data);
           console.log(series)
+
+d3.hexbin() --> group data in hexbin.
+
+
 
 
 
@@ -162,6 +175,9 @@ Get column names:
 d3.csv("file.csv", function(data) {
   var keys = data.columns
 }
+
+
+
 
 
 COLOR SCALE
@@ -201,6 +217,9 @@ A list of stuff you can "append" and the argument you can provide:
   Path   --> d : it gives the way to follow for the path. Like d = "M150 0 L75 200 L225 200 Z" means I start at 0, I move to 150;0, Then I do a line until 75;200, Then another line until 225 200, then I close.  Other letters allow more complicated stuff like curve. D3 has some function to build Paths.
   rect   --> x, y, height, width
 
+
+
+
 FUNCTION TO BUILD THESE SVG SHAPE MORE EASILY
 -------------------------
 See here: https://github.com/d3/d3-shape
@@ -213,6 +232,12 @@ See here: https://github.com/d3/d3-shape
 - d3.entries()
 - d3.ribbon()
 - d3.chord()
+- d3.hexagon()
+
+
+
+
+
 
 ANIMATION FUNCTION
 ----------------
