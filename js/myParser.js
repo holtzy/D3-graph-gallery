@@ -21,6 +21,17 @@ function myJSParser(divFrom, divTo){
   eval(command);
 }
 
+// Same as the previous one, but with no HTML before.
+function myJSParserShort(divFrom){
+  // get the content of the origin div (first argument)
+  var command = document.getElementById(divFrom).innerText;
+  // remove the xmp tag and the script tags
+  command = command.replace(/<xmp>/,"").replace(/<.xmp>/,"").replace(/<script>/,"").replace(/<.script>/,"").replace(/<\/?span[^>]*>/g,"");
+  //console.log("This is the content of the JS fragment!; ")
+  //console.log(command)
+  // run the JS code
+  eval(command);
+}
 
 
 function myCodeDownload(filename, idHTML, idJS) {
@@ -60,7 +71,7 @@ function myCodeDownload(filename, idHTML, idJS) {
 //   setTimeout(function() {
 
 //     // export the div called mydiv
-//     html2canvas($(mydiv), 
+//     html2canvas($(mydiv),
 //       {
 //         onrendered: function (canvas) {
 //           var a = document.createElement('a');
@@ -73,7 +84,3 @@ function myCodeDownload(filename, idHTML, idJS) {
 
 //   }, millisecondsToWait);
 // }
-
-
-
-

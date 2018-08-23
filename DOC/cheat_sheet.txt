@@ -1,3 +1,13 @@
+List of theme
+-------------------
+- Basis of SVG -> circle, rect, line.. AND d3-shape helpers.
+- Axis
+- Transition
+- tooltip
+- Reading data
+- Manipulating data / calculation
+
+
 .append("g")                                      -       This adds a <g> element that is used to group several svg elements together.
 
 .attr("transform", translate(23,34))              -       Generally applied to a <g> to do a translation of the element. if called with translate, just put the g element a bit more right and down.

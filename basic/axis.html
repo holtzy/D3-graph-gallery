@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,14 +9,13 @@
     <meta charset="utf-8">
     <title>Drawing axis in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Using d3.js to create a very basic histogram">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
+    <meta name="description" content="Drawing axis with d3.js">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
     <meta name="author" content="Yan Holtz">
 
-    <meta property="og:title" content="Very basic histogram in d3.js">
+    <meta property="og:title" content="Drawing axis with d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Drawing axis in d3.js</title>
+    <meta property="og:description" content="Using d3.js to draw axis">
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -109,10 +109,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the basic section of the d3.js gallery for more examples.</p>
-          <br>
-          <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
-          <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to draw axis with the d3.js library. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
       </div>
     </header>
 
@@ -130,54 +127,22 @@
 
 
 
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+<!-- ==================== BASIC LINEAR AXIS ==================== -->
 
-<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
+  <section style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
-    <div id="result"></div>
-  </div>
-</section>
 
-<!-- ================================================================================= -->
-
-
+    <h1>Basic linear axis</h1>
+    <hr>
+    <p>Let's start with the most common type of axis: the linear axis. Basically, the idea is to map a numeric variable to the axis. It is used in most of chart types, like <a href="../scatter.html">scatterplot</a> or <a href="../histogram.html">histogram</a>.</p>
+    <p>Here is the Javascript code allowing to add a linear axis in a div that has the id 'res'.</p>
 
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
-<div class="container" >
-
-<!-- ========= show html code ============== -->
-<br>
-<div>
-  <p>This examples aim to describe how to create a basic axis.</p>
-</div>
-<aside>&larr; Edit me! </aside>
-<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
-<meta charset="utf-8">
-
-<!-- Load d3.js -->
-<script src="http://d3js.org/d3.v4.js"></script>
-
-<!-- Create a div where the graph will take place. Give it a red border -->
-<div id="my_dataviz"></div>
-
-</xmp></code></pre>
-<!-- ==================================== -->
-
-
-
-<!-- ========= show JS code ==============  -->
-<aside>&larr; Edit me! </aside>
-<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
-
-// Start by buiding a svg area (appears in blue)
-var width = 900
-var height = 400
-var svg = d3.select("#my_dataviz")
+      <div>
+        <pre class="language-js"><code id="code-basic-linear" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#res")
   .append("svg")
-    .attr("width", width)
-    .attr("height", height)
+    .attr("width", 1000)
 
 // Create the scale
 var x = d3.scaleLinear()
@@ -185,58 +150,201 @@ var x = d3.scaleLinear()
     .range([100, 800]);       // This is where the axis is placed: from 100 px to 800px
 
 // Draw the axis
-svg.append("g")
-  .attr("transform", "translate(0,200)")      // This controls the vertical position of the Axis
-  .call(d3.axisBottom(x));
-
-// Draw a rectangle the SVG area to understand where the axis compared to it.
-svg.append("rect")
-  .attr("x", 0)
-  .attr("y", 0)
-  .attr("height", height)
-  .attr("width", width)
-  .style("stroke", "blue")
-  .style("fill", "none")
-  .style("stroke-width", "2px");
+svg
+  .append("g")
+  .attr("transform", "translate(0,50)")      // This controls the vertical position of the Axis
+  .call(d3.axisBottom(x));</xmp></code></pre>
+      </div>
 
 
+      <div id="res"></div>
+
+  </div>
+</section>
 
 
-</script></xmp></code></pre>
-<!-- ==================================== -->
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
 <script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('code', 'result')
-myJSParser('codejs', 'result')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('codejs').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code-basic-linear')
+document.getElementById('code-basic-linear').addEventListener("input", function() {
+  d3.select('#res').html("");
+  myJSParser('code-basic-linear', 'result');
 })
+</script>
 
-// If the user change the HTML fragment, I run it again:
-document.getElementById('code').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
+
+<!-- ================================================================================= -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== SCALE ORDINAL ==================== -->
+
+  <section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+
+    <h1>Ordinal axis</h1>
+    <hr>
+    <p>Let's start with the most common type of axis: the linear axis. Basically, the idea is to map a numeric variable to the axis. It is used in most of chart types, like <a href="../scatter.html">scatterplot</a> or <a href="../histogram.html">histogram</a>.</p>
+    <p>Here is the Javascript code allowing to add a linear axis in a div that has the id 'res'.</p>
+
+      <div>
+        <pre class="language-js"><code id="code_ordinal_demo" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#ordinal_demo")
+  .append("svg")
+    .attr("width", 1000)
+
+// Create the scale
+var x = d3.scaleOrdinal()
+    .domain(["A", "B", "C", "D", "E"])         // This is what is written on the Axis: from 0 to 100
+    .range([100, 800]);       // This is where the axis is placed: from 100 px to 800px
+
+// Draw the axis
+svg
+  .append("g")
+  .attr("transform", "translate(0,50)")      // This controls the vertical position of the Axis
+  .call(d3.axisBottom(x));</xmp></code></pre>
+      </div>
+
+
+      <div id="ordinal_demo"></div>
+
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code_ordinal_demo')
+document.getElementById('code_ordinal_demo').addEventListener("input", function() {
+  d3.select('#ordinal_demo').html("");
+  myJSParserShort('code_ordinal_demo');
+})
+</script>
+
+
+<!-- ================================================================================= -->
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== SCALE BAND ==================== -->
+
+  <section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+
+    <h1>Categoric axis with scaleBand</h1>
+    <hr>
+    <p>The scaleBand() function is ideal to build categorical axis. It is thus useful for common charts like <a href="../barplot.html">barplot</a> or <a href="../boxplot.html">boxplot</a>.</p>
+    <p>Here is the Javascript code allowing to add a categoric axis in a div that has the id 'res'.
+
+      <div>
+        <pre class="language-js"><code id="code_band_demo" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#band_demo")
+  .append("svg")
+    .attr("width", 1000)
+
+// Create the scale
+var x = d3.scaleBand()
+    .domain(["A", "B", "C", "D", "E"])         // This is what is written on the Axis: from 0 to 100
+    .range([100, 800]);       // This is where the axis is placed: from 100 px to 800px
+
+// Draw the axis
+svg
+  .append("g")
+  .attr("transform", "translate(0,50)")      // This controls the vertical position of the Axis
+  .call(d3.axisBottom(x));</xmp></code></pre>
+      </div>
+
+      <div id="band_demo"></div>
+
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code_band_demo')
+document.getElementById('code_band_demo').addEventListener("input", function() {
+  d3.select('#band_demo').html("");
+  myJSParserShort('code_band_demo');
 })
 </script>
 
 
 
 
+<p>The scaleBand has a few properties that are very handy when plotting groups. See below the padding argument
+
+  <div>
+    <pre class="language-js"><code id="code_band_demo2" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#band_demo2")
+  .append("svg")
+  .attr("width", 1000)
+  .attr("height", 300)
+
+// Create the scale
+var names = ["A", "B", "C", "D", "E"]
+var x = d3.scaleBand()
+  .domain(names)         // This is what is written on the Axis: from 0 to 100
+  .range([100, 800])     // This is where the axis is placed: from 100 px to 800px
+  .padding([0.8])       // Goes between 0 and 1. Default is 0
+
+// Draw the axis
+svg
+  .append("g")
+  .attr("transform", "translate(0,250)")      // This controls the vertical position of the Axis
+  .call(d3.axisBottom(x));
+
+// Add bars
+var data = [20,10,29,2,3]
+svg.selectAll("bars")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d,i){ return( x(names[i])) })
+    .attr("y",100)
+    .attr("height", 150)
+    .attr("width", x.bandwidth() )
+
+</xmp></code></pre>
   </div>
+
+  <div id="band_demo2"></div>
+
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code_band_demo2')
+document.getElementById('code_band_demo2').addEventListener("input", function() {
+d3.select('#band_demo2').html("");
+myJSParserShort('code_band_demo2');
+})
+</script>
+
+
+
+
+
+
+</div>
 </section>
 
+<!-- ================================================================================= -->
 
 
-<!-- ============================ -->
 
 
 
