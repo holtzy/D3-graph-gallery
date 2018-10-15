@@ -60,7 +60,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" href="#LogoMenu">SECTION</a>
+            <a class="nav-link" data-toggle="modal" href="#LogoMenu">Chart types</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://www.r-graph-gallery.com">R</a>
@@ -84,24 +84,7 @@
 
 
 
-<style>
-.imageOfMenu {
-  opacity: 1;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 0px;
-  margin-right: 0px;
-  border: solid;
-  border-color: black;
-  border-width: 4px;
-  width: 90px;
-}
-.imageOfMenu:hover {
-  opacity: 1;
-  border: none;
-}
 
-</style>
 
   <!-- Modal menu -->
   <div class="portfolio-modal modal fade" id="LogoMenu" tabindex="-1" role="dialog" aria-hidden="true" style="background-color: black;">
@@ -230,7 +213,7 @@
   <!-- Header -->
   <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
     <div class="textlanding">
-        <p style="display:inline; font-size: 35px">basic boxplot in d3.js</p>
+        <p style="display:inline; font-size: 35px">Most basic boxplot in d3.js</p>
         <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
         <br>
         <ul class="list-inline social-buttons">
@@ -249,11 +232,16 @@
               <i class="fa fa-linkedin"></i>
             </a>
           </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
         </ul>
         <br><br>
-        <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the boxplot section of the d3.js gallery for more examples.</p>
+        <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/boxplot">boxplot</a> with d3.js. Only one category is represented, to simplify the code as much as possible. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/boxplot">boxplot section</a> of the gallery. Learn more about the theory of boxplots in <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz.com</a>.</p>
         <br>
-        <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
+        <a class="btn btn-secondary btn-md text-uppercase" href="../boxplot.html">Boxplot section</a>
         <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
     </div>
   </header>
@@ -262,6 +250,13 @@
 
 
 
+
+
+<p>TEST</p>
+
+<object type="text/html" data="../html_chunk/menu.html"></object>
+
+<p>TEST</p>
 
 
 
@@ -278,7 +273,24 @@
   <div class="col-lg-5 .align-middle">
     <div style="position: -webkit-sticky; top: 120px">
       <div class="bg-light" id="result" ></div>
-      <div><br><p>This is a very basic <a href="">boxplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <br>
+          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <br>
+          <li>In this example dummy data are created. It's a vector format. See <a href="">here</a> to work from a <code>.csv</code></li>
+          <br>
+          <li>Note that quantiles, median, min and max are computed one by one. See <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz</a> to understand what these values are.</li>
+          <br>
+          <li>The Y scale can now be added. Read <a href="">here</a> if you're not used to it.</br>
+          <br>
+          <li>Finally, the box can be added, it is just one <code>rect</code>, and 2 <code>lines</code> elements.</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -414,7 +426,7 @@ myJSParser('codejs', 'result');
   </div>
 </div>
 </section>
-
+<br>
 
 
 <!-- ============================ -->
@@ -424,33 +436,25 @@ myJSParser('codejs', 'result');
 
 
 
+
+
 <!-- ============================ RELATED BLOCKS ============================ -->
 
-<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-      <div style="display: table; height: 150px; overflow: hidden;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-        </div>
+<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center align-self-center">
+        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
       </div>
-    </div>
-    <div class="col-lg-5">
-      <div style="display: table; height: 150px; overflow: hidden;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <ul>
+      <div class="col-lg-5">
+        <ul>
           <li><i>Simple Box Plot Example in d3.js v4.0 - </i><a href="https://bl.ocks.org/rjurney/e04ceddae2e8f85cf3afe4681dac1d74">link</a></li>
           <br>
           <li><i>D3.js Boxplot with Axes and Labels - </i><a href="http://bl.ocks.org/anaeliaovalle/60a7ed1f4e55a9052caab3c69668a306">link</a></li>
-          <br>
-          <li>ll</li>
-          </ul>
-        </div>
+        </ul>
       </div>
     </div>
   </div>
-</div>
 </section>
 
 
@@ -475,7 +479,7 @@ myJSParser('codejs', 'result');
        <div class="col-lg-8 text-center">
          <br><br><br>
          <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
-         <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
+         <p>This document is a work by <a href="https://www.yan-holtz.com">Yan Holtz</a>. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/D3-graph-gallery/issues">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
          <div style="text-align:center">
             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>

@@ -68,8 +68,22 @@ section h3.section-subheading {
 
 
 
-
-
+/* ---------- Menu graph types part ----------------- */
+.imageOfMenu {
+  opacity: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: solid;
+  border-color: black;
+  border-width: 4px;
+  width: 90px;
+}
+.imageOfMenu:hover {
+  opacity: 1;
+  border: none;
+}
 
 
 /* ---------- Button ----------------- */
