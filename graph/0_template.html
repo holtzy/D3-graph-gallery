@@ -10,10 +10,9 @@
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, boxplot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Very basic histogram in d3.js">
-  <meta property="og:image" content="img/overview_RGG.png">
-  <meta property="og:description" content="Using d3.js to create a very basic histogram">
-  <title>basic boxplot in d3.js</title>
+  <meta property="og:title" content="Basic boxplot in d3.js">
+  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
+  <meta property="og:description" content="Using d3.js to create a very basic boxplot">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -46,74 +45,218 @@
 
 
 
-  <body id="page-top">
+<body id="page-top">
 
 
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-      <div class="container">
-        <a href="../index.html">&larr; D3.js Graph Gallery</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/optimization.html">R</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
-            </li>
-          </ul>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a href="../index.html">&larr; D3.js Graph Gallery</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" href="#LogoMenu">SECTION</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.r-graph-gallery.com">R</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.python-graph-gallery.com">Python</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="https://www.data-to-viz.com">Data to viz</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="https://www.yan-holtz.com">Who am I</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+<style>
+.imageOfMenu {
+  opacity: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: solid;
+  border-color: black;
+  border-width: 4px;
+  width: 90px;
+}
+.imageOfMenu:hover {
+  opacity: 1;
+  border: none;
+}
+
+</style>
+
+  <!-- Modal menu -->
+  <div class="portfolio-modal modal fade" id="LogoMenu" tabindex="-1" role="dialog" aria-hidden="true" style="background-color: black;">
+    <div class="modal-dialog h-100 modal-dialog-centered" style="width: 80%; max-width: 917px" >
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal" style="background-color: black;">
+          <a href=""><p style="color: white; text-align: right; font-size: 23px">X</p></a>
+        </div>
+        <div class="container" style="background-color: black;">
+          <div class="row">
+              <div class="modal-body">
+
+                 <a   href="../violin.html">
+                   <img class="img-fluid imageOfMenu imageOfMenu" src="../img/section/Violin150.png" alt="">
+                 </a><a   href="../density.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Density150.png" alt="">
+                 </a><a  href="../histogram.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Histogram150.png" alt="">
+                 </a><a   href="../boxplot.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Box1150.png" alt="">
+                 </a><a   href="../ridgeline.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Joyplot150.png" alt="">
+                 </a>
+
+                 <a href="../scatter.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/ScatterPlot150.png" alt="">
+                 </a><a   href="../#heatmap">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Heatmap150.png" alt="">
+                 </a><a   href="../correlogram.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Correlogram150.png" alt="">
+                 </a><a   href="../bubble.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/BubblePlot150.png" alt="">
+                 </a><a   href="../connectedscatter.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/ScatterConnected150.png" alt="">
+                 </a><a   href="../density2d.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/2dDensity150.png" alt="">
+                 </a>
+
+                 <a   href="../barplot.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Bar150.png" alt="">
+                 </a><a   href="../spider.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Spider150.png" alt="">
+                 </a><a   href="../wordcloud.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Wordcloud150.png" alt="">
+                 </a><a   href="../parallel.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Parallel1150.png" alt="">
+                 </a><a   href="../lollipop.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Lollipop150.png" alt="">
+                 </a><a  href="../circular_barplot.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/CircularBarplot150.png" alt="">
+                 </a>
+
+                 <a   href="../treemap.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Tree150.png" alt="">
+                 </a><a   href="../donut.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Doughnut150.png" alt="">
+                 </a><a   href="../pie.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Pie150.png" alt="">
+                 </a><a   href="../dendrogram.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Dendrogram150.png" alt="">
+                 </a><a   href="../circularpacking.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/CircularPacking150.png" alt="">
+                 </a><a   href="../sunburst.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Sunburst150.png" alt="">
+                 </a>
+
+                 <a   href="../line.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Line150.png" alt="">
+                 </a><a   href="../area.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Area150.png" alt="">
+                 </a><a   href="../stackedarea.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/StackedArea150.png" alt="">
+                 </a><a   href="../streamgraph.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Stream150.png" alt="">
+                 </a>
+
+                 <a   href="../map.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Map150.png" alt="">
+                 </a><a   href="../choropleth.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Choropleth150.png" alt="">
+                 </a><a   href="../hexbinmap.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/MapHexbin150.png" alt="">
+                 </a><a   href="../cartogram.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Cartogram150.png" alt="">
+                 </a><a   href="../connection.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/ConnectedMap150.png" alt="">
+                 </a><a   href="../bubblemap.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/BubbleMap150.png" alt="">
+                 </a>
+
+                 <a   href="../chord.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Chord150.png" alt="">
+                 </a><a   href="../network.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Network150.png" alt="">
+                 </a><a   href="../sankey.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Sankey150.png" alt="">
+                 </a><a   href="../arc.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Arc150.png" alt="">
+                 </a><a   href="../bundle.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Bundle150.png" alt="">
+                 </a>
+
+                <a   href="../transition.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/anim150.gif" alt="">
+                 </a><a   href="../https://www.data-to-viz.com/caveats.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Bad150.png" alt="">
+                 </a><a   href="../colors.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Colours150.png" alt="">
+                 </a><a   href="../https://www.r-graph-gallery.com">
+                   <img class="img-fluid imageOfMenu" src="../img/section/DataArt1150.png" alt="">
+                 </a><a   href="../tooltip.html">
+                   <img class="img-fluid imageOfMenu" src="../img/section/Interactive150.png" alt="">
+                 </a>
+                 <span>X</span>
+              </div>
+          </div>
         </div>
       </div>
-    </nav>
+    </div>
+  </div>
 
 
 
 
 
-    <!-- Header -->
-    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-      <div class="textlanding">
-          <p style="display:inline; font-size: 35px">basic boxplot in d3.js</p>
-          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the boxplot section of the d3.js gallery for more examples.</p>
-          <br>
-          <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
-          <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
-      </div>
-    </header>
+  <!-- Header -->
+  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+    <div class="textlanding">
+        <p style="display:inline; font-size: 35px">basic boxplot in d3.js</p>
+        <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
+        <br>
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br><br>
+        <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the boxplot section of the d3.js gallery for more examples.</p>
+        <br>
+        <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
+        <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+    </div>
+  </header>
 
 
 
@@ -127,17 +270,17 @@
 
 
 <section class="bg" style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-    <div class="row">
+<div class="container" >
+  <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-    <div class="col-lg-5 .align-middle">
-      <div style="position: -webkit-sticky; top: 120px">
-        <div class="bg-light" id="result" ></div>
-        <div><br><p>This is a very basic <a href="">boxplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p></div>
-      </div>
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; top: 120px">
+      <div class="bg-light" id="result" ></div>
+      <div><br><p>This is a very basic <a href="">boxplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p></div>
     </div>
+  </div>
 
 <!-- ================================================================================= -->
 
@@ -171,17 +314,17 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 400 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+  width = 400 - margin.left - margin.right,
+  height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+.append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
 
 // create dummy data
 var data = [12,19,11,13,12,22,13,4,15,16,18,19,20,12,11,9]
@@ -197,8 +340,8 @@ var max = q1 + 1.5 * interQuantileRange
 
 // Show the Y scale
 var y = d3.scaleLinear()
-    .domain([0,24])
-    .range([height, 0]);
+  .domain([0,24])
+  .range([height, 0]);
 svg.call(d3.axisLeft(y))
 
 // a few features for the box
@@ -207,34 +350,34 @@ var width = 100
 
 // Show the main vertical line
 svg
-  .append("line")
-    .attr("x1", center)
-    .attr("x2", center)
-    .attr("y1", y(min) )
-    .attr("y2", y(max) )
-    .attr("stroke", "black")
+.append("line")
+  .attr("x1", center)
+  .attr("x2", center)
+  .attr("y1", y(min) )
+  .attr("y2", y(max) )
+  .attr("stroke", "black")
 
 // Show the box
 svg
-  .append("rect")
-    .attr("x", center - width/2)
-    .attr("y", y(q3) )
-    .attr("height", (y(q1)-y(q3)) )
-    .attr("width", width )
-    .attr("stroke", "black")
-    .style("fill", "#69b3a2")
+.append("rect")
+  .attr("x", center - width/2)
+  .attr("y", y(q3) )
+  .attr("height", (y(q1)-y(q3)) )
+  .attr("width", width )
+  .attr("stroke", "black")
+  .style("fill", "#69b3a2")
 
 // show median, min and max horizontal lines
 svg
-  .selectAll("toto")
-  .data([min, median, max])
-  .enter()
-  .append("line")
-    .attr("x1", center-width/2)
-    .attr("x2", center+width/2)
-    .attr("y1", function(d){ return(y(d))} )
-    .attr("y2", function(d){ return(y(d))} )
-    .attr("stroke", "black")
+.selectAll("toto")
+.data([min, median, max])
+.enter()
+.append("line")
+  .attr("x1", center-width/2)
+  .attr("x2", center+width/2)
+  .attr("y1", function(d){ return(y(d))} )
+  .attr("y2", function(d){ return(y(d))} )
+  .attr("stroke", "black")
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
@@ -252,24 +395,24 @@ myJSParser('codejs', 'result')
 
 // If the user change the JS fragment, I run it again:
 document.getElementById('codejs').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
 })
 
 // If the user change the HTML fragment, I run it again:
 document.getElementById('code').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
 })
 </script>
 
 </div>
 
 
-    </div>
   </div>
+</div>
 </section>
 
 
@@ -284,30 +427,30 @@ document.getElementById('code').addEventListener("input", function() {
 <!-- ============================ RELATED BLOCKS ============================ -->
 
 <section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+      <div style="display: table; height: 150px; overflow: hidden;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>Simple Box Plot Example in d3.js v4.0 - </i><a href="https://bl.ocks.org/rjurney/e04ceddae2e8f85cf3afe4681dac1d74">link</a></li>
-            <br>
-            <li><i>D3.js Boxplot with Axes and Labels - </i><a href="http://bl.ocks.org/anaeliaovalle/60a7ed1f4e55a9052caab3c69668a306">link</a></li>
-            <br>
-            <li>ll</li>
-            </ul>
-          </div>
+    </div>
+    <div class="col-lg-5">
+      <div style="display: table; height: 150px; overflow: hidden;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <ul>
+          <li><i>Simple Box Plot Example in d3.js v4.0 - </i><a href="https://bl.ocks.org/rjurney/e04ceddae2e8f85cf3afe4681dac1d74">link</a></li>
+          <br>
+          <li><i>D3.js Boxplot with Axes and Labels - </i><a href="http://bl.ocks.org/anaeliaovalle/60a7ed1f4e55a9052caab3c69668a306">link</a></li>
+          <br>
+          <li>ll</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
+</div>
 </section>
 
 
@@ -321,27 +464,27 @@ document.getElementById('code').addEventListener("input", function() {
 
 <!-- ============================ CONTACT SECTION ============================ -->
 
-    <!-- ANCHOR -->
-    <a name="contactanchor"></a>
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
 
 
-  <section id="contact" class="bg" style="background-color: white">
-     <div class="container">
-       <div class="row">
-         <div class="col-lg-2 text-center"></div>
-         <div class="col-lg-8 text-center">
-           <br><br><br>
-           <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
-           <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
-           <div style="text-align:center">
-              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
-              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
-            </div>
+<section id="contact" class="bg" style="background-color: white">
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-2 text-center"></div>
+       <div class="col-lg-8 text-center">
+         <br><br><br>
+         <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
+         <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
+         <div style="text-align:center">
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
+          </div>
 
-         </div>
        </div>
-    </div>
-  </section>
+     </div>
+  </div>
+</section>
 
 
 
@@ -349,44 +492,44 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 <!-- ============================ FOOTER SECTION ============================ -->
-    <footer class="bg-light">
-      <div class="container" >
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/R_Graph_Gallery">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/holtzy">
-                  <i class="fa fa-github"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
-          </div>
+  <footer class="bg-light">
+    <div class="container" >
+      <div class="row">
+        <div class="col-md-4">
+          <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 
 <!-- ============================ -->
 
@@ -413,54 +556,54 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-      <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
+  <!-- Plugin JavaScript -->
+    <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
-    <!-- Contact form JavaScript -->
-    <script src="../js/jqBootstrapValidation.js"></script>
+  <!-- Contact form JavaScript -->
+  <script src="../js/jqBootstrapValidation.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="../js/agency.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="../js/agency.min.js"></script>
 
-    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-    <script>
-      $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-    </script>
-
-
-    <!-- Function to download the content of the div -->
-    <script>
-    function download(){
-        var a = document.body.appendChild(
-            document.createElement("a")
-        );
-        a.download = "export.html";
-        var command = document.getElementById('code').innerHTML;
-        command = command.replace(/<\/?span[^>]*>/g,"");
-        a.href = "data:html" + command
-        a.click(); // Trigger a click on the element
-    }
-    </script>
+  <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+  <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
 
 
-    <!-- Function to download the graphic as png automatically -->
+  <!-- Function to download the content of the div -->
+  <script>
+  function download(){
+      var a = document.body.appendChild(
+          document.createElement("a")
+      );
+      a.download = "export.html";
+      var command = document.getElementById('code').innerHTML;
+      command = command.replace(/<\/?span[^>]*>/g,"");
+      a.href = "data:html" + command
+      a.click(); // Trigger a click on the element
+  }
+  </script>
+
+
+  <!-- Function to download the graphic as png automatically -->
 <!--     <script>
-        html2canvas($('#content'),
-        {
-          onrendered: function (canvas) {
-            var a = document.createElement('a');
-            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            a.download = 'somefilename.jpg';
-            a.click();
-          }
-        });
-    </script> -->
+      html2canvas($('#content'),
+      {
+        onrendered: function (canvas) {
+          var a = document.createElement('a');
+          // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+          a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+          a.download = 'somefilename.jpg';
+          a.click();
+        }
+      });
+  </script> -->
 
 
 
@@ -471,6 +614,6 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
-  </body>
+</body>
 
 </html>
