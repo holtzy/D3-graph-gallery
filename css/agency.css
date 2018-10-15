@@ -32,9 +32,9 @@ h6 {
 
 
 aside {
-  float: right; 
-  margin-right: -190px; 
-  width: 180px; 
+  float: right;
+  margin-right: -80px;
+  width: 80px;
   color: red;
 }
 
@@ -244,7 +244,7 @@ img::-moz-selection {
     background-image: url("../img/area_bitcoin_fadded.png");
 
     /* Set a specific height */
-    min-height: 100px; 
+    min-height: 100px;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -714,20 +714,3 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 </style>
 
 /* ------------------------------------------------------------------------------------------------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

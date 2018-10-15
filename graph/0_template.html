@@ -6,15 +6,16 @@
   <head>
 
     <meta charset="utf-8">
-    <title>give me a title</title>
+    <title>basic boxplot in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
     <meta name="author" content="Yan Holtz">
+
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <link rel="icon" href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/img/logo/logo_xxs.png">
+    <title>basic boxplot in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -46,6 +47,7 @@
 
 
 
+
   <body id="page-top">
 
 
@@ -53,7 +55,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
       <div class="container">
-        <a href="../index.html">D3.js Graph Gallery</a>
+        <a href="../index.html">&larr; D3.js Graph Gallery</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -87,7 +89,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">A very basic histogram in d3.js</p>
+          <p style="display:inline; font-size: 35px">basic boxplot in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -108,7 +110,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the histogram section of the d3.js gallery for more examples.</p>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the boxplot section of the d3.js gallery for more examples.</p>
           <br>
           <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
           <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -126,16 +128,18 @@
 
 
 
-
-
+<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+    <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-    <center><div id="result"></div></center>
-  </div>
-</section>
+    <div class="col-lg-5 .align-middle">
+      <div style="position: -webkit-sticky; top: 120px">
+        <div class="bg-light" id="result" ></div>
+        <div><br><p>This is a very basic <a href="">boxplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p></div>
+      </div>
+    </div>
 
 <!-- ================================================================================= -->
 
@@ -143,12 +147,10 @@
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
-<div class="container" >
+<div class="col-lg-7 text-center .align-middle">
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
-<aside>&larr; Edit me! </aside>
+<aside style="position: -webkit-sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
@@ -163,14 +165,16 @@
 
 
 
+
+
+
 <!-- ========= show JS code ==============  -->
-<aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 400 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -181,13 +185,64 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-svg.append("circle")
-  .attr("cx", 100)
-  .attr("cy", 100)
-  .attr("r", 40)
+// create dummy data
+var data = [12,19,11,13,12,22,13,4,15,16,18,19,20,12,11,9]
 
+// Compute summary statistics used for the box:
+var data_sorted = data.sort(d3.ascending)
+var q1 = d3.quantile(data_sorted, .25)
+var median = d3.quantile(data_sorted, .5)
+var q3 = d3.quantile(data_sorted, .75)
+var interQuantileRange = q3 - q1
+var min = q1 - 1.5 * interQuantileRange
+var max = q1 + 1.5 * interQuantileRange
+
+// Show the Y scale
+var y = d3.scaleLinear()
+    .domain([0,24])
+    .range([height, 0]);
+svg.call(d3.axisLeft(y))
+
+// a few features for the box
+var center = 200
+var width = 100
+
+// Show the main vertical line
+svg
+  .append("line")
+    .attr("x1", center)
+    .attr("x2", center)
+    .attr("y1", y(min) )
+    .attr("y2", y(max) )
+    .attr("stroke", "black")
+
+// Show the box
+svg
+  .append("rect")
+    .attr("x", center - width/2)
+    .attr("y", y(q3) )
+    .attr("height", (y(q1)-y(q3)) )
+    .attr("width", width )
+    .attr("stroke", "black")
+    .style("fill", "#69b3a2")
+
+// show median, min and max horizontal lines
+svg
+  .selectAll("toto")
+  .data([min, median, max])
+  .enter()
+  .append("line")
+    .attr("x1", center-width/2)
+    .attr("x2", center+width/2)
+    .attr("y1", function(d){ return(y(d))} )
+    .attr("y2", function(d){ return(y(d))} )
+    .attr("stroke", "black")
 </script></xmp></code></pre>
 <!-- ==================================== -->
+
+
+
+
 
 
 
@@ -212,9 +267,10 @@ document.getElementById('code').addEventListener("input", function() {
 })
 </script>
 
+</div>
 
 
-
+    </div>
   </div>
 </section>
 
@@ -243,9 +299,9 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
+            <li><i>Simple Box Plot Example in d3.js v4.0 - </i><a href="https://bl.ocks.org/rjurney/e04ceddae2e8f85cf3afe4681dac1d74">link</a></li>
             <br>
-            <li>yo</li>
+            <li><i>D3.js Boxplot with Axes and Labels - </i><a href="http://bl.ocks.org/anaeliaovalle/60a7ed1f4e55a9052caab3c69668a306">link</a></li>
             <br>
             <li>ll</li>
             </ul>
