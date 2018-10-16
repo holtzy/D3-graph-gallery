@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,15 +13,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic background map in d3.js</title>
+  <title>Changing projection in background map with d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic background map">
+  <meta name="description" content="D3.js: How to change the projection used on your background map">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, map">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Basic background map in d3.js">
+  <meta property="og:title" content="Changing projection in background map with d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic background map">
+  <meta property="og:description" content="D3.js: How to change the projection used on your background map">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic background map in d3.js</h1>
+      <h1>Changing background map projection with d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -106,7 +106,8 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/backgroundmap">background map</a> of the world with d3.js. Note that the same kind of code would work with any geospatial data stored in <code>geojson</code> format. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/backgroundmap">background map section</a> of the gallery.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to change the <u>projection</u> of your <a href="../backgroundmap.html">background map</a>. (See here for explanations on <a href="backgroundmap_basic.html">basic map</a>). Picking the right projection is a crucial step in your project, since shapes can be really different from one to the other and thus convey a different message.
+        See <a href="https://www.data-to-viz.com/graph/map.html">this blog post</a> to read more about it.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../backgroundmap.html">Background map section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -136,6 +137,8 @@ $(function(){
 <div class="container" >
   <div class="row">
 
+
+
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
   <div class="col-lg-5 .align-middle">
@@ -143,16 +146,16 @@ $(function(){
       <div class="bg-light" id="result" ></div>
       <br>
       <div>
-        <h5>Steps:</h5>
+        <h5>Notes:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>This code is very similar to the previous step: <a href="backgroundmap_basic.html">basic background map in d3</a></li>
           <br>
-          <li>In this example the world country boundaries are used. Data comes from <a href="http://enjalot.github.io/wwsd/data/world/world-110m.geojson">here</a>. They are provided at <code>geojson</code> format. If you have a <code>shapefile</code> format, visit the <a href="https://www.d3-graph-gallery.com/backgroundmap">background map</a> section to see how to proceed.</a></li>
+          <li>It just illustrate the possibilities of the <a href="https://github.com/d3/d3-geo-projection">geo-projection plugin</a>.</li>
           <br>
-          <li>Note that the <a href="https://github.com/d3/d3-geo-projection">geo.projection</a> plugin is used. It allows to represent the world using different projection. See <a href="">this page of the gallery</a> to see the possibilities.</li>
+          <li>Just pick the most appropriate one for your project: <code>d3.geoAiry()</code>, <code>d3.geoAitoff()</code>, <code>d3.geoArmadillo()</code>, <code>d3.geoAzimuthalEqualArea()</code>, <code>d3.geoBaker()</code>, <code>d3.geoBoggs()</code>, and many many more on the <a href="https://github.com/d3/d3-geo-projection">reference page</a>.</li>
           <br>
-          <li>Note: I don't understand the logic behind the <code>.scale</code> part.</li>
+          <li>Heavy data? It is a good practice to apply this transformation on the <a href="https://github.com/perliedman/reproject">geoJson file directly</a> -> avoid loading time in the browser.</li>
         </ul>
       </div>
     </div>
@@ -195,8 +198,8 @@ var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-// Map and projection
-var projection = d3.geoNaturalEarth()
+// Map and projection. Try:  d3.geoAiry() / d3.geoAitoff() / d3.geoArmadillo() / d3.geoAugust() / d3.geoAzimuthalEqualArea() / d3.geoAzimuthalEquidistant() and more
+var projection = d3.geoAitoff()
     .scale(width / 1.3 / Math.PI)
     .translate([width / 2, height / 2])
 
