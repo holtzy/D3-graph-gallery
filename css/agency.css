@@ -26,7 +26,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 695;
+  font-weight: 300;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -243,13 +243,21 @@ img::-moz-selection {
   color: black;
   position: relative;
   overflow: hidden;
+  padding-top: 150px;
+  padding-bottom: 80px;
 }
 
 
 
 
-
-
+/* ---------- Short HR used under titles sometimes ----------------- */
+.short_hr {
+  width: 100px;
+  height: 1px;
+  border:none;
+  color:#333;
+  background-color:#333;
+}
 
 /* ---------- Parallax if needed ----------------- */
 

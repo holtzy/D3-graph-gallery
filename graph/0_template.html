@@ -44,74 +44,76 @@
 
 
 
+
+
 <body id="page-top">
 
 
-  <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-  <script>
-  $(function(){
-    $("#mainNav").load("../html_chunk/menu.html");
-  });
-  </script>
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("../html_chunk/menu.html");
+});
+</script>
 
-  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-  <div id="modal_menu_insertion"> </div>
-  <script>
-  $(function(){
-    $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-  });
-  </script>
-
-
-  <!-- Header -->
-  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-    <div class="textlanding">
-        <p style="display:inline; font-size: 35px">Most basic boxplot in d3.js</p>
-        <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
-        <br>
-        <ul class="list-inline social-buttons">
-          <li class="list-inline-item">
-            <a href="https://twitter.com/R_Graph_Gallery">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-buttons">
-            <a href="https://github.com/holtzy">
-              <i class="fa fa-github" style="color: white"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-buttons">
-            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-              <i class="fa fa-linkedin"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-buttons">
-            <a href="https://www.yan-holtz.com">
-              <i class="fa fa-home"></i>
-            </a>
-          </li>
-        </ul>
-        <br><br>
-        <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/boxplot">boxplot</a> with d3.js. Only one category is represented, to simplify the code as much as possible. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/boxplot">boxplot section</a> of the gallery. Learn more about the theory of boxplots in <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz.com</a>.</p>
-        <br>
-        <a class="btn btn-secondary btn-md text-uppercase" href="../boxplot.html">Boxplot section</a>
-        <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
-    </div>
-  </header>
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+});
+</script>
 
 
+<!-- Header -->
+<header class="masthead">
+  <div class="textlanding">
+      <h1>Most basic boxplot in d3.js</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/boxplot">boxplot</a> with d3.js. Only one category is represented, to simplify the code as much as possible. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/boxplot">boxplot section</a> of the gallery. Learn more about the theory of boxplots in <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz.com</a>.</p>
+      <br>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../boxplot.html">Boxplot section</a>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+  </div>
+</header>
 
 
 
 
-  <!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-  <div id="position_for_images"> </div>
-  <script>
-  $(function(){
-    $("#position_for_images").load("../html_chunk/images.html");
-  });
-  </script>
+
+
+<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+<div id="position_for_images"> </div>
+<script>
+$(function(){
+  $("#position_for_images").load("../html_chunk/images.html");
+});
+</script>
 
 
 
@@ -351,44 +353,14 @@ myJSParser('codejs', 'result');
 
 
 <!-- ============================ FOOTER SECTION ============================ -->
-  <footer class="bg-light">
-    <div class="container" >
-      <div class="row">
-        <div class="col-md-4">
-          <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
-        </div>
-        <div class="col-md-4">
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <ul class="list-inline quicklinks">
-            <li class="list-inline-item">
-              <a href="#">Privacy Policy</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">Terms of Use</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
 
 <!-- ============================ -->
 
