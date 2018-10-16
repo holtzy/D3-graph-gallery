@@ -47,44 +47,19 @@
 <body id="page-top">
 
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-    <div class="container">
-      <a href="../index.html">&larr; D3.js Graph Gallery</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fa fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav text-uppercase ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" href="#LogoMenu">Chart types</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.r-graph-gallery.com">R</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.python-graph-gallery.com">Python</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="https://www.data-to-viz.com">Data to viz</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="https://www.yan-holtz.com">Who am I</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">About</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+  <script>
+  $(function(){
+    $("#mainNav").load("../html_chunk/menu.html");
+  });
+  </script>
 
-  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
   <div id="modal_menu_insertion"> </div>
   <script>
   $(function(){
-    $("#modal_menu_insertion").load("../html_chunk/menu.html");
+    $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
   });
   </script>
 
