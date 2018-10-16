@@ -329,23 +329,19 @@ myJSParser('codejs', 'result');
   <a name="contactanchor"></a>
 
 
-<section id="contact" class="bg" style="background-color: white">
-   <div class="container">
-     <div class="row">
-       <div class="col-lg-2 text-center"></div>
-       <div class="col-lg-8 text-center">
-         <br><br><br>
-         <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
-         <p>This document is a work by <a href="https://www.yan-holtz.com">Yan Holtz</a>. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/D3-graph-gallery/issues">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
-         <div style="text-align:center">
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
-          </div>
+<section id="contact" class="bg" style="background-color: white"></section>
 
-       </div>
-     </div>
-  </div>
-</section>
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
 
 
 
@@ -385,59 +381,33 @@ $(function(){
 
 <!-- ============================ JAVASCRIPT SECTION ============================ -->
 
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/agency.min.js"></script>
+
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
 
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-    <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
-
-  <!-- Contact form JavaScript -->
-  <script src="../js/jqBootstrapValidation.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="../js/agency.min.js"></script>
-
-  <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-  <script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-  </script>
-
-
-  <!-- Function to download the content of the div -->
-  <script>
-  function download(){
-      var a = document.body.appendChild(
-          document.createElement("a")
-      );
-      a.download = "export.html";
-      var command = document.getElementById('code').innerHTML;
-      command = command.replace(/<\/?span[^>]*>/g,"");
-      a.href = "data:html" + command
-      a.click(); // Trigger a click on the element
-  }
-  </script>
-
-
-  <!-- Function to download the graphic as png automatically -->
-<!--     <script>
-      html2canvas($('#content'),
-      {
-        onrendered: function (canvas) {
-          var a = document.createElement('a');
-          // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-          a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-          a.download = 'somefilename.jpg';
-          a.click();
-        }
-      });
-  </script> -->
-
-
-
+<!-- Function to download the content of the div -->
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    var command = document.getElementById('code').innerHTML;
+    command = command.replace(/<\/?span[^>]*>/g,"");
+    a.href = "data:html" + command
+    a.click(); // Trigger a click on the element
+}
+</script>
 
 
 
