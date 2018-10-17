@@ -192,28 +192,46 @@ $(function(){
 
 // The svg
 var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+  width = +svg.attr("width"),
+  height = +svg.attr("height");
 
 // Map and projection
+var path = d3.geoPath();
 var projection = d3.geoNaturalEarth()
-    .scale(width / 1.3 / Math.PI)
-    .translate([width / 2, height / 2])
+  .scale(width / 1.5 / Math.PI)
+  .translate([width / 2, height / 2]);
+
+// Data and color scale
+var data = d3.map();
+var colorScale = d3.scaleThreshold()
+  .domain([1, 6, 11, 26, 101, 1001])
+  .range(d3.schemeBlues[7]);
 
 // Load external data and boot
-d3.json("http://enjalot.github.io/wwsd/data/world/world-110m.geojson", function(data){
+d3.queue()
+  .defer(d3.json, "http://enjalot.github.io/wwsd/data/world/world-110m.geojson")
+  .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function(d) { data.set(d.code, +d.total); })
+  .await(ready);
 
-    // Draw the map
-    svg.append("g")
-        .selectAll("path")
-        .data(data.features)
-        .enter().append("path")
-            .attr("fill", "#69b3a2")
-            .attr("d", d3.geoPath()
-                .projection(projection)
-            )
-            .style("stroke", "#fff")
-})
+function ready(error, topo) {
+  if (error) throw error;
+
+  // Draw the map
+  svg.append("g")
+    .selectAll("path")
+    .data(topo.features)
+    .enter()
+    .append("path")
+      // draw each country
+      .attr("d", d3.geoPath()
+        .projection(projection)
+      )
+      // set the color of each country
+      .attr("fill", function (d) {
+        d.total = data.get(d.id) || 0;
+        return colorScale(d.total);
+      });
+    }
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
