@@ -1,0 +1,123 @@
+name,code,,,,,,,,,,,
+Albania,ALB,,,,,,,,,,,
+Algeria,DZA,,,,,,,,,,,
+Antigua And Barbuda,ATG,,,,,,,,,,,
+Argentina,ARG,,,,country,survey,age-range,sample-size-1,sample-size-2,sample-size-3,response-rate,income
+Armenia,ARM,,,,Colombia,NSMH,18-65,4426,2381,1731,87.7,lower-middle
+Australia,AUS,,,,Iraq,IMHS,18-96,4332,4332,--,95.2,lower-middle
+Austria,AUT,,,,Nigeria,NSMHW,18-100,6752,2143,1203,79.3,lower-middle
+Azerbaijan,AZE,,,,China,Shenzhen,18-88,7132,2475,--,80,lower-middle
+Bangladesh,BGD,,,,Peru,EMSMP,18-65,3930,1801,1287,90.2,lower-middle
+Belarus,BLR,,,,Ukraine,CMDPSD,18-91,4725,1720,540,78.3,lower-middle
+Belgium,BEL,,,,Brazil - S‹o Paulo,S‹o Paulo Megacity,18-93,5037,2942,--,81.3,upper-middle
+Belize,BLZ,,,,Bulgaria,NSHS,18-98,5318,2233,741,72,upper-middle
+Bermuda,BMU,,,,Lebanon,LEBANON,18-94,2857,1031,595,70,upper-middle
+"Bolivia, Plurinational State Of",BOL,,,,Mexico,M-NCS,18-65,5782,2362,1736,76.6,upper-middle
+Bosnia And Herzegovina,BIH,,,,Colombia,MMHHS,18-65,3261,1673,--,97.2,upper-middle
+Botswana,BWA,,,,Romania,RMHS,18-96,2357,2357,--,70.9,upper-middle
+Brazil,BRA,,,,South Africa,SASH,18-92,4315,4315,--,87.1,upper-middle
+Bulgaria,BGR,,,,Argentina,AMHES,18-98,3927,2116,--,77.3,high
+Burundi,BDI,,,,Australia,NSMHWB,18-85,8463,8463,--,60,high
+Cambodia,KHM,,,,Belgium,ESEMeD,18-95,2419,1043,486,50.6,high
+Cameroon,CMR,,,,France,ESEMeD,18-97,2894,1436,727,45.9,high
+Canada,CAN,,,,Germany,ESEMeD,18-95,3555,1323,621,57.8,high
+Chile,CHL,,,,Israel,NHS,21-98,4859,4859,--,72.6,high
+China,CHN,,,,Italy,ESEMeD,18-100,4712,1779,853,71.3,high
+Colombia,COL,,,,Japan,WMHJ 2002-2006,20-98,4129,1682,--,55.1,high
+Costa Rica,CRI,,,,The Netherlands,ESEMeD,18-95,2372,1094,516,56.4,high
+Croatia,HRV,,,,New Zealand,NZMHS,18-98,12790,7312,--,73.3,high
+Cuba,CUB,,,,N. Ireland,NISHS,18-97,4340,1986,--,68.4,high
+Czechia,CZE,,,,Poland,EZOP,18-64,10081,4000,2276,50.4,high
+Denmark,DNK,,,,Portugal,NMHS,18-81,3849,2060,1070,57.3,high
+Dominican Republic,DOM,,,,Spain,ESEMeD,18-98,5473,2121,960,78.6,high
+Ecuador,ECU,,,,Spain- Murcia,PEGASUS-Murcia,18+,2621,1459,,67.4,high
+Egypt,EGY,,,,United States,NCS-R,18-99,9282,5692,3197,70.9,high
+El Salvador,SLV,,,,,,,,,,,
+Ethiopia,ETH,,,,,,,,,,,
+Fiji,FJI,,,,,,,,,,,
+Finland,FIN,,,,,,,,,,,
+France,FRA,,,,,,,,,,,
+Georgia,GEO,,,,,,,,,,,
+Germany,DEU,,,,,,,,,,,
+Ghana,GHA,,,,,,,,,,,
+Greece,GRC,,,,,,,,,,,
+Guatemala,GTM,,,,,,,,,,,
+Guyana,GUY,,,,,,,,,,,
+Haiti,HTI,,,,,,,,,,,
+Honduras,HND,,,,,,,,,,,
+Hong Kong,HKG,,,,,,,,,,,
+Hungary,HUN,,,,,,,,,,,
+India,IND,,,,,,,,,,,
+Indonesia,IDN,,,,,,,,,,,
+Iraq,IRQ,,,,,,,,,,,
+Ireland,IRL,,,,,,,,,,,
+Israel,ISR,,,,,,,,,,,
+Italy,ITA,,,,,,,,,,,
+Jamaica,JAM,,,,,,,,,,,
+Japan,JPN,,,,,,,,,,,
+Jordan,JOR,,,,,,,,,,,
+Kazakhstan,KAZ,,,,,,,,,,,
+Kenya,KEN,,,,,,,,,,,
+"Korea, Republic Of",KOR,,,,,,,,,,,
+Kyrgyzstan,KGZ,,,,,,,,,,,
+Latvia,LVA,,,,,,,,,,,
+Lebanon,LBN,,,,,,,,,,,
+Liberia,LBR,,,,,,,,,,,
+Libya,LBY,,,,,,,,,,,
+Malawi,MWI,,,,,,,,,,,
+Malaysia,MYS,,,,,,,,,,,
+Mexico,MEX,,,,,,,,,,,
+Mongolia,MNG,,,,,,,,,,,
+Morocco,MAR,,,,,,,,,,,
+Mozambique,MOZ,,,,,,,,,,,
+Myanmar,MMR,,,,,,,,,,,
+Nepal,NPL,,,,,,,,,,,
+Netherlands,NLD,,,,,,,,,,,
+New Zealand,NZL,,,,,,,,,,,
+Nicaragua,NIC,,,,,,,,,,,
+Nigeria,NGA,,,,,,,,,,,
+Norway,NOR,,,,,,,,,,,
+Pakistan,PAK,,,,,,,,,,,
+"Palestine, State Of",PSE,,,,,,,,,,,
+Panama,PAN,,,,,,,,,,,
+Paraguay,PRY,,,,,,,,,,,
+Peru,PER,,,,,,,,,,,
+Philippines,PHL,,,,,,,,,,,
+Poland,POL,,,,,,,,,,,
+Portugal,PRT,,,,,,,,,,,
+Puerto Rico,PRI,,,,,,,,,,,
+Romania,ROU,,,,,,,,,,,
+Russian Federation,RUS,,,,,,,,,,,
+Rwanda,RWA,,,,,,,,,,,
+RÌ©union,REU,,,,,,,,,,,
+Saudi Arabia,SAU,,,,,,,,,,,
+Senegal,SEN,,,,,,,,,,,
+Serbia,SRB,,,,,,,,,,,
+Sierra Leone,SLE,,,,,,,,,,,
+Singapore,SGP,,,,,,,,,,,
+Slovakia,SVK,,,,,,,,,,,
+Somalia,SOM,,,,,,,,,,,
+South Africa,ZAF,,,,,,,,,,,
+South Sudan,SSD,,,,,,,,,,,
+Spain,ESP,,,,,,,,,,,
+Sri Lanka,LKA,,,,,,,,,,,
+Sudan,SDN,,,,,,,,,,,
+Sweden,SWE,,,,,,,,,,,
+Switzerland,CHE,,,,,,,,,,,
+Taiwan,TWN,,,,,,,,,,,
+"Tanzania, United Republic Of",TZA,,,,,,,,,,,
+Thailand,THA,,,,,,,,,,,
+Timor-Leste,TLS,,,,,,,,,,,
+Togo,TGO,,,,,,,,,,,
+Trinidad And Tobago,TTO,,,,,,,,,,,
+Tunisia,TUN,,,,,,,,,,,
+Turkey,TUR,,,,,,,,,,,
+Uganda,UGA,,,,,,,,,,,
+Ukraine,UKR,,,,,,,,,,,
+United Arab Emirates,ARE,,,,,,,,,,,
+United Kingdom,GBR,,,,,,,,,,,
+United States,USA,,,,,,,,,,,
+Uruguay,URY,,,,,,,,,,,
+"Venezuela, Bolivarian Republic Of",VEN,,,,,,,,,,,
+Viet Nam,VNM,,,,,,,,,,,
+Zimbabwe,ZWE,,,,,,,,,,,

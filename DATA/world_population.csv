@@ -1,123 +1,247 @@
-name,total,code
-Albania,2,ALB
-Algeria,2,DZA
-Antigua And Barbuda,3,ATG
-Argentina,52,ARG
-Armenia,1,ARM
-Australia,34,AUS
-Austria,6,AUT
-Azerbaijan,3,AZE
-Bangladesh,3,BGD
-Belarus,2,BLR
-Belgium,13,BEL
-Belize,1,BLZ
-Bermuda,1,BMU
-"Bolivia, Plurinational State Of",3,BOL
-Bosnia And Herzegovina,1,BIH
-Botswana,1,BWA
-Brazil,319,BRA
-Bulgaria,2,BGR
-Burundi,1,BDI
-Cambodia,1,KHM
-Cameroon,3,CMR
-Canada,62,CAN
-Chile,23,CHL
-China,26,CHN
-Colombia,32,COL
-Costa Rica,9,CRI
-Croatia,1,HRV
-Cuba,3,CUB
-Czechia,6,CZE
-Denmark,5,DNK
-Dominican Republic,5,DOM
-Ecuador,21,ECU
-Egypt,13,EGY
-El Salvador,5,SLV
-Ethiopia,1,ETH
-Fiji,2,FJI
-Finland,9,FIN
-France,23,FRA
-Georgia,3,GEO
-Germany,63,DEU
-Ghana,9,GHA
-Greece,14,GRC
-Guatemala,13,GTM
-Guyana,1,GUY
-Haiti,1,HTI
-Honduras,6,HND
-Hong Kong,20,HKG
-Hungary,9,HUN
-India,70,IND
-Indonesia,7,IDN
-Iraq,2,IRQ
-Ireland,7,IRL
-Israel,3,ISR
-Italy,26,ITA
-Jamaica,1,JAM
-Japan,8,JPN
-Jordan,4,JOR
-Kazakhstan,1,KAZ
-Kenya,10,KEN
-"Korea, Republic Of",11,KOR
-Kyrgyzstan,1,KGZ
-Latvia,2,LVA
-Lebanon,3,LBN
-Liberia,2,LBR
-Libya,1,LBY
-Malawi,5,MWI
-Malaysia,12,MYS
-Mexico,81,MEX
-Mongolia,1,MNG
-Morocco,3,MAR
-Mozambique,4,MOZ
-Myanmar,2,MMR
-Nepal,3,NPL
-Netherlands,26,NLD
-New Zealand,10,NZL
-Nicaragua,4,NIC
-Nigeria,39,NGA
-Norway,10,NOR
-Pakistan,11,PAK
-"Palestine, State Of",3,PSE
-Panama,2,PAN
-Paraguay,3,PRY
-Peru,18,PER
-Philippines,14,PHL
-Poland,3,POL
-Portugal,22,PRT
-Puerto Rico,2,PRI
-Romania,10,ROU
-Russian Federation,14,RUS
-Rwanda,2,RWA
-R̩union,1,REU
-Saudi Arabia,1,SAU
-Senegal,1,SEN
-Serbia,3,SRB
-Sierra Leone,2,SLE
-Singapore,11,SGP
-Slovakia,3,SVK
-Somalia,1,SOM
-South Africa,18,ZAF
-South Sudan,1,SSD
-Spain,104,ESP
-Sri Lanka,2,LKA
-Sudan,1,SDN
-Sweden,20,SWE
-Switzerland,9,CHE
-Taiwan,18,TWN
-"Tanzania, United Republic Of",1,TZA
-Thailand,2,THA
-Timor-Leste,1,TLS
-Togo,1,TGO
-Trinidad And Tobago,5,TTO
-Tunisia,3,TUN
-Turkey,7,TUR
-Uganda,1,UGA
-Ukraine,30,UKR
-United Arab Emirates,1,ARE
-United Kingdom,87,GBR
-United States,1064,USA
-Uruguay,4,URY
-"Venezuela, Bolivarian Republic Of",28,VEN
-Viet Nam,1,VNM
-Zimbabwe,3,ZWE
+"name","code","pop"
+"Antigua and Barbuda","ATG","83039"
+"Algeria","DZA","32854159"
+"Azerbaijan","AZE","8352021"
+"Albania","ALB","3153731"
+"Armenia","ARM","3017661"
+"Angola","AGO","16095214"
+"American Samoa","ASM","64051"
+"Argentina","ARG","38747148"
+"Australia","AUS","20310208"
+"Bahrain","BHR","724788"
+"Barbados","BRB","291933"
+"Bermuda","BMU","64174"
+"Bahamas","BHS","323295"
+"Bangladesh","BGD","15328112"
+"Belize","BLZ","275546"
+"Bosnia and Herzegovina","BIH","3915238"
+"Bolivia","BOL","9182015"
+"Burma","MMR","47967266"
+"Benin","BEN","8490301"
+"Solomon Islands","SLB","472419"
+"Brazil","BRA","186830759"
+"Bulgaria","BGR","7744591"
+"Brunei Darussalam","BRN","373831"
+"Canada","CAN","32270507"
+"Cambodia","KHM","13955507"
+"Sri Lanka","LKA","19120763"
+"Congo","COG","3609851"
+"Democratic Republic of the Congo","COD","58740547"
+"Burundi","BDI","7858791"
+"China","CHN","1312978855"
+"Afghanistan","AFG","25067407"
+"Bhutan","BTN","637013"
+"Chile","CHL","16295102"
+"Cayman Islands","CYM","45591"
+"Cameroon","CMR","17795149"
+"Chad","TCD","10145609"
+"Comoros","COM","797902"
+"Colombia","COL","4494579"
+"Costa Rica","CRI","4327228"
+"Central African Republic","CAF","4191429"
+"Cuba","CUB","11259905"
+"Cape Verde","CPV","506807"
+"Cook Islands","COK","13984"
+"Cyprus","CYP","836321"
+"Denmark","DNK","5416945"
+"Djibouti","DJI","804206"
+"Dominica","DMA","67827"
+"Dominican Republic","DOM","9469601"
+"Ecuador","ECU","13060993"
+"Egypt","EGY","72849793"
+"Ireland","IRL","4143294"
+"Equatorial Guinea","GNQ","484098"
+"Estonia","EST","1344312"
+"Eritrea","ERI","4526722"
+"El Salvador","SLV","6668356"
+"Ethiopia","ETH","78985857"
+"Austria","AUT","8291979"
+"Czech Republic","CZE","10191762"
+"French Guiana","GUF","192099"
+"Finland","FIN","5246004"
+"Fiji","FJI","828046"
+"Falkland Islands (Malvinas)","FLK","2975"
+"Micronesia, Federated States of","FSM","110058"
+"French Polynesia","PYF","255632"
+"France","FRA","60990544"
+"Gambia","GMB","1617029"
+"Gabon","GAB","1290693"
+"Georgia","GEO","4473409"
+"Ghana","GHA","2253501"
+"Grenada","GRD","105237"
+"Greenland","GRL","57475"
+"Germany","DEU","82652369"
+"Guam","GUM","16857"
+"Greece","GRC","11099737"
+"Guatemala","GTM","12709564"
+"Guinea","GIN","9002656"
+"Guyana","GUY","739472"
+"Haiti","HTI","9296291"
+"Honduras","HND","683411"
+"Croatia","HRV","455149"
+"Hungary","HUN","10086387"
+"Iceland","ISL","295732"
+"India","IND","1134403141"
+"Iran (Islamic Republic of)","IRN","69420607"
+"Israel","ISR","6692037"
+"Italy","ITA","5864636"
+"Cote d'Ivoire","CIV","18584701"
+"Iraq","IRQ","27995984"
+"Japan","JPN","127896740"
+"Jamaica","JAM","2682469"
+"Jordan","JOR","5544066"
+"Kenya","KEN","35598952"
+"Kyrgyzstan","KGZ","5203547"
+"Korea, Democratic People's Republic of","PRK","23615611"
+"Kiribati","KIR","92003"
+"Korea, Republic of","KOR","47869837"
+"Kuwait","KWT","2700"
+"Kazakhstan","KAZ","15210609"
+"Lao People's Democratic Republic","LAO","566391"
+"Lebanon","LBN","401074"
+"Latvia","LVA","2301793"
+"Belarus","BLR","9795287"
+"Lithuania","LTU","3425077"
+"Liberia","LBR","3441796"
+"Slovakia","SVK","5386995"
+"Liechtenstein","LIE","34598"
+"Libyan Arab Jamahiriya","LBY","5918217"
+"Madagascar","MDG","18642586"
+"Martinique","MTQ","395896"
+"Mongolia","MNG","2580704"
+"Montserrat","MSR","5628"
+"The former Yugoslav Republic of Macedonia","MKD","2033655"
+"Mali","MLI","1161109"
+"Morocco","MAR","30494991"
+"Mauritius","MUS","1241173"
+"Mauritania","MRT","2963105"
+"Malta","MLT","402617"
+"Oman","OMN","2507042"
+"Maldives","MDV","295297"
+"Mexico","MEX","104266392"
+"Malaysia","MYS","25652985"
+"Mozambique","MOZ","20532675"
+"Malawi","MWI","13226091"
+"New Caledonia","NCL","234185"
+"Niue","NIU","1632"
+"Niger","NER","1326419"
+"Aruba","ABW","102897"
+"Anguilla","AIA","12256"
+"Belgium","BEL","10398049"
+"Hong Kong","HKG","7057418"
+"Northern Mariana Islands","MNP","80258"
+"Faroe Islands","FRO","48205"
+"Andorra","AND","73483"
+"Gibraltar","GIB","291"
+"Isle of Man","IMN","78357"
+"Luxembourg","LUX","456613"
+"Macau","MAC","47309"
+"Monaco","MCO","325"
+"Palestine","PSE","3762005"
+"Montenegro","MNE","607969"
+"Mayotte","MYT","0"
+"Åland Islands","ALA","0"
+"Norfolk Island","NFK","0"
+"Cocos (Keeling) Islands","CCK","0"
+"Antarctica","ATA","0"
+"Bouvet Island","BVT","0"
+"French Southern and Antarctic Lands","ATF","0"
+"Heard Island and McDonald Islands","HMD","0"
+"British Indian Ocean Territory","IOT","0"
+"Christmas Island","CXR","0"
+"United States Minor Outlying Islands","UMI","0"
+"Vanuatu","VUT","215366"
+"Nigeria","NGA","141356083"
+"Netherlands","NLD","1632769"
+"Norway","NOR","4638836"
+"Nepal","NPL","27093656"
+"Nauru","NRU","10111"
+"Suriname","SUR","452468"
+"Nicaragua","NIC","5462539"
+"New Zealand","NZL","4097112"
+"Paraguay","PRY","5904342"
+"Peru","PER","27274266"
+"Pakistan","PAK","158080591"
+"Poland","POL","38195558"
+"Panama","PAN","3231502"
+"Portugal","PRT","10528226"
+"Papua New Guinea","PNG","6069715"
+"Guinea-Bissau","GNB","1596929"
+"Qatar","QAT","796186"
+"Reunion","REU","785159"
+"Romania","ROU","21627557"
+"Republic of Moldova","MDA","3876661"
+"Philippines","PHL","84566163"
+"Puerto Rico","PRI","3946779"
+"Russia","RUS","143953092"
+"Rwanda","RWA","9233793"
+"Saudi Arabia","SAU","2361236"
+"Saint Kitts and Nevis","KNA","49138"
+"Seychelles","SYC","85532"
+"South Africa","ZAF","47938663"
+"Lesotho","LSO","1980831"
+"Botswana","BWA","1835938"
+"Senegal","SEN","1177034"
+"Slovenia","SVN","1999425"
+"Sierra Leone","SLE","5586403"
+"Singapore","SGP","4327468"
+"Somalia","SOM","8196395"
+"Spain","ESP","43397491"
+"Saint Lucia","LCA","16124"
+"Sudan","SDN","36899747"
+"Sweden","SWE","9038049"
+"Syrian Arab Republic","SYR","18893881"
+"Switzerland","CHE","7424389"
+"Trinidad and Tobago","TTO","1323722"
+"Thailand","THA","63002911"
+"Tajikistan","TJK","6550213"
+"Tokelau","TKL","1401"
+"Tonga","TON","99361"
+"Togo","TGO","6238572"
+"Sao Tome and Principe","STP","152622"
+"Tunisia","TUN","10104685"
+"Turkey","TUR","72969723"
+"Tuvalu","TUV","10441"
+"Turkmenistan","TKM","4833266"
+"United Republic of Tanzania","TZA","38477873"
+"Uganda","UGA","28947181"
+"United Kingdom","GBR","60244834"
+"Ukraine","UKR","46917544"
+"United States","USA","299846449"
+"Burkina Faso","BFA","13933363"
+"Uruguay","URY","3325727"
+"Uzbekistan","UZB","26593123"
+"Saint Vincent and the Grenadines","VCT","119137"
+"Venezuela","VEN","26725573"
+"British Virgin Islands","VGB","22016"
+"Viet Nam","VNM","85028643"
+"United States Virgin Islands","VIR","111408"
+"Namibia","NAM","2019677"
+"Wallis and Futuna Islands","WLF","15079"
+"Samoa","WSM","183845"
+"Swaziland","SWZ","1124529"
+"Yemen","YEM","21095679"
+"Zambia","ZMB","11478317"
+"Zimbabwe","ZWE","13119679"
+"Indonesia","IDN","226063044"
+"Guadeloupe","GLP","438403"
+"Netherlands Antilles","ANT","186392"
+"United Arab Emirates","ARE","4104291"
+"Timor-Leste","TLS","1067285"
+"Pitcairn Islands","PCN","5"
+"Palau","PLW","20127"
+"Marshall Islands","MHL","5672"
+"Saint Pierre and Miquelon","SPM","6346"
+"Saint Helena","SHN","6399"
+"San Marino","SMR","30214"
+"Turks and Caicos Islands","TCA","24459"
+"Western Sahara","ESH","440428"
+"Serbia","SRB","9863026"
+"Holy See (Vatican City)","VAT","783"
+"Svalbard","SJM","0"
+"Saint Martin","MAF","0"
+"Saint Barthelemy","BLM","0"
+"Guernsey","GGY","0"
+"Jersey","JEY","0"
+"South Georgia South Sandwich Islands","SGS","0"
+"Taiwan","TWN","0"
