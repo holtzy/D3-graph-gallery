@@ -146,13 +146,13 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>First of all, see the <a href="../backgroundmap.html">background map</a> section to understand the basics of mapping with d3.</li>
           <br>
-          <li>In this example the world country boundaries are used. Data comes from <a href="http://enjalot.github.io/wwsd/data/world/world-110m.geojson">here</a>. They are provided at <code>geojson</code> format. If you have a <code>shapefile</code> format, visit the <a href="https://www.d3-graph-gallery.com/backgroundmap">background map</a> section to see how to proceed.</a></li>
+          <li>Map shows the world population per country in 2005. Data comes from <a href="https://www.r-graph-gallery.com/183-choropleth-map-with-leaflet/">here</a>, stored <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv">here</a></li>
           <br>
-          <li>Note that the <a href="https://github.com/d3/d3-geo-projection">geo.projection</a> plugin is used. It allows to represent the world using different projection. See <a href="">this page of the gallery</a> to see the possibilities.</li>
+          <li>You must have a common id between the geospatial file and the data. Here it is the 'id' field.</li>
           <br>
-          <li>Note: I don't understand the logic behind the <code>.scale</code> part.</li>
+          <li>Here a threshold color scale is used. Learn more about color scale <a href="">here</a></li>
         </ul>
       </div>
     </div>
@@ -198,19 +198,19 @@ var svg = d3.select("svg"),
 // Map and projection
 var path = d3.geoPath();
 var projection = d3.geoNaturalEarth()
-  .scale(width / 1.5 / Math.PI)
+  .scale(width / 1.4 / Math.PI)
   .translate([width / 2, height / 2]);
 
 // Data and color scale
 var data = d3.map();
 var colorScale = d3.scaleThreshold()
-  .domain([1, 6, 11, 26, 101, 1001])
+  .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
   .range(d3.schemeBlues[7]);
 
 // Load external data and boot
 d3.queue()
   .defer(d3.json, "http://enjalot.github.io/wwsd/data/world/world-110m.geojson")
-  .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function(d) { data.set(d.code, +d.total); })
+  .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function(d) { data.set(d.code, +d.pop); })
   .await(ready);
 
 function ready(error, topo) {
