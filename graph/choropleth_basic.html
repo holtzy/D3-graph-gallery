@@ -11,12 +11,12 @@
 
     gtag('config', 'UA-79254642-6');
   </script>
-  
+
   <meta charset="utf-8">
   <title>Basic choropleth map in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic choropleth map">
-  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, choropleth">
+  <meta name="description" content="Using d3.js to create a very basic background map">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, map, choropleth">
   <meta name="author" content="Yan Holtz">
 
   <meta property="og:title" content="Basic choropleth map in d3.js">
@@ -38,6 +38,8 @@
 
   <!-- D3.JS v4 -->
   <script src="../js/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -104,9 +106,9 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/choropleth">choropleth map</a> with d3.js. One numeric value is displayed for each of the world countries. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/choropleth">choropleth section</a> of the gallery. Learn more about the theory of choropleth in <a href="https://www.data-to-viz.com/graph/choropleth.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/choropleth">choropleth map</a> of the world with d3.js. Note that the same kind of code would work with any geospatial data stored in <code>geojson</code> format. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/choropleth">choropleth map section</a> of the gallery.</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../choropleth.html">Choropleth section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../choropleth.html">Choropleth map section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -146,15 +148,11 @@ $(function(){
           <br>
           <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>In this example the world country boundaries are used. Data comes from <a href="http://enjalot.github.io/wwsd/data/world/world-110m.geojson">here</a>. They are provided at <code>geojson</code> format. If you have a <code>shapefile</code> format, visit the <a href="https://www.d3-graph-gallery.com/backgroundmap">background map</a> section to see how to proceed.</a></li>
           <br>
-          <li>In this example dummy data are created. It's a vector format. See <a href="">here</a> to work from a <code>.csv</code></li>
+          <li>Note that the <a href="https://github.com/d3/d3-geo-projection">geo.projection</a> plugin is used. It allows to represent the world using different projection. See <a href="">this page of the gallery</a> to see the possibilities.</li>
           <br>
-          <li>Note that quantiles, median, min and max are computed one by one. See <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz</a> to understand what these values are.</li>
-          <br>
-          <li>The Y scale can now be added. Read <a href="">here</a> if you're not used to it.</br>
-          <br>
-          <li>Finally, the box can be added, it is just one <code>rect</code>, and 2 <code>lines</code> elements.</li>
+          <li>Note: I don't understand the logic behind the <code>.scale</code> part.</li>
         </ul>
       </div>
     </div>
@@ -175,9 +173,11 @@ $(function(){
 
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
-<!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+<!-- Create an element where the map will take place -->
+<svg id="my_dataviz" width="400" height="300"></svg>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -190,72 +190,31 @@ $(function(){
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-  width = 400 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+// The svg
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+// Map and projection
+var projection = d3.geoNaturalEarth()
+    .scale(width / 1.3 / Math.PI)
+    .translate([width / 2, height / 2])
 
-// create dummy data
-var data = [12,19,11,13,12,22,13,4,15,16,18,19,20,12,11,9]
+// Load external data and boot
+d3.json("http://enjalot.github.io/wwsd/data/world/world-110m.geojson", function(data){
 
-// Compute summary statistics used for the box:
-var data_sorted = data.sort(d3.ascending)
-var q1 = d3.quantile(data_sorted, .25)
-var median = d3.quantile(data_sorted, .5)
-var q3 = d3.quantile(data_sorted, .75)
-var interQuantileRange = q3 - q1
-var min = q1 - 1.5 * interQuantileRange
-var max = q1 + 1.5 * interQuantileRange
+    // Draw the map
+    svg.append("g")
+        .selectAll("path")
+        .data(data.features)
+        .enter().append("path")
+            .attr("fill", "#69b3a2")
+            .attr("d", d3.geoPath()
+                .projection(projection)
+            )
+            .style("stroke", "#fff")
+})
 
-// Show the Y scale
-var y = d3.scaleLinear()
-  .domain([0,24])
-  .range([height, 0]);
-svg.call(d3.axisLeft(y))
-
-// a few features for the box
-var center = 200
-var width = 100
-
-// Show the main vertical line
-svg
-.append("line")
-  .attr("x1", center)
-  .attr("x2", center)
-  .attr("y1", y(min) )
-  .attr("y2", y(max) )
-  .attr("stroke", "black")
-
-// Show the box
-svg
-.append("rect")
-  .attr("x", center - width/2)
-  .attr("y", y(q3) )
-  .attr("height", (y(q1)-y(q3)) )
-  .attr("width", width )
-  .attr("stroke", "black")
-  .style("fill", "#69b3a2")
-
-// show median, min and max horizontal lines
-svg
-.selectAll("toto")
-.data([min, median, max])
-.enter()
-.append("line")
-  .attr("x1", center-width/2)
-  .attr("x2", center+width/2)
-  .attr("y1", function(d){ return(y(d))} )
-  .attr("y2", function(d){ return(y(d))} )
-  .attr("stroke", "black")
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
@@ -314,9 +273,9 @@ myJSParser('codejs', 'result');
       </div>
       <div class="col-lg-5">
         <ul>
-          <li><i>Simple Box Plot Example in d3.js v4.0 - </i><a href="https://bl.ocks.org/rjurney/e04ceddae2e8f85cf3afe4681dac1d74">link</a></li>
+          <li><i>World Choropleth - </i><a href="http://bl.ocks.org/palewire/d2906de347a160f38bc0b7ca57721328">link</a></li>
           <br>
-          <li><i>D3.js Boxplot with Axes and Labels - </i><a href="http://bl.ocks.org/anaeliaovalle/60a7ed1f4e55a9052caab3c69668a306">link</a></li>
+          <li><i>Projection Transitions - </i><a href="https://bl.ocks.org/alexmacy/6700d44240d2b6d3ec9767a5a5854e42">link</a></li>
         </ul>
       </div>
     </div>
