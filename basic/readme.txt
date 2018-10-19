@@ -1,5 +1,5 @@
-BASIC. accessible depuis l'onglet intro.
-Lie vers une page intro a d3.js
+BASIC.
+Lien vers une page intro a d3.js
 static arrow sur chaque page pour aller vite a la section d'apres
 frise de progression en haut
 - html -> basic
@@ -11,16 +11,37 @@ frise de progression en haut
 - draw an axis and concept of scale
 - map data
 - first scatter-plot
+- reading csv
 
 
-ZOOM / SKILLS / 
+
+
+
+CUSTOMIZATION
 - color
 - axis
 - legend
 - small multiple
-- shape helpers
-- reading csv
-- responsiveness
+
+
+SHAPE HELPERS
+
+
+
+INTERACTIVITY
 - animation
 - hover
 - zoom
+- responsiveness
+
+
+
+CAVEATS
+
+
+
+DATA ART
+
+
+
+
