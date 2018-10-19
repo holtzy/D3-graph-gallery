@@ -139,20 +139,15 @@ $(function(){
       <div class="bg-light" id="result" ></div>
       <br>
       <div>
-        <h5>Steps:</h5>
+        <h5>Notes:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li><u style="color: red">Disclaimer:</u> This code comes almost direclty from this <a href="https://bl.ocks.org/d3noob/013054e8d7807dff76247b81b0e29030">block</a> by <a href="https://leanpub.com/u/d3noob">Malcolm Maclean</a>. Have a look to <a href="https://leanpub.com/d3-t-and-t-v4">his book on d3!</a></li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>Sankey diagrams are built thanks to the <a href="https://github.com/d3/d3-sankey">d3-Sankey</a> plugin, you have to load it.</li>
           <br>
-          <li>In this example dummy data are created. It's a vector format. See <a href="">here</a> to work from a <code>.csv</code></li>
+          <li><a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_sankey.json">Data</a> is composed by 2 parts: <code>nodes</code> (feature of each elements) and <code>links</code> (how elements are connected)</li>
           <br>
-          <li>Note that quantiles, median, min and max are computed one by one. See <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz</a> to understand what these values are.</li>
-          <br>
-          <li>The Y scale can now be added. Read <a href="">here</a> if you're not used to it.</br>
-          <br>
-          <li>Finally, the box can be added, it is just one <code>rect</code>, and 2 <code>lines</code> elements.</li>
         </ul>
       </div>
     </div>
@@ -180,6 +175,18 @@ $(function(){
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
+<!-- Add style to links or they won't appear properly-->
+<style>
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+.link:hover {
+  stroke-opacity: .5;
+}
+</style>
+
 </xmp></code></pre>
 <!-- ==================================== -->
 
@@ -191,17 +198,12 @@ $(function(){
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-var units = "Widgets";
-
+// set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 700 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    width = 450 - margin.left - margin.right,
+    height = 480 - margin.top - margin.bottom;
 
-var formatNumber = d3.format(",.0f"),    // zero decimal places
-    format = function(d) { return formatNumber(d) + " " + units; },
-    color = d3.scale.category20();
-
-// append the svg canvas to the page
+// append the svg object to the body of the page
 var svg = d3.select("#my_dataviz").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -209,22 +211,83 @@ var svg = d3.select("#my_dataviz").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+// Color scale used
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
 // Set the sankey diagram properties
 var sankey = d3.sankey()
     .nodeWidth(36)
-    .nodePadding(40)
+    .nodePadding(290)
     .size([width, height]);
-
-var path = sankey.link();
 
 // load the data
 d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_sankey.json", function(error, graph) {
 
+  // Constructs a new Sankey generator with the default settings.
   sankey
       .nodes(graph.nodes)
       .links(graph.links)
-      .layout(32);
+      .layout(1);
 
+  // add in the links
+  var link = svg.append("g")
+    .selectAll(".link")
+    .data(graph.links)
+    .enter()
+    .append("path")
+      .attr("class", "link")
+      .attr("d", sankey.link() )
+      .style("stroke-width", function(d) { return Math.max(1, d.dy); })
+      .sort(function(a, b) { return b.dy - a.dy; });
+
+  // add in the nodes
+  var node = svg.append("g")
+    .selectAll(".node")
+    .data(graph.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .call(d3.drag()
+        .subject(function(d) { return d; })
+        .on("start", function() { this.parentNode.appendChild(this); })
+        .on("drag", dragmove));
+
+  // add the rectangles for the nodes
+  node
+    .append("rect")
+      .attr("height", function(d) { return d.dy; })
+      .attr("width", sankey.nodeWidth())
+      .style("fill", function(d) { return d.color = color(d.name.replace(/ .*/, "")); })
+      .style("stroke", function(d) { return d3.rgb(d.color).darker(2); })
+    // Add hover text
+    .append("title")
+      .text(function(d) { return d.name + "\n" + "There is " + d.value + " stuff in this node"; });
+
+  // add in the title for the nodes
+    node
+      .append("text")
+        .attr("x", -6)
+        .attr("y", function(d) { return d.dy / 2; })
+        .attr("dy", ".35em")
+        .attr("text-anchor", "end")
+        .attr("transform", null)
+        .text(function(d) { return d.name; })
+      .filter(function(d) { return d.x < width / 2; })
+        .attr("x", 6 + sankey.nodeWidth())
+        .attr("text-anchor", "start");
+
+  // the function for moving the nodes
+  function dragmove(d) {
+    d3.select(this)
+      .attr("transform",
+            "translate("
+               + d.x + ","
+               + (d.y = Math.max(
+                  0, Math.min(height - d.dy, d3.event.y))
+                 ) + ")");
+    sankey.relayout();
+    link.attr("d", sankey.link() );
+  }
 
 });
 
@@ -287,9 +350,9 @@ myJSParser('codejs', 'result');
       </div>
       <div class="col-lg-5">
         <ul>
-          <li><i>Sankey diagram from formatted JSON - </i><a href="http://bl.ocks.org/d3noob/c2637e28b79fb3bfea13">link</a></li>
+          <li><i>Sankey diagram from formatted JSON - </i><a href="https://bl.ocks.org/d3noob/013054e8d7807dff76247b81b0e29030">link</a></li>
           <br>
-          <li><i>D3.js Boxplot with Axes and Labels - </i><a href="http://bl.ocks.org/anaeliaovalle/60a7ed1f4e55a9052caab3c69668a306">link</a></li>
+          <li><i>Sankey plugin documentation - </i><a href="https://github.com/d3/d3-sankey">link</a></li>
         </ul>
       </div>
     </div>
