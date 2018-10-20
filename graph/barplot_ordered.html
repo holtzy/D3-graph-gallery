@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic animation on barplot in d3.js</title>
+  <title>Ordered barplot in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Add animation when d3.js barplot is loading">
+  <meta name="description" content="Reorder you barplot to make it more insightful">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, barplot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Basic animation on barplot in d3.js">
+  <meta property="og:title" content="Ordered barplot in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Add animation when d3.js barplot is loading">
+  <meta property="og:description" content="Using d3.js to create an ordered barplot">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Basic animation on barplot in d3.js</h1>
+      <h1>Ordered barplot in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +105,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic animation when the <a href="../barplot.html">barplot</a> is loading.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/barplot">barplot</a> with d3.js. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/barplot">barplot section</a> of the gallery. Learn more about the theory of barplot in <a href="https://www.data-to-viz.com/caveat/barplot.html">data-to-viz.com</a>.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../barplot.html">Barplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -139,11 +139,9 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>Almost the same as the <a href="barplot_basic.html">most basic barplot</a>, but ordered.</li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
-          <br>
-          <li>To create the animation, bars are first drawn with a height of 0. Then they reach their real value using the <code>transition()</code> function.</li>
+          <li>Ordering you barchart makes it more readable: the user can spot directly what the ranking is as explained in <a href="https://www.data-to-viz.com/graph/barplot">data to viz</a>.</li>
         </ul>
       </div>
     </div>
@@ -181,9 +179,9 @@ $(function(){
 
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 90, left: 40},
+var margin = {top: 30, right: 30, bottom: 70, left: 60},
     width = 460 - margin.left - margin.right,
-    height = 450 - margin.top - margin.bottom;
+    height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -197,44 +195,40 @@ var svg = d3.select("#my_dataviz")
 // Parse the Data
 d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function(data) {
 
-// X axis
-var x = d3.scaleBand()
-  .range([ 0, width ])
-  .domain(data.map(function(d) { return d.Country; }))
-  .padding(0.2);
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x))
-  .selectAll("text")
-    .attr("transform", "translate(-10,0)rotate(-45)")
-    .style("text-anchor", "end");
+  // sort data
+  data.sort(function(b, a) {
+    return a.Value - b.Value;
+  });
 
-// Add Y axis
-var y = d3.scaleLinear()
-  .domain([0, 13000])
-  .range([ height, 0]);
-svg.append("g")
-  .call(d3.axisLeft(y));
+  // X axis
+  var x = d3.scaleBand()
+    .range([ 0, width ])
+    .domain(data.map(function(d) { return d.Country; }))
+    .padding(0.2);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+    .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
 
-// Bars
-svg.selectAll("mybar")
-  .data(data)
-  .enter()
-  .append("rect")
-    .attr("x", function(d) { return x(d.Country); })
-    .attr("width", x.bandwidth())
-    .attr("fill", "#69b3a2")
-    // no bar at the beginning thus:
-    .attr("height", function(d) { return height - y(0); }) // always equal to 0
-    .attr("y", function(d) { return y(0); })
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 13000])
+    .range([ height, 0]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
 
-// Animation
-svg.selectAll("rect")
-  .transition()
-  .duration(800)
-  .attr("y", function(d) { return y(d.Value); })
-  .attr("height", function(d) { return height - y(d.Value); })
-  .delay(function(d,i){console.log(i) ; return(i*100)})
+  // Bars
+  svg.selectAll("mybar")
+    .data(data)
+    .enter()
+    .append("rect")
+      .attr("x", function(d) { return x(d.Country); })
+      .attr("y", function(d) { return y(d.Value); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height - y(d.Value); })
+      .attr("fill", "#69b3a2")
 
 })
 
