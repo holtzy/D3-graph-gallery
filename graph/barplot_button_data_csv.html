@@ -152,16 +152,7 @@ $(function(){
 <!-- ================================================================================= -->
 
 
-<!-- ==================== NOTE TO SELF: I need to load the javascript function for real as well, otherwise they are not recognized in the environment ==================== -->
-<script>
-function changeColor(color){
-  d3.selectAll("rect")
-    .transition()
-    .duration(2000)
-    .style("fill", color)
-}
-</script>
-<!-- ================================================================================= -->
+
 
 
 
@@ -194,7 +185,6 @@ function changeColor(color){
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-
 // set the dimensions and margins of the graph
 var margin = {top: 30, right: 30, bottom: 70, left: 60},
     width = 460 - margin.left - margin.right,
@@ -209,49 +199,57 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/barplot_change_data.csv", function(data) {
-
-// X axis
+// Initialize the X axis
 var x = d3.scaleBand()
   .range([ 0, width ])
-  .domain(data.map(function(d) { return d.group; }))
   .padding(0.2);
-svg.append("g")
+var xAxis = svg.append("g")
   .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x))
 
-// Add Y axis
+// Initialize the Y axis
 var y = d3.scaleLinear()
-  .domain([0, 40])
   .range([ height, 0]);
-svg.append("g")
+var yAxis = svg.append("g")
   .attr("class", "myYaxis")
-  .call(d3.axisLeft(y));
+
 
 // A function that create / update the plot for a given variable:
 function update(selectedVar) {
 
-  var u = svg.selectAll("mybar")
-    .data(data)
+  // Parse the Data
+  d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/barplot_change_data.csv", function(data) {
 
-  u
-    .enter()
-    .append("rect")
-    .merge(u)
-    .transition()
-    .duration(1000)
-      .attr("x", function(d) { return x(d.group); })
-      .attr("y", function(d) { return y(d[selectedVar]); })
-      .attr("width", x.bandwidth())
-      .attr("height", function(d) { return height - y(d[selectedVar]); })
-      .attr("fill", "#69b3a2")
+console.log(data)
+
+    // X axis
+    x.domain(data.map(function(d) { return d.group; }))
+    xAxis.call(d3.axisBottom(x))
+
+    // Add Y axis
+    y.domain([0, d3.max(data, function(d) { return d.value }) ]);
+    yAxis.call(d3.axisLeft(y));
+
+
+      var u = svg.selectAll("mybar")
+        .data(data)
+
+      u
+        .enter()
+        .append("rect")
+        .merge(u)
+        .transition()
+        .duration(1000)
+          .attr("x", function(d) { return x(d.group); })
+          .attr("y", function(d) { return y(d[selectedVar]); })
+          .attr("width", x.bandwidth())
+          .attr("height", function(d) { return height - y(d[selectedVar]); })
+          .attr("fill", "#69b3a2")
+  })
+
 }
 
-
-})
-
 update('var1')
+
 
 
 </script></xmp></code></pre>
