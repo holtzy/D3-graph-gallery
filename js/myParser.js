@@ -9,6 +9,11 @@ function myHtmlParser(divFrom, divTo){
   document.getElementById(divTo).innerHTML = content;
 }
 
+// gvar will allow the function made in my d3 snippet to be in the whole environment
+// See https://www.xul.fr/javascript/eval.php
+var gvar = this;
+
+
 
 function myJSParser(divFrom, divTo){
   // get the content of the origin div (first argument)
@@ -18,7 +23,7 @@ function myJSParser(divFrom, divTo){
   //console.log("This is the content of the JS fragment!; ")
   //console.log(command)
   // run the JS code
-  eval(command);
+  gvar.eval(command);
 }
 
 // Same as the previous one, but with no HTML before.
@@ -30,7 +35,7 @@ function myJSParserShort(divFrom){
   //console.log("This is the content of the JS fragment!; ")
   //console.log(command)
   // run the JS code
-  eval(command);
+  gvar.eval(command);
 }
 
 

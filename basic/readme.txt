@@ -25,6 +25,7 @@ CUSTOMIZATION
 
 
 INTERACTIVITY
+- updating new data -> expliquer enter, exit, update function. https://d3indepth.com/enterexit/
 - animation
 - hover
 - zoom
