@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Button to change input data in barplot in d3.js</title>
+  <title>Button to change input data in barplot in d3.js - csv input version</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="This post explain how to build a barplot with a button allowing to change its input dataset">
+  <meta name="description" content="This post explain how to build a barplot with a button allowing to change its .csv input dataset">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, barplot, button, data">
   <meta name="author" content="Yan Holtz">
 
   <meta property="og:title" content="Button to change input data in barplot in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="This post explain how to build a barplot with a button allowing to change its input dataset">
+  <meta property="og:description" content="This post explain how to build a barplot with a button allowing to change its .csv input dataset">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Button to change input data in barplot</h1>
+      <h1>Button to change input data in barplot - <code>.csv</code> version</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +105,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a button that changes the input dataset of a <a href="../barplot.html">barplot</a>. You need to understand how to draw a <a href="barplot_basic.html">basic barplot first</a>. It is a good way to understand the <code>enter()</code> and <code>exit</code> functions of d3.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a button that changes the input dataset of a <a href="../barplot.html">barplot</a>. It is almost the same as this post, but using a <code>.csv</code> file as input.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../barplot.html">Barplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -125,7 +125,7 @@ $(function(){
 
 
 
-<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
 <div class="container" >
   <div class="row">
 
@@ -141,9 +141,9 @@ $(function(){
           <br>
           <li>First of all, understand how to build a <a href="barplot_basic.html">basic barplot.</a></li>
           <br>
-          <li>Add a <code>button</code> in the html part. Note the <code>onclick</code> attribute: it means that the <code>changeColor()</code> function will be triggered when you click on it</li>
+          <li>Add 2 <code>buttons</code> in the html part. When you click the button, a  function called <code>update()</code> is triggered.</li>
           <br>
-          <li>Create the <code>changeColor()</code> function in the Javascript part. It basically select all the rectangles of the plot and change their <code>fill</code> attribute.</li>
+          <li>Read <a href="barplot_button_data_simple.html">this post</a> for a basic version. Here it's just an adaptation for <code>.csv</code> input format.</li>
         </ul>
       </div>
     </div>
@@ -221,14 +221,14 @@ function update(selectedVar) {
 
     // X axis
     x.domain(data.map(function(d) { return d.group; }))
-    xAxis.call(d3.axisBottom(x))
+    xAxis.transition().duration(1000).call(d3.axisBottom(x))
 
     // Add Y axis
-    y.domain([0, d3.max(data, function(d) { return d[selectedVar] }) ]);
-    yAxis.call(d3.axisLeft(y));
+    y.domain([0, d3.max(data, function(d) { return +d[selectedVar] }) ]);
+    yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
     // variable u: map data to existing bars
-    var u = svg.selectAll("mybar")
+    var u = svg.selectAll("rect")
       .data(data)
 
     // update bars
@@ -247,9 +247,8 @@ function update(selectedVar) {
 
 }
 
+// Initialize plot
 update('var1')
-
-
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
