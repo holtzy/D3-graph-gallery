@@ -156,6 +156,17 @@ $(function(){
 <!-- ================================================================================= -->
 
 
+<!-- ==================== NOTE TO SELF: I need to load the javascript function for real as well, otherwise they are not recognized in the environment ==================== -->
+<script>
+function changeColor(color){
+  d3.selectAll("rect")
+    .transition()
+    .duration(2000)
+    .style("fill", color)
+}
+</script>
+<!-- ================================================================================= -->
+
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
@@ -168,6 +179,10 @@ $(function(){
 
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Add 2 buttons -->
+<button onclick="changeColor('blue')">Get blue</button>
+<button onclick="changeColor('red')">Get red</button>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -232,6 +247,15 @@ svg.selectAll("mybar")
     .attr("fill", "#69b3a2")
 
 })
+
+// This function is called by the buttons on top of the plot
+function changeColor(color){
+  d3.selectAll("rect")
+    .transition()
+    .duration(2000)
+    .style("fill", color)
+}
+
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
