@@ -14,13 +14,13 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Button to change input data in barplot in d3.js</title>
+  <title>Button to change input data in barplot in d3.js (upgraded)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="This post explain how to build a barplot with a button allowing to change its input dataset">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, barplot, button, data">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Button to change input data in barplot in d3.js">
+  <meta property="og:title" content="Button to change input data in barplot in d3.js (upgraded)">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
   <meta property="og:description" content="This post explain how to build a barplot with a button allowing to change its input dataset">
 
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Button to change input data in barplot</h1>
+      <h1>Button to change input data in barplot (upgraded)</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -141,9 +141,9 @@ $(function(){
           <br>
           <li>First of all, understand how to build a <a href="barplot_basic.html">basic barplot.</a></li>
           <br>
-          <li>Add a <code>button</code> in the html part. Note the <code>onclick</code> attribute: it means that the <code>changeColor()</code> function will be triggered when you click on it</li>
+          <li>Second, understand how the <a href="barplot_button_data_simple.html">basic version</a> of the dataset transition works.</li>
           <br>
-          <li>Create the <code>changeColor()</code> function in the Javascript part. It basically select all the rectangles of the plot and change their <code>fill</code> attribute.</li>
+          <li>The difference here is that the <code>update()</code> function also update the X and Y axis. Thus, number of groups and Y axis range can differ from one dataset to the other.</li>
         </ul>
       </div>
     </div>
@@ -151,17 +151,6 @@ $(function(){
 
 <!-- ================================================================================= -->
 
-
-<!-- ==================== NOTE TO SELF: I need to load the javascript function for real as well, otherwise they are not recognized in the environment ==================== -->
-<script>
-function changeColor(color){
-  d3.selectAll("rect")
-    .transition()
-    .duration(2000)
-    .style("fill", color)
-}
-</script>
-<!-- ================================================================================= -->
 
 
 
@@ -177,8 +166,8 @@ function changeColor(color){
 <script src="http://d3js.org/d3.v4.js"></script>
 
 <!-- Add 2 buttons -->
-<button onclick="changeVariable('var1')">Variable 1</button>
-<button onclick="changeVariable('var2')">Variable 2</button>
+<button onclick="update(data1)">Variable 1</button>
+<button onclick="update(data2)">Variable 2</button>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -194,6 +183,19 @@ function changeColor(color){
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
+// create 2 data_set
+var data1 = [
+   {group: "A", value: 4},
+   {group: "B", value: 16},
+   {group: "C", value: 8}
+];
+
+var data2 = [
+   {group: "A", value: 7},
+   {group: "B", value: 1},
+   {group: "C", value: 20},
+   {group: "D", value: 10}
+];
 
 // set the dimensions and margins of the graph
 var margin = {top: 30, right: 30, bottom: 70, left: 60},
@@ -209,55 +211,55 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function(data) {
-
-// X axis
+// Initialize the X axis
 var x = d3.scaleBand()
   .range([ 0, width ])
-  .domain(data.map(function(d) { return d.Country; }))
   .padding(0.2);
-svg.append("g")
+var xAxis = svg.append("g")
   .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x))
-  .selectAll("text")
-    .attr("transform", "translate(-10,0)rotate(-45)")
-    .style("text-anchor", "end");
 
-// Add Y axis
+// Initialize the Y axis
 var y = d3.scaleLinear()
-  .domain([0, 13000])
   .range([ height, 0]);
-svg.append("g")
+var yAxis = svg.append("g")
   .attr("class", "myYaxis")
-  .call(d3.axisLeft(y));
-
-// Bars
-svg.selectAll("mybar")
-  .data(data)
-  .enter()
-  .append("rect")
-    .attr("x", function(d) { return x(d.Country); })
-    .attr("y", function(d) { return y(d.Value); })
-    .attr("width", x.bandwidth())
-    .attr("height", function(d) { return height - y(d.Value); })
-    .attr("fill", "#69b3a2")
 
 
-y.domain([0, 130000])
-d3
-  .select(".myYaxis")
-  .transition()
-  .duration(1000)
-  .call(d3.axisLeft(y));
+// A function that create / update the plot for a given variable:
+function update(data) {
 
+  // Update the X axis
+  x.domain(data.map(function(d) { return d.group; }))
+  xAxis.call(d3.axisBottom(x))
 
+  // Update the Y axis
+  y.domain([0, d3.max(data, function(d) { return d.value }) ]);
+  yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
+  // Create the u variable
+  var u = svg.selectAll("rect")
+    .data(data)
 
+  u
+    .enter()
+    .append("rect") // Add a new rect for each new elements
+    .merge(u) // get the already existing elements as well
+    .transition() // and apply changes to all of them
+    .duration(1000)
+      .attr("x", function(d) { return x(d.group); })
+      .attr("y", function(d) { return y(d.value); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height - y(d.value); })
+      .attr("fill", "#69b3a2")
 
-})
+  // If less group in the new dataset, I delete the ones not in use anymore
+  u
+    .exit()
+    .remove()
+}
 
-
+// Initialize the plot with the first dataset
+update(data1)
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
