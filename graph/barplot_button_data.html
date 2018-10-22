@@ -229,6 +229,7 @@ var y = d3.scaleLinear()
   .domain([0, 13000])
   .range([ height, 0]);
 svg.append("g")
+  .attr("class", "myYaxis")
   .call(d3.axisLeft(y));
 
 // Bars
@@ -242,15 +243,20 @@ svg.selectAll("mybar")
     .attr("height", function(d) { return height - y(d.Value); })
     .attr("fill", "#69b3a2")
 
+
+y.domain([0, 130000])
+d3
+  .select(".myYaxis")
+  .transition()
+  .duration(1000)
+  .call(d3.axisLeft(y));
+
+
+
+
+
 })
 
-// This function is called by the buttons on top of the plot
-function changeColor(color){
-  d3.selectAll("rect")
-    .transition()
-    .duration(2000)
-    .style("fill", color)
-}
 
 
 </script></xmp></code></pre>
