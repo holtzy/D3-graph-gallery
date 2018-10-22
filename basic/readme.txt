@@ -24,15 +24,19 @@ CUSTOMIZATION
 - small multiple
 
 
-SHAPE HELPERS
-
-
-
 INTERACTIVITY
 - animation
 - hover
 - zoom
 - responsiveness
+
+
+
+
+SHAPE HELPERS
+
+
+
 
 
 
