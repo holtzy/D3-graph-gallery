@@ -194,11 +194,6 @@ var svg = d3.select("#my_dataviz")
 // Parse the Data
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_cleveland.csv", function(data) {
 
-  // sort data
-  data.sort(function(b, a) {
-    return (a.value1+a.value2) - (b.value1+b.value2);
-  });
-
   // Add X axis
   var x = d3.scaleLinear()
     .domain([0, 6])
