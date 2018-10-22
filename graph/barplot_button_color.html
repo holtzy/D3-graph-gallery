@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic barplot in d3.js</h1>
+      <h1>Changing barplot color with a button in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +105,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/barplot">barplot</a> with d3.js. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/barplot">barplot section</a> of the gallery. Learn more about the theory of barplot in <a href="https://www.data-to-viz.com/caveat/barplot.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a button that changes the color of a <a href="../barplot.html">barplot</a>. You need to understand how to draw a <a href="barplot_basic.html">basic barplot first</a>. It is a good way to understand how to build a <code>button</code> in html, and how to build a simple <code>function</code> in Javascript.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../barplot.html">Barplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -139,15 +139,11 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>First of all, understand how to build a <a href="barplot_basic.html">basic barplot.</a></li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>Add a <code>button</code> in the html part. Note the <code>onclick</code> attribute: it means that the <code>changeColor()</code> function will be triggered when you click on it</li>
           <br>
-          <li>Data shows the amount of sold weapon per country. See <a href="https://www.data-to-viz.com/story/OneNumOneCat.html">data-to-viz</a> if interested.</li>
-          <br>
-          <li>First step consists to make a numeric (Y axis) and a categoric scale (X axis). Read <a href="">here</a> to understand how scales and axis work.</li>
-          <br>
-          <li>Finally, the bars can be added using rectangle</li>
+          <li>Create the <code>changeColor()</code> function in the Javascript part. It basically select all the rectangles of the plot and change their <code>fill</code> attribute.</li>
         </ul>
       </div>
     </div>
