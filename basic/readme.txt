@@ -16,12 +16,13 @@ frise de progression en haut
 
 
 
-
 CUSTOMIZATION
 - color
 - axis
-- legend
 - small multiple
+- annotation -> susie lu
+- legend -> susie Lu
+
 
 
 INTERACTIVITY
@@ -39,9 +40,8 @@ SHAPE HELPERS
 
 
 
-
-
 CAVEATS
+
 
 
 

@@ -194,58 +194,54 @@ var svg = d3.select("#my_dataviz")
 // Parse the Data
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_cleveland.csv", function(data) {
 
+
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 6])
+    .domain([-1, 6])
     .range([ 0, width]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x))
-    .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
 
-// Y axis
-var y = d3.scaleBand()
-  .range([ 0, height ])
-  .domain(data.map(function(d) { return d.group; }))
-  .padding(1);
-svg.append("g")
-  .call(d3.axisLeft(y))
+  // Y axis
+  var y = d3.scaleBand()
+    .range([ 0, height ])
+    .domain(data.map(function(d) { return d.group; }))
+    .padding(1);
+  svg.append("g")
+    .call(d3.axisLeft(y))
 
+  // Lines
+  svg.selectAll("myline")
+    .data(data)
+    .enter()
+    .append("line")
+      .attr("x1", function(d) { return x(d.value1); })
+      .attr("x2", function(d) { return x(d.value2); })
+      .attr("y1", function(d) { return y(d.group); })
+      .attr("y2", function(d) { return y(d.group); })
+      .attr("stroke", "grey")
+      .attr("stroke-width", "1px")
 
-// Lines
-svg.selectAll("myline")
-  .data(data)
-  .enter()
-  .append("line")
-    .attr("x1", function(d) { return x(d.value1); })
-    .attr("x2", function(d) { return x(d.value2); })
-    .attr("y1", function(d) { return y(d.group); })
-    .attr("y2", function(d) { return y(d.group); })
-    .attr("stroke", "grey")
+  // Circles of variable 1
+  svg.selectAll("mycircle")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function(d) { return x(d.value1); })
+      .attr("cy", function(d) { return y(d.group); })
+      .attr("r", "6")
+      .style("fill", "#69b3a2")
 
-// Circles of variable 1
-svg.selectAll("mycircle")
-  .data(data)
-  .enter()
-  .append("circle")
-    .attr("cx", function(d) { return x(d.value1); })
-    .attr("cy", function(d) { return y(d.group); })
-    .attr("r", "4")
-    .style("fill", "#69b3a2")
-    .attr("stroke", "black")
-
-// Circles
-svg.selectAll("mycircle")
-  .data(data)
-  .enter()
-  .append("circle")
-    .attr("cx", function(d) { return x(d.value2); })
-    .attr("cy", function(d) { return y(d.group); })
-    .attr("r", "4")
-    .style("fill", "red")
-    .attr("stroke", "black")
+  // Circles of variable 2
+  svg.selectAll("mycircle")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function(d) { return x(d.value2); })
+      .attr("cy", function(d) { return y(d.group); })
+      .attr("r", "6")
+      .style("fill", "#4C4082")
 })
 
 </script></xmp></code></pre>
@@ -309,6 +305,8 @@ myJSParser('codejs', 'result');
           <li><i>The most basic barplot with d3.js</i> - <a href="https://www.d3-graph-gallery.com/graph/barplot_basic.html">link</a></li>
           <br>
           <li><i>Lollipop chart - </i><a href="https://bl.ocks.org/curran/d867264d468b323c2e76886d44e7e8f9">link</a></li>
+          <br>
+          <li><i>Most basic lollipop chart - </i><a href="https://www.d3-graph-gallery.com/graph/lollipop_basic.html">link</a></li>
         </ul>
       </div>
     </div>

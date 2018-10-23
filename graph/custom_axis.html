@@ -109,7 +109,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to draw axis with the d3.js library. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
+          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to draw <u>axis</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
       </div>
     </header>
 
@@ -132,10 +132,10 @@
   <section style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
 
-    <h1>Basic linear axis</h1>
+    <h1>Basic linear axis with <code>scaleLinear()</code></h1>
     <hr>
     <p>Let's start with the most common type of axis: the linear axis. Basically, the idea is to map a numeric variable to the axis. It is used in most of chart types, like <a href="../scatter.html">scatterplot</a> or <a href="../histogram.html">histogram</a>.</p>
-    <p>Here is the Javascript code allowing to add a linear axis in a div that has the id 'res'.</p>
+    <p>Here is the code allowing to add a linear axis in a <code>div</code> that has the id <code>res</code> (html code not shown here).</p>
 
 
       <div>
@@ -147,7 +147,7 @@ var svg = d3.select("#res")
 // Create the scale
 var x = d3.scaleLinear()
     .domain([0, 100])         // This is what is written on the Axis: from 0 to 100
-    .range([100, 800]);       // This is where the axis is placed: from 100 px to 800px
+    .range([100, 800]);       // This is where the axis is placed: from 100px to 800px
 
 // Draw the axis
 svg
@@ -155,7 +155,6 @@ svg
   .attr("transform", "translate(0,50)")      // This controls the vertical position of the Axis
   .call(d3.axisBottom(x));</xmp></code></pre>
       </div>
-
 
       <div id="res"></div>
 
@@ -185,32 +184,46 @@ document.getElementById('code-basic-linear').addEventListener("input", function(
 
 
 
-<!-- ==================== SCALE ORDINAL ==================== -->
+
+
+<br><br>
+
+<!-- ==================== SCALE POINT ==================== -->
 
   <section style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
 
-    <h1>Ordinal axis</h1>
+    <h1>Categoric axis with <code>scalePoint()</code></h1>
     <hr>
-    <p>Let's start with the most common type of axis: the linear axis. Basically, the idea is to map a numeric variable to the axis. It is used in most of chart types, like <a href="../scatter.html">scatterplot</a> or <a href="../histogram.html">histogram</a>.</p>
+    <p></p>
     <p>Here is the Javascript code allowing to add a linear axis in a div that has the id 'res'.</p>
 
       <div>
         <pre class="language-js"><code id="code_ordinal_demo" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#ordinal_demo")
   .append("svg")
-    .attr("width", 1000)
+  .attr("width", 1000)
+  .attr("height", 200)
 
 // Create the scale
-var x = d3.scaleOrdinal()
+var x = d3.scalePoint()
     .domain(["A", "B", "C", "D", "E"])         // This is what is written on the Axis: from 0 to 100
     .range([100, 800]);       // This is where the axis is placed: from 100 px to 800px
 
 // Draw the axis
 svg
   .append("g")
-  .attr("transform", "translate(0,50)")      // This controls the vertical position of the Axis
-  .call(d3.axisBottom(x));</xmp></code></pre>
+  .attr("transform", "translate(0,150)")      // This controls the vertical position of the Axis
+  .call(d3.axisBottom(x));
+
+// Add 1 circle for the group B:
+svg
+  .append("circle")
+  .attr("cx", x("B"))
+  .attr("cy", 50)
+  .attr("r", 8)
+
+</xmp></code></pre>
       </div>
 
 
@@ -240,15 +253,16 @@ document.getElementById('code_ordinal_demo').addEventListener("input", function(
 
 
 
+<br><br>
 
 <!-- ==================== SCALE BAND ==================== -->
 
   <section style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
 
-    <h1>Categoric axis with scaleBand</h1>
+    <h1>Categoric axis with <code>scaleBand</code></h1>
     <hr>
-    <p>The scaleBand() function is ideal to build categorical axis. It is thus useful for common charts like <a href="../barplot.html">barplot</a> or <a href="../boxplot.html">boxplot</a>.</p>
+    <p>The <code>scaleBand()</code> function is ideal to build categorical axis. It is thus useful for common charts like <a href="../barplot.html">barplot</a> or <a href="../boxplot.html">boxplot</a>.</p>
     <p>Here is the Javascript code allowing to add a categoric axis in a div that has the id 'res'.
 
       <div>
@@ -256,20 +270,34 @@ document.getElementById('code_ordinal_demo').addEventListener("input", function(
 var svg = d3.select("#band_demo")
   .append("svg")
     .attr("width", 1000)
+    .attr("height", 300)
 
 // Create the scale
 var x = d3.scaleBand()
-    .domain(["A", "B", "C", "D", "E"])         // This is what is written on the Axis: from 0 to 100
-    .range([100, 800]);       // This is where the axis is placed: from 100 px to 800px
+    .domain(["A", "B", "C", "D", "E"])       // This is what is written on the Axis: from 0 to 100
+    .range([100, 800])                       // This is where the axis is placed: from 100 px to 800px
+    .padding([0.8])                          // Goes between 0 and 1. Default is 0
 
 // Draw the axis
 svg
   .append("g")
-  .attr("transform", "translate(0,50)")      // This controls the vertical position of the Axis
-  .call(d3.axisBottom(x));</xmp></code></pre>
+  .attr("transform", "translate(0,250)")      // This controls the vertical position of the Axis
+  .call(d3.axisBottom(x));
+
+// Add one bar for group C:
+svg
+  .append("rect")
+    .attr("x", x("C") )
+    .attr("y",100)
+    .attr("height", 150)
+    .attr("width", x.bandwidth() )
+    .style("fill", "#69b3a2")
+    .style("opacity", 0.5)
+
+</xmp></code></pre>
       </div>
 
-      <div id="band_demo"></div>
+      <div  id="band_demo"></div>
 
 
 
@@ -283,61 +311,6 @@ document.getElementById('code_band_demo').addEventListener("input", function() {
 </script>
 
 
-
-
-<p>The scaleBand has a few properties that are very handy when plotting groups. See below the padding argument
-
-  <div>
-    <pre class="language-js"><code id="code_band_demo2" contenteditable="true"><xmp>// create svg element
-var svg = d3.select("#band_demo2")
-  .append("svg")
-  .attr("width", 1000)
-  .attr("height", 300)
-
-// Create the scale
-var names = ["A", "B", "C", "D", "E"]
-var x = d3.scaleBand()
-  .domain(names)         // This is what is written on the Axis: from 0 to 100
-  .range([100, 800])     // This is where the axis is placed: from 100 px to 800px
-  .padding([0.8])       // Goes between 0 and 1. Default is 0
-
-// Draw the axis
-svg
-  .append("g")
-  .attr("transform", "translate(0,250)")      // This controls the vertical position of the Axis
-  .call(d3.axisBottom(x));
-
-// Add bars
-svg.selectAll("bars")
-  .data(names)
-  .enter()
-  .append("rect")
-    .attr("x", function(d){ return x(d) })
-    .attr("y",100)
-    .attr("height", 150)
-    .attr("width", x.bandwidth() )
-
-</xmp></code></pre>
-  </div>
-
-  <div id="band_demo2"></div>
-
-
-
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code_band_demo2')
-document.getElementById('code_band_demo2').addEventListener("input", function() {
-d3.select('#band_demo2').html("");
-myJSParserShort('code_band_demo2');
-})
-</script>
-
-
-
-
-
-
 </div>
 </section>
 
@@ -349,9 +322,7 @@ myJSParserShort('code_band_demo2');
 
 
 
-
-
-
+<br><br>
 
 
 
@@ -360,7 +331,7 @@ myJSParserShort('code_band_demo2');
   <section style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
 
-    <h1>Making the axis vertical</h1>
+    <h1>Vertical axis with <code>axisLeft</code></h1>
     <hr>
     <p>All the scale described above can be set vertically.</p>
 
@@ -408,6 +379,7 @@ document.getElementById('code-vertical').addEventListener("input", function() {
 
 
 
+<br><br>
 
 
 
@@ -473,6 +445,100 @@ document.getElementById('code-rotate').addEventListener("input", function() {
 
 
 
+
+
+
+<br><br>
+
+
+
+<!-- ==================== AXIS TITLE ==================== -->
+
+  <section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+
+    <h1>Axis titles</h1>
+    <hr>
+    <p>Axis titles aren't built-in to D3's axis component, but are essential for a chart. You can add titles yourself simply by adding an svg <code>text</code> element. As shown in the chart below:</p>
+
+
+      <div>
+        <pre class="language-js"><code id="code-title" contenteditable="true"><xmp>// set the dimensions and margins of the graph
+var margin = {top: 20, right: 20, bottom: 40, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// create svg element, respecting margins
+var svg = d3.select("#title")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Add X axis
+var x = d3.scaleLinear().domain([0, 100]).range([0, width]);
+svg
+  .append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
+
+// Add Y axis
+var y = d3.scaleLinear().domain([0, 100]).range([ height, 0]);
+svg
+  .append("g")
+  .call(d3.axisLeft(y));
+
+// Add X axis label:
+svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("x", width)
+    .attr("y", height + margin.top + 20)
+    .text("X axis title");
+
+// Y axis label:
+svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left+20)
+    .attr("x", -margin.top)
+    .text("Y axis title")
+
+</xmp></code></pre>
+      </div>
+
+
+      <center><div id="title"></div></center>
+
+
+<br><br>
+<p><u>Note</u>: The Y axis title uses a 90° rotation to be readable. It causes the whole coordinate system to rotate. Thus <code>x</code> and <code>y</code> attributes for positioning are really tricky to set up properly.</p>
+<p><u>Note</u>: Check the way margins are handeld in this example. This is a very common way to proceed in d3.js, as described in <a href="">this post</a>.</p>
+
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code-title')
+document.getElementById('code-title').addEventListener("input", function() {
+  d3.select('#title').html("");
+  myJSParserShort('code-title');
+})
+</script>
+
+
+<!-- ================================================================================= -->
+
+
+
+
+
+
+
+
 <!-- ============================ RELATED BLOCKS ============================ -->
 
 <section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
@@ -489,11 +555,11 @@ document.getElementById('code-rotate').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>add border to svg container in d3 - </i><a href="http://bl.ocks.org/AndrewStaroscik/5222370">link</a></li>
+            <li><i>scaleOrdinal example - </i>by <a href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465">d3indepth</a></li>
             <br>
             <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
             <br>
-            <li>ll</li>
+            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
             </ul>
           </div>
         </div>
