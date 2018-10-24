@@ -32,7 +32,7 @@
 
     <!-- D3.JS v4 -->
     <script src="../js/d3.v4.js"></script>
-    
+
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -215,7 +215,7 @@
             .attr("transform", "translate(" + gridSize / 2 + ", -6)")
 
       // add heatmap cells
-      var heatmapChart = d3.tsv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_simple_heatmap.tsv",
+      var heatmapChart = d3.tsv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/OLD/data_simple_heatmap.tsv",
         function(d) {
           return {
             day: +d.day,
