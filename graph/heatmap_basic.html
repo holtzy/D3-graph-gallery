@@ -1,123 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  <head>
+    gtag('config', 'UA-79254642-6');
+  </script>
 
-    <meta charset="utf-8">
-    <title>Basic heatmap in d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Using d3.js to create a very basic histogram">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
-    <meta name="author" content="Yan Holtz">
+  <meta charset="utf-8">
+  <title>Basic heatmap in d3.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Using d3.js to create a very basic heatmap">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, boxplot">
+  <meta name="author" content="Yan Holtz">
 
-    <meta property="og:title" content="Very basic histogram in d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Basic heatmap in d3.js</title>
+  <meta property="og:title" content="Basic heatmap in d3.js">
+  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
+  <meta property="og:description" content="Using d3.js to create a very basic heatmap">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom fonts for this template -->
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../css/agency.css" rel="stylesheet">
 
-    <!-- PRISM -->
-    <script src="../LIB/prism.js"></script>
-    <link href="../LIB/prism.css" rel="stylesheet" />
+  <!-- PRISM -->
+  <script src="../LIB/prism.js"></script>
+  <link href="../LIB/prism.css" rel="stylesheet" />
 
-    <!-- D3.JS v4 -->
-    <script src="../js/d3.v4.js"></script>
+  <!-- D3.JS v4 -->
+  <script src="../js/d3.v4.js"></script>
 
-    <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+  <!-- JQUERY -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
 
-    <!-- HTML TO CANVAS -->
-    <script src="../js/html2canvas.js"></script>
+  <!-- HTML TO CANVAS -->
+  <script src="../js/html2canvas.js"></script>
 
-    <!-- Function to parse html and js code chunks made by Yan Holtz -->
-    <script src="../js/myParser.js"></script>
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="../js/myParser.js"></script>
 
-    <!-- Colorbrewer -->
-    <script src="../LIB/colorbrewer.min.js"></script>
-
-  </head>
-
-
-
-
-  <body id="page-top">
-
-
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-      <div class="container">
-        <a href="../index.html">D3.js Graph Gallery</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/optimization.html">R</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+</head>
 
 
 
 
 
-    <!-- Header -->
-    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-      <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Basic heatmap in d3.js</p>
-          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the heatmap section of the d3.js gallery for more examples.</p>
-          <br>
-          <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
-          <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
-      </div>
-    </header>
+
+<body id="page-top">
+
+
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("../html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+});
+</script>
+
+
+<!-- Header -->
+<header class="masthead">
+  <div class="textlanding">
+      <h1>Most basic heatmap in d3.js</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/heatmap">heatmap</a> with d3.js. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/heatmap">heatmap section</a> of the gallery. Learn more about the theory of heatmap in <a href="https://www.data-to-viz.com/graph/heatmap.html">data-to-viz.com</a>.</p>
+      <br>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../heatmap.html">Heatmap section</a>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+  </div>
+</header>
 
 
 
@@ -132,14 +125,35 @@
 
 
 
+<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+  <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-    <center><div id="result"></div></center>
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; top: 120px">
+      <div class="bg-light" id="result" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <br>
+          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <br>
+          <li>A <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv">dummy dataset</a> has been created for this example, at the long format. (3 columns: row, col, value).</li>
+          <br>
+          <li>The first step is to build scales and axis. Thus each entity will have a position on the grid. </li>
+          <br>
+          <li>A <code>scaleBand()</code> is used, which allows to control the size of each square using the <code>padding property</code>. If padding is close from 1, square are very small. (0 for very big)</br>
+          <br>
+          <li>Finally, each square can be added using a <code>rect</code> element.</li>
+        </ul>
+      </div>
+    </div>
   </div>
-</section>
 
 <!-- ================================================================================= -->
 
@@ -147,20 +161,15 @@
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
-<div class="container" >
+<div class="col-lg-7 text-center .align-middle">
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">heatmap</a> made using d3.js. The data comes from here. </p>
-<aside>&larr; Edit me! </aside>
+<aside style="position: -webkit-sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
-
-<!-- Load the color brewer color palette -->
-<script src="LIB/colorbrewer.min.js"></script>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -170,77 +179,73 @@
 
 
 
+
+
+
 <!-- ========= show JS code ==============  -->
-<aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-      // Feature of the SVG area:
-      var margin = { top: 50, right: 0, bottom: 100, left: 130 },
-          width = 960 - margin.left - margin.right,
-          height = 430 - margin.top - margin.bottom
+// set the dimensions and margins of the graph
+var margin = {top: 30, right: 30, bottom: 30, left: 30},
+  width = 450 - margin.left - margin.right,
+  height = 450 - margin.top - margin.bottom;
 
-      // create svg area
-      var svg = d3.select("#my_dataviz").append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+.append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
 
-      // Related to heatmap
-      var gridSize = Math.floor(width / 24) // 24 is the number of square per line. gridSize is the size of a square in px
-          buckets = 9,
-          colors = colorbrewer.Blues[9],  // This gets 9 colors from the Blues color palette of ColorBrewer
-          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+// Labels of row and columns
+var myGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+var myVars = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10"]
 
+// Build X scales and axis:
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(myGroups)
+  .padding(0.01);
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
 
-      // Y axis
-      var dayLabels = svg.selectAll(".dayLabel")
-          .data(days)
-          .enter().append("text")
-            .text(function (d) { return d; })
-            .attr("x", 0)
-            .attr("y", function (d, i) { return i * gridSize; })
-            .style("text-anchor", "end")
-            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+// Build X scales and axis:
+var y = d3.scaleBand()
+  .range([ height, 0 ])
+  .domain(myVars)
+  .padding(0.01);
+svg.append("g")
+  .call(d3.axisLeft(y));
 
-      // X axis
-      var timeLabels = svg.selectAll(".timeLabel")
-          .data(times)
-          .enter().append("text")
-            .text(function(d) { return d; })
-            .attr("x", function(d, i) { return i * gridSize; })
-            .attr("y", 0)
-            .style("text-anchor", "middle")
-            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+// Build color scale
+var myColor = d3.scaleLinear()
+  .range(["white", "#69b3a2"])
+  .domain([1,100])
 
-      // add heatmap cells
-      var heatmapChart = d3.tsv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/OLD/data_simple_heatmap.tsv",
-        function(d) {
-          return {
-            day: +d.day,
-            hour: +d.hour,
-            value: +d.value
-          };
-        },
-        function(data) {
-          var colorScale = d3.scaleQuantile()
-              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
-              .range(colors);
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv", function(data) {
 
-          svg.selectAll()
-              .data(data, function(d) {return d.day+':'+d.hour;})
-              .enter()
-              .append("rect")
-              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
-              .attr("y", function(d) { return (d.day - 1) * gridSize; })
-              .attr("width", gridSize)
-              .attr("height", gridSize)
-              .style("fill", function(d) { return colorScale(d.value); });
-        });
+  svg.selectAll()
+      .data(data, function(d) {return d.group+':'+d.variable;})
+      .enter()
+      .append("rect")
+      .attr("x", function(d) { return x(d.group) })
+      .attr("y", function(d) { return y(d.variable) })
+      .attr("width", x.bandwidth() )
+      .attr("height", y.bandwidth() )
+      .style("fill", function(d) { return myColor(d.value)} )
+
+})
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
+
+
+
+
 
 
 
@@ -252,25 +257,26 @@ myJSParser('codejs', 'result')
 
 // If the user change the JS fragment, I run it again:
 document.getElementById('codejs').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
 })
 
 // If the user change the HTML fragment, I run it again:
 document.getElementById('code').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
 })
 </script>
 
-
+</div>
 
 
   </div>
+</div>
 </section>
-
+<br>
 
 
 <!-- ============================ -->
@@ -280,30 +286,22 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
+
+
 <!-- ============================ RELATED BLOCKS ============================ -->
 
-<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
   <div class="container">
     <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-          </div>
-        </div>
+      <div class="col-lg-5 text-center align-self-center">
+        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
       </div>
       <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>Day / Hour Heatmap - </i><a href="http://bl.ocks.org/tjdecke/5558084">link</a></li>
-            <br>
-            <li>yo</li>
-            <br>
-            <li>ll</li>
-            </ul>
-          </div>
-        </div>
+        <ul>
+          <li><i>Day / Hour Heatmap - </i>by <a href="http://bl.ocks.org/tjdecke/5558084">Tom May</a></li>
+          <br>
+          <li><i>Visualize Data with a HeaMap using d3.js - </i><a href="https://codepen.io/valmassoi/pen/aNGryB">Robert Valmassoi</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -320,27 +318,23 @@ document.getElementById('code').addEventListener("input", function() {
 
 <!-- ============================ CONTACT SECTION ============================ -->
 
-    <!-- ANCHOR -->
-    <a name="contactanchor"></a>
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
 
 
-  <section id="contact" class="bg" style="background-color: white">
-     <div class="container">
-       <div class="row">
-         <div class="col-lg-2 text-center"></div>
-         <div class="col-lg-8 text-center">
-           <br><br><br>
-           <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
-           <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
-           <div style="text-align:center">
-              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
-              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
-            </div>
+<section id="contact" class="bg" style="background-color: white"></section>
 
-         </div>
-       </div>
-    </div>
-  </section>
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
 
 
 
@@ -348,44 +342,14 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 <!-- ============================ FOOTER SECTION ============================ -->
-    <footer class="bg-light">
-      <div class="container" >
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/R_Graph_Gallery">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/holtzy">
-                  <i class="fa fa-github"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
 
 <!-- ============================ -->
 
@@ -410,56 +374,33 @@ document.getElementById('code').addEventListener("input", function() {
 
 <!-- ============================ JAVASCRIPT SECTION ============================ -->
 
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/agency.min.js"></script>
+
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-      <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
-
-    <!-- Contact form JavaScript -->
-    <script src="../js/jqBootstrapValidation.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="../js/agency.min.js"></script>
-
-    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-    <script>
-      $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-    </script>
-
-
-    <!-- Function to download the content of the div -->
-    <script>
-    function download(){
-        var a = document.body.appendChild(
-            document.createElement("a")
-        );
-        a.download = "export.html";
-        var command = document.getElementById('code').innerHTML;
-        command = command.replace(/<\/?span[^>]*>/g,"");
-        a.href = "data:html" + command
-        a.click(); // Trigger a click on the element
-    }
-    </script>
-
-
-    <!-- Function to download the graphic as png automatically -->
-<!--     <script>
-        html2canvas($('#content'),
-        {
-          onrendered: function (canvas) {
-            var a = document.createElement('a');
-            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            a.download = 'somefilename.jpg';
-            a.click();
-          }
-        });
-    </script> -->
+<!-- Function to download the content of the div -->
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    var command = document.getElementById('code').innerHTML;
+    command = command.replace(/<\/?span[^>]*>/g,"");
+    a.href = "data:html" + command
+    a.click(); // Trigger a click on the element
+}
+</script>
 
 
 
@@ -467,9 +408,6 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
-
-
-
-  </body>
+</body>
 
 </html>
