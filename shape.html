@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Shape helpers &#124; the D3 Graph Gallery</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="An overview of d3.js functions helping to draw shapes">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,area chart">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="Shape helpers &#124; the D3 Graph Gallery">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="An overview of d3.js functions helping to draw shapes">
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/agency.css" rel="stylesheet">
+
+    <!-- JQUERY -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+</head>
+
+
+
+<body id="page-top">
+
+
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+});
+</script>
+
+  <!-- Header -->
+  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+    <div class="textlanding">
+      <h1>Drawing shapes in d3.js</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">D3.js offers a set of <code>graphical primitives</code> allowing to draw shapes more efficiently. This page describes these functions, providing simple examples with interactive code snippet. Don't forget that the bible is the <a href="https://github.com/d3/d3-shape">d3-shape</a> documentation.</p>
+  </div>
+</header>
+
+
+
+<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+<div id="position_for_images"> </div>
+<script>
+$(function(){
+  $("#position_for_images").load("html_chunk/images.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<!-- ======================== PORTFOLIO SECTION ============================ -->
+<!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+<section class="bg" id="portfolio" style="padding-top: 10px">
+  <div class="container">
+
+
+
+    <div class="mySeryTitle">Axis</div>
+    <hr>
+    <p>D3.js offers built-in function to add axis to your chart. The first step is to build a <code>scale</code> that allows to transform a numeric value to a coordinate on the plot. The second is to call <code>axisBottom()</code> or <code>axisLeft()</code> to build the axis. Browse the example below to understand the different <u>types</u> of existing scale, how to <u>build axis</u> and how to <u>customize</u> them.</p>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_axis.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Basic linear axis</p>
+              <hr>
+              <p class="explanation_portfolio">The most basic linear axis you can do in d3.js. Keeping only the core code.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_axis_linear.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_axis.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Categorical axis with <code>scalePoint()</code></p>
+              <hr>
+              <p class="explanation_portfolio">The <code>scalePoint()</code> allows to build a categoric axis. Simple example keeping only the core code.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_axis_scalepoint.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_axis.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Categorical axis with <code>scaleBand()</code></p>
+              <hr>
+              <p class="explanation_portfolio">Slightly different from the previous example: this method is adapted for barplot or boxplot where each category uses a range of the axis.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_axis_scaleband.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_axis.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Vertical axis</p>
+              <hr>
+              <p class="explanation_portfolio">Learn how to make a vertical axis in d3.js</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_axis_vertical.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_axis.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Custom axis labels</p>
+              <hr>
+              <p class="explanation_portfolio">How to change font, size, color, orientation of axis labels</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_axis_labels.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_axis.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Add titles</p>
+              <hr>
+              <p class="explanation_portfolio">How to add titles at the right position to your axis</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_axis_title.png" alt="">
+        </a>
+      </div>
+    </div>
+
+
+    <br><br>
+    <div class="mySeryTitle">Colors</div>
+    <hr>
+    <p>A post on the basic of color management with d3.js. You will learn how to call a color, how to build different types of color palette and how to map them to your dataset.</p>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_color.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Just calling a color</p>
+              <hr>
+              <p class="explanation_portfolio">Several ways exist to call a single color in d3.js. Learn what are the possibilities.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_color_oneCol.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_color.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Sequential color scale</p>
+              <hr>
+              <p class="explanation_portfolio">What are the different option to build a sequential colorscale? How to build a palette?</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_color_sequential.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_color.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Categorical color scale</p>
+              <hr>
+              <p class="explanation_portfolio">Give a specific color to each entity of your dataset. How to build the palette with d3.js</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_color_categoric.png" alt="">
+        </a>
+      </div>
+    </div>
+
+ </div>
+</section>
+
+
+<!-- ======================================================================= -->
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED SECTION ============================ -->
+<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
+
+<div class="container">
+
+  <p class="mySeryTitle">Related chart types</p>
+  <hr>
+  <div class="row">
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link" href="basic.html">
+        <img class="img-fluid grey_on_hover" src="img/section/Basic150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Basics</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="custom.html">
+        <img class="img-fluid grey_on_hover" src="img/section/Colours150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Custom</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="interactivity.html">
+        <img class="img-fluid grey_on_hover" src="img/section/anim150.gif" alt="">
+      </a>
+      <div class="captionPortfolio">Interactivity</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="shapehelper.html">
+        <img class="img-fluid grey_on_hover" src="img/section/Shapehelper150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Shape helpers</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="https://www.data-to-viz.com/caveats.html">
+        <img class="img-fluid grey_on_hover" src="img/section/Bad150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Caveats</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="https://www.r-graph-gallery.com/portfolio/data-art/">
+        <img class="img-fluid grey_on_hover" src="img/section/DataArt1150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Data art</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+<!-- ANCHOR -->
+<a name="contactanchor"></a>
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =============== JAVASCRIPT SECTION =============== -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>
+
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
+   </script>
+
+
+
+
+
+<!--============================== -->
+
+
+
+  </body>
+
+</html>
