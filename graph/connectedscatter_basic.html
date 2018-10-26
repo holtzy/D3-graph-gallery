@@ -196,7 +196,7 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/connectedscatter.csv",
 
   // When reading the csv, I must format variables:
   function(d){
@@ -224,7 +224,6 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     // Add the line
     svg.append("path")
       .datum(data)
-      .filter(function(d) { return d.value < 1000 })  // <== This line
       .attr("fill", "none")
       .attr("stroke", "steelblue")
       .attr("stroke-width", 1.5)
