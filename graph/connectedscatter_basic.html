@@ -146,6 +146,8 @@ $(function(){
           <li>Data show the evolution of bitcoin price. <a href="https://www.data-to-viz.com/story/TwoNumOrdered.html">read more</a>.</li>
           <br>
           <li>Line is drawn using a <code>path</code>, and using the <code>d3.line</code> utility.</li>
+          <br>
+          <li>Dots are added using <code>circle</code>, like for a <a href="scatter_basic.html">basic scatterplot</a>.</li>
         </ul>
       </div>
     </div>
@@ -216,7 +218,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.value; })])
+      .domain( [8000, 9200])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
@@ -225,14 +227,26 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "steelblue")
+      .attr("stroke", "#69b3a2")
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { return x(d.date) })
         .y(function(d) { return y(d.value) })
         )
 
+    // Add the points
+    svg
+      .append("g")
+      .selectAll("dot")
+      .data(data)
+      .enter()
+      .append("circle")
+        .attr("cx", function(d) { return x(d.date) } )
+        .attr("cy", function(d) { return y(d.value) } )
+        .attr("r", 5)
+        .attr("fill", "#69b3a2")
 })
+
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -293,6 +307,11 @@ myJSParser('codejs', 'result');
       <div class="col-lg-5">
         <ul>
           <li><i>Line Chart - </i><a href="https://bl.ocks.org/mbostock/3883245">link</a></li>
+          <br>
+          <li><i>Basic scatterplot - </i>by <a href="scatter_basic.html">d3 graph gallery</a></li>
+          <br>
+          <li><i>Basic line plot - </i>by <a href="line_basic.html">d3 graph gallery</a></li>
+          <br>
         </ul>
       </div>
     </div>
