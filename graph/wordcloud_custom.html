@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-79254642-6');
+  </script>
+
+  <meta charset="utf-8">
+  <title>Custom wordcloud in d3.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Custom your javascript wordcloud made with d3-cloud">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, wordcloud">
+  <meta name="author" content="Yan Holtz">
+
+  <meta property="og:title" content="Custom wordcloud in d3.js">
+  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
+  <meta property="og:description" content="Custom your javascript wordcloud made with d3-cloud">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/agency.css" rel="stylesheet">
+
+  <!-- PRISM -->
+  <script src="../LIB/prism.js"></script>
+  <link href="../LIB/prism.css" rel="stylesheet" />
+
+  <!-- D3.JS v4 -->
+  <script src="../js/d3.v4.js"></script>
+  <script src="../LIB/d3.layout.cloud.js"></script>
+
+  <!-- JQUERY -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+
+  <!-- HTML TO CANVAS -->
+  <script src="../js/html2canvas.js"></script>
+
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="../js/myParser.js"></script>
+
+</head>
+
+
+
+
+
+
+<body id="page-top">
+
+
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("../html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+});
+</script>
+
+
+<!-- Header -->
+<header class="masthead">
+  <div class="textlanding">
+      <h1>Custom wordcloud in d3.js</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">The previous post described how to build a very <a href="wordcloud_basic.html">basic wordcloud</a> with the <code>d3-cloud</code> javascript plugin. This post shows how to apply <u>customization</u> like colors, font, angle, size and more.</p>
+      <br>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../wordcloud.html">Wordcloud section</a>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+  </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; top: 120px">
+      <div class="bg-light" id="result" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>See the previous post for a very <a href="wordcloud_basic">basic wordcloud</a> with the <code>d3-cloud</code> plugin.</li>
+          <br>
+          <li>This post show a few options to add color, orientation, font and more to the text.</li>
+          <br>
+          <li>Note that options that are the same for every word can be passed direclty in the <code>draw function</code></li>
+          <br>
+          <li>However, options that vary must first be given in the <code>layout</code> call. They will be then available in the <code>words</code> object, and must thus be called again in the <code>draw function</code>.</li>
+          <br>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- ================================================================================= -->
+
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Load d3-cloud -->
+<script src="../LIB/d3.layout.cloud.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+
+// List of words
+var myWords = ["Hello", "Everybody", "How", "Are", "You", "Today", "It", "Is", "A", "Lovely", "Day", "I", "Love", "Coding", "In", "My", "Van", "Mate", "Peace", "Love", "Keep", "The", "Good", "Work", "Make", "Love", "Not", "War","Surfing","R", "R",
+   "Data-Viz","Python","Linux","Programming","Graph Gallery","Biologie", "Resistance",
+   "Computing","Data-Science","Reproductible","GitHub","Script", "Experimentation","Talk","Conference","Writing",
+   "Publication","Analysis","Bioinformatics","Science","Statistics","Data",
+   "Programming","Wheat","Virus","Genotyping","Work","Fun","Surfing","R", "R",
+   "Data-Viz","Python","Linux","Programming"]
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 450 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Constructs a new cloud layout instance. It run an algorythm to find the position of words that suits your requirements
+// Wordcloud features that are different from one word to the other must be here
+var layout = d3.layout.cloud()
+  .size([width, height])
+  .words(myWords.map(function(d) { return {text: d}; }))
+  .padding(5)        //space between words
+  .rotate(-45)       // rotation andgle in degrees
+  .fontSize(20)      // font size of words
+  .on("end", draw);
+layout.start();
+
+// This function takes the output of 'layout' above and draw the words
+// Wordcloud features that are THE SAME from one word to the other can be here
+function draw(words) {
+  svg
+    .append("g")
+      .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", 20)
+        .style("fill", "#69b3a2")
+        .attr("text-anchor", "middle")
+        .style("font-family", "Impact")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+}
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code', 'result')
+myJSParser('codejs', 'result')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center align-self-center">
+        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
+      </div>
+      <div class="col-lg-5">
+        <ul>
+          <li><i>Example section of d3-cloud documentation - </i>by <a href="https://github.com/jasondavies/d3-cloud/blob/master/examples/browserify.js">Jason Davies</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ JAVASCRIPT SECTION ============================ -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/agency.min.js"></script>
+
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+
+<!-- Function to download the content of the div -->
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    var command = document.getElementById('code').innerHTML;
+    command = command.replace(/<\/?span[^>]*>/g,"");
+    a.href = "data:html" + command
+    a.click(); // Trigger a click on the element
+}
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>
