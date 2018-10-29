@@ -44,50 +44,50 @@
   "links": [
 
     {
-      "source_id": 1,
-      "target_id": 2
+      "source": 1,
+      "target": 2
     },
     {
-      "source_id": 1,
-      "target_id": 5
+      "source": 1,
+      "target": 5
     },
     {
-      "source_id": 1,
-      "target_id": 6
+      "source": 1,
+      "target": 6
     },
 
     {
-      "source_id": 2,
-      "target_id": 3
+      "source": 2,
+      "target": 3
     },
             {
-      "source_id": 2,
-      "target_id": 7
+      "source": 2,
+      "target": 7
     }
     ,
 
     {
-      "source_id": 3,
-      "target_id": 4
+      "source": 3,
+      "target": 4
     },
      {
-      "source_id": 8,
-      "target_id": 3
+      "source": 8,
+      "target": 3
     }
     ,
     {
-      "source_id": 4,
-      "target_id": 5
+      "source": 4,
+      "target": 5
     }
     ,
 
     {
-      "source_id": 4,
-      "target_id": 9
+      "source": 4,
+      "target": 9
     },
     {
-      "source_id": 5,
-      "target_id": 10
+      "source": 5,
+      "target": 10
     }
   ]
 }
