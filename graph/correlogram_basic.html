@@ -139,17 +139,13 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li><u>Disclaimer</u>: This chart is highly inspired from <a href="http://plnkr.co/edit/RJk5vmROVAJGPHIPutVR?p=preview">this example</a>.</li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>The idea is to create a <code>g</code> element for each cell of the correlogram and store it in an object called <code>cor</code></li>
           <br>
-          <li>In this example dummy data are created. It's a vector format. See <a href="">here</a> to work from a <code>.csv</code></li>
+          <li>It is then possible to use <code>.filter</code> to add text to the lower left part of the matrix.</li>
           <br>
-          <li>Note that quantiles, median, min and max are computed one by one. See <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz</a> to understand what these values are.</li>
-          <br>
-          <li>The Y scale can now be added. Read <a href="">here</a> if you're not used to it.</br>
-          <br>
-          <li>Finally, the box can be added, it is just one <code>rect</code>, and 2 <code>lines</code> elements.</li>
+          <li>And then the upperpart using <code>.circle</code></li>
         </ul>
       </div>
     </div>
@@ -185,72 +181,119 @@ $(function(){
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-  width = 400 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+// Graph dimension
+var margin = {top: 20, right: 20, bottom: 20, left: 20},
+    width = 430 - margin.left - margin.right,
+    height = 430 - margin.top - margin.bottom
 
-// append the svg object to the body of the page
+// Create the svg area
 var svg = d3.select("#my_dataviz")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// create dummy data
-var data = [12,19,11,13,12,22,13,4,15,16,18,19,20,12,11,9]
 
-// Compute summary statistics used for the box:
-var data_sorted = data.sort(d3.ascending)
-var q1 = d3.quantile(data_sorted, .25)
-var median = d3.quantile(data_sorted, .5)
-var q3 = d3.quantile(data_sorted, .75)
-var interQuantileRange = q3 - q1
-var min = q1 - 1.5 * interQuantileRange
-var max = q1 + 1.5 * interQuantileRange
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_correlogram.csv", function(error, rows) {
 
-// Show the Y scale
-var y = d3.scaleLinear()
-  .domain([0,24])
-  .range([height, 0]);
-svg.call(d3.axisLeft(y))
+  // Going from wide to long format
+  var data = [];
+  rows.forEach(function(d) {
+    var x = d[""];
+    delete d[""];
+    for (prop in d) {
+      var y = prop,
+        value = d[prop];
+      data.push({
+        x: x,
+        y: y,
+        value: +value
+      });
+    }
+  });
 
-// a few features for the box
-var center = 200
-var width = 100
+  // List of all variables and number of them
+  var domain = d3.set(data.map(function(d) { return d.x })).values()
+  var num = Math.sqrt(data.length)
 
-// Show the main vertical line
-svg
-.append("line")
-  .attr("x1", center)
-  .attr("x2", center)
-  .attr("y1", y(min) )
-  .attr("y2", y(max) )
-  .attr("stroke", "black")
+  // Create a color scale
+  var color = d3.scaleLinear()
+    .domain([-1, 0, 1])
+    .range(["#B22222", "#fff", "#000080"]);
 
-// Show the box
-svg
-.append("rect")
-  .attr("x", center - width/2)
-  .attr("y", y(q3) )
-  .attr("height", (y(q1)-y(q3)) )
-  .attr("width", width )
-  .attr("stroke", "black")
-  .style("fill", "#69b3a2")
+  // Create a size scale for bubbles on top right. Watch out: must be a rootscale!
+  var size = d3.scaleSqrt()
+    .domain([0, 1])
+    .range([0, 9]);
 
-// show median, min and max horizontal lines
-svg
-.selectAll("toto")
-.data([min, median, max])
-.enter()
-.append("line")
-  .attr("x1", center-width/2)
-  .attr("x2", center+width/2)
-  .attr("y1", function(d){ return(y(d))} )
-  .attr("y2", function(d){ return(y(d))} )
-  .attr("stroke", "black")
+  // X scale
+  var x = d3.scalePoint()
+    .range([0, width])
+    .domain(domain)
+
+  // Y scale
+  var y = d3.scalePoint()
+    .range([0, height])
+    .domain(domain)
+
+  // Create one 'g' element for each cell of the correlogram
+  var cor = svg.selectAll(".cor")
+    .data(data)
+    .enter()
+    .append("g")
+      .attr("class", "cor")
+      .attr("transform", function(d) {
+        return "translate(" + x(d.x) + "," + y(d.y) + ")";
+      });
+
+  // Low left part + Diagonal: Add the text with specific color
+  cor
+    .filter(function(d){
+      var ypos = domain.indexOf(d.y);
+      var xpos = domain.indexOf(d.x);
+      if (xpos > ypos) { return false } else { return true}
+    })
+    .append("text")
+      .attr("y", 5)
+      .text(function(d) {
+        if (d.x === d.y) {
+          return d.x;
+        } else {
+          return d.value.toFixed(2);
+        }
+      })
+      .style("font-size", 11)
+      .style("text-align", "center")
+      .style("fill", function(d){
+        if (d.x === d.y) {
+          return "#000";
+        } else {
+          return color(d.value);
+        }
+      });
+
+
+  // Up right part: add circles
+  cor
+    .filter(function(d){
+      var ypos = domain.indexOf(d.y);
+      var xpos = domain.indexOf(d.x);
+      if (xpos <= ypos) { return false } else { return true}
+    })
+    .append("circle")
+      .attr("r", function(d){ return size(Math.abs(d.value)) })
+      .style("fill", function(d){
+        if (d.x === d.y) {
+          return "#000";
+        } else {
+          return color(d.value);
+        }
+      })
+      .style("opacity", 0.8)
+
+})
+
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
@@ -309,9 +352,7 @@ myJSParser('codejs', 'result');
       </div>
       <div class="col-lg-5">
         <ul>
-          <li><i>Simple Box Plot Example in d3.js v4.0 - </i><a href="https://bl.ocks.org/rjurney/e04ceddae2e8f85cf3afe4681dac1d74">link</a></li>
-          <br>
-          <li><i>D3.js Boxplot with Axes and Labels - </i><a href="http://bl.ocks.org/anaeliaovalle/60a7ed1f4e55a9052caab3c69668a306">link</a></li>
+          <li><i>Correlogram - </i><a href="http://plnkr.co/edit/RJk5vmROVAJGPHIPutVR?p=preview">link</a></li>
         </ul>
       </div>
     </div>
