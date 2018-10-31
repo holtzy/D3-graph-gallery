@@ -181,7 +181,7 @@ $(function(){
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
   width = 400 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
@@ -195,9 +195,41 @@ var svg = d3.select("#my_dataviz")
         "translate(" + margin.left + "," + margin.top + ")");
 
 // Read data
-d3.csv('data.csv', function(error, vCsvData) {
+d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_hierarchy.csv', function(data) {
+
+// stratify the data: reformatting for d3.js
+var root = d3.stratify()
+    .id(function(d) { return d.name; })
+    .parentId(function(d) { return d.parent; })
+    (data);
+root.sum(function(d) { return 1 })
+
+// Then d3.treemap computes the position of each element of the hierarchy
+var tree = d3.treemap()
+    .size([width, height])
+    .padding(0)
+    (root)
+
+console.log("tree")
+console.log(tree)
+
+console.log("root descendants")
+console.log(root.descendants())
 
 
+
+// use this information to add rectangles:
+svg
+  .selectAll("rect")
+  .data(root.descendants())
+  .enter()
+  .append("rect")
+    .attr('x', function (d) { console.log(d) ; return d.x0; })
+    .attr('y', function (d) { return d.y0; })
+    .attr('width', function (d) { return d.x1 - d.x0; })
+    .attr('height', function (d) { return d.y1 - d.y0; })
+    .style('opacity', 0.2)
+    .style("stroke", "red")
 
 })
 </script></xmp></code></pre>
