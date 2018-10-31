@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic boxplot in d3.js</title>
+  <title>Basic treemap in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic boxplot">
-  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, boxplot">
+  <meta name="description" content="Using d3.js to create a very basic treemap: example with reproducible code.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, treemap">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Basic boxplot in d3.js">
+  <meta property="og:title" content="Basic treemap in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic boxplot">
+  <meta property="og:description" content="Using d3.js to create a very basic treemap: example with reproducible code.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic boxplot in d3.js</h1>
+      <h1>Most basic treemap in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,9 +105,9 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/boxplot">boxplot</a> with d3.js. Only one category is represented, to simplify the code as much as possible. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/boxplot">boxplot section</a> of the gallery. Learn more about the theory of boxplots in <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="../treemap.html">treemap</a> with d3.js. It takes into account a hierarchy dataset, stored at <code>.csv</code> format. See many other examples in the <a href="../treemap.html">treemap section</a> of the gallery. Learn more about the theory of treemaps in <a href="https://www.data-to-viz.com/graph/treemap.html">data-to-viz.com</a>.</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../boxplot.html">Boxplot section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../treemap.html">Treemap section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -194,58 +194,12 @@ var svg = d3.select("#my_dataviz")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-// create dummy data
-var data = [12,19,11,13,12,22,13,4,15,16,18,19,20,12,11,9]
+// Read data
+d3.csv('data.csv', function(error, vCsvData) {
 
-// Compute summary statistics used for the box:
-var data_sorted = data.sort(d3.ascending)
-var q1 = d3.quantile(data_sorted, .25)
-var median = d3.quantile(data_sorted, .5)
-var q3 = d3.quantile(data_sorted, .75)
-var interQuantileRange = q3 - q1
-var min = q1 - 1.5 * interQuantileRange
-var max = q1 + 1.5 * interQuantileRange
 
-// Show the Y scale
-var y = d3.scaleLinear()
-  .domain([0,24])
-  .range([height, 0]);
-svg.call(d3.axisLeft(y))
 
-// a few features for the box
-var center = 200
-var width = 100
-
-// Show the main vertical line
-svg
-.append("line")
-  .attr("x1", center)
-  .attr("x2", center)
-  .attr("y1", y(min) )
-  .attr("y2", y(max) )
-  .attr("stroke", "black")
-
-// Show the box
-svg
-.append("rect")
-  .attr("x", center - width/2)
-  .attr("y", y(q3) )
-  .attr("height", (y(q1)-y(q3)) )
-  .attr("width", width )
-  .attr("stroke", "black")
-  .style("fill", "#69b3a2")
-
-// show median, min and max horizontal lines
-svg
-.selectAll("toto")
-.data([min, median, max])
-.enter()
-.append("line")
-  .attr("x1", center-width/2)
-  .attr("x2", center+width/2)
-  .attr("y1", function(d){ return(y(d))} )
-  .attr("y2", function(d){ return(y(d))} )
-  .attr("stroke", "black")
+})
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
