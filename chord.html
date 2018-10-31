@@ -3,16 +3,26 @@
 
   <head>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
     <meta charset="utf-8">
-    <title>Chord diagram</title>
+    <title>Chord diagram in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Building histograms in d3.js">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,histogram">
+    <meta name="description" content="Building chord diagrams in d3.js: simple and customized examples with reproducible code.">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,chord diagram">
     <meta name="author" content="Yan Holtz">
 
-    <meta property="og:title" content="The D3 Graph Gallery &#8211; Simple charts made in d3.js">
+    <meta property="og:title" content="Chord diagram &#8211; The D3 Graph Gallery">
     <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Crypto Arbitrage &#8211; A feasibility analysis">
+    <meta property="og:description" content="Building chord diagrams in d3.js: simple and customized examples with reproducible code.">
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,37 +43,21 @@
 
 
 
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+    $(function(){
+      $("#mainNav").load("html_chunk/menu.html");
+    });
+    </script>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-      <div class="container">
-        <a href="index.html">&larr; D3.js Graph Gallery</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/optimization.html">R</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"> </div>
+    <script>
+    $(function(){
+      $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+    });
+    </script>
 
 
 
@@ -71,9 +65,9 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-        <p style="display:inline; font-size: 35px">Chord diagram</p>
-          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
-          <br>
+        <h1>Chord Diagram</h1>
+        <hr class="short_hr">
+        <br>
           <ul class="list-inline social-buttons">
             <li class="list-inline-item">
               <a href="https://twitter.com/R_Graph_Gallery">
@@ -88,6 +82,11 @@
             <li class="list-inline-item social-buttons">
               <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
                 <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.yan-holtz.com">
+                <i class="fa fa-home"></i>
               </a>
             </li>
           </ul>
@@ -124,10 +123,11 @@
       <li>The nodes are drawn using the arc() function. The links with the ribbon function().</li>
     </ul>
     <br>
+
+
     <div class="mySeryTitle">Step by step</div>
     <hr>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/chord_basic.html">
           <div class="portfolio-hover">
@@ -140,7 +140,6 @@
           <img class="img-fluid" src="img/graph/chord_basic.png" alt="">
         </a>
       </div>
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/chord_axis_labels.html">
           <div class="portfolio-hover">
@@ -153,7 +152,6 @@
           <img class="img-fluid" src="img/graph/chord_axis_labels.png" alt="">
         </a>
       </div>
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/chord_colors.html">
           <div class="portfolio-hover">
@@ -169,6 +167,24 @@
 
     </div>
 
+
+    <br>
+    <div class="mySeryTitle">Best Blocks</div>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="http://bl.ocks.org/nbremer/94db779237655907b907">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Storytelling with Chord Diagram</p>
+              <hr>
+              <p class="explanation_portfolio">Nadieh Bremer tells us about the switching behavior between phone brands through a chord diagram. A must see example of data story telling.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/block_chord_bremer.png" alt="">
+        </a>
+      </div>
+    </div>
 
 
 
@@ -188,57 +204,108 @@
 
 
 
+<!-- ============================ RELATED SECTION ============================ -->
+<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
 
+<div class="container">
 
-
-
-<!-- --------------------------- FOOTER SECTION ------------------------------------------------------------------- -->
-    <footer class="bg-light">
-      <div class="container" >
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/R_Graph_Gallery">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/holtzy">
-                  <i class="fa fa-github"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
+  <p class="mySeryTitle">Related chart types</p>
+  <hr>
+  <div class="row">
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="chord.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
           </div>
         </div>
-      </div>
-    </footer>
+        <img class="img-fluid" src="img/section/Chord150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Chord diagram</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="network.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Network150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Network</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="sankey.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Sankey150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Sankey</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="arc.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Arc150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Arc diagram</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="bundle.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Bundle150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Edge bundling</div>
+    </div>
+  </div>
 
-<!-- ---------------------------------------------------------------------------------------------- -->
+</div>
+</section>
 
 
 
 
 
 
+<!-- ============================ CONTACT SECTION ============================ -->
+
+<!-- ANCHOR -->
+<a name="contactanchor"></a>
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
 
 
 
