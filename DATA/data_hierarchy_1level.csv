@@ -1,8 +1,8 @@
-name,parent
-Origin,
-grp1,Origin
-grp2,Origin
-grp3,Origin
-grp4,Origin
-grp5,Origin
-grp6,Origin
+name,parent,value
+Origin,,
+grp1,Origin,12
+grp2,Origin,23
+grp3,Origin,11
+grp4,Origin,40
+grp5,Origin,30
+grp6,Origin,25
