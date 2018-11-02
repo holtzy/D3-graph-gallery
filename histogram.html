@@ -123,8 +123,8 @@ $(function(){
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>Learn how to build a <a href="graph/histogram_basic.html">basic</a> histogram and how to apply a few customization to it. Starts easy with only one data sery and gets harder with several, <a href="graph/histogram_coloredTail.html">color highlighting</a>, mirroring and more.</p>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/histogram_basic.html">
           <div class="portfolio-hover">
@@ -137,7 +137,48 @@ $(function(){
           <img class="img-fluid" src="img/graph/histogram_basic.png" alt="">
         </a>
       </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/histogram_coloredTail.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Color a specific part</p>
+              <hr>
+              <p class="explanation_portfolio">Use a simple <code>if - else</code> statement to color a part of the histogram.<br><br>Also show how to add a vertical bar annotation.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/histogram_coloredTail.png" alt="">
+        </a>
+      </div>
+    </div>
 
+    <div class="mySeryTitle">Interactive</div>
+    <hr>
+    <p><u>Interactivity</u> on histograms can be interesting for 2 main reasons. First, playing with the <u>bin size</u> is an important step: the distribution can look very different depending on the value as explained <a href="https://www.data-to-viz.com/caveat/bin_size.html">here</a>. Second, adding a <u>tooltip</u> to display bar threshold and exact number of values can be a plus.
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/histogram_binSize.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Button to control bin size</p>
+              <hr>
+              <p class="explanation_portfolio">Add a button that controls bin size. Good example to learn how to create an update function that also update an axis.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/histogram_binSize.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/histogram_tooltip.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Add tooltip</p>
+              <hr>
+              <p class="explanation_portfolio">Useful to get the threshold of each bar range. Needs to be improved though.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/histogram_tooltip.png" alt="">
+        </a>
+      </div>
     </div>
 
  </div>
