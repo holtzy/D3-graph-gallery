@@ -109,7 +109,7 @@
 
 
 
-<!-- ==================== BASIC LINEAR AXIS ==================== -->
+<!-- ==================== BUTTON TYPES ==================== -->
 
   <section style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
@@ -118,7 +118,12 @@
     <hr>
     <p>Buttons are natively offered by the <code>html</code> language. Buttons are built using the <code>input</code> tag. Their type is controled by the <code>type</code> attribute. Here is an overview of the main button type:.</p>
 
-      <div>
+    <div class="row">
+
+    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-allType"></div>
+
+
+    <div class="col-lg-7">
         <pre class="language-html"><code id="code-allType" contenteditable="true"><xmp><!-- Clickable button -->
 <button type="button">Click Me!</button>
 
@@ -152,8 +157,8 @@
 </xmp></code></pre>
       </div>
 
-      <div  class="bg-light" style="padding: 100px" id="res-allType"></div>
 
+</div>
   </div>
 </section>
 
@@ -181,400 +186,245 @@ document.getElementById('code-allType').addEventListener("input", function() {
 
 
 
+<!-- ==================== BASIC TRIGGER EXEMPLE ==================== -->
 
-<br><br>
+<section class="bg">
+<div class="container" >
+  <h1>Trigger function in <code>html</code> with <code>onclick()</code>.</h1>
+  <hr>
+  <div class="row">
 
-<!-- ==================== SCALE POINT ==================== -->
-
-  <section style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-
-    <h1>Categoric axis with <code>scalePoint()</code></h1>
-    <hr>
-    <p></p>
-    <p>Here is the Javascript code allowing to add a linear axis in a div that has the id 'res'.</p>
-
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; top: 120px">
+      <div class="bg-light" id="res-basicTrigger" ></div>
+      <br>
       <div>
-        <pre class="language-js"><code id="code_ordinal_demo" contenteditable="true"><xmp>// create svg element
-var svg = d3.select("#ordinal_demo")
-  .append("svg")
-  .attr("width", 1000)
-  .attr("height", 200)
-
-// Create the scale
-var x = d3.scalePoint()
-    .domain(["A", "B", "C", "D", "E"])         // This is what is written on the Axis: from 0 to 100
-    .range([100, 800]);       // This is where the axis is placed: from 100 px to 800px
-
-// Draw the axis
-svg
-  .append("g")
-  .attr("transform", "translate(0,150)")      // This controls the vertical position of the Axis
-  .call(d3.axisBottom(x));
-
-// Add 1 circle for the group B:
-svg
-  .append("circle")
-  .attr("cx", x("B"))
-  .attr("cy", 50)
-  .attr("r", 8)
-
-</xmp></code></pre>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>Here, the button is created in html, and a <code>onclick</code> attribute is added.</li>
+          <br>
+          <li>Note that othe method are available: <code>onchange</code>, <code>onmouseover</code>, and more. See more <a href="https://www.w3schools.com/js/js_htmldom_events.asp">here</a></li>
+        </ul>
       </div>
-
-
-      <div id="ordinal_demo"></div>
-
+    </div>
   </div>
-</section>
-
-
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code_ordinal_demo')
-document.getElementById('code_ordinal_demo').addEventListener("input", function() {
-  d3.select('#ordinal_demo').html("");
-  myJSParserShort('code_ordinal_demo');
-})
-</script>
-
-
-<!-- ================================================================================= -->
 
 
 
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
 
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-basicTrigger" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
 
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
 
+<!-- Add 2 buttons-->
+<button type="button" onclick="changeColor('blue')">Blue</button>
+<button type="button" onclick="changeColor('red')">Red</button>
 
-
-
-<br><br>
-
-<!-- ==================== SCALE BAND ==================== -->
-
-  <section style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-
-    <h1>Categoric axis with <code>scaleBand</code></h1>
-    <hr>
-    <p>The <code>scaleBand()</code> function is ideal to build categorical axis. It is thus useful for common charts like <a href="../barplot.html">barplot</a> or <a href="../boxplot.html">boxplot</a>.</p>
-    <p>Here is the Javascript code allowing to add a categoric axis in a div that has the id 'res'.
-
-      <div>
-        <pre class="language-js"><code id="code_band_demo" contenteditable="true"><xmp>// create svg element
-var svg = d3.select("#band_demo")
-  .append("svg")
-    .attr("width", 1000)
-    .attr("height", 300)
-
-// Create the scale
-var x = d3.scaleBand()
-    .domain(["A", "B", "C", "D", "E"])       // This is what is written on the Axis: from 0 to 100
-    .range([100, 800])                       // This is where the axis is placed: from 100 px to 800px
-    .padding([0.8])                          // Goes between 0 and 1. Default is 0
-
-// Draw the axis
-svg
-  .append("g")
-  .attr("transform", "translate(0,250)")      // This controls the vertical position of the Axis
-  .call(d3.axisBottom(x));
-
-// Add one bar for group C:
-svg
-  .append("rect")
-    .attr("x", x("C") )
-    .attr("y",100)
-    .attr("height", 150)
-    .attr("width", x.bandwidth() )
-    .style("fill", "#69b3a2")
-    .style("opacity", 0.5)
+<!-- Create a div where the circle will take place -->
+<div id="dataviz_buttonTriger"></div>
 
 </xmp></code></pre>
-      </div>
-
-      <div  id="band_demo"></div>
+<!-- ==================================== -->
 
 
 
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-basicTrigger" contenteditable="true"><xmp><script>
+
+// Initialize a circle
+var myCircle = d3.select("#dataviz_buttonTriger")
+  .append("svg")
+  .append("circle")
+    .attr("cx", 100)
+    .attr("cy", 70)
+    .attr("r", 50)
+    .attr("stroke", "black")
+
+// A function that update the color circle
+var changeColor = function(color){
+  myCircle
+    .style("fill", color)
+}
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
 <script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code_band_demo')
-document.getElementById('code_band_demo').addEventListener("input", function() {
-  d3.select('#band_demo').html("");
-  myJSParserShort('code_band_demo');
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-basicTrigger', 'res-basicTrigger')
+myJSParser('js-basicTrigger', 'res-basicTrigger')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-basicTrigger').addEventListener("input", function() {
+d3.select('#res-basicTrigger').html("");
+myHtmlParser('html-basicTrigger', 'res-basicTrigger');
+myJSParser('js-basicTrigger', 'res-basicTrigger');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-basicTrigger').addEventListener("input", function() {
+d3.select('#res-basicTrigger').html("");
+myHtmlParser('html-basicTrigger', 'res-basicTrigger');
+myJSParser('js-basicTrigger', 'res-basicTrigger');
 })
 </script>
-
 
 </div>
-</section>
 
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-<br><br>
-
-
-
-<!-- ==================== VERTICAL AXIS ==================== -->
-
-  <section style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-
-    <h1>Vertical axis with <code>axisLeft</code></h1>
-    <hr>
-    <p>All the scale described above can be set vertically.</p>
-
-
-      <div>
-        <pre class="language-js"><code id="code-vertical" contenteditable="true"><xmp>// create svg element
-var svg = d3.select("#vertical")
-  .append("svg")
-    .attr("width", 1000)
-    .attr("height", 300)
-
-// Create the scale
-var y = d3.scaleLinear()
-    .domain([0, 100])         // This is what is written on the Axis: from 0 to 100
-    .range([290, 10]);         // Note it is reversed
-
-// Draw the axis
-svg
-  .append("g")
-  .attr("transform", "translate(50,0)")      // This controls the vertical position of the Axis
-  .call(d3.axisLeft(y));</xmp></code></pre>
-      </div>
-
-
-      <div id="vertical"></div>
 
   </div>
+</div>
 </section>
-
-
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-vertical')
-document.getElementById('code-vertical').addEventListener("input", function() {
-  d3.select('#vertical').html("");
-  myJSParserShort('code-vertical');
-})
-</script>
-
-
-<!-- ================================================================================= -->
+<br>
 
 
 
 
 
 
-<br><br>
 
 
 
 
-<!-- ==================== ROTATE ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
+<!-- ==================== ADD EVENT LISTENER ==================== -->
 
-    <h1>Rotate and custom axis labels</h1>
-    <hr>
-    <p>It is sometimes useful to rotate the labels of an axis, especially when this labels are quite long.</p>
+<section class="bg">
+<div class="container" >
+  <h1>Event listener in <code>javascript</code></h1>
+  <hr>
+  <div class="row">
 
-
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; top: 120px">
+      <div class="bg-light" id="res-basicEventListener" ></div>
+      <br>
       <div>
-        <pre class="language-js"><code id="code-rotate" contenteditable="true"><xmp>// create svg element
-var svg = d3.select("#rotate")
-  .append("svg")
-    .attr("width", 1000)
-    .attr("height", 300)
-
-// Create the scale
-var x = d3.scaleBand()
-    .domain(["Long name", "Another One", "Here", "And this is", "The end", "ouuuu", "not yet"])         // This is what is written on the Axis: from 0 to 100
-    .range([0, 800]);         // Note it is reversed
-
-// Draw the axis
-svg
-  .append("g")
-  .attr("transform", "translate(100,100)")      // This controls the rotate position of the Axis
-  .call(d3.axisBottom(x))
-  .selectAll("text")
-    .attr("transform", "translate(-10,10)rotate(-45)")
-    .style("text-anchor", "end")
-    .style("font-size", 20)
-    .style("fill", "#69a3b2")
-</xmp></code></pre>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>Difference between d3.select("#button").onclick = myfunction; and d3.select("#button").on("click", myfunction) ?</li>
+          <br>
+          <li>Note that here we </li>
+          <br>
+          <li>The handler is always in the DOM property: the HTML-attribute is just one of the ways to initialize it.</li>
+        </ul>
       </div>
-
-
-      <div id="rotate"></div>
-
+    </div>
   </div>
-</section>
-
-
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-rotate')
-document.getElementById('code-rotate').addEventListener("input", function() {
-  d3.select('#rotate').html("");
-  myJSParserShort('code-rotate');
-})
-</script>
-
-
-<!-- ================================================================================= -->
 
 
 
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
 
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-basicEventListener" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
 
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
 
+<!-- Add  button-->
+<input type="number" id="buttonSize" value=13>
 
-
-
-
-
-<br><br>
-
-
-
-<!-- ==================== AXIS TITLE ==================== -->
-
-  <section style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-
-    <h1>Axis titles</h1>
-    <hr>
-    <p>Axis titles aren't built-in to D3's axis component, but are essential for a chart. You can add titles yourself simply by adding an svg <code>text</code> element. As shown in the chart below:</p>
-
-
-      <div>
-        <pre class="language-js"><code id="code-title" contenteditable="true"><xmp>// set the dimensions and margins of the graph
-var margin = {top: 20, right: 20, bottom: 40, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-// create svg element, respecting margins
-var svg = d3.select("#title")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-// Add X axis
-var x = d3.scaleLinear().domain([0, 100]).range([0, width]);
-svg
-  .append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
-
-// Add Y axis
-var y = d3.scaleLinear().domain([0, 100]).range([ height, 0]);
-svg
-  .append("g")
-  .call(d3.axisLeft(y));
-
-// Add X axis label:
-svg.append("text")
-    .attr("text-anchor", "end")
-    .attr("x", width)
-    .attr("y", height + margin.top + 20)
-    .text("X axis title");
-
-// Y axis label:
-svg.append("text")
-    .attr("text-anchor", "end")
-    .attr("transform", "rotate(-90)")
-    .attr("y", -margin.left+20)
-    .attr("x", -margin.top)
-    .text("Y axis title")
+<!-- Create a div where the circle will take place -->
+<div id="dataviz_buttonEventListener"></div>
 
 </xmp></code></pre>
-      </div>
+<!-- ==================================== -->
 
 
-      <center><div id="title"></div></center>
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-basicEventListener" contenteditable="true"><xmp><script>
+
+// Initialize a circle
+var theCircle = d3.select("#dataviz_buttonEventListener")
+  .append("svg")
+  .append("circle")
+    .attr("cx", 100)
+    .attr("cy", 70)
+    .attr("stroke", "black")
+    .style("fill", "#69b3a2")
+    .attr("r", 20)
+
+// A function that update the color circle
+function changeSize() {
+  theCircle
+    .attr("r", this.value)
+}
+
+// Add an event listener to the button created in the html part
+d3.select("#buttonSize").on("input", changeSize )
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
-<br><br>
-<p><u>Note</u>: The Y axis title uses a 90° rotation to be readable. It causes the whole coordinate system to rotate. Thus <code>x</code> and <code>y</code> attributes for positioning are really tricky to set up properly.</p>
-<p><u>Note</u>: Check the way margins are handeld in this example. This is a very common way to proceed in d3.js, as described in <a href="">this post</a>.</p>
-
-  </div>
-</section>
 
 
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
 <script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-title')
-document.getElementById('code-title').addEventListener("input", function() {
-  d3.select('#title').html("");
-  myJSParserShort('code-title');
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-basicEventListener', 'res-basicEventListener')
+myJSParser('js-basicEventListener', 'res-basicEventListener')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-basicEventListener').addEventListener("input", function() {
+d3.select('#res-basicEventListener').html("");
+myHtmlParser('html-basicEventListener', 'res-basicEventListener');
+myJSParser('js-basicEventListener', 'res-basicEventListener');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-basicEventListener').addEventListener("input", function() {
+d3.select('#res-basicEventListener').html("");
+myHtmlParser('html-basicEventListener', 'res-basicEventListener');
+myJSParser('js-basicEventListener', 'res-basicEventListener');
 })
 </script>
 
-
-<!-- ================================================================================= -->
-
-
-
-
-<section id="contact" style="padding-top: 70px; padding-bottom: 70px; background-color: #69a3b2">
-  <div class="container">
-      <h1>Note to self</h1>
-      <hr>
-
-
-<h6>Remove ticks</h6>
-<pre class="language-js">
-svg.append("g")
-  .call(d3.axisBottom(x).tickSize(0))
-</pre>
-
-<h6>Control which ticks are written</h6>
-<pre class="language-js">
-svg.append("g")
-  .call(d3.axisBottom(x).tickValues(["A", "B", "C"]))
-</pre>
-
-<h6>Control the number of ticks approx</h6>
-<pre class="language-js">
-svar yAxis = d3.svg.axis().scale(y)
-    .orient("left").ticks(5);
-</pre>
-
-<h6>Remove the last tick of the axis</h6>
-<pre class="language-js">
-  svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).tickSizeOuter(0))
-</pre>
-
-
-<h6>Remove the main bar of the axis</h6>
-<pre class="language-js">
-  svg.append("g")
-    .call(d3.axisBottom(x))
-    .select(".domain").remove()
-</pre>
-
-
+</div>
 
 
   </div>
+</div>
 </section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- ============================ RELATED BLOCKS ============================ -->
@@ -593,7 +443,7 @@ svar yAxis = d3.svg.axis().scale(y)
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>scaleOrdinal example - </i>by <a href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465">d3indepth</a></li>
+            <li><i>Introduction to browser events- </i>by <a href="https://javascript.info/introduction-browser-events">Javascript Info</a></li>
             <br>
             <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
             <br>
