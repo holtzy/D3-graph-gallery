@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>Basic ridgeline plot in d3.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Using d3.js to create a very basic histogram">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
+    <meta name="author" content="Yan Holtz">
+    <meta property="og:title" content="Very basic histogram in d3.js">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="Using d3.js to create a very basic histogram">
+    <link rel="icon" href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/img/logo/logo_xxs.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet">
+
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
+
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
+
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
+  </head>
+
+
+
+
+  <body id="page-top">
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <a href="../index.html">D3.js Graph Gallery</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/optimization.html">R</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+          <p style="display:inline; font-size: 35px">Basic ridgeline plot in d3.js</p>
+          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
+          <br>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+          <br><br>
+          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the ridgeline section of the d3.js gallery for more examples.</p>
+          <br>
+          <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
+          <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+      </div>
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+
+<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+    <center><div id="result"></div></center>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+
+<!-- ========= show html code ============== -->
+<br><p>This is a very basic <a href="">histogram</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
+<aside>&larr; Edit me! </aside>
+<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<aside>&larr; Edit me! </aside>
+<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 100, right: 30, bottom: 30, left: 100},
+    width = 960 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//read data
+d3.csv("https://raw.githubusercontent.com/zonination/perceptions/master/probly.csv", function(data) {
+
+  // Get the different categories and count them
+  var categories = data.columns
+  var n = categories.length
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([-10, 140])
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Create a Y scale for densities
+  var y = d3.scaleLinear()
+    .domain([0, 0.4])
+    .range([ height, 0]);
+
+  // Create the Y axis for names
+  var yName = d3.scaleBand()
+    .domain(categories)
+    .range([0, height])
+    .paddingInner(1)
+  svg.append("g")
+    .call(d3.axisLeft(yName));
+
+  // Compute kernel density estimation for each column:
+  var kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40)) // increase this 40 for more accurate density.
+  var allDensity = []
+  for (i = 0; i < n; i++) {
+      key = categories[i]
+      density = kde( data.map(function(d){  return d[key]; }) )
+      allDensity.push({key: key, density: density})
+  }
+
+  // Add areas
+  svg.selectAll("areas")
+    .data(allDensity)
+    .enter()
+    .append("path")
+      .attr("transform", function(d){return("translate(0," + (yName(d.key)-height) +")" )})
+      .datum(function(d){return(d.density)})
+      .attr("fill", "#69b3a2")
+      .attr("stroke", "#000")
+      .attr("stroke-width", 1)
+      .attr("d",  d3.line()
+          .curve(d3.curveBasis)
+          .x(function(d) { return x(d[0]); })
+          .y(function(d) { return y(d[1]); })
+      )
+
+})
+
+// This is what I need to compute kernel density estimation
+function kernelDensityEstimator(kernel, X) {
+  return function(V) {
+    return X.map(function(x) {
+      return [x, d3.mean(V, function(v) { return kernel(x - v); })];
+    });
+  };
+}
+function kernelEpanechnikov(k) {
+  return function(v) {
+    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
+  };
+}
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code', 'result')
+myJSParser('codejs', 'result')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs').addEventListener("input", function() {
+  d3.select('#result').html("");
+  myHtmlParser('code', 'result');
+  myJSParser('codejs', 'result');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code').addEventListener("input", function() {
+  d3.select('#result').html("");
+  myHtmlParser('code', 'result');
+  myJSParser('codejs', 'result');
+})
+</script>
+
+
+
+
+  </div>
+</section>
+
+
+
+<!-- ============================ -->
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
+            <br>
+            <li>yo</li>
+            <br>
+            <li>ll</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
+
+
+  <section id="contact" class="bg" style="background-color: white">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-2 text-center"></div>
+         <div class="col-lg-8 text-center">
+           <br><br><br>
+           <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
+           <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
+           <div style="text-align:center">
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
+            </div>
+
+         </div>
+       </div>
+    </div>
+  </section>
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light">
+      <div class="container" >
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="https://twitter.com/R_Graph_Gallery">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/holtzy">
+                  <i class="fa fa-github"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ JAVASCRIPT SECTION ============================ -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+      <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+    <!-- Contact form JavaScript -->
+    <script src="../js/jqBootstrapValidation.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="../js/agency.min.js"></script>
+
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
+
+
+    <!-- Function to download the content of the div -->
+    <script>
+    function download(){
+        var a = document.body.appendChild(
+            document.createElement("a")
+        );
+        a.download = "export.html";
+        var command = document.getElementById('code').innerHTML;
+        command = command.replace(/<\/?span[^>]*>/g,"");
+        a.href = "data:html" + command
+        a.click(); // Trigger a click on the element
+    }
+    </script>
+
+
+    <!-- Function to download the graphic as png automatically -->
+<!--     <script>
+        html2canvas($('#content'),
+        {
+          onrendered: function (canvas) {
+            var a = document.createElement('a');
+            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            a.download = 'somefilename.jpg';
+            a.click();
+          }
+        });
+    </script> -->
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+</html>
