@@ -3,16 +3,27 @@
 
   <head>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
     <meta charset="utf-8">
-    <title>Circular Barplot</title>
+    <title>Circular barplot &#124; the D3 Graph Gallery</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Building histograms in d3.js">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,histogram">
+    <meta name="description" content="How to build a circular barplot with Javascript and D3.js: a set of examples going from simple to highly customized charts.">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,circular barplot ">
     <meta name="author" content="Yan Holtz">
 
-    <meta property="og:title" content="The D3 Graph Gallery &#8211; Simple charts made in d3.js">
+    <meta property="og:title" content="Area Chart &#124; the D3 Graph Gallery">
     <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Crypto Arbitrage &#8211; A feasibility analysis">
+    <meta property="og:description" content="How to build a circular barplot with Javascript and D3.js: a set of examples going from simple to highly customized charts.">
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,78 +38,74 @@
     <!-- Custom styles for this template -->
     <link href="css/agency.css" rel="stylesheet">
 
-  </head>
+    <!-- JQUERY -->
+    <script src="vendor/jquery/jquery.min.js"></script>
 
-  <body id="page-top">
-
-
-
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-      <div class="container">
-        <a href="index.html">&larr; D3.js Graph Gallery</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/optimization.html">R</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+</head>
 
 
 
+<body id="page-top">
 
 
-    <!-- Header -->
-    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-      <div class="textlanding">
-        <p style="display:inline; font-size: 35px">Circular Barplot</p>
-          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">This is the <a href="https://www.data-to-viz.com/graph/circularbarplot.html">circular barplot</a> section of the gallery. If you want to know more about this kind of chart, visit <a href="https://www.data-to-viz.com/graph/circularbarplot.html">data-to-viz.com</a>. If you're looking for a simple way to implement it in d3.js, pick an example below.</p>
-      </div>
-    </header>
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+});
+</script>
+
+  <!-- Header -->
+  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+    <div class="textlanding">
+      <h1>Circular barplot</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 800px; margin: auto">This is the <a href="https://www.data-to-viz.com/graph/circularbarplot.html">circular barplot</a> section of the gallery, a variation of the well known <a href="barplot.html">barplot</a>. Note that even if visually appealing, circular barplot must be used with care since groups <a href="https://www.data-to-viz.com/graph/circularbarplot.html">do not share the same Y axis</a>. It is very adapted for cyclical data though. Visit <a href="https://www.data-to-viz.com/graph/circularbarplot.html">data-to-viz.com</a> for more info on this type of chart, or check the examples below to learn how to implement it in <u>d3.js</u>.</p>
+  </div>
+</header>
 
 
 
-
+<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+<div id="position_for_images"> </div>
+<script>
+$(function(){
+  $("#position_for_images").load("html_chunk/images.html");
+});
+</script>
 
 
 
@@ -116,9 +123,9 @@
 
 
     <div class="mySeryTitle">Step by step</div>
-    <hr>
+    <hr
+    <p>Here is a set of examples leading to a proper circular barplot, step by step. The first <a href="graph/circular_barplot_basic.html">most basic circular barchart</a> shows how to take advantage of the <code>d3.scaleRadial()</code> function to display bars around a circle. Once this concept is understood, it is relatively straight forward to <a href="graph/circular_barplot_add_label.html">add labels</a> or another <a href="graph/circular_barplot_double.html">sery of bars</a>.</p>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/circular_barplot_basic.html">
           <div class="portfolio-hover">
@@ -131,7 +138,6 @@
           <img class="img-fluid" src="img/graph/circular_barplot_basic.png" alt="">
         </a>
       </div>
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/circular_barplot_add_label.html">
           <div class="portfolio-hover">
@@ -144,7 +150,6 @@
           <img class="img-fluid" src="img/graph/circular_barplot_add_label.png" alt="">
         </a>
       </div>
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/circular_barplot_double.html">
           <div class="portfolio-hover">
@@ -157,105 +162,37 @@
           <img class="img-fluid" src="img/graph/circular_barplot_double.png" alt="">
         </a>
       </div>
-
     </div>
 
-
-
-    <div class="mySeryTitle">Variation</div>
-    <hr>
-
-    <div id="portfolio-items" class="row">
-
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/histogram_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Genetics in the UK</p>
-              <hr>
-              <p class="explanation_portfolio">Assessing the geographic distribution of genetic traits<i>for xxx</i></p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/histogram_basic.png" alt="">
-        </a>
-      </div>
-
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Genetics in the UK</p>
-              <hr>
-              <p class="explanation_portfolio">Assessing the geographic distribution of genetic traits<i>for xxx</i></p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/histogram_basic.png" alt="">
-        </a>
-      </div>
-
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Genetics in the UK</p>
-              <hr>
-              <p class="explanation_portfolio">Assessing the geographic distribution of genetic traits<i>for xxx</i></p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/histogram_basic.png" alt="">
-        </a>
-      </div>
-
-    </div>
-
-    <div class="mySeryTitle">Interactive</div>
+    <br>
+    <div class="mySeryTitle">Selection of blocks</div>
     <hr>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/histogram_basic.html">
+        <a class="portfolio-link" href="https://bl.ocks.org/mbostock/6fead6d1378d6df5ae77bb6a719afcb2">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Genetics in the UK</p>
+              <p>Radial Stacked Bar</p>
               <hr>
-              <p class="explanation_portfolio">Assessing the geographic distribution of genetic traits<i>for xxx</i></p>
+              <p class="explanation_portfolio">A circular stacked barchart by Mike Bostock showing the population of US states, split in age range.</p>
             </div>
           </div>
-          <img class="img-fluid" src="img/graph/histogram_basic.png" alt="">
+          <img class="img-fluid showBlock" src="img/block/block_circularBar.png" alt="circular barchart">
         </a>
       </div>
-
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+        <a class="portfolio-link" href="https://bl.ocks.org/mbostock/31bd072e50eaf550d79e">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Genetics in the UK</p>
+              <p>Circular barchart caveat</p>
               <hr>
-              <p class="explanation_portfolio">Assessing the geographic distribution of genetic traits<i>for xxx</i></p>
+              <p class="explanation_portfolio">An animation by Mike Bostock aiming to describe the bias in circular barchart.<br><br> Long bars tend to be visually inflated if no specific care is given.</p>
             </div>
           </div>
-          <img class="img-fluid" src="img/graph/histogram_basic.png" alt="">
+          <img class="img-fluid showBlock" src="img/block/block_circularCaveat.png" alt="circular barchart">
         </a>
       </div>
-
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Genetics in the UK</p>
-              <hr>
-              <p class="explanation_portfolio">Assessing the geographic distribution of genetic traits<i>for xxx</i></p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/histogram_basic.png" alt="">
-        </a>
-      </div>
-
     </div>
-
-    <div class="mySeryTitle">Related blocks</div>
-    <hr>
-
 
  </div>
 </section>
@@ -270,54 +207,119 @@
 
 
 
+<!-- ============================ RELATED SECTION ============================ -->
+<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
 
+<div class="container">
 
-
-
-
-
-
-<!-- --------------------------- FOOTER SECTION ------------------------------------------------------------------- -->
-    <footer class="bg-light">
-      <div class="container" >
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/R_Graph_Gallery">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/holtzy">
-                  <i class="fa fa-github"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
+  <p class="mySeryTitle">Related chart types</p>
+  <hr>
+  <div class="row">
+    <div class="col-md-2 col-sm-4 portfolio-item ">
+      <a class="portfolio-link"  href="barplot.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
           </div>
         </div>
-      </div>
-    </footer>
+        <img class="img-fluid" src="img/section/Bar150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Barplot</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item ">
+      <a class="portfolio-link"  href="spider.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Spider150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Spider / Radar</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item ">
+      <a class="portfolio-link"  href="wordcloud.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Wordcloud150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Wordcloud</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item ">
+      <a class="portfolio-link"  href="parallel.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Parallel1150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Parallel</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item ">
+      <a class="portfolio-link"  href="lollipop.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Lollipop150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Lollipop</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item ">
+      <a class="portfolio-link" href="circular_barplot.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/CircularBarplot150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Circular Barplot</div>
+    </div>
+  </div>
 
-<!-- ---------------------------------------------------------------------------------------------- -->
+</div>
+</section>
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+<!-- ANCHOR -->
+<a name="contactanchor"></a>
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
 
 
 
@@ -332,14 +334,9 @@
 
 
 
-
-
-<!-- ------------------------ JAVASCRIPT SECTION ----------------------------- -->
-
-
+<!-- =============== JAVASCRIPT SECTION =============== -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
@@ -363,7 +360,7 @@
 
 
 
-<!----------------------------------------------------------------------------------------------- -->
+<!--============================== -->
 
 
 

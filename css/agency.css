@@ -81,6 +81,13 @@ section h3.section-subheading {
 
 
 
+/* ---------- SELECTION OF BLOCKS ----------------- */
+.showBlock {
+  border: solid;
+  border-color: #E8E8E8;
+  border-width: 1px;
+  border-radius: 5px;
+}
 
 
 
