@@ -6,16 +6,26 @@
 
   <head>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
     <meta charset="utf-8">
     <title>Drawing axis in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Drawing axis with d3.js">
+    <meta name="description" content="Drawing axis with d3.js: many examples describing the different types of axis and how to custom them. Reproducible and interactive code provided.">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
     <meta name="author" content="Yan Holtz">
 
     <meta property="og:title" content="Drawing axis with d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Using d3.js to draw axis">
+    <meta property="og:description" content="Drawing axis with d3.js: many examples describing the different types of axis and how to custom them. Reproducible and interactive code provided.">
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -91,7 +101,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to draw <u>axis</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
+          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to draw <u>axis</u> with d3.js. Different <u>scale types</u> are described first, followed by <u>customization</u> possibilities. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
       </div>
     </header>
 
