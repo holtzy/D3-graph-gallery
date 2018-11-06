@@ -93,7 +93,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This is the <a href="https://www.data-to-viz.com/graph/violin.html">violin chart</a> section of the gallery. Violin charts aim to study the distribution of one or several numeric variable. They are very well adapted for large dataset, as stated in <a href="https://www.data-to-viz.com/graph/violin.html">data-to-viz.com</a>. If you're looking for a simple way to implement it in d3.js, pick an example below.</p>
+      <p style="max-width: 700px; margin: auto"><a href="https://www.data-to-viz.com/graph/violin.html">Violin plots</a> allow to visualize the distribution of a numeric variable for one or several groups. They are very well adapted for large dataset, as stated in <a href="https://www.data-to-viz.com/graph/violin.html">data-to-viz.com</a>. Note that 2 approaches exist to build them in d3.js, the first computing a <u>kernel density estimate</u>, the second building a high resolution <u>histogram</u>.</p>
   </div>
 </header>
 
@@ -122,12 +122,55 @@ $(function(){
   <div class="container">
 
 
-    <div class="mySeryTitle">Step by step</div>
+    <div class="mySeryTitle">Using Binning with <code>d3.histogram()</code></div>
     <hr>
+    <p>The <code>d3.histogram()</code> takes a numeric variable, split it into <u>bins</u> and count the number of value per bin. See the <a href="histogram.html">histogram section</a> for basic examples. It is possible to represent the histogram with a <u>mirror effect</u> for each group and using a curving function for <u>smoothing</u>: it makes the violin plots below.</p>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/violin_basic.html">
+        <a class="portfolio-link" href="graph/violin_basicHist.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Violin chart</p>
+              <hr>
+              <p class="explanation_portfolio">Here a smoothing function is used to transformed the mirror histogram in a violin plot.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/violin_basicHist1.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/violin_basicHist.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Variation: no smoothing</p>
+              <hr>
+              <p class="explanation_portfolio">A variation of the previous chart without any smoothing</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/violin_basicHist2.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/violin_basicHist.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Variation: show steps</p>
+              <hr>
+              <p class="explanation_portfolio">Here the curveStep function is used to interpolate values: it reveals the underlying histogram structure.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/violin_basicHist3.png" alt="">
+        </a>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="mySeryTitle">Using Kernel density estimation</div>
+    <hr>
+    <p>Another way to build a violin plot is to compute a <u>kernel density estimate</u>. This is what is done in the <a href="density.html">density plot</a> and <a href="ridgeline.html">ridgeline plot</a> sections. As you can see, the result is slightly different compared to above.</p>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/violin_basicDens.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
               <p>Most basic</p>
@@ -135,9 +178,61 @@ $(function(){
               <p class="explanation_portfolio">The most basic violin chart you can do in d3.js. Keeping only the core code.</p>
             </div>
           </div>
-          <img class="img-fluid" src="img/graph/violin_basic.png" alt="">
+          <img class="img-fluid" src="img/graph/violin_basicDens.png" alt="">
         </a>
       </div>
+    </div>
+
+
+    <br><br>
+    <div class="mySeryTitle">Going further</div>
+    <hr>
+    <p>A few examples expanding the concepts described above to build custom violin charts.</p>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/violin_jitter.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Violin with jitter</p>
+              <hr>
+              <p class="explanation_portfolio">Half of the violin is removed to show the single observations. Jittering is used to avoid dots overlap.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/violin_jitter.png" alt="">
+        </a>
+      </div>
+    </div>
+
+
+    <br><br>
+    <div class="mySeryTitle">Selection of blocks</div>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/KingOfCramers/f019d2b34a3e8f8da307958b0d9e30cf">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Violin Chart</p>
+              <hr>
+              <p class="explanation_portfolio">Short code building a violin chart from 3 dummy arrays.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" style="opacity: 0.6" src="img/block/block_violin1.png" alt="circular barchart">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="http://bl.ocks.org/asielen/d15a4f16fa618273e10f">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Violin + boxplot</p>
+              <hr>
+              <p class="explanation_portfolio">Implementation by Andrew Sielen, with button to understand how to custom each part of the char.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" style="opacity: 0.6" src="img/block/block_violin2.png" alt="circular barchart">
+        </a>
+      </div>
+    </div>
 
 
  </div>
