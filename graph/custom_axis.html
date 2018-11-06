@@ -527,10 +527,18 @@ document.getElementById('code-title').addEventListener("input", function() {
 
 
 
-<section id="contact" style="padding-top: 70px; padding-bottom: 70px; background-color: #69a3b2">
-  <div class="container">
-      <h1>Note to self</h1>
-      <hr>
+<br><br>
+
+
+
+<!-- ==================== USUAL CUSTOMIZATION ==================== -->
+
+  <section style="padding-top: 20px; padding-bottom: 20px">
+  <div class="container" >
+
+    <h1>Other usual customization</h1>
+    <hr>
+    <p>This is my cheat sheet for usual customization I perform on my charts:</p>
 
 
 <h6>Remove ticks</h6>
@@ -538,18 +546,21 @@ document.getElementById('code-title').addEventListener("input", function() {
 svg.append("g")
   .call(d3.axisBottom(x).tickSize(0))
 </pre>
+<br>
 
 <h6>Control which ticks are written</h6>
 <pre class="language-js">
 svg.append("g")
   .call(d3.axisBottom(x).tickValues(["A", "B", "C"]))
 </pre>
+<br>
 
-<h6>Control the number of ticks approx</h6>
+<h6>Control the number of ticks approximatively</h6>
 <pre class="language-js">
 svar yAxis = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
 </pre>
+<br>
 
 <h6>Remove the last tick of the axis</h6>
 <pre class="language-js">
@@ -557,7 +568,7 @@ svar yAxis = d3.svg.axis().scale(y)
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x).tickSizeOuter(0))
 </pre>
-
+<br>
 
 <h6>Remove the main bar of the axis</h6>
 <pre class="language-js">
@@ -571,6 +582,12 @@ svar yAxis = d3.svg.axis().scale(y)
 
   </div>
 </section>
+
+
+
+
+
+
 
 
 <!-- ============================ RELATED BLOCKS ============================ -->
