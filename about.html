@@ -92,24 +92,11 @@ $(function(){
           </a>
         </li>
       </ul>
-      <br><br>
-      <p>This gallery was actually born from the frustration I felt when learning d3. For instance, let's say you want to learn how to reorder your barplot</p>
-      <p>1- Hard to find a simple example. One of the first example you will find is this one. But it also has a button to do that and that --> makes the code hard to digest. Need something simple.</p>
-      <p>2- Once you've found an example that is simple enough, you want to play with the code. Like delete one line or two to see what it changes. -> impossible in blocks.</p>
-      <p>3- If you want to play with it locally, the data must be stored somewhere online to be able to read it. My examples have all source data on github, so no need to change the code.</p>
-      <p>4-</p>
   </div>
 </header>
 
 
 
-<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-<div id="position_for_images"> </div>
-<script>
-$(function(){
-  $("#position_for_images").load("html_chunk/images.html");
-});
-</script>
 
 
 
@@ -118,79 +105,87 @@ $(function(){
 
 
 
-
-
-<!-- ======================== PORTFOLIO SECTION ============================ -->
-<!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
-<section class="bg" id="portfolio" style="padding-top: 10px">
+<!-- ========================  ============================ -->
+<section class="bg" style="padding-top: 20px">
   <div class="container">
 
 
-    <div class="mySeryTitle">Step by step</div>
-    <hr>
-    <div id="portfolio-items" class="row">
+    <div class="row">
 
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/area_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic area chart you can do in d3.js. Keeping only the core code.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/area_basic.png" alt="">
-        </a>
+      <div class="col-md-6 aboutCol">
+        <h2>What is d3.js</h2>
+        <hr>
+        <p><a href="https://d3js.org">D3.js</a> is a <u>JavaScript library</u> for manipulating documents based on data. Basically, it helps you build shapes based on <u>HTML, SVG, and CSS</u>.<br><br>D3.js has been created by <a href="https://bost.ocks.org/mike/">Mike Bostock</a> and its home is <a href="https://d3js.org">here</a>.<br><br>Why is d3 so awesome? Because it allows to build absolutely any type of visualization, <u>without any limits</u>.</p>
       </div>
+
+      <div class="col-md-6 aboutCol">
+        <h2>Why this gallery</h2>
+        <hr>
+        <p>
+          D3.js already has awesome dedicated ressources to get code example: a <a href="https://github.com/d3/d3/wiki/Gallery">wiki</a>, a <a href="http://christopheviau.com/d3list/gallery.html">gallery</a> and the very awesome <a href="http://blockbuilder.org/search">block builder</a>. Moreover, thousands of <a href="https://bl.ocks.org">blocks</a> are available online.
+          <br>
+          The d3 graph gallery does not aim
+        </p>
+      </div>
+
+      <div class="col-md-6 aboutCol">
+        <h2>How the gallery works</h2>
+        <hr>
+        <p>
+          About <u>300 charts</u> are displayed in the gallery. They are classified in about <u>40 sections</u>: the main chart types describe in <a href="https://www.data-to-viz.com">data to viz</a>.
+          <br><br>
+          For each graph, the chart appears on the left at a <u>static position</u> and the <u>editable code</u> on the right. Playing with the code is the best way to understand how it works IMO.
+          <br><br>
+          <u>Technical details</u> are provided under each chart, linking to related docs. No consideration is given concerning dataviz best practice, links toward <a href="https://www.data-to-viz.com">data to viz</a> are provided for this concern.
+          <br><br>
+          Code is extensively <u>commented</u> and data are stored <u>online</u>. It allows to copy and paste the code in a <u>.html</u> file and make it works locally.
+      </div>
+
+      <div class="col-md-6 aboutCol">
+        <h2>Acknowledgment</h2>
+        <hr>
+        <ul>
+          <li><a href="">John Mc Grath</a>, for allowing me to learn d3.js for our mental health comorbidity dataviz <a href="https://www.nbepi.com">projects</a></li>
+          <br>
+          <li><a href="">Tom Luff</a>, for answering my millions of silly javascript questions.</li>
+          <br>
+          <li><a href="https://www.conor.fr">Conor Healy</a>, for providing the logos and listening to my crazy dataviz ideas</li>
+          <br>
+          <li></li>
+        </ul>
+      </div>
+
+      <div class="col-md-6 aboutCol">
+        <h2>Contributing</h2>
+        <hr>
+        <p>
+          About <u>300 charts</u> are displayed in the gallery. They are classified in about <u>40 sections</u>: the main chart types describe in <a href="https://www.data-to-viz.com">data to viz</a>.
+          <br><br>
+      </div>
+
+
+      <div class="col-md-6 aboutCol">
+        <h2>Tools used</h2>
+        <hr>
+        <ul>
+          <li>Bootstrap</li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+
+
+    </div>
 
  </div>
 </section>
 
-
+<style>
+.aboutCol {
+  margin-top: 50px;
+}
+</style>
 <!-- ======================================================================= -->
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED SECTION ============================ -->
-<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-
-<div class="container">
-
-  <p class="mySeryTitle">Related chart types</p>
-  <hr>
-  <div class="row">
-    <div class="col-md-2 col-sm-4 portfolio-item" >
-      <a class="portfolio-link"  href="violin.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Violin150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Violin</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="density.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Density150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Density</div>
-    </div>
-  </div>
-
-</div>
-</section>
-
 
 
 
@@ -209,6 +204,18 @@ $(function(){
   $("#contact").load("html_chunk/contact.html");
 });
 </script>
+
+
+
+
+
+
+<p>This gallery was actually born from the frustration I felt when learning d3. For instance, let's say you want to learn how to reorder your barplot</p>
+<p>1- Hard to find a simple example. One of the first example you will find is this one. But it also has a button to do that and that --> makes the code hard to digest. Need something simple.</p>
+<p>2- Once you've found an example that is simple enough, you want to play with the code. Like delete one line or two to see what it changes. -> impossible in blocks.</p>
+<p>3- If you want to play with it locally, the data must be stored somewhere online to be able to read it. My examples have all source data on github, so no need to change the code.</p>
+<p>4-</p>
+
 
 
 
