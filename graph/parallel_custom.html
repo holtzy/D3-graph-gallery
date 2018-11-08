@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Parallel coordinates chart in d3.js</title>
+  <title>Parallel coordinates chart with hover effects in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a good looking parallel coordinates chart with group colors, axis annotation and more.">
+  <meta name="description" content="Using d3.js to create a good looking parallel coordinates chart with group colors, axis annotation and hover effect.">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, parallel coordinates chart">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Parallel coordinates chart in d3.js">
+  <meta property="og:title" content="Parallel coordinates chart with hover effects in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a good looking parallel coordinates chart with group colors, axis annotation and more.">
+  <meta property="og:description" content="Using d3.js to create a good looking parallel coordinates chart with group colors, axis annotation and hover effect.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Clean parallel coordinates chart in d3.js</h1>
+      <h1>Parallel coordinates chart with color effect</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +105,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post is an extension of the previous <a href="parallel_basic.html">basic parallel coordinate chart</a>. The idea is to add a color scale to highlight the different groups and improve the general appearance.</p>
+      <p style="max-width: 700px; margin: auto">This post is an extension of the previous <a href="parallel_basic.html">basic parallel coordinate chart</a>. The idea is to add a color scale to highlight the different groups and <u>hover effects</u> to highlight a specific group or a particular axis</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../parallel.html">Parallel coordinates section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -139,15 +139,15 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The tricky part of parallel coordinate charts is to automate the creation of the Y axis.</li>
+          <li>You probably want to understand the previous <a href="parallel_basic.html">basic parallel coordinate chart</a> first.</li>
           <br>
-          <li>One axis must be created per variable. The code beside create one <code>scale</code> per column in the <code>.csv</code> input file and store it in a <code>y</code> object.</li>
-          <br>
-          <li>For instance, <code>y["Sepal_width"]</code> is the scale of the variable called Sepal_width.</li>
-          <br>
-          <li><u>Note</u>: the axis are drawn after the lines: they are thus on top of the chart, making them readable</li>
-          <br>
-          <li>See the <a href="../parallel.html">parallel coordinate chart</a> section for improvement of this plot.</br>
+          <li>
+            Here hover effects are triggered following 2 different strategies:
+            <ul>
+              <li><u>axis</u>: pure <code>css</code> - axis have a specific class called <code>axis</code>. It is possible to specify a style when hovering with <code>axis:hover</code></li>
+              <li><u>groups</u>: use <code>javascript</code> - a function is triggered when a group is hovered, another when group is not hovered anymore.</li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -175,6 +175,16 @@ $(function(){
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
+<!-- A bit of style -->
+<style>
+.axis {
+  opacity: 0.4;
+}
+.axis:hover {
+  opacity: 1;
+}
+</style>
+
 </xmp></code></pre>
 <!-- ==================================== -->
 
@@ -187,8 +197,8 @@ $(function(){
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 30, right: 10, bottom: 10, left: 0},
-  width = 500 - margin.left - margin.right,
+var margin = {top: 30, right: 50, bottom: 10, left: 50},
+  width = 460 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -208,24 +218,52 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
     .domain(["setosa", "versicolor", "virginica" ])
     .range([ "#440154ff", "#21908dff", "#fde725ff"])
 
-  // Extract the list of dimensions we want to keep in the plot. Here I keep all except the column called Species
-  dimensions = d3.keys(data[0]).filter(function(d) { return d != "Species" })
+  // Here I set the list of dimension manually to control the order of axis:
+  dimensions = ["Petal_Length", "Petal_Width", "Sepal_Length", "Sepal_Width"]
 
   // For each dimension, I build a linear scale. I store all in a y object
-  y = d3.scaleLinear()
-      .domain([0,12])
+  var y = {}
+  for (i in dimensions) {
+    name = dimensions[i]
+    y[name] = d3.scaleLinear()
+      .domain( [0,8] ) // --> Same axis range for each group
+      // --> different axis range for each group --> .domain( [d3.extent(data, function(d) { return +d[name]; })] )
       .range([height, 0])
   }
 
   // Build the X scale -> it find the best position for each Y axis
   x = d3.scalePoint()
     .range([0, width])
-    .padding(1)
     .domain(dimensions);
+
+  // Highlight the specie that is hovered
+  var highlight = function(d){
+
+    selected_specie = d.Species
+
+    // first every group turns grey
+    d3.selectAll(".line")
+      .transition().duration(200)
+      .style("stroke", "lightgrey")
+      .style("opacity", "0.2")
+    // Second the hovered specie takes its color
+    d3.selectAll("." + selected_specie)
+      .transition().duration(200)
+      .style("stroke", color(selected_specie))
+      .style("opacity", "1")
+  }
+
+  // Unhighlight
+  var doNotHighlight = function(d){
+    d3.selectAll(".line")
+      .transition().duration(200).delay(1000)
+      .style("stroke", function(d){ return( color(d.Species))} )
+      .style("opacity", "1")
+  }
 
   // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
   function path(d) {
-      return d3.line()(dimensions.map(function(p) { return [x(p), y(d[p])]; }));
+      return d3.line()(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
   }
 
   // Draw the lines
@@ -234,11 +272,30 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
     .data(data)
     .enter()
     .append("path")
+      .attr("class", function (d) { return "line " + d.Species } ) // 2 class for each line: 'line' and the group name
       .attr("d",  path)
       .style("fill", "none" )
-      .style("stroke", function(d){ return( color(d.Species) )} )
+      .style("stroke", function(d){ return( color(d.Species))} )
       .style("opacity", 0.5)
+      .on("mouseover", highlight)
+      .on("mouseleave", doNotHighlight )
 
+  // Draw the axis:
+  svg.selectAll("myAxis")
+    // For each dimension of the dataset I add a 'g' element:
+    .data(dimensions).enter()
+    .append("g")
+    .attr("class", "axis")
+    // I translate this element to its right position on the x axis
+    .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
+    // And I build the axis with the call function
+    .each(function(d) { d3.select(this).call(d3.axisLeft().ticks(5).scale(y[d])); })
+    // Add axis title
+    .append("text")
+      .style("text-anchor", "middle")
+      .attr("y", -9)
+      .text(function(d) { return d; })
+      .style("fill", "black")
 
 })
 
