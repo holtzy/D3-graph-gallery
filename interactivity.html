@@ -167,20 +167,44 @@ $(function(){
 
 
     <br><br>
-    <div class="mySeryTitle">Zooming</div>
+    <div class="mySeryTitle">Brushing</div>
     <hr>
-    <p>A post on the basic of color management with d3.js. You will learn how to call a color, how to build different types of color palette and how to map them to your dataset.</p>
+    <p>A post on the basic of <u>brushing</u> with d3.js. It starts by very <a href="graph/interactivity_brush.html">basic use</a> of the <code>d3.brush()</code> function: just initializing the functionality. Then, it explains how to <a href="graph/interactivity_brush.html#realgraph">trigger a function</a> to perform a change on the selected points. Lastly, it describes how to <a href="graph/interactivity_brush.html#brushingforzoom">smoothly zoom</a> on the selected area.</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/scatter_brush.html">
+        <a class="portfolio-link" href="graph/interactivity_brush.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Brushing</p>
+              <p>Create your first brush</p>
               <hr>
-              <p class="explanation_portfolio">How to apply brushing on a chart to select dots.</p>
+              <p class="explanation_portfolio">A very basic example showing how to initialize a brush area with d3.brush.</p>
             </div>
           </div>
-          <img class="img-fluid" src="img/graph/scatter_brush.gif" alt="">
+          <img class="img-fluid" src="img/graph/interactivity_brushInitialize.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/interactivity_brush.html#realgraph">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Trigger a function</p>
+              <hr>
+              <p class="explanation_portfolio">How to get the brush coordinates and apply a function to the points in the area.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/interactivity_brushTrigger.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/interactivity_brush.html#brushingforzoom">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Brushing for zooming</p>
+              <hr>
+              <p class="explanation_portfolio">How to zoom on the brushed area with a smooth transition.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/interactivity_brushZoom.gif" alt="">
         </a>
       </div>
     </div>
