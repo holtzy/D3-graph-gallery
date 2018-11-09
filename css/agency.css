@@ -30,15 +30,12 @@ h6 {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-
 aside {
   float: right;
   margin-right: -80px;
   width: 80px;
   color: red;
 }
-
-
 
 section {
   padding: 100px 0;
@@ -64,6 +61,33 @@ section h3.section-subheading {
     padding: 150px 0;
   }
 }
+
+
+
+
+/* ---------- Table of content on the left----------------- */
+ul.nav-pills {
+    top: 40%;
+    position: fixed;
+    color: black !important;
+}
+
+#myScrollspy .nav-link {
+  color: grey;
+}
+
+#myScrollspy .nav-link.active {
+  color: black;
+  border-left: solid;
+  border-color: #69b3a2;
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+#myScrollspy .nav-link:hover {
+  color: black;
+}
+
 
 
 
