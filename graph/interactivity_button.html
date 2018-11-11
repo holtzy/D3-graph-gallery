@@ -1,10 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
-
-
   <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
 
     <meta charset="utf-8">
     <title>Adding and using buttons in d3.js</title>
@@ -42,12 +49,16 @@
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
 
+    <!-- Bootstrap js -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/agency.min.js"></script>
+
   </head>
 
 
 
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 
-  <body id="page-top">
 
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
@@ -102,6 +113,23 @@
 
 
 
+    <!-- TABLE of CONTENT -->
+    <div>
+        <nav class="col-sm-3 col-4" id="myScrollspy">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#buttonTypes">Button Types</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#triggerExample">Trigger an event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#eventListener">Event listener</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
 
 
 
@@ -111,7 +139,7 @@
 
 <!-- ==================== BUTTON TYPES ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
+  <section id="buttonTypes" style="padding-top: 20px; padding-bottom: 20px">
   <div class="container" >
 
     <h1>Button types offered in <code>HTML</code></h1>
@@ -188,7 +216,7 @@ document.getElementById('code-allType').addEventListener("input", function() {
 
 <!-- ==================== BASIC TRIGGER EXEMPLE ==================== -->
 
-<section class="bg">
+<section id="triggerExample" class="bg">
 <div class="container" >
   <h1>Trigger function in <code>html</code> with <code>onclick()</code>.</h1>
   <hr>
@@ -304,7 +332,7 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 
 <!-- ==================== ADD EVENT LISTENER ==================== -->
 
-<section class="bg">
+<section id="eventListener" class="bg">
 <div class="container" >
   <h1>Event listener in <code>javascript</code></h1>
   <hr>
@@ -514,47 +542,6 @@ $(function(){
 
 
 
-
-
-
-
-<!-- ============================ JAVASCRIPT SECTION ============================ -->
-
-
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-      <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
-
-    <!-- Contact form JavaScript -->
-    <script src="../js/jqBootstrapValidation.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="../js/agency.min.js"></script>
-
-    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-    <script>
-      $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-    </script>
-
-
-    <!-- Function to download the content of the div -->
-    <script>
-    function download(){
-        var a = document.body.appendChild(
-            document.createElement("a")
-        );
-        a.download = "export.html";
-        var command = document.getElementById('code').innerHTML;
-        command = command.replace(/<\/?span[^>]*>/g,"");
-        a.href = "data:html" + command
-        a.click(); // Trigger a click on the element
-    }
-    </script>
 
 
 
