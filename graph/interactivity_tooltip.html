@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Building tooltips with d3.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to add tooltips on a d3.js plot: setting up, customizing, positionning and more. Explanation and reproducible code.">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="Building tooltips with d3.js">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="How to add tooltips on a d3.js plot: setting up, customizing, positionning and more. Explanation and reproducible code.">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet">
+
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
+
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
+
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/agency.min.js"></script>
+
+  </head>
+
+
+
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+    $(function(){
+      $("#mainNav").load("../html_chunk/menu.html");
+    });
+    </script>
+
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"> </div>
+    <script>
+    $(function(){
+      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+    });
+    </script>
+
+
+
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+          <h1>Building tooltips with d3.js</h1>
+          <hr class="short_hr">
+          <br>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+          <br><br>
+          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to add <u>tooltips</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
+      </div>
+    </header>
+
+
+
+
+
+
+
+
+    <!-- TABLE of CONTENT -->
+    <div>
+        <nav class="col-sm-3 col-4" id="myScrollspy">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#buttonTypes">Button Types</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#triggerExample">Trigger an event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#eventListener">Event listener</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== MOST BASIC TOOLTIP ==================== -->
+
+<section id="triggerExample" class="bg">
+<div class="container" >
+  <h1>Most basic tooltip</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-4 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-basicTrigger" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>First, a basic circle is added using <code>.svg</code>. Note that it would work the same with any type of <code>svg</code> element.</li>
+          <br>
+          <li>Then a new <code>div</code> is added, with a bit of text in it and a few features. It is actually the tooltip! But it is hidden is css with <code>visibility: hidden</code>.</li>
+          <br>
+          <li>Lastly, 3 different javascript functions are called when an action is done on the circle: hovering it, moving, and leaving it. This will reveal or hide the tooltip.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-8 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-basicTrigger" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-basicTrigger" contenteditable="true"><xmp><script>
+
+// Start by creating the svg area
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", 400)
+    .attr("height", 400)
+
+// Append a circle
+svg.append("circle")
+  .attr("id", "circleBasicTooltip")
+  .attr("cx", 150)
+  .attr("cy", 200)
+  .attr("r", 40)
+  .attr("fill", "#69b3a2")
+
+// create a tooltip
+var tooltip = d3.select("#my_dataviz")
+  .append("div")
+    .style("position", "absolute")
+    .style("visibility", "hidden")
+    .text("I'm a circle!");
+
+//
+d3.select("#circleBasicTooltip")
+  .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+  .on("mousemove", function(){return tooltip.style("top", (event.pageY-800)+"px").style("left",(event.pageX-800)+"px");})
+  .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-basicTrigger', 'res-basicTrigger')
+myJSParser('js-basicTrigger', 'res-basicTrigger')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-basicTrigger').addEventListener("input", function() {
+d3.select('#res-basicTrigger').html("");
+myHtmlParser('html-basicTrigger', 'res-basicTrigger');
+myJSParser('js-basicTrigger', 'res-basicTrigger');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-basicTrigger').addEventListener("input", function() {
+d3.select('#res-basicTrigger').html("");
+myHtmlParser('html-basicTrigger', 'res-basicTrigger');
+myJSParser('js-basicTrigger', 'res-basicTrigger');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== MOST BASIC TOOLTIP ==================== -->
+
+<section id="customContent" class="bg">
+<div class="container" >
+  <h1>Custom tooltip content with <code>html</code></h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-4 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-customContent" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>Good news! you can put whatever <code>html</code> element in your tooltip. Thus, absolutely any customization is doable.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-8 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-customContent" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="div_customContent"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-customContent" contenteditable="true"><xmp><script>
+
+// Start by creating the svg area
+var svg_customContent = d3.select("#div_customContent")
+  .append("svg")
+    .attr("width", 400)
+    .attr("height", 400)
+
+// Append a circle
+svg_customContent.append("circle")
+  .attr("id", "circleCustomTooltip")
+  .attr("cx", 150)
+  .attr("cy", 200)
+  .attr("r", 40)
+  .attr("fill", "#69b3a2")
+
+// create a tooltip
+var tooltip2 = d3.select("#div_customContent")
+  .append("div")
+    .style("position", "absolute")
+    .style("visibility", "hidden")
+    .text("I'm a circle!");
+
+
+d3.select("#circleCustomTooltip")
+  .on("mouseover", function(){return tooltip2.style("visibility", "visible");})
+  .on("mousemove", function(){return tooltip2.style("top", (event.pageY-800)+"px").style("left",(event.pageX-800)+"px");})
+  .on("mouseout", function(){return tooltip2.style("visibility", "hidden");});
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-customContent', 'res-customContent')
+myJSParser('js-customContent', 'res-customContent')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-customContent').addEventListener("input", function() {
+d3.select('#res-customContent').html("");
+myHtmlParser('html-customContent', 'res-customContent');
+myJSParser('js-customContent', 'res-customContent');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-customContent').addEventListener("input", function() {
+d3.select('#res-customContent').html("");
+myHtmlParser('html-customContent', 'res-customContent');
+myJSParser('js-customContent', 'res-customContent');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>Simple D3 tooltip</i>by <a href="http://bl.ocks.org/biovisualize/1016860">Chris Viau</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+</html>
