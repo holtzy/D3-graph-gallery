@@ -88,6 +88,12 @@ section h3.section-subheading {
   color: black;
 }
 
+@media (max-width: 1400px) {
+  #myScrollspy {
+    display: none;
+  }
+}
+
 
 
 

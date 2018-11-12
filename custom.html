@@ -41,6 +41,10 @@
     <!-- JQUERY -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
+    <!-- D3 -->
+    <script src="http://d3js.org/d3.v4.js"></script>
+
+
 </head>
 
 
@@ -245,6 +249,15 @@ $(function(){
       </div>
     </div>
 
+
+    <br><br>
+    <div class="mySeryTitle">Responsivness</div>
+    <hr>
+    <p>A post on the basics of responsivness with d3.js. Try to change your window size to see the below d3.js chart updating itself. Discover how it works with code snippets <a href="graph/custom_responsive.html">here</a>.</p>
+    <a href="graph/custom_responsive.html"><div class="bg-light" id="div_basicResize"></div></a>
+
+
+
  </div>
 </section>
 
@@ -254,6 +267,66 @@ $(function(){
 
 
 
+
+
+
+
+
+
+
+
+<script>
+
+// Initialize a SVG area. We know the height but NOT the width
+var Svg = d3.select("#div_basicResize")
+  .append("svg")
+  .attr("height", 200)
+
+// Create dummy data
+var data = [19, 13, 54, 78, 98, 120, 138]
+
+// Add X axis. Note that we don't know the range yet, so we cannot draw it.
+var x = d3.scaleLinear()
+  .domain([0, 150])
+var xAxis = Svg.append("g")
+  .attr("transform", "translate(0,150)")
+
+// Initialize circles. Note that the X scale is not available yet, so we cannot draw them
+var myCircles = Svg
+  .selectAll("circles")
+  .data(data)
+  .enter()
+  .append("circle")
+    .style("fill", "#69b2b3")
+    .attr("r", 20)
+    .attr("cy", 100)
+
+
+
+// A function that finishes to draw the chart for a specific device size.
+function drawChart() {
+
+  // get the current width of the div where the chart appear, and attribute it to Svg
+  currentWidth = parseInt(d3.select('#div_basicResize').style('width'), 10)
+  Svg.attr("width", currentWidth)
+
+  // Update the X scale and Axis (here the 20 is just to have a bit of margin)
+  x.range([ 20, currentWidth-20 ]);
+  xAxis.call(d3.axisBottom(x))
+
+  //Add the last information needed for the circles: their X position
+  myCircles
+    .attr("cx", function(d){ return x(d)})
+  }
+
+
+
+// Initialize the chart
+drawChart()
+
+// Add an event listener that run the function when dimension change
+window.addEventListener('resize', drawChart );
+</script>
 
 
 
