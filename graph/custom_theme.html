@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
+    <meta charset="utf-8">
+    <title>A few theme templates for d3.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="This post provides code snippet to implement several themes to your d3.js chart.">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="A few theme templates for d3.js">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="This post provides code snippet to implement several themes to your d3.js chart.">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet">
+
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
+
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
+
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/agency.min.js"></script>
+
+  </head>
+
+
+
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+    $(function(){
+      $("#mainNav").load("../html_chunk/menu.html");
+    });
+    </script>
+
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"> </div>
+    <script>
+    $(function(){
+      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+    });
+    </script>
+
+
+
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+          <h1>A few theme templates for d3.js</h1>
+          <hr class="short_hr">
+          <br>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+          <br><br>
+          <p style="max-width: 700px; margin: auto">It is a common and necessary practice in datavisualization to personalize the general appearance of your chart. This post takes a <a href="scatter_basic">basic scatterplot</a> and suggest different themes to display it. These themes are often inspired from existing library in other languages but not only.</p>
+      </div>
+    </header>
+
+
+
+
+
+
+
+
+    <!-- TABLE of CONTENT -->
+    <div>
+        <nav class="col-sm-3 col-4" id="myScrollspy">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#ggplot2">R ggplot2 library</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#ipsum">R ipsum theme</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#publication">Publication</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#dark">Dark mode</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== GGPLOT2==================== -->
+
+<section id="ggplot2" class="bg">
+<div class="container" >
+  <h1>Mimicking <code>ggplot2</code> style in d3.js</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-6 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg" id="res-sectionA" ></div>
+      <br>
+      <div>
+        <h5>Notes:</h5>
+        <ul>
+          <br>
+          <li><a href="https://www.r-graph-gallery.com/portfolio/ggplot2-package/">ggplot2</a> is the most famous R library for datavisualization. It is known for this grey background that makes it easy to recognize.</li>
+          <br>
+          <li>Note that a <code>g</code> element can not receive any style. Thus, a rectangle must be drawn on the chart area with a grey fill.</li>
+          <br>
+          <li>An axis is a path element of class <code>domain</code> with g elements of class <code>tick</code>. This allow customization modifying the css of these classes.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-6 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-sectionA" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-sectionA" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 40, left: 50},
+    width = 520 - margin.left - margin.right,
+    height = 520 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")")
+
+// Add the grey background that makes ggplot2 famous
+svg
+  .append("rect")
+    .attr("x",0)
+    .attr("y",0)
+    .attr("height", height)
+    .attr("width", height)
+    .style("fill", "EBEBEB")
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) {
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([4*0.95, 8*1.001])
+    .range([ 0, width ])
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickSize(-height*1.3).ticks(10))
+    .select(".domain").remove()
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([-0.001, 9*1.01])
+    .range([ height, 0])
+    .nice()
+  svg.append("g")
+    .call(d3.axisLeft(y).tickSize(-width*1.3).ticks(7))
+    .select(".domain").remove()
+
+  // Customization
+  svg.selectAll(".tick line").attr("stroke", "white")
+
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width/2 + margin.left)
+      .attr("y", height + margin.top + 20)
+      .text("Sepal Length");
+
+  // Y axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left + 20)
+      .attr("x", -margin.top - height/2 + 20)
+      .text("Petal Length")
+
+  // Color scale: give me a specie name, I return a color
+  var color = d3.scaleOrdinal()
+    .domain(["setosa", "versicolor", "virginica" ])
+    .range([ "#F8766D", "#00BA38", "#619CFF"])
+
+  // Add dots
+  svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function (d) { return x(d.Sepal_Length); } )
+      .attr("cy", function (d) { return y(d.Petal_Length); } )
+      .attr("r", 5)
+      .style("fill", function (d) { return color(d.Species) } )
+
+})
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-sectionA', 'res-sectionA')
+myJSParser('js-sectionA', 'res-sectionA')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-sectionA').addEventListener("input", function() {
+d3.select('#res-sectionA').html("");
+myHtmlParser('html-sectionA', 'res-sectionA');
+myJSParser('js-sectionA', 'res-sectionA');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-sectionA').addEventListener("input", function() {
+d3.select('#res-sectionA').html("");
+myHtmlParser('html-sectionA', 'res-sectionA');
+myJSParser('js-sectionA', 'res-sectionA');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== IPSUM STYLE ==================== -->
+
+<section id="ipsum" class="bg">
+<div class="container" >
+  <h1>Mimicking the <code>ipsum</code> style of the hrbrmstr R library in d3.js</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-6 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg" id="res-sectionB" ></div>
+      <br>
+      <div>
+        <h5>Notes:</h5>
+        <ul>
+          <br>
+          <li>The <a href="https://github.com/hrbrmstr/hrbrthemes">hrbrmstr library</a> is widely used in R, notably for its ipsum theme that you can see in action in <a href="https://www.data-to-viz.com">data-to-viz.com</a>.</li>
+          <br>
+          <li>Background is wide but a light grey grid is conserved. Axis names are at the extremetity of the chart</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-6 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-sectionB" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz2"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-sectionB" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 40, left: 50},
+    width = 520 - margin.left - margin.right,
+    height = 520 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var Svg = d3.select("#my_dataviz2")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")")
+
+
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) {
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([4*0.95, 8*1.001])
+    .range([ 0, width ])
+  Svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickSize(-height*1.3).ticks(10))
+    .select(".domain").remove()
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([-0.001, 9*1.01])
+    .range([ height, 0])
+    .nice()
+  Svg.append("g")
+    .call(d3.axisLeft(y).tickSize(-width*1.3).ticks(7))
+    .select(".domain").remove()
+
+  // Customization
+  Svg.selectAll(".tick line").attr("stroke", "#EBEBEB")
+
+  // Add X axis label:
+  Svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height + margin.top + 20)
+      .text("Sepal Length");
+
+  // Y axis label:
+  Svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+20)
+      .attr("x", -margin.top)
+      .text("Petal Length")
+
+  // Color scale: give me a specie name, I return a color
+  var color = d3.scaleOrdinal()
+    .domain(["setosa", "versicolor", "virginica" ])
+    .range([ "#402D54", "#D18975", "#8FD175"])
+
+  // Add dots
+  Svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function (d) { return x(d.Sepal_Length); } )
+      .attr("cy", function (d) { return y(d.Petal_Length); } )
+      .attr("r", 5)
+      .style("fill", function (d) { return color(d.Species) } )
+
+})
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-sectionB', 'res-sectionB')
+myJSParser('js-sectionB', 'res-sectionB')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-sectionB').addEventListener("input", function() {
+d3.select('#res-sectionB').html("");
+myHtmlParser('html-sectionB', 'res-sectionB');
+myJSParser('js-sectionB', 'res-sectionB');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-sectionB').addEventListener("input", function() {
+d3.select('#res-sectionB').html("");
+myHtmlParser('html-sectionB', 'res-sectionB');
+myJSParser('js-sectionB', 'res-sectionB');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== PUBLICATION ==================== -->
+
+<section id="publication" class="bg">
+<div class="container" >
+  <h1>Old school publication style in d3.js</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-6 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg" id="res-sectionC" ></div>
+      <br>
+      <div>
+        <h5>Notes:</h5>
+        <ul>
+          <br>
+          <li>A black and white old school template. Looks like the good old base R.</li>
+          <br>
+          <li>It shows how to custom the symbols used on the chart. A list of available symbols are <a href="https://github.com/d3/d3-shape/blob/master/README.md#symbols">here</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-6 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-sectionC" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz3"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-sectionC" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 40, left: 50},
+    width = 520 - margin.left - margin.right,
+    height = 520 - margin.top - margin.bottom;
+
+// append the SVg object to the body of the page
+var SVg = d3.select("#my_dataviz3")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")")
+
+// Add the black box around the chart
+SVg
+  .append("rect")
+    .attr("x",0)
+    .attr("y",0)
+    .attr("height", height)
+    .attr("width", height)
+    .style("fill", "none")
+    .style("stroke", "black")
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) {
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([4, 8])
+    .range([ 0, width ])
+  SVg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 8])
+    .range([ height, 0])
+    .nice()
+  SVg.append("g")
+    .call(d3.axisLeft(y))
+
+  // Add X axis label:
+  SVg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height + margin.top + 20)
+      .text("Sepal Length");
+
+  // Y axis label:
+  SVg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+20)
+      .attr("x", -margin.top)
+      .text("Petal Length")
+
+  // Shape scale: give a specie, it gives a shape
+  var shape = d3.scaleOrdinal()
+    .domain(["setosa", "versicolor", "virginica" ])
+    .range([ d3.symbolCircle, d3.symbolTriangle, d3.symbolSquare])
+
+  // Add dots
+  SVg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("path")
+      .attr("d", d3.symbol()
+        .size(120)
+        .type(function(d) {  return shape(d.Species) })
+      )
+      .attr("transform", function(d) { return "translate(" + x(d.Sepal_Length) + "," + y(d.Petal_Length) + ")"; })
+      .style("fill", "black")
+      .style("opacity", 0.8)
+
+})
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-sectionC', 'res-sectionC')
+myJSParser('js-sectionC', 'res-sectionC')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-sectionC').addEventListener("input", function() {
+d3.select('#res-sectionC').html("");
+myHtmlParser('html-sectionC', 'res-sectionC');
+myJSParser('js-sectionC', 'res-sectionC');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-sectionC').addEventListener("input", function() {
+d3.select('#res-sectionC').html("");
+myHtmlParser('html-sectionC', 'res-sectionC');
+myJSParser('js-sectionC', 'res-sectionC');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== DARK MODE ==================== -->
+
+<section id="dark" class="bg">
+<div class="container" >
+  <h1>Dark mode</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-6 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg" id="res-sectionD" ></div>
+      <br>
+      <div>
+        <h5>Notes:</h5>
+        <ul>
+          <br>
+          <li>Not very happy with it yet.</li>
+          <br>
+          <li>Just inverse the colors</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-6 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-sectionD" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz4"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-sectionD" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 40, left: 50},
+    width = 520 - margin.left - margin.right,
+    height = 520 - margin.top - margin.bottom;
+
+// append the SVg object to the body of the page
+var SVG = d3.select("#my_dataviz4")
+  .style("background-color", "#061f08")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")")
+
+// Add the black box around the chart
+SVG
+  .append("rect")
+    .attr("x",0)
+    .attr("y",0)
+    .attr("height", height)
+    .attr("width", height)
+    .style("fill", "none")
+    .style("stroke", "black")
+    .style("opacity", 0.6)
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) {
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([4, 8])
+    .range([ 0, width ])
+  SVG.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 8])
+    .range([ height, 0])
+    .nice()
+  SVG.append("g")
+    .call(d3.axisLeft(y))
+
+  // Add X axis label:
+  SVG.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height + margin.top + 20)
+      .text("Sepal Length")
+      .style("fill", "white")
+
+  // Y axis label:
+  SVG.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+20)
+      .attr("x", -margin.top)
+      .text("Petal Length")
+      .style("fill", "white")
+
+  // Customization
+  SVG.selectAll(".tick line").attr("stroke", "white")
+  SVG.selectAll(".tick text").attr("stroke", "white").style("font-size", 10)
+
+  // Color scale: give me a specie name, I return a color
+  var color = d3.scaleOrdinal()
+    .domain(["setosa", "versicolor", "virginica" ])
+    .range([ "#440154ff", "#21908dff", "#fde725ff"])
+
+  // Add dots
+  SVG.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function (d) { return x(d.Sepal_Length); } )
+      .attr("cy", function (d) { return y(d.Petal_Length); } )
+      .attr("r", 8)
+      .style("fill", function (d) { return color(d.Species) } )
+      .style("stroke", "white")
+      .style("stroke-width", 1)
+
+
+})
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-sectionD', 'res-sectionD')
+myJSParser('js-sectionD', 'res-sectionD')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-sectionD').addEventListener("input", function() {
+d3.select('#res-sectionD').html("");
+myHtmlParser('html-sectionD', 'res-sectionD');
+myJSParser('js-sectionD', 'res-sectionD');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-sectionD').addEventListener("input", function() {
+d3.select('#res-sectionD').html("");
+myHtmlParser('html-sectionD', 'res-sectionD');
+myJSParser('js-sectionD', 'res-sectionD');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>Customizing axis in d3.js</i> by <a href="custom_axis.html">the d3 graph gallery</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+</html>
