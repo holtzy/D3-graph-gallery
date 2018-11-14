@@ -97,6 +97,24 @@ section h3.section-subheading {
 
 
 
+
+/* ---------- Menu separation title ----------------- */
+
+.menuTitle {
+  color: grey;
+  font-size: 13px;
+  text-transform: lowercase;
+  text-align: right;
+  padding-bottom: 0px;
+  padding-right: 3px;
+  line-height: 0.6;
+}
+
+
+
+
+
+
 /* ---------- Welcome page: Losange icon turn grey on hover: ----------------- */
 
 .grey_on_hover{
