@@ -1,8 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-
 
   <head>
 
@@ -52,12 +49,16 @@
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
 
+    <!-- Bootstrap js -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/agency.min.js"></script>
+
   </head>
 
 
 
 
-  <body id="page-top">
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 
 
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
@@ -109,6 +110,38 @@
 
 
 
+    <!-- TABLE of CONTENT -->
+    <div>
+        <nav class="col-sm-3 col-4" id="myScrollspy">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#linear">Linear axis - <i><span style="color: #C8C8C8">scaleLinear()</span></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#scalepoint">Categoric axis - <i><span style="color: #C8C8C8">scalePoint()</span></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#scaleband">Categoric axis - <i><span style="color: #C8C8C8">scaleBand()</span></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#verticalAxis">Vertical axis</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#axislabels">Custom axis labels</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#axistitles">Custom axis titles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#other">More customization</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+
+
+
 
 
 
@@ -122,7 +155,7 @@
 
 <!-- ==================== BASIC LINEAR AXIS ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
+  <section id="linear">
   <div class="container" >
 
     <h1>Basic linear axis with <code>scaleLinear()</code></h1>
@@ -183,7 +216,7 @@ document.getElementById('code-basic-linear').addEventListener("input", function(
 
 <!-- ==================== SCALE POINT ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
+<section id="scalepoint">
   <div class="container" >
 
     <h1>Categoric axis with <code>scalePoint()</code></h1>
@@ -250,7 +283,7 @@ document.getElementById('code_ordinal_demo').addEventListener("input", function(
 
 <!-- ==================== SCALE BAND ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
+<section id="scaleband">
   <div class="container" >
 
     <h1>Categoric axis with <code>scaleBand</code></h1>
@@ -319,9 +352,12 @@ document.getElementById('code_band_demo').addEventListener("input", function() {
 
 
 
+
+
+
 <!-- ==================== VERTICAL AXIS ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
+<section id="verticalAxis">
   <div class="container" >
 
     <h1>Vertical axis with <code>axisLeft</code></h1>
@@ -379,7 +415,7 @@ document.getElementById('code-vertical').addEventListener("input", function() {
 
 <!-- ==================== ROTATE ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
+  <section id="axislabels">
   <div class="container" >
 
     <h1>Rotate and custom axis labels</h1>
@@ -447,7 +483,7 @@ document.getElementById('code-rotate').addEventListener("input", function() {
 
 <!-- ==================== AXIS TITLE ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
+  <section id="axistitles">
   <div class="container" >
 
     <h1>Axis titles</h1>
@@ -534,7 +570,7 @@ document.getElementById('code-title').addEventListener("input", function() {
 
 <!-- ==================== USUAL CUSTOMIZATION ==================== -->
 
-  <section style="padding-top: 20px; padding-bottom: 20px">
+  <section id="other">
   <div class="container" >
 
     <h1>Other usual customization</h1>
@@ -637,7 +673,7 @@ svar yAxis = d3.svg.axis().scale(y)
 
 <!-- ============================ RELATED BLOCKS ============================ -->
 
-<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
   <div class="container">
     <div class="row">
       <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
@@ -723,46 +759,6 @@ $(function(){
 
 
 
-
-
-
-<!-- ============================ JAVASCRIPT SECTION ============================ -->
-
-
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-      <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
-
-    <!-- Contact form JavaScript -->
-    <script src="../js/jqBootstrapValidation.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="../js/agency.min.js"></script>
-
-    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-    <script>
-      $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-    </script>
-
-
-    <!-- Function to download the content of the div -->
-    <script>
-    function download(){
-        var a = document.body.appendChild(
-            document.createElement("a")
-        );
-        a.download = "export.html";
-        var command = document.getElementById('code').innerHTML;
-        command = command.replace(/<\/?span[^>]*>/g,"");
-        a.href = "data:html" + command
-        a.click(); // Trigger a click on the element
-    }
-    </script>
 
 
 
