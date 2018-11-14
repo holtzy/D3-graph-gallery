@@ -117,7 +117,7 @@
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
-    <p>The scatterplot is probably the easiest chart to make with d3.js, and thus a good starting point if you're discovering this tool. The first example below is the <a href="graph/scatter_basic.html">most basic scatterplot</a> you can do, keeping only the core code.</p>
+    <p>Scatterplot is one of the <u>easiest</u> chart to make with d3.js, and thus a good starting point if you're discovering this tool. The first example below is the <a href="graph/scatter_basic.html">most basic scatterplot</a> you can do, keeping only the core code. Next is shown how to <a href="graph/custom_theme.html">custom the general appearance</a>, and how to <a href="graph/scatter_tooltip.html">add tooltips</a> to each circle.</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/scatter_basic.html">
@@ -129,6 +129,18 @@
             </div>
           </div>
           <img class="img-fluid" src="img/graph/scatter_basic.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/custom_theme.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Clean themes</p>
+              <hr>
+              <p class="explanation_portfolio">A set of custom themes applied to scatterplot.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/custom_themeggplot2.png" alt="">
         </a>
       </div>
       <div class="col-md-4 col-sm-6 portfolio-item">
@@ -145,12 +157,11 @@
       </div>
     </div>
 
-
-
     <br><br>
+
     <div class="mySeryTitle">Grouped scatter</div>
     <hr>
-    <p><u>Grouping</u> is a common practice in scatterplots: you probably want to investigate how different groups behave for the 2 numeric variables. It requires a minimal additional amount of effort: just create a color scale and use it for the <code>fill</code> argument of the circles</p>
+    <p><u>Grouping</u> is a common practice in scatterplots. It allows to investigate how groups behave for the 2 numeric variables. It requires a <a href="scatter_grouped.html">minimal additional amount</a> of effort: just create a color scale and use it for the <code>fill</code> argument of the circles</p>
     <div id="portfolio-items" class="row">
 
       <div class="col-md-4 col-sm-6 portfolio-item">
@@ -165,7 +176,6 @@
           <img class="img-fluid" src="img/graph/scatter_grouped.png" alt="">
         </a>
       </div>
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/scatter_grouped_highlight.html">
           <div class="portfolio-hover">
@@ -178,12 +188,13 @@
           <img class="img-fluid" src="img/graph/scatter_grouped_highlight.gif" alt="">
         </a>
       </div>
-
     </div>
 
+    <br><br>
 
     <div class="mySeryTitle">Animation | Interactivity</div>
     <hr>
+    <p>Two interactive features are highly necessary on scatterplots: the ability to <u>zoom</u> on a specific part of the chart, and the creation of <u>tooltips</u> linked to each data points. Here is a set of examples showing how to implement these features through different techniques.</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/scatter_animation_start.html">
@@ -198,7 +209,7 @@
         </a>
       </div>
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/scatter_brush.html">
+        <a class="portfolio-link" href="graph/interactivity_brush.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
               <p>Brush</p>
@@ -223,8 +234,8 @@
       </div>
     </div>
 
+    <br><br>
 
-    <br>
     <div class="mySeryTitle">Selection of blocks</div>
     <hr>
     <div id="portfolio-items" class="row">

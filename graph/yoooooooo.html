@@ -6,7 +6,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Scatterplot with brushing in d3.js</title>
+    <title>Scatterplot with animation at start in d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Using d3.js to create a very basic histogram">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Very basic histogram in d3.js">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Scatterplot with brushing in d3.js</title>
+    <title>Scatterplot with animation at start in d3.js</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -88,7 +88,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Scatterplot with brushing in d3.js</p>
+          <p style="display:inline; font-size: 35px">Scatterplot with animation at start in d3.js</p>
           <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
           <br>
           <ul class="list-inline social-buttons">
@@ -182,74 +182,54 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")")
 
+
+
 //Read the data
 d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
 
-  // Add X axis
-  var x = d3.scaleLinear()
-    .domain([0, 4000])
-    .range([ 0, width ]);
-  svg.append("g")
-    .attr("class", "myXaxis")   // Note that here we give a class to the X axis, to be able to call it later and modify it
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
+// Add X axis
+var x = d3.scaleLinear()
+  .domain([0, 0])
+  .range([ 0, width ]);
+svg.append("g")
+  .attr("class", "myXaxis")   // Note that here we give a class to the X axis, to be able to call it later and modify it
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+  .attr("opacity", "0")
 
-  // Add Y axis
-  var y = d3.scaleLinear()
-    .domain([0, 500000])
-    .range([ height, 0]);
-  svg.append("g")
-    .call(d3.axisLeft(y));
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, 500000])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y));
 
-  // Add dots
-  var circles = svg.append('g')
-    .selectAll("dot")
-    .data(data)
-    .enter()
-    .append("circle")
-      .attr("cx", function (d) { return x(d.GrLivArea); } )
-      .attr("cy", function (d) { return y(d.SalePrice); } )
-      .attr("r", 1.5)
-      .style("fill", "#69b3a2")
+// Add dots
+svg.append('g')
+  .selectAll("dot")
+  .data(data)
+  .enter()
+  .append("circle")
+    .attr("cx", function (d) { return x(d.GrLivArea); } )
+    .attr("cy", function (d) { return y(d.SalePrice); } )
+    .attr("r", 1.5)
+    .style("fill", "#69b3a2")
 
-  // create the d3-brush generator
-  svg.append('g')
-    .call( d3.brush()                     // Add the brush feature using the d3.brush function
-      .extent([[0, 0], [width, height]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-      .on('brush end', updateBrush)       // When the selection is done, we run the function updaeBrush
-    )                                      // Now that this is done, each time you brush on the plot, there is a variable called d3.event.selection that is provided, with the coordinate of the selection!
+// new X axis
+x.domain([0, 4000])
+svg.select(".myXaxis")
+  .transition()
+  .duration(2000)
+  .attr("opacity", "1")
+  .call(d3.axisBottom(x));
 
-
-
-  // The updataBrush function
-  function updateBrush() {
-
-    // I turn all the dots in grey
-    d3.selectAll("circle").style("fill", "grey").attr("r", "1.5")
-
-    // Find the points that are in the brush selection: I need to apply the 'isBrushed' function to all of them
-    var selectedCircles = circles.filter(function (){
-      var cx = d3.select(this).attr("cx"),
-          cy = d3.select(this).attr("cy");
-      return isBrushed(d3.event.selection, cx, cy);
-    })
-
-    // Change the features of the selected items:
-    selectedCircles.style("fill", "#69b3a2").attr("r", "8")
-  }
-
+svg.selectAll("circle")
+  .transition()
+  .delay(function(d,i){return(i*3)})
+  .duration(2000)
+  .attr("cx", function (d) { return x(d.GrLivArea); } )
+  .attr("cy", function (d) { return y(d.SalePrice); } )
 })
-
-
-// A function that return TRUE or FALSE according if a dot is in the selection or not
-function isBrushed(brush_coords, cx, cy) {
-     var x0 = brush_coords[0][0],
-         x1 = brush_coords[1][0],
-         y0 = brush_coords[0][1],
-         y1 = brush_coords[1][1];
-    return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;    // This return TRUE or FALSE depending on if the points is in the selected area
-}
-
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -308,9 +288,9 @@ document.getElementById('code').addEventListener("input", function() {
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>Brushing in Scatterplots with D3 and Quadtrees - </i><a href="https://peterbeshai.com/brushing-in-scatterplots-with-d3-and-quadtrees.html">link</a></li>
+            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
             <br>
-            <li><i>Scatter plot + Brush - </i><a href="http://bl.ocks.org/feyderm/6bdbc74236c27a843db633981ad22c1b">link</a></li>
+            <li>yo</li>
             <br>
             <li>ll</li>
             </ul>

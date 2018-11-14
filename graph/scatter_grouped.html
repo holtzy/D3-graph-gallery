@@ -1,120 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  <head>
+    gtag('config', 'UA-79254642-6');
+  </script>
 
-    <meta charset="utf-8">
-    <title>Grouped scatterplot with d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Using d3.js to create a very basic histogram">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js">
-    <meta name="author" content="Yan Holtz">
+  <meta charset="utf-8">
+  <title>Grouped scatterplot in d3.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Basic steps leading to a grouped scatterplot in d3.js: explanation and reproducible code.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, scatter, animation, button">
+  <meta name="author" content="Yan Holtz">
 
-    <meta property="og:title" content="Very basic histogram in d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Using d3.js to create a very basic histogram">
-    <title>Grouped scatterplot with d3.js</title>
+  <meta property="og:title" content="Grouped scatterplot in d3.js">
+  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
+  <meta property="og:description" content="Basic steps leading to a grouped scatterplot in d3.js: explanation and reproducible code.">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom fonts for this template -->
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../css/agency.css" rel="stylesheet">
 
-    <!-- PRISM -->
-    <script src="../LIB/prism.js"></script>
-    <link href="../LIB/prism.css" rel="stylesheet" />
+  <!-- PRISM -->
+  <script src="../LIB/prism.js"></script>
+  <link href="../LIB/prism.css" rel="stylesheet" />
 
-    <!-- D3.JS v4 -->
-    <script src="../js/d3.v4.js"></script>
-    
-    <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+  <!-- D3.JS v4 -->
+  <script src="../js/d3.v4.js"></script>
 
-    <!-- HTML TO CANVAS -->
-    <script src="../js/html2canvas.js"></script>
+  <!-- JQUERY -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
 
-    <!-- Function to parse html and js code chunks made by Yan Holtz -->
-    <script src="../js/myParser.js"></script>
+  <!-- HTML TO CANVAS -->
+  <script src="../js/html2canvas.js"></script>
 
-  </head>
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="../js/myParser.js"></script>
 
-
-
-
-  <body id="page-top">
-
-
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-      <div class="container">
-        <a class="js-scroll-trigger" href="../index.html">D3.js Graph Gallery</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/optimization.html">R</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="CONTENT/private_API.html">Python</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="CONTENT/arbitrage.html">Data to viz</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Who am I</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+</head>
 
 
 
 
 
-    <!-- Header -->
-    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-      <div class="textlanding">
-          <p style="display:inline; font-size: 35px">Grouped scatterplot with d3.js</p>
-          <hr style="width: 100px; height: 1px; border:none;color:#333;background-color:#333;">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">This is a graph done in d3.js. Visit the scatterplot section of the d3.js gallery for more examples.</p>
-          <br>
-          <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
-          <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
-      </div>
-    </header>
+
+<body id="page-top">
+
+
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("../html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+});
+</script>
+
+
+<!-- Header -->
+<header class="masthead">
+  <div class="textlanding">
+      <h1>Grouped scatterplot in d3.js</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="../scatter.html">grouped scatter plot</a> with d3.js. It follows the previous <a href="scatter_basic.html">basic scatterplot</a>. It extends it by adding a <u>color scale</u> linked with a categoric variable: each group will thus apear with a different color on the chart.</p>
+      <br>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../scatter.html">Scatterplot section</a>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+  </div>
+</header>
 
 
 
@@ -129,14 +125,31 @@
 
 
 
+<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+  <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-    <center><div id="result"></div></center>
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="result" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>Extension of the previous <a href="scatter_basic.html">most basic scatterplot</a></li>
+          <br>
+          <li>A color scale is created with <code>scaleOrdinal</code>, attributing a different color for each group. See more about color scale <a href="custom_color.html">here</a>.</li>
+          <br>
+          <li>This color scale is then called when the <code>fill</code> style of circles is set.</li>
+          <br>
+          <li>Next step: <a href="scatter_grouped_highlight.html">add interactivity</a> to it to highlight a specific group on hover.</li>
+        </ul>
+      </div>
+    </div>
   </div>
-</section>
 
 <!-- ================================================================================= -->
 
@@ -144,12 +157,10 @@
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<section class="code-area" style="padding-top: 20px; padding-bottom: 20px">
-<div class="container" >
+<div class="col-lg-7 text-center .align-middle">
 
 <!-- ========= show html code ============== -->
-<br><p>This is a very basic <a href="">scatterplot</a> made using d3.js. The data comes from here. It uses the histogram function d3. And here are a few more things about it. It uses the histogram function d3. And here are a few more things about it. here is the code building the figure. Remember it is interactive.</p>
-<aside>&larr; Edit me! </aside>
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
@@ -158,20 +169,21 @@
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
-
 </xmp></code></pre>
 <!-- ==================================== -->
 
 
 
+
+
+
 <!-- ========= show JS code ==============  -->
-<aside>&larr; Edit me! </aside>
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -185,41 +197,45 @@ var svg = d3.select("#my_dataviz")
 //Read the data
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) {
 
-// Add X axis
-var x = d3.scaleLinear()
-  .domain([4, 8])
-  .range([ 0, width ]);
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([4, 8])
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
 
-// Add Y axis
-var y = d3.scaleLinear()
-  .domain([0, 9])
-  .range([ height, 0]);
-svg.append("g")
-  .call(d3.axisLeft(y));
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 9])
+    .range([ height, 0]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
 
-// Color scale: give me a specie name, I return a color
-var color = d3.scaleOrdinal()
-  .domain(["setosa", "versicolor", "virginica" ])
-  .range([ "#440154ff", "#21908dff", "#fde725ff"])
+  // Color scale: give me a specie name, I return a color
+  var color = d3.scaleOrdinal()
+    .domain(["setosa", "versicolor", "virginica" ])
+    .range([ "#440154ff", "#21908dff", "#fde725ff"])
 
-// Add dots
-svg.append('g')
-  .selectAll("dot")
-  .data(data)
-  .enter()
-  .append("circle")
-    .attr("cx", function (d) { return x(d.Sepal_Length); } )
-    .attr("cy", function (d) { return y(d.Petal_Length); } )
-    .attr("r", 5)
-    .style("fill", function (d) { return color(d.Species) } )
+  // Add dots
+  svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function (d) { return x(d.Sepal_Length); } )
+      .attr("cy", function (d) { return y(d.Petal_Length); } )
+      .attr("r", 5)
+      .style("fill", function (d) { return color(d.Species) } )
 
 })
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
+
+
+
+
 
 
 
@@ -231,25 +247,26 @@ myJSParser('codejs', 'result')
 
 // If the user change the JS fragment, I run it again:
 document.getElementById('codejs').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
 })
 
 // If the user change the HTML fragment, I run it again:
 document.getElementById('code').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
 })
 </script>
 
-
+</div>
 
 
   </div>
+</div>
 </section>
-
+<br>
 
 
 <!-- ============================ -->
@@ -259,30 +276,22 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
+
+
 <!-- ============================ RELATED BLOCKS ============================ -->
 
-<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
   <div class="container">
     <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-          </div>
-        </div>
+      <div class="col-lg-5 text-center align-self-center">
+        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
       </div>
       <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>D3.selectAll(...).transition() Explained - </i><a href="http://bl.ocks.org/Kcnarf/9e4813ba03ef34beac6e">link</a></li>
-            <br>
-            <li>yo</li>
-            <br>
-            <li>ll</li>
-            </ul>
-          </div>
-        </div>
+        <ul>
+          <li><i>Basic scatterplot - </i>by <a href="scatter_basic.html">the d3 graph gallery</a></li>
+          <br>
+          <li><i>Interactivity - </i>by <a href="../interactivity.html">the d3 graph gallery</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -299,27 +308,23 @@ document.getElementById('code').addEventListener("input", function() {
 
 <!-- ============================ CONTACT SECTION ============================ -->
 
-    <!-- ANCHOR -->
-    <a name="contactanchor"></a>
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
 
 
-  <section id="contact" class="bg" style="background-color: white">
-     <div class="container">
-       <div class="row">
-         <div class="col-lg-2 text-center"></div>
-         <div class="col-lg-8 text-center">
-           <br><br><br>
-           <h2 class="section-heading text-uppercase" style="color: black">Contact</h2>
-           <p>This document is a work in progress analysis by Yan Holtz. Any feedback is highly encouraged. You can fill an issue on <a href="https://github.com/holtzy/data_to_viz">Github</a>, drop me a message on <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, or send an email pasting <a href="">yan.holtz.data</a> with <a href="">gmail.com</a>.</p>
-           <div style="text-align:center">
-              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://github.com/holtzy">Github</a>
-              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://twitter.com/R_Graph_Gallery">Twitter</a>
-            </div>
+<section id="contact" class="bg" style="background-color: white"></section>
 
-         </div>
-       </div>
-    </div>
-  </section>
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
 
 
 
@@ -327,44 +332,14 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 <!-- ============================ FOOTER SECTION ============================ -->
-    <footer class="bg-light">
-      <div class="container" >
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; the d3 graph gallery 2018</span>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/R_Graph_Gallery">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/holtzy">
-                  <i class="fa fa-github"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
 
 <!-- ============================ -->
 
@@ -389,56 +364,33 @@ document.getElementById('code').addEventListener("input", function() {
 
 <!-- ============================ JAVASCRIPT SECTION ============================ -->
 
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/agency.min.js"></script>
+
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-      <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
-
-    <!-- Contact form JavaScript -->
-    <script src="../js/jqBootstrapValidation.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="../js/agency.min.js"></script>
-
-    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-    <script>
-      $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-    </script>
-
-
-    <!-- Function to download the content of the div -->
-    <script>
-    function download(){
-        var a = document.body.appendChild(
-            document.createElement("a")
-        );
-        a.download = "export.html";
-        var command = document.getElementById('code').innerHTML;
-        command = command.replace(/<\/?span[^>]*>/g,"");
-        a.href = "data:html" + command
-        a.click(); // Trigger a click on the element
-    }
-    </script>
-
-
-    <!-- Function to download the graphic as png automatically -->
-<!--     <script>
-        html2canvas($('#content'),
-        {
-          onrendered: function (canvas) {
-            var a = document.createElement('a');
-            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            a.download = 'somefilename.jpg';
-            a.click();
-          }
-        });
-    </script> -->
+<!-- Function to download the content of the div -->
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    var command = document.getElementById('code').innerHTML;
+    command = command.replace(/<\/?span[^>]*>/g,"");
+    a.href = "data:html" + command
+    a.click(); // Trigger a click on the element
+}
+</script>
 
 
 
@@ -446,9 +398,6 @@ document.getElementById('code').addEventListener("input", function() {
 
 
 
-
-
-
-  </body>
+</body>
 
 </html>
