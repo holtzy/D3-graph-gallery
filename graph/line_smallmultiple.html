@@ -13,16 +13,17 @@
     gtag('config', 'UA-79254642-6');
   </script>
 
+
   <meta charset="utf-8">
-  <title>Scatterplot with animation at loading in d3.js</title>
+  <title>Small multiple for line chart in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="An example with d3.js reproducible code showing how to progressively show data points on a scatterplot.">
-  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, scatter, animation, button">
+  <meta name="description" content="How to apply small multiple to a linechart to display the evolution of several groups.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, linechart">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Scatterplot with animation at loading in d3.js">
+  <meta property="og:title" content="Small multiple for line chart in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="An example with d3.js reproducible code showing how to progressively show data points on a scatterplot.">
+  <meta property="og:description" content="How to apply small multiple to a linechart to display the evolution of several groups.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +80,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Scatterplot with animation at loading</h1>
+      <h1>Small multiple for line chart</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,9 +106,9 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This example illustrates how to make data points appear progressively on a chart. It uses a <a href="../scatter.html">scatterplot</a> as an example. See more about <a href="../interactivity.html">interactivity</a> and <a href="../scatter.html">scatterplots</a>.</p>
+      <p style="max-width: 700px; margin: auto">Displaying more than a few groups on the same linechart most of the time result in a <a href="https://www.data-to-viz.com/caveat/spaghetti.html">spaghetti plot</a> that is almost unreadable. Using small multiple is a very good alternative, and this post describes how to implement it in d3.js.</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../scatter.html">Scatterplot section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../line.html">Lineplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -131,7 +132,7 @@ $(function(){
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-  <div class="col-lg-5 .align-middle">
+  <div class="col-lg-7 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="result" ></div>
       <br>
@@ -139,14 +140,13 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>Follows the previous <a href="scatter_basic.html">basic scatterplot</a>.</li>
+          <li>This is an advance technique. You probably need to understand how to build a <a href="line_basic.html">basic line plot</a> first, and then a <a href="line_several_group.html">lineplot with several groups</a>.</li>
           <br>
-          <li>Show how to update an axis and datapoints.</li>
+          <li>Instead of building one main svg area as usual, <u>many svg areas</u> are created: one per group</li>
           <br>
-          <li>For datapoints, note that a <u>different delay</u> is applied to each circle. This is possible thanks to the expression <code>function(d,i)</code> where i is the id of the datapoint.</li>
+          <li>To do so, data is binded to each svg area. This is very handy: each time a component will be created, it will be done for each subchart</li>
           <br>
-          <li>See more on <a href="../interactivity.html">interactivity and animation</a>.</li>
-
+          <li>ToDo: improve explanation</li>
         </ul>
       </div>
     </div>
@@ -158,7 +158,7 @@ $(function(){
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
+<div class="col-lg-5 text-center .align-middle">
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -183,65 +183,77 @@ $(function(){
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-    // append the svg object to the body of the page
-    var svg = d3.select("#my_dataviz")
-      .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")")
+var margin = {top: 30, right: 0, bottom: 30, left: 50},
+    width = 210 - margin.left - margin.right,
+    height = 210 - margin.top - margin.bottom;
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered.csv", function(data) {
 
-  // Add X axis
-  var x = d3.scaleLinear()
-    .domain([0, 0])
-    .range([ 0, width ]);
-  svg.append("g")
-    .attr("class", "myXaxis")   // Note that here we give a class to the X axis, to be able to call it later and modify it
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
-    .attr("opacity", "0")
+  // group the data: I want to draw one line per group
+  var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
+    .key(function(d) { return d.name;})
+    .entries(data);
 
-  // Add Y axis
-  var y = d3.scaleLinear()
-    .domain([0, 500000])
-    .range([ height, 0]);
-  svg.append("g")
-    .call(d3.axisLeft(y));
+  // What is the list of groups?
+  allKeys = sumstat.map(function(d){return d.key})
 
-  // Add dots
-  svg.append('g')
-    .selectAll("dot")
-    .data(data)
+  // Add an svg element for each group. The will be one beside each other and will go on the next row when no more room available
+  var svg = d3.select("#my_dataviz")
+    .selectAll("uniqueChart")
+    .data(sumstat)
     .enter()
-    .append("circle")
-      .attr("cx", function (d) { return x(d.GrLivArea); } )
-      .attr("cy", function (d) { return y(d.SalePrice); } )
-      .attr("r", 1.5)
-      .style("fill", "#69b3a2")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
 
-  // new X axis
-  x.domain([0, 4000])
-  svg.select(".myXaxis")
-    .transition()
-    .duration(2000)
-    .attr("opacity", "1")
-    .call(d3.axisBottom(x));
+  // Add X axis --> it is a date format
+  var x = d3.scaleLinear()
+    .domain(d3.extent(data, function(d) { return d.year; }))
+    .range([ 0, width ]);
+  svg
+    .append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).ticks(3));
 
-  svg.selectAll("circle")
-    .transition()
-    .delay(function(d,i){return(i*3)})
-    .duration(2000)
-    .attr("cx", function (d) { return x(d.GrLivArea); } )
-    .attr("cy", function (d) { return y(d.SalePrice); } )
+  //Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return +d.n; })])
+    .range([ height, 0 ]);
+  svg.append("g")
+    .call(d3.axisLeft(y).ticks(5));
+
+  // color palette
+  var color = d3.scaleOrdinal()
+    .domain(allKeys)
+    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+
+  // Draw the line
+  svg
+    .append("path")
+      .attr("fill", "none")
+      .attr("stroke", function(d){ return color(d.key) })
+      .attr("stroke-width", 1.9)
+      .attr("d", function(d){
+        return d3.line()
+          .x(function(d) { return x(d.year); })
+          .y(function(d) { return y(+d.n); })
+          (d.values)
+      })
+
+  // Add titles
+  svg
+    .append("text")
+    .attr("text-anchor", "start")
+    .attr("y", -5)
+    .attr("x", 0)
+    .text(function(d){ return(d.key)})
+    .style("fill", function(d){ return color(d.key) })
+
 })
-
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
@@ -300,9 +312,7 @@ myJSParser('codejs', 'result');
       </div>
       <div class="col-lg-5">
         <ul>
-          <li><i>Basic scatterplot - </i>by <a href="scatter_basic.html">the d3 graph gallery</a></li>
-          <br>
-          <li><i>Interactivity - </i>by <a href="../interactivity.html">the d3 graph gallery</a></li>
+          <li><i>Line Chart - </i><a href="https://bl.ocks.org/mbostock/3883245">link</a></li>
         </ul>
       </div>
     </div>
