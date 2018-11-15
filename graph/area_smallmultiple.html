@@ -15,15 +15,15 @@
 
 
   <meta charset="utf-8">
-  <title>Small multiple for line chart in d3.js</title>
+  <title>Small multiple for area chart in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="How to apply small multiple to a linechart to display the evolution of several groups.">
-  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, linechart">
+  <meta name="description" content="How to apply small multiple to an area chart to display the evolution of several groups.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, area chart">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Small multiple for line chart in d3.js">
+  <meta property="og:title" content="Small multiple for area chart in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="How to apply small multiple to a linechart to display the evolution of several groups.">
+  <meta property="og:description" content="How to apply small multiple to an areachart to display the evolution of several groups.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Small multiple for line chart</h1>
+      <h1>Small multiple for area chart</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -106,9 +106,9 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">Displaying more than a few groups on the same linechart most of the time result in a <a href="https://www.data-to-viz.com/caveat/spaghetti.html">spaghetti plot</a> that is almost unreadable. Using small multiple is a very good alternative, and this post describes how to implement it in d3.js.</p>
+      <p style="max-width: 700px; margin: auto">If you have several groups to display on your <a href="../area.html">area chart</a>, it is possible to <u>stack</u> them. But it makes it harder to study the evolution of each group separately. Using small multiple is a very good alternative, and this post describes how to implement it in d3.js.</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../line.html">Lineplot section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../area.html">Area chart section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -140,7 +140,7 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>This is an advance technique. You probably need to understand how to build a <a href="line_basic.html">basic line plot</a> first, and then a <a href="line_several_group.html">lineplot with several groups</a>.</li>
+          <li>This is an advance technique. You probably need to understand how to build a <a href="area_basic.html">basic area chart</a> first, and then have a look to the <a href="line_several_group.html">lineplot with several groups</a> to understand how nesting works.</li>
           <br>
           <li>Instead of building one main svg area as usual, <u>many svg areas</u> are created: one per group</li>
           <br>
@@ -231,18 +231,18 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .domain(allKeys)
     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
 
-  // Draw the line
-  svg
-    .append("path")
-      .attr("fill", "none")
-      .attr("stroke", function(d){ return color(d.key) })
-      .attr("stroke-width", 1.9)
-      .attr("d", function(d){
-        return d3.line()
-          .x(function(d) { return x(d.year); })
-          .y(function(d) { return y(+d.n); })
-          (d.values)
-      })
+    // Draw the line
+    svg
+      .append("path")
+        .attr("fill", function(d){ return color(d.key) })
+        .attr("stroke", "none")
+        .attr("d", function(d){
+          return d3.area()
+          .x(function(d) { return x(d.year) })
+          .y0(y(0))
+          .y1(function(d) { return y(+d.n) })
+            (d.values)
+        })
 
   // Add titles
   svg
@@ -314,7 +314,8 @@ myJSParser('codejs', 'result');
         <ul>
           <li><i>Small multiple area line charts - </i>by <a href="https://bl.ocks.org/tomshanley/b841837f5414b34b7c45055d97e7674d">Tom Shanley</a></li>
           <br>
-          <li><i>Basic line chart - </i>by <a href="line_basic.html">the d3 graph gallery</a></li>        </ul>
+          <li><i>Basic area chart - </i>by <a href="area_basic.html">the d3 graph gallery</a></li>
+        </ul>
       </div>
     </div>
   </div>
