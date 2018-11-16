@@ -121,15 +121,15 @@ $(function(){
 <section class="bg" id="portfolio" style="padding-top: 10px">
   <div class="container">
 
-
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>Sankey plots are built thanks to the <a href="https://github.com/d3/d3-sankey">d3-sankey</a> plugin. Input data must be a nested list providing the <code>nodes</code> and the <code>links</code> of the network. This kind of data can be stored under several formats: this section shows how to build a sankey diagram from a few different ones.</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/sankey_basic.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Most basic</p>
+              <p>Sankey from .json file</p>
               <hr>
               <p class="explanation_portfolio">The most basic sankey diagram you can do in d3.js. Keeping only the core code.<br><br>Input data format: Json</p>
             </div>
@@ -137,11 +137,38 @@ $(function(){
           <img class="img-fluid" src="img/graph/sankey_basic.png" alt="">
         </a>
       </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/d3noob/06e72deea99e7b4859841f305f63ba85">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Sankey from .csv file</p>
+              <hr>
+              <p class="explanation_portfolio">Basic example by d3Noob showing how to build the sankey from a list of links stored at .csv format.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_sankeycsv.png" alt="Sankey plot form csv">
+        </a>
+      </div>
     </div>
 
-    <div class="mySeryTitle">Interesting Block</div>
+    <br><br>
+
+    <div class="mySeryTitle">Selection of blocks</div>
     <hr>
+    <p>A few blocks with more complicated codes to showcase the possibility of the <code>d3-sankey </code>plugin</a>
     <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/d3noob/06e72deea99e7b4859841f305f63ba85">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Sankey from .csv file</p>
+              <hr>
+              <p class="explanation_portfolio">Basic example by d3Noob showing how to build the sankey from a list of links stored at .csv format.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_sankeycsv.png" alt="Sankey plot form csv">
+        </a>
+      </div>
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="https://beta.observablehq.com/@mbostock/d3-sankey-diagram">
           <div class="portfolio-hover">
@@ -151,7 +178,19 @@ $(function(){
               <p class="explanation_portfolio">UK energy production and consumption in 2050: energy supplies are on the left, and demands are on the right</p>
             </div>
           </div>
-          <img class="img-fluid" src="img/graph/block_sankey.png" alt="">
+          <img class="img-fluid showBlock" src="img/block/block_sankey.png" alt="circular barchart">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="http://bl.ocks.org/d3noob/5028304">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Add horizontal drag</p>
+              <hr>
+              <p class="explanation_portfolio">A blog that illustrates how to add an horizontal drag feature on each node.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_sankeyhoriz.png" alt="Sankey plot form csv">
         </a>
       </div>
     </div>
