@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Data manipulation in d3.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A few code chuncks describing the most common data manipulation needed in d3.js. Includes filtering, sorting, nesting and more.">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="Data manipulation in d3.js">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="A few code chuncks describing the most common data manipulation needed in d3.js. Includes filtering, sorting, nesting and more..">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet">
+
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
+
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
+
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/agency.min.js"></script>
+
+  </head>
+
+
+
+
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+    $(function(){
+      $("#mainNav").load("../html_chunk/menu.html");
+    });
+    </script>
+
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"> </div>
+    <script>
+    $(function(){
+      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+    });
+    </script>
+
+
+
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+          <h1>Data manipulation in d3.js</h1>
+          <hr class="short_hr">
+          <br>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+          <br><br>
+          <p style="max-width: 700px; margin: auto">Input dataset is rarely in the perfectly expected format. This post describes a few common data manipulation like sorting, filtering, grouping, nesting and more.</p>
+      </div>
+    </header>
+
+
+
+
+    <!-- TABLE of CONTENT -->
+    <div>
+        <nav class="col-sm-3 col-4" id="myScrollspy">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#math">Mathematics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#filtering">Filtering</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sorting">Sorting</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#nesting">Nesting</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#grouping">Grouping</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+
+<!-- ==================== MATH ==================== -->
+
+  <section id="math">
+  <div class="container" >
+
+    <h1>Mathematics</h1>
+    <hr>
+    <p>How to compute a max, a min, an average?</p>
+
+
+<h6>Get the maximum value of a column called <code>value</code></h6>
+<pre class="language-js">
+d3.max(data, function(d) { return +d.value; })])
+</pre>
+<br>
+
+<h6>Get the minimum value of a column called <code>value</code></h6>
+<pre class="language-js">
+d3.min(data, function(d) { return +d.value; })])
+</pre>
+<br>
+
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- ==================== FILTERING ==================== -->
+
+  <section id="filtering">
+  <div class="container" >
+
+    <h1>Filtering</h1>
+    <hr>
+
+<h6>Keep rows where the variable <code>name</code> is <code>toto</code></h6>
+<pre class="language-js">
+data.filter(function(d){ return d.name == "toto" })
+</pre>
+<br>
+
+<h6>Keep rows where the variable <code>name</code> is <u>different</u> from <code>toto</code></h6>
+<pre class="language-js">
+data.filter(function(d){ return d.name != "toto" })
+</pre>
+<br>
+
+<h6>Keep rows where the variable <code>name</code> has a value included in the list <code>tokeep</code></h6>
+<pre class="language-js">
+tokeep = ["option1", "option2", "option3"]
+data.filter(function(d,i){ return tokeep.indexOf(d.name) >= 0 })
+</pre>
+<br>
+
+<h6>Keep the 10 first rows</h6>
+<pre class="language-js">
+data.filter(function(d,i){ return i<10 })
+</pre>
+<br>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== SORTING==================== -->
+
+  <section id="sorting">
+  <div class="container" >
+
+    <h1>Sorting</h1>
+    <hr>
+
+
+<h6>Sorting on 1 numeric column called <code>value</code>. Use <code>+</code> instead of <code>-</code> for reverse order.</h6>
+<pre class="language-js">
+data.sort(function(a,b) { return +a.value - +b.value })
+</pre>
+<br>
+
+<h6>Sorting alphabetically on 1 categoric column called <code>name</code>. Use <code>descending</code> for reverse order.</h6>
+<pre class="language-js">
+data.sort(function (a,b) {return d3.ascending(a.name, b.name);});
+</pre>
+<br>
+
+<h6>Sorting alphabetically on 2 categoric columns called <code>name1</code> and <code>name2</code>.</h6>
+<pre class="language-js">
+data.sort(function(a,b) { return d3.ascending(a.name1, b.name1) ||  d3.ascending(a.name1, b.name2) } )
+</pre>
+<br>
+
+<h6>Sorting on 1 categoric columns called <code>name1</code> and then on 1 numeric called <code>value</code>.</h6>
+<pre class="language-js">
+data.sort(function(a,b) { return d3.ascending(a.name1, b.name1) ||  (a.value - b.value) } )
+</pre>
+<br>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== NESTING ==================== -->
+
+  <section id="filtering">
+  <div class="container" >
+
+    <h1>Nesting</h1>
+    <hr>
+
+<h6>Sorting on 1 numeric column called <code>value</code>. Use <code>+</code> instead of <code>-</code> for reverse order.</h6>
+<pre class="language-js">
+data.sort(function(a,b) { return +a.value - +b.value })
+</pre>
+<br>
+
+<h6>Sorting alphabetically on 1 categoric column called <code>name</code>. Use <code>descending</code> for reverse order.</h6>
+<pre class="language-js">
+data.sort(function (a,b) {return d3.ascending(a.name, b.name);});
+</pre>
+<br>
+
+
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- ============================ GOING FURTHER ============================ -->
+
+<section class="bg" id="portfolio" style="padding-top: 10px">
+  <div class="container">
+
+    <br>
+    <div class="mySeryTitle">Selection of blocks</div>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://codepen.io/idan/pen/xejuD">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Highly customized axis</p>
+              <hr>
+              <p class="explanation_portfolio">An interesting approach: overlapping several axis to create complex axis.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="../img/block/block_crazyAxis.png" alt="crazy axis in d3.js">
+        </a>
+      </div>
+
+    </div>
+
+
+ </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>scaleOrdinal example - </i>by <a href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465">d3indepth</a></li>
+            <br>
+            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
+            <br>
+            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+</html>
