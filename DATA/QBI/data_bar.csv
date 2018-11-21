@@ -1,0 +1,317 @@
+Prior_disorder,Later_disorder,n,HR,Lower_CL,Upper_CL,coefvar
+ADHD,Child separation anxiety disorder,47661,3.8,2.8,5.2,1.12759643916914
+ADHD,Oppositional defiant disorder,30088,9.9,7.7,12.7,0.29673590504451
+ADHD,Social phobia,141131,4.8,4.1,5.7,-1.12759643916914
+Adult separation anxiety disorder,Agoraphobia,145990,4.3,3.3,5.8,0.356083086053413
+Adult separation anxiety disorder,Alcohol abuse,116210,2.8,2.3,3.4,0.0593471810089021
+Adult separation anxiety disorder,Alcohol dependence,116210,4.1,3.2,5.2,0.474777448071217
+Adult separation anxiety disorder,Binge eating disorder,31561,4,3,5.3,-0.356083086053413
+Adult separation anxiety disorder,Bipolar disorder,115525,6.6,5.4,8,-0.949554896142433
+Adult separation anxiety disorder,Bulimia nervosa,31561,6,3.9,9.2,0.534124629080119
+Adult separation anxiety disorder,Conduct disorder,33168,3.2,2.1,4.9,1.18694362017804
+Adult separation anxiety disorder,Drug abuse,90822,2.7,2.1,3.5,0.474777448071217
+Adult separation anxiety disorder,Drug dependence,90822,4.7,3.5,6.2,-0.237388724035609
+Adult separation anxiety disorder,Dysthymia,124565,5.7,4.6,6.9,-0.890207715133531
+Adult separation anxiety disorder,Generalized anxiety disorder,145990,5.3,4.5,6.1,-0.771513353115727
+Adult separation anxiety disorder,Intermittent explosive disorder,86789,3.1,2.5,3.9,0.237388724035608
+Adult separation anxiety disorder,Major depressive episode,145990,4.4,3.9,4.9,-0.356083086053413
+Adult separation anxiety disorder,Nicotine dependence,43994,2.5,2.1,3,-0.29673590504451
+Adult separation anxiety disorder,Obsessive compulsive disorder,25120,4.4,2.8,6.9,0.593471810089021
+Adult separation anxiety disorder,Oppositional defiant disorder,30088,3.2,2.1,4.9,1.00890207715134
+Adult separation anxiety disorder,Panic disorder,145990,3.6,2.8,4.6,0.534124629080119
+Adult separation anxiety disorder,PTSD,81939,4.1,3.3,5.1,0.0593471810089024
+Adult separation anxiety disorder,Social phobia,141131,3.7,2.8,4.7,-0.237388724035609
+Agoraphobia,Adult separation anxiety disorder,49037,4.9,3.9,6.1,-0.356083086053413
+Agoraphobia,Alcohol abuse,116210,2.5,2,3,-0.356083086053413
+Agoraphobia,Alcohol dependence,116210,5.4,4.5,6.4,-1.42433234421365
+Agoraphobia,Binge eating disorder,31561,3.7,2.9,4.8,0.178041543026706
+Agoraphobia,Bipolar disorder,115525,8.6,7.2,10.2,-2.25519287833828
+Agoraphobia,Drug abuse,90822,3.2,2.5,3.9,0.178041543026706
+Agoraphobia,Drug dependence,90822,5.8,4.4,7.7,-0.593471810089021
+Agoraphobia,Dysthymia,124565,6.6,5.5,7.9,-1.06824925816024
+Agoraphobia,Generalized anxiety disorder,145990,6.4,5.6,7.3,-1.78041543026706
+Agoraphobia,Intermittent explosive disorder,86789,4.9,3.9,6.3,-1.18694362017804
+Agoraphobia,Major depressive episode,145990,4.2,3.8,4.6,-0.474777448071217
+Agoraphobia,Nicotine dependence,43994,2.1,1.7,2.7,-0.356083086053413
+Agoraphobia,Obsessive compulsive disorder,25120,6.4,4.4,9.3,-1.24629080118694
+Agoraphobia,Oppositional defiant disorder,30088,4,2.7,5.8,-0.29673590504451
+Agoraphobia,Panic disorder,145990,12.2,10.4,14.2,-1.24629080118694
+Agoraphobia,PTSD,81939,4.3,3.5,5.1,-0.474777448071217
+Agoraphobia,Social phobia,141131,15.7,13.5,18.2,-3.38278931750742
+Alcohol abuse,Adult separation anxiety disorder,49037,2.9,2.5,3.4,-0.0593471810089021
+Alcohol abuse,Agoraphobia,145990,1.9,1.5,2.3,0.356083086053413
+Alcohol abuse,Alcohol dependence,116210,17.5,16,19.1,8.72403560830861
+Alcohol abuse,Binge eating disorder,31561,2.8,2.3,3.4,0.178041543026706
+Alcohol abuse,Bipolar disorder,115525,3.1,2.7,3.5,0.712166172106825
+Alcohol abuse,Bulimia nervosa,31561,3,2,4.6,0.771513353115727
+Alcohol abuse,Drug abuse,90822,9.4,8.5,10.3,-0.771513353115727
+Alcohol abuse,Drug dependence,90822,11.2,9.8,12.8,-1.48367952522255
+Alcohol abuse,Dysthymia,124565,2.1,1.8,2.4,0.593471810089021
+Alcohol abuse,Generalized anxiety disorder,145990,2,1.8,2.2,0.29673590504451
+Alcohol abuse,Major depressive episode,145990,1.8,1.6,1.9,0.356083086053412
+Alcohol abuse,Nicotine dependence,43994,3,2.8,3.3,-0.0593471810089021
+Alcohol abuse,Obsessive compulsive disorder,25120,1.4,1,2,0.474777448071217
+Alcohol abuse,Panic disorder,145990,1.9,1.6,2.3,0.415430267062315
+Alcohol abuse,PTSD,81939,2.3,2,2.7,0.415430267062315
+Alcohol abuse,Social phobia,141131,1.2,1,1.5,0.593471810089021
+Alcohol dependence,Adult separation anxiety disorder,49037,4.9,3.8,6.3,-0.474777448071217
+Alcohol dependence,Agoraphobia,145990,3,2.1,4.1,1.42433234421365
+Alcohol dependence,Alcohol abuse,116210,32.2,27.3,37.9,-8.72403560830861
+Alcohol dependence,Binge eating disorder,31561,4.1,3.1,5.3,-0.0593471810089019
+Alcohol dependence,Bipolar disorder,115525,4.4,3.7,5.4,1.24629080118694
+Alcohol dependence,Bulimia nervosa,31561,3.7,2.3,5.9,1.48367952522255
+Alcohol dependence,Drug abuse,90822,10.7,9,12.6,-1.24629080118694
+Alcohol dependence,Drug dependence,90822,17.4,14.2,21.2,0.0593471810089029
+Alcohol dependence,Dysthymia,124565,3.7,2.9,4.7,1.78041543026706
+Alcohol dependence,Generalized anxiety disorder,145990,3.3,2.8,3.9,1.12759643916914
+Alcohol dependence,Major depressive episode,145990,2.8,2.5,3.2,0.712166172106825
+Alcohol dependence,Nicotine dependence,43994,3.6,3.1,4.3,0.356083086053413
+Alcohol dependence,Panic disorder,145990,2.6,2,3.5,2.43323442136498
+Alcohol dependence,PTSD,81939,4.4,3.5,5.5,0.534124629080118
+Alcohol dependence,Social phobia,141131,2.2,1.6,3,0.890207715133531
+Binge eating disorder,Adult separation anxiety disorder,49037,3.4,2.6,4.5,0.356083086053413
+Binge eating disorder,Agoraphobia,145990,4,2.6,6,-0.178041543026706
+Binge eating disorder,Alcohol abuse,116210,3.1,2.6,3.7,-0.178041543026706
+Binge eating disorder,Alcohol dependence,116210,4,3.1,5.2,0.0593471810089019
+Binge eating disorder,Bipolar disorder,115525,4.2,3.2,5.4,0.29673590504451
+Binge eating disorder,Bulimia nervosa,31561,9.4,5.8,15.2,94.4213649851632
+Binge eating disorder,Drug abuse,90822,3.5,2.7,4.6,0.178041543026706
+Binge eating disorder,Drug dependence,90822,4.6,3.4,6.3,0.237388724035609
+Binge eating disorder,Dysthymia,124565,3.5,2.6,4.6,-0.0593471810089021
+Binge eating disorder,Generalized anxiety disorder,145990,3.2,2.5,4,0.118694362017804
+Binge eating disorder,Intermittent explosive disorder,86789,2.9,1.8,4.7,0
+Binge eating disorder,Major depressive episode,145990,3.3,2.9,3.8,-0.415430267062314
+Binge eating disorder,Nicotine dependence,43994,2.3,1.9,2.8,-0.178041543026706
+Binge eating disorder,Panic disorder,145990,3.1,2.3,4.1,-0.0593471810089021
+Binge eating disorder,PTSD,81939,2.4,1.8,3.3,0.593471810089021
+Binge eating disorder,Social phobia,141131,2.5,1.8,3.5,0.29673590504451
+Bipolar disorder,Adult separation anxiety disorder,49037,5,4,6.2,0.949554896142433
+Bipolar disorder,Agoraphobia,145990,4.8,3.5,6.6,2.25519287833828
+Bipolar disorder,Alcohol abuse,116210,4.3,3.7,5,-0.712166172106825
+Bipolar disorder,Alcohol dependence,116210,6.5,5.5,7.8,-1.24629080118694
+Bipolar disorder,Binge eating disorder,31561,4.7,3.7,6.1,-0.29673590504451
+Bipolar disorder,Bulimia nervosa,31561,6,3.7,9.7,-0.830860534124629
+Bipolar disorder,Drug abuse,90822,3.9,3.1,4.8,-0.118694362017804
+Bipolar disorder,Drug dependence,90822,6.6,5.2,8.4,-1.00890207715133
+Bipolar disorder,Dysthymia,124565,6.4,5.3,7.9,0.0593471810089019
+Bipolar disorder,Generalized anxiety disorder,145990,5.2,4.5,6.1,0.593471810089021
+Bipolar disorder,Intermittent explosive disorder,86789,4,3,5.3,0.415430267062315
+Bipolar disorder,Major depressive episode,145990,4.4,3.8,5,1.30563798219585
+Bipolar disorder,Nicotine dependence,43994,2.9,2.4,3.5,-0.178041543026706
+Bipolar disorder,Obsessive compulsive disorder,25120,7.4,5,10.9,-0.830860534124629
+Bipolar disorder,Panic disorder,145990,4,3.1,5.1,1.36498516320475
+Bipolar disorder,PTSD,81939,4.4,3.5,5.4,0.237388724035608
+Bipolar disorder,Social phobia,141131,2.9,2.2,3.8,0.712166172106825
+Bipolar disorder,Specific phobia,123628,2.3,1.6,3.3,0.771513353115727
+Bulimia nervosa,Adult separation anxiety disorder,49037,6.9,4.5,10.6,-0.534124629080119
+Bulimia nervosa,Alcohol abuse,116210,4.3,3.1,5.8,-0.771513353115727
+Bulimia nervosa,Alcohol dependence,116210,6.2,4.1,9.3,-1.48367952522255
+Bulimia nervosa,Binge eating disorder,31561,168.5,134.8,210.5,-94.4213649851632
+Bulimia nervosa,Bipolar disorder,115525,4.6,3.1,6.6,0.830860534124629
+Bulimia nervosa,Generalized anxiety disorder,145990,3.8,2.8,5.1,-0.178041543026706
+Bulimia nervosa,Major depressive episode,145990,3.9,3.1,4.8,-0.652818991097923
+Bulimia nervosa,Nicotine dependence,43994,2.7,1.8,3.9,-0.118694362017804
+Bulimia nervosa,PTSD,81939,4.7,3.2,7,-0.118694362017804
+Child separation anxiety disorder,ADHD,42147,5.7,3.9,8.2,-1.12759643916914
+Child separation anxiety disorder,Major depressive episode,145990,3.5,3.1,3.8,-1.60237388724036
+Child separation anxiety disorder,Oppositional defiant disorder,30088,3.6,2.8,4.6,0.178041543026706
+Child separation anxiety disorder,PTSD,81939,3.6,3,4.5,-0.118694362017804
+Child separation anxiety disorder,Social phobia,141131,4.3,3.6,5.1,-1.18694362017804
+Conduct disorder,Adult separation anxiety disorder,49037,5.2,4.3,6.3,-1.18694362017804
+Conduct disorder,Major depressive episode,145990,3.6,3.2,4.1,-0.771513353115727
+Conduct disorder,Oppositional defiant disorder,30088,12.3,9.2,16.5,0
+Conduct disorder,PTSD,81939,4.2,3.3,5.3,0.29673590504451
+Conduct disorder,Social phobia,141131,3.1,2.4,4,-0.356083086053413
+Drug abuse,Adult separation anxiety disorder,49037,3.5,2.8,4.4,-0.474777448071217
+Drug abuse,Agoraphobia,145990,3.5,2.7,4.5,-0.178041543026706
+Drug abuse,Alcohol abuse,116210,8.1,7.3,8.9,0.771513353115727
+Drug abuse,Alcohol dependence,116210,8.6,7.6,9.8,1.24629080118694
+Drug abuse,Binge eating disorder,31561,3.8,3.1,4.8,-0.178041543026706
+Drug abuse,Bipolar disorder,115525,3.7,3.1,4.5,0.118694362017804
+Drug abuse,Drug dependence,90822,34,29.5,39.2,23.4421364985163
+Drug abuse,Dysthymia,124565,3.1,2.4,3.9,0.534124629080119
+Drug abuse,Generalized anxiety disorder,145990,3.1,2.7,3.6,0.237388724035608
+Drug abuse,Major depressive episode,145990,2.7,2.4,3,0.356083086053412
+Drug abuse,Nicotine dependence,43994,3.7,3.3,4.3,-0.474777448071217
+Drug abuse,Panic disorder,145990,2.6,2.1,3.2,0.830860534124629
+Drug abuse,PTSD,81939,2.9,2.5,3.5,0.415430267062315
+Drug abuse,Social phobia,141131,1.8,1.3,2.4,0.534124629080119
+Drug dependence,Adult separation anxiety disorder,49037,4.3,3.1,5.9,0.237388724035609
+Drug dependence,Agoraphobia,145990,4.8,3.2,7.4,0.593471810089021
+Drug dependence,Alcohol abuse,116210,8.7,7.1,10.6,1.48367952522255
+Drug dependence,Alcohol dependence,116210,17.5,14.1,21.8,-0.0593471810089029
+Drug dependence,Binge eating disorder,31561,5,3.6,7,-0.237388724035609
+Drug dependence,Bipolar disorder,115525,4.9,3.9,6.2,1.00890207715133
+Drug dependence,Drug abuse,90822,73.5,56.5,95.5,-23.4421364985163
+Drug dependence,Dysthymia,124565,4.7,3.5,6.4,2.13649851632048
+Drug dependence,Generalized anxiety disorder,145990,4.5,3.6,5.6,0.593471810089021
+Drug dependence,Major depressive episode,145990,3.3,2.8,3.9,1.06824925816024
+Drug dependence,Nicotine dependence,43994,5.3,4.2,6.7,-0.712166172106825
+Drug dependence,Panic disorder,145990,4.6,3.4,6.2,0.890207715133531
+Drug dependence,PTSD,81939,4.9,3.8,6.4,0.771513353115727
+Drug dependence,Social phobia,141131,2,1.3,3.1,1.18694362017804
+Dysthymia,Adult separation anxiety disorder,49037,4.2,3.3,5.3,0.890207715133531
+Dysthymia,Agoraphobia,145990,4.8,3.7,6.3,1.06824925816024
+Dysthymia,Alcohol abuse,116210,3.1,2.6,3.7,-0.593471810089021
+Dysthymia,Alcohol dependence,116210,6.7,5.5,8.2,-1.78041543026706
+Dysthymia,Binge eating disorder,31561,3.4,2.6,4.4,0.0593471810089021
+Dysthymia,Bipolar disorder,115525,6.5,5.4,7.9,-0.0593471810089019
+Dysthymia,Drug abuse,90822,4,3.1,5.1,-0.534124629080119
+Dysthymia,Drug dependence,90822,8.3,6.2,11,-2.13649851632048
+Dysthymia,Generalized anxiety disorder,145990,8.6,7.6,9.7,0.0593471810089019
+Dysthymia,Intermittent explosive disorder,86789,4.7,3.6,6.3,-0.652818991097923
+Dysthymia,Major depressive episode,145990,17.6,15.2,20.3,3.026706231454
+Dysthymia,Nicotine dependence,43994,2.3,1.9,2.7,0
+Dysthymia,Panic disorder,145990,4.4,3.6,5.3,1.72106824925816
+Dysthymia,PTSD,81939,6,5,7,0
+Dysthymia,Social phobia,141131,4.5,3.6,5.7,0.237388724035609
+Dysthymia,Specific phobia,123628,2.8,2,4,0.29673590504451
+Generalized anxiety disorder,Adult separation anxiety disorder,49037,4,3.3,4.7,0.771513353115727
+Generalized anxiety disorder,Agoraphobia,145990,3.4,2.7,4.2,1.78041543026706
+Generalized anxiety disorder,Alcohol abuse,116210,2.5,2.2,2.9,-0.29673590504451
+Generalized anxiety disorder,Alcohol dependence,116210,5.2,4.4,6,-1.12759643916914
+Generalized anxiety disorder,Binge eating disorder,31561,3.4,2.8,4.2,-0.118694362017804
+Generalized anxiety disorder,Bipolar disorder,115525,6.2,5.3,7.1,-0.593471810089021
+Generalized anxiety disorder,Bulimia nervosa,31561,3.5,2.5,4.9,0.178041543026706
+Generalized anxiety disorder,Drug abuse,90822,3.5,2.9,4.1,-0.237388724035608
+Generalized anxiety disorder,Drug dependence,90822,5.5,4.5,6.7,-0.593471810089021
+Generalized anxiety disorder,Dysthymia,124565,8.7,7.7,9.9,-0.0593471810089019
+Generalized anxiety disorder,Intermittent explosive disorder,86789,4.1,3.2,5.1,0.118694362017804
+Generalized anxiety disorder,Major depressive episode,145990,6.5,6.1,7,0.0593471810089019
+Generalized anxiety disorder,Nicotine dependence,43994,2.7,2.4,3.1,-0.118694362017804
+Generalized anxiety disorder,Obsessive compulsive disorder,25120,2.5,1.8,3.6,1.24629080118694
+Generalized anxiety disorder,Panic disorder,145990,4.7,4,5.5,1.24629080118694
+Generalized anxiety disorder,PTSD,81939,5.3,4.7,6,-0.0593471810089019
+Generalized anxiety disorder,Social phobia,141131,3.2,2.7,3.9,1.12759643916914
+Generalized anxiety disorder,Specific phobia,123628,1.5,1.1,2,0.890207715133531
+Intermittent explosive disorder,Adult separation anxiety disorder,49037,3.5,2.8,4.2,-0.237388724035608
+Intermittent explosive disorder,Agoraphobia,145990,2.9,2.2,3.9,1.18694362017804
+Intermittent explosive disorder,Binge eating disorder,31561,2.9,2.2,3.7,0
+Intermittent explosive disorder,Bipolar disorder,115525,4.7,4,5.6,-0.415430267062315
+Intermittent explosive disorder,Dysthymia,124565,3.6,2.9,4.5,0.652818991097923
+Intermittent explosive disorder,Generalized anxiety disorder,145990,4.3,3.6,5,-0.118694362017804
+Intermittent explosive disorder,Major depressive episode,145990,3.2,2.9,3.5,-0.118694362017804
+Intermittent explosive disorder,Obsessive compulsive disorder,25120,6.4,4.6,9,-1.48367952522255
+Intermittent explosive disorder,Panic disorder,145990,2.9,2.3,3.7,1.12759643916914
+Intermittent explosive disorder,PTSD,81939,3.3,2.7,4,0.29673590504451
+Intermittent explosive disorder,Social phobia,141131,2.8,2.2,3.4,0.534124629080119
+Major depressive episode,Adult separation anxiety disorder,49037,3.8,3.4,4.3,0.356083086053413
+Major depressive episode,Agoraphobia,145990,3.4,3,3.9,0.474777448071217
+Major depressive episode,Alcohol abuse,116210,2.4,2.2,2.6,-0.356083086053412
+Major depressive episode,Alcohol dependence,116210,4,3.6,4.5,-0.712166172106825
+Major depressive episode,Binge eating disorder,31561,2.6,2.3,3,0.415430267062314
+Major depressive episode,Bipolar disorder,115525,6.6,6,7.3,-1.30563798219585
+Major depressive episode,Bulimia nervosa,31561,2.8,2.2,3.7,0.652818991097923
+Major depressive episode,Child separation anxiety disorder,47661,0.8,0.5,1.3,1.60237388724036
+Major depressive episode,Conduct disorder,33168,2.3,1.6,3.3,0.771513353115727
+Major depressive episode,Drug abuse,90822,3.3,2.9,3.6,-0.356083086053412
+Major depressive episode,Drug dependence,90822,5.1,4.3,5.9,-1.06824925816024
+Major depressive episode,Dysthymia,124565,22.7,20.9,24.6,-3.026706231454
+Major depressive episode,Generalized anxiety disorder,145990,6.6,6.2,7,-0.0593471810089019
+Major depressive episode,Intermittent explosive disorder,86789,3,2.6,3.5,0.118694362017804
+Major depressive episode,Nicotine dependence,43994,2,1.8,2.2,0.356083086053413
+Major depressive episode,Obsessive compulsive disorder,25120,2.9,2.1,3.8,0.474777448071217
+Major depressive episode,Oppositional defiant disorder,30088,1.9,1.4,2.6,1.12759643916914
+Major depressive episode,Panic disorder,145990,4.1,3.7,4.6,0.29673590504451
+Major depressive episode,PTSD,81939,4.7,4.3,5.1,0.237388724035608
+Major depressive episode,Social phobia,141131,2.3,2.1,2.6,0.771513353115727
+Major depressive episode,Specific phobia,123628,1,0.9,1.3,0.890207715133531
+Nicotine dependence,Adult separation anxiety disorder,49037,2,1.7,2.4,0.29673590504451
+Nicotine dependence,Agoraphobia,145990,1.5,1.1,2.1,0.356083086053413
+Nicotine dependence,Alcohol abuse,116210,2.9,2.5,3.2,0.0593471810089021
+Nicotine dependence,Alcohol dependence,116210,4.2,3.6,4.9,-0.356083086053413
+Nicotine dependence,Binge eating disorder,31561,2,1.6,2.7,0.178041543026706
+Nicotine dependence,Bipolar disorder,115525,2.6,2.1,3.1,0.178041543026706
+Nicotine dependence,Bulimia nervosa,31561,2.5,1.5,4.1,0.118694362017804
+Nicotine dependence,Drug abuse,90822,2.9,2.4,3.6,0.474777448071217
+Nicotine dependence,Drug dependence,90822,4.1,3.2,5.3,0.712166172106825
+Nicotine dependence,Dysthymia,124565,2.3,1.9,2.8,0
+Nicotine dependence,Generalized anxiety disorder,145990,2.5,2.2,3,0.118694362017804
+Nicotine dependence,Major depressive episode,145990,2.6,2.3,2.8,-0.356083086053413
+Nicotine dependence,Obsessive compulsive disorder,25120,2,1.4,2.7,-0.178041543026706
+Nicotine dependence,Panic disorder,145990,1.9,1.5,2.4,0.29673590504451
+Nicotine dependence,PTSD,81939,1.8,1.5,2.2,0.474777448071217
+Nicotine dependence,Social phobia,141131,1.3,1,1.8,0.356083086053412
+Obsessive compulsive disorder,Adult separation anxiety disorder,49037,5.4,4.1,7.1,-0.593471810089021
+Obsessive compulsive disorder,Agoraphobia,145990,4.3,2.9,6.2,1.24629080118694
+Obsessive compulsive disorder,Alcohol abuse,116210,2.2,1.7,2.9,-0.474777448071217
+Obsessive compulsive disorder,Bipolar disorder,115525,6,4.5,8,0.830860534124629
+Obsessive compulsive disorder,Generalized anxiety disorder,145990,4.6,3.7,5.7,-1.24629080118694
+Obsessive compulsive disorder,Intermittent explosive disorder,86789,3.9,2.9,5.4,1.48367952522255
+Obsessive compulsive disorder,Major depressive episode,145990,3.7,3.1,4.3,-0.474777448071217
+Obsessive compulsive disorder,Nicotine dependence,43994,1.7,1.2,2.4,0.178041543026706
+Obsessive compulsive disorder,Panic disorder,145990,4.3,2.9,6.5,0.949554896142434
+Obsessive compulsive disorder,PTSD,81939,3.4,2.4,4.7,0
+Obsessive compulsive disorder,Social phobia,141131,5.3,3.9,7.4,-0.652818991097923
+Oppositional defiant disorder,ADHD,42147,10.4,7.2,14.9,-0.29673590504451
+Oppositional defiant disorder,Adult separation anxiety disorder,49037,4.9,4,5.9,-1.00890207715134
+Oppositional defiant disorder,Agoraphobia,145990,3.5,2.6,4.8,0.29673590504451
+Oppositional defiant disorder,Child separation anxiety disorder,47661,3.9,2.4,6.4,-0.178041543026706
+Oppositional defiant disorder,Conduct disorder,33168,12.3,10.1,14.9,0
+Oppositional defiant disorder,Major depressive episode,145990,3.8,3.4,4.3,-1.12759643916914
+Oppositional defiant disorder,PTSD,81939,4.3,3.5,5.3,-0.178041543026706
+Oppositional defiant disorder,Social phobia,141131,4.3,3.6,5.1,-0.534124629080119
+Panic disorder,Adult separation anxiety disorder,49037,4.5,3.5,5.8,-0.534124629080119
+Panic disorder,Agoraphobia,145990,10.1,8.4,12.2,1.24629080118694
+Panic disorder,Alcohol abuse,116210,2.6,2.2,3.2,-0.415430267062315
+Panic disorder,Alcohol dependence,116210,6.7,5.5,8.1,-2.43323442136498
+Panic disorder,Binge eating disorder,31561,3,2.3,3.9,0.0593471810089021
+Panic disorder,Bipolar disorder,115525,6.3,5.1,7.7,-1.36498516320475
+Panic disorder,Drug abuse,90822,4,3.2,5,-0.830860534124629
+Panic disorder,Drug dependence,90822,6.1,4.5,8.2,-0.890207715133531
+Panic disorder,Dysthymia,124565,7.3,6.1,8.8,-1.72106824925816
+Panic disorder,Generalized anxiety disorder,145990,6.8,5.9,7.7,-1.24629080118694
+Panic disorder,Intermittent explosive disorder,86789,4.8,3.8,6,-1.12759643916914
+Panic disorder,Major depressive episode,145990,4.6,4.1,5.1,-0.29673590504451
+Panic disorder,Nicotine dependence,43994,2.4,2,2.8,-0.29673590504451
+Panic disorder,Obsessive compulsive disorder,25120,5.9,3.7,9.5,-0.949554896142434
+Panic disorder,PTSD,81939,4.2,3.4,5.1,0.0593471810089019
+Panic disorder,Social phobia,141131,4.6,3.6,5.7,-0.0593471810089019
+Panic disorder,Specific phobia,123628,3,2.3,4,0.652818991097923
+PTSD,Adult separation anxiety disorder,49037,4.2,3.5,5.1,-0.0593471810089024
+PTSD,Agoraphobia,145990,3.5,2.8,4.4,0.474777448071217
+PTSD,Alcohol abuse,116210,3,2.7,3.4,-0.415430267062315
+PTSD,Alcohol dependence,116210,5.3,4.5,6.2,-0.534124629080118
+PTSD,Binge eating disorder,31561,3.4,2.8,4.3,-0.593471810089021
+PTSD,Bipolar disorder,115525,4.8,4.2,5.5,-0.237388724035608
+PTSD,Bulimia nervosa,31561,4.5,3.3,6.3,0.118694362017804
+PTSD,Child separation anxiety disorder,47661,3.4,2.2,5.5,0.118694362017804
+PTSD,Conduct disorder,33168,4.7,3.3,6.8,-0.29673590504451
+PTSD,Drug abuse,90822,3.6,3.1,4.3,-0.415430267062315
+PTSD,Drug dependence,90822,6.2,5.1,7.6,-0.771513353115727
+PTSD,Dysthymia,124565,6,5.2,6.9,0
+PTSD,Generalized anxiety disorder,145990,5.2,4.7,5.7,0.0593471810089019
+PTSD,Intermittent explosive disorder,86789,3.8,2.9,4.8,-0.29673590504451
+PTSD,Major depressive episode,145990,5.1,4.7,5.5,-0.237388724035608
+PTSD,Nicotine dependence,43994,2.6,2.2,3.1,-0.474777448071217
+PTSD,Obsessive compulsive disorder,25120,3.4,2.3,5.1,0
+PTSD,Oppositional defiant disorder,30088,4,2.6,6,0.178041543026706
+PTSD,Panic disorder,145990,4.3,3.7,5.1,-0.0593471810089019
+PTSD,Social phobia,141131,4,3.4,4.6,-0.534124629080119
+Social phobia,ADHD,42147,2.9,2.2,3.9,1.12759643916914
+Social phobia,Adult separation anxiety disorder,49037,3.3,2.9,3.8,0.237388724035609
+Social phobia,Agoraphobia,145990,10,8.9,11.3,3.38278931750742
+Social phobia,Alcohol abuse,116210,2.2,2,2.4,-0.593471810089021
+Social phobia,Alcohol dependence,116210,3.7,3.4,4.1,-0.890207715133531
+Social phobia,Binge eating disorder,31561,3,2.6,3.4,-0.29673590504451
+Social phobia,Bipolar disorder,115525,4.1,3.7,4.6,-0.712166172106825
+Social phobia,Child separation anxiety disorder,47661,2.3,1.7,3,1.18694362017804
+Social phobia,Conduct disorder,33168,2.5,1.9,3.1,0.356083086053413
+Social phobia,Drug abuse,90822,2.7,2.5,3,-0.534124629080119
+Social phobia,Drug dependence,90822,4,3.5,4.7,-1.18694362017804
+Social phobia,Dysthymia,124565,4.9,4.4,5.5,-0.237388724035609
+Social phobia,Generalized anxiety disorder,145990,5.1,4.7,5.5,-1.12759643916914
+Social phobia,Intermittent explosive disorder,86789,3.7,3.2,4.3,-0.534124629080119
+Social phobia,Major depressive episode,145990,3.6,3.4,3.8,-0.771513353115727
+Social phobia,Nicotine dependence,43994,1.9,1.7,2.1,-0.356083086053412
+Social phobia,Obsessive compulsive disorder,25120,4.2,3.3,5.3,0.652818991097923
+Social phobia,Oppositional defiant disorder,30088,3.4,2.6,4.4,0.534124629080119
+Social phobia,Panic disorder,145990,4.5,4,5,0.0593471810089019
+Social phobia,PTSD,81939,3.1,2.7,3.4,0.534124629080119
+Social phobia,Specific phobia,123628,2.7,2.3,3.2,1.48367952522255
+Specific phobia,Bipolar disorder,115525,3.6,3.3,4,-0.771513353115727
+Specific phobia,Dysthymia,124565,3.3,3,3.6,-0.29673590504451
+Specific phobia,Generalized anxiety disorder,145990,3,2.8,3.2,-0.890207715133531
+Specific phobia,Major depressive episode,145990,2.5,2.4,2.6,-0.890207715133531
+Specific phobia,Panic disorder,145990,4.1,3.8,4.5,-0.652818991097923
+Specific phobia,Social phobia,141131,5.2,4.8,5.5,-1.48367952522255

@@ -613,7 +613,14 @@ svar yAxis = d3.svg.axis().scale(y)
     .call(d3.axisBottom(x))
     .select(".domain").remove()
 </pre>
+<br>
 
+<h6>Change axis color (this is <code>.css</code> code)</h6>
+<pre class="language-js">
+  .yAxis path {
+    stroke: #B8B8B8;
+  }
+</pre>
 
 
 

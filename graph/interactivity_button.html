@@ -126,10 +126,15 @@
             <li class="nav-item">
               <a class="nav-link" href="#eventListener">Event listener</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#buildWithD3">Build buttons with d3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#buttonStyle">Button style with css</a>
+            </li>
           </ul>
         </nav>
     </div>
-
 
 
 
@@ -156,7 +161,7 @@
 <button type="button">Click Me!</button>
 
 <!-- Radio button -->
-<br><br>
+<br><br><br>
 <div>
   <input type="radio" name="gender" value="male"> Male<br>
   <input type="radio" name="gender" value="female"> Female<br>
@@ -164,26 +169,42 @@
 </div>
 
 <!-- Text input -->
-<br><br>
+<br><br><br>
 <input type="text" name="usrname" value="initial value">
 
-<!-- Check box-->
-<br><br>
-<input type="checkbox" name="usrname">
+<!-- Check box. Note: very close from radio button, but several options can be checked. Radio button = only one. -->
+<br><br><br>
+<div>
+  <input type="checkbox" name="myCheckBox" checked>
+  <label for="myCheckBox">Option 1</label>
+  <input type="checkbox" name="myCheckBox2" checked>
+  <label for="myCheckBox2">Option 2</label>
+</div>
 
 <!-- File picker -->
-<br><br>
+<br><br><br><br><br><br><br>
 <input type="file" name="usrname">
 
 <!-- Number -->
-<br><br>
+<br><br><br><br>
 <input type="number" name="usrname" value=13>
 
 <!-- Slider -->
-<br><br>
+<br><br><br><br>
 <input type="range" name="usrname">
+
+<!-- Dropdown button -->
+<br><br><br><br>
+<select>
+  <option value="o1">Option 1</option>
+  <option value="o2">Option 2</option>
+  <option value="o3">Option 3</option>
+  <option value="o4">Whatever</option>
+</select>
+
 </xmp></code></pre>
       </div>
+
 
 
 </div>
@@ -445,6 +466,292 @@ myJSParser('js-basicEventListener', 'res-basicEventListener');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== BUILD BUTTON WITH D3 ==================== -->
+
+<section id="buildWithD3" class="bg">
+<div class="container" >
+  <h1>Build buttons in <code>d3.js</code></h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-builtWithD3" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>Sometimes it is handy to build the button in javascript. It is typically the case with dropdown button: the list of option often depends on the data itself.</li>
+          <br>
+          <li>Note the use of the <code>this</code> magick variable to recover the option that has been chosen before calling the <code>updateChart()</code> function,</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-builtWithD3" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the circle will take place -->
+<div id="dataviz_builtWithD3"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-builtWithD3" contenteditable="true"><xmp><script>
+
+// Create data = list of groups
+var allGroup = ["yellow", "blue", "red", "green", "purple", "black"]
+
+// Initialize the button
+var dropdownButton = d3.select("#dataviz_builtWithD3")
+  .append('select')
+  .attr('class', 'btn btn-primary')
+  .style('border-width', '1px')
+  .style('border-color', 'blue')
+
+// add the options to the button
+dropdownButton // Add a button
+  .selectAll('myOptions') // Next 4 lines add 6 options = 6 colors
+ 	.data(allGroup)
+  .enter()
+	.append('option')
+  .text(function (d) { return d; }) // text showed in the menu
+  .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+// Initialize a circle
+var zeCircle = d3.select("#dataviz_builtWithD3")
+  .append("svg")
+  .append("circle")
+    .attr("cx", 100)
+    .attr("cy", 70)
+    .attr("stroke", "black")
+    .style("fill", "yellow")
+    .attr("r", 20)
+
+// A function that update the color of the circle
+function updateChart(mycolor) {
+  zeCircle
+    .transition()
+    .duration(1000)
+    .style("fill", mycolor)
+}
+
+// When the button is changed, run the updateChart function
+dropdownButton.on("change", function(d) {
+
+    // recover the option that has been chosen
+    var selectedOption = d3.select(this).property("value")
+
+    // run the updateChart function with this selected option
+    updateChart(selectedOption)
+})
+
+
+
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-builtWithD3', 'res-builtWithD3')
+myJSParser('js-builtWithD3', 'res-builtWithD3')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-builtWithD3').addEventListener("input", function() {
+d3.select('#res-builtWithD3').html("");
+myHtmlParser('html-builtWithD3', 'res-builtWithD3');
+myJSParser('js-builtWithD3', 'res-builtWithD3');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-builtWithD3').addEventListener("input", function() {
+d3.select('#res-builtWithD3').html("");
+myHtmlParser('html-builtWithD3', 'res-builtWithD3');
+myJSParser('js-builtWithD3', 'res-builtWithD3');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== BUTTON STYLE ==================== -->
+
+<section id="buttonStyle" class="bg">
+<div class="container" >
+  <h1>Change button style with <code>CSS</code></h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-buttonStyle" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>Humm, not that easy.</li>
+          <br>
+          <li>So much bettter to use bootstrap is'nt it?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-buttonStyle" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the circle will take place -->
+<br><br>
+<div id="dataviz_buttonStyle"></div>
+<br><br>
+
+<!-- button style -->
+<style>
+select {
+  border-width: 1px;
+  border-radius: 0px;
+  border-color: #69b3a2;
+
+  background-color: none;
+
+  font-family: Arial;
+  font-size: 18px;
+  color: pink;
+  padding: 10px 20px;
+}
+</style>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-buttonStyle" contenteditable="true"><xmp><script>
+
+// Create data = list of groups
+var allGroup = ["yellow", "blue", "red", "green", "purple", "black"]
+
+// Initialize the button
+var dropdownButton = d3.select("#dataviz_buttonStyle")
+  .append('select')
+
+// add the options to the button
+dropdownButton // Add a button
+  .selectAll('myOptions') // Next 4 lines add 6 options = 6 colors
+ 	.data(allGroup)
+  .enter()
+	.append('option')
+  .text(function (d) { return d; }) // text showed in the menu
+  .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-buttonStyle', 'res-buttonStyle')
+myJSParser('js-buttonStyle', 'res-buttonStyle')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-buttonStyle').addEventListener("input", function() {
+d3.select('#res-buttonStyle').html("");
+myHtmlParser('html-buttonStyle', 'res-buttonStyle');
+myJSParser('js-buttonStyle', 'res-buttonStyle');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-buttonStyle').addEventListener("input", function() {
+d3.select('#res-buttonStyle').html("");
+myHtmlParser('html-buttonStyle', 'res-buttonStyle');
+myJSParser('js-buttonStyle', 'res-buttonStyle');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
 
 
 
