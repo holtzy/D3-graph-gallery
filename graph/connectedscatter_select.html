@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic connected scatter plot in d3.js</title>
+  <title>Connected scatter plot with dropdown to select group in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic connected scatter plot">
+  <meta name="description" content="Create a connected scatter plot with a dropdown button to select data series. D3.js code and explanation provided.">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, connected scatter plot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Basic connected scatter plot in d3.js">
+  <meta property="og:title" content="Connected scatter plot with dropdown to select group in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic connected scatter plot">
+  <meta property="og:description" content="Create a connected scatter plot with a dropdown button to select data series. D3.js code and explanation provided.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +39,7 @@
 
   <!-- D3.JS v4 -->
   <script src="../js/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -79,7 +80,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic connected scatter plot</h1>
+      <h1>Connected scatter plot with dropdown to select group</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +106,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/connectedscatter.html">connected scatter plot</a> with d3.js. Note that it is basically a <a href="../line.html">line chart</a> with data points represented as well. Learn more about the theory of connected scatter plot in <a href="https://www.data-to-viz.com/graph/connectedscatter.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="https://www.d3-graph-gallery.com/connectedscatter.html">connected scatter plot</a> with a dropdown button to select group in d3.js. It follows the previous <a href="connectedscatter_basic.html">basic connected scatter plot</a>.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../connectedscatter.html">Connected scatter section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -139,15 +140,15 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>First, you need to understand how to build a <a href="connectedscatter_basic.html">basic connected scatterplot</a>.</li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>Here the <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_connectedscatter.csv">input dataset</a> is composed by several columns: one per group.</li>
           <br>
-          <li>Data show the evolution of bitcoin price. <a href="https://www.data-to-viz.com/story/TwoNumOrdered.html">read more</a>.</li>
+          <li>Chart is initialized using the first group. This part is easy, same as the<a href="connectedscatter_basic.html">basic connected scatterplot</a>.</li>
           <br>
-          <li>Line is drawn using a <code>path</code>, and using the <code>d3.line</code> utility.</li>
+          <li>Then a <code>update()</code> function is created. It smoothly transform the chart with the value of another column</li>
           <br>
-          <li>Dots are added using <code>circle</code>, like for a <a href="scatter_basic.html">basic scatterplot</a>.</li>
+          <li>This function is triggered whenever the <code>select</code> button is changed.</li>
         </ul>
       </div>
     </div>
@@ -169,8 +170,14 @@ $(function(){
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
 
+<!-- Initialize a select button -->
+<select id="selectButton"></select>
+
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
+
+<!-- Color Scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -184,7 +191,7 @@ $(function(){
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
+var margin = {top: 10, right: 100, bottom: 30, left: 30},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -198,19 +205,23 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/connectedscatter.csv",
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_connectedscatter.csv", function(data) {
 
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
-  },
+    // List of groups (here I have one group per column)
+    var allGroup = ["valueA", "valueB", "valueC"]
 
-  // Now I can use this dataset:
-  function(data) {
+    // add the options to the button
+    d3.select("#selectButton")
+      .selectAll('myOptions')
+     	.data(allGroup)
+      .enter()
+    	.append('option')
+      .text(function (d) { return d; }) // text showed in the menu
+      .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
     // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
+    var x = d3.scaleLinear()
+      .domain([0,10])
       .range([ 0, width ]);
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -218,33 +229,67 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain( [8000, 9200])
+      .domain( [0,20])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
 
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "#69b3a2")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
+    // Initialize line with group a
+    var line = svg
+      .append('g')
+      .append("path")
+        .datum(data)
+        .attr("d", d3.line()
+          .x(function(d) { return x(+d.time) })
+          .y(function(d) { return y(+d.valueA) })
         )
+        .attr("stroke", "black")
+        .style("stroke-width", 4)
+        .style("fill", "none")
 
-    // Add the points
-    svg
-      .append("g")
-      .selectAll("dot")
+    // Initialize dots with group a
+    var dot = svg
+      .selectAll('circle')
       .data(data)
       .enter()
-      .append("circle")
-        .attr("cx", function(d) { return x(d.date) } )
-        .attr("cy", function(d) { return y(d.value) } )
-        .attr("r", 5)
-        .attr("fill", "#69b3a2")
+      .append('circle')
+        .attr("cx", function(d) { return x(+d.time) })
+        .attr("cy", function(d) { return y(+d.valueA) })
+        .attr("r", 7)
+        .style("fill", "#69b3a2")
+
+
+    // A function that update the chart
+    function update(selectedGroup) {
+
+      // Create new data with the selection?
+      var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
+
+      // Give these new data to update line
+      line
+          .datum(dataFilter)
+          .transition()
+          .duration(1000)
+          .attr("d", d3.line()
+            .x(function(d) { return x(+d.time) })
+            .y(function(d) { return y(+d.value) })
+          )
+      dot
+        .data(dataFilter)
+        .transition()
+        .duration(1000)
+          .attr("cx", function(d) { return x(+d.time) })
+          .attr("cy", function(d) { return y(+d.value) })
+    }
+
+    // When the button is changed, run the updateChart function
+    d3.select("#selectButton").on("change", function(d) {
+        // recover the option that has been chosen
+        var selectedOption = d3.select(this).property("value")
+        // run the updateChart function with this selected option
+        update(selectedOption)
+    })
+
 })
 
 
@@ -308,9 +353,13 @@ myJSParser('codejs', 'result');
         <ul>
           <li><i>Line Chart - </i><a href="https://bl.ocks.org/mbostock/3883245">link</a></li>
           <br>
-          <li><i>Basic scatterplot - </i>by <a href="scatter_basic.html">d3 graph gallery</a></li>
+          <li><i>Multi Series Line Chart - </i>by <a href="https://bl.ocks.org/salvob41/df700ff6bbeed285de043955785775c5">SalvoB</a></li>
           <br>
           <li><i>Basic line plot - </i>by <a href="line_basic.html">d3 graph gallery</a></li>
+          <br>
+          <li><i>Scatterplot with Multiple Series - </i>by <a href="https://bl.ocks.org/mbostock/3183403">Mike Bostock</a></li>
+          <br>
+          <li><i>Line and Point transitions - </i>by <a href="https://bl.ocks.org/NGuernse/58e1057b7174fd1717993e3f5913d1a7">Nick Guernsey's</a></li>
           <br>
         </ul>
       </div>

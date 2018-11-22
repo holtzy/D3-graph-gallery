@@ -158,6 +158,19 @@ $(function(){
         </a>
       </div>
 
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/connectedscatter_multi.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Multiple series</p>
+              <hr>
+              <p class="explanation_portfolio">How to proceed if you have several groups stored in several columns. (<i>wide</i> or <i>untidy</i> format)</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/connectedscatter_multi.png" alt="">
+        </a>
+      </div>
+
     </div>
 
 
@@ -165,9 +178,8 @@ $(function(){
     <br><br>
     <div class="mySeryTitle">Interactivity</div>
     <hr>
-    <p><a href="graph/connectedscatter_tooltip.html">Tooltip</a> is usually the most desired interactive feature for connected scatterplot. The ability to <a href="">swap from one group</a> or dataset to another is also frequently used. Zooming is not necessary in general, see the <a href="line.html">line plot</a> section for that.
+    <p><a href="graph/connectedscatter_tooltip.html">Tooltip</a> is usually the most desired interactive feature for connected scatterplot. The ability to <a href="graph/connectedscatter_select.html">swap from one group</a> or dataset to another is also frequently used. Zooming is not necessary in general, see the <a href="line.html">line plot</a> section for that.
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/connectedscatter_tooltip.html">
           <div class="portfolio-hover">
@@ -180,11 +192,36 @@ $(function(){
           <img class="img-fluid" src="img/graph/connectedscatter_tooltip.gif" alt="">
         </a>
       </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/connectedscatter_legend.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Interactive legend</p>
+              <hr>
+              <p class="explanation_portfolio">Legend that allows to make group markers appear or disappear.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/connectedscatter_legend.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/connectedscatter_select.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Dropdown to select group</p>
+              <hr>
+              <p class="explanation_portfolio">A dropdown button allows to switch from one group to another with smooth transition.<br><br>Note: each group is in a different column in input</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/connectedscatter_select.gif" alt="">
+        </a>
+      </div>
     </div>
 
-    <br>
+    <br><br>
     <div class="mySeryTitle">Selection of blocks</div>
     <hr>
+    <p>A selection of the best blocks to illustrate what you can do with connected scatterplot in d3.js</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="https://beta.observablehq.com/@mbostock/d3-connected-scatterplot">
