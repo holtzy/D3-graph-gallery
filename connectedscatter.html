@@ -121,9 +121,15 @@ $(function(){
 <section class="bg" id="portfolio" style="padding-top: 10px">
   <div class="container">
 
+    <div class="mySeryTitle">Note on connected scatterplot</div>
+    <hr>
+    <p>It is of importance to understand that a connected scatterplot is basically an hybrid between a <a href="scatter.html">scatterplot</a> and a <a href="line.html">lineplot</a>. Thus, please visit the related section <a href="scatter.html">here</a> and <a href="line.html">here</a> to get more examples, since the techniques used are very similar.</p>
+    <p>Please note also that <u>2 types</u> of connected scatterplot exist. The <u>first</u> is simply a lineplot with dots added on top of it. It takes as input 2 numeric variables only. The <u>second</u> shows the relationship between 2 numerical variables across time. It requires 3 numerical variables as input. Confusing? Visit <a href="https://www.data-to-viz.com/graph/connectedscatter.html">data-to-viz</a> to clarify.</p>
 
+    <br><br>
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>Pretty straightforward once you understood how to build a <a href="scatter.html">scatterplot</a> and a <a href="line.html">lineplot</a>. See the focus on <a href="">annotation</a> that is handy for the second type of connected scatter (see above).</p>
     <div id="portfolio-items" class="row">
 
       <div class="col-md-4 col-sm-6 portfolio-item">
@@ -138,6 +144,61 @@ $(function(){
           <img class="img-fluid" src="img/graph/connectedscatter_basic.png" alt="">
         </a>
       </div>
+
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/connectedscatter_tooltip.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Use smooth curve instead of segment</p>
+              <hr>
+              <p class="explanation_portfolio">Transform the line to a curve adding only one line of code.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/connectedscatter_tooltip.png" alt="">
+        </a>
+      </div>
+
+    </div>
+
+
+
+    <br><br>
+    <div class="mySeryTitle">Interactivity</div>
+    <hr>
+    <p><a href="graph/connectedscatter_tooltip.html">Tooltip</a> is usually the most desired interactive feature for connected scatterplot. The ability to <a href="">swap from one group</a> or dataset to another is also frequently used. Zooming is not necessary in general, see the <a href="line.html">line plot</a> section for that.
+    <div id="portfolio-items" class="row">
+
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/connectedscatter_tooltip.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Add tooltip</p>
+              <hr>
+              <p class="explanation_portfolio">Classic approach to add tooltip to each points.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/connectedscatter_tooltip.gif" alt="">
+        </a>
+      </div>
+    </div>
+
+    <br>
+    <div class="mySeryTitle">Selection of blocks</div>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://beta.observablehq.com/@mbostock/d3-connected-scatterplot">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Driving Shifts into Reverse</p>
+              <hr>
+              <p class="explanation_portfolio">Awesome example on how to show an evolution through a connected scatterplot.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_connectedScatter.png" alt="double bubble plot">
+        </a>
+      </div>
+
 
  </div>
 </section>

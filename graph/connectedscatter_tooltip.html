@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic connected scatter plot in d3.js</title>
+  <title>A connected scatter plot with tooltip in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic connected scatter plot">
+  <meta name="description" content="Learn how to create a connected scatter plot with tooltip with this simple example. D3.js code and explanation.">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, connected scatter plot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Basic connected scatter plot in d3.js">
+  <meta property="og:title" content="A connected scatter plot with tooltip in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic connected scatter plot">
+  <meta property="og:description" content="Learn how to create a connected scatter plot with tooltip with this simple example. D3.js code and explanation.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic connected scatter plot</h1>
+      <h1>A connected scatter plot with tooltip<br><i>(and more)</i></h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +105,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/connectedscatter.html">connected scatter plot</a> with d3.js. Note that it is basically a <a href="../line.html">line chart</a> with data points represented as well. Learn more about the theory of connected scatter plot in <a href="https://www.data-to-viz.com/graph/connectedscatter.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="https://www.d3-graph-gallery.com/connectedscatter.html">connected scatter plot</a> with d3.js. The chart includes tooltip, and curve smoothing. Learn more about the theory of connected scatter plot in <a href="https://www.data-to-viz.com/graph/connectedscatter.html">data-to-viz.com</a>.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../connectedscatter.html">Connected scatter section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -139,15 +139,11 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>See the previous example for a <a href="connectedscatter_basic.html">basic connected scatterplot</a>.</li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>Note that the transformation for segments to smooth curve is a breeze thanks to the <code>.curve()</code> function. See <a href="https://www.d3-graph-gallery.com/graph/shape.html#mycurve">this post</a> that is dedicated to it.</li>
           <br>
-          <li>Data show the evolution of bitcoin price. <a href="https://www.data-to-viz.com/story/TwoNumOrdered.html">read more</a>.</li>
-          <br>
-          <li>Line is drawn using a <code>path</code>, and using the <code>d3.line</code> utility.</li>
-          <br>
-          <li>Dots are added using <code>circle</code>, like for a <a href="scatter_basic.html">basic scatterplot</a>.</li>
+          <li>Adding tooltip uses the usual technique. It is extensively described <a href="interactivity_tooltip.html">here</a>.</li>
         </ul>
       </div>
     </div>
@@ -171,6 +167,13 @@ $(function(){
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
+
+<!-- Circle are black when hovered-->
+<style>
+.myCircle:hover {
+  stroke: black;
+}
+</style>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -227,12 +230,40 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#69b3a2")
+      .attr("stroke", "black")
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
+        .curve(d3.curveBasis) // Just add that to have a curve instead of segments
         .x(function(d) { return x(d.date) })
         .y(function(d) { return y(d.value) })
         )
+
+    // create a tooltip
+    var Tooltip = d3.select("#my_dataviz")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "2px")
+      .style("border-radius", "5px")
+      .style("padding", "5px")
+
+      // Three function that change the tooltip when user hover / move / leave a cell
+      var mouseover = function(d) {
+        Tooltip
+          .style("opacity", 1)
+      }
+      var mousemove = function(d) {
+        Tooltip
+          .html("Exact value: " + d.value)
+          .style("left", (d3.mouse(this)[0]+70) + "px")
+          .style("top", (d3.mouse(this)[1]) + "px")
+      }
+      var mouseleave = function(d) {
+        Tooltip
+          .style("opacity", 0)
+      }
 
     // Add the points
     svg
@@ -241,10 +272,16 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
       .data(data)
       .enter()
       .append("circle")
+        .attr("class", "myCircle")
         .attr("cx", function(d) { return x(d.date) } )
         .attr("cy", function(d) { return y(d.value) } )
-        .attr("r", 5)
-        .attr("fill", "#69b3a2")
+        .attr("r", 8)
+        .attr("stroke", "#69b3a2")
+        .attr("stroke-width", 3)
+        .attr("fill", "white")
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave)
 })
 
 
