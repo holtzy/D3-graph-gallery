@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Line plot with dropdown to select group in d3.js</title>
+  <title>Filter group in d3.js line chart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Create a line plot with a dropdown button to select data series. Group are stored in distincts column of .csv input. D3.js code and explanation provided.">
+  <meta name="description" content="Create a line plot with a dropdown button to filter data series. Groups are stored in a unique column of the .csv input.">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, connected scatter plot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Line plot with dropdown to select group in d3.js">
+  <meta property="og:title" content="Filter group in d3.js line chart">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Create a line plot with a dropdown button to select data series. Group are stored in distincts column of .csv input. D3.js code and explanation provided.">
+  <meta property="og:description" content="Create a line plot with a dropdown button to filter data series. Groups are stored in a unique column of the .csv input.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Line plot with dropdown to select group in d3.js</h1>
+      <h1>Line plot with dropdown to filter group in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -106,7 +106,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="../line.html">line plot</a> with a dropdown button to select group in d3.js. It follows the previous <a href="line_basic.html">basic line plot</a>. Note that all groups are stored in different column of the <code>.csv</code> input file.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to smoothly transition between groups in a <a href="../line.html">line chart</a> with d3.js. It is very close from this <a href="line_select.html">other example</a>. Here groups values are stored in the <u>same column</u> instead of having one distinct column each. It is the <u>tidy</u> or <u>long</u> format versus the previous <u>wide</u> or <u>untidy</u> format.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../line.html">Line chart section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -191,7 +191,7 @@ $(function(){
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 100, bottom: 30, left: 30},
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -205,10 +205,10 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_connectedscatter.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered.csv", function(data) {
 
     // List of groups (here I have one group per column)
-    var allGroup = ["valueA", "valueB", "valueC"]
+    var allGroup = d3.map(data, function(d){return(d.name)}).keys()
 
     // add the options to the button
     d3.select("#selectButton")
@@ -226,27 +226,27 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
 
     // Add X axis --> it is a date format
     var x = d3.scaleLinear()
-      .domain([0,10])
+      .domain(d3.extent(data, function(d) { return d.year; }))
       .range([ 0, width ]);
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(x).ticks(7));
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain( [0,20])
+      .domain([0, d3.max(data, function(d) { return +d.n; })])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
 
-    // Initialize line with group a
+    // Initialize line with first group of the list
     var line = svg
       .append('g')
       .append("path")
-        .datum(data)
+        .datum(data.filter(function(d){return d.name==allGroup[0]}))
         .attr("d", d3.line()
-          .x(function(d) { return x(+d.time) })
-          .y(function(d) { return y(+d.valueA) })
+          .x(function(d) { return x(d.year) })
+          .y(function(d) { return y(+d.n) })
         )
         .attr("stroke", function(d){ return myColor("valueA") })
         .style("stroke-width", 4)
@@ -256,7 +256,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
     function update(selectedGroup) {
 
       // Create new data with the selection?
-      var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
+      var dataFilter = data.filter(function(d){return d.name==selectedGroup})
 
       // Give these new data to update line
       line
@@ -264,8 +264,8 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
           .transition()
           .duration(1000)
           .attr("d", d3.line()
-            .x(function(d) { return x(+d.time) })
-            .y(function(d) { return y(+d.value) })
+            .x(function(d) { return x(d.year) })
+            .y(function(d) { return y(+d.n) })
           )
           .attr("stroke", function(d){ return myColor(selectedGroup) })
     }

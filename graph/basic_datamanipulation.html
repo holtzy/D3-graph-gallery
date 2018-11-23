@@ -297,6 +297,36 @@ data.sort(function (a,b) {return d3.ascending(a.name, b.name);});
 
 
 
+
+
+
+
+
+<!-- ==================== GROUPING ==================== -->
+
+  <section id="grouping">
+  <div class="container" >
+
+    <h1>Grouping</h1>
+    <hr>
+
+<h6>Get a list of unique entries of a column called <code>name</code></h6>
+<pre class="language-js">
+var allGroup = d3.map(data, function(d){return(d.name)}).keys()
+</pre>
+<br>
+
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
 <!-- ============================ GOING FURTHER ============================ -->
 
 <section class="bg" id="portfolio" style="padding-top: 10px">
