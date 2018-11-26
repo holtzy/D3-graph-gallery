@@ -129,6 +129,9 @@
             <li class="nav-item">
               <a class="nav-link" href="#grouping">Grouping</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#loop">Loop</a>
+            </li>
           </ul>
         </nav>
     </div>
@@ -319,6 +322,60 @@ var allGroup = d3.map(data, function(d){return(d.name)}).keys()
 
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== GROUPING ==================== -->
+
+  <section id="loop">
+  <div class="container" >
+
+    <h1>Loop</h1>
+    <hr>
+
+<h6>A <code>for</code> loop from one to ten:</h6>
+<pre class="language-js">
+var i
+for (i = 0; i < 10; i++) {
+  console.log(i)
+}
+</pre>
+<br>
+
+<h6>A <code>for</code> loop for all the elements of a list: (Note that it returns 0, 1, 2, not a, b, c)</h6>
+<pre class="language-js">
+var allGroup = ["a", "b", "c"]
+for (i in allGroup){
+  console.log(i)
+}
+</pre>
+<br>
+
+<h6>A <code>while</code> loop to count from 0 to 10</h6>
+<pre class="language-js">
+while (i < 10) {
+  console.log(i)
+  i++;
+}
+</pre>
+<br>
+
+
+while (i < 10) {
+    text += "The number is " + i;
+    i++;
+}
+
+  </div>
+</section>
+
 
 
 

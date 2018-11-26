@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-79254642-6');
+  </script>
+
+  <meta charset="utf-8">
+  <title>Ridgeline plot template in d3.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="My template for ridgeline plots in d3.js: post with explanation and reproducible code.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, ridgeline">
+  <meta name="author" content="Yan Holtz">
+
+  <meta property="og:title" content="Ridgeline plot template in d3.js">
+  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
+  <meta property="og:description" content="My template for ridgeline plots in d3.js: post with explanation and reproducible code.">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/agency.css" rel="stylesheet">
+
+  <!-- PRISM -->
+  <script src="../LIB/prism.js"></script>
+  <link href="../LIB/prism.css" rel="stylesheet" />
+
+  <!-- D3.JS v4 -->
+  <script src="../js/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+  <!-- JQUERY -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+
+  <!-- HTML TO CANVAS -->
+  <script src="../js/html2canvas.js"></script>
+
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="../js/myParser.js"></script>
+
+</head>
+
+
+
+
+
+
+<body id="page-top">
+
+
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("../html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+});
+</script>
+
+
+<!-- Header -->
+<header class="masthead">
+  <div class="textlanding">
+      <h1>Ridgeline plot template in d3.js</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">This post provides a clean template for <a href="../ridgeline.html">ridgeline plot</a> with d3.js (also called joy plot). Color depends on average value, axes are labeled, and background is customized. See other examples in the <a href="../ridgeline.html">ridgeline section</a> of the gallery. </p>
+      <br>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../ridgeline.html">Ridgeline section</a>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+  </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="result" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>A ridgeline plot basically displays many <a href="../density.html">densities</a>. You probably want to visit the <a href="../density.html">density section</a> of the gallery if this is new for you.</li>
+          <br>
+          <li>This example follows the previous <a href="ridgeline_basic.html">basic ridgeline chart</a>.</li>
+          <br>
+          <li>The main change is the addition of a <a href="custom_color.html">color palette</a>: color is now proportionnal to the average value of each group. Computing these means is a good example of <a href="basic_datamanipulation.html">data manipulation</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- ================================================================================= -->
+
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<!-- Style -->
+<style>
+.xAxis line {
+  stroke: #B8B8B8;
+}
+</style>
+
+<!-- Viridis color palette-->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 80, right: 30, bottom: 50, left:110},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//read data
+d3.csv("https://raw.githubusercontent.com/zonination/perceptions/master/probly.csv", function(data) {
+
+  // Get the different categories and count them
+  var categories = ["Almost Certainly", "Very Good Chance", "We Believe", "Likely", "About Even", "Little Chance", "Chances Are Slight", "Almost No Chance" ]
+  var n = categories.length
+
+  // Compute the mean of each group
+  allMeans = []
+  for (i in categories){
+    currentGroup = categories[i]
+    mean = d3.mean(data, function(d) { return +d[currentGroup] })
+    allMeans.push(mean)
+  }
+
+  // Create a color scale using these means.
+  var myColor = d3.scaleSequential()
+    .domain([0,100])
+    .interpolator(d3.interpolateViridis);
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([-10, 120])
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("class", "xAxis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickValues([0,25, 50, 75, 100]).tickSize(-height) )
+    .select(".domain").remove()
+
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height + 40)
+      .text("Probability (%)");
+
+  // Create a Y scale for densities
+  var y = d3.scaleLinear()
+    .domain([0, 0.25])
+    .range([ height, 0]);
+
+  // Create the Y axis for names
+  var yName = d3.scaleBand()
+    .domain(categories)
+    .range([0, height])
+    .paddingInner(1)
+  svg.append("g")
+    .call(d3.axisLeft(yName).tickSize(0))
+    .select(".domain").remove()
+
+  // Compute kernel density estimation for each column:
+  var kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40)) // increase this 40 for more accurate density.
+  var allDensity = []
+  for (i = 0; i < n; i++) {
+      key = categories[i]
+      density = kde( data.map(function(d){  return d[key]; }) )
+      allDensity.push({key: key, density: density})
+  }
+
+  // Add areas
+  svg.selectAll("areas")
+    .data(allDensity)
+    .enter()
+    .append("path")
+      .attr("transform", function(d){return("translate(0," + (yName(d.key)-height) +")" )})
+      .attr("fill", function(d){
+        grp = d.key ;
+        index = categories.indexOf(grp)
+        value = allMeans[index]
+        return myColor( value  )
+      })
+      .datum(function(d){return(d.density)})
+      .attr("opacity", 0.7)
+      .attr("stroke", "#000")
+      .attr("stroke-width", 0.1)
+      .attr("d",  d3.line()
+          .curve(d3.curveBasis)
+          .x(function(d) { return x(d[0]); })
+          .y(function(d) { return y(d[1]); })
+      )
+
+})
+
+// This is what I need to compute kernel density estimation
+function kernelDensityEstimator(kernel, X) {
+  return function(V) {
+    return X.map(function(x) {
+      return [x, d3.mean(V, function(v) { return kernel(x - v); })];
+    });
+  };
+}
+function kernelEpanechnikov(k) {
+  return function(v) {
+    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
+  };
+}
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code', 'result')
+myJSParser('codejs', 'result')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center align-self-center">
+        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
+      </div>
+      <div class="col-lg-5">
+        <ul>
+          <li><i>Joyplot - </i>by <a href="https://bl.ocks.org/armollica/3b5f83836c1de5cca7b1d35409a013e3">Andrew Mollica</a></li>
+          <br>
+          <li><i>Basic density plot - </i>by <a href="density_basic.html">the d3 graph gallery</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ JAVASCRIPT SECTION ============================ -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/agency.min.js"></script>
+
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+
+<!-- Function to download the content of the div -->
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    var command = document.getElementById('code').innerHTML;
+    command = command.replace(/<\/?span[^>]*>/g,"");
+    a.href = "data:html" + command
+    a.click(); // Trigger a click on the element
+}
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>
