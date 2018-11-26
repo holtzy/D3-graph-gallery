@@ -123,8 +123,8 @@ $(function(){
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>A <a href="https://www.data-to-viz.com/graph/density.html">density plot</a> shows the distribution of a <u>numeric</u> variable. In the following examples, a <u>kernel density estimation</u> is always used. The result can then be plotted using the <code>d3.line()</code> function. </p>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/density_basic.html">
           <div class="portfolio-hover">
@@ -137,8 +137,51 @@ $(function(){
           <img class="img-fluid" src="img/graph/density_basic.png" alt="">
         </a>
       </div>
-
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/density_double.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Plot several groups</p>
+              <hr>
+              <p class="explanation_portfolio">Plotting several variables together allows to compare their distribution.<br><br>Here is how to do.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/density_double.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/density_mirror.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Back to back density plot</p>
+              <hr>
+              <p class="explanation_portfolio">The mirror or back to back density plot is a variation allowing to compare the distribution of 2 groups.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/density_mirror.png" alt="">
+        </a>
+      </div>
     </div>
+
+    <br><br>
+    <div class="mySeryTitle">Interactivity</div>
+    <hr>
+    <p>Playing with the <code>bandwidth</code> argument of your density plot is a crucial step to avoid <a href="https://www.data-to-viz.com/caveat/bin_size.html">over or under-smoothing</a>. Thus, adding a slider that controls this value can be a great use of interactivity. Of course, interactivity can also be used to filter or change input dataset.</p>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/density_slider.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Slider to control bandwidth</p>
+              <hr>
+              <p class="explanation_portfolio">Slider update the bandwidth used for kernel density estimation with a smooth transition.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/density_slider.gif" alt="">
+        </a>
+      </div>
+    </div>
+
 
  </div>
 </section>
