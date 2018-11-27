@@ -14,7 +14,7 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic network graph in d3.js</title>
+  <title>TEST in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Using d3.js to create a very basic network graph">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, network">
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic network chart in d3.js</h1>
+      <h1>TEST in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -107,7 +107,7 @@ $(function(){
       <br><br>
       <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/network">network chart</a> with d3.js. You can see many other examples in the <a href="../network.html">network graph section</a> of the gallery. Learn more about the theory of network in <a href="https://www.data-to-viz.com/graph/network.html">data-to-viz.com</a>.</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../network.html">Network section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../boxplot.html">Boxplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -193,7 +193,7 @@ var svg = d3.select("#my_dataviz")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_network.json", function( data) {
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/test.json", function(data) {
 
   // Initialize the links
   var link = svg
@@ -220,7 +220,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
       )
       .force("charge", d3.forceManyBody().strength(-400))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
-      .on("end", ticked);
+      .on("tick", ticked);
 
   // This function is run at each iteration of the force algorithm, updating the nodes position.
   function ticked() {

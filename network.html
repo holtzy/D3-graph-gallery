@@ -117,31 +117,63 @@ $(function(){
 
 
 
-
-
-
 <!-- ======================== PORTFOLIO SECTION ============================ -->
 <!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
 <section class="bg" id="portfolio" style="padding-top: 10px">
   <div class="container">
 
-    <div class="mySeryTitle">A note on input data format</div>
-    <hr>
-    <p>Building a network charts requires information on <u>nodes</u> and <u>links</u>. This information can be stored in many different format as described <a href="https://www.data-to-viz.com/graph/network.html">here</a>.
-      <code>Json</code> format is the most convenient way to work with <code>d3.js</code> and looks basically like that:
-      <pre class="language-js"><code id="codejs" contenteditable="false"><xmp>{ "nodes": [
-    { "id": 1, "name": "A" },
-    { "id": 2, "name": "B" }
-  ],
-  "links": [
-    { "source": 1, "target": 2 }
-  ]}</xmp></code></pre>
-      It is unlikely that your data are currently at this format. You probably need to <u>reformat</u> your data first using another tool like <code>R</code>. The <a href="">following document</a> gives a few example on how to reformat the most common types of input to get a <code>json</code> file.
-    </p>
+    <div class="row">
+      <div class="col-lg-6">
+        <p class="mySeryTitle">A note on input data format</p>
+        <hr>
+        <p>
+          Building a network charts requires information on <u>nodes</u> and <u>links</u>. This information can be stored in many different format as described <a href="https://www.data-to-viz.com/graph/network.html">here</a>.
+          <code>Json</code> format is the most convenient way to work with <code>d3.js</code> and looks basically like that:
+        </p>
+        <div id="summary">
+          <div class="collapse" id="collapseSummary">
 
-    <br><br>
+<pre class="language-js"><code id="codejs" contenteditable="false"><xmp>{ "nodes": [
+  { "id": 1, "name": "A" },
+  { "id": 2, "name": "B" }
+],
+"links": [
+  { "source": 1, "target": 2 }
+]}</xmp></code></pre>
 
-    
+            <p>It is unlikely that your data are currently at this format. You probably need to <u>reformat</u> your data first using another tool like <code>R</code>. The <a href="graph/network_data_format.html">following document</a> gives a few example on how to reformat the most common types of input to get a <code>json</code> file.</p>
+            <a class="btn btn-secondary btn-md text-uppercase" href="graph/network_data_format.html">Reformat your data to Json</a>
+          </div>
+          <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
+        </div>
+      </div>
+
+
+      <div class="col-lg-6">
+        <p class="mySeryTitle">A note about force</p>
+        <hr>
+        <p>The challenge in network diagram is to find out smart X and Y coordinates for each node. In d3, it is done using force and simulation. Different forces?</p>
+        <div id="summary">
+          <div class="collapse" id="collapseSummary2">
+            <ul>
+              <li><u>Centering</u> (attracts every node to a specific position)</li>
+              <li><u>Collision</u> (consider nodes as circles with radius and try to avoid overlapping)</li>
+              <li><u>Links</u> (pushes linked nodes together, according to a link distance)</li>
+              <li><u>Many-Body</u> (apply general attraction (if positive) or repulsion (if negative) between nodes)</li>
+              <li><u>Positioning</u> (push each node towards a desired position).</li>
+            </ul>
+            <a class="btn btn-secondary btn-md text-uppercase" target="_blank" href="https://bl.ocks.org/steveharoz/8c3e2524079a8c440df60c1ab72b5d03">Understand force parameters</a>
+          </div>
+          <a class="collapsed" data-toggle="collapse" href="#collapseSummary2" aria-expanded="false" aria-controls="collapseSummary"></a>
+        </div>
+      </div>
+
+  </div>
+
+
+
+
+    <br><br><br><br>
     <div class="mySeryTitle">Step by step</div>
     <hr>
     <div id="portfolio-items" class="row">
@@ -160,8 +192,12 @@ $(function(){
     </div>
 
 
+    <br><br><br><br>
+    <div class="mySeryTitle">Interactivity</div>
+    <hr>
+    <p>Interactivity can be used for several reasons. First of all, adding a tooltip to each node is very useful when many nodes are drawn and annotation is impossible.</p>
 
-    <br><br>
+    <br><br><br><br>
     <div class="mySeryTitle">Selection of blocks</div>
     <hr>
     <p>A selection of examples showing the application of the basic concept to real life dataset.</p>
@@ -188,6 +224,18 @@ $(function(){
             </div>
           </div>
           <img class="img-fluid showBlock" src="img/block/block_networkDoc.png" alt="circular barchart">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/steveharoz/8c3e2524079a8c440df60c1ab72b5d03">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>D3-force testing ground</p>
+              <hr>
+              <p class="explanation_portfolio">This example allows you to play with force parameters and see their effect in real time.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_networkTesting.png" alt="network diagram testing ground">
         </a>
       </div>
     </div>

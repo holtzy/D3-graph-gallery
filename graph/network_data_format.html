@@ -121,9 +121,6 @@
               <a class="nav-link" href="#adj">Adjacency matrix</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#incidence">Incidence matrix</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#edge">Edge list</a>
             </li>
             <li class="nav-item">
@@ -190,9 +187,53 @@ network <- graph_from_adjacency_matrix(data)
 
 # Transform it in a JSON format for d3.js
 library(d3r)
-d3_igraph(network)
+data_json <- d3_igraph(network)
+
+# Save this file
+write(data_json, "data.json")
 </xmp></code></pre>
 
+
+    <p>You now have a file called <code>data.json</code> that is ready to be used by d3.</p>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==================== From edge list ==================== -->
+<section class="bg" id="edge">
+  <div class="container">
+
+    <h1>Json format from <code>edge list</code></h1>
+    <hr>
+    <p>An <u>edge list</u> is a table listing all the connections.</p>
+    <p>The following lines of <code>R code</code> build a small edge list, and use the <code>igraph</code> and <code>d3r</code> libraries to convert it in a <code>json</code> file.</p>
+      <pre class="language-js"><code id="codejs" contenteditable="false"><xmp># Let's say I have an edge list
+links=data.frame(
+  source=c("A","A", "A", "A", "A","F", "B"),
+  target=c("B","B", "C", "D", "F","A","E")
+)
+
+# Transform it in a graph format
+library(igraph)
+network=graph_from_data_frame(d=links, directed=F)
+
+# Transform it in a JSON format for d3.js
+library(d3r)
+data_json <- d3_igraph(network)
+
+# Save this file
+write(data_json, "data.json")
+</xmp></code></pre>
+
+
+    <p>You now have a file called <code>data.json</code> that is ready to be used by d3.</p>
   </div>
 </section>
 
@@ -205,6 +246,40 @@ d3_igraph(network)
 
 
 
+<!-- ==================== From edge list ==================== -->
+<section class="bg" id="edgeandnode">
+  <div class="container">
+
+    <h1>Json format from <code>edge and node lists</code></h1>
+    <hr>
+    <p>In addition to the previous edge list, it is possible to add a <u>second data input</u> which provides some features concerning each <u>node</u>. It is useful if you want to highlight dot features on your network chart.</p>
+    <p>The following lines of <code>R code</code> build a small edge list and a table with node features, and use the <code>igraph</code> and <code>d3r</code> libraries to convert it in a <code>json</code> file.</p>
+      <pre class="language-js"><code id="codejs" contenteditable="false"><xmp># Let's say I have an edge list + node list with info
+links=data.frame(
+  source=c("A","A", "A", "A", "A","F", "B"),
+  target=c("B","B", "C", "D", "F","A","E")
+)
+nodes=data.frame(
+  name=LETTERS[1:6],
+  carac=c( rep(10,3), rep(30,3))
+)
+
+# Turn it into igraph object
+library(igraph)
+network=graph_from_data_frame(d=links, vertices=nodes, directed=F)
+
+# Transform it in a JSON format for d3.js
+library(d3r)
+data_json <- d3_igraph(network)
+
+# Save this file
+write(data_json, "data.json")
+</xmp></code></pre>
+
+
+    <p>You now have a file called <code>data.json</code> that is ready to be used by d3.</p>
+  </div>
+</section>
 
 
 
@@ -234,7 +309,7 @@ d3_igraph(network)
       <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+            <h2 class="section-heading text-uppercase" style="color: black">Related documentation</h2>
           </div>
         </div>
       </div>
@@ -242,11 +317,11 @@ d3_igraph(network)
         <div style="display: table; height: 150px; overflow: hidden;">
           <div style="display: table-cell; vertical-align: middle;">
             <ul>
-            <li><i>scaleOrdinal example - </i>by <a href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465">d3indepth</a></li>
+            <li><i>The d3r library - </i>by <a href="https://github.com/timelyportfolio/d3r">timelyportfolio</a></li>
             <br>
-            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
+            <li><i>Input format for network charts - </i>by <a href="https://www.r-graph-gallery.com/257-input-formats-for-network-charts/">the R graph gallery</a></li>
             <br>
-            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
+            <li><i>Network diagram</i> - by <a href="https://www.data-to-viz.com/graph/network.html">data to viz</a></li>
             </ul>
           </div>
         </div>
