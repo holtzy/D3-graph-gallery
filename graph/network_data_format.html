@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Data preparation with R for networks in d3.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to use R to transform common network formats to the specific JSON format required by d3.js.">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="Data preparation with R for networks in d3.js">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="How to use R to transform common network formats to the specific JSON format required by d3.js.">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet">
+
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
+
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
+
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/agency.min.js"></script>
+
+  </head>
+
+
+
+
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+    $(function(){
+      $("#mainNav").load("../html_chunk/menu.html");
+    });
+    </script>
+
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"> </div>
+    <script>
+    $(function(){
+      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+    });
+    </script>
+
+
+
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+          <h1>Data preparation with R for networks in d3.js</h1>
+          <hr class="short_hr">
+          <br>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+          <br><br>
+          <p style="max-width: 700px; margin: auto">This documents explains how to prepare your network input data for visualization with d3.js. D3.js requires a very specific JSON format. Here is how to use R to reformat the more usual way of storing the network information.</p>
+      </div>
+    </header>
+
+
+
+
+    <!-- TABLE of CONTENT -->
+    <div>
+        <nav class="col-sm-3 col-4" id="myScrollspy">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#json">JSON format</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#adj">Adjacency matrix</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#incidence">Incidence matrix</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#edge">Edge list</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#edgeandnode">Edge list and node list</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== JSON FORMAT WE NEED ==================== -->
+<section class="bg" id="json">
+  <div class="container">
+
+    <h1>The <code>Json</code> input format we need for d3.js</h1>
+    <hr>
+    <p>Building a network charts requires information on <u>nodes</u> and <u>links</u>. This information can be stored in many different format as described <a href="https://www.data-to-viz.com/graph/network.html">here</a>.
+      <code>Json</code> format is the most convenient way to work with <code>d3.js</code> and looks basically like that:
+      <pre class="language-js"><code id="codejs" contenteditable="false"><xmp>{ "nodes": [
+    { "id": 1, "name": "A" },
+    { "id": 2, "name": "B" }
+  ],
+  "links": [
+    { "source": 1, "target": 2 }
+  ]}</xmp></code></pre>
+      It is unlikely that your data are currently at this format. You probably need to <u>reformat</u> your data first using another tool like <code>R</code>. The following sections gives a few examples on how to reformat the most common types of input to get a <code>json</code> file.
+    </p>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- ==================== From adjacency ==================== -->
+<section class="bg" id="adj">
+  <div class="container">
+
+    <h1>Json format from <code>adjacency matrix</code></h1>
+    <hr>
+    <p>An <u>adjacency matrix</u> is a square matrix where individuals are the same in row and columns of the matrix. It’s typically the kind of matrix you get when calculating the correlation between each pair of individual.
+    <p>The following lines of <code>R code</code> build a small adjacency matrix, and use the <code>igraph</code> and <code>d3r</code> libraries to convert it in a <code>json</code> file.</p>
+      <pre class="language-js"><code id="codejs" contenteditable="false"><xmp># Let's build an adjacency matrix
+data <- matrix(sample(0:1, 25, replace=TRUE), nrow=5)
+colnames(data) <- rownames(data) <- LETTERS[1:5]
+
+# Transform it in a graph format
+library(igraph)
+network <- graph_from_adjacency_matrix(data)
+
+# Transform it in a JSON format for d3.js
+library(d3r)
+d3_igraph(network)
+</xmp></code></pre>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>scaleOrdinal example - </i>by <a href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465">d3indepth</a></li>
+            <br>
+            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
+            <br>
+            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+</html>

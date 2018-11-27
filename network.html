@@ -41,6 +41,10 @@
     <!-- JQUERY -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
+    <!-- PRISM -->
+    <script src="LIB/prism.js"></script>
+    <link href="LIB/prism.css" rel="stylesheet" />
+
 </head>
 
 
@@ -121,11 +125,26 @@ $(function(){
 <section class="bg" id="portfolio" style="padding-top: 10px">
   <div class="container">
 
+    <div class="mySeryTitle">A note on input data format</div>
+    <hr>
+    <p>Building a network charts requires information on <u>nodes</u> and <u>links</u>. This information can be stored in many different format as described <a href="https://www.data-to-viz.com/graph/network.html">here</a>.
+      <code>Json</code> format is the most convenient way to work with <code>d3.js</code> and looks basically like that:
+      <pre class="language-js"><code id="codejs" contenteditable="false"><xmp>{ "nodes": [
+    { "id": 1, "name": "A" },
+    { "id": 2, "name": "B" }
+  ],
+  "links": [
+    { "source": 1, "target": 2 }
+  ]}</xmp></code></pre>
+      It is unlikely that your data are currently at this format. You probably need to <u>reformat</u> your data first using another tool like <code>R</code>. The <a href="">following document</a> gives a few example on how to reformat the most common types of input to get a <code>json</code> file.
+    </p>
 
+    <br><br>
+
+    
     <div class="mySeryTitle">Step by step</div>
     <hr>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/network_basic.html">
           <div class="portfolio-hover">
@@ -138,6 +157,40 @@ $(function(){
           <img class="img-fluid" src="img/graph/network_basic.png" alt="">
         </a>
       </div>
+    </div>
+
+
+
+    <br><br>
+    <div class="mySeryTitle">Selection of blocks</div>
+    <hr>
+    <p>A selection of examples showing the application of the basic concept to real life dataset.</p>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://beta.observablehq.com/@mbostock/d3-force-directed-graph">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Network of character co-occurence in <i>Les Misérables</i></p>
+              <hr>
+              <p class="explanation_portfolio">A famous network graph by Mike Bostock showing character co-occurence in a book.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_networkMiserable.png" alt="network graph les miserables">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://github.com/d3/d3-force">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>D3-force documentation</p>
+              <hr>
+              <p class="explanation_portfolio">The d3-force documentation on github is invaluable. A must read before diving into networks in d3.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_networkDoc.png" alt="circular barchart">
+        </a>
+      </div>
+    </div>
 
  </div>
 </section>
