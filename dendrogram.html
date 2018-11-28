@@ -158,8 +158,32 @@ write(data_json, "data_ready.json")
     <br><br><br><br>
     <div class="mySeryTitle">Step by step</div>
     <hr>
-    <p>Before trying to implement hierarchical edge bundling, it is crucial to know <a href="https://www.data-to-viz.com/graph/edge_bundling.html">how this kind of chart works</a>. It is crucial to understand that input data is composed by i/ a hierary and ii/ a list of links between elements of the hierarchy.</p>
+    <p>Building a dendrogram with d3.js always follows the same steps. <u>First</u>, a cluster layout must be defined with <code>d3.cluster()</code>. <u>Second</u>, data is provided to this layout thanks to <code>d3.hierarchy()</code>. We now have an object with nodes coordinates. <u>Lastly</u>, we can use it to add nodes with <code>append('circle')</code> and links with <code>append('path')</code>.</p>
     <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/dendrogram_basic.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Most basic dendrogram</p>
+              <hr>
+              <p class="explanation_portfolio">Most basic dendrogram. Built from a Json file.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/dendrogram_basic.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/dendrogram_radial_basic.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Basic radial dendrogram</p>
+              <hr>
+              <p class="explanation_portfolio">Very basic as well, but uses a radial layout instead of the linear</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/dendrogram_radial_basic.png" alt="">
+        </a>
+      </div>
     </div>
 
 
@@ -180,8 +204,19 @@ write(data_json, "data_ready.json")
           <img class="img-fluid showBlock" src="img/block/block_dendrogramTransition.png" alt="Hierarchical edge bundling">
         </a>
       </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/lorenzopub/dfd90f8a3a8c76de939f857de24e7d89">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Dendrogram and barplot</p>
+              <hr>
+              <p class="explanation_portfolio">A block showing how to add a barplot next to dendrogram leaves.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_dendrogramBarplot.png" alt="Dendrogram and barplot">
+        </a>
+      </div>
     </div>
-
 
  </div>
 </section>
