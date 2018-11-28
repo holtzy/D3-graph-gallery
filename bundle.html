@@ -14,16 +14,16 @@
     </script>
 
     <meta charset="utf-8">
-    <title>Sankey plot &#124; the D3 Graph Gallery</title>
+    <title>Hierarchical edge bundling &#124; the D3 Graph Gallery</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How to build a Sankey Plot with Javascript and D3.js: from the most basic example to highly customized examples.">
+    <meta name="description" content="Hierarchical edge bundling with Javascript and D3.js: from the most basic example to highly customized examples.">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,sankey, flow chart">
     <meta name="author" content="Yan Holtz">
 
     <meta property="og:title" content="Area Chart &#124; the D3 Graph Gallery">
     <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How to build a Sankey plot with Javascript and D3.js: from the most basic example to highly customized examples.">
+    <meta property="og:description" content="Hierarchical edge bundling with Javascript and D3.js: from the most basic example to highly customized examples.">
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -67,7 +67,7 @@ $(function(){
   <!-- Header -->
   <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
     <div class="textlanding">
-      <h1>Sankey Diagram</h1>
+      <h1>Hierarchical edge bundling</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -93,7 +93,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This is the <a href="https://www.data-to-viz.com/graph/sankey.html">Sankey diagram</a> section of the gallery. This chart type allows to display flows, as explained in <a href="https://www.data-to-viz.com/graph/sankey.html">data-to-viz.com</a>. If you're looking for a simple way to implement it in d3.js, pick an example below.</p>
+      <p style="max-width: 700px; margin: auto"><a href="https://www.data-to-viz.com/graph/edge_bundling.html">Hierarchical edge bundling</a> allows to visualize <u>adjacency relations</u> between entities organized in a <u>hierarchy</u>. The idea is to <u>bundle</u> the adjacency edges together to <u>decrease the clutter</u> usually observed in complex networks. Learn more about this kind of chart in <a href="https://www.data-to-viz.com/graph/edge_bundling.html">data-to-viz.com</a>, or visit the examples below to implement it in d3.js.</p>
   </div>
 </header>
 
@@ -123,74 +123,26 @@ $(function(){
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
-    <p>Sankey plots are built thanks to the <a href="https://github.com/d3/d3-sankey">d3-sankey</a> plugin. Input data must be a nested list providing the <code>nodes</code> and the <code>links</code> of the network. This kind of data can be stored under several formats: this section shows how to build a sankey diagram from a few different ones.</p>
+    <p>Before trying to implement hierarchical edge bundling, it is crucial to know <a href="https://www.data-to-viz.com/graph/edge_bundling.html">how this kind of chart works</a>. It is crucial to understand that input data is composed by i/ a hierary and ii/ a list of links between elements of the hierarchy.</p>
     <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/sankey_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Sankey from .json file</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic sankey diagram you can do in d3.js. Keeping only the core code.<br><br>Input data format: Json</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/sankey_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://bl.ocks.org/d3noob/06e72deea99e7b4859841f305f63ba85">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Sankey from .csv file</p>
-              <hr>
-              <p class="explanation_portfolio">Basic example by d3Noob showing how to build the sankey from a list of links stored at .csv format.</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="img/block/block_sankeycsv.png" alt="Sankey plot form csv">
-        </a>
-      </div>
     </div>
 
-    <br><br>
 
+    <br><br><br><br>
     <div class="mySeryTitle">Selection of blocks</div>
     <hr>
-    <p>A few blocks with more complicated codes to showcase the possibility of the <code>d3-sankey </code>plugin</a>
+    <p>A few blocks with more complicated codes to showcase what's possible to do with hierarchical edge bundling.</a>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="https://bl.ocks.org/d3noob/06e72deea99e7b4859841f305f63ba85">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Sankey from .csv file</p>
+              <p>Application to the flare dataset</p>
               <hr>
-              <p class="explanation_portfolio">Basic example by d3Noob showing how to build the sankey from a list of links stored at .csv format.</p>
+              <p class="explanation_portfolio">Probably the most famous example of hierarchical edge bundling.</p>
             </div>
           </div>
-          <img class="img-fluid showBlock" src="img/block/block_sankeycsv.png" alt="Sankey plot form csv">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://beta.observablehq.com/@mbostock/d3-sankey-diagram">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Energy production flow</p>
-              <hr>
-              <p class="explanation_portfolio">UK energy production and consumption in 2050: energy supplies are on the left, and demands are on the right</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="img/block/block_sankey.png" alt="circular barchart">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="http://bl.ocks.org/d3noob/5028304">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Add horizontal drag</p>
-              <hr>
-              <p class="explanation_portfolio">A blog that illustrates how to add an horizontal drag feature on each node.</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="img/block/block_sankeyhoriz.png" alt="Sankey plot form csv">
+          <img class="img-fluid showBlock" src="img/block/block_hierarchicaledgebundlingFlare.png" alt="Hierarchical edge bundling">
         </a>
       </div>
     </div>
