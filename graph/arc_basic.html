@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Most basic radial dendrogram in d3.js</title>
+  <title>Most basic arc diagram in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic radial dendrogram: explanation and code.">
+  <meta name="description" content="Using d3.js to create a very basic arc diagram: explanation and reproducible code">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, boxplot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Most basic radial dendrogram in d3.js">
+  <meta property="og:title" content="Most basic arc diagram in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic radial dendrogram: explanation and code.">
+  <meta property="og:description" content="Using d3.js to create a very basic arc diagram: explanation and reproducible code">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,17 +48,6 @@
 
   <!-- Function to parse html and js code chunks made by Yan Holtz -->
   <script src="../js/myParser.js"></script>
-
-
-
-
-
-
-
-
-
-
-
 
 </head>
 
@@ -90,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic radial dendrogram in d3.js</h1>
+      <h1>Most basic arc diagram in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -116,9 +105,9 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic radial <a href="../dendrogram.html">dendrogram</a> with d3.js. Three levels of hierarchy are drawn. You can see many other examples in the <a href="../dendrogram.html">dendrogram section</a> of the gallery.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="../arc.html">arc diagram</a> with d3.js. It represent a very basic network composed of 6 nodes. You can see many other examples in the <a href="../arc.html">arc diagram section</a> of the gallery. Learn more about the theory of arc diagrams in <a href="https://www.data-to-viz.com/graph/arc.html">data-to-viz.com</a>.</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../dendrogram.html">Dendrogram section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../arc.html">Arc diagram section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -150,13 +139,17 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li><a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram.json">Input dataset</a> is a hierarchy: CEO is over boss 1 and boss 2 that are over 8 employees. See data <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram.json">here</a>.</li>
+          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
           <br>
-          <li>See <a href="../dendrogram.html">here</a> to get this kind of input format from an usual table.</li>
+          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
           <br>
-          <li>Two crucial functions are used to build the dendrogram layout: <code>d3.cluster()</code> and <code>d3.hierarchy()</code>. See the <a href="https://github.com/d3/d3-hierarchy#cluster">d3-hierarchy documentation</a> to learn more about it.</li>
+          <li>In this example dummy data are created. It's a vector format. See <a href="">here</a> to work from a <code>.csv</code></li>
           <br>
-          <li>Once we know where the nodes are located, links are drawn thanks to the <code>linkRadial()</code> function to get this smooth shape. Read more about <a href="shape.html">shape helpers</a> here.</li>
+          <li>Note that quantiles, median, min and max are computed one by one. See <a href="https://www.data-to-viz.com/caveat/boxplot.html">data-to-viz</a> to understand what these values are.</li>
+          <br>
+          <li>The Y scale can now be added. Read <a href="">here</a> if you're not used to it.</br>
+          <br>
+          <li>Finally, the box can be added, it is just one <code>rect</code>, and 2 <code>lines</code> elements.</li>
         </ul>
       </div>
     </div>
@@ -193,59 +186,79 @@ $(function(){
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
-var width = 460
-var height = 460
-var radius = width / 2 // radius of the dendrogram
+var margin = {top: 20, right: 30, bottom: 20, left: 30},
+  width = 450 - margin.left - margin.right,
+  height = 300 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
   .append("svg")
-    .attr("width", width)
-    .attr("height", height)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", "translate(" + radius + "," + radius + ")");
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
-// read json data
-d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram.json", function(data) {
+// Read dummy data
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_network.json", function( data) {
 
-  // Create the cluster layout:
-  var cluster = d3.cluster()
-    .size([360, radius - 60]);  // 360 means whole circle. radius - 60 means 60 px of margin around dendrogram
+  // List of node names
+  var allNodes = data.nodes.map(function(d){return d.name})
 
-  // Give the data to this cluster layout:
-  var root = d3.hierarchy(data, function(d) {
-      return d.children;
+  // A linear scale to position the nodes on the X axis
+  var x = d3.scalePoint()
+    .range([0, width])
+    .domain(allNodes)
+
+  // Add the circle for the nodes
+  svg
+    .selectAll("mynodes")
+    .data(data.nodes)
+    .enter()
+    .append("circle")
+      .attr("cx", function(d){ return(x(d.name))})
+      .attr("cy", height-30)
+      .attr("r", 8)
+      .style("fill", "#69b3a2")
+
+  // And give them a label
+  svg
+    .selectAll("mylabels")
+    .data(data.nodes)
+    .enter()
+    .append("text")
+      .attr("x", function(d){ return(x(d.name))})
+      .attr("y", height-10)
+      .text(function(d){ return(d.name)})
+      .style("text-anchor", "middle")
+
+  // Add links between nodes. Here is the tricky part.
+  // In my input data, links are provided between nodes -id-, NOT between node names.
+  // So I have to do a link between this id and the name
+  var idToNode = {};
+  data.nodes.forEach(function (n) {
+    idToNode[n.id] = n;
   });
-  cluster(root);
+  // Cool, now if I do idToNode["2"].name I've got the name of the node with id 2
 
-  // Features of the links between nodes:
-  var linksGenerator = d3.linkRadial()
-      .angle(function(d) { return d.x / 180 * Math.PI; })
-      .radius(function(d) { return d.y; });
-
-  // Add the links between nodes:
-  svg.selectAll('path')
-    .data(root.links())
+  // Add the links
+  svg
+    .selectAll('mylinks')
+    .data(data.links)
     .enter()
     .append('path')
-      .attr("d", linksGenerator)
-      .style("fill", 'none')
-      .attr("stroke", '#ccc')
-
-
-  // Add a circle for each node.
-  svg.selectAll("g")
-      .data(root.descendants())
-      .enter()
-      .append("g")
-      .attr("transform", function(d) {
-          return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")";
-      })
-      .append("circle")
-        .attr("r", 7)
-        .style("fill", "#69b3a2")
-        .attr("stroke", "black")
-        .style("stroke-width", 2)
+    .attr('d', function (d) {
+      start = x(idToNode[d.source].name)    // X position of start node on the X axis
+      end = x(idToNode[d.target].name)      // X position of end node
+      return ['M', start, height-30,    // the arc starts at the coordinate x=start, y=height-30 (where the starting node is)
+        'A',                            // This means we're gonna build an elliptical arc
+        (start - end)/2, ',',    // Next 2 lines are the coordinates of the inflexion point. Height of this point is proportional with start - end distance
+        (start - end)/2, 0, 0, ',',
+        start < end ? 1 : 0, end, ',', height-30] // We always want the arc on top. So if end is before start, putting 0 here turn the arc upside down.
+        .join(' ');
+    })
+    .style("fill", "none")
+    .attr("stroke", "black")
 
 })
 
@@ -307,9 +320,11 @@ myJSParser('codejs', 'result');
       </div>
       <div class="col-lg-5">
         <ul>
-          <li><i>Creating a cluster dendrogram - </i>by <a href="http://bl.ocks.org/valex/8bdf638cc278f7669e30807336c6bc1c">Valex</a></li>
+          <li><i>Arc diagram section - </i> by <a href="../arc.html">the d3 graph gallery</a></li>
           <br>
-          <li><i>Cluster Dendrogram - </i>by <a href="http://blockbuilder.org/mbostock/4063570">Mike Bostock</a></li>
+          <li><i>Arc diagram - </i>by <a href="https://bl.ocks.org/rpgove/53bb49d6ed762139f33bdaea1f3a9e1c">Robert Gove</a></li>
+          <br>
+          <li><i>Arc diagram - </i>by <a href="http://bl.ocks.org/mayblue9/dcc49ef6e3888f37f755177c4a248f2c">MayBlue9</a></li>
         </ul>
       </div>
     </div>
