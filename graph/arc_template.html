@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Most basic arc diagram in d3.js</title>
+  <title>Arc diagram template for d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic arc diagram: explanation and reproducible code">
+  <meta name="description" content="A clean arc diagram example in d3.js: includes custom node color, highlight on hover, node labeling and more.">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, boxplot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Most basic arc diagram in d3.js">
+  <meta property="og:title" content="Highlight links in arc diagram on hover">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic arc diagram: explanation and reproducible code">
+  <meta property="og:description" content="A clean arc diagram example in d3.js: includes custom node color, highlight on hover, node labeling and more.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +39,7 @@
 
   <!-- D3.JS v4 -->
   <script src="../js/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -79,7 +80,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic arc diagram in d3.js</h1>
+      <h1>Clean arc diagram template for d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +106,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="../arc.html">arc diagram</a> with d3.js. It represent a very basic network composed of 6 nodes. You can see many other examples in the <a href="../arc.html">arc diagram section</a> of the gallery. Learn more about the theory of arc diagrams in <a href="https://www.data-to-viz.com/graph/arc.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This example describes the relationships between all the co-authors of a researcher. Basically, 2 researchers are linked if they've published a paper together.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../arc.html">Arc diagram section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -131,7 +132,7 @@ $(function(){
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-  <div class="col-lg-5 .align-middle">
+  <div class="col-lg-7 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="result" ></div>
       <br>
@@ -141,9 +142,9 @@ $(function(){
           <br>
           <li>Data input format is <code>Json</code>. <a href="network_data_format.html">This document</a> explains how to get this format from a classic table.</li>
           <br>
-          <li>Plotting the <u>nodes</u> is pretty straightforward: a <a href="custom_axis.html">scalePoint()</a> is set to distribute them uniformaly along the X axis. They are then added using a classing <code>append("circle")</code> approach.</li>
+          <li>Before building this complicated chart, understand how to draw a <a href="arc_basic.html">basic arc diagram</a>, and how to <a href="arc_highlight.html">highlight links on hover</a>.</li>
           <br>
-          <li>Drawing links is a bit tricky. Code is highly commented and should allow to understand the basic process.</li>
+          <li>All other customization are basic d3.js concept, like using linear scale for node size or color scale for nodes.</li>
         </ul>
       </div>
     </div>
@@ -155,7 +156,7 @@ $(function(){
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
+<div class="col-lg-5 text-center .align-middle">
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -164,6 +165,9 @@ $(function(){
 
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Load color palette -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -178,11 +182,10 @@ $(function(){
 
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
-
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 30, bottom: 20, left: 30},
-  width = 450 - margin.left - margin.right,
-  height = 300 - margin.top - margin.bottom;
+var margin = {top: 0, right: 30, bottom: 50, left: 60},
+  width = 650 - margin.left - margin.right,
+  height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -194,49 +197,39 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Read dummy data
-d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_network.json", function( data) {
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_researcherNetwork.json", function( data) {
 
   // List of node names
   var allNodes = data.nodes.map(function(d){return d.name})
+
+  // List of groups
+  var allGroups = data.nodes.map(function(d){return d.grp})
+  allGroups = [...new Set(allGroups)]
+
+  // A color scale for groups:
+  var color = d3.scaleOrdinal()
+    .domain(allGroups)
+    .range(d3.schemeSet3);
+
+  // A linear scale for node size
+  var size = d3.scaleLinear()
+    .domain([1,10])
+    .range([2,10]);
 
   // A linear scale to position the nodes on the X axis
   var x = d3.scalePoint()
     .range([0, width])
     .domain(allNodes)
 
-  // Add the circle for the nodes
-  svg
-    .selectAll("mynodes")
-    .data(data.nodes)
-    .enter()
-    .append("circle")
-      .attr("cx", function(d){ return(x(d.name))})
-      .attr("cy", height-30)
-      .attr("r", 8)
-      .style("fill", "#69b3a2")
-
-  // And give them a label
-  svg
-    .selectAll("mylabels")
-    .data(data.nodes)
-    .enter()
-    .append("text")
-      .attr("x", function(d){ return(x(d.name))})
-      .attr("y", height-10)
-      .text(function(d){ return(d.name)})
-      .style("text-anchor", "middle")
-
-  // Add links between nodes. Here is the tricky part.
   // In my input data, links are provided between nodes -id-, NOT between node names.
   // So I have to do a link between this id and the name
   var idToNode = {};
   data.nodes.forEach(function (n) {
     idToNode[n.id] = n;
   });
-  // Cool, now if I do idToNode["2"].name I've got the name of the node with id 2
 
   // Add the links
-  svg
+  var links = svg
     .selectAll('mylinks')
     .data(data.links)
     .enter()
@@ -252,8 +245,62 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
         .join(' ');
     })
     .style("fill", "none")
-    .attr("stroke", "black")
+    .attr("stroke", "grey")
+    .style("stroke-width", 1)
 
+  // Add the circle for the nodes
+  var nodes = svg
+    .selectAll("mynodes")
+    .data(data.nodes.sort(function(a,b) { return +b.n - +a.n }))
+    .enter()
+    .append("circle")
+      .attr("cx", function(d){ return(x(d.name))})
+      .attr("cy", height-30)
+      .attr("r", function(d){ return(size(d.n))})
+      .style("fill", function(d){ return color(d.grp)})
+      .attr("stroke", "white")
+
+  // And give them a label
+  var labels = svg
+    .selectAll("mylabels")
+    .data(data.nodes)
+    .enter()
+    .append("text")
+      .attr("x", 0)
+      .attr("y", 0)
+      .text(function(d){ return(d.name)} )
+      .style("text-anchor", "end")
+      .attr("transform", function(d){ return( "translate(" + (x(d.name)) + "," + (height-15) + ")rotate(-45)")})
+      .style("font-size", 6)
+
+  // Add the highlighting functionnality
+  nodes
+    .on('mouseover', function (d) {
+      // Highlight the nodes: every node is green except of him
+      nodes
+        .style('opacity', .2)
+      d3.select(this)
+        .style('opacity', 1)
+      // Highlight the connections
+      links
+        .style('stroke', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? color(d.grp) : '#b8b8b8';})
+        .style('stroke-opacity', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? 1 : .2;})
+        .style('stroke-width', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? 4 : 1;})
+      labels
+        .style("font-size", function(label_d){ return label_d.name === d.name ? 16 : 2 } )
+        .attr("y", function(label_d){ return label_d.name === d.name ? 10 : 0 } )
+
+    })
+    .on('mouseout', function (d) {
+      nodes.style('opacity', 1)
+      links
+        .style('stroke', 'grey')
+        .style('stroke-opacity', .8)
+        .style('stroke-width', '1')
+      labels
+        .style("font-size", 6 )
+
+    })
 })
 
 </script></xmp></code></pre>

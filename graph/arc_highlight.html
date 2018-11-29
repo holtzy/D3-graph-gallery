@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Most basic arc diagram in d3.js</title>
+  <title>Highlight links in arc diagram on hover</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic arc diagram: explanation and reproducible code">
+  <meta name="description" content="Highlight links in arc diagram on hover: an simple example with d3.js reproducible code">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, boxplot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Most basic arc diagram in d3.js">
+  <meta property="og:title" content="Highlight links in arc diagram on hover">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic arc diagram: explanation and reproducible code">
+  <meta property="og:description" content="Highlight links in arc diagram on hover: an simple example with d3.js reproducible code">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic arc diagram in d3.js</h1>
+      <h1>Highlight links in arc diagram on hover</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +105,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="../arc.html">arc diagram</a> with d3.js. It represent a very basic network composed of 6 nodes. You can see many other examples in the <a href="../arc.html">arc diagram section</a> of the gallery. Learn more about the theory of arc diagrams in <a href="https://www.data-to-viz.com/graph/arc.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post follows the previous <a href="arc_basic.html">basic arc diagram</a>. It shows how to add a functionnality: when <u>hovering</u> a node, links associated with this nodes are <u>highlighted</u>. Visit the <a href="../arc.html">arc diagram section</a> for more example.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../arc.html">Arc diagram section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -205,7 +205,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
     .domain(allNodes)
 
   // Add the circle for the nodes
-  svg
+  var nodes = svg
     .selectAll("mynodes")
     .data(data.nodes)
     .enter()
@@ -216,7 +216,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
       .style("fill", "#69b3a2")
 
   // And give them a label
-  svg
+  var labels = svg
     .selectAll("mylabels")
     .data(data.nodes)
     .enter()
@@ -236,7 +236,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
   // Cool, now if I do idToNode["2"].name I've got the name of the node with id 2
 
   // Add the links
-  svg
+  var links = svg
     .selectAll('mylinks')
     .data(data.links)
     .enter()
@@ -254,7 +254,34 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
     .style("fill", "none")
     .attr("stroke", "black")
 
+    // Add the highlighting functionnality
+    nodes
+      .on('mouseover', function (d) {
+        // Highlight the nodes: every node is green except of him
+        nodes.style('fill', "#B8B8B8")
+        d3.select(this).style('fill', '#69b3b2')
+        // Highlight the connections
+        links
+          .style('stroke', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? '#69b3b2' : '#b8b8b8';})
+          .style('stroke-width', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? 4 : 1;})
+      })
+      .on('mouseout', function (d) {
+        nodes.style('fill', "#69b3a2")
+        links
+          .style('stroke', 'black')
+          .style('stroke-width', '1')
+      })
 })
+
+// text hover nodes
+svg
+  .append("text")
+    .attr("text-anchor", "middle")
+    .style("fill", "#B8B8B8")
+    .style("font-size", "17px")
+    .attr("x", 50)
+    .attr("y", 10)
+    .html("Hover nodes")
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
