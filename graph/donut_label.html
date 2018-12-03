@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Interactive pie chart with input data selector in d3.js</title>
+  <title>Donut chart with group label in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="A pie chart with a button so select input data in d3.js.">
-  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, pie chart">
+  <meta name="description" content="Using d3.js to create a donut chart with group labels: an example with reproducible code.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, donut chart">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Interactive pie chart with input data selector in d3.js">
+  <meta property="og:title" content="Donut chart with group label in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="A pie chart with a button so select input data in d3.js.">
+  <meta property="og:description" content="Using d3.js to create a donut chart with group labels: an example with reproducible code.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Interactive pie chart with input data selector</h1>
+      <h1>Donut chart with group label in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -106,9 +106,9 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build an interactive <a href="../pie.html">pie chart</a> with input data selector with d3.js. See other pie examples in the <a href="../pie.html">pie chart section</a> of the gallery. <u>Watch out</u>: pie chart is most of the time a very bad way to convey information as explained in <a href="https://www.data-to-viz.com/caveat/pie.html">this post</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="../donut.html">donut chart</a> with group labels in d3.js. You can see many other examples in the <a href="../donut.html">donut chart section</a> of the gallery. <u>Watch out</u>: pie and donut chart are most of the time a very bad way to convey information as explained in <a href="https://www.data-to-viz.com/caveat/pie.html">this post</a>.</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../pie.html">Pie chart section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../donut.html">Donut chart section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -140,13 +140,23 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li><u>Warning</u>: are you sure you want to use a pie chart? Learn why <a href="https://www.data-to-viz.com/caveat/pie.html">it is not recommended</a>.</li>
+          <li><u>Disclaimer</u>: strongly inspired by <a href="https://bl.ocks.org/laxmikanta415/dc33fe11344bf5568918ba690743e06f">this block</a> by Laxmikanta Nayak.</li>
           <br>
-          <li>Visit the <a href="interactivity_button.html">button section</a> to learn how to build the input selector that triggers a function.</li>
+          <li>Start by understanding how to build a <a href="donut_basic.html">basic donut chart</a>.</li>
           <br>
-          <li>Visit the <a href="../interactivity.html">interactivity section</a> to learn about smooth transition in general.</li>
+          <li>Here the tricky part is to find the 3 x,y coordinates we need to add the labels:
+              <ul>
+                <li><code>posA</code>: line insertion in the slice</li>
+                <li><code>posB</code>: line break position</li>
+                <li><code>posC</code>: label position</li>
+              </ul>
+          </li>
           <br>
-          <li>Note: transition could be improved to avoid the current weird shape distortion. The code would be way more complicated though, see <a href="https://bl.ocks.org/tezzutezzu/c2653d42ffb4ecc01ffe2d6c97b2ee5e">here</a> for an example.</li>
+          <li><code>posA</code> is straightforward thanks to the <code>centroid</code> function of d3. It is used to <a href="pie_annotation.html">label pie chart</a> as well.</li>
+          <br>
+          <li>To find the position of <code>posB,</code> another arc generator called <code>outerArc</code> is created. It is not used to draw arcs, but only to compute centroid.</li>
+          <br>
+          <li><code>posC</code> has the same Y coordinates than <code>posB</code>. However its x coordinate is at the extreme part of the svg area.</li>
         </ul>
       </div>
     </div>
@@ -165,15 +175,9 @@ $(function(){
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js -->
+<!-- Load d3.js & color scale -->
 <script src="http://d3js.org/d3.v4.js"></script>
-
-<!-- Color scale -->
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
-<!-- Add 2 buttons -->
-<button onclick="update(data1)">Data 1</button>
-<button onclick="update(data2)">Data 2</button>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -205,53 +209,77 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-// create 2 data_set
-var data1 = {a: 9, b: 20, c:30, d:8, e:12}
-var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
+// Create dummy data
+var data = {a: 9, b: 20, c:30, d:8, e:12, f:3, g:7, h:14}
 
 // set the color scale
 var color = d3.scaleOrdinal()
-  .domain(["a", "b", "c", "d", "e", "f"])
+  .domain(["a", "b", "c", "d", "e", "f", "g", "h"])
   .range(d3.schemeDark2);
 
-// A function that create / update the plot for a given variable:
-function update(data) {
+// Compute the position of each group on the pie:
+var pie = d3.pie()
+  .sort(null) // Do not sort group by size
+  .value(function(d) {return d.value; })
+var data_ready = pie(d3.entries(data))
 
-  // Compute the position of each group on the pie:
-  var pie = d3.pie()
-    .value(function(d) {return d.value; })
-    .sort(function(a, b) { console.log(a) ; return d3.ascending(a.key, b.key);} ) // This make sure that group order remains the same in the pie chart
-  var data_ready = pie(d3.entries(data))
+// The arc generator
+var arc = d3.arc()
+  .innerRadius(radius * 0.5)         // This is the size of the donut hole
+  .outerRadius(radius * 0.8)
 
-  // map to data
-  var u = svg.selectAll("path")
-    .data(data_ready)
+// Another arc that won't be drawn. Just for labels positionning
+var outerArc = d3.arc()
+  .innerRadius(radius * 0.9)
+  .outerRadius(radius * 0.9)
 
-  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-  u
-    .enter()
-    .append('path')
-    .merge(u)
-    .transition()
-    .duration(1000)
-    .attr('d', d3.arc()
-      .innerRadius(0)
-      .outerRadius(radius)
-    )
-    .attr('fill', function(d){ return(color(d.data.key)) })
-    .attr("stroke", "white")
-    .style("stroke-width", "2px")
-    .style("opacity", 1)
+// Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+svg
+  .selectAll('allSlices')
+  .data(data_ready)
+  .enter()
+  .append('path')
+  .attr('d', arc)
+  .attr('fill', function(d){ return(color(d.data.key)) })
+  .attr("stroke", "white")
+  .style("stroke-width", "2px")
+  .style("opacity", 0.7)
 
-  // remove the group that is not present anymore
-  u
-    .exit()
-    .remove()
+// Add the polylines between chart and labels:
+svg
+  .selectAll('allPolylines')
+  .data(data_ready)
+  .enter()
+  .append('polyline')
+    .attr("stroke", "black")
+    .style("fill", "none")
+    .attr("stroke-width", 1)
+    .attr('points', function(d) {
+      var posA = arc.centroid(d) // line insertion in the slice
+      var posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
+      var posC = outerArc.centroid(d); // Label position = almost the same as posB
+      var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
+      posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+      return [posA, posB, posC]
+    })
 
-}
-
-// Initialize the plot with the first dataset
-update(data1)
+// Add the polylines between chart and labels:
+svg
+  .selectAll('allLabels')
+  .data(data_ready)
+  .enter()
+  .append('text')
+    .text( function(d) { console.log(d.data.key) ; return d.data.key } )
+    .attr('transform', function(d) {
+        var pos = outerArc.centroid(d);
+        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
+        return 'translate(' + pos + ')';
+    })
+    .style('text-anchor', function(d) {
+        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        return (midangle < Math.PI ? 'start' : 'end')
+    })
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -314,10 +342,7 @@ myJSParser('codejs', 'result');
           <li><i>Shape helpers - </i>in <a href="shape.html">the d3 graph gallery</a></li>
         </ul>
         <ul>
-          <li><i>Pie sort - </i>by <a href="https://bl.ocks.org/d3indepth/62b1c3bbe89a48f986e334a971e4825f">d3 in depth</a></li>
-        </ul>
-        <ul>
-          <li><i>About buttons - </i>by <a href="https://www.d3-graph-gallery.com/graph/interactivity_button.html">the d3 graph gallery</a></li>
+          <li><i>Donut chart with labels our side with polylines d3 v4 - </i>by <a href="https://bl.ocks.org/laxmikanta415/dc33fe11344bf5568918ba690743e06f">Laxmikanta Nayak</a></li>
         </ul>
       </div>
     </div>
