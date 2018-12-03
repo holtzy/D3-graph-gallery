@@ -115,10 +115,10 @@
         <nav class="col-sm-3 col-4" id="myScrollspy">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="#math">Mathematics</a>
+              <a class="nav-link" href="#math">Mathematics</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#filtering">Filtering</a>
+              <a class="nav-link" href="#filtering">Filtering</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#sorting">Sorting</a>
@@ -131,6 +131,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#loop">Loop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#reshape">Reshape</a>
             </li>
           </ul>
         </nav>
@@ -368,13 +371,76 @@ while (i < 10) {
 <br>
 
 
-while (i < 10) {
-    text += "The number is " + i;
-    i++;
-}
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== RESHAPE ==================== -->
+
+  <section id="reshape">
+  <div class="container" >
+
+    <h1>Reshape</h1>
+    <hr>
+    <p>It is a common task in data science to swap between <u>wide</u> (or untidy) format to <u>long</u> (or tidy) format. In R, there is a package called <code>tidyr</code> that is entirely dedicated to it. It is definitely doable in Javascript using the code snippets below. In case you're not familiar with this concept, here is a description of what these formats are:</p>
+    <center><img width="650px" src="../img/other/long_vs_wide_data_format.png" alt="long versus wide data format summary" style="padding: 30px; margin: 20px; border: solid; border-width: 1px; border-color: #B8B8B8; border-radius: 4px"></center>
+    <p><u>Note</u>: it is strongly advised to perform these data wrangling steps out of your javascript to save <u>loading time</u> of your dataviz</p>
+    <br>
+
+
+
+
+
+<h6>Going from <code>wide to long</code> format.</h6>
+<pre class="language-js">
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_correlogram.csv", function(data) {
+
+  // Going from wide to long format
+  var data_long = [];
+  data.forEach(function(d) {
+    var x = d[""];
+    delete d[""];
+    for (prop in d) {
+      var y = prop,
+        value = d[prop];
+      data_long.push({
+        x: x,
+        y: y,
+        value: +value
+      });
+    }
+  });
+
+  // Show result
+  console.log(data_long)
+</pre>
+<br>
+
+<br>
+<h6>Going from <code>long to wide</code> format.</h6>
+<pre class="language-js">
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data.csv", function(data) {
+  //todo
+})
+</pre>
 
   </div>
 </section>
+
+
+
 
 
 
