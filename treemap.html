@@ -126,8 +126,8 @@ $(function(){
     <hr>
     <p>It is important to note that 2 different <u>input formats</u> can be used to build a treemap:
       <ul>
-        <li>A <code>.csv</code> file with one line per connection in the hierarchy. See <a href="treemap_basic.html">here</a>.</li>
-        <li>A <code>.json</code> file. See <a href="">here</a></li>
+        <li>A <code>.csv</code> file with one line per connection in the hierarchy. See <a href="graph/treemap_basic.html">here</a>.</li>
+        <li>A <code>.json</code> file. See <a href="graph/treemap_json.html">here</a></li>
       </ul>
     </p>
     <div id="portfolio-items" class="row">
@@ -135,12 +135,24 @@ $(function(){
         <a class="portfolio-link" href="graph/treemap_basic.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Most basic</p>
+              <p>Basic: from <u>Csv</u></p>
               <hr>
-              <p class="explanation_portfolio">The most basic treemap you can do in d3.js. Only one level of a hierarchy is represented.<br><br>Input: csv format</p>
+              <p class="explanation_portfolio">The most basic treemap you can do in d3.js. Only one level of a hierarchy is represented.<br><br>Input: <u>csv</u> format</p>
             </div>
           </div>
           <img class="img-fluid" src="img/graph/treemap_basic.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/treemap_json.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Basic: from <u>Json</u></p>
+              <hr>
+              <p class="explanation_portfolio">The most basic treemap you can do in d3.js.<br><br>Input: <u>Json</u> format. R code to go from csv to json is provided.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/treemap_json.png" alt="">
         </a>
       </div>
     </div>

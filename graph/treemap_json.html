@@ -134,15 +134,11 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>The input dataset used here is stored at the <code>.json</code> format. <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram_full.json">Have a look</a></li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>If you have a <code>.csv</code> input, you can transform it with the code below, or see <a href="treemap_basic.html">this example</a>.</li>
           <br>
-          <li>The input dataset used here is stored at the .csv format. The <code>d3.stratify()</code> function is thus needed for reformating. <a href="https://github.com/d3/d3-hierarchy#stratify">read more</a>. </li>
-          <br>
-          <li>Then, the <code>d3.treemap()</code> function can be used to compute the rectangle coordinates of each entity of the hierarchy.</li>
-          <br>
-          <li>Finally, it is possible to use these coordinates to add rectangles and labels with <code>rect</code> and <code>text</code>.</br>
+          <li>Note that working with Json input is probably better than from csv: data can be given to <code>d3.hierarchy</code> directly, without reshaping step that increase loading time of the chart.</br>
         </ul>
       </div>
     </div>
@@ -204,12 +200,10 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
     .padding(2)
     (root)
 
-  // prepare a color scale
-  var color = d3.scaleOrdinal()
-    .domain(["boss1", "boss2", "boss3"])
-    .range([ "#402D54", "#D18975", "#8FD175"])
-
-
+  // // prepare a color scale
+  // var color = d3.scaleOrdinal()
+  //   .domain(["boss1", "boss2", "boss3"])
+  //   .range([ "#402D54", "#D18975", "#8FD175"])
 
   // use this information to add rectangles:
   svg
@@ -222,7 +216,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
       .attr('width', function (d) { return d.x1 - d.x0; })
       .attr('height', function (d) { return d.y1 - d.y0; })
       .style("stroke", "black")
-      .style("fill", function (d) { console.log(d.data) ; return color(d.data.group) })
+      .style("fill", "slateblue")
 
   // and to add the text labels
   svg
@@ -230,9 +224,9 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
     .data(root.leaves())
     .enter()
     .append("text")
-      .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
+      .attr("x", function(d){ return d.x0+5})    // +10 to adjust position (more right)
       .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
-      .text(function(d){ return d.data.name})
+      .text(function(d){ return d.data.name })
       .attr("font-size", "15px")
       .attr("fill", "white")
 })
