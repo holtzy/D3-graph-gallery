@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic treemap in d3.js</title>
+  <title>Treemap from Json format in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic treemap: example with reproducible code.">
+  <meta name="description" content="Using d3.js to create a basic treemap from Json format: example with reproducible code.">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, treemap">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Basic treemap in d3.js">
+  <meta property="og:title" content="Treemap from Json format in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic treemap: example with reproducible code.">
+  <meta property="og:description" content="Using d3.js to create a basic treemap from Json format: example with reproducible code.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic treemap in d3.js</h1>
+      <h1>Treemap from Json format in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -105,7 +105,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="../treemap.html">treemap</a> with d3.js. It takes into account a hierarchy dataset, stored at <code>.csv</code> format. See many other examples in the <a href="../treemap.html">treemap section</a> of the gallery. Learn more about the theory of treemaps in <a href="https://www.data-to-viz.com/graph/treemap.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a basic <a href="../treemap.html">treemap</a> with d3.js from a <code>Json</code> format input file. See <a href="treemap_basic.html">here</a> for <code>.csv</code> input format. More treemaps in the <a href="../treemap.html">dedicated section</a> of the gallery..</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../treemap.html">Treemap section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -192,28 +192,26 @@ var svg = d3.select("#my_dataviz")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-// Read data
-d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_hierarchy_1level.csv', function(data) {
+// read json data
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram.json", function(data) {
 
-  // stratify the data: reformatting for d3.js
-  var root = d3.stratify()
-    .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
-    .parentId(function(d) { return d.parent; })   // Name of the parent (column name is parent in csv)
-    (data);
-  root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
+  // Give the data to this cluster layout:
+  var root = d3.hierarchy(data, function(d) {
+      return d.children;
+  })
+  console.log(root)
 
   // Then d3.treemap computes the position of each element of the hierarchy
   // The coordinates are added to the root object above
-  d3.treemap()
-    .size([width, height])
-    .padding(4)
-    (root)
+  // d3.treemap()
+  //   .size([width, height])
+  //   .padding(20)
+  //   (root)
 
-console.log(root.leaves())
   // use this information to add rectangles:
   svg
     .selectAll("rect")
-    .data(root.leaves())
+    .data(root.descendants())
     .enter()
     .append("rect")
       .attr('x', function (d) { return d.x0; })
@@ -226,7 +224,7 @@ console.log(root.leaves())
   // and to add the text labels
   svg
     .selectAll("text")
-    .data(root.leaves())
+    .data(root.descendants())
     .enter()
     .append("text")
       .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)

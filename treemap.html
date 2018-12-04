@@ -124,8 +124,13 @@ $(function(){
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>It is important to note that 2 different <u>input formats</u> can be used to build a treemap:
+      <ul>
+        <li>A <code>.csv</code> file with one line per connection in the hierarchy. See <a href="treemap_basic.html">here</a>.</li>
+        <li>A <code>.json</code> file. See <a href="">here</a></li>
+      </ul>
+    </p>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/treemap_basic.html">
           <div class="portfolio-hover">
@@ -138,6 +143,40 @@ $(function(){
           <img class="img-fluid" src="img/graph/treemap_basic.png" alt="">
         </a>
       </div>
+    </div>
+
+
+    <br><br><br><br>
+    <div class="mySeryTitle">Selection of blocks</div>
+    <hr>
+    <p>A few blocks with more complicated codes to showcase the possibility of d3 for treemaps</a>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/mbostock/6bbb0a7ff7686b124d80">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Clean static treemap</p>
+              <hr>
+              <p class="explanation_portfolio">A clean layout for this static treemap by Mike Bostock. Always good to read d3.js creator's code.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_treemapMike.png" alt="Treemap mike d3">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/ganezasan/52fced34d2182483995f0ca3960fe228">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Button and smooth transition</p>
+              <hr>
+              <p class="explanation_portfolio">A treemap with a button allowing to switch from size to count for rectangle size. Good to learn how to perform a smooth transition.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_treemapTransitionData.png" alt="circular barchart">
+        </a>
+      </div>
+    </div>
+
 
  </div>
 </section>
