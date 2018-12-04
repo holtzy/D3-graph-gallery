@@ -193,25 +193,28 @@ var svg = d3.select("#my_dataviz")
         "translate(" + margin.left + "," + margin.top + ")");
 
 // read json data
-d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram.json", function(data) {
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram_full.json", function(data) {
 
   // Give the data to this cluster layout:
-  var root = d3.hierarchy(data, function(d) {
-      return d.children;
-  })
-  console.log(root)
+  var root = d3.hierarchy(data).sum(function(d){ return d.value}) // Here the size of each leave is given in the 'value' field in input data
 
   // Then d3.treemap computes the position of each element of the hierarchy
-  // The coordinates are added to the root object above
-  // d3.treemap()
-  //   .size([width, height])
-  //   .padding(20)
-  //   (root)
+  d3.treemap()
+    .size([width, height])
+    .padding(2)
+    (root)
+
+  // prepare a color scale
+  var color = d3.scaleOrdinal()
+    .domain(["boss1", "boss2", "boss3"])
+    .range([ "#402D54", "#D18975", "#8FD175"])
+
+
 
   // use this information to add rectangles:
   svg
     .selectAll("rect")
-    .data(root.descendants())
+    .data(root.leaves())
     .enter()
     .append("rect")
       .attr('x', function (d) { return d.x0; })
@@ -219,12 +222,12 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
       .attr('width', function (d) { return d.x1 - d.x0; })
       .attr('height', function (d) { return d.y1 - d.y0; })
       .style("stroke", "black")
-      .style("fill", "#69b3a2");
+      .style("fill", function (d) { console.log(d.data) ; return color(d.data.group) })
 
   // and to add the text labels
   svg
     .selectAll("text")
-    .data(root.descendants())
+    .data(root.leaves())
     .enter()
     .append("text")
       .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
@@ -279,6 +282,39 @@ myJSParser('codejs', 'result');
 
 
 
+
+
+<!-- ==================== R CODE ==================== -->
+
+  <section >
+  <div class="container" >
+
+    <h1>Building the <code>Json</code> format</h1>
+    <hr>
+    <p>The <a href="https://github.com/timelyportfolio/d3r">d3r R library</a> allows to switch from <a href="https://github.com/timelyportfolio/d3r">.csv</a> format to <a href="https://github.com/timelyportfolio/d3r">json</a> format. Here is the R code allowing to build the <code>json</code> file used above.</p>
+
+<pre class="language-r">
+# Load library
+library(d3r)
+
+# Build a dummy data frame
+data <- data.frame(
+  level2=c( rep("boss1",4), rep("boss2",4), rep("boss3",6)),
+  level3=paste0("mister_", letters[1:14]),
+  value=rep(23,14),
+  group=c("A","A","C","C","C","A","B","B","B","A","A","D","D","D" )
+)
+
+# Create the json format. Note that columns that are leave features are specified.
+a <- d3_nest(data, root="CEO", value_cols=c("group", "value"))
+
+# Save it in a .json file
+write(a, "data_dendrogram_full.json")
+</pre>
+<br>
+
+  </div>
+</section>
 
 
 <!-- ============================ RELATED BLOCKS ============================ -->
