@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-79254642-6');
+  </script>
+
+  <meta charset="utf-8">
+  <title>Treemap customization in d3.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="How to customize your d3.js treemap: color, opacity, labels, padding, title and more. Reproducible code provided.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, treemap">
+  <meta name="author" content="Yan Holtz">
+
+  <meta property="og:title" content="Treemap customization in d3.js">
+  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
+  <meta property="og:description" content="How to customize your d3.js treemap: color, opacity, labels, padding, title and more. Reproducible code provided.">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/agency.css" rel="stylesheet">
+
+  <!-- PRISM -->
+  <script src="../LIB/prism.js"></script>
+  <link href="../LIB/prism.css" rel="stylesheet" />
+
+  <!-- D3.JS v4 -->
+  <script src="../js/d3.v4.js"></script>
+
+  <!-- JQUERY -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+
+  <!-- HTML TO CANVAS -->
+  <script src="../js/html2canvas.js"></script>
+
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="../js/myParser.js"></script>
+
+</head>
+
+
+
+
+
+
+<body id="page-top">
+
+
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("../html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+});
+</script>
+
+
+<!-- Header -->
+<header class="masthead">
+  <div class="textlanding">
+      <h1>Treemap customization in d3.js</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">This post describes how to customize a <a href="../treemap.html">treemap</a> with d3.js. How to add <u>color</u> for groups, <u>opacity</u>, <u>title</u>, <u>padding</u>, group <u>labels</u> and <u>exact values</u>. More treemaps in the <a href="../treemap.html">dedicated section</a> of the gallery.</p>
+      <br>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../treemap.html">Treemap section</a>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+  </div>
+</header>
+
+
+
+
+
+
+
+
+
+<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="result" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>The input dataset used here is stored at the <code>.json</code> format. <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram_full.json">Have a look</a></li>
+          <br>
+          <li>If you have a <code>.csv</code> input, you can transform it with the code below, or see <a href="treemap_basic.html">this example</a>.</li>
+          <br>
+          <li>Start by understanding how to build a <a href="treemap_json.html">basic treemap</a> with d3 and json input.</br>
+          <br>
+          <li>Margin between group is possible thanks to the <code>paddingTop</code>, <code>paddingRight</code> and <code>paddingInner</code> arguments. Play with them in the code beside to understand how they work.</br>
+          <br>
+          <li>One color per group, opacity proportional to value: classic use of scale, as described in <a href="custom_axis.html">this document</a>.</br>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- ================================================================================= -->
+
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+  width = 445 - margin.left - margin.right,
+  height = 445 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+.append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+// read json data
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_dendrogram_full.json", function(data) {
+
+  // Give the data to this cluster layout:
+  var root = d3.hierarchy(data).sum(function(d){ return d.value}) // Here the size of each leave is given in the 'value' field in input data
+
+  // Then d3.treemap computes the position of each element of the hierarchy
+  d3.treemap()
+    .size([width, height])
+    .paddingTop(28)
+    .paddingRight(7)
+    .paddingInner(3)      // Padding between each rectangle
+    //.paddingOuter(6)
+    //.padding(20)
+    (root)
+
+  // prepare a color scale
+  var color = d3.scaleOrdinal()
+    .domain(["boss1", "boss2", "boss3"])
+    .range([ "#402D54", "#D18975", "#8FD175"])
+
+  // And a opacity scale
+  var opacity = d3.scaleLinear()
+    .domain([10, 30])
+    .range([.5,1])
+
+  // use this information to add rectangles:
+  svg
+    .selectAll("rect")
+    .data(root.leaves())
+    .enter()
+    .append("rect")
+      .attr('x', function (d) { return d.x0; })
+      .attr('y', function (d) { return d.y0; })
+      .attr('width', function (d) { return d.x1 - d.x0; })
+      .attr('height', function (d) { return d.y1 - d.y0; })
+      .style("stroke", "black")
+      .style("fill", function(d){ return color(d.parent.data.name)} )
+      .style("opacity", function(d){ return opacity(d.data.value)})
+
+  // and to add the text labels
+  svg
+    .selectAll("text")
+    .data(root.leaves())
+    .enter()
+    .append("text")
+      .attr("x", function(d){ return d.x0+5})    // +10 to adjust position (more right)
+      .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
+      .text(function(d){ return d.data.name.replace('mister_','') })
+      .attr("font-size", "19px")
+      .attr("fill", "white")
+
+  // and to add the text labels
+  svg
+    .selectAll("vals")
+    .data(root.leaves())
+    .enter()
+    .append("text")
+      .attr("x", function(d){ return d.x0+5})    // +10 to adjust position (more right)
+      .attr("y", function(d){ return d.y0+35})    // +20 to adjust position (lower)
+      .text(function(d){ return d.data.value })
+      .attr("font-size", "11px")
+      .attr("fill", "white")
+
+  // Add title for the 3 groups
+  svg
+    .selectAll("titles")
+    .data(root.descendants().filter(function(d){return d.depth==1}))
+    .enter()
+    .append("text")
+      .attr("x", function(d){ return d.x0})
+      .attr("y", function(d){ return d.y0+21})
+      .text(function(d){ return d.data.name })
+      .attr("font-size", "19px")
+      .attr("fill",  function(d){ return color(d.data.name)} )
+
+  // Add title for the 3 groups
+  svg
+    .append("text")
+      .attr("x", 0)
+      .attr("y", 14)    // +20 to adjust position (lower)
+      .text("Three group leaders and 14 employees")
+      .attr("font-size", "19px")
+      .attr("fill",  "grey" )
+
+})
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code', 'result')
+myJSParser('codejs', 'result')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+<!-- ==================== R CODE ==================== -->
+
+  <section >
+  <div class="container" >
+
+    <h1>Building the <code>Json</code> format</h1>
+    <hr>
+    <p>The <a href="https://github.com/timelyportfolio/d3r">d3r R library</a> allows to switch from <a href="https://github.com/timelyportfolio/d3r">.csv</a> format to <a href="https://github.com/timelyportfolio/d3r">json</a> format. Here is the R code allowing to build the <code>json</code> file used above.</p>
+
+<pre class="language-r">
+# Load library
+library(d3r)
+
+# Build a dummy data frame
+data <- data.frame(
+  level2=c( rep("boss1",4), rep("boss2",4), rep("boss3",6)),
+  level3=paste0("mister_", letters[1:14]),
+  value=rep(23,14),
+  group=c("A","A","C","C","C","A","B","B","B","A","A","D","D","D" )
+)
+
+# Create the json format. Note that columns that are leave features are specified.
+a <- d3_nest(data, root="CEO", value_cols=c("group", "value"))
+
+# Save it in a .json file
+write(a, "data_dendrogram_full.json")
+</pre>
+<br>
+
+  </div>
+</section>
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center align-self-center">
+        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
+      </div>
+      <div class="col-lg-5">
+        <ul>
+          <li><i>Nested Treemap - </i>by <a href="https://bl.ocks.org/mbostock/911ad09bdead40ec0061">Mike Bostock</a></li>
+          <br>
+          <li><i>D3-hierarchy documentation - </i>by <a href="https://github.com/d3/d3-hierarchy">Mike Bostock</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ JAVASCRIPT SECTION ============================ -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/agency.min.js"></script>
+
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+
+<!-- Function to download the content of the div -->
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    var command = document.getElementById('code').innerHTML;
+    command = command.replace(/<\/?span[^>]*>/g,"");
+    a.href = "data:html" + command
+    a.click(); // Trigger a click on the element
+}
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>
