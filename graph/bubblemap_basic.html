@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,15 +13,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic background map in d3.js</title>
+  <title>Most basic bubblemap in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic background map">
+  <meta name="description" content="How to build the most basic bubble map with d3.js: explanation and reproducible code.">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, map">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Basic background map in d3.js">
+  <meta property="og:title" content="Most basic bubblemap in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic background map">
+  <meta property="og:description" content="How to build the most basic bubble map with d3.js: explanation and reproducible code.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic background map in d3.js</h1>
+      <h1>Basic bubble map in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -106,9 +106,9 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/backgroundmap">background map</a> of the world with d3.js. Note that the same kind of code would work with any geospatial data stored in <code>geojson</code> format. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/backgroundmap">background map section</a> of the gallery.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="../bubblemap.html">bubble map</a> with d3.js. It uses the previous <a href="backgroundmap_country.html">background map of France</a>, and add a few circles at specific coordinates on top of it. See more bubblemap examples <a href="../bubblemap.html">here</a>.</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../backgroundmap.html">Background map section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../bubblemap.html">Bubble map section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -146,13 +146,11 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>First of all, you need to know how to plot a <a href="backgroundmap_country.html">basic background map</a>.</li>
           <br>
-          <li>In this example the world country boundaries are used. Data comes from <a href="http://enjalot.github.io/wwsd/data/world/world-110m.geojson">here</a>. They are provided at <code>geojson</code> format. If you have a <code>shapefile</code> format, visit the <a href="https://www.d3-graph-gallery.com/backgroundmap">background map</a> section to see how to proceed.</a></li>
+          <li>Then we just add circles for each data points as we would do for a <a href="../scatter.html">scatter plot</a> or a <a href="../bubble.html">bubble plot</a>.</li>
           <br>
-          <li>Note that the <a href="https://github.com/d3/d3-geo-projection">geo.projection</a> plugin is used. It allows to represent the world using different projection. See <a href="">this page of the gallery</a> to see the possibilities.</li>
-          <br>
-          <li>Note: I don't understand the logic behind the <code>.scale</code> part.</li>
+          <li>The only trick is that the <code>projection</code> function needs to be applied to the circle X and Y coordinates</li>
         </ul>
       </div>
     </div>
@@ -171,13 +169,12 @@ $(function(){
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js -->
+<!-- Load d3.js and the geo projection plugin -->
 <script src="http://d3js.org/d3.v4.js"></script>
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
 <!-- Create an element where the map will take place -->
-<svg id="my_dataviz" width="400" height="300"></svg>
+<svg id="my_dataviz" width="440" height="300"></svg>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -196,23 +193,54 @@ var svg = d3.select("svg"),
     height = +svg.attr("height");
 
 // Map and projection
-var projection = d3.geoNaturalEarth()
-    .scale(width / 1.3 / Math.PI)
-    .translate([width / 2, height / 2])
+var projection = d3.geoMercator()
+    .center([2, 47])                // GPS of location to zoom on
+    .scale(1020)                       // This is like the zoom
+    .translate([ width/2, height/2 ])
+
+
+// Create data for circles:
+var markers = [
+  {long: 9.083, lat: 42.149}, // corsica
+  {long: 7.26, lat: 43.71}, // nice
+  {long: 2.349, lat: 48.864}, // Paris
+  {long: -1.397, lat: 43.664}, // Hossegor
+  {long: 3.075, lat: 50.640}, // Lille
+  {long: -3.83, lat: 58}, // Morlaix
+];
 
 // Load external data and boot
 d3.json("http://enjalot.github.io/wwsd/data/world/world-110m.geojson", function(data){
+
+    // Filter data
+    data.features = data.features.filter( function(d){return d.properties.name=="France"} )
 
     // Draw the map
     svg.append("g")
         .selectAll("path")
         .data(data.features)
-        .enter().append("path")
-            .attr("fill", "#69b3a2")
-            .attr("d", d3.geoPath()
-                .projection(projection)
-            )
-            .style("stroke", "#fff")
+        .enter()
+        .append("path")
+          .attr("fill", "#b8b8b8")
+          .attr("d", d3.geoPath()
+              .projection(projection)
+          )
+        .style("stroke", "black")
+        .style("opacity", .3)
+
+    // Add circles:
+    svg
+      .selectAll("myCircles")
+      .data(markers)
+      .enter()
+      .append("circle")
+        .attr("cx", function(d){ return projection([d.long, d.lat])[0] })
+        .attr("cy", function(d){ return projection([d.long, d.lat])[1] })
+        .attr("r", 14)
+        .style("fill", "69b3a2")
+        .attr("stroke", "#69b3a2")
+        .attr("stroke-width", 3)
+        .attr("fill-opacity", .4)
 })
 
 </script></xmp></code></pre>
@@ -273,9 +301,13 @@ myJSParser('codejs', 'result');
       </div>
       <div class="col-lg-5">
         <ul>
-          <li><i>World Choropleth - </i><a href="http://bl.ocks.org/palewire/d2906de347a160f38bc0b7ca57721328">link</a></li>
+          <li><i>France population - </i>by <a href="https://bl.ocks.org/bricedev/97c53d6ed168902239f7">Brice Pierre de la Briere</a></li>
           <br>
-          <li><i>Projection Transitions - </i><a href="https://bl.ocks.org/alexmacy/6700d44240d2b6d3ec9767a5a5854e42">link</a></li>
+          <li><i>D3-geo-projection Documentation - </i>by <a href="https://github.com/d3/d3-geo-projection">Mike Bostock</a></li>
+          <br>
+          <li><i>Basic background map - </i>by <a href="backgroundmap_basic.html">the d3 graph gallery</a></li>
+          <br>
+          <li><i>D3.js Custom Map Markers - </i>by <a href="https://codepen.io/znak/pen/XXrRvj"> Aleksander Lenart</a></li>
         </ul>
       </div>
     </div>

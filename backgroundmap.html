@@ -121,7 +121,12 @@ $(function(){
 <section class="bg" id="portfolio" style="padding-top: 10px">
   <div class="container">
 
+    <div class="mySeryTitle">About input data</div>
+    <hr>
+    <p>Difference between <code>geoJson</code> and <code>topoJson</code>. But not necessary thanks to leaflet.</p>
 
+
+    <br><br><br><br>
     <div class="mySeryTitle">From a <code>geoJson</code> file</div>
     <hr>
     <p>Input data for maps is <code>geoJson</code> format. D3.js works very well to display this kind of information using <code>path</code>.</p>
@@ -148,6 +153,18 @@ $(function(){
             </div>
           </div>
           <img class="img-fluid" src="img/graph/backgroundmap_changeprojection.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/backgroundmap_country.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Single country</p>
+              <hr>
+              <p class="explanation_portfolio">How to plot the boundaries of any country in d3.js.<br><br>Actually explains how to filter a geoJson file.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/backgroundmap_country.png" alt="">
         </a>
       </div>
     </div>
@@ -178,6 +195,18 @@ $(function(){
     <hr>
     <p>A few blocks with more complicated codes to showcase the possibility of the <code>d3-sankey </code>plugin</a>
     <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://medium.com/@mbostock/command-line-cartography-part-1-897aa8f8ca2c">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Mike's tutorial</p>
+              <hr>
+              <p class="explanation_portfolio">A tutorial built by Mike Bostock: a very good starting point to maps in d3.js.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_backgroundmapMike.png" alt="Mike's map tutorial">
+        </a>
+      </div>
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="https://bl.ocks.org/alexmacy/6700d44240d2b6d3ec9767a5a5854e42">
           <div class="portfolio-hover">
@@ -341,20 +370,8 @@ $(function(){
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Contact form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
-
-    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-    <script>
-      $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-   </script>
-
 
 
 
