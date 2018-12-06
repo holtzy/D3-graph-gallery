@@ -41,6 +41,12 @@
     <!-- JQUERY -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
+    <!-- D3.JS v4 -->
+    <script src="js/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+    <!-- JQUERY -->
 </head>
 
 
@@ -162,9 +168,30 @@ $(function(){
           <img class="img-fluid" src="img/graph/bubblemap_circleFeatures.png" alt="">
         </a>
       </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/bubble_legend.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Legend</p>
+              <hr>
+              <p class="explanation_portfolio">How to build a nice legend to illustrate bubble size.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/bubble_legend.png" alt="">
+        </a>
+      </div>
     </div>
 
+
     <br><br><br><br>
+    <div class="mySeryTitle">Template</div>
+    <hr>
+    <p>A clean template based on my <a href="https://www.data-to-viz.com/story/GPSCoordWithoutValue.html">#surf project</a>. I harvested tweet containing the <u>#surf</u> hashtag for ~ 1 year and geocoded people home location. Here is where the surfers live! You can read more about this project <a href="https://www.data-to-viz.com/story/GPSCoordWithoutValue.html">here</a>.</p>
+    <a class="btn btn-secondary btn-md text-uppercase" href="graph/bubblemap_template.html">See code</a>
+    <center><svg id="my_dataviz" width="1200" height="490"></svg></center>
+
+
+    <br><br><br><br><br><br>
     <div class="mySeryTitle">Using the <code>Leaflet.js</code> open source library</div>
     <hr>
     <p><a href="https://leafletjs.com/examples.html">Leaflet</a> is an open-source JavaScript library for mobile-friendly interactive maps. Awesome for background maps. See the range of background tiles you can use <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">here</a> and <a href="https://wiki.openstreetmap.org/wiki/Tiles">here</a>.</p>
@@ -221,6 +248,163 @@ $(function(){
 
 
 <!-- ======================================================================= -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ Script template bubble map ============================ -->
+
+
+<script>
+
+
+// The svg
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+// Map and projection
+var projection = d3.geoMercator()
+    .center([0,20])                // GPS of location to zoom on
+    .scale(160)                       // This is like the zoom
+    .translate([ width/2, height/2 ])
+
+d3.queue()
+  .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")  // World shape
+  .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_gpsLocSurfer.csv") // Position of circles
+  .await(ready);
+
+function ready(error, dataGeo, data) {
+
+  // Create a color scale
+  var allContinent = d3.map(data, function(d){return(d.homecontinent)}).keys()
+  var color = d3.scaleOrdinal()
+    .domain(allContinent)
+    .range(d3.schemePaired);
+
+  // Add a scale for bubble size
+  var valueExtent = d3.extent(data, function(d) { return +d.n; })
+  var size = d3.scaleSqrt()
+    .domain(valueExtent)  // What's in the data
+    .range([ 1, 80])  // Size in pixel
+
+  // Draw the map
+  svg.append("g")
+      .selectAll("path")
+      .data(dataGeo.features)
+      .enter()
+      .append("path")
+        .attr("fill", "#b8b8b8")
+        .attr("d", d3.geoPath()
+            .projection(projection)
+        )
+      .style("stroke", "none")
+      .style("opacity", .3)
+
+  // Add circles:
+  svg
+    .selectAll("myCircles")
+    .data(data.sort(function(a,b) { return +b.n - +a.n }).filter(function(d,i){ return i<1000 }))
+    .enter()
+    .append("circle")
+      .attr("cx", function(d){ return projection([+d.homelon, +d.homelat])[0] })
+      .attr("cy", function(d){ return projection([+d.homelon, +d.homelat])[1] })
+      .attr("r", function(d){ return size(+d.n) })
+      .style("fill", function(d){ return color(d.homecontinent) })
+      .attr("stroke", function(d){ if(d.n>2000){return "white"}else{return "none"}  })
+      .attr("stroke-width", 1)
+      .attr("fill-opacity", .4)
+
+
+
+  // Add title and explanation
+  svg
+    .append("text")
+      .attr("text-anchor", "end")
+      .style("fill", "black")
+      .attr("x", width - 130)
+      .attr("y", 30)
+      .attr("width", 90)
+      .html("WHERE SURFERS LIVE")
+      .style("font-size", 18)
+  // Add title and explanation
+  svg
+    .append("text")
+      .attr("text-anchor", "end")
+      .style("fill", "black")
+      .attr("x", width - 130)
+      .attr("y", 55)
+      .attr("width", 90)
+      .html("Number of #surf tweet harvested in a year")
+      .style("font-size", 13)
+
+
+  // --------------- //
+  // ADD LEGEND //
+  // --------------- //
+
+  // Add legend: circles
+  var valuesToShow = [100,5000,20000]
+  var xCircle = 120
+  var xLabel = 200
+  svg
+    .selectAll("legend")
+    .data(valuesToShow)
+    .enter()
+    .append("circle")
+      .attr("cx", xCircle)
+      .attr("cy", function(d){ return height - size(d) } )
+      .attr("r", function(d){ return size(d) })
+      .style("fill", "none")
+      .attr("stroke", "black")
+
+  // Add legend: segments
+  svg
+    .selectAll("legend")
+    .data(valuesToShow)
+    .enter()
+    .append("line")
+      .attr('x1', function(d){ return xCircle + size(d) } )
+      .attr('x2', xLabel)
+      .attr('y1', function(d){ return height - size(d) } )
+      .attr('y2', function(d){ return height - size(d) } )
+      .attr('stroke', 'black')
+      .style('stroke-dasharray', ('2,2'))
+
+  // Add legend: labels
+  svg
+    .selectAll("legend")
+    .data(valuesToShow)
+    .enter()
+    .append("text")
+      .attr('x', xLabel+3)
+      .attr('y', function(d){ return height - size(d) } )
+      .text( function(d){ return d } )
+      .style("font-size", 11)
+      .attr('alignment-baseline', 'middle')
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
 
 
 

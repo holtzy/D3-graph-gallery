@@ -3,6 +3,7 @@
 
 <head>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Bubblemap template for d3.js</title>
+  <title>Bubble legend in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="A bubblemap template for d3.js: includes title, legend, color scale, world background and more. Explanation and reproducible code provided.">
-  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, map">
+  <meta name="description" content="How to build a legend for your d3.js bubble chart: explanation and reproducible code.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, bubble plot">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Bubblemap template for d3.js.">
+  <meta property="og:title" content="Basic bubble plot in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="A bubblemap template for d3.js: includes title, legend, color scale, world background and more. Explanation and reproducible code provided.">
+  <meta property="og:description" content="How to build a legend for your d3.js bubble chart: explanation and reproducible code.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,8 +39,6 @@
 
   <!-- D3.JS v4 -->
   <script src="../js/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -80,7 +79,7 @@ $(function(){
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Bubblemap template for d3.js</h1>
+      <h1>Basic bubble plot in d3.js</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -106,9 +105,9 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">A template for bubblemaps in d3.js. This example uses all the concept described in the bubblemap section. It has a color scale highlighting continents, bubble size are mapped to frequency, a legend is provided.</p>
+      <p style="max-width: 700px; margin: auto">Building a legend is a crucial step when you build a <a href="../bubblechart.html">bubble chart </a>or a <a href="bubblemap.html">bubble map</a>. This post explains how to do it using d3.js.s</p>
       <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../bubblemap.html">Bubble map section</a>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../bubble.html">Bubbleplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
   </div>
 </header>
@@ -118,13 +117,7 @@ $(function(){
 
 
 
-<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-<div id="position_for_images"> </div>
-<script>
-$(function(){
-  $("#position_for_images").load("../html_chunk/images.html");
-});
-</script>
+
 
 
 
@@ -138,7 +131,7 @@ $(function(){
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-  <div class="col-lg-7 .align-middle">
+  <div class="col-lg-6 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="result" ></div>
       <br>
@@ -146,11 +139,9 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>This is the template I start with to build a bubblemap.</li>
+          <li>This legend can be inserted next to any <a href="../bubble.html">bubble chart</a> or <a href="../bubblemap.html">bubble map</a>.</li>
           <br>
-          <li>Data are based on my #surf project where I harvested tweets containing the #surf hashtag for a year. More about it <a href="https://www.data-to-viz.com/story/GPSCoordWithoutValue.html">here</a>.</li>
-          <br>
-          <li>This template just uses all the concepts described in the <a href="../bubblemap.html">bubblemap section</a>.</li>
+          <li>It's nothing complicated, but allows to easily set up the threshold you want to show on the legend.</li>
         </ul>
       </div>
     </div>
@@ -162,20 +153,18 @@ $(function(){
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-5 text-center .align-middle">
+<div class="col-lg-6 text-center .align-middle">
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js and the geo projection plugin -->
+<!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
-<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
-<!-- Create an element where the map will take place -->
-<svg id="my_dataviz" width="630" height="350"></svg>
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -188,126 +177,61 @@ $(function(){
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// The svg
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+// append the svg object to the body of the page
+var height = 460
+var width = 460
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width)
+    .attr("height", height)
 
-// Map and projection
-var projection = d3.geoMercator()
-    .center([0,20])                // GPS of location to zoom on
-    .scale(99)                       // This is like the zoom
-    .translate([ width/2, height/2 ])
+// The scale you use for bubble size
+var size = d3.scaleSqrt()
+  .domain([1, 100])  // What's in the data, let's say it is percentage
+  .range([1, 100])  // Size in pixel
 
-d3.queue()
-  .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")  // World shape
-  .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_gpsLocSurfer.csv") // Position of circles
-  .await(ready);
+// Add legend: circles
+var valuesToShow = [10, 50, 100]
+var xCircle = 230
+var xLabel = 380
+var yCircle = 330
+svg
+  .selectAll("legend")
+  .data(valuesToShow)
+  .enter()
+  .append("circle")
+    .attr("cx", xCircle)
+    .attr("cy", function(d){ return yCircle - size(d) } )
+    .attr("r", function(d){ return size(d) })
+    .style("fill", "none")
+    .attr("stroke", "black")
 
-function ready(error, dataGeo, data) {
+// Add legend: segments
+svg
+  .selectAll("legend")
+  .data(valuesToShow)
+  .enter()
+  .append("line")
+    .attr('x1', function(d){ return xCircle + size(d) } )
+    .attr('x2', xLabel)
+    .attr('y1', function(d){ return yCircle - size(d) } )
+    .attr('y2', function(d){ return yCircle - size(d) } )
+    .attr('stroke', 'black')
+    .style('stroke-dasharray', ('2,2'))
 
-  // Create a color scale
-  var allContinent = d3.map(data, function(d){return(d.homecontinent)}).keys()
-  var color = d3.scaleOrdinal()
-    .domain(allContinent)
-    .range(d3.schemePaired);
-
-  // Add a scale for bubble size
-  var valueExtent = d3.extent(data, function(d) { return +d.n; })
-  var size = d3.scaleSqrt()
-    .domain(valueExtent)  // What's in the data
-    .range([ 1, 50])  // Size in pixel
-
-  // Draw the map
-  svg.append("g")
-      .selectAll("path")
-      .data(dataGeo.features)
-      .enter()
-      .append("path")
-        .attr("fill", "#b8b8b8")
-        .attr("d", d3.geoPath()
-            .projection(projection)
-        )
-      .style("stroke", "none")
-      .style("opacity", .3)
-
-  // Add circles:
-  svg
-    .selectAll("myCircles")
-    .data(data.sort(function(a,b) { return +b.n - +a.n }).filter(function(d,i){ return i<1000 }))
-    .enter()
-    .append("circle")
-      .attr("cx", function(d){ return projection([+d.homelon, +d.homelat])[0] })
-      .attr("cy", function(d){ return projection([+d.homelon, +d.homelat])[1] })
-      .attr("r", function(d){ return size(+d.n) })
-      .style("fill", function(d){ return color(d.homecontinent) })
-      .attr("stroke", function(d){ if(d.n>2000){return "black"}else{return "none"}  })
-      .attr("stroke-width", 1)
-      .attr("fill-opacity", .4)
-
-
-
-  // Add title and explanation
-  svg
-    .append("text")
-      .attr("text-anchor", "end")
-      .style("fill", "black")
-      .attr("x", width - 10)
-      .attr("y", height - 30)
-      .attr("width", 90)
-      .html("WHERE SURFERS LIVE")
-      .style("font-size", 14)
-
-
-  // --------------- //
-  // ADD LEGEND //
-  // --------------- //
-
-  // Add legend: circles
-  var valuesToShow = [100,4000,15000]
-  var xCircle = 40
-  var xLabel = 90
-  svg
-    .selectAll("legend")
-    .data(valuesToShow)
-    .enter()
-    .append("circle")
-      .attr("cx", xCircle)
-      .attr("cy", function(d){ return height - size(d) } )
-      .attr("r", function(d){ return size(d) })
-      .style("fill", "none")
-      .attr("stroke", "black")
-
-  // Add legend: segments
-  svg
-    .selectAll("legend")
-    .data(valuesToShow)
-    .enter()
-    .append("line")
-      .attr('x1', function(d){ return xCircle + size(d) } )
-      .attr('x2', xLabel)
-      .attr('y1', function(d){ return height - size(d) } )
-      .attr('y2', function(d){ return height - size(d) } )
-      .attr('stroke', 'black')
-      .style('stroke-dasharray', ('2,2'))
-
-  // Add legend: labels
-  svg
-    .selectAll("legend")
-    .data(valuesToShow)
-    .enter()
-    .append("text")
-      .attr('x', xLabel)
-      .attr('y', function(d){ return height - size(d) } )
-      .text( function(d){ return d } )
-      .style("font-size", 10)
-      .attr('alignment-baseline', 'middle')
-}
-
+// Add legend: labels
+svg
+  .selectAll("legend")
+  .data(valuesToShow)
+  .enter()
+  .append("text")
+    .attr('x', xLabel)
+    .attr('y', function(d){ return yCircle - size(d) } )
+    .text( function(d){ return d } )
+    .style("font-size", 10)
+    .attr('alignment-baseline', 'middle')
 </script></xmp></code></pre>
 <!-- ==================================== -->
-
-
 
 
 
@@ -364,13 +288,11 @@ myJSParser('codejs', 'result');
       </div>
       <div class="col-lg-5">
         <ul>
-          <li><i>reusable circle legend- </i>by <a href="https://bl.ocks.org/lorenzopub/90d90746af84f1fe3d782d47f3739a30">Laurent Chauvirey</a></li>
+          <li><i>Bubble chart section - </i><a href="../bubble.html">link</a></li>
           <br>
-          <li><i>D3-geo-projection Documentation - </i>by <a href="https://github.com/d3/d3-geo-projection">Mike Bostock</a></li>
+          <li><i>Bubble chart - </i>by <a href="https://bl.ocks.org/tlfrd/aa1bb8f6f3dae3148345fbb54305bdf7">Cale Tilford</a></li>
           <br>
-          <li><i>Basic background map - </i>by <a href="backgroundmap_basic.html">the d3 graph gallery</a></li>
-          <br>
-          <li><i>D3.js Custom Map Markers - </i>by <a href="https://codepen.io/znak/pen/XXrRvj"> Aleksander Lenart</a></li>
+          <li><i>Reusable circle legend - </i>by <a href="https://bl.ocks.org/lorenzopub/90d90746af84f1fe3d782d47f3739a30">laurent chauvirey</a></li>
         </ul>
       </div>
     </div>
