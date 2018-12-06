@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-79254642-6');
+  </script>
+
+  <meta charset="utf-8">
+  <title>Bubblemap with filter button in d3.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Bubble map with a button to filter groups in d3.js: explanation and reproducible code.">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, map">
+  <meta name="author" content="Yan Holtz">
+
+  <meta property="og:title" content="Bubblemap with filter button in d3.js">
+  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
+  <meta property="og:description" content="Bubble map with a button to filter groups in d3.js: explanation and reproducible code.">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/agency.css" rel="stylesheet">
+
+  <!-- PRISM -->
+  <script src="../LIB/prism.js"></script>
+  <link href="../LIB/prism.css" rel="stylesheet" />
+
+  <!-- D3.JS v4 -->
+  <script src="../js/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+  <!-- JQUERY -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+
+  <!-- HTML TO CANVAS -->
+  <script src="../js/html2canvas.js"></script>
+
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="../js/myParser.js"></script>
+
+</head>
+
+
+
+
+
+
+<body id="page-top">
+
+
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("../html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+});
+</script>
+
+
+<!-- Header -->
+<header class="masthead">
+  <div class="textlanding">
+      <h1>Bubblemap with filter button</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">This post follows the previous <a href="bubblemap_basic.html">basic bubble map</a> with d3.js. It adds a button that allows to filter groups. Visit the <a href="../bubblemap.html">bubblemap</a> and the <a href="../bubblechart.html">bubblechart</a> sections for more examples.</p>
+      <br>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../bubblemap.html">Bubble map section</a>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+  </div>
+</header>
+
+
+
+
+
+
+<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+<div id="position_for_images"> </div>
+<script>
+$(function(){
+  $("#position_for_images").load("../html_chunk/images.html");
+});
+</script>
+
+
+
+
+
+
+
+<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="result" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>First of all, you need to know how to plot a <a href="backgroundmap_country.html">basic background map</a> and a<a href="bubblemap_basic.html"> basic bubblemap</a>.</li>
+          <br>
+          <li>Then, you need to understand the basic of buttons: there is a dedicated page <a href="interactivity_button.html">here</a>.</li>
+          <br>
+          <li>Then this example should be quite straightforward.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- ================================================================================= -->
+
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js and the geo projection plugin -->
+<script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+<!-- Button -->
+<div>
+  <input type="checkbox" class="checkbox" value="A" checked><label>group A</label>
+  <input type="checkbox" class="checkbox" value="B" checked><label>group B</label>
+  <input type="checkbox" class="checkbox" value="C" checked><label>group C</label>
+</div>
+
+<!-- Create an element where the map will take place -->
+<svg id="my_dataviz" width="440" height="300"></svg>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+
+// The svg
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+// Map and projection
+var projection = d3.geoMercator()
+    .center([2, 47])                // GPS of location to zoom on
+    .scale(1020)                       // This is like the zoom
+    .translate([ width/2, height/2 ])
+
+
+// Create data for circles:
+var markers = [
+  {long: 9.083, lat: 42.149, group: "A", size: 34}, // corsica
+  {long: 7.26, lat: 43.71, group: "A", size: 14}, // nice
+  {long: 2.349, lat: 48.864, group: "B", size: 87}, // Paris
+  {long: -1.397, lat: 43.664, group: "B", size: 41}, // Hossegor
+  {long: 3.075, lat: 50.640, group: "C", size: 78}, // Lille
+  {long: -3.83, lat: 48, group: "C", size: 12} // Morlaix
+];
+
+// Load external data and boot
+d3.json("http://enjalot.github.io/wwsd/data/world/world-110m.geojson", function(data){
+
+    // Filter data
+    data.features = data.features.filter( function(d){return d.properties.name=="France"} )
+
+    // Create a color scale
+    var color = d3.scaleOrdinal()
+      .domain(["A", "B", "C" ])
+      .range([ "#402D54", "#D18975", "#8FD175"])
+
+    // Add a scale for bubble size
+    var size = d3.scaleLinear()
+      .domain([1,100])  // What's in the data
+      .range([ 4, 50])  // Size in pixel
+
+    // Draw the map
+    svg.append("g")
+        .selectAll("path")
+        .data(data.features)
+        .enter()
+        .append("path")
+          .attr("fill", "#b8b8b8")
+          .attr("d", d3.geoPath()
+              .projection(projection)
+          )
+        .style("stroke", "black")
+        .style("opacity", .3)
+
+    // Add circles:
+    svg
+      .selectAll("myCircles")
+      .data(markers)
+      .enter()
+      .append("circle")
+        .attr("class" , function(d){ return d.group })
+        .attr("cx", function(d){ return projection([d.long, d.lat])[0] })
+        .attr("cy", function(d){ return projection([d.long, d.lat])[1] })
+        .attr("r", function(d){ return size(d.size) })
+        .style("fill", function(d){ return color(d.group) })
+        .attr("stroke", function(d){ return color(d.group) })
+        .attr("stroke-width", 3)
+        .attr("fill-opacity", .4)
+
+
+    // This function is gonna change the opacity and size of selected and unselected circles
+    function update(){
+
+      // For each check box:
+      d3.selectAll(".checkbox").each(function(d){
+        cb = d3.select(this);
+        grp = cb.property("value")
+
+        // If the box is check, I show the group
+        if(cb.property("checked")){
+          svg.selectAll("."+grp).transition().duration(1000).style("opacity", 1).attr("r", function(d){ return size(d.size) })
+
+        // Otherwise I hide it
+        }else{
+          svg.selectAll("."+grp).transition().duration(1000).style("opacity", 0).attr("r", 0)
+        }
+      })
+    }
+
+    // When a button change, I run the update function
+    d3.selectAll(".checkbox").on("change",update);
+
+    // And I initialize it at the beginning
+    update()
+})
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code', 'result')
+myJSParser('codejs', 'result')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center align-self-center">
+        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
+      </div>
+      <div class="col-lg-5">
+        <ul>
+          <li><i>France population - </i>by <a href="https://bl.ocks.org/bricedev/97c53d6ed168902239f7">Brice Pierre de la Briere</a></li>
+          <br>
+          <li><i>D3-geo-projection Documentation - </i>by <a href="https://github.com/d3/d3-geo-projection">Mike Bostock</a></li>
+          <br>
+          <li><i>Basic background map - </i>by <a href="backgroundmap_basic.html">the d3 graph gallery</a></li>
+          <br>
+          <li><i>D3.js Custom Map Markers - </i>by <a href="https://codepen.io/znak/pen/XXrRvj"> Aleksander Lenart</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ JAVASCRIPT SECTION ============================ -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/agency.min.js"></script>
+
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+
+<!-- Function to download the content of the div -->
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    var command = document.getElementById('code').innerHTML;
+    command = command.replace(/<\/?span[^>]*>/g,"");
+    a.href = "data:html" + command
+    a.click(); // Trigger a click on the element
+}
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>
