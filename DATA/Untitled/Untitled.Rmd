@@ -1,0 +1,125 @@
+---
+title: "UQ R Markdown template"
+author: "[Yan Holtz](https://github.com/holtzy)"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+mail: "yan.holtz.data@gmail.com"
+linkedin: "yan-holtz-2477534a"
+twitter: "r_graph_gallery"
+github: "holtzy"
+home: "www.yan-holtz.com"
+output:
+  epuRate::UQ:
+    toc: TRUE
+    number_sections: FALSE
+    code_folding: "hide"
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# You need these libraries to run this template:
+library(rmarkdown)    # install.packages("rmarkdown")
+library(epuRate)      # devtools::install_github("holtzy/epuRate", force=TRUE)
+```
+
+<br><br><br><br>
+
+>Welcome in the [PCTG R Markdown template](https://github.com/holtzy/epuRate). This document describes how the template looks like, building an interactive Manhattan plot.
+
+
+
+
+
+
+# Loading data
+***
+Let's load a GWAS summary statistic stored in the [qqman library](https://github.com/stephenturner/qqman). This library is:
+
+- Made by Stephen Turner
+- Good to plot a quick Manhattan plot
+
+```{r, message=FALSE}
+library(qqman)
+```
+
+
+
+
+
+
+# Show data in a table
+***
+It's often handy to keep a trace of the raw data somewhere in your document. The DT library allows to build interactive tables that you can search, filter, highlight and more.
+```{r}
+library(DT)
+datatable(gwasResults, rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T) )
+```
+
+
+
+
+
+# Manhattan plot
+***
+Using `HTML` outputs you can embed some interactive graphics. For example, the plotly library can transform any of your ggplot2 graphic in an interactive chart:
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Libraries
+library(plotly)
+library(tidyverse)
+
+# Prepare the dataset
+don <- gwasResults %>%
+
+  # Compute chromosome size
+  group_by(CHR) %>%
+  summarise(chr_len=max(BP)) %>%
+
+  # Calculate cumulative position of each chromosome
+  mutate(tot=cumsum(chr_len)-chr_len) %>%
+  select(-chr_len) %>%
+
+  # Add this info to the initial dataset
+  left_join(gwasResults, ., by=c("CHR"="CHR")) %>%
+
+  # Add a cumulative position of each SNP
+  arrange(CHR, BP) %>%
+  mutate( BPcum=BP+tot) %>%
+
+  # Add highlight and annotation information
+  mutate( is_highlight=ifelse(SNP %in% snpsOfInterest, "yes", "no")) %>%
+
+  # Filter SNP to make the plot lighter
+  filter(-log10(P)>0.5)
+
+# Prepare X axis
+axisdf <- don %>% group_by(CHR) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 )
+
+# Prepare text description for each SNP:
+don$text <- paste("SNP: ", don$SNP, "\nPosition: ", don$BP, "\nChromosome: ", don$CHR, "\nLOD score:", -log10(don$P) %>% round(2), "\nWhat else do you wanna know", sep="")
+```
+
+```{r, message=FALSE, warning=FALSE, fig.width=9}
+# Make the plot
+p <- ggplot(don, aes(x=BPcum, y=-log10(P), text=text)) +
+
+    # Show all points
+    geom_point( aes(color=as.factor(CHR)), alpha=0.8, size=1.3) +
+    scale_color_manual(values = rep(c("grey", "#563986"), 22 )) +
+
+    # custom X axis:
+    scale_x_continuous( label = axisdf$CHR, breaks= axisdf$center ) +
+    scale_y_continuous(expand = c(0, 0) ) +     # remove space between plot area and x axis
+
+    # Add highlighted points
+    geom_point(data=subset(don, is_highlight=="yes"), color="orange", size=2) +
+
+    # Custom the theme:
+    theme_bw() +
+    theme(
+      legend.position="none",
+      panel.border = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank()
+    ) +
+    ylim(0, 10)
+
+ggplotly(p, tooltip="text")
+```
