@@ -1,5 +1,5 @@
 ---
-title: "UQ R Markdown template"
+title: "A clean and uncluttered template"
 author: "[Yan Holtz](https://github.com/holtzy)"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 mail: "yan.holtz.data@gmail.com"
@@ -7,119 +7,207 @@ linkedin: "yan-holtz-2477534a"
 twitter: "r_graph_gallery"
 github: "holtzy"
 home: "www.yan-holtz.com"
+logo: "logo_gallery.png"
 output:
-  epuRate::UQ:
+  epuRate::epurate:
     toc: TRUE
     number_sections: FALSE
     code_folding: "hide"
 ---
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# You need these libraries to run this template:
-library(rmarkdown)    # install.packages("rmarkdown")
-library(epuRate)      # devtools::install_github("holtzy/epuRate", force=TRUE)
-```
 
-<br><br><br><br>
+<br><br>
 
->Welcome in the [PCTG R Markdown template](https://github.com/holtzy/epuRate). This document describes how the template looks like, building an interactive Manhattan plot.
+> Let's start with a short introduction. Explain briefly what this document is going to talk about. May be add a [useful link](www.r-graph-gallery.com) relative to this project.
 
 
-
-
-
-
-# Loading data
+# Get the data
 ***
-Let's load a GWAS summary statistic stored in the [qqman library](https://github.com/stephenturner/qqman). This library is:
-
-- Made by Stephen Turner
-- Good to plot a quick Manhattan plot
-
-```{r, message=FALSE}
-library(qqman)
-```
-
-
-
-
-
-
-# Show data in a table
-***
-It's often handy to keep a trace of the raw data somewhere in your document. The DT library allows to build interactive tables that you can search, filter, highlight and more.
-```{r}
-library(DT)
-datatable(gwasResults, rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T) )
-```
-
-
-
-
-
-# Manhattan plot
-***
-Using `HTML` outputs you can embed some interactive graphics. For example, the plotly library can transform any of your ggplot2 graphic in an interactive chart:
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
-# Libraries
-library(plotly)
+Always start by loading *libraries*. The [tidyverse](https://www.tidyverse.org) is probably the package I use the most. Quite difficult to imagine analysing data without it. It is a good practice to load all the packages in the same time. It allows to know exactly what is needed to reproduce your analysis.
+```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
-
-# Prepare the dataset
-don <- gwasResults %>%
-
-  # Compute chromosome size
-  group_by(CHR) %>%
-  summarise(chr_len=max(BP)) %>%
-
-  # Calculate cumulative position of each chromosome
-  mutate(tot=cumsum(chr_len)-chr_len) %>%
-  select(-chr_len) %>%
-
-  # Add this info to the initial dataset
-  left_join(gwasResults, ., by=c("CHR"="CHR")) %>%
-
-  # Add a cumulative position of each SNP
-  arrange(CHR, BP) %>%
-  mutate( BPcum=BP+tot) %>%
-
-  # Add highlight and annotation information
-  mutate( is_highlight=ifelse(SNP %in% snpsOfInterest, "yes", "no")) %>%
-
-  # Filter SNP to make the plot lighter
-  filter(-log10(P)>0.5)
-
-# Prepare X axis
-axisdf <- don %>% group_by(CHR) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 )
-
-# Prepare text description for each SNP:
-don$text <- paste("SNP: ", don$SNP, "\nPosition: ", don$BP, "\nChromosome: ", don$CHR, "\nLOD score:", -log10(don$P) %>% round(2), "\nWhat else do you wanna know", sep="")
+library(rmarkdown)    # You need this library to run this template.
+library(epuRate)      # Install with devtools: install_github("holtzy/epuRate", force=TRUE)
 ```
 
-```{r, message=FALSE, warning=FALSE, fig.width=9}
+Then I explain what is my input data and I load it. Here is how it looks like:
+```{r}
+# Show it:
+mtcars %>% head(5)
+```
+
+This file has `r nrow(mtcars)` lines and `r ncol(mtcars)` columns. It is ready to be analysed.
+
+
+
+
+
+# A few analysis
+***
+Here are 3 version of a [circular barplot](https://www.r-graph-gallery.com/circular-barplot/) that you can find in the [R graph gallery](https://www.r-graph-gallery.com/circular-barplot/). Note that the figure is centered. You can change the size of the plot with **fig.width** and **fig.height**  
+
+## basic
+Let's start with a basic version of a circular representation of the data
+```{r, warning=FALSE, fig.align='center' }
+# Create dataset
+data=data.frame(
+  individual=paste( "Mister ", seq(1,60), sep=""),
+  value=sample( seq(10,100), 60, replace=T)
+)
+
+# Set a number of 'empty bar'
+empty_bar=10
+
+# Add lines to the initial dataset
+to_add = matrix(NA, empty_bar, ncol(data))
+colnames(to_add) = colnames(data)
+data=rbind(data, to_add)
+data$id=seq(1, nrow(data))
+
+# Get the name and the y position of each label
+label_data=data
+number_of_bar=nrow(label_data)
+angle= 90 - 360 * (label_data$id-0.5) /number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
+label_data$hjust<-ifelse( angle < -90, 1, 0)
+label_data$angle<-ifelse(angle < -90, angle+180, angle)
+
 # Make the plot
-p <- ggplot(don, aes(x=BPcum, y=-log10(P), text=text)) +
+p = ggplot(data, aes(x=as.factor(id), y=value)) +       # Note that id is a factor. If x is numeric, there is some space between the first bar
+  geom_bar(stat="identity", fill="#69b3a2") +
+  ylim(-100,120) +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-1,4), "cm")
+  ) +
+  coord_polar(start = 0) +
+  geom_text(data=label_data, aes(x=id, y=value+10, label=individual, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE )
 
-    # Show all points
-    geom_point( aes(color=as.factor(CHR)), alpha=0.8, size=1.3) +
-    scale_color_manual(values = rep(c("grey", "#563986"), 22 )) +
-
-    # custom X axis:
-    scale_x_continuous( label = axisdf$CHR, breaks= axisdf$center ) +
-    scale_y_continuous(expand = c(0, 0) ) +     # remove space between plot area and x axis
-
-    # Add highlighted points
-    geom_point(data=subset(don, is_highlight=="yes"), color="orange", size=2) +
-
-    # Custom the theme:
-    theme_bw() +
-    theme(
-      legend.position="none",
-      panel.border = element_blank(),
-      panel.grid.major.x = element_blank(),
-      panel.grid.minor.x = element_blank()
-    ) +
-    ylim(0, 10)
-
-ggplotly(p, tooltip="text")
+p
 ```
+
+
+## grouped
+```{r, warning=FALSE, fig.align='center' }
+# Create dataset
+data=data.frame(
+  individual=paste( "Mister ", seq(1,60), sep=""),
+  group=c( rep('A', 10), rep('B', 30), rep('C', 14), rep('D', 6)) ,
+  value=sample( seq(10,100), 60, replace=T)
+)
+
+# Set a number of 'empty bar' to add at the end of each group
+empty_bar=4
+to_add = data.frame( matrix(NA, empty_bar*nlevels(data$group), ncol(data)) )
+colnames(to_add) = colnames(data)
+to_add$group=rep(levels(data$group), each=empty_bar)
+data=rbind(data, to_add)
+data=data %>% arrange(group)
+data$id=seq(1, nrow(data))
+
+# Get the name and the y position of each label
+label_data=data
+number_of_bar=nrow(label_data)
+angle= 90 - 360 * (label_data$id-0.5) /number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
+label_data$hjust<-ifelse( angle < -90, 1, 0)
+label_data$angle<-ifelse(angle < -90, angle+180, angle)
+
+# Make the plot
+p = ggplot(data, aes(x=as.factor(id), y=value, fill=group)) +       # Note that id is a factor. If x is numeric, there is some space between the first bar
+  geom_bar(stat="identity", alpha=0.5) +
+  ylim(-100,120) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-1,4), "cm")
+  ) +
+  coord_polar() +
+  geom_text(data=label_data, aes(x=id, y=value+10, label=individual, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE )
+
+p
+```
+
+## complex
+```{r, warning=FALSE, fig.align='center' }
+# Create dataset
+data=data.frame(
+  individual=paste( "Mister ", seq(1,60), sep=""),
+  group=c( rep('A', 10), rep('B', 30), rep('C', 14), rep('D', 6)) ,
+  value=sample( seq(10,100), 60, replace=T)
+)
+
+# Set a number of 'empty bar' to add at the end of each group
+empty_bar=3
+to_add = data.frame( matrix(NA, empty_bar*nlevels(data$group), ncol(data)) )
+colnames(to_add) = colnames(data)
+to_add$group=rep(levels(data$group), each=empty_bar)
+data=rbind(data, to_add)
+data=data %>% arrange(group)
+data$id=seq(1, nrow(data))
+
+# Get the name and the y position of each label
+label_data=data
+number_of_bar=nrow(label_data)
+angle= 90 - 360 * (label_data$id-0.5) /number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
+label_data$hjust<-ifelse( angle < -90, 1, 0)
+label_data$angle<-ifelse(angle < -90, angle+180, angle)
+
+# prepare a data frame for base lines
+base_data=data %>%
+  group_by(group) %>%
+  summarize(start=min(id), end=max(id) - empty_bar) %>%
+  rowwise() %>%
+  mutate(title=mean(c(start, end)))
+
+# prepare a data frame for grid (scales)
+grid_data = base_data
+grid_data$end = grid_data$end[ c( nrow(grid_data), 1:nrow(grid_data)-1)] + 1
+grid_data$start = grid_data$start - 1
+grid_data=grid_data[-1,]
+
+# Make the plot
+p = ggplot(data, aes(x=as.factor(id), y=value, fill=group)) +       # Note that id is a factor. If x is numeric, there is some space between the first bar
+
+  geom_bar(aes(x=as.factor(id), y=value, fill=group), stat="identity", alpha=0.5) +
+
+  # Add a val=100/75/50/25 lines. I do it at the beginning to make sur barplots are OVER it.
+  geom_segment(data=grid_data, aes(x = end, y = 80, xend = start, yend = 80), colour = "grey", alpha=1, size=0.3 , inherit.aes = FALSE ) +
+  geom_segment(data=grid_data, aes(x = end, y = 60, xend = start, yend = 60), colour = "grey", alpha=1, size=0.3 , inherit.aes = FALSE ) +
+  geom_segment(data=grid_data, aes(x = end, y = 40, xend = start, yend = 40), colour = "grey", alpha=1, size=0.3 , inherit.aes = FALSE ) +
+  geom_segment(data=grid_data, aes(x = end, y = 20, xend = start, yend = 20), colour = "grey", alpha=1, size=0.3 , inherit.aes = FALSE ) +
+
+  # Add text showing the value of each 100/75/50/25 lines
+  annotate("text", x = rep(max(data$id),4), y = c(20, 40, 60, 80), label = c("20", "40", "60", "80") , color="grey", size=3 , angle=0, fontface="bold", hjust=1) +
+
+  geom_bar(aes(x=as.factor(id), y=value, fill=group), stat="identity", alpha=0.5) +
+  ylim(-100,120) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-1,4), "cm")
+  ) +
+  coord_polar() +
+  geom_text(data=label_data, aes(x=id, y=value+10, label=individual, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE ) +
+
+  # Add base line information
+  geom_segment(data=base_data, aes(x = start, y = -5, xend = end, yend = -5), colour = "black", alpha=0.8, size=0.6 , inherit.aes = FALSE )  +
+  geom_text(data=base_data, aes(x = title, y = -18, label=group), hjust=c(1,1,0,0), colour = "black", alpha=0.8, size=4, fontface="bold", inherit.aes = FALSE)
+
+p
+```
+
+
+
+# Conclusion
+***
+Read more about this template [here](https://github.com/holtzy/epuRate).
+
+Learn how to custom your R Markdown document [here](https://holtzy.github.io/Pimp-my-rmd/).
