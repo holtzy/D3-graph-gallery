@@ -124,6 +124,7 @@ $(function(){
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>Linking two locations on a map using a straight line would be pretty easy using a classic <code>d3.line()</code> approach. However, <a href="https://en.wikipedia.org/wiki/Great_circle">great circle</a> are more appreciated when it comes to connection map. Fortunately, the function <code>d3.geoPath()</code> makes it a breeze to compute the coordinate of the great circle path. Here are a few examples showing how to use it.</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/connectionmap_basic.html">
@@ -167,7 +168,7 @@ $(function(){
     <br><br><br><br>
     <div class="mySeryTitle">Selection of blocks</div>
     <hr>
-    <p>A few blocks with more complicated codes to showcase what's possible to do with connection maps.</a>
+    <p>A few blocks with more complicated codes to showcase what's possible to do with connection maps. First show how to display connections on hover. Second show how to apply <a href="bundle.html">edge bundling</a> to the connection to declutter the chart.</a>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="https://bl.ocks.org/mbostock/7608400">
@@ -179,6 +180,18 @@ $(function(){
             </div>
           </div>
           <img class="img-fluid showBlock" src="img/block/block_connectionmapVoronoi.png" alt="Hierarchical edge bundling">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/sjengle/2e58e83685f6d854aa40c7bc546aeb24">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Flight Paths Edge Bundling</p>
+              <hr>
+              <p class="explanation_portfolio">Apply edge bundling technique on a connection map.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_connectionmapBundle.png" alt="Hierarchical edge bundling">
         </a>
       </div>
     </div>
