@@ -14,16 +14,16 @@
     </script>
 
     <meta charset="utf-8">
-    <title>Area Chart &#124; the D3 Graph Gallery</title>
+    <title>Hexbin map &#124; the D3 Graph Gallery</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How to build area chart with Javascript and D3.js: from the most basic example to highly customized examples.">
+    <meta name="description" content="How to build a hexbin map with Javascript and D3.js: a set of examples with code and explanation">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,area chart">
     <meta name="author" content="Yan Holtz">
 
-    <meta property="og:title" content="Area Chart &#124; the D3 Graph Gallery">
+    <meta property="og:title" content="Hexbin map &#124; the D3 Graph Gallery">
     <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How to build area chart with Javascript and D3.js: from the most basic example to highly customized examples.">
+    <meta property="og:description" content="How to build a hexbin map with Javascript and D3.js: a set of examples with code and explanation.">
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -67,7 +67,7 @@ $(function(){
   <!-- Header -->
   <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
     <div class="textlanding">
-      <h1>Area chart</h1>
+      <h1>Hexbin map</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -93,7 +93,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This is the <a href="https://www.data-to-viz.com/graph/area.html">area chart</a> section of the gallery. If you want to know more about this kind of chart, visit <a href="https://www.data-to-viz.com/graph/area.html">data-to-viz.com</a>. If you're looking for a simple way to implement it in d3.js, pick an example below.</p>
+      <p style="max-width: 700px; margin: auto">A <a href="https://www.data-to-viz.com/graph/hexbinmap.html">hexbin map</a> refers to two different concepts. It can be based on a geospatial object where all regions of the map are represented as hexagons. Or it can refer to a 2d density technique described in <a href="density2d.html">this section</a>. Read the dedicated article in <a href="https://www.data-to-viz.com/graph/hexbinmap.html">data-to-viz</a> to make sure you understand the difference.</p>
   </div>
 </header>
 
@@ -122,10 +122,12 @@ $(function(){
   <div class="container">
 
 
-    <div class="mySeryTitle">Step by step</div>
+    <div class="mySeryTitle">Hexbin map from geospatial object</div>
     <hr>
+    <p>In this case, the technique is very close from a <a href="choropleth.html">choropleth map</a>. It's actually exactly the same, except that the geoJson input gives hexagon boundaries instead of region boundaries. Thus, you probably want to visit the <a href="choropleth.html">choropleth section</a> for more examples.</p>
+    <a class="btn btn-secondary btn-md text-uppercase" href="choropleth.html">Choropleth section</a>
+    <br><br>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/area_basic.html">
           <div class="portfolio-hover">
@@ -138,12 +140,68 @@ $(function(){
           <img class="img-fluid" src="img/graph/area_basic.png" alt="">
         </a>
       </div>
+    </div>
+
+    <br><br><br><br>
+    <div class="mySeryTitle">Hexbin map from list of coordinates</div>
+    <hr>
+    <p>In this case, the required input is a list of coordinates. The map area will be split in a multitude of hexagon, the number of data point per hexagon will be counted and represented as a color. It is actually a <a href="density2d.html">density 2d</a> technique plotted on top of a map.</p>
+    <a class="btn btn-secondary btn-md text-uppercase" href="density2d.html">Density 2d section</a>
+    <br><br>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/area_basic.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Most basic</p>
+              <hr>
+              <p class="explanation_portfolio">The most basic area chart you can do in d3.js. Keeping only the core code.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/area_basic.png" alt="">
+        </a>
+      </div>
+    </div>
+
+    <br><br><br><br>
+    <div class="mySeryTitle">Selection of blocks</div>
+    <hr>
+    <p>A few blocks with more complicated codes to showcase what's possible to do with connection maps. First show how to display connections on hover. Second show how to apply <a href="bundle.html">edge bundling</a> to the connection to declutter the chart.</a>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/mbostock/4330486">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Bivariate Hexbin map</p>
+              <hr>
+              <p class="explanation_portfolio">Density 2d technique. Quantity of data per hexagon is represented through hexagon color and size.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_hexbinmapBivariate.png" alt="Bivariate hexbin map">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/sjengle/2e58e83685f6d854aa40c7bc546aeb24">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>D3-hexbin documentation</p>
+              <hr>
+              <p class="explanation_portfolio">The complete documentation of d3-hexbin: the plugin that groups two-dimensional points into hexagonal bins.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_hexbinmapDoc.png" alt="D3 hexbin documentation">
+        </a>
+      </div>
+    </div>
+
 
  </div>
 </section>
 
 
 <!-- ======================================================================= -->
+
+
 
 
 
@@ -160,32 +218,78 @@ $(function(){
   <p class="mySeryTitle">Related chart types</p>
   <hr>
   <div class="row">
-    <div class="col-md-2 col-sm-4 portfolio-item" >
-      <a class="portfolio-link"  href="violin.html">
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="backgroundmap.html">
         <div class="portfolio-hover">
           <div class="portfolio-hover-content">
             <i class="fa fa-plus fa-3x"></i>
           </div>
         </div>
-        <img class="img-fluid" src="img/section/Violin150.png" alt="">
+        <img class="img-fluid" src="img/section/Map150.png" alt="">
       </a>
-      <div class="captionPortfolio">Violin</div>
+      <div class="captionPortfolio">Map</div>
     </div>
     <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="density.html">
+      <a class="portfolio-link"  href="choropleth.html">
         <div class="portfolio-hover">
           <div class="portfolio-hover-content">
             <i class="fa fa-plus fa-3x"></i>
           </div>
         </div>
-        <img class="img-fluid" src="img/section/Density150.png" alt="">
+        <img class="img-fluid" src="img/section/Choropleth150.png" alt="">
       </a>
-      <div class="captionPortfolio">Density</div>
+      <div class="captionPortfolio">Choropleth</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="hexbinmap.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/MapHexbin150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Hexbin map</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="cartogram.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/Cartogram150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Cartogram</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="connectionmap.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/ConnectedMap150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Connection</div>
+    </div>
+    <div class="col-md-2 col-sm-4 portfolio-item">
+      <a class="portfolio-link"  href="bubblemap.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/section/BubbleMap150.png" alt="">
+      </a>
+      <div class="captionPortfolio">Bubble map</div>
     </div>
   </div>
 
 </div>
 </section>
+
+
 
 
 
