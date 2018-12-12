@@ -14,15 +14,15 @@
   </script>
 
   <meta charset="utf-8">
-  <title>Basic correlogram in d3.js</title>
+  <title>Correlogram with scatterplot and histogram in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic correlogram: reproducible code with explanation">
+  <meta name="description" content="Using d3.js to create a correlogram with scatterplot and histogram in d3.js: code and explanation">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, correlogram">
   <meta name="author" content="Yan Holtz">
 
-  <meta property="og:title" content="Basic correlogram in d3.js">
+  <meta property="og:title" content="Correlogram with scatterplot and histogram in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic correlogram: reproducible code with explanation">
+  <meta property="og:description" content="Using d3.js to create a correlogram with scatterplot and histogram in d3.js: code and explanation">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@
 <!-- Header -->
 <header class="masthead">
   <div class="textlanding">
-      <h1>Most basic correlogram in d3.js</h1>
+      <h1>Correlogram with scatterplot and histogram</h1>
       <hr class="short_hr">
       <br>
       <ul class="list-inline social-buttons">
@@ -106,7 +106,7 @@
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/boxplot">correlogram</a> with d3.js. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/correlogram">correlogram section</a> of the gallery. Learn more about the theory of correlogram in <a href="https://www.data-to-viz.com/graph/correlogram.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post extends the previous <a href="correlogram_scatter.html">correlogram with scatterplot</a>. It shows how to add histograms on the diagonal to describe the distribution of every numerical variable. See more examples in the <a href="../correlogram.html">correlogram section</a>.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../correlogram.html">Correlogram section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -132,7 +132,7 @@
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
-  <div class="col-lg-5 .align-middle">
+  <div class="col-lg-7 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="result" ></div>
       <br>
@@ -140,13 +140,11 @@
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li><u>Disclaimer</u>: This chart is highly inspired from <a href="http://plnkr.co/edit/RJk5vmROVAJGPHIPutVR?p=preview">this example</a>.</li>
+          <li>First of all, you need to understand how to build a <a href="../scatter.html">scatterplot</a> and a <a href="../histogram.html">histogram</a> with d3.js.</li>
           <br>
-          <li>The idea is to create a <code>g</code> element for each cell of the correlogram and store it in an object called <code>cor</code></li>
+          <li>The previous post explains how to create the <a href="correlogram_scatter.html">correlogram with scatterplot</a>.</li>
           <br>
-          <li>It is then possible to use <code>.filter</code> to add text to the lower left part of the matrix.</li>
-          <br>
-          <li>And then the upperpart using <code>.circle</code></li>
+          <li>Here, I just add an histogram when <code>var1 == var2</code> in the loop -> when I'm on the diagonal.</li>
         </ul>
       </div>
     </div>
@@ -158,7 +156,7 @@
 
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
+<div class="col-lg-5 text-center .align-middle">
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -182,116 +180,154 @@
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
 
-// Graph dimension
-var margin = {top: 20, right: 20, bottom: 20, left: 20},
-    width = 430 - margin.left - margin.right,
-    height = 430 - margin.top - margin.bottom
+// Dimension of the whole chart. Only one size since it has to be square
+var marginWhole = {top: 10, right: 10, bottom: 10, left: 10},
+    sizeWhole = 640 - marginWhole.left - marginWhole.right
 
 // Create the svg area
 var svg = d3.select("#my_dataviz")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", sizeWhole  + marginWhole.left + marginWhole.right)
+    .attr("height", sizeWhole  + marginWhole.top + marginWhole.bottom)
   .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + marginWhole.left + "," + marginWhole.top + ")");
 
 
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_correlogram.csv", function(error, rows) {
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) {
 
-  // Going from wide to long format
-  var data = [];
-  rows.forEach(function(d) {
-    var x = d[""];
-    delete d[""];
-    for (prop in d) {
-      var y = prop,
-        value = d[prop];
-      data.push({
-        x: x,
-        y: y,
-        value: +value
-      });
+  // What are the numeric variables in this dataset? How many do I have
+  var allVar = ["Sepal_Length", "Sepal_Width", "Petal_Length", "Petal_Width"]
+  var numVar = allVar.length
+
+  // Now I can compute the size of a single chart
+  mar = 20
+  size = sizeWhole / numVar
+
+
+  // ----------------- //
+  // Scales
+  // ----------------- //
+
+  // Create a scale: gives the position of each pair each variable
+  var position = d3.scalePoint()
+    .domain(allVar)
+    .range([0, sizeWhole-size])
+
+  // Color scale: give me a specie name, I return a color
+  var color = d3.scaleOrdinal()
+    .domain(["setosa", "versicolor", "virginica" ])
+    .range([ "#402D54", "#D18975", "#8FD175"])
+
+
+  // ------------------------------- //
+  // Add charts
+  // ------------------------------- //
+  for (i in allVar){
+    for (j in allVar){
+
+      // Get current variable name
+      var var1 = allVar[i]
+      var var2 = allVar[j]
+
+      // If var1 == var2 i'm on the diagonal, I skip that
+      if (var1 === var2) { continue; }
+
+      // Add X Scale of each graph
+      xextent = d3.extent(data, function(d) { return +d[var1] })
+      var x = d3.scaleLinear()
+        .domain(xextent).nice()
+        .range([ 0, size-2*mar ]);
+
+      // Add Y Scale of each graph
+      yextent = d3.extent(data, function(d) { return +d[var2] })
+      var y = d3.scaleLinear()
+        .domain(yextent).nice()
+        .range([ size-2*mar, 0 ]);
+
+      // Add a 'g' at the right position
+      var tmp = svg
+        .append('g')
+        .attr("transform", "translate(" + (position(var1)+mar) + "," + (position(var2)+mar) + ")");
+
+      // Add X and Y axis in tmp
+      tmp.append("g")
+        .attr("transform", "translate(" + 0 + "," + (size-mar*2) + ")")
+        .call(d3.axisBottom(x).ticks(3));
+      tmp.append("g")
+        .call(d3.axisLeft(y).ticks(3));
+
+      // Add circle
+      tmp
+        .selectAll("myCircles")
+        .data(data)
+        .enter()
+        .append("circle")
+          .attr("cx", function(d){ return x(+d[var1]) })
+          .attr("cy", function(d){ return y(+d[var2]) })
+          .attr("r", 3)
+          .attr("fill", function(d){ return color(d.Species)})
     }
-  });
-
-  // List of all variables and number of them
-  var domain = d3.set(data.map(function(d) { return d.x })).values()
-  var num = Math.sqrt(data.length)
-
-  // Create a color scale
-  var color = d3.scaleLinear()
-    .domain([-1, 0, 1])
-    .range(["#B22222", "#fff", "#000080"]);
-
-  // Create a size scale for bubbles on top right. Watch out: must be a rootscale!
-  var size = d3.scaleSqrt()
-    .domain([0, 1])
-    .range([0, 9]);
-
-  // X scale
-  var x = d3.scalePoint()
-    .range([0, width])
-    .domain(domain)
-
-  // Y scale
-  var y = d3.scalePoint()
-    .range([0, height])
-    .domain(domain)
-
-  // Create one 'g' element for each cell of the correlogram
-  var cor = svg.selectAll(".cor")
-    .data(data)
-    .enter()
-    .append("g")
-      .attr("class", "cor")
-      .attr("transform", function(d) {
-        return "translate(" + x(d.x) + "," + y(d.y) + ")";
-      });
-
-  // Low left part + Diagonal: Add the text with specific color
-  cor
-    .filter(function(d){
-      var ypos = domain.indexOf(d.y);
-      var xpos = domain.indexOf(d.x);
-      if (xpos > ypos) { return false } else { return true}
-    })
-    .append("text")
-      .attr("y", 5)
-      .text(function(d) {
-        if (d.x === d.y) {
-          return d.x;
-        } else {
-          return d.value.toFixed(2);
-        }
-      })
-      .style("font-size", 11)
-      .style("text-align", "center")
-      .style("fill", function(d){
-        if (d.x === d.y) {
-          return "#000";
-        } else {
-          return color(d.value);
-        }
-      });
+  }
 
 
-  // Up right part: add circles
-  cor
-    .filter(function(d){
-      var ypos = domain.indexOf(d.y);
-      var xpos = domain.indexOf(d.x);
-      if (xpos <= ypos) { return false } else { return true}
-    })
-    .append("circle")
-      .attr("r", function(d){ return size(Math.abs(d.value)) })
-      .style("fill", function(d){
-        if (d.x === d.y) {
-          return "#000";
-        } else {
-          return color(d.value);
-        }
-      })
-      .style("opacity", 0.8)
+  // ------------------------------- //
+  // Add histograms = diagonal
+  // ------------------------------- //
+  for (i in allVar){
+    for (j in allVar){
+
+      // variable names
+      var var1 = allVar[i]
+      var var2 = allVar[j]
+
+      // If var1 == var2 i'm on the diagonal, otherwisee I skip
+      if (i != j) { continue; }
+
+      // create X Scale
+      xextent = d3.extent(data, function(d) { return +d[var1] })
+      var x = d3.scaleLinear()
+        .domain(xextent).nice()
+        .range([ 0, size-2*mar ]);
+
+      // Add a 'g' at the right position
+      var tmp = svg
+        .append('g')
+        .attr("transform", "translate(" + (position(var1)+mar) + "," + (position(var2)+mar) + ")");
+
+      // Add x axis
+      tmp.append("g")
+        .attr("transform", "translate(" + 0 + "," + (size-mar*2) + ")")
+        .call(d3.axisBottom(x).ticks(3));
+
+      // set the parameters for the histogram
+       var histogram = d3.histogram()
+           .value(function(d) { return +d[var1]; })   // I need to give the vector of value
+           .domain(x.domain())  // then the domain of the graphic
+           .thresholds(x.ticks(15)); // then the numbers of bins
+
+       // And apply this function to data to get the bins
+       var bins = histogram(data);
+
+       // Y axis: scale and draw:
+       var y = d3.scaleLinear()
+            .range([ size-2*mar, 0 ])
+            .domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+
+       // append the bar rectangles to the svg element
+       tmp.append('g')
+          .selectAll("rect")
+          .data(bins)
+          .enter()
+          .append("rect")
+             .attr("x", 1)
+             .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+             .attr("width", function(d) { return x(d.x1) - x(d.x0)  ; })
+             .attr("height", function(d) { return (size-2*mar) - y(d.length); })
+             .style("fill", "#b8b8b8")
+             .attr("stroke", "white")
+    }
+  }
+
 
 })
 
@@ -354,6 +390,10 @@ myJSParser('codejs', 'result');
       <div class="col-lg-5">
         <ul>
           <li><i>Correlogram - </i><a href="http://plnkr.co/edit/RJk5vmROVAJGPHIPutVR?p=preview">link</a></li>
+          <br>
+          <li><i>Scatterplot section - </i><a href="../scatter.html">link</a></li>
+          <br>
+          <li><i>Correlogram section - </i><a href="../correlogram.html">link</a></li>
         </ul>
       </div>
     </div>
