@@ -121,11 +121,10 @@ $(function(){
 <section class="bg" id="portfolio" style="padding-top: 10px">
   <div class="container">
 
-
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>Creation of wordclouds in d3.js is made easy thanks to the <a href="https://github.com/jasondavies/d3-cloud">d3-cloud plugin</a> built by Jason Davies. A good way to explore the feature of this plugin is through this <a href="https://www.jasondavies.com/wordcloud/">wordcloud generator</a>. To learn how to use it with d3.js, read the examples below.</p>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/wordcloud_basic.html">
           <div class="portfolio-hover">
@@ -138,7 +137,6 @@ $(function(){
           <img class="img-fluid" src="img/graph/wordcloud_basic.png" alt="">
         </a>
       </div>
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/wordcloud_custom.html">
           <div class="portfolio-hover">
@@ -151,7 +149,6 @@ $(function(){
           <img class="img-fluid" src="img/graph/wordcloud_custom.png" alt="">
         </a>
       </div>
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/wordcloud_size.html">
           <div class="portfolio-hover">
@@ -164,6 +161,74 @@ $(function(){
           <img class="img-fluid" src="img/graph/wordcloud_size.png" alt="">
         </a>
       </div>
+    </div>
+
+    <br><br><br><br>
+    <div class="mySeryTitle">Warning</div>
+    <hr>
+    <p><a href="https://www.data-to-viz.com/graph/wordcloud.html">Wordclouds</a> are useful for quickly perceiving the most prominent terms. they are widely used in media and well understood by the public. However, they are criticized for 2 main reasons:</p>
+    <ul>
+      <li>Area is a <u>poor metaphor</u> of a numeric value, it is hardly perceive by the human eye</li>
+      <li><u>Longer words</u> appear bigger by construction</li>
+    </ul>
+    <p>To put it in a nutshell, wordclouds must be avoided. You can read more about that in <a href="https://www.data-to-viz.com/graph/wordcloud.html">data-to-viz</a>. Why not considering a <a href="lollipop.html">lollipop</a> plot or a <a href="barplot.html">barplot</a> instead?</p>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/lollipop_ordered.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Lollipop plot</p>
+              <hr>
+              <p class="explanation_portfolio">Lollipop plot can be a good alternative to wordclouds. Try it!</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/lollipop_ordered.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/barplot_horizontal.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Turn you barplot horizontal</p>
+              <hr>
+              <p class="explanation_portfolio">Makes sense if you have long labels: it makes them more readable.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/barplot_horizontal.png" alt="">
+        </a>
+      </div>
+    </div>
+
+    <br><br><br><br>
+    <div class="mySeryTitle">Selection of blocks</div>
+    <hr>
+    <p>A few blocks highlighting the possibilities offered by the d3-cloud plugin</p>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://www.jasondavies.com/wordcloud/">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Wordcloud generator</p>
+              <hr>
+              <p class="explanation_portfolio">If you feel too lazy to code today, this word cloud generator is based on d3.js and allows to create your wordcloud by clicking on a few buttons.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" style="opacity: 0.6" src="img/block/block_wordcloudGenerator.png" alt="wordcloud generator">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="http://bl.ocks.org/joews/9697914">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Wordcloud with animation</p>
+              <hr>
+              <p class="explanation_portfolio">A block that illustrate how to build animation between several wordclouds.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" style="opacity: 0.6" src="img/block/block_wordcloudAnimation.png" alt="circular barchart">
+        </a>
+      </div>
+    </div>
 
  </div>
 </section>
