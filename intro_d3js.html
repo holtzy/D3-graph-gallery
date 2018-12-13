@@ -270,17 +270,78 @@ document.getElementById('code-css').addEventListener("input", function() {
 
 
 
+<!-- ==================== SVG ==================== -->
+
+  <section id="svg">
+  <div class="container" >
+
+    <h1>Build shapes with <code>SVG</code></h1>
+    <hr>
+    <p><a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">CSS</a> stands for <u>Scalable Vector Graphic</u>. It is an vector image format. Basically, it is a language that allows to build shapes with code.</p>
+    <p>A d3.js chart is actually a set of <code>svg</code> shapes put together. For instant, a scatterplot is just composed by several circles as the one shown below.</p>
+    <p>This <a href="graph/shape.html">document</a> of the d3 graph gallery showcases the different shapes offered by Svg.</p>
+    <div class="row">
+
+    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-svg"> </div>
+
+
+    <div class="col-lg-7">
+        <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+        <pre class="language-html"><code id="code-svg" contenteditable="true"><xmp><!DOCTYPE html>
+<!-- Add a title -->
+<h1 class="inGreen">First html document</h1>
+
+<!-- Add a bit of text -->
+<p>This is my first sentence</p>
+
+<!-- Add a svg shape -->
+<svg>
+  <circle style="fill: #69b3a2" stroke="black" cx=50 cy=50 r=40></circle>
+</svg>
+
+</xmp></code></pre>
+      </div>
+
+
+
+</div>
+<p><u>Try</u>: Copy and paste the code below in a local file. Open it with a browser. You've created your first website!</p>
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myHtmlParser('code-svg', 'res-svg')
+document.getElementById('code-svg').addEventListener("input", function() {
+  d3.select('#res-svg').html("");
+  myHtmlParser('code-svg', 'res-svg');
+})
+</script>
+
+
+<!-- ================================================================================= -->
 
 
 
 
 
-<!-- ==================== BASIC TRIGGER EXEMPLE ==================== -->
 
-<section id="triggerExample" class="bg">
+
+
+
+
+
+
+<!-- ==================== JAVASSCRIPT AND D3 ==================== -->
+
+<section id="d3" class="bg">
 <div class="container" >
-  <h1>Trigger function in <code>html</code> with <code>onclick()</code>.</h1>
+  <h1>Modify elements with <code>Javascript</code> and <code>D3.js</code></h1>
   <hr>
+  <p><a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> is one of the three core technologies of the World Wide Web. It enables <u>interactivity</u> in webpages.</p>
+  <p><a href="">D3.js</a> is a javascript library particularly useful for data visualization. It allows to create, select and modify elements.</p>
+  <p>Let's use d3 to select the element with id `target` and change its color:
   <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
@@ -308,17 +369,19 @@ document.getElementById('code-css').addEventListener("input", function() {
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html"><code id="html-basicTrigger" contenteditable="true"><xmp><!DOCTYPE html>
-<meta charset="utf-8">
+<!-- Add a title -->
+<h1 class="inGreen">First html document</h1>
+
+<!-- Add a bit of text -->
+<p>This is my first sentence</p>
+
+<!-- Add a svg shape. Note that the 'target' class is attributed to the circle -->
+<svg> 
+  <circle class="target" style="fill: #69b3a2" stroke="black" cx=50 cy=50 r=40></circle>
+</svg>
 
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
-
-<!-- Add 2 buttons-->
-<button type="button" onclick="changeColor('blue')">Blue</button>
-<button type="button" onclick="changeColor('red')">Red</button>
-
-<!-- Create a div where the circle will take place -->
-<div id="dataviz_buttonTriger"></div>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -327,22 +390,9 @@ document.getElementById('code-css').addEventListener("input", function() {
 
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="js-basicTrigger" contenteditable="true"><xmp><script>
-
-// Initialize a circle
-var myCircle = d3.select("#dataviz_buttonTriger")
-  .append("svg")
-  .append("circle")
-    .attr("cx", 100)
-    .attr("cy", 70)
-    .attr("r", 50)
-    .attr("stroke", "black")
-
-// A function that update the color circle
-var changeColor = function(color){
-  myCircle
-    .style("fill", color)
-}
-
+d3
+  .select(".target")  // select the elements that have the class 'target'
+  .style("stroke-width", 8) // change their style: stroke width is not equal to 8 pixels
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
