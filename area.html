@@ -93,7 +93,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This is the <a href="https://www.data-to-viz.com/graph/area.html">area chart</a> section of the gallery. If you want to know more about this kind of chart, visit <a href="https://www.data-to-viz.com/graph/area.html">data-to-viz.com</a>. If you're looking for a simple way to implement it in d3.js, pick an example below.</p>
+      <p style="max-width: 700px; margin: auto">An <a href="https://www.data-to-viz.com/graph/area.html">area chart</a> is really similar to a <a href="line.html">line chart</a> and represents the evolution of a numeric variable. If you want to know more about this kind of chart, visit <a href="https://www.data-to-viz.com/graph/area.html">data-to-viz.com</a>. If you're looking for a simple way to implement it in d3.js, pick an example below.</p>
   </div>
 </header>
 
@@ -124,8 +124,8 @@ $(function(){
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>Building an area chart relies on the <code>d3.area()</code> helper function. If you're not familiar with it, have a look to <a href="shape.html">shape section</a> of the gallery to understand its basics. Then follow the examples below to put it in practice.</p>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/area_basic.html">
           <div class="portfolio-hover">
@@ -138,7 +138,18 @@ $(function(){
           <img class="img-fluid" src="img/graph/area_basic.png" alt="">
         </a>
       </div>
-
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/area_lineDot.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Add line and dot</p>
+              <hr>
+              <p class="explanation_portfolio">Highlight the main trend with a line on top of the area. And display individual information with dots.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/area_lineDot.png" alt="">
+        </a>
+      </div>
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/area_smallmultiple.html">
           <div class="portfolio-hover">
@@ -151,8 +162,74 @@ $(function(){
           <img class="img-fluid" src="img/graph/area_smallmultiple.png" alt="">
         </a>
       </div>
-
     </div>
+
+
+    <br><br><br><br>
+    <div class="mySeryTitle">Interactivity</div>
+    <hr>
+    <p>The most common use of interactivity for area chart is the <a href="area_brushZoom.html">zooming feature</a>. It is usually done through <a href="interactivity_brush.html">brushing</a> on the X axis, or using a control panel at the bottom of the main chart.</p>
+    <p><u>Note:</u> Another common problem is to switch between dataset. This is extensively described in the <a href="line.html">line chart section</a>. You just have to replace <code>d3.line</code> by <code>d3.area()</code> to get the same features.</p>
+    <a class="btn btn-secondary btn-md text-uppercase" href="line.html">Line chart section</a>
+    <br><br>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/area_brushZoom.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Brushing and zooming</p>
+              <hr>
+              <p class="explanation_portfolio">Most common use for area chart is zooming: it allows to explore a specific part of your data more in details.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/area_brushZoom.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="line.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Transition between data</p>
+              <hr>
+              <p class="explanation_portfolio">Check the line chart section to learn how to make transition between data.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/line_change_data.gif" alt="">
+        </a>
+      </div>
+    </div>
+
+    <br><br><br><br>
+    <div class="mySeryTitle">Selection of blocks</div>
+    <hr>
+    <p>A few blocks with more complicated codes to showcase what's possible to do with area charts</a>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://beta.observablehq.com/@mbostock/d3-area-chart">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Area chart</p>
+              <hr>
+              <p class="explanation_portfolio">A simple Area chart by Mike Bostock, d3.js creator. Note the observable format to produce the chart and providing the code.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_area.png" alt="Arc diagram highlight">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="https://bl.ocks.org/interwebjill/8122dd08da9facf8c6ef6676be7da03f">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Overlapping areas</p>
+              <hr>
+              <p class="explanation_portfolio">Two data series overlapping on top of each other.</p>
+            </div>
+          </div>
+          <img class="img-fluid showBlock" src="img/block/block_areaMulti.png" alt="Arc diagram highlight">
+        </a>
+      </div>
+    </div>
+
 
  </div>
 </section>
