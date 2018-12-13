@@ -14,44 +14,44 @@
     </script>
 
     <meta charset="utf-8">
-    <title>Adding and using buttons in d3.js</title>
+    <title>An introduction to d3.js in 10 basic examples.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How to any type of button to your d3.js plot, and allows it to interact with the chart. Explanation and reproducible code.">
+    <meta name="description" content="A set of 10 basic examples leading to a first chart made with d3.js. Discover the basics: html, css, scg, scale, data binding and more.">
     <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
     <meta name="author" content="Yan Holtz">
 
-    <meta property="og:title" content="Adding and using buttons in d3.js">
+    <meta property="og:title" content="An introduction to d3.js in 10 basic examples.">
     <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How to any type of button to your d3.js plot, and allows it to interact with the chart. Explanation and reproducible code.">
+    <meta property="og:description" content="A set of 10 basic examples leading to a first chart made with d3.js. Discover the basics: html, css, scg, scale, data binding and more.">
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet">
 
     <!-- PRISM -->
-    <script src="../LIB/prism.js"></script>
-    <link href="../LIB/prism.css" rel="stylesheet" />
+    <script src="LIB/prism.js"></script>
+    <link href="LIB/prism.css" rel="stylesheet" />
 
     <!-- D3.JS v4 -->
-    <script src="../js/d3.v4.js"></script>
+    <script src="js/d3.v4.js"></script>
 
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- HTML TO CANVAS -->
-    <script src="../js/html2canvas.js"></script>
+    <script src="js/html2canvas.js"></script>
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
-    <script src="../js/myParser.js"></script>
+    <script src="js/myParser.js"></script>
 
     <!-- Bootstrap js -->
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/agency.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/agency.min.js"></script>
 
   </head>
 
@@ -64,7 +64,7 @@
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
     $(function(){
-      $("#mainNav").load("../html_chunk/menu.html");
+      $("#mainNav").load("html_chunk/menu.html");
     });
     </script>
 
@@ -72,7 +72,7 @@
     <div id="modal_menu_insertion"> </div>
     <script>
     $(function(){
-      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
     });
     </script>
 
@@ -81,7 +81,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>Adding buttons on d3.js charts</h1>
+          <h1>An introduction to d3.js in 10 basic examples.</h1>
           <hr class="short_hr">
           <br>
           <ul class="list-inline social-buttons">
@@ -102,7 +102,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to add <u>buttons</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
+          <p style="max-width: 700px; margin: auto"><a href="https://d3js.org">D3.js</a> is a <u>JavaScript library</u> for manipulating documents based on data. It allows to build absolutely <a href="all.html">any type of visualization</a>, with no limits. This documents is a quick intro to d3. It displays 10 examples illustrating the key concepts of d3, leading to a first basic scatterplot.</p>
       </div>
     </header>
 
@@ -118,19 +118,19 @@
         <nav class="col-sm-3 col-4" id="myScrollspy">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="#buttonTypes">Button Types</a>
+              <a class="nav-link active" href="#html">HTML</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#triggerExample">Trigger an event</a>
+              <a class="nav-link" href="#css">CSS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#eventListener">Event listener</a>
+              <a class="nav-link" href="#svg">SVG</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#buildWithD3">Build buttons with d3</a>
+              <a class="nav-link" href="#d3">Javascript and d3.js</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#buttonStyle">Button style with css</a>
+              <a class="nav-link" href="#circle">add a circle</a>
             </li>
           </ul>
         </nav>
@@ -142,65 +142,33 @@
 
 
 
-<!-- ==================== BUTTON TYPES ==================== -->
+<!-- ==================== HTML ==================== -->
 
-  <section id="buttonTypes" style="padding-top: 20px; padding-bottom: 20px">
+  <section id="html">
   <div class="container" >
 
-    <h1>Button types offered in <code>HTML</code></h1>
+    <h1>What is <code>HTML</code>?</h1>
     <hr>
-    <p>Buttons are natively offered by the <code>html</code> language. Buttons are built using the <code>input</code> tag. Their type is controled by the <code>type</code> attribute. Here is an overview of the main button type:.</p>
-
+    <p><a href="https://en.wikipedia.org/wiki/HTML">HTML</a> stands for <u>Hypertext Markup Language</u>. Basically, it is the language behind any <u>website</u>. Web browsers like Mozilla or Safari read this kind of file and translate it in a webpage.</p>
+    <p>In a HTML file, elements composing the webpage are created, delineated by <u>tags</u>. For instance a title of level 1 is represented by the <code>h1</code> tag, a paragraph with the <code>p</code> tag, an image by the <code>img</code> tag and so on.
+    <p>It is impossible to create a d3.js visualization without basic knowledge on html. <a href="https://www.w3schools.com/html/">This tutorial</a> by W3School gives a good overview. Here is a very basic html document: (code on the right, result on the left)</p>
     <div class="row">
 
-    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-allType"></div>
+    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-allType"> </div>
 
 
     <div class="col-lg-7">
-        <pre class="language-html"><code id="code-allType" contenteditable="true"><xmp><!-- Clickable button -->
-<button type="button">Click Me!</button>
+        <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+        <pre class="language-html"><code id="code-allType" contenteditable="true"><xmp><!DOCTYPE html>
 
-<!-- Radio button -->
-<br><br><br>
-<div>
-  <input type="radio" name="gender" value="male"> Male<br>
-  <input type="radio" name="gender" value="female"> Female<br>
-  <input type="radio" name="gender" value="other"> Other<br>
-</div>
+<!-- Add a title -->
+<h1>First html document</h1>
 
-<!-- Text input -->
-<br><br><br>
-<input type="text" name="usrname" value="initial value">
+<!-- Add a bit of text -->
+<p>This is my first sentence</p>
 
-<!-- Check box. Note: very close from radio button, but several options can be checked. Radio button = only one. -->
-<br><br><br>
-<div>
-  <input type="checkbox" name="myCheckBox" checked>
-  <label for="myCheckBox">Option 1</label>
-  <input type="checkbox" name="myCheckBox2" checked>
-  <label for="myCheckBox2">Option 2</label>
-</div>
-
-<!-- File picker -->
-<br><br><br><br><br><br><br>
-<input type="file" name="usrname">
-
-<!-- Number -->
-<br><br><br><br>
-<input type="number" name="usrname" value=13>
-
-<!-- Slider -->
-<br><br><br><br>
-<input type="range" name="usrname">
-
-<!-- Dropdown button -->
-<br><br><br><br>
-<select>
-  <option value="o1">Option 1</option>
-  <option value="o2">Option 2</option>
-  <option value="o3">Option 3</option>
-  <option value="o4">Whatever</option>
-</select>
+<!-- Add a link -->
+<p>This is <a href="https://www.d3-graph-gallery.com">a link to the d3 graph gallery</a></p>
 
 </xmp></code></pre>
       </div>
@@ -208,6 +176,7 @@
 
 
 </div>
+<p><u>Try</u>: Copy and paste the code below in a local file. Open it with a browser. You've created your first website!</p>
   </div>
 </section>
 
@@ -223,6 +192,77 @@ document.getElementById('code-allType').addEventListener("input", function() {
 
 
 <!-- ================================================================================= -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== CSS ==================== -->
+
+  <section id="css">
+  <div class="container" >
+
+    <h1>Custom document style with <code>CSS</code></h1>
+    <hr>
+    <p><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a> stands for <u>Cascading Style Sheet</u>. It allows to apply specific styles to the elements created in html before.</p>
+    <p>As for html, it is impossible to create a d3.js visualization without basic knowledge on css. W3School provides a <a href="https://www.w3schools.com/css/default.asp">tutorial on css</a> that is a requirement IMO.</p>
+    <p>Let's apply a modification to the previous document using css:</p>
+    <div class="row">
+
+    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-css"> </div>
+
+
+    <div class="col-lg-7">
+        <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+        <pre class="language-html"><code id="code-css" contenteditable="true"><xmp><!DOCTYPE html>
+
+<!-- Define style of the elements that have the class `inGreen` -->
+<style>
+.inGreen { color: green; }
+</style>
+
+<!-- Add a title -->
+<h1 class="inGreen">First html document</h1>
+
+<!-- Add a bit of text -->
+<p>This is my first sentence</p>
+
+<!-- Add a link -->
+<p>This is <a href="https://www.d3-graph-gallery.com">a link to the d3 graph gallery</a></p>
+
+</xmp></code></pre>
+      </div>
+
+
+
+</div>
+<p><u>Try</u>: Copy and paste the code below in a local file. Open it with a browser. You've created your first website!</p>
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myHtmlParser('code-css', 'res-css')
+document.getElementById('code-css').addEventListener("input", function() {
+  d3.select('#res-css').html("");
+  myHtmlParser('code-css', 'res-css');
+})
+</script>
+
+
+<!-- ================================================================================= -->
+
+
+
 
 
 
@@ -944,7 +984,7 @@ myJSParser('js-buttonStyle', 'res-buttonStyle');
 <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
 <script>
 $(function(){
-  $("#contact").load("../html_chunk/contact.html");
+  $("#contact").load("html_chunk/contact.html");
 });
 </script>
 
@@ -964,7 +1004,7 @@ $(function(){
 <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
 <script>
 $(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
+  $("#myFooter").load("html_chunk/footer.html");
 });
 </script>
 
