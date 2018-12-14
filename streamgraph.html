@@ -73,6 +73,7 @@ $(function(){
     <div class="textlanding">
       <h1>Streamgraph</h1>
       <hr class="short_hr">
+      <p> </p>
       <br>
       <ul class="list-inline social-buttons">
         <li class="list-inline-item">
@@ -97,7 +98,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This is the <a href="https://www.data-to-viz.com/graph/streamgraph.html">streamgraph</a> section of the gallery. If you want to know more about this kind of chart, visit <a href="https://www.data-to-viz.com/graph/streamgraph.html">data-to-viz.com</a>. If you're looking for a simple way to implement it in d3.js, pick an example below.</p>
+      <p style="max-width: 700px; margin: auto">A <a href="https://www.data-to-viz.com/graph/streamgraph.html">streamgraph</a> is a type of <a href="stackedarea.html">stacked area chart</a>. It represents the evolution of a numerical variable for several groups. Areas are usually displayed around a central axis, and edges are rounded to give a flowing shape.</p>
   </div>
 </header>
 
@@ -128,6 +129,9 @@ $(function(){
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>Building a streamgraph follows the same process than for a <a href="stackedarea.html">stacked area chart</a>. Stack the data with the <code>d3.stack()</code> function, but use the <code>stackOffsetSilhouette</code> offset to position shapes around the central axis.</p>
+    <a class="btn btn-secondary btn-md text-uppercase" href="stackedarea.html">Stacked area section for more</a>
+    <br><br>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/streamgraph_basic.html">
