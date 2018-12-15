@@ -130,7 +130,16 @@
               <a class="nav-link" href="#d3">Javascript and d3.js</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#circle">add a circle</a>
+              <a class="nav-link" href="#log">Console.log()</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#coord">Coordinate system</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#scale">Scale</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#axis">Axis</a>
             </li>
           </ul>
         </nav>
@@ -436,6 +445,331 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 
 
 
+
+
+
+
+
+
+
+
+
+<!-- ==================== COORDINATE SYSTEM ==================== -->
+
+<section id="coord" class="bg">
+<div class="container">
+  <h1>The coordinate system</h1>
+  <hr>
+  <p>Building a d3.js chart starts by creating a <code>svg</code> element. This element has a <code>width</code> and a <code>height</code>, given in pixels.</p>
+  <p>It is important to understand that the top left corner has the coordinate x=0 and y=0. The bottom left corner has the coordinate x=0 and y=height. The top right corner has the coordinate x=width and height=0</p>
+  <p>Here is an example with 3 circles to understand how it works</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-coord" ></div>
+      <br>
+      <div>
+        <h5>Try:</h5>
+        <ul>
+          <br>
+          <li>Play with the coordinates of the 3 circles to understand how it works</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-coord" contenteditable="true"><xmp><!DOCTYPE html>
+
+<!-- Add a svg area, empty -->
+<svg id="dataviz_area" height=200 width=400></svg>
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-coord" contenteditable="true"><xmp><script>
+var svg = d3.select("#dataviz_area")
+svg.append("circle")
+  .attr("cx", 2).attr("cy", 2).attr("r", 40).style("fill", "blue");
+svg.append("circle")
+  .attr("cx", 140).attr("cy", 70).attr("r", 40).style("fill", "red");
+svg.append("circle")
+  .attr("cx", 300).attr("cy", 100).attr("r", 40).style("fill", "green");
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-coord', 'res-coord')
+myJSParser('js-coord', 'res-coord')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-coord').addEventListener("input", function() {
+d3.select('#res-coord').html("");
+myHtmlParser('html-coord', 'res-coord');
+myJSParser('js-coord', 'res-coord');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-coord').addEventListener("input", function() {
+d3.select('#res-coord').html("");
+myHtmlParser('html-coord', 'res-coord');
+myJSParser('js-coord', 'res-coord');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== Scale ==================== -->
+
+<section id="scale" class="bg">
+<div class="container">
+  <h1>From data to pixel: Scales</h1>
+  <hr>
+  <p>Coordinate system is in pixel. But input dataset is not.</p>
+  <p>Let's say my data are percentages, between 0 and 100. And the width of my svg area is 400.</p>
+  <p>I need to translate the percentage in pixels. 0% -> 0px. 100% -> 400px. 50% -> 200px.</p>
+  <p>Fortunately, d3 does this transformation for us: it's called a scale:</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-scale" ></div>
+      <br>
+      <div>
+        <h5>Try:</h5>
+        <ul>
+          <br>
+          <li>Play with the coordinates of the 3 circles to understand how it works</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-scale" contenteditable="true"><xmp><!DOCTYPE html>
+
+<!-- Add a svg area, empty -->
+<svg id="viz_area" height=200 width=450></svg>
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-scale" contenteditable="true"><xmp><script>
+// Select the svg area
+var svg = d3.select("#viz_area")
+
+// Create a scale: transform value in pixel
+var x = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([0, 400]);       // This is the corresponding value I want in Pixel
+
+// Add 3 dots for 0, 50 and 100%
+svg.append("circle")
+  .attr("cx", x(10)).attr("cy", 100).attr("r", 40).style("fill", "blue");
+svg.append("circle")
+  .attr("cx", x(50)).attr("cy", 100).attr("r", 40).style("fill", "red");
+svg.append("circle")
+  .attr("cx", x(100)).attr("cy", 100).attr("r", 40).style("fill", "green");
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-scale', 'res-scale')
+myJSParser('js-scale', 'res-scale')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-scale').addEventListener("input", function() {
+d3.select('#res-scale').html("");
+myHtmlParser('html-scale', 'res-scale');
+myJSParser('js-scale', 'res-scale');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-scale').addEventListener("input", function() {
+d3.select('#res-scale').html("");
+myHtmlParser('html-scale', 'res-scale');
+myJSParser('js-scale', 'res-scale');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== Axis ==================== -->
+
+<section id="axis" class="bg">
+<div class="container">
+  <h1>Add axis</h1>
+  <hr>
+  <p>If you've understand what a scale is, it is pretty straightforward to add an axis that represents this scale</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-axis" ></div>
+      <br>
+      <div>
+        <h5>Try:</h5>
+        <ul>
+          <br>
+          <li>Play with the coordinates of the 3 circles to understand how it works</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-axis" contenteditable="true"><xmp><!DOCTYPE html>
+
+<!-- Add a svg area, empty -->
+<svg id="Viz_area" height=200 width=450></svg>
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-axis" contenteditable="true"><xmp><script>
+// Select the svg area
+var svg = d3.select("#Viz_area")
+
+// Create a scale: transform value in pixel
+var x = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([0, 400]);       // This is the corresponding value I want in Pixel
+
+// Show the axis that corresponds to this scale
+svg.call(d3.axisBottom(x));
+
+// Add 3 dots for 0, 50 and 100%
+svg.append("circle")
+  .attr("cx", x(10)).attr("cy", 100).attr("r", 40).style("fill", "blue");
+svg.append("circle")
+  .attr("cx", x(50)).attr("cy", 100).attr("r", 40).style("fill", "red");
+svg.append("circle")
+  .attr("cx", x(100)).attr("cy", 100).attr("r", 40).style("fill", "green");
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-axis', 'res-axis')
+myJSParser('js-axis', 'res-axis')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-axis').addEventListener("input", function() {
+d3.select('#res-axis').html("");
+myHtmlParser('html-axis', 'res-axis');
+myJSParser('js-axis', 'res-axis');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-axis').addEventListener("input", function() {
+d3.select('#res-axis').html("");
+myHtmlParser('html-axis', 'res-axis');
+myJSParser('js-axis', 'res-axis');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
 
 
 
