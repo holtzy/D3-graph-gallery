@@ -127,3 +127,98 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+      <!-- Research Modal -->
+      <div class="modal fade" id="researchModal" tabindex="-1" role="dialog" aria-hidden="true" style="margin-right: 20px; margin-left: 20px">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px">
+          <div class="modal-content" style="min-height: 400px">
+
+            <div class="close-modal" data-dismiss="modal">
+              <a href=""><p style="color: #b8b8b8; padding-right: 15px; padding-top: 5px; text-align: right; font-size: 23px">&#10005;</p></a>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                  <div class="modal-body">
+                    <!-- Project Details Go Here -->
+                     <div style="margin-top: 120px; margin-bottom: 120px"><center>
+                       <input id="stringToSearch" type="text" name="usrname" value="d3.extent" style="  outline: 0; border-width: 0 0 2px; border-color: #b35900 !important;">
+                       <button id="researchSubmitButton" class="btn btn-secondary btn-md text-uppercase" type="button">Submit</button>
+                     </center>
+                      </div>
+                     <div id="resultSearch"></div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  <script>
+
+  // A function that returns a list of interesting pages for the query
+  function returnPages() {
+
+    // get the text that must been searched
+    var toSearch = d3.select("#stringToSearch").property("value")
+    var address = "https://api.github.com/search/code?q=%22" + toSearch + "%22+path:graph+repo:holtzy/D3-graph-gallery"
+
+    // Do the request to the gthub API
+    d3.request(address)
+      .mimeType("application/vnd.github.v3.text-match+json")
+      .response(function(xhr) {
+        var data = JSON.parse(xhr.responseText);
+
+        // Div where I add the code
+        div = d3.select("#resultSearch")
+
+        // Erase the content of the div
+        div.html("")
+
+        // If no result, display a no result message
+        if(data.items.length==0){
+          div.html("<center><p>😔<i>No result found, sorry...</i>😔</p></center>")
+        }
+
+        // For each result item, add a section
+        div
+          .selectAll("resultItems")
+          .data(data.items)
+          .enter()
+            .append("div")
+            .html(function(d){
+              // Url to redirect to
+              url = "https://www.d3-graph-gallery.com/graph/" + d.name
+
+              // Code selection: if 2 entries, keep only the second one.
+              initialCode = d.text_matches[d.text_matches.length - 1].fragment
+              cleanCode = initialCode
+                .replace("\n", "<br>")
+                .replace("<li>", "")
+                .replace(toSearch, "<span style='background-color: yellow'>"+toSearch+'</span>')
+              codeReady = "<p class='codeResearch'>....." + cleanCode + ".....</p>"
+              return ("<br><br><a href=" + url + ">&rarr; " + d.name + "</a>" + "<br>" + codeReady)
+            })
+      }).get()
+
+    }
+
+  // When the submit button is triggered, run the function
+  d3.select("#researchSubmitButton").on("click", returnPages);
+
+  // If the 'Enter' key is pressed, trigger the function as well
+  var input = document.getElementById("stringToSearch");
+  input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      document.getElementById("researchSubmitButton").click();
+    }
+  });
+
+  </script>
