@@ -96,6 +96,15 @@ section h3.section-subheading {
 
 
 
+/* ---------- Code in research result ----------------- */
+.codeResearch {
+  background-color: #f5f2f0;
+  font-size: 15px;
+  padding: 1em;
+  margin-top: 15px;
+  font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
 
 
 /* ---------- Menu separation title ----------------- */
