@@ -141,6 +141,12 @@
             <li class="nav-item">
               <a class="nav-link" href="#axis">Axis</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#margin">Margin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#data">Data binding</a>
+            </li>
           </ul>
         </nav>
     </div>
@@ -153,7 +159,7 @@
 
 <!-- ==================== HTML ==================== -->
 
-  <section id="html">
+  <section id="html" >
   <div class="container" >
 
     <h1>What is <code>HTML</code>?</h1>
@@ -783,6 +789,289 @@ myJSParser('js-axis', 'res-axis');
 </div>
 </section>
 <br>
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== MARGIN ==================== -->
+
+<section id="margin" class="bg">
+<div class="container">
+  <h1>Margin & translation</h1>
+  <hr>
+  <p>If you've understand what a scale is, it is pretty straightforward to add an axis that represents this scale</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-margin" ></div>
+      <br>
+      <div>
+        <h5>Try:</h5>
+        <ul>
+          <br>
+          <li>Play with the coordinates of the 3 circles to understand how it works</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-margin" contenteditable="true"><xmp><!DOCTYPE html>
+
+<!-- Add a svg area, empty -->
+<div id="Area"></div>
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-margin" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 40, bottom: 30, left: 30},
+    width = 450 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var sVg = d3.select("#Area")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// X scale and Axis
+var x = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([0, width]);       // This is the corresponding value I want in Pixel
+sVg
+  .append('g')
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
+
+// X scale and Axis
+var y = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([height, 0]);       // This is the corresponding value I want in Pixel
+sVg
+  .append('g')
+  .call(d3.axisLeft(y));
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-margin', 'res-margin')
+myJSParser('js-margin', 'res-margin')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-margin').addEventListener("input", function() {
+d3.select('#res-margin').html("");
+myHtmlParser('html-margin', 'res-margin');
+myJSParser('js-margin', 'res-margin');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-margin').addEventListener("input", function() {
+d3.select('#res-margin').html("");
+myHtmlParser('html-margin', 'res-margin');
+myJSParser('js-margin', 'res-margin');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== DATA BINDING ==================== -->
+
+<section id="data" class="bg">
+<div class="container">
+  <h1>Data binding</h1>
+  <hr>
+  <p>If you've understand what a scale is, it is pretty straightforward to add an axis that represents this scale</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-data" ></div>
+      <br>
+      <div>
+        <h5>Try:</h5>
+        <ul>
+          <br>
+          <li>Play with the coordinates of the 3 circles to understand how it works</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-data" contenteditable="true"><xmp><!DOCTYPE html>
+
+<!-- Add a svg area, empty -->
+<div id="scatter_area"></div>
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-data" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 40, bottom: 30, left: 30},
+    width = 450 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svG = d3.select("#scatter_area")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Create data
+var data = [ {x:10, y:20}, {x:40, y:90}, {x:80, y:50} ]
+
+// X scale and Axis
+var x = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([0, width]);       // This is the corresponding value I want in Pixel
+svG
+  .append('g')
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
+
+// X scale and Axis
+var y = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([height, 0]);       // This is the corresponding value I want in Pixel
+svG
+  .append('g')
+  .call(d3.axisLeft(y));
+
+// Add 3 dots for 0, 50 and 100%
+svG
+  .selectAll("whatever")
+  .data(data)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){ return x(d.x) })
+    .attr("cy", function(d){ return y(d.y) })
+    .attr("r", 7)
+
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-data', 'res-data')
+myJSParser('js-data', 'res-data')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-data').addEventListener("input", function() {
+d3.select('#res-data').html("");
+myHtmlParser('html-data', 'res-data');
+myJSParser('js-data', 'res-data');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-data').addEventListener("input", function() {
+d3.select('#res-data').html("");
+myHtmlParser('html-data', 'res-data');
+myJSParser('js-data', 'res-data');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
 
 
 
