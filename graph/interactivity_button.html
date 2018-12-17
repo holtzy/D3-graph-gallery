@@ -115,8 +115,11 @@
 
     <!-- TABLE of CONTENT -->
     <div>
-        <nav class="col-sm-3 col-4" id="myScrollspy">
-          <ul class="nav nav-pills flex-column">
+        <nav class="col-sm-3 col-4" id="myScrollspy" >
+          <ul class="nav nav-pills flex-column" style="top: 30%">
+            <li class="nav-item">
+              <i class="nav-link" style="opacity: 0.5">&rarr; how it works</i>
+            </li>
             <li class="nav-item">
               <a class="nav-link active" href="#buttonTypes">Button Types</a>
             </li>
@@ -131,6 +134,31 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#buttonStyle">Button style with css</a>
+            </li>
+            <br>
+            <li class="nav-item">
+              <i class="nav-link" style="opacity: 0.5">&rarr; application</i>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#button">simple button</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#radio">radio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#text">text input</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#slider">slider</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#checkbox">checkbox</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#number">number</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#dropdown">dropdown</a>
             </li>
           </ul>
         </nav>
@@ -887,6 +915,259 @@ myJSParser('js-buttonStyle', 'res-buttonStyle');
 </div>
 </section>
 <br>
+
+
+
+
+
+
+
+
+
+
+<!-- ======================== BASIC BUTTON ============================ -->
+<section class="bg" id="button" style="margin: 30px; padding: 0px">
+  <div class="container" id="portfolio">
+    <h1>Simple button</h1>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/connectedscatter_legend.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Interactive legend</p>
+              <hr>
+              <p class="explanation_portfolio">Legend that allows to make group markers appear or disappear.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/connectedscatter_legend.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/barplot_button_color.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Change color with a button</p>
+              <hr>
+              <p class="explanation_portfolio">Clicking on a button triggers a function that changes the style of all rectangles</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/barplot_button_color.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/line_change_data.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>1/ Transition between<br>input data</p>
+              <hr>
+              <p class="explanation_portfolio">Add a button that allows to go from one dataset to another with a smooth transition. Usefull to understand how to build a <code>update()</code> function.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/line_change_data.gif" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ======================== Radio ============================ -->
+<section class="bg" id="radio" style="margin: 30px; padding: 0px">
+  <div class="container" id="portfolio">
+    <h1>Radio button</h1>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <img style="width:100px; height: 100px;" src="../img/other/workinprogress.png"></img>
+      <br><br><br><br><br><br>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- ======================== Text input ============================ -->
+<section class="bg" id="text" style="margin: 30px; padding: 0px">
+  <div class="container" id="portfolio">
+    <h1>Text input</h1>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <img style="width:100px; height: 100px;" src="../img/other/workinprogress.png"></img>
+      <br><br><br><br><br><br>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- ======================== Slider============================ -->
+<section class="bg" id="slider" style="margin: 30px; padding: 0px">
+  <div class="container" id="portfolio">
+    <h1>Slider</h1>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/density_slider.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Slider to control bandwidth</p>
+              <hr>
+              <p class="explanation_portfolio">Slider update the bandwidth used for kernel density estimation with a smooth transition.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/density_slider.gif" alt="">
+        </a>
+      </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- ======================== Check box ============================ -->
+<section class="bg" id="checkbox" style="margin: 30px; padding: 0px">
+  <div class="container" id="portfolio">
+    <h1>Check box</h1>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/bubblemap_buttonControl.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Group selection</p>
+              <hr>
+              <p class="explanation_portfolio">Add a button to select displayed group, with smooth transition.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/bubblemap_buttonControl.gif" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- ======================== Number ============================ -->
+<section class="bg" id="number" style="margin: 30px; padding: 0px">
+  <div class="container"  id="portfolio">
+    <h1>Numeric input</h1>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/histogram_binSize.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Button to control bin size</p>
+              <hr>
+              <p class="explanation_portfolio">Add a button that controls bin size. Good example to learn how to create an update function that also update an axis.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/histogram_binSize.gif" alt="">
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 portfolio-item">
+      <a class="portfolio-link" href="graph/scatter_buttonXlim.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <p>Update X axis limits</p>
+            <hr>
+            <p class="explanation_portfolio">A button control the X axis upper limit and trigger a smooth transition to the new limit</p>
+          </div>
+        </div>
+        <img class="img-fluid" src="img/graph/scatter_buttonXlim.gif" alt="">
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- ======================== DROPDOWN ============================ -->
+<section class="bg" id="dropdown" style="margin: 30px; padding: 0px">
+  <div class="container" id="portfolio">
+    <h1>Dropdown button</h1>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/density_filter.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Dropdown to filter data</p>
+              <hr>
+              <p class="explanation_portfolio">Dropdown allows to filter data, keeping one group or the other.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/density_filter.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/connectedscatter_select.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Dropdown to select group</p>
+              <hr>
+              <p class="explanation_portfolio">A dropdown button allows to switch from one group to another with smooth transition.<br><br>Note: each group is in a different column in input</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/connectedscatter_select.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="../graph/line_filter.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>3/ Transition between<br>value of a column</p>
+              <hr>
+              <p class="explanation_portfolio">Dropdown button controls which value of a column is displayed on the chart.<br><br>Long format</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/line_filter.gif" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
 
 
 
