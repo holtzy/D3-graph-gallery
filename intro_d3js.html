@@ -636,24 +636,23 @@ myJSParser('js-coord', 'res-coord');
 <div class="container">
   <h1>From data to pixel: Scales</h1>
   <hr>
-  <p>Coordinate system is in pixel. But input dataset is not.</p>
-  <p>Let's say my data are percentages, between 0 and 100. And the width of my svg area is 400.</p>
-  <p>I need to translate the percentage in pixels. 0% -> 0px. 100% -> 400px. 50% -> 200px.</p>
-  <p>Fortunately, d3 does this transformation for us: it's called a scale:</p>
+  <code>&rarr; Explanation:</code>
+  <br>
+  <ul style="margin-top: 5px">
+    <li>Position of element is set in <u>pixel</u>. But input dataset is <u>not</u>.</li>
+    <li>We thus need a function that <u>translate</u> a numeric variable to a position in pixel. It is called a <code>scale</code></li>
+    <li>If my data are percentages and my <code>svg</code> area is 400px width. 0% &rarr; 0px. 100% &rarr; 400px. 50% &rarr; 200px.</li>
+    <li>Scale always have a <code>domain</code> (0 to 100% here) and a <code>range</code> (0 to 400px here)</li>
+    <li>Usually the scale for the X axis is called <code>x</code>. If you run <code>x(10)</code>, d3 returns the position in px for this value</li>
+  </ul>
+  <br>
+  <code>&rarr; Example:</code>
   <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
   <div class="col-lg-5 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="res-scale" ></div>
-      <br>
-      <div>
-        <h5>Try:</h5>
-        <ul>
-          <br>
-          <li>Play with the coordinates of the 3 circles to understand how it works</li>
-        </ul>
-      </div>
     </div>
   </div>
 
@@ -686,6 +685,7 @@ var svg = d3.select("#viz_area")
 var x = d3.scaleLinear()
     .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
     .range([0, 400]);       // This is the corresponding value I want in Pixel
+// Try console.log( x(25) ) to see what this x function does.
 
 // Add 3 dots for 0, 50 and 100%
 svg.append("circle")
@@ -728,6 +728,13 @@ myJSParser('js-scale', 'res-scale');
 
 
   </div>
+
+  <code>&rarr; Try:</code>
+  <br>
+  <ul style="margin-top: 5px">
+    <li>Change <code>domain</code> and <code>range</code> values to understand how it works.</li>
+    <li>Add a Y scale to move the circles up or down. Remember 0px is on top!</li>
+  </ul>
 </div>
 </section>
 <br>
@@ -749,21 +756,20 @@ myJSParser('js-scale', 'res-scale');
 <div class="container">
   <h1>Add axis</h1>
   <hr>
-  <p>If you've understand what a scale is, it is pretty straightforward to add an axis that represents this scale</p>
+  <code>&rarr; Explanation:</code>
+  <ul style="margin-top: 5px">
+    <li>D3 offers a few function to draw <u>axis</u> automatically.</li>
+    <li>These axis are always drawn on top of a <code>scale</code>. This scale specifies <u>where</u> the axis must be placed, and <u>what range</u> it should indicate.</li>
+    <li>The function <code>axisBottom()</code> creates a horizontal axis, with ticks and labels at the bottom. <code>axisLeft()</code> will be used later for the Y axis</li>
+  </ul>
+  <br>
+  <code>&rarr; Example:</code>
   <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
   <div class="col-lg-5 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="res-axis" ></div>
-      <br>
-      <div>
-        <h5>Try:</h5>
-        <ul>
-          <br>
-          <li>Play with the coordinates of the 3 circles to understand how it works</li>
-        </ul>
-      </div>
     </div>
   </div>
 
@@ -841,6 +847,12 @@ myJSParser('js-axis', 'res-axis');
 
 
   </div>
+  <code>&rarr; Try:</code>
+  <br>
+  <ul style="margin-top: 5px">
+    <li>Change <code>domain</code> and <code>range</code> values to understand how it works.</li>
+  </ul>
+
 </div>
 </section>
 <br>
@@ -860,21 +872,20 @@ myJSParser('js-axis', 'res-axis');
 <div class="container">
   <h1>Margin & translation</h1>
   <hr>
-  <p>If you've understand what a scale is, it is pretty straightforward to add an axis that represents this scale</p>
+  <code>&rarr; Explanation:</code>
+  <ul style="margin-top: 5px">
+    <li>The axis position often needs to be <u>adjusted</u>. For instance, the X axis is usually placed at the <u>bottom</u> of the chart.</li>
+    <li>This is made possible thanks to <u>translation</u>. Basically, applying <code>.attr("transform", "translate(20,50)")</code> to an element with translate it 20px to the right and 50px to the bottom.</li>
+    <li>A very common strategy is to apply a translation to the general <code>svg</code> area, creating a bit of margin around the chart without having to think about it in the rest of the code. It is important to understand how it works since almost all d3.js chart start that way.</li>
+  </ul>
+  <br>
+  <code>&rarr; Example:</code>
   <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
   <div class="col-lg-5 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="res-margin" ></div>
-      <br>
-      <div>
-        <h5>Try:</h5>
-        <ul>
-          <br>
-          <li>Play with the coordinates of the 3 circles to understand how it works</li>
-        </ul>
-      </div>
     </div>
   </div>
 
@@ -911,9 +922,9 @@ var sVg = d3.select("#Area")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+  // translate this svg element to leave some margin.
   .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // X scale and Axis
 var x = d3.scaleLinear()
@@ -966,6 +977,11 @@ myJSParser('js-margin', 'res-margin');
 
 
   </div>
+  <code>&rarr; Try:</code>
+  <ul style="margin-top: 5px">
+    <li>Play the the margin values to double check how it works.</li>
+    <li>Remove some lines in the <code>svg</code> variable creation.</li>
+  </ul>
 </div>
 </section>
 <br>
@@ -998,21 +1014,27 @@ myJSParser('js-margin', 'res-margin');
 <div class="container">
   <h1>Data binding</h1>
   <hr>
-  <p>If you've understand what a scale is, it is pretty straightforward to add an axis that represents this scale</p>
+  <code>&rarr; Explanation:</code>
+  <ul style="margin-top: 5px">
+    <li><u>Binding data</u> to svg elements is the last step we need to complete the scatterplot. It is also the <u>hardest</u> part to understand in my opinion.</li>
+    <li>It always follows the same steps:</li>
+    <ul>
+      <li><code>svg</code>: this select the svg area where the chart takes place</code></li>
+      <li><code>.selectAll("whatever")</code>: select all the elements that have not be created yet, I know it is weird.</li>
+      <li><code>.data(data)</code>: specify the data to use.</li>
+      <li><code>.enter()</code>: start a loop for the data. Following code will be applied to <code>data[0]</code>, <code>data[1]</code> and so on.</li>
+      <li><code>.append("circle")</code>: for each iteration, add a circle.</li>
+      <li><code>.attr("cx", function(d){ return x(d.x) })</code>: gives the <code>x</code> position of the circle. Here <code>d</code> will be <code>data[0]</code>, then <code>data[1]</code> and so on. Thus <code>d.x</code> is the value of <code>x</code>, and <code>x(d.x)</code> is the corresponding position in pixel found thanks to the <code>x scale</code>.</li>
+    </ul>
+  </ul>
+  <br>
+  <code>&rarr; Example:</code>
   <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
   <div class="col-lg-5 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="res-data" ></div>
-      <br>
-      <div>
-        <h5>Try:</h5>
-        <ul>
-          <br>
-          <li>Play with the coordinates of the 3 circles to understand how it works</li>
-        </ul>
-      </div>
     </div>
   </div>
 
@@ -1118,6 +1140,11 @@ myJSParser('js-data', 'res-data');
 
 
   </div>
+
+  <code>&rarr; Note:</code>
+  <p style="margin-top: 5px">This is probably the most difficult concept in d3.js. And it is used in almost every single chart. It is actually the power of d3: binding data to elements</p>
+  <p>It is probably a good idea to read more on this topic. Check <a href="https://d3indepth.com/datajoins/">d3 in depth</a> and <a href="https://www.dashingd3js.com/lessons/creating-svg-elements-from-data">Dashing d3.js</a>.
+
 </div>
 </section>
 <br>
@@ -1133,34 +1160,28 @@ myJSParser('js-data', 'res-data');
 
 
 
-<!-- ============================ RELATED BLOCKS ============================ -->
 
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>Introduction to browser events- </i>by <a href="https://javascript.info/introduction-browser-events">Javascript Info</a></li>
-            <br>
-            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
-            <br>
-            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<!-- ==================== What's next ==================== -->
+
+<section class="bg">
+<div class="container">
+  <h1>What's <code>next</code>?</h1>
+  <hr>
+  <p>This document is a very very short intro to d3.js. However, it describes the basic concepts that are used in almost every chart.</p>
+  <p>You're now probably ready to <a href="../index.html">explore the gallery</a>. For each chart section, there is a very basic example to start with. </p>
+</div>
 </section>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1171,10 +1192,6 @@ myJSParser('js-data', 'res-data');
 
 <!-- ============================ CONTACT SECTION ============================ -->
 
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
 <section id="contact" class="bg" style="background-color: white"></section>
 
 <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
@@ -1183,8 +1200,6 @@ $(function(){
   $("#contact").load("html_chunk/contact.html");
 });
 </script>
-
-
 
 
 
