@@ -103,7 +103,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">Input dataset is rarely in the perfectly expected format. This post describes a few common data manipulation like sorting, filtering, grouping, nesting and more.</p>
+          <p style="max-width: 700px; margin: auto">This post describes the most common <u>data manipulation tasks</u> you will have to perform using <code>d3.js</code>. It includes <a href="#sorting">sorting</a>, <a href="#filtering">filtering</a>, <a href="#grouping">grouping</a>, <a href="#nesting">nesting</a> and more.</p>
       </div>
     </header>
 
@@ -154,7 +154,6 @@
 
     <h1>Mathematics</h1>
     <hr>
-    <p>How to compute a max, a min, an average?</p>
 
 
 <h6>Get the maximum value of a column called <code>value</code></h6>
@@ -281,7 +280,7 @@ data.sort(function(a,b) { return d3.ascending(a.name1, b.name1) ||  (a.value - b
 
 <!-- ==================== NESTING ==================== -->
 
-  <section id="filtering">
+  <section id="nesting">
   <div class="container" >
 
     <h1>Nesting</h1>
@@ -456,33 +455,6 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
 
 
 
-<!-- ============================ GOING FURTHER ============================ -->
-
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-
-    <br>
-    <div class="mySeryTitle">Selection of blocks</div>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://codepen.io/idan/pen/xejuD">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Highly customized axis</p>
-              <hr>
-              <p class="explanation_portfolio">An interesting approach: overlapping several axis to create complex axis.</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="../img/block/block_crazyAxis.png" alt="crazy axis in d3.js">
-        </a>
-      </div>
-
-    </div>
-
-
- </div>
-</section>
 
 
 
@@ -492,40 +464,6 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
 
 
 
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>scaleOrdinal example - </i>by <a href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465">d3indepth</a></li>
-            <br>
-            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
-            <br>
-            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
