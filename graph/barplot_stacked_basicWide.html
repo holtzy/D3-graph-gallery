@@ -139,11 +139,11 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>Start by understanding the <a href="barplot_basic.html">basics of barplot</a> in d3.js.</li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>Data is available <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv">here</a>. Have a look to it. Note the <u>wide</u> (untidy) format: each group is provided in a specific line, each subgroup in a specific column.</li>
           <br>
-          <li>The <code>d3.stack()</code> function is used to stack the data: it computes the new position of each group on the Y axis</li>
+          <li>The <code>d3.stack()</code> function is used to stack the data: it computes the new position of each subgroup on the Y axis</li>
           <br>
           <li>The output of <code>d3.stack()</code> can be used to create a set of <code>rect</code> as for a normal barplot.</li>
         </ul>
@@ -196,49 +196,55 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function(data) {
 
-  // List of groups = header of the csv files
-  var keys = data.columns.slice(1)
+  // List of subgroups = header of the csv files = soil condition here
+  var subgroups = data.columns.slice(1)
+
+  // List of groups = species here = value of the first column called group -> I show them on the X axis
+  var groups = d3.map(data, function(d){return(d.group)}).keys()
 
   // Add X axis
-  var x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.year; }))
-    .range([ 0, width ]);
+  var x = d3.scaleBand()
+      .domain(groups)
+      .range([0, width])
+      .padding([0.2])
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(5));
+    .call(d3.axisBottom(x).tickSizeOuter(0));
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, 200000])
+    .domain([0, 60])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
 
-  // color palette
+  // color palette = one color per subgroup
   var color = d3.scaleOrdinal()
-    .domain(keys)
-    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf'])
+    .domain(subgroups)
+    .range(['#e41a1c','#377eb8','#4daf4a'])
 
-  //stack the data?
+  //stack the data? --> stack per subgroup
   var stackedData = d3.stack()
-    .keys(keys)
+    .keys(subgroups)
     (data)
 
   // Show the bars
   svg.append("g")
     .selectAll("g")
+    // Enter in the stack data = loop key per key = group per group
     .data(stackedData)
     .enter().append("g")
       .attr("fill", function(d) { return color(d.key); })
-    .selectAll("rect")
-    .data(function(d) { return d; })
-    .enter().append("rect")
-      .attr("x", function(d) { return x(d.data.year); })
-      .attr("y", function(d) { return y(d[1]); })
-      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-      .attr("width",7)
+      .selectAll("rect")
+      // enter a second time = loop subgroup per subgroup to add all rectangles
+      .data(function(d) { return d; })
+      .enter().append("rect")
+        .attr("x", function(d) { return x(d.data.group); })
+        .attr("y", function(d) { return y(d[1]); })
+        .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+        .attr("width",x.bandwidth())
 })
 
 </script></xmp></code></pre>
