@@ -102,7 +102,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto"><a href="https://d3js.org">D3.js</a> is a <u>JavaScript library</u> for manipulating documents based on data. It allows to build absolutely <a href="all.html">any type of visualization</a>, with no limits. This documents is a quick intro to d3. It displays 10 examples illustrating the key concepts of d3, leading to a first basic scatterplot.</p>
+          <p style="max-width: 700px; margin: auto"><a href="https://d3js.org">D3.js</a> is a <u>JavaScript library</u> for manipulating documents based on data. It allows to build absolutely <a href="all.html">any type of data visualization</a>. This document displays 10 examples illustrating the key concepts of d3, leading to a first basic scatterplot.</p>
       </div>
     </header>
 
@@ -164,9 +164,15 @@
 
     <h1>What is <code>HTML</code>?</h1>
     <hr>
-    <p><a href="https://en.wikipedia.org/wiki/HTML">HTML</a> stands for <u>Hypertext Markup Language</u>. Basically, it is the language behind any <u>website</u>. Web browsers like Mozilla or Safari read this kind of file and translate it in a webpage.</p>
-    <p>In a HTML file, elements composing the webpage are created, delineated by <u>tags</u>. For instance a title of level 1 is represented by the <code>h1</code> tag, a paragraph with the <code>p</code> tag, an image by the <code>img</code> tag and so on.
-    <p>It is impossible to create a d3.js visualization without basic knowledge on html. <a href="https://www.w3schools.com/html/">This tutorial</a> by W3School gives a good overview. Here is a very basic html document: (code on the right, result on the left)</p>
+    <code>&rarr; Explanation:</code>
+    <br>
+    <ul style="margin-top: 5px">
+      <li><a href="https://en.wikipedia.org/wiki/HTML">HTML</a> stands for <u>Hypertext Markup Language</u>. Basically, it is the language behind any <u>website</u>. Web browsers like Mozilla or Safari read this kind of file and translate it in a webpage.</li>
+      <li>In a HTML file, elements composing the webpage are created, delineated by <u>tags</u>. For instance a title of level 1 is represented by the <code>h1</code> tag, a paragraph with the <code>p</code> tag, an image by the <code>img</code> tag and so on.</li>
+      <li>It is impossible to create a d3.js visualization without basic knowledge on html. <a href="https://www.w3schools.com/html/">This tutorial</a> by W3School can be a good starting point in my opinion.</li>
+    </ul>
+    <br>
+    <code>&rarr; Example:</code>
     <div class="row">
 
     <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-allType"> </div>
@@ -190,8 +196,12 @@
 
 
 
-</div>
-<p><u>Try</u>: Copy and paste the code below in a local file. Open it with a browser. You've created your first website!</p>
+    </div>
+    <br><br>
+    <code>&rarr; Try:</code>
+    <ul>
+      <li>Copy and paste the code above in a local file. Call it something like <code>test.html</code>. Open it with a browser. You've created your first website!</li>
+    </ul>
   </div>
 </section>
 
@@ -227,9 +237,14 @@ document.getElementById('code-allType').addEventListener("input", function() {
 
     <h1>Custom document style with <code>CSS</code></h1>
     <hr>
-    <p><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a> stands for <u>Cascading Style Sheet</u>. It allows to apply specific styles to the elements created in html before.</p>
-    <p>As for html, it is impossible to create a d3.js visualization without basic knowledge on css. W3School provides a <a href="https://www.w3schools.com/css/default.asp">tutorial on css</a> that is a requirement IMO.</p>
-    <p>Let's apply a modification to the previous document using css:</p>
+    <code>&rarr; Explanation:</code>
+    <br>
+    <ul style="margin-top: 5px">
+      <li><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a> stands for <u>Cascading Style Sheet</u>. It allows to apply specific styles to the elements created using <code>html</code> before.</li>
+      <li>As for html, it is impossible to create a d3.js visualization without basic knowledge on <code>css</code>. If it is new for you, check this <a href="https://www.w3schools.com/css/default.asp">tutorial</a>.</li>
+    </ul>
+    <br>
+    <code>&rarr; Example:</code>
     <div class="row">
 
     <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-css"> </div>
@@ -239,12 +254,12 @@ document.getElementById('code-allType').addEventListener("input", function() {
         <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
         <pre class="language-html"><code id="code-css" contenteditable="true"><xmp><!DOCTYPE html>
 
-<!-- Define style of the elements that have the class `inGreen` -->
+<!-- Apply specific style to the elements that have the class `inGreen` -->
 <style>
-.inGreen { color: green; }
+  .inGreen { color: green; }
 </style>
 
-<!-- Add a title -->
+<!-- Add a title. Note that the class 'inGreen' is given to this title -->
 <h1 class="inGreen">First html document</h1>
 
 <!-- Add a bit of text -->
@@ -259,7 +274,12 @@ document.getElementById('code-allType').addEventListener("input", function() {
 
 
 </div>
-<p><u>Try</u>: Copy and paste the code below in a local file. Open it with a browser. You've created your first website!</p>
+<br>
+<code>&rarr; Try:</code>
+<ul style="margin-top: 5px">
+  <li>Give the class <code>inGreen</code> to one of the paragraph <code>p</code></li>
+  <li>Create a new class for the first sentence of the document. Change its font size with <code>font-size: 20px</code> in css.</li>
+</ul>
   </div>
 </section>
 
@@ -285,6 +305,8 @@ document.getElementById('code-css').addEventListener("input", function() {
 
 
 
+
+
 <!-- ==================== SVG ==================== -->
 
   <section id="svg">
@@ -292,9 +314,15 @@ document.getElementById('code-css').addEventListener("input", function() {
 
     <h1>Build shapes with <code>SVG</code></h1>
     <hr>
-    <p><a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">CSS</a> stands for <u>Scalable Vector Graphic</u>. It is an vector image format. Basically, it is a language that allows to build shapes with code.</p>
-    <p>A d3.js chart is actually a set of <code>svg</code> shapes put together. For instant, a scatterplot is just composed by several circles as the one shown below.</p>
-    <p>This <a href="graph/shape.html">document</a> of the d3 graph gallery showcases the different shapes offered by Svg.</p>
+    <code>&rarr; Explanation:</code>
+    <br>
+    <ul style="margin-top: 5px">
+      <li><a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> stands for <u>Scalable Vector Graphic</u>. It is a vector image format. Basically, it is a language that allows to build shapes with code.</li>
+      <li>A d3.js chart is actually a set of <code>svg</code> shapes put together. For instant, a scatterplot is just composed by several circles as the one shown below.</li>
+      <li>This <a href="graph/shape.html">document</a> of the d3 graph gallery showcases the different shapes offered by Svg.</li>
+    </ul>
+    <br>
+    <code>&rarr; Example:</code>
     <div class="row">
 
     <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-svg"> </div>
@@ -304,7 +332,7 @@ document.getElementById('code-css').addEventListener("input", function() {
         <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
         <pre class="language-html"><code id="code-svg" contenteditable="true"><xmp><!DOCTYPE html>
 <!-- Add a title -->
-<h1 class="inGreen">First html document</h1>
+<h1>First html document</h1>
 
 <!-- Add a bit of text -->
 <p>This is my first sentence</p>
@@ -320,8 +348,23 @@ document.getElementById('code-css').addEventListener("input", function() {
 
 
 </div>
-<p><u>Try</u>: Copy and paste the code below in a local file. Open it with a browser. You've created your first website!</p>
-  </div>
+<br>
+<code>&rarr; Try:</code>
+<br>
+<ul style="margin-top: 5px">
+  <li>Modify the arguments of in the <code>svg</code> call to understand what feature they control.</li>
+  <li>Try to draw another type of shape using the cheat sheet below</li>
+</ul>
+<pre class="language-html"><code><xmp><line x1="0" y1="0" x2="10" y2="10" stroke="black"></line>
+<rect x="0" y="0" width="10" height="10"></rect>
+<circle cx="5" cy="5" r="5"></circle>
+<ellipse cx="10" cy="5" rx="10" ry="5"></ellipse>
+<polygon points="0,0 10,5 20,0 20,20 10,15 0,20"></polygon>
+<polyline points="0,0 10,5 20,0 20,20 10,15 0,20" stroke="black"></polyline>
+<path d="M65,10 a50,25 0 1,0 50,25"></path>
+</xmp></code></pre>
+<p style="text-align: right"><a style="font-size: 9px" href="https://codepen.io/chriscoyier/pen/dXKxvv">Example source</a></p>
+</div>
 </section>
 
 
@@ -354,25 +397,22 @@ document.getElementById('code-svg').addEventListener("input", function() {
 <div class="container" >
   <h1>Modify elements with <code>Javascript</code> and <code>D3.js</code></h1>
   <hr>
-  <p><a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> is one of the three core technologies of the World Wide Web. It enables <u>interactivity</u> in webpages.</p>
-  <p><a href="">D3.js</a> is a javascript library particularly useful for data visualization. It allows to create, select and modify elements.</p>
-  <p>Let's use d3 to select the element with id `target` and change its color:
+  <code>&rarr; Explanation:</code>
+  <br>
+  <ul style="margin-top: 5px">
+    <li><a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> is one of the three core technologies of the World Wide Web. It enables <u>interactivity</u> in webpages.</li>
+    <li><a href="">D3.js</a> is a javascript library particularly useful for data visualization. It allows to create, select and modify elements.</li>
+    <li>In the example below, d3 is used to select the circle with a class <code>target</code> and modify its <code>stroke-width</code>.</li>
+    <li>It is not very impressive yet. But we will use the same kind of process to set the position of hundreds of circle and get a scatterplot.</li>
+  </ul>
+  <br>
+  <code>&rarr; Example:</code>
   <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
   <div class="col-lg-5 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="res-basicTrigger" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Here, the button is created in html, and a <code>onclick</code> attribute is added.</li>
-          <br>
-          <li>Note that othe method are available: <code>onchange</code>, <code>onmouseover</code>, and more. See more <a href="https://www.w3schools.com/js/js_htmldom_events.asp">here</a></li>
-        </ul>
-      </div>
     </div>
   </div>
 
@@ -384,8 +424,7 @@ document.getElementById('code-svg').addEventListener("input", function() {
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html"><code id="html-basicTrigger" contenteditable="true"><xmp><!DOCTYPE html>
-<!-- Add a title -->
-<h1 class="inGreen">First html document</h1>
+<h1>First html document</h1>
 
 <!-- Add a bit of text -->
 <p>This is my first sentence</p>
@@ -442,6 +481,12 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 
 
   </div>
+  <code>&rarr; Try:</code>
+  <br>
+  <ul style="margin-top: 5px">
+    <li>Change the circle opacity with the <code>opacity</code> style that goes between 0 and 1.</li>
+  </ul>
+
 </div>
 </section>
 <br>
@@ -460,11 +505,17 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 
 <section id="coord" class="bg">
 <div class="container">
-  <h1>Console.log() is your friend.</h1>
+  <h1><code>Console.log()</code> is your friend.</h1>
   <hr>
-  <p>Building a d3.js chart starts by creating a <code>svg</code> element. This element has a <code>width</code> and a <code>height</code>, given in pixels.</p>
-  <p>It is important to understand that the top left corner has the coordinate x=0 and y=0. The bottom left corner has the coordinate x=0 and y=height. The top right corner has the coordinate x=width and height=0</p>
-  <p>Here is an example with 3 circles to understand how it works</p>
+  <code>&rarr; Explanation:</code>
+  <br>
+  <ul style="margin-top: 5px">
+    <li>So the browser runs <code>Html</code>, <code>Css</code> and <code>Javascript</code> code and shows the result as a webpage.</li>
+    <li>If there is something wrong, it will give notification in the <u>console</u>.</li>
+    <li>Usually you can open the console with <u>right click</u> -> <u>inspect element</u></li>
+    <li>You can output stuff in the console using the <code>console.log("sometext")</code> in your javascript code</li>
+    <li>This is obvious for people coming from web development. But is'nt for people coming from other field (R?). It is essential to be able to debug your code.</li>
+  </ul>
 
 
 
@@ -479,23 +530,21 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 <div class="container">
   <h1>The coordinate system</h1>
   <hr>
-  <p>Building a d3.js chart starts by creating a <code>svg</code> element. This element has a <code>width</code> and a <code>height</code>, given in pixels.</p>
-  <p>It is important to understand that the top left corner has the coordinate x=0 and y=0. The bottom left corner has the coordinate x=0 and y=height. The top right corner has the coordinate x=width and height=0</p>
-  <p>Here is an example with 3 circles to understand how it works</p>
+  <code>&rarr; Explanation:</code>
+  <br>
+  <ul style="margin-top: 5px">
+    <li>Building a d3.js chart starts by creating a <code>svg</code> element. This element has a <code>width</code> and a <code>height</code>, given in pixels.</li>
+    <li>It is important to understand that the top left corner has the coordinate <code>x=0</code> and <code>y=0</code>. The bottom left corner has the coordinate <code>x=0</code> and <code>y=height</code>. The top right corner has the coordinate <code>x=width</code> and <code>height=0</code></li>
+  </ul>
+  <br>
+  <code>&rarr; Example:</code>
+  <br>
   <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
   <div class="col-lg-5 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
       <div class="bg-light" id="res-coord" ></div>
-      <br>
-      <div>
-        <h5>Try:</h5>
-        <ul>
-          <br>
-          <li>Play with the coordinates of the 3 circles to understand how it works</li>
-        </ul>
-      </div>
     </div>
   </div>
 
@@ -509,7 +558,7 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 <pre class="language-html"><code id="html-coord" contenteditable="true"><xmp><!DOCTYPE html>
 
 <!-- Add a svg area, empty -->
-<svg id="dataviz_area" height=200 width=400></svg>
+<svg id="dataviz_area" height=200 width=450></svg>
 
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
@@ -562,6 +611,12 @@ myJSParser('js-coord', 'res-coord');
 
 
   </div>
+  <code>&rarr; Try:</code>
+  <br>
+  <ul style="margin-top: 5px">
+    <li>Change the coordinate of the 3 circles to make sure you understood how it works</li>
+  </ul>
+
 </div>
 </section>
 <br>
