@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-79254642-6');
+  </script>
+
+  <meta charset="utf-8">
+  <title>Basic grouped barplot in d3.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Using d3.js to create a very basic grouped barplot">
+  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, stacked barplot">
+  <meta name="author" content="Yan Holtz">
+
+  <meta property="og:title" content="Basic grouped barplot in d3.js">
+  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
+  <meta property="og:description" content="Using d3.js to create a very basic grouped barplot">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/agency.css" rel="stylesheet">
+
+  <!-- PRISM -->
+  <script src="../LIB/prism.js"></script>
+  <link href="../LIB/prism.css" rel="stylesheet" />
+
+  <!-- D3.JS v4 -->
+  <script src="../js/d3.v4.js"></script>
+
+  <!-- JQUERY -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+
+  <!-- HTML TO CANVAS -->
+  <script src="../js/html2canvas.js"></script>
+
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="../js/myParser.js"></script>
+
+</head>
+
+
+
+
+
+
+<body id="page-top">
+
+
+<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+<script>
+$(function(){
+  $("#mainNav").load("../html_chunk/menu.html");
+});
+</script>
+
+<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+<div id="modal_menu_insertion"> </div>
+<script>
+$(function(){
+  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+});
+</script>
+
+
+<!-- Header -->
+<header class="masthead">
+  <div class="textlanding">
+      <h1>Most basic grouped barplot in d3.js</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.yan-holtz.com">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/barplot">grouped barplot</a> with d3.js. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/barplot">barplot section</a> of the gallery. Learn more about the theory of boxplots in <a href="https://www.data-to-viz.com/graph/barplot.html">data-to-viz.com</a>.</p>
+      <br>
+      <a class="btn btn-secondary btn-md text-uppercase" href="../barplot.html">Barplot section</a>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+  </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<div class="container" >
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="result" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>Start by understanding the <a href="barplot_basic.html">basics of barplot</a> in d3.js.</li>
+          <br>
+          <li>Data is available <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv">here</a>. Have a look to it. Note the <u>wide</u> (untidy) format: each group is provided in a specific line, each subgroup in a specific column.</li>
+          <br>
+          <li>The trick here is to build two X scales. The first is called <code>x</code> and is for groups. It is used to build the axis. The second is called <code>xSubgroup</code> and allows to adjust the position for each subgroup in the group.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- ================================================================================= -->
+
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 20, left: 50},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function(data) {
+
+  // List of subgroups = header of the csv files = soil condition here
+  var subgroups = data.columns.slice(1)
+
+  // List of groups = species here = value of the first column called group -> I show them on the X axis
+  var groups = d3.map(data, function(d){return(d.group)}).keys()
+
+  // Add X axis
+  var x = d3.scaleBand()
+      .domain(groups)
+      .range([0, width])
+      .padding([0.2])
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickSize(0));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 40])
+    .range([ height, 0 ]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
+
+  // Another scale for subgroup position?
+  var xSubgroup = d3.scaleBand()
+    .domain(subgroups)
+    .range([0, x.bandwidth()])
+    .padding([0.05])
+
+  // color palette = one color per subgroup
+  var color = d3.scaleOrdinal()
+    .domain(subgroups)
+    .range(['#e41a1c','#377eb8','#4daf4a'])
+
+  // Show the bars
+  svg.append("g")
+    .selectAll("g")
+    // Enter in data = loop group per group
+    .data(data)
+    .enter()
+    .append("g")
+      .attr("transform", function(d) { return "translate(" + x(d.group) + ",0)"; })
+    .selectAll("rect")
+    .data(function(d) { return subgroups.map(function(key) { return {key: key, value: d[key]}; }); })
+    .enter().append("rect")
+      .attr("x", function(d) { return xSubgroup(d.key); })
+      .attr("y", function(d) { return y(d.value); })
+      .attr("width", xSubgroup.bandwidth())
+      .attr("height", function(d) { return height - y(d.value); })
+      .attr("fill", function(d) { return color(d.key); });
+
+})
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('code', 'result')
+myJSParser('codejs', 'result')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('codejs').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('code').addEventListener("input", function() {
+d3.select('#result').html("");
+myHtmlParser('code', 'result');
+myJSParser('codejs', 'result');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center align-self-center">
+        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
+      </div>
+      <div class="col-lg-5">
+        <ul>
+          <li><i>Grouped barplot - </i>by <a href="https://bl.ocks.org/mbostock/3887051">Mike Bostock</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ JAVASCRIPT SECTION ============================ -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/agency.min.js"></script>
+
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+
+<!-- Function to download the content of the div -->
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    var command = document.getElementById('code').innerHTML;
+    command = command.replace(/<\/?span[^>]*>/g,"");
+    a.href = "data:html" + command
+    a.click(); // Trigger a click on the element
+}
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

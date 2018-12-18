@@ -93,7 +93,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This is the <a href="https://www.data-to-viz.com/graph/barplot.html">barplot</a> section of the gallery. If you want to know more about this kind of chart, visit <a href="https://www.data-to-viz.com/graph/barplot.html">data-to-viz.com</a>. If you're looking for a simple way to implement it in d3.js, pick an example below.</p>
+      <p style="max-width: 700px; margin: auto">Welcome to the <a href="https://www.data-to-viz.com/graph/barplot.html">barplot</a> section of the d3 graph gallery. A barplot is used to display the relationship between a <u>numerical</u> and a <u>categorical</u> variable. This section also include <u>stacked</u> barplot and <u>grouped</u> barplot two levels of grouping are shown.</p>
   </div>
 </header>
 
@@ -123,8 +123,8 @@ $(function(){
 
     <div class="mySeryTitle">Step by step</div>
     <hr>
+    <p>Building barplots in d3.js relies on the addition of several <code>rect</code>, one per group in the categorical variable. The <a href="graph/barplot_basic.html">first example</a> below should guide you in this procedure. Note that <a href="https://www.data-to-viz.com/caveat/order_data.html">ordering groups</a> is an important step when building barplots. <a href="graph/barplot_ordered.html">This example</a> explains how to do it.</p>
     <div id="portfolio-items" class="row">
-
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/barplot_basic.html">
           <div class="portfolio-hover">
@@ -164,9 +164,10 @@ $(function(){
     </div>
 
 
-
+    <br><br><br><br>
     <div class="mySeryTitle">Interactive</div>
     <hr>
+    <p>Due to its simplicity, barplot is a very good chart to understand the basic concepts of <a href="interactivity.html">interactivity</a>. Below are many examples illustrating how to deal with <code>transition</code>, <code>buttons</code>, the <code>enter()</code> function and more.</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/barplot_animation_start.html">
@@ -230,8 +231,10 @@ $(function(){
       </div>
     </div>
 
-    <div class="mySeryTitle">Stacked barplot</div>
+    <br><br><br><br>
+    <div class="mySeryTitle">Grouped and Stacked barplot</div>
     <hr>
+    <p>A barplot can also display values for several levels of grouping. Subgroups can be displayed one beside each other, giving a grouped barplot. If subgroups are displayed on top of each other, it is a <a href="graph/barplot_stacked_basicWide.html">stacked barplot</a>.</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="graph/barplot_stacked_basicWide.html">
@@ -243,6 +246,30 @@ $(function(){
             </div>
           </div>
           <img class="img-fluid" src="img/graph/barplot_stacked_basicWide.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/barplot_grouped_basicWide.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Basic grouped barplot</p>
+              <hr>
+              <p class="explanation_portfolio">Most basic grouped barplot. Input data at wide format.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/barplot_grouped_basicWide.png" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="graph/barplot_stacked_percent.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Percent stacked barplot</p>
+              <hr>
+              <p class="explanation_portfolio">Most basic percent stacked barplot. Input data at wide format.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="img/graph/barplot_stacked_percent.png" alt="">
         </a>
       </div>
     </div>
