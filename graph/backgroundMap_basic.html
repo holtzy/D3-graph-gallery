@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -201,7 +201,7 @@ var projection = d3.geoNaturalEarth()
     .translate([width / 2, height / 2])
 
 // Load external data and boot
-d3.json("http://enjalot.github.io/wwsd/data/world/world-110m.geojson", function(data){
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson", function(data){
 
     // Draw the map
     svg.append("g")

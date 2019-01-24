@@ -202,7 +202,7 @@ var projection = d3.geoMercator()
     .translate([ width/2, height/2 ])
 
 // Load external data and boot
-d3.json("http://enjalot.github.io/wwsd/data/world/world-110m.geojson", function(data){
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson", function(data){
 
     // Filter data
     data.features = data.features.filter(function(d){console.log(d.properties.name) ; return d.properties.name=="France"})
