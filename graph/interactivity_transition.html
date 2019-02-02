@@ -116,7 +116,7 @@
     <!-- TABLE of CONTENT -->
     <div>
         <nav class="col-sm-3 col-4" id="myScrollspy" >
-          <ul class="nav nav-pills flex-column" style="top: 30%">
+          <ul class="nav nav-pills flex-column" style="top: 18%">
             <li class="nav-item">
               <i class="nav-link" style="opacity: 0.5">&rarr; without data</i>
             </li>
@@ -144,13 +144,13 @@
               <a class="nav-link" href="#data1">Most basic</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#data2">entries are different</a>
+              <a class="nav-link" href="#data2">New data = more entries</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#data3">using index</a>
+              <a class="nav-link" href="#data3">New data = less entries</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#bdata4">more</a>
+              <a class="nav-link" href="#data4">Using index</a>
             </li>
             <br>
 
@@ -158,7 +158,7 @@
               <i class="nav-link" style="opacity: 0.5">&rarr; application</i>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#button">simple button</a>
+              <a class="nav-link" href="#portfolio">15 examples</a>
             </li>
           </ul>
         </nav>
@@ -949,19 +949,19 @@ myJSParser('js-data1', 'res-data1');
 
 
 
-<!-- ==================== DATA CHANGE SAME NUMBER OF ENTRY ==================== -->
+<!-- ==================== NEW DATASET = ONE MORE ENTRY ==================== -->
 
-<section id="data1" class="bg">
+<section id="data2" class="bg">
 <div class="container" >
-  <h1>Change dataset with same index</h1>
+  <h1>New dataset has more entries</h1>
   <hr>
-  <p>Consider a dataset composed by 4 values. We map the X position of 4 circles to these values. We then switch to a second dataset that has exactly the same features.</p>
+  <p>This example is almost the same as the previous one. However, there is now one more circle in the second list than in the first list.</p>
   <div class="row">
 
 <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
   <div class="col-lg-5 .align-middle">
     <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-data1" ></div>
+      <div class="bg-light" id="res-data2" ></div>
       <br>
       <div>
         <h5>Steps:</h5>
@@ -988,17 +988,17 @@ myJSParser('js-data1', 'res-data1');
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-data1" contenteditable="true"><xmp><!DOCTYPE html>
+<pre class="language-html"><code id="html-data2" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
 <script src="http://d3js.org/d3.v4.js"></script>
 
-<!-- Create a data1 to trigger the transition -->
-<button onclick="triggerTransition()">Trigger transition</button>
+<!-- Create a data2 to trigger the transition -->
+<button onclick="triggerTransitionData2()">Trigger transition</button>
 
 <!-- Create a div with just a rect in svg -->
-<svg id="areaData1" width="960px" height="200px"></svg>
+<svg id="areadata2" width="960px" height="200px"></svg>
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -1006,17 +1006,17 @@ myJSParser('js-data1', 'res-data1');
 
 
 <!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-data1" contenteditable="true"><xmp><script>
+<pre class="language-js"><code id="js-data2" contenteditable="true"><xmp><script>
 
 // create 2 datasets:
-var data1 = [50, 100, 200, 300]
+var data1 = [50, 100, 200]
 var data2 = [70, 90, 230, 390]
 
 // Select the SVG area
-var svg = d3.select("#areaData1")
+var Svg = d3.select("#areadata2")
 
 // Add circles at the top
-svg
+Svg
   .selectAll("mycircles")
   .data(data1)
   .enter()
@@ -1026,14 +1026,21 @@ svg
     .attr("r", 10)
 
 // A function that switch to the second dataset:
-function triggerTransition(){
-  svg
-    .selectAll("circle")
+function triggerTransitionData2(){
+
+  // Create the u variable
+  var u = Svg.selectAll("circle")
     .data(data2)
-    .transition()
-    .delay(100)
-    .duration(2000)
-    .attr("cx", function(d){return d} )
+
+  u
+    .enter()
+    .append("circle") // Add a new circle for each new elements
+    .merge(u) // get the already existing elements as well
+    .transition() // and apply changes to all of them
+    .duration(1000)
+      .attr("cx", function(d){return d} )
+      .attr("cy", 100)
+      .attr("r", 10)
 }
 
 </script></xmp></code></pre>
@@ -1042,27 +1049,24 @@ function triggerTransition(){
 
 
 
-
-
-
 <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
 <script>
 // At the beginning, I read the html and JS fragments
-myHtmlParser('html-data1', 'res-data1')
-myJSParser('js-data1', 'res-data1')
+myHtmlParser('html-data2', 'res-data2')
+myJSParser('js-data2', 'res-data2')
 
 // If the user change the JS fragment, I run it again:
-document.getElementById('js-data1').addEventListener("input", function() {
-d3.select('#res-data1').html("");
-myHtmlParser('html-data1', 'res-data1');
-myJSParser('js-data1', 'res-data1');
+document.getElementById('js-data2').addEventListener("input", function() {
+d3.select('#res-data2').html("");
+myHtmlParser('html-data2', 'res-data2');
+myJSParser('js-data2', 'res-data2');
 })
 
 // If the user change the HTML fragment, I run it again:
-document.getElementById('html-data1').addEventListener("input", function() {
-d3.select('#res-data1').html("");
-myHtmlParser('html-data1', 'res-data1');
-myJSParser('js-data1', 'res-data1');
+document.getElementById('html-data2').addEventListener("input", function() {
+d3.select('#res-data2').html("");
+myHtmlParser('html-data2', 'res-data2');
+myJSParser('js-data2', 'res-data2');
 })
 </script>
 
@@ -1073,6 +1077,341 @@ myJSParser('js-data1', 'res-data1');
 </div>
 </section>
 <br>
+
+
+
+
+
+
+
+
+<!-- ==================== NEW DATASET = ONE LESS ENTRY ==================== -->
+
+<section id="data3" class="bg">
+<div class="container" >
+  <h1>New dataset has less entries</h1>
+  <hr>
+  <p>This example is almost the same as the previous one. However, there is now one less circle in the second list than in the first list.</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-data3" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>This is the simplest example: both datasets have the same number of entry. We also consider they are ordered the same way, so position of circle 1 is always the first in the list.</li>
+          <br>
+          <li>First step: creating the circles. <code>enter()</code> allows to start a loop on every elements of <code>data</code>. <code>append()</code> is used to add a circle at each iteration.</li>
+          <br>
+          <li>Second step: bind the circles to a new dataset using <code>data()</code>. Here the number of entry is the same: no need to <code>enter()</code> to add new circle or to <code>exit()</code> to delete circles</li>
+          <br>
+          <li><u>Try</u>: add an element to the second list: this element won't appear.</li>
+          <br>
+          <li><u>Try</u>: remove the last element of the second list: the 4th circle won't disappear during the transition.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-data3" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a data3 to trigger the transition -->
+<button onclick="triggerTransitionData3()">Trigger transition</button>
+
+<!-- Create a div with just a rect in svg -->
+<svg id="areadata3" width="960px" height="200px"></svg>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-data3" contenteditable="true"><xmp><script>
+
+// create 2 datasets:
+var data1 = [50, 100, 200,300]
+var data2 = [70, 90, 230]
+
+// Select the SVG area
+var SVG = d3.select("#areadata3")
+
+// Add circles at the top
+SVG
+  .selectAll("mycircles")
+  .data(data1)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){return d} )
+    .attr("cy", 100)
+    .attr("r", 10)
+
+// A function that switch to the second dataset:
+function triggerTransitionData3(){
+
+  // Create the u variable
+  var u = SVG.selectAll("circle")
+    .data(data2)
+
+  u
+    .transition() // and apply changes to all of them
+    .duration(1000)
+      .attr("cx", function(d){return d} )
+      .attr("cy", 100)
+      .attr("r", 10)
+
+  // If less group in the new dataset, I delete the ones not in use anymore
+  u
+    .exit()
+    .transition() // and apply changes to all of them
+    .duration(1000)
+    .style("opacity", 0)
+    .remove()
+}
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-data3', 'res-data3')
+myJSParser('js-data3', 'res-data3')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-data3').addEventListener("input", function() {
+d3.select('#res-data3').html("");
+myHtmlParser('html-data3', 'res-data3');
+myJSParser('js-data3', 'res-data3');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-data3').addEventListener("input", function() {
+d3.select('#res-data3').html("");
+myHtmlParser('html-data3', 'res-data3');
+myJSParser('js-data3', 'res-data3');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ======================== PORTFOLIO SECTION ============================ -->
+<!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+<section class="bg" id="portfolio" style="padding-top: 10px">
+  <div class="container">
+    <h1>Application on real charts</h1>
+    <hr>
+    <div id="portfolio-items" class="row">
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="barplot_animation_start.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Animation at loading</p>
+              <hr>
+              <p class="explanation_portfolio">A couple of lines allow to add an animation effect when the plot is loading: bars start from 0 and reach their real value.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/barplot_animation.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="barplot_button_color.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Change color with a button</p>
+              <hr>
+              <p class="explanation_portfolio">Clicking on a button triggers a function that changes the style of all rectangles</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/barplot_button_color.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="barplot_button_data_simple.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Change input data: simple version</p>
+              <hr>
+              <p class="explanation_portfolio">How to go from one dataset to another with smooth transition.<br><br>Works only with same number of group and same Y range. (X and Y axis are not updated)</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/barplot_button_data_simple.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="barplot_button_data_hard.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Change input data: upgraded version</p>
+              <hr>
+              <p class="explanation_portfolio">How to go from one dataset to another with smooth transition. <u>Upgraded</u> version: X and Y axis axis are updated: data 1 and 2 can have different # of group.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/barplot_button_data_hard.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="barplot_button_data_csv.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Change input data: <code>.csv</code> input version</p>
+              <hr>
+              <p class="explanation_portfolio">Same as precedent plot, but use a </code>.csv</code> format as input file.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/barplot_button_data_csv.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="density_slider.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Slider to control bandwidth</p>
+              <hr>
+              <p class="explanation_portfolio">Slider update the bandwidth used for kernel density estimation with a smooth transition.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/density_slider.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="density_filter.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Dropdown to filter data</p>
+              <hr>
+              <p class="explanation_portfolio">Dropdown allows to filter data, keeping one group or the other.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/density_filter.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="histogram_binSize.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Button to control bin size</p>
+              <hr>
+              <p class="explanation_portfolio">Add a button that controls bin size. Good example to learn how to create an update function that also update an axis.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/histogram_binSize.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="scatter_buttonXlim.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Update X axis limits</p>
+              <hr>
+              <p class="explanation_portfolio">A button control the X axis upper limit and trigger a smooth transition to the new limit</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/scatter_buttonXlim.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="connectedscatter_legend.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Interactive legend</p>
+              <hr>
+              <p class="explanation_portfolio">Legend that allows to make group markers appear or disappear.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/connectedscatter_legend.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="connectedscatter_select.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>Dropdown to select group</p>
+              <hr>
+              <p class="explanation_portfolio">A dropdown button allows to switch from one group to another with smooth transition.<br><br>Note: each group is in a different column in input</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/connectedscatter_select.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="line_change_data.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>1/ Transition between<br>input data</p>
+              <hr>
+              <p class="explanation_portfolio">Add a button that allows to go from one dataset to another with a smooth transition. Usefull to understand how to build a <code>update()</code> function.</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/line_change_data.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="line_select.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>2/ Transition between<br>column of input</p>
+              <hr>
+              <p class="explanation_portfolio">Dropdown button controls which columns of the dataset is displayed on the chart.<br><br>Wide format</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/line_select.gif" alt="">
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="line_filter.html">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <p>3/ Transition between<br>value of a column</p>
+              <hr>
+              <p class="explanation_portfolio">Dropdown button controls which value of a column is displayed on the chart.<br><br>Long format</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="../img/graph/line_filter.gif" alt="">
+        </a>
+      </div>
+    </div>
+ </div>
+</section>
+
+
+<!-- ======================================================================= -->
+
 
 
 
