@@ -141,7 +141,16 @@
               <i class="nav-link" style="opacity: 0.5">&rarr; with data</i>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#button">simple button</a>
+              <a class="nav-link" href="#data1">Most basic</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#data2">entries are different</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#data3">using index</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#bdata4">more</a>
             </li>
             <br>
 
@@ -793,6 +802,277 @@ myJSParser('js-axis', 'res-axis');
 
 
 
+<!-- ==================== DATA CHANGE SAME NUMBER OF ENTRY ==================== -->
+
+<section id="data1" class="bg">
+<div class="container" >
+  <h1>Change dataset with same index</h1>
+  <hr>
+  <p>Consider a dataset composed by 4 values. We map the X position of 4 circles to these values. We then switch to a second dataset that has exactly the same features.</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-data1" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>This is the simplest example: both datasets have the same number of entry. We also consider they are ordered the same way, so position of circle 1 is always the first in the list.</li>
+          <br>
+          <li>First step: creating the circles. <code>enter()</code> allows to start a loop on every elements of <code>data</code>. <code>append()</code> is used to add a circle at each iteration.</li>
+          <br>
+          <li>Second step: bind the circles to a new dataset using <code>data()</code>. Here the number of entry is the same: no need to <code>enter()</code> to add new circle or to <code>exit()</code> to delete circles</li>
+          <br>
+          <li><u>Try</u>: add an element to the second list: this element won't appear.</li>
+          <br>
+          <li><u>Try</u>: remove the last element of the second list: the 4th circle won't disappear during the transition.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-data1" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a data1 to trigger the transition -->
+<button onclick="triggerTransition()">Trigger transition</button>
+
+<!-- Create a div with just a rect in svg -->
+<svg id="areaData1" width="960px" height="200px"></svg>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-data1" contenteditable="true"><xmp><script>
+
+// create 2 datasets:
+var data1 = [50, 100, 200, 300]
+var data2 = [70, 90, 230, 390]
+
+// Select the SVG area
+var svg = d3.select("#areaData1")
+
+// Add circles at the top
+svg
+  .selectAll("mycircles")
+  .data(data1)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){return d} )
+    .attr("cy", 100)
+    .attr("r", 10)
+
+// A function that switch to the second dataset:
+function triggerTransition(){
+  svg
+    .selectAll("circle")
+    .data(data2)
+    .transition()
+    .delay(100)
+    .duration(2000)
+    .attr("cx", function(d){return d} )
+}
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-data1', 'res-data1')
+myJSParser('js-data1', 'res-data1')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-data1').addEventListener("input", function() {
+d3.select('#res-data1').html("");
+myHtmlParser('html-data1', 'res-data1');
+myJSParser('js-data1', 'res-data1');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-data1').addEventListener("input", function() {
+d3.select('#res-data1').html("");
+myHtmlParser('html-data1', 'res-data1');
+myJSParser('js-data1', 'res-data1');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== DATA CHANGE SAME NUMBER OF ENTRY ==================== -->
+
+<section id="data1" class="bg">
+<div class="container" >
+  <h1>Change dataset with same index</h1>
+  <hr>
+  <p>Consider a dataset composed by 4 values. We map the X position of 4 circles to these values. We then switch to a second dataset that has exactly the same features.</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-data1" ></div>
+      <br>
+      <div>
+        <h5>Steps:</h5>
+        <ul>
+          <br>
+          <li>This is the simplest example: both datasets have the same number of entry. We also consider they are ordered the same way, so position of circle 1 is always the first in the list.</li>
+          <br>
+          <li>First step: creating the circles. <code>enter()</code> allows to start a loop on every elements of <code>data</code>. <code>append()</code> is used to add a circle at each iteration.</li>
+          <br>
+          <li>Second step: bind the circles to a new dataset using <code>data()</code>. Here the number of entry is the same: no need to <code>enter()</code> to add new circle or to <code>exit()</code> to delete circles</li>
+          <br>
+          <li><u>Try</u>: add an element to the second list: this element won't appear.</li>
+          <br>
+          <li><u>Try</u>: remove the last element of the second list: the 4th circle won't disappear during the transition.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-data1" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create a data1 to trigger the transition -->
+<button onclick="triggerTransition()">Trigger transition</button>
+
+<!-- Create a div with just a rect in svg -->
+<svg id="areaData1" width="960px" height="200px"></svg>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-data1" contenteditable="true"><xmp><script>
+
+// create 2 datasets:
+var data1 = [50, 100, 200, 300]
+var data2 = [70, 90, 230, 390]
+
+// Select the SVG area
+var svg = d3.select("#areaData1")
+
+// Add circles at the top
+svg
+  .selectAll("mycircles")
+  .data(data1)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){return d} )
+    .attr("cy", 100)
+    .attr("r", 10)
+
+// A function that switch to the second dataset:
+function triggerTransition(){
+  svg
+    .selectAll("circle")
+    .data(data2)
+    .transition()
+    .delay(100)
+    .duration(2000)
+    .attr("cx", function(d){return d} )
+}
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-data1', 'res-data1')
+myJSParser('js-data1', 'res-data1')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-data1').addEventListener("input", function() {
+d3.select('#res-data1').html("");
+myHtmlParser('html-data1', 'res-data1');
+myJSParser('js-data1', 'res-data1');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-data1').addEventListener("input", function() {
+d3.select('#res-data1').html("");
+myHtmlParser('html-data1', 'res-data1');
+myJSParser('js-data1', 'res-data1');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
 
 
 
