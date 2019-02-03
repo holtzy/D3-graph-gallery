@@ -118,6 +118,9 @@
               <a class="nav-link" href="#math">Mathematics</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="#list">Lists and Arrays</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#filtering">Filtering</a>
             </li>
             <li class="nav-item">
@@ -171,6 +174,95 @@ d3.min(data, function(d) { return +d.value; })])
 
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== MATH ==================== -->
+
+<section id="list">
+  <div class="container" >
+
+    <h1>Object and Arrays</h1>
+    <hr>
+
+
+<h6>JavaScript <code>objects</code> are containers for named values called properties or methods. We can call any element of the object with its <u>name</u>:</h6>
+<pre class="language-js">
+var myObject = {name:"Nicolas", sex:"Male", age:34}
+myObject.name
+myObject["name"]
+</pre>
+<br>
+
+
+<h6>Create an <code>array</code> of 5 numbers</h6>
+<p>An array is a special variable, which can hold more than one value at a time. Arrays use numbered indexes.</p>
+<pre class="language-js">
+var myArray = [12, 34, 23, 12, 89]
+</pre>
+<br>
+
+<h6>Access the first element in the array.</h6>
+<pre class="language-js">
+myArray[0]
+</pre>
+<br>
+
+<h6>Access the last element in the array.</h6>
+<pre class="language-js">
+myArray[myArray.length - 1]
+</pre>
+<br>
+
+<h6>Remove last element of the array. Add a new element a the end.</h6>
+<pre class="language-js">
+myArray.pop()
+myArray.push(45)
+</pre>
+<br>
+
+<h6>What is the index of the element '34' in the array?.</h6>
+<pre class="language-js">
+myArray.indexOf(34)
+</pre>
+<br>
+
+<h6>Remove elements that are provided in a second array:</h6>
+<pre class="language-js">
+var myArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+var toRemove = ['b', 'c', 'g'];
+filteredArray = myArray.filter( function( el ) {
+  return !toRemove.includes( el );
+} );
+</pre>
+<br>
+
+<h6>Keep only elements that are provided in a second array:</h6>
+<pre class="language-js">
+var myArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+var tokeep = ['b', 'c', 'g', 'o', 'z'];
+filteredArray = myArray.filter( function( el ) {
+  return tokeep.includes( el );
+} );
+</pre>
+<br>
+
+<u>Note</u>: an array can be composed by several objects!
+  </div>
+</section>
+
+
+
 
 
 
