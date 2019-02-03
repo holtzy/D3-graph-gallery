@@ -102,7 +102,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to add <u>buttons</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
+          <p style="max-width: 700px; margin: auto">This document provides information on how to add <u>buttons</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
       </div>
     </header>
 
@@ -133,7 +133,7 @@
               <a class="nav-link" href="#buildWithD3">Build buttons with d3</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#buttonStyle">Button style with css</a>
+              <a class="nav-link" href="#buttonStyle">Button style</a>
             </li>
             <br>
             <li class="nav-item">
@@ -177,7 +177,7 @@
 
     <h1>Button types offered in <code>HTML</code></h1>
     <hr>
-    <p>Buttons are natively offered by the <code>html</code> language. Buttons are built using the <code>input</code> tag. Their type is controled by the <code>type</code> attribute. Here is an overview of the main button type:.</p>
+    <p>Buttons are natively offered by the <code>html</code> language, thanks to the <code>input</code> tag. Their type is controled by the <code>type</code> attribute. Here is an overview of the main button types. Following code snippets <u>only create</u> buttons. We'll see later how to use d3.js to actually make them do something.</p>
 
     <div class="row">
 
@@ -188,7 +188,7 @@
         <pre class="language-html"><code id="code-allType" contenteditable="true"><xmp><!-- Clickable button -->
 <button type="button">Click Me!</button>
 
-<!-- Radio button -->
+<!-- Radio button: one item selected only -->
 <br><br><br>
 <div>
   <input type="radio" name="gender" value="male"> Male<br>
@@ -200,7 +200,7 @@
 <br><br><br>
 <input type="text" name="usrname" value="initial value">
 
-<!-- Check box. Note: very close from radio button, but several options can be checked. Radio button = only one. -->
+<!-- Check box: Selection of several item is possible -->
 <br><br><br>
 <div>
   <input type="checkbox" name="myCheckBox" checked>
@@ -280,9 +280,11 @@ document.getElementById('code-allType').addEventListener("input", function() {
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>Here, the button is created in html, and a <code>onclick</code> attribute is added.</li>
+          <li>Here, the button is created in <code>html</code>, and an <code>onclick</code> attribute is added.</li>
           <br>
-          <li>Note that othe method are available: <code>onchange</code>, <code>onmouseover</code>, and more. See more <a href="https://www.w3schools.com/js/js_htmldom_events.asp">here</a></li>
+          <li>Thus, a click will trigger the <code>changeColor()</code> function.</li>
+          <br>
+          <li><code>onclick</code> is not the only method, try also <code>onchange</code>, <code>onmouseover</code>, and more. See more <a href="https://www.w3schools.com/js/js_htmldom_events.asp">here</a></li>
         </ul>
       </div>
     </div>
@@ -396,11 +398,11 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>Difference between d3.select("#button").onclick = myfunction; and d3.select("#button").on("click", myfunction) ?</li>
+          <li>Here the button is created in <code>html</code>, but is made active thanks to <code>javascript</code>.</li>
           <br>
-          <li>Note that here we </li>
+          <li>The button is selected thanks to this <code>id</code> and an event listener is setup: <code>.on("input", changeSize )</code>. Each type the input of the button changes, the <code>changeSize</code> function is triggered.</li>
           <br>
-          <li>The handler is always in the DOM property: the HTML-attribute is just one of the ways to initialize it.</li>
+          <li>The event listener syntax is different depending on the button type. Use <code>input</code> to listen to a numeric input button. But listen to <code>change</code> for a dropdown button. This is a bit tricky and a small example of each type is provided in the application part of this document.</li>
         </ul>
       </div>
     </div>
@@ -562,9 +564,6 @@ var allGroup = ["yellow", "blue", "red", "green", "purple", "black"]
 // Initialize the button
 var dropdownButton = d3.select("#dataviz_builtWithD3")
   .append('select')
-  .attr('class', 'btn btn-primary')
-  .style('border-width', '1px')
-  .style('border-color', 'blue')
 
 // add the options to the button
 dropdownButton // Add a button
@@ -655,84 +654,13 @@ myJSParser('js-builtWithD3', 'res-builtWithD3');
 
 
 
-<style>
-/* The buttonGroup */
-.buttonGroup {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.buttonGroup input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-}
-
-/* On mouse-over, add a grey background color */
-.buttonGroup:hover input ~ .checkmark {
-    background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.buttonGroup input:checked ~ .checkmark {
-    background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-.buttonGroup input:checked ~ .checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.buttonGroup .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-</style>
 
 
-
-
-<!-- ==================== BUTTON STYLE ==================== -->
+<!-- ==================== BUTTON STYLE: BOOTSTRAP ==================== -->
 
 <section id="buttonStyle" class="bg">
 <div class="container" >
-  <h1>Change button style with <code>CSS</code></h1>
+  <h1>Change button style with <code>Bootstrap</code></h1>
   <hr>
   <div class="row">
 
@@ -745,13 +673,20 @@ myJSParser('js-builtWithD3', 'res-builtWithD3');
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>Using <code>css</code>, it is actually not possible to change native buttons style.</li>
+          <li>Changing button style using pure <code>css</code> is a real pain as far as I know.</li>
           <br>
-          <li>Thus, the trick is to hide the button, and build a better one of top of it.</li>
+          <li>There are workaround: hiding the button and building a better one of top of it as described <a href="https://www.w3schools.com/howto/howto_css_custom_checkbox.asp">here</a>.</li>
           <br>
-          <li>More explanation <a href="https://www.w3schools.com/howto/howto_css_custom_checkbox.asp">here</a>.</li>
+          <li>I personnaly prefer to rely on the <code>bootstrap</code> framework, that offers specific ready-to-go class for good looking buttons. You need to load it in your document like you load d3.</li>
           <br>
-          <li>Many examples of custom button <a href="https://freefrontend.com/css-checkboxes/">here</a>.</li>
+          <li>Main useful class:
+            <ul>
+              <li><code>btn</code> transforms any input in a button</li>
+              <li><code>btn-primary</code> and <code>btn-secondary</code></li>
+              <li><code>active</code></li>
+              <li><code>btn</code></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -767,92 +702,59 @@ myJSParser('js-builtWithD3', 'res-builtWithD3');
 <pre class="language-html"><code id="html-buttonStyle" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js -->
-<script src="http://d3js.org/d3.v4.js"></script>
+<!-- Load bootstrap -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Create a div where the circle will take place -->
+
+<!-- Simple button -->
 <br><br>
-<h5>Custom Checkboxes</h5>
-<label class="buttonGroup">One
-  <input type="checkbox" checked="checked">
-  <span class="checkmark"></span>
-</label>
-<label class="buttonGroup">Two
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+<h6>Basic button</h6>
+<a class="btn btn-secondary" href="https://github.com/holtzy/data_to_viz">link to something</a>
+
+<!-- Radio button: one choice only -->
 <br><br>
+<h6>Radio button</h6>
+<form id="form" class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-secondary active">
+    <input type="radio" name="controlHeatmapType" value="MRR" checked>Option 1<br>
+  </label>
+  <label class="btn btn-secondary">
+    <input type="radio" name="controlHeatmapType" value="LYL">Option 2<br>
+  </label>
+</form>
 
-<!-- button style -->
-<style>
-/* The buttonGroup */
-.buttonGroup {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+<!-- Text input -->
+<br><br>
+<h6>Text input</h6>
+<input class="btn" type="text" name="usrname" value="initial value">
 
-/* Hide the browser's default checkbox */
-.buttonGroup input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
+<!-- Check box -->
+<br><br>
+<h6>Checkbox button</h6>
+<form id="form" class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-secondary active">
+    <input type="checkbox" name="myCheckBox" value="banana" checked>Banana<br>
+  </label>
+  <label class="btn btn-secondary">
+    <input type="checkbox" name="myCheckBox" value="orange">Orange<br>
+  </label>
+  <label class="btn btn-secondary active">
+    <input type="checkbox" name="myCheckBox" value="lemon">Lemon<br>
+  </label>
+  <label class="btn btn-secondary">
+    <input type="checkbox" name="myCheckBox" value="apple">Apple<br>
+  </label>
+</form>
 
-/* Create a custom checkbox */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-}
+<!-- Number input -->
+<br><br>
+<h6>Number input</h6>
+<input class="btn btn-secondary" type="number" name="usrname" value=13>
 
-/* On mouse-over, add a grey background color */
-.buttonGroup:hover input ~ .checkmark {
-    background-color: #ccc;
-}
+<!-- Slider-->
 
-/* When the checkbox is checked, add a blue background */
-.buttonGroup input:checked ~ .checkmark {
-    background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-.buttonGroup input:checked ~ .checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.buttonGroup .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-</style>
+<!-- Dropdown -->
 
 </xmp></code></pre>
 <!-- ==================================== -->
@@ -861,22 +763,6 @@ myJSParser('js-builtWithD3', 'res-builtWithD3');
 
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="js-buttonStyle" contenteditable="true"><xmp><script>
-
-// // Create data = list of groups
-// var allGroup = ["yellow", "blue", "red", "green", "purple", "black"]
-//
-// // Initialize the button
-// var dropdownButton = d3.select("#dataviz_buttonStyle")
-//   .append('select')
-//
-// // add the options to the button
-// dropdownButton // Add a button
-//   .selectAll('myOptions') // Next 4 lines add 6 options = 6 colors
-//  	.data(allGroup)
-//   .enter()
-// 	.append('option')
-//   .text(function (d) { return d; }) // text showed in the menu
-//   .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -986,16 +872,113 @@ myJSParser('js-buttonStyle', 'res-buttonStyle');
 
 
 <!-- ======================== Radio ============================ -->
-<section class="bg" id="radio" style="margin: 30px; padding: 0px">
-  <div class="container" id="portfolio">
-    <h1>Radio button</h1>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <img style="width:100px; height: 100px;" src="../img/other/workinprogress.png"></img>
-      <br><br><br><br><br><br>
+
+<section class="bg" id="radio">
+<div class="container" >
+  <h1>Radio buttons</h1>
+  <hr>
+  <p>This example shows how to create a radio button and an event listener to it. This event listener is able to figure out when the radio button state changes. Then, the trickiest part is to recover the current value of the radio button.</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-delay" ></div>
     </div>
   </div>
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-delay" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create the radio button -->
+<div id="colorButton">
+  <input type="radio" name="colorButton" value="red" checked> Red<br>
+  <input type="radio" name="colorButton" value="blue"> Blue<br>
+  <input type="radio" name="colorButton" value="green"> Green<br>
+</div>
+
+<!-- Create a svg area-->
+<svg id="dataviz_delay" width="400px" height="200px"></svg>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-delay" contenteditable="true"><xmp><script>
+
+// Position of the circles on the X axis
+var position = [50, 150, 250, 350]
+
+// Add circles at the top
+var theCircles = d3.select("#dataviz_delay")
+  .selectAll("mycircles")
+  .data(position)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){return d} )
+    .attr("cy", 100)
+    .attr("r", 10)
+
+// Function that change a color
+function changeColor() {
+  var radioValue = $("input[name='colorButton']:active");
+  console.log(radioValue)
+  theCircles
+    .transition()
+    .style("fill", radioValue)
+}
+
+// Event listener to the radio button
+d3.select("#colorButton").on("change", changeColor )
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-delay', 'res-delay')
+myJSParser('js-delay', 'res-delay')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-delay').addEventListener("input", function() {
+d3.select('#res-delay').html("");
+myHtmlParser('html-delay', 'res-delay');
+myJSParser('js-delay', 'res-delay');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-delay').addEventListener("input", function() {
+d3.select('#res-delay').html("");
+myHtmlParser('html-delay', 'res-delay');
+myJSParser('js-delay', 'res-delay');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
 </section>
+<br>
+
 
 
 
@@ -1022,26 +1005,135 @@ myJSParser('js-buttonStyle', 'res-buttonStyle');
 
 
 
-<!-- ======================== Slider============================ -->
-<section class="bg" id="slider" style="margin: 30px; padding: 0px">
-  <div class="container" id="portfolio">
-    <h1>Slider</h1>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/density_slider.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Slider to control bandwidth</p>
-              <hr>
-              <p class="explanation_portfolio">Slider update the bandwidth used for kernel density estimation with a smooth transition.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/density_slider.gif" alt="">
-        </a>
-      </div>
+
+
+
+
+<!-- ======================== Radio ============================ -->
+
+<section class="bg" id="slider">
+<div class="container" >
+  <h1>Sliders</h1>
+  <hr>
+  <p>This example shows how to create a <u>slider</u> that controls circle size. An <u>event listener</u> constantly checks if the slider value is modified thanks to an <code>on("change",..)</code> statement. Recovering the slider value is simple using <code>this.value</code>.</p>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-5 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg-light" id="res-mySlider" ></div>
+    </div>
   </div>
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-7 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-mySlider" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Create the radio button -->
+<input type="range" name="mySlider" id=mySlider min="2" max="40" value="10">
+
+<!-- Create a svg area-->
+<svg id="dataviz_mySlider" width="400px" height="200px"></svg>
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-mySlider" contenteditable="true"><xmp><script>
+
+// Position of the circles on the X axis
+var position = [50, 150, 250, 350]
+
+// Add circles at the top
+var theCircles = d3.select("#dataviz_mySlider")
+  .selectAll("mycircles")
+  .data(position)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){return d} )
+    .attr("cy", 100)
+    .attr("r", 10)
+
+// Function that change a color
+function changeSize(size) {
+  theCircles
+    .attr('r',size)
+}
+
+// Listen to the slider?
+d3.select("#mySlider").on("change", function(d){
+  selectedValue = this.value
+  changeSize(selectedValue)
+})
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-mySlider', 'res-mySlider')
+myJSParser('js-mySlider', 'res-mySlider')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-mySlider').addEventListener("input", function() {
+d3.select('#res-mySlider').html("");
+myHtmlParser('html-mySlider', 'res-mySlider');
+myJSParser('js-mySlider', 'res-mySlider');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-mySlider').addEventListener("input", function() {
+d3.select('#res-mySlider').html("");
+myHtmlParser('html-mySlider', 'res-mySlider');
+myJSParser('js-mySlider', 'res-mySlider');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+
+<div class="container" id="portfolio">
+  <br><br>
+  <p>Other examples involving sliders</p>
+  <div id="portfolio-items" class="row">
+    <div class="col-md-4 col-sm-6 portfolio-item">
+      <a class="portfolio-link" href="../graph/density_slider.html">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <p>Slider to control bandwidth</p>
+            <hr>
+            <p class="explanation_portfolio">Slider update the bandwidth used for kernel density estimation with a smooth transition.</p>
+          </div>
+        </div>
+        <img class="img-fluid" src="../img/graph/density_slider.gif" alt="">
+      </a>
+    </div>
+  </div>
+</div>
+
 </section>
+
+
+
 
 
 
