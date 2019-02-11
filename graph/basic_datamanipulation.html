@@ -360,6 +360,16 @@ data.sort(function(a,b) { return d3.ascending(a.name1, b.name1) ||  (a.value - b
 </pre>
 <br>
 
+<h6>Sorting on 1 categoric columns called <code>name1</code> according to the order provided in the variable <code>targetOrder</code>.</h6>
+<pre class="language-js">
+data.sort(function(a,b) {
+    return targetOrder.indexOf( a.name1 ) > targetOrder.indexOf( b.name1 );
+});
+</pre>
+<br>
+
+
+
   </div>
 </section>
 
@@ -617,6 +627,9 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
 })
 </pre>
 <br>
+
+<h6>Get the key of each element of stackedData ???</h6>
+
 
   </div>
 </section>
