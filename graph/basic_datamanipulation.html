@@ -294,6 +294,12 @@ data.filter(function(d){ return d.name != "toto" })
 </pre>
 <br>
 
+<h6>Keep rows where the variable <code>name</code> is <code>toto</code> OR <code>tutu</code></h6>
+<pre class="language-js">
+data.filter(function(d){ return  (d.name == "toto" || d.name == "tutu") })
+</pre>
+<br>
+
 <h6>Keep rows where the variable <code>name</code> has a value included in the list <code>tokeep</code></h6>
 <pre class="language-js">
 tokeep = ["option1", "option2", "option3"]
