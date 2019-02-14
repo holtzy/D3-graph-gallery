@@ -140,13 +140,13 @@ $(function(){
         <h5>Steps:</h5>
         <ul>
           <br>
-          <li>The Html part of the code just creates a <code>div</code> that will be modified by d3 later on.</li>
+          <li>Very similar to a basic <a href="line_basic.html">line chart</a>.</li>
           <br>
-          <li>The first part of the javascript code set a <code>svg</code> area. It specify the chart size and its margin. <a href="">Read more</a>.</li>
+          <li>The dataset provides the upper and lower bounds of the confidence interval. Column names are <code>CI_right</code> and <code>CI_left</code>.</li>
           <br>
-          <li>Data show the evolution of bitcoin price. <a href="https://www.data-to-viz.com/story/TwoNumOrdered.html">read more</a>.</li>
+          <li>It is thus possible to use <code>d3.area()</code> to add the confidence interval around the line.</li>
           <br>
-          <li>Line is drawn using a <code>path</code>, and using the <code>d3.line</code> utility.</li>
+          <li>Note: it is a good practice to build the confidence interval before the line, to avoid overlapping issues.</li>
         </ul>
       </div>
     </div>
