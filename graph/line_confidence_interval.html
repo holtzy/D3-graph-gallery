@@ -197,19 +197,11 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
-
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
-  },
-
-  // Now I can use this dataset:
-  function(data) {
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_IC.csv",function(data) {
 
     // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
+    var x = d3.scaleLinear()
+      .domain([1,100])
       .range([ 0, width ]);
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -217,20 +209,32 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.value; })])
+      .domain([0, 13])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
 
-    // Add the line
+    // Show confidence interval
     svg.append("path")
+      .datum(data)
+      .attr("fill", "#cce5df")
+      .attr("stroke", "none")
+      .attr("d", d3.area()
+        .x(function(d) { return x(d.x) })
+        .y0(function(d) { return y(d.CI_right) })
+        .y1(function(d) { return y(d.CI_left) })
+        )
+
+    // Add the line
+    svg
+      .append("path")
       .datum(data)
       .attr("fill", "none")
       .attr("stroke", "steelblue")
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
+        .x(function(d) { return x(d.x) })
+        .y(function(d) { return y(d.y) })
         )
 
 })
