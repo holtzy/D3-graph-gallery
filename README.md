@@ -1,12 +1,7 @@
 
-Overview
+The d3.js graph gallery
 -----
-I'm currently in the process of learning D3.js, and it is haaard.
 
-Here is a collection of *simple* graphics made with D3. 
+This repo provides the source code of the d3.js gallery:
 
-This repo is unorganized, it is just personal notes.
-
-https://holtzy.github.io/D3-graph-gallery/
-
-
+https://www.d3-graph-gallery.com
