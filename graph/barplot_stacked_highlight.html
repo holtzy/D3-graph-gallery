@@ -49,6 +49,8 @@
   <!-- Function to parse html and js code chunks made by Yan Holtz -->
   <script src="../js/myParser.js"></script>
 
+  <!-- color palette -->
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 </head>
 
 
@@ -125,7 +127,7 @@ $(function(){
 
 
 
-<section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+<section class="bg-light" style="padding-top: 20px; padding-bottom: 20px">
 <div class="container" >
   <div class="row">
 
@@ -143,7 +145,7 @@ $(function(){
           <br>
           <li>Visit the <a href="interactivity_tooltip.html">tooltip section</a> of the gallery to understand the general logic behind tooltip.</li>
           <br>
-          <li>Here, the tricky part is to recover the subgroup name to show it in the tooltip. The trick is to use <code>d3.select(this.parentNode).datum().key</code></li>
+          <li>Here, the tricky part is to recover the subgroup name. The trick is to use <code>d3.select(this.parentNode).datum().key</code>. Then it is easy to change the opacity of all rects to something low, and highlight the selected subgroup with a higher opacity. </li>
         </ul>
       </div>
     </div>
@@ -162,8 +164,9 @@ $(function(){
 <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js -->
+<!-- Load d3.js & color palette-->
 <script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -221,7 +224,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
   // color palette = one color per subgroup
   var color = d3.scaleOrdinal()
     .domain(subgroups)
-    .range(['#C7EFCF','#FE5F55','#EEF5DB'])
+    .range(d3.schemeSet2);
 
   //stack the data? --> stack per subgroup
   var stackedData = d3.stack()
@@ -232,38 +235,27 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
 
 
   // ----------------
-  // Create a tooltip
+  // Highlight a specific subgroup when hovered
   // ----------------
-  var tooltip = d3.select("#my_dataviz")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "1px")
-    .style("border-radius", "5px")
-    .style("padding", "10px")
 
-  // Three function that change the tooltip when user hover / move / leave a cell
+  // What happens when user hover a bar
   var mouseover = function(d) {
-    var subgroupName = d3.select(this.parentNode).datum().key;
+    // what subgroup are we hovering?
+    var subgroupName = d3.select(this.parentNode).datum().key; // This was the tricky part
     var subgroupValue = d.data[subgroupName];
-    tooltip
-        .html("subgroup: " + subgroupName + "<br>" + "Value: " + subgroupValue)
-        .style("opacity", 1)
-  }
-  var mousemove = function(d) {
-    tooltip
-      .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-      .style("top", (d3.mouse(this)[1]) + "px")
-  }
+    // Reduce opacity of all rect to 0.2
+    d3.selectAll(".myRect").style("opacity", 0.2)
+    // Highlight all rects of this subgroup with opacity 0.8. It is possible to select them since they have a specific class = their name.
+    d3.selectAll("."+subgroupName)
+      .style("opacity", 1)
+    }
+
+  // When user do not hover anymore
   var mouseleave = function(d) {
-    tooltip
-      .style("opacity", 0)
-  }
-
-
-
+    // Back to normal opacity: 0.8
+    d3.selectAll(".myRect")
+      .style("opacity",0.8)
+    }
 
   // Show the bars
   svg.append("g")
@@ -272,6 +264,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
     .data(stackedData)
     .enter().append("g")
       .attr("fill", function(d) { return color(d.key); })
+      .attr("class", function(d){ return "myRect " + d.key }) // Add a class to each subgroup: their name
       .selectAll("rect")
       // enter a second time = loop subgroup per subgroup to add all rectangles
       .data(function(d) { return d; })
@@ -282,7 +275,6 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
         .attr("width",x.bandwidth())
         .attr("stroke", "grey")
       .on("mouseover", mouseover)
-      .on("mousemove", mousemove)
       .on("mouseleave", mouseleave)
 
 })
