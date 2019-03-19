@@ -118,6 +118,9 @@
               <a class="nav-link active" href="#linear">Linear axis - <i><span style="color: #C8C8C8">scaleLinear()</span></i></a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="#log">Log scale - <i><span style="color: #C8C8C8">scaleLog()</span></i></a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#scalepoint">Categoric axis - <i><span style="color: #C8C8C8">scalePoint()</span></i></a>
             </li>
             <li class="nav-item">
@@ -194,6 +197,73 @@ myJSParserShort('code-basic-linear')
 document.getElementById('code-basic-linear').addEventListener("input", function() {
   d3.select('#res').html("");
   myJSParser('code-basic-linear', 'result');
+})
+</script>
+
+
+<!-- ================================================================================= -->
+
+
+
+
+<br><br>
+
+
+
+
+
+
+
+
+<br><br>
+
+<!-- ==================== LOG SCALE ==================== -->
+
+<section id="log">
+  <div class="container" >
+
+    <h1>Log scale with <code>scaleLog()</code></h1>
+    <hr>
+    <p></p>
+    <p>Very similar to linear scales above,but applies a logarithmic transform to the input domain value before the output range value is computed.</p>
+    <p><u>Note:</u> log(0)=-∞, thus the <code>domain</code> must be strictly positive or striclty negative.</p>
+
+      <div>
+        <pre class="language-js"><code id="code_log_demo" contenteditable="true"><xmp>// create svg element
+var svg = d3.select("#log_demo")
+  .append("svg")
+  .attr("width", 1000)
+  .attr("height", 200)
+
+// Create the scale
+var x = d3.scaleLog()
+    .domain([1,1000])         // This is what is written on the Axis: from 0 to 100
+    .range([100, 800])       // This is where the axis is placed: from 100 px to 800px
+    .base(10)
+
+// Draw the axis
+svg
+  .append("g")
+  .attr("transform", "translate(0,150)")      // This controls the vertical position of the Axis
+  .call(d3.axisBottom(x).tickFormat(d3.format(".2")))
+
+
+</xmp></code></pre>
+      </div>
+
+
+      <div id="log_demo"></div>
+
+  </div>
+</section>
+
+
+<script>
+// Read the JS fragment at the beginning. Read it again if it changes
+myJSParserShort('code_log_demo')
+document.getElementById('code_log_demo').addEventListener("input", function() {
+  d3.select('#log_demo').html("");
+  myJSParserShort('code_log_demo');
 })
 </script>
 
