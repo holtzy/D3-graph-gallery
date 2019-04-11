@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-79254642-6');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Using canvas with d3.js, an introduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Canvas is an alternative to svg allowing to decrease the DOM load and increase your chart speed. Learn how to use it with d3.js.">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
+    <meta name="author" content="Yan Holtz">
+
+    <meta property="og:title" content="Using canvas with d3.js, an introduction">
+    <meta property="og:image" content="img/overview_RGG.png">
+    <meta property="og:description" content="Canvas is an alternative to svg allowing to decrease the DOM load and increase your chart speed. Learn how to use it with d3.js.">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet">
+
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
+
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
+
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/agency.min.js"></script>
+
+  </head>
+
+
+
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+    $(function(){
+      $("#mainNav").load("../html_chunk/menu.html");
+    });
+    </script>
+
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"> </div>
+    <script>
+    $(function(){
+      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+    });
+    </script>
+
+
+
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+          <h1>Using canvas with d3.js, an introduction</h1>
+          <hr class="short_hr">
+          <br>
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/R_Graph_Gallery">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://github.com/holtzy">
+                <i class="fa fa-github" style="color: white"></i>
+              </a>
+            </li>
+            <li class="list-inline-item social-buttons">
+              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+          <br><br>
+          <p style="max-width: 700px; margin: auto"><code><canvas></code> is an HTML element which can be used to draw graphics. It is an alternative to <code>svg</code></p>
+      </div>
+    </header>
+
+
+
+
+
+
+
+
+    <!-- TABLE of CONTENT -->
+    <div>
+        <nav class="col-sm-3 col-4" id="myScrollspy">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#basic">Most basic shape</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#rectangle">Rectangle</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#publication">Publication</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#dark">Dark mode</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== Most Basic shape ==================== -->
+
+<section id="basic" class="bg">
+<div class="container" >
+  <h1>Just one shape</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-6 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg" id="res-sectionA" ></div>
+      <br>
+      <div>
+        <h5>Notes:</h5>
+        <ul>
+          <br>
+          <li>Start by creating a <code>canvas</code> element in the html. Give it an id. It creates a fixed-size drawing surface that exposes one or more rendering contexts</li>
+          <br>
+          <li></li>
+          <br>
+          <li></li>
+          <br>
+          <li><u>Note</u>: rectangle is the only primitive shape offered in canvas. All other shapes must be created using one or more paths.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-6 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-sectionA" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Create a div where the graph will take place -->
+<canvas id="my_dataviz" width="400" height="400">
+
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-sectionA" contenteditable="true"><xmp><script>
+
+// select the canvas element created in the html
+var canvas = document.getElementById('my_dataviz');
+
+// Get the 'context'
+var ctx = canvas.getContext('2d');
+
+// Build a rectangle
+ctx.fillStyle = '#69b3a2'; // rectangle color
+ctx.fillRect(20, 20, 50, 50); // 4 arguments for the rect features: x, y, width and height
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-sectionA', 'res-sectionA')
+myJSParser('js-sectionA', 'res-sectionA')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-sectionA').addEventListener("input", function() {
+d3.select('#res-sectionA').html("");
+myHtmlParser('html-sectionA', 'res-sectionA');
+myJSParser('js-sectionA', 'res-sectionA');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-sectionA').addEventListener("input", function() {
+d3.select('#res-sectionA').html("");
+myHtmlParser('html-sectionA', 'res-sectionA');
+myJSParser('js-sectionA', 'res-sectionA');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== Rectangles ==================== -->
+
+<section id="rectangle" class="bg">
+<div class="container" >
+  <h1>Drawing rectangles</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-6 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg" id="res-sectionB" ></div>
+      <br>
+      <div>
+        <h5>Rectangles are drawn using 3 functions:</h5>
+        <ul>
+          <br>
+          <li><code>fillRect</code>: to create a filled rectangle. 4 arguments: <code>x</code>, <code>y</code>, <code>width</code> and <code>height</code>.</li>
+          <br>
+          <li><code>strokeRect</code>: to draw just the outline</li>
+          <br>
+          <li><code>clearRect</code>: to clear all the pixel under this rectangle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-6 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-sectionB" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Create a div where the graph will take place -->
+<canvas id="my_dataviz2" width="400" height="400">
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-sectionB" contenteditable="true"><xmp><script>
+
+// select the canvas element created in the html
+var canvas = document.getElementById('my_dataviz2');
+
+// Get the 'context'
+var ctx = canvas.getContext('2d');
+
+// Left: filled rectangle
+ctx.fillStyle = '#69b3a2'; // rectangle color
+ctx.fillRect(10, 10, 50, 50); // 4 arguments for the rect features: x, y, width and height
+
+// Center: rectangle outline
+ctx.strokeRect(100, 100, 80, 80);
+
+// Right: rectangle with a cleared area
+ctx.fillRect(200, 200, 120, 120);
+ctx.clearRect(210, 170, 80, 80);
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-sectionB', 'res-sectionB')
+myJSParser('js-sectionB', 'res-sectionB')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-sectionB').addEventListener("input", function() {
+d3.select('#res-sectionB').html("");
+myHtmlParser('html-sectionB', 'res-sectionB');
+myJSParser('js-sectionB', 'res-sectionB');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-sectionB').addEventListener("input", function() {
+d3.select('#res-sectionB').html("");
+myHtmlParser('html-sectionB', 'res-sectionB');
+myJSParser('js-sectionB', 'res-sectionB');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== Most basic path: TRIANGLE ==================== -->
+
+<section id="publication" class="bg">
+<div class="container" >
+  <h1>Most basic path: triangle</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-6 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg" id="res-sectionC" ></div>
+      <br>
+      <div>
+        <h5>Path is the second and <u>last</u> primitive you can use. Steps:</h5>
+        <ul>
+          <br>
+          <li>Initialize with <code>beginPath()</code>.</li>
+          <br>
+          <li>Set the coordinate you want to start from with <code>moveTo()</code>.</li>
+          <br>
+          <li>Use <code>lineTo()</code> to build as many segments as you need.</li>
+          <br>
+          <li>Fill the shape with <code>fill()</code>, and/or draw the sroke with <code>stroke</code></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-6 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-sectionC" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Create a div where the graph will take place -->
+<canvas id="my_dataviz3" width="400" height="400">
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-sectionC" contenteditable="true"><xmp><script>
+
+// select the canvas element created in the html
+var canvas = document.getElementById('my_dataviz3');
+
+// Get the 'context'
+var ctx = canvas.getContext('2d');
+
+// Set the color:
+ctx.fillStyle = '#D8D8D8';
+
+// Initialize path
+ctx.beginPath();
+
+// Go to the starting coordinate
+ctx.moveTo(100, 50);
+
+// Draw 2 segments
+ctx.lineTo(300, 50);
+ctx.lineTo(200, 370);
+
+// Fill the shape
+ctx.fill();
+ctx.stroke();
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-sectionC', 'res-sectionC')
+myJSParser('js-sectionC', 'res-sectionC')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-sectionC').addEventListener("input", function() {
+d3.select('#res-sectionC').html("");
+myHtmlParser('html-sectionC', 'res-sectionC');
+myJSParser('js-sectionC', 'res-sectionC');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-sectionC').addEventListener("input", function() {
+d3.select('#res-sectionC').html("");
+myHtmlParser('html-sectionC', 'res-sectionC');
+myJSParser('js-sectionC', 'res-sectionC');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== CIRCLE==================== -->
+
+<section id="circle" class="bg">
+<div class="container" >
+  <h1>Circle</h1>
+  <hr>
+  <div class="row">
+
+<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+  <div class="col-lg-6 .align-middle">
+    <div style="position: -webkit-sticky; position: sticky; top: 120px">
+      <div class="bg" id="res-sectionD" ></div>
+      <br>
+      <div>
+        <h5>Notes:</h5>
+        <ul>
+          <br>
+          <li>A circle is a path, made using the <code>arc()</code> function.</li>
+          <br>
+          <li>You have to provide <code>x</code>, <code>y</code>, <code>radius</code>, <code>startangle</code> and <code>endangle</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+<div class="col-lg-6 text-center .align-middle">
+
+<!-- ========= show html code ============== -->
+<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
+<pre class="language-html"><code id="html-sectionD" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Create a div where the graph will take place -->
+<canvas id="my_dataviz4" width="400" height="400">
+
+</xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+<!-- ========= show JS code ==============  -->
+<pre class="language-js"><code id="js-sectionD" contenteditable="true"><xmp><script>
+
+// select the canvas element created in the html
+var canvas = document.getElementById('my_dataviz4');
+
+// Get the 'context'
+var ctx = canvas.getContext('2d');
+
+// Set the color:
+ctx.fillStyle = '#D8D8D8';
+
+// Initialize path
+ctx.beginPath();
+
+// Build a circle
+ctx.arc(200, 200, 100, 0, Math.PI * 2)
+
+// Show the stroke
+ctx.stroke()
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+<script>
+// At the beginning, I read the html and JS fragments
+myHtmlParser('html-sectionD', 'res-sectionD')
+myJSParser('js-sectionD', 'res-sectionD')
+
+// If the user change the JS fragment, I run it again:
+document.getElementById('js-sectionD').addEventListener("input", function() {
+d3.select('#res-sectionD').html("");
+myHtmlParser('html-sectionD', 'res-sectionD');
+myJSParser('js-sectionD', 'res-sectionD');
+})
+
+// If the user change the HTML fragment, I run it again:
+document.getElementById('html-sectionD').addEventListener("input", function() {
+d3.select('#res-sectionD').html("");
+myHtmlParser('html-sectionD', 'res-sectionD');
+myJSParser('js-sectionD', 'res-sectionD');
+})
+</script>
+
+</div>
+
+
+  </div>
+</div>
+</section>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ RELATED BLOCKS ============================ -->
+
+<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="display: table; height: 150px; overflow: hidden;">
+          <div style="display: table-cell; vertical-align: middle;">
+            <ul>
+            <li><i>Customizing axis in d3.js</i> by <a href="custom_axis.html">the d3 graph gallery</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- ============================ CONTACT SECTION ============================ -->
+
+  <!-- ANCHOR -->
+  <a name="contactanchor"></a>
+
+
+<section id="contact" class="bg" style="background-color: white"></section>
+
+<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+<script>
+$(function(){
+  $("#contact").load("../html_chunk/contact.html");
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================ FOOTER SECTION ============================ -->
+<footer class="bg-light" id="myFooter"></footer>
+
+<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+<script>
+$(function(){
+  $("#myFooter").load("../html_chunk/footer.html");
+});
+</script>
+
+<!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+</html>
