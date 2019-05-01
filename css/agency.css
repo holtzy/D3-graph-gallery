@@ -219,7 +219,7 @@ section h3.section-subheading {
   background-color: transparent;
   border-color: #b35900;
   color: #b35900;
-  border-width: small;
+  border-width: thin;
 }
 
 .btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
@@ -501,7 +501,7 @@ header.masthead .intro-text .intro-heading {
   margin: 0 auto;
   padding: 25px;
   text-align: center;
-  background-color: 'none';
+  background-color: transparent;
 }
 
 #portfolio .portfolio-item .portfolio-caption h4 {
@@ -596,7 +596,7 @@ header.masthead .intro-text .intro-heading {
   margin: 0 auto;
   padding: 25px;
   text-align: center;
-  background-color: 'none';
+  background-color: transparent;
 }
 
 #portfolio_landing .portfolio-item .portfolio-caption h4 {
@@ -679,7 +679,7 @@ header.masthead .intro-text .intro-heading {
   color: black;
   background-color: white;
   background: white;
-  align-content: "middle";
+  align-content: center;
   margin-right: 10%;
   margin-left: 10%;
 }

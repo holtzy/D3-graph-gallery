@@ -254,7 +254,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
     .filter(function(d){
       var ypos = domain.indexOf(d.y);
       var xpos = domain.indexOf(d.x);
-      if (xpos > ypos) { return false } else { return true}
+      return xpos <= ypos;
     })
     .append("text")
       .attr("y", 5)
@@ -281,7 +281,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
     .filter(function(d){
       var ypos = domain.indexOf(d.y);
       var xpos = domain.indexOf(d.x);
-      if (xpos <= ypos) { return false } else { return true}
+      return xpos > ypos;
     })
     .append("circle")
       .attr("r", function(d){ return size(Math.abs(d.value)) })
