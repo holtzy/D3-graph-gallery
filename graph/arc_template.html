@@ -284,9 +284,9 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
         .style('opacity', 1)
       // Highlight the connections
       links
-        .style('stroke', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? color(d.grp) : '#b8b8b8';})
-        .style('stroke-opacity', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? 1 : .2;})
-        .style('stroke-width', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? 4 : 1;})
+        .style('stroke', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? color(d.grp) : '#b8b8b8';})
+        .style('stroke-opacity', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? 1 : .2;})
+        .style('stroke-width', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? 4 : 1;})
       labels
         .style("font-size", function(label_d){ return label_d.name === d.name ? 16 : 2 } )
         .attr("y", function(label_d){ return label_d.name === d.name ? 10 : 0 } )
