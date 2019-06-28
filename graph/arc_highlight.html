@@ -164,7 +164,7 @@ $(function(){
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
-<script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -263,8 +263,8 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
         d3.select(this).style('fill', '#69b3b2')
         // Highlight the connections
         links
-          .style('stroke', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? '#69b3b2' : '#b8b8b8';})
-          .style('stroke-width', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? 4 : 1;})
+          .style('stroke', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? '#69b3b2' : '#b8b8b8';})
+          .style('stroke-width', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? 4 : 1;})
       })
       .on('mouseout', function (d) {
         nodes.style('fill', "#69b3a2")

@@ -213,7 +213,7 @@ $(function(){
     <br><br><br><br>
     <div class="mySeryTitle">Selection of blocks</div>
     <hr>
-    <p>A few blocks with more complicated codes to showcase what's possible to do with arc diagram.</a>
+    <p>A few blocks with more complicated codes to showcase what's possible to do with arc diagram.</p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="https://bl.ocks.org/rpgove/53bb49d6ed762139f33bdaea1f3a9e1c">
@@ -360,9 +360,9 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
         .style('opacity', 1)
       // Highlight the connections
       links
-        .style('stroke', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? color(d.grp) : '#b8b8b8';})
-        .style('stroke-opacity', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? 1 : .2;})
-        .style('stroke-width', function (link_d) { return link_d.source === d.id | link_d.target === d.id ? 4 : 1;})
+        .style('stroke', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? color(d.grp) : '#b8b8b8';})
+        .style('stroke-opacity', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? 1 : .2;})
+        .style('stroke-width', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? 4 : 1;})
       labels
         .style("font-size", function(label_d){ return label_d.name === d.name ? 16 : 2 } )
         .attr("y", function(label_d){ return label_d.name === d.name ? 10 : 0 } )
