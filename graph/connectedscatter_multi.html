@@ -143,9 +143,9 @@ $(function(){
           <br>
           <li>First, you need to understand how to build a <a href="connectedscatter_basic.html">basic connected scatterplot</a>.</li>
           <br>
-          <li>The first tricky step is to reformat the <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_connectedscatter.csv">data</a>. Here, we start with a <i>wide</i> or <i>untidy</i> format: each sery is stored in a different <u>column</u>. We need to reformat it in a format where each group is a key.</li>
+          <li>The first tricky step is to reformat the <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_connectedscatter.csv">data</a>. Here, we start with a <i>wide</i> or <i>untidy</i> format: each series is stored in a different <u>column</u>. We need to reformat it in a format where each group is a key.</li>
           <br>
-          <li>Adding the elements is tricky: first we have to <code>enter()</code> the reformated dataset. Once in a group, we have to <code>enter()</code> the list of x and y coordinates.</li>
+          <li>Adding the elements is tricky: first we have to <code>enter()</code> the reformatted dataset. Once in a group, we have to <code>enter()</code> the list of x and y coordinates.</li>
           <br>
           <li>Last step is to add the labels at the end of each line. Need to enter the data and then use <code>datum()</code> to extract the position of the last data point.</li>
         </ul>
@@ -276,7 +276,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
       .enter()
         .append('g')
         .append("text")
-          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time sery
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time series
           .attr("transform", function(d) { return "translate(" + x(d.value.time) + "," + y(d.value.value) + ")"; }) // Put the text at the position of the last point
           .attr("x", 12) // shift the text a bit more right
           .text(function(d) { return d.name; })

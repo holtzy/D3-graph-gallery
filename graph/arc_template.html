@@ -274,7 +274,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
       .attr("transform", function(d){ return( "translate(" + (x(d.name)) + "," + (height-15) + ")rotate(-45)")})
       .style("font-size", 6)
 
-  // Add the highlighting functionnality
+  // Add the highlighting functionality
   nodes
     .on('mouseover', function (d) {
       // Highlight the nodes: every node is green except of him

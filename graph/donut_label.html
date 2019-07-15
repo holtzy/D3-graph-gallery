@@ -199,7 +199,7 @@ var width = 450
     height = 450
     margin = 40
 
-// The radius of the pieplot is half the width or half the height (smallest one). I substract a bit of margin.
+// The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
 var radius = Math.min(width, height) / 2 - margin
 
 // append the svg object to the div called 'my_dataviz'
@@ -229,7 +229,7 @@ var arc = d3.arc()
   .innerRadius(radius * 0.5)         // This is the size of the donut hole
   .outerRadius(radius * 0.8)
 
-// Another arc that won't be drawn. Just for labels positionning
+// Another arc that won't be drawn. Just for labels positioning
 var outerArc = d3.arc()
   .innerRadius(radius * 0.9)
   .outerRadius(radius * 0.9)

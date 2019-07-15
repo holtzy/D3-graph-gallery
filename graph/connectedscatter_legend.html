@@ -149,7 +149,7 @@ $(function(){
           <br>
           <li>The function that is called first recover the <code>opacity</code> attribute of the group elements. If it is 0, it switches to 1. And reciprocally.</li>
           <br>
-          <li><u>Note</u>: don't be effraid by <code>currentOpacity == 1 ? 0:1</code>. It is just a shorter way to write <code>if(currentOpacity == 1){return 0}else{return 1}</code></li>
+          <li><u>Note</u>: don't be afraid by <code>currentOpacity == 1 ? 0:1</code>. It is just a shorter way to write <code>if(currentOpacity == 1){return 0}else{return 1}</code></li>
         </ul>
       </div>
     </div>
@@ -281,7 +281,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
         .append('g')
         .append("text")
           .attr("class", function(d){ return d.name })
-          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time sery
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time series
           .attr("transform", function(d) { return "translate(" + x(d.value.time) + "," + y(d.value.value) + ")"; }) // Put the text at the position of the last point
           .attr("x", 12) // shift the text a bit more right
           .text(function(d) { return d.name; })

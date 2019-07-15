@@ -147,11 +147,11 @@ $(function(){
           <br>
           <li>In this example dummy data are created. It's a vector format. See <a href="">here</a> to work from a <code>.csv</code></li>
           <br>
-          <li>The wordcloud is then drawn thanks to the <code>d3-cloud</code> plugin. The first step is to set the <code>layout</code>. Basically, it runs an algorythm that compute the position of each word.</li>
+          <li>The wordcloud is then drawn thanks to the <code>d3-cloud</code> plugin. The first step is to set the <code>layout</code>. Basically, it runs an algorithm that compute the position of each word.</li>
           <br>
           <li>The built object has all the requested features to draw words on by one.</li>
           <br>
-          <li>See the <a href="wordcloud_custom.html">next post</a> for cusomization</li>
+          <li>See the <a href="wordcloud_custom.html">next post</a> for customization</li>
         </ul>
       </div>
     </div>
@@ -206,7 +206,7 @@ var svg = d3.select("#my_dataviz").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Constructs a new cloud layout instance. It run an algorythm to find the position of words that suits your requirements
+// Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
 var layout = d3.layout.cloud()
   .size([width, height])
   .words(myWords.map(function(d) { return {text: d}; }))

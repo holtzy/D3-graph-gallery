@@ -145,7 +145,7 @@ $(function(){
           <br>
           <li>This post show a few options to add color, orientation, font and more to the text.</li>
           <br>
-          <li>Note that options that are the same for every word can be passed direclty in the <code>draw function</code></li>
+          <li>Note that options that are the same for every word can be passed directly in the <code>draw function</code></li>
           <br>
           <li>However, options that vary must first be given in the <code>layout</code> call. They will be then available in the <code>words</code> object, and must thus be called again in the <code>draw function</code>.</li>
           <br>
@@ -208,13 +208,13 @@ var svg = d3.select("#my_dataviz").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Constructs a new cloud layout instance. It run an algorythm to find the position of words that suits your requirements
+// Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
 // Wordcloud features that are different from one word to the other must be here
 var layout = d3.layout.cloud()
   .size([width, height])
   .words(myWords.map(function(d) { return {text: d}; }))
   .padding(5)        //space between words
-  .rotate(-45)       // rotation andgle in degrees
+  .rotate(-45)       // rotation angle in degrees
   .fontSize(20)      // font size of words
   .on("end", draw);
 layout.start();
