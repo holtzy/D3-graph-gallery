@@ -224,7 +224,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
   svg.append("g")
       .call(d3.axisLeft(y));
 
-  // append the bars for sery 1
+  // append the bars for series 1
   svg.selectAll("rect")
       .data(bins1)
       .enter()
@@ -236,7 +236,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
         .style("fill", "#69b3a2")
         .style("opacity", 0.6)
 
-  // append the bars for sery 1
+  // append the bars for series 2
   svg.selectAll("rect2")
       .data(bins2)
       .enter()

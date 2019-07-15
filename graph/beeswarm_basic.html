@@ -144,7 +144,7 @@ $(function(){
           <br>
           <li>It is a beeswarm plot that represents the distribution of weapon sold by country. (see <a href="https://www.data-to-viz.com/story/OneNumOneCat.html">more</a>)</li>
           <br>
-          <li>The position of each entity is computed using a <u>force</u> algorythm.</li>
+          <li>The position of each entity is computed using a <u>force</u> algorithm.</li>
           <br>
           <li>the <code>d3.forcecollide</code> controls how much point are aggregated. The bigger the more spread.</li>
         </ul>
@@ -211,7 +211,7 @@ svg
 // Read the csv, it has a column called Value and another called Country
 d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv", function(data) {
 
-  // Use d3-force algorythm to find a position for each entity
+  // Use d3-force algorithm to find a position for each entity
   var simulation = d3.forceSimulation(data)
       .force("x", d3.forceX(function(d) { return x(d.Value); }).strength(5))
       .force("y", d3.forceY(height / 2))

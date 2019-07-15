@@ -16,14 +16,14 @@
   <meta charset="utf-8">
   <title>Wordcloud with proportional font size in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="How to make the size of words proportionnal to their occurence in a d3.js wordcloud.">
+  <meta name="description" content="How to make the size of words proportional to their occurrence in a d3.js wordcloud.">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, wordcloud">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Wordcloud with proportional font size in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="How to make the size of words proportionnal to their occurence in a d3.js wordcloud.">
+  <meta property="og:description" content="How to make the size of words proportional to their occurrence in a d3.js wordcloud.">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -107,7 +107,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">The previous post described how to build a very <a href="wordcloud_basic.html">basic wordcloud</a> with the <code>d3-cloud</code> javascript plugin. This post shows how to make the size of words proportionnal to their occurence.</p>
+      <p style="max-width: 700px; margin: auto">The previous post described how to build a very <a href="wordcloud_basic.html">basic wordcloud</a> with the <code>d3-cloud</code> javascript plugin. This post shows how to make the size of words proportional to their occurrence.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../wordcloud.html">Wordcloud section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
@@ -143,9 +143,9 @@ $(function(){
           <br>
           <li>See the previous post for a very <a href="wordcloud_basic">basic wordcloud</a> and a <a href="wordcloud_size.html">few customization</a> with the <code>d3-cloud</code> plugin.</li>
           <br>
-          <li>Here the idea is to make the word that have a high occurence bigger.</li>
+          <li>Here the idea is to make the word that have a high occurrence bigger.</li>
           <br>
-          <li>The <code>.word</code> argument of the <code>layout</code> call can recover as many feature as needed. It is thus possible to give it the size (occurence)</li>
+          <li>The <code>.word</code> argument of the <code>layout</code> call can recover as many feature as needed. It is thus possible to give it the size (occurrence)</li>
           <br>
           <li>Thus, this <code>size</code> data can be used to be provided in the <code>.fontSize</code> argument.</li>
           <br>
@@ -203,7 +203,7 @@ var svg = d3.select("#my_dataviz").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Constructs a new cloud layout instance. It run an algorythm to find the position of words that suits your requirements
+// Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
 // Wordcloud features that are different from one word to the other must be here
 var layout = d3.layout.cloud()
   .size([width, height])

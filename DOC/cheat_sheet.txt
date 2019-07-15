@@ -49,7 +49,7 @@ selectAll(".bar")                                 -       this will select all e
 
 update()										  -       We call update the selection that is present in the DOM. They have a chair!
 
-.exit()											  -  	  Opposite of enter: remove the DOM elements that are not used by data. Usually it is just usefull to do selection.exit().remove() --> delete the unneeded chair
+.exit()											  -  	  Opposite of enter: remove the DOM elements that are not used by data. Usually it is just useful to do selection.exit().remove() --> delete the unneeded chair
 
 
 (d) => d.routeTag)   equivalent of function(d){ return d.routeTag}
@@ -262,7 +262,7 @@ Easing function:
   - See all at https://bl.ocks.org/mbostock/248bac3b8e354a9103c4
 
 
-MOUSE RESPONSIVNESS:
+MOUSE RESPONSIVENESS:
 ----------------------
 .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
 .on("mouseout", function(){d3.select(this).style("fill", "white");})
