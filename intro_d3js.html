@@ -3,13 +3,13 @@
 
   <head>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-3523953066677938",
-            enable_page_level_ads: true
-       });
-  </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-3523953066677938",
+              enable_page_level_ads: true
+         });
+    </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
@@ -19,6 +19,16 @@
       gtag('js', new Date());
 
       gtag('config', 'UA-79254642-6');
+    </script>
+    <script>
+    var getOutboundLink = function(url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function(){document.location = url;}
+      });
+    }
     </script>
 
     <meta charset="utf-8">
@@ -111,7 +121,12 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto"><a href="https://d3js.org">D3.js</a> is a <u>JavaScript library</u> for manipulating documents based on data. It allows to build absolutely <a href="all.html">any type of data visualization</a>. This document displays 10 interactive examples illustrating the key concepts of d3, leading to a first basic scatterplot.</p>
+          <p style="max-width: 700px; margin: auto">
+            <a href="https://d3js.org">D3.js</a> is a <u>JavaScript library</u> for manipulating
+            documents based on data. It allows to build absolutely <a href="all.html">any type of
+              data visualization</a>. This document displays 10 interactive examples illustrating the
+              key concepts of d3, leading to a first basic scatterplot. Note that this <a href="https://pluralsight.pxf.io/LdKnj" onclick="getOutboundLink('https://pluralsight.pxf.io/LdKnj'); return false;">online course</a> 
+              is a great ressource to get you started with web development.</p>
       </div>
     </header>
 
