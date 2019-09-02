@@ -20,6 +20,16 @@
 
       gtag('config', 'UA-79254642-6');
     </script>
+    <script>
+    var getOutboundLink = function(url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function(){document.location = url;}
+      });
+    }
+    </script>
 
     <meta charset="utf-8">
     <title>Network Graph &#124; the D3 Graph Gallery</title>
@@ -126,8 +136,7 @@ $(function(){
 
 
 
-<!-- ======================== PORTFOLIO SECTION ============================ -->
-<!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+
 <section class="bg" id="portfolio" style="padding-top: 10px">
   <div class="container">
 
@@ -176,11 +185,31 @@ $(function(){
           <a class="collapsed" data-toggle="collapse" href="#collapseSummary2" aria-expanded="false" aria-controls="collapseSummary"></a>
         </div>
       </div>
+    </div>
 
   </div>
+</section>
 
 
 
+
+<section class="bg-light" id="portfolio" style="padding-top: 20px; padding-bottom: 20px;">
+  <div class="container">
+    <div class = "row">
+      <div class = "col-md-2  col-sm-2 align-self-center">
+        <img src="img/other/workinprogress2.png" width="120px"></img>
+      </div>
+      <div class = "col-md-10  col-sm-10 align-self-center">
+        <p>This section is a work in progress. Please have a look to this <a href="https://pluralsight.pxf.io/b1GYB" onclick="getOutboundLink('https://pluralsight.pxf.io/b1GYB'); return false;">ressource</a> for an introduction to force layout to build network charts with d3.js</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="bg" id="portfolio" style="padding-top: 10px">
+  <div class="container">
 
     <br><br><br><br>
     <div class="mySeryTitle">Step by step</div>
