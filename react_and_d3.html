@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3523953066677938",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-79254642-6');
+  </script>
+  <script>
+    var getOutboundLink = function (url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function () { document.location = url; }
+      });
+    }
+  </script>
+
+  <meta charset="utf-8">
+  <title>Using D3.js in React</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="A set of examples showing how to use d3.js in a react application">
+  <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, react, react.js">
+  <meta name="author" content="Yan Holtz">
+  <link rel="icon" href="img/logo/D3_single_small.png">
+
+  <meta property="og:title" content="An introduction to d3.js in 10 basic examples.">
+  <meta property="og:image" content="img/overview_RGG.png">
+  <meta property="og:description"
+    content="A set of 10 basic examples leading to a first chart made with d3.js. Discover the basics: html, css, svg, scale, data binding and more. Explanation and editable code provided.">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/agency.css" rel="stylesheet">
+
+  <!-- PRISM -->
+  <script src="LIB/prism.js"></script>
+  <link href="LIB/prism.css" rel="stylesheet" />
+
+  <!-- D3.JS v4 -->
+  <script src="js/d3.v4.js"></script>
+
+  <!-- JQUERY -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+
+  <!-- HTML TO CANVAS -->
+  <script src="js/html2canvas.js"></script>
+
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="js/myParser.js"></script>
+
+  <!-- Bootstrap js -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/agency.min.js"></script>
+
+</head>
+
+
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+
+  <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+  <script>
+    $(function () {
+      $("#mainNav").load("html_chunk/menu.html");
+    });
+  </script>
+
+  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+  <div id="modal_menu_insertion"> </div>
+  <script>
+    $(function () {
+      $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+    });
+  </script>
+
+
+
+  <!-- Header -->
+  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+    <div class="textlanding">
+      <h1>Working with d3.js and react.</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">
+        React is the most widely used javascript framework for building interactive
+        application on the web. D3.js is the best tool for data visualization on the web. Let's see how those 2 tools
+        can work together. </p>
+    </div>
+  </header>
+
+
+
+
+
+
+
+
+  <!-- TABLE of CONTENT -->
+  <div>
+    <nav class="col-sm-3 col-4" id="myScrollspy">
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#basic">Most basic</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#css">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+
+
+
+
+
+
+  <!-- ==================== MOST BASIC ==================== -->
+
+  <section id="basic">
+    <div class="container">
+
+      <h1>Most basic use of react and D3</h1>
+      <hr>
+      <code>&rarr; Intro</code>
+      <br>
+      <ul style="margin-top: 5px">
+        <li><a href="https://en.wikipedia.org/wiki/HTML">HTML</a> stands for <u>Hypertext Markup Language</u>.
+          Basically, it is the language behind any <u>website</u>. Web browsers like Mozilla or Safari read this kind of
+          file and translate it in a webpage.</li>
+        <li>In a HTML file, elements composing the webpage are created, delineated by <u>tags</u>. For instance a title
+          of level 1 is represented by the <code>h1</code> tag, a paragraph with the <code>p</code> tag, an image by the
+          <code>img</code> tag and so on.</li>
+        <li>It is impossible to create a d3.js visualization without basic knowledge on html. <a
+            href="https://www.w3schools.com/html/">This tutorial</a> by W3School can be a good starting point in my
+          opinion.</li>
+      </ul>
+
+      <iframe
+        src="https://codesandbox.io/embed/competent-zhukovsky-877uk?fontsize=14&hidenavigation=1&theme=dark&view=editor"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="ReactAndD3 experiments"
+        allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+        sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+    </div>
+  </section>
+
+  <!-- ================================================================================= -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ==================== What's next ==================== -->
+
+  <section class="bg">
+    <div class="container">
+      <h1>What's <code>next</code>?</h1>
+      <hr>
+      <p>This document is a very very short intro to d3.js. However, it describes the basic concepts that are used in
+        almost every chart.</p>
+      <p>You're now probably ready to <a href="../index.html">explore the gallery</a>. For each chart section, there is
+        a very basic example to start with. </p>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ============================ CONTACT SECTION ============================ -->
+
+  <section id="contact" class="bg" style="background-color: white"></section>
+
+  <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+  <script>
+    $(function () {
+      $("#contact").load("html_chunk/contact.html");
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+  <!-- ============================ FOOTER SECTION ============================ -->
+  <footer class="bg-light" id="myFooter"></footer>
+
+  <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+  <script>
+    $(function () {
+      $("#myFooter").load("html_chunk/footer.html");
+    });
+  </script>
+
+  <!-- ============================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
