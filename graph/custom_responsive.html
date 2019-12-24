@@ -22,14 +22,14 @@
     </script>
 
     <meta charset="utf-8">
-    <title>Responsiveness in d3.js</title>
+    <title>Responsive charts with d3.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="This post describes several techniques allowing to turn your d3.js graph responsive.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, shapes">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, shapes, responsiveness">
     <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
-    <meta property="og:title" content="Responsiveness in d3.js<">
+    <meta property="og:title" content="Responsive charts with d3.js<">
     <meta property="og:image" content="img/overview_RGG.png">
     <meta property="og:description" content="This post describes several techniques allowing to turn your d3.js graph responsive.">
 
@@ -92,7 +92,7 @@
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>Responsiveness in d3.js</h1>
+          <h1>Responsive charts with d3.js</h1>
           <hr class="short_hr">
           <br>
           <ul class="list-inline social-buttons">
@@ -113,7 +113,7 @@
             </li>
           </ul>
           <br><br>
-          <p style="max-width: 700px; margin: auto">Like every other element of a webpage, data visualizations deserve to be <u>responsive</u>: their layout must adapt to the <u>device size</u>. This post describes several techniques allowing to get this feature for d3.js charts.</p>
+          <p style="max-width: 700px; margin: auto">Like every other element of a webpage, charts deserve to be <u>responsive</u>: their size must adapt to the <u>device size</u>. This post describes several approaches allowing to get this feature for d3.js charts.</p>
       </div>
     </header>
 
@@ -127,18 +127,17 @@
         <nav class="col-sm-3 col-4" id="myScrollspy">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="#basic">Basic example</a>
+              <a class="nav-link" href="#basic">Most Basic</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#application">Application on area chart</a>
+              <a class="nav-link" href="#application">Area chart</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#performance">Performance and debouncing</a>
+              <a class="nav-link" href="#performance">Debouncing</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#bootstrap">Bootstrap columns</a>
             </li>
-
           </ul>
         </nav>
     </div>
@@ -161,13 +160,13 @@
 
 <section class="bg" id="basic">
 <div class="container" >
-  <h1>Basic resizing with <code>addEventListener()</code></h1>
+  <h1>Most basic example</h1>
   <hr>
-  <p>The most common way to add responsiveness in d3.js is to use an event listener. Here is the basic idea:</p>
+  <p>A common pattern to make a chart responsive:</p>
   <ul>
-    <li>It is possible to get the current width or height of a div using <code>parseInt(d3.select('#my_dataviz').style('width'), 10)</code></li>
-    <li>Thus, we can create a function that draws the chart depending on this value</li>
-    <li></li>
+    <li>Recover the current div <code>width</code> with this piece of code: <code>parseInt(d3.select('#my_dataviz').style('width'), 10)</code></li>
+    <li>A function that draws a chart for a specific <code>width</code> is created</li>
+    <li>An event listener will run this function each time the <code>div</code> size changes</li>
   </ul>
   <br>
   <div class="bg-light" id="res-basicResize" ></div>
@@ -186,7 +185,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<!-- Create a div where the circle will take place -->
+<!-- Create a div where the chart will take place -->
 <div id="div_basicResize"></div>
 
 </xmp></code></pre>
@@ -197,7 +196,7 @@
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="js-basicResize" contenteditable="true"><xmp><script>
 
-// Initialize a SVG area. We know the height but NOT the width
+// Initialize a SVG area. Note that the width is not specified yet, since unknown
 var Svg = d3.select("#div_basicResize")
   .append("svg")
   .attr("height", 200)
@@ -234,11 +233,10 @@ function drawChart() {
   x.range([ 20, currentWidth-20 ]);
   xAxis.call(d3.axisBottom(x))
 
-  //Add the last information needed for the circles: their X position
+  // Add the last information needed for the circles: their X position
   myCircles
     .attr("cx", function(d){ return x(d)})
   }
-
 
 
 // Initialize the chart
@@ -312,106 +310,12 @@ window.addEventListener('resize', drawChart );
 
   <section id="application" >
   <div class="container" >
-    <h1>Basic resizing with <code>addEventListener()</code></h1>
+    <h1>Application to an area chart</h1>
     <hr>
-    <p>The most common way to add responsiveness in d3.js is to use an event listener. Here is the basic idea:</p>
-    <ul>
-      <li>It is possible to get the current width or height of a div using <code>parseInt(d3.select('#my_dataviz').style('width'), 10)</code></li>
-      <li>Thus, we can create a function that draws the chart depending on this value</li>
-      <li></li>
-    </ul>
+    <p>First of all, make sure you understood how this <a href="area_basic.html">basic area chart</a> is built with d3.js. The following example just uses the concept described above to make it responsive. Try to change the window size!</p>
     <div id="my_dataviz"></div>
   </div>
   </section>
-
-
-
-
-<script>
-
-// Initialize a SVG area
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-
-// set the dimensions and margins of the graph -> Note that there is nothing concerning the width yet
-var margin = {top: 10, right: 30, bottom: 30, left: 30},
-    height = 400 - margin.top - margin.bottom;
-
-// Now set the size of the svg area
-svg
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
-
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
-  },
-
-  // Now I can use this dataset:
-  function(data) {
-
-    // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
-    var xAxis = svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.value; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
-
-    // Initialize the Area
-    var myArea = svg.append("path")
-      .datum(data)
-      .attr("fill", "#cce5df")
-      .attr("stroke", "#69b3a2")
-      .attr("stroke-width", 1.5)
-
-    // A function that finishes to draw the chart for a specific device size.
-    function drawChart() {
-
-      // get the current width of the 'my_dataviz' div:
-      currentWidth = parseInt(d3.select('#my_dataviz').style('width'), 10)
-
-      // Finish to set up the svg area thanks to this value
-      width = currentWidth - margin.left - margin.right,
-      svg.attr("width", width + margin.left + margin.right)
-
-      // Update the X scale and Axis
-      x.range([ 0, width ]);
-      xAxis.call(d3.axisBottom(x))
-
-      //Add the area
-      myArea
-        .attr("d", d3.area()
-          .x(function(d) { return x(d.date) })
-          .y0(y(0))
-          .y1(function(d) { return y(d.value) })
-          )
-      }
-
-      // Initialize the chart
-      drawChart()
-
-      // Add an event listener that run the function when dimension change
-      window.addEventListener('resize', drawChart );
-
-})
-
-
-
-</script>
-<!-- ================================================================================= -->
-
-
 
 
 

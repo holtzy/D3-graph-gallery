@@ -163,23 +163,47 @@
 
       <h1>Most basic use of react and D3</h1>
       <hr>
-      <code>&rarr; Intro</code>
+      <code>&rarr; Class component</code>
       <br>
       <ul style="margin-top: 5px">
-        <li><a href="https://en.wikipedia.org/wiki/HTML">HTML</a> stands for <u>Hypertext Markup Language</u>.
-          Basically, it is the language behind any <u>website</u>. Web browsers like Mozilla or Safari read this kind of
-          file and translate it in a webpage.</li>
-        <li>In a HTML file, elements composing the webpage are created, delineated by <u>tags</u>. For instance a title
-          of level 1 is represented by the <code>h1</code> tag, a paragraph with the <code>p</code> tag, an image by the
-          <code>img</code> tag and so on.</li>
-        <li>It is impossible to create a d3.js visualization without basic knowledge on html. <a
-            href="https://www.w3schools.com/html/">This tutorial</a> by W3School can be a good starting point in my
-          opinion.</li>
+        <li>Both React and D3 apply changes to the DOM. So it makes it hard to work together.</li>
+        <li>Most basic approach involves <a href="https://reactjs.org/docs/refs-and-the-dom.html">react refs</a>.
+          Important to understand how it works first.</li>
+        <li>React creates a div. D3 adds a svg element with a chart in it</li>
       </ul>
 
+      <h3>Pro</h3>
+      <ul>
+        <li>Easy to port from an existing d3 example</li>
+        <li>Works most of the time</li>
+        <li>D3 has most of the control</li>
+      </ul>
+      <h3>Cons</h3>
+      <ul>
+        <li>Not React-idiomatic</li>
+      </ul>
+
+      <h3>Litterature</h3>
+      <a href="https://www.smashingmagazine.com/2018/02/react-d3-ecosystem/">here</a>
+
+      <iframe src="https://codesandbox.io/embed/competent-zhukovsky-877uk?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+        title="React+D3 | #1 | Most basic"
+        allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+        sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+
+
+
+      <br><br><br>
+      <code>&rarr; Functionnal component</code>
+      <p>Basically using React Hooks</p>
+      <br>
+
       <iframe
-        src="https://codesandbox.io/embed/competent-zhukovsky-877uk?fontsize=14&hidenavigation=1&theme=dark&view=editor"
-        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="ReactAndD3 experiments"
+        src="https://codesandbox.io/embed/reactd3-1-most-basic-tofrd?fontsize=13&hidenavigation=1&module=%2Fsrc%2FBarplot.js&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+        title="React+D3 | #3 | Basic with react hook"
         allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
         sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
@@ -187,6 +211,13 @@
   </section>
 
   <!-- ================================================================================= -->
+
+
+
+
+
+
+
 
 
 
