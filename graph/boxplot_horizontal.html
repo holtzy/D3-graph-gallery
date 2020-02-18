@@ -310,7 +310,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
     .data(sumstat)
     .enter()
     .append("line")
-      .attr("y1", function(d){return(y(d.key) + y.bandwidth()/2)})
+      .attr("y1", function(d){return(y(d.key))})
       .attr("y2", function(d){return(y(d.key) + y.bandwidth()/2)})
       .attr("x1", function(d){return(x(d.value.median))})
       .attr("x2", function(d){return(x(d.value.median))})
