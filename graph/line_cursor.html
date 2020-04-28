@@ -243,17 +243,6 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
       .attr("text-anchor", "left")
       .attr("alignment-baseline", "middle")
 
-  // Create a rect on top of the svg area: this rectangle recovers mouse position
-  svg
-    .append('rect')
-    .style("fill", "none")
-    .style("pointer-events", "all")
-    .attr('width', width)
-    .attr('height', height)
-    .on('mouseover', mouseover)
-    .on('mousemove', mousemove)
-    .on('mouseout', mouseout);
-
   // Add the line
   svg
     .append("path")
@@ -265,6 +254,17 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
       .x(function(d) { return x(d.x) })
       .y(function(d) { return y(d.y) })
       )
+
+  // Create a rect on top of the svg area: this rectangle recovers mouse position
+  svg
+    .append('rect')
+    .style("fill", "none")
+    .style("pointer-events", "all")
+    .attr('width', width)
+    .attr('height', height)
+    .on('mouseover', mouseover)
+    .on('mousemove', mousemove)
+    .on('mouseout', mouseout);
 
 
   // What happens when the mouse move -> show the annotations at the right positions.
