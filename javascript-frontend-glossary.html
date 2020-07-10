@@ -190,9 +190,29 @@ function(toto){ 1+1} // comment</code></pre>
     </div>
   </section>
 
+  <section id="class">
+    <div class="container">
+      <h1>Class</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1
+function(toto){ 1+1} // comment</code></pre>
+    </div>
+  </section>
+
   <section id="closure">
     <div class="container">
       <h1>Closure</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1
+function(toto){ 1+1} // comment</code></pre>
+    </div>
+  </section>
+
+  <section id="constructor">
+    <div class="container">
+      <h1>Constructor</h1>
       <hr>
       <p>Some text to give explananations</p>
       <pre class="language-javascript"><code>const toto = 1 + 1
@@ -217,6 +237,29 @@ function(toto){ 1+1} // comment</code></pre>
       <p>Some text to give explananations</p>
       <pre class="language-javascript"><code>const toto = 1 + 1
 function(toto){ 1+1} // comment</code></pre>
+    </div>
+  </section>
+
+  <section id="destructuring">
+    <div class="container">
+      <h1>Destructuring</h1>
+      <hr>
+      <p>A js expression that allows to unpack values from arrays or properties from objects into distinct variables. <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Full
+          reference</a>
+      </p>
+      <pre class="language-javascript"><code>// destructuring an array:
+const [a, b] = [10, 20]
+console.log(b) // 20
+
+// destructuring an object:
+const obj = { c: 3, d: 4, e: 89 }
+const { c, d } = obj
+console.log(d) // 4</code></pre>
+      <p>Note that you can also rename directly</p>
+      <pre class="language-javascript"><code>const otherObj = {f: 78, g: 12};
+const {f: newNameForF, g: newNameForG} = otherObj;
+console.log(newNameForF); // 78 </code></pre>
     </div>
   </section>
 
