@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3523953066677938",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-79254642-6');
+  </script>
+  <script>
+    var getOutboundLink = function (url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function () { document.location = url; }
+      });
+    }
+  </script>
+
+  <meta charset="utf-8">
+  <title>Javascript and Frontend glossary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description"
+    content="A list of keywords related with frontend web development and javascript, with human readable explanations and small code snippets">
+  <meta name="keywords" content="web, development, programing, glossary, vocabulary, list, javascript, beginner">
+  <meta name="author" content="Yan Holtz">
+  <link rel="icon" href="img/logo/D3_single_small.png">
+
+  <meta property="og:title" content="Javascript and Frontend glossary.">
+  <meta property="og:image" content="img/overview_RGG.png">
+  <meta property="og:description"
+    content="A list of keywords related with frontend web development and javascript, with human readable explanations and small code snippets.">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/agency.css" rel="stylesheet">
+
+  <!-- PRISM -->
+  <script src="LIB/prism.js"></script>
+  <link href="LIB/prism.css" rel="stylesheet" />
+
+  <!-- JQUERY -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+
+  <!-- HTML TO CANVAS -->
+  <script src="js/html2canvas.js"></script>
+
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="js/myParser.js"></script>
+
+  <!-- Bootstrap js -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/agency.min.js"></script>
+
+</head>
+
+
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+
+  <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+  <script>
+    $(function () {
+      $("#mainNav").load("html_chunk/menu.html");
+    });
+  </script>
+
+  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+  <div id="modal_menu_insertion"> </div>
+  <script>
+    $(function () {
+      $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+    });
+  </script>
+
+
+
+  <!-- Header -->
+  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+    <div class="textlanding">
+      <h1>Javascript and Frontend glossary</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">This document is a list of keywords you will frequently hear when
+        working in the world of web development and Javascript. Please consider it as a note to myself: I like storing
+        the main concepts I learn here, and hope it can be useful to you too!</p>
+    </div>
+  </header>
+
+
+
+
+
+
+
+
+  <!-- initialize the TABLE of CONTENT (will be dynamically filled later -->
+  <div>
+    <nav class="col-sm-3 col-4" id="myScrollspy">
+      <ul class="nav nav-pills flex-column" id="tableOfContent">
+      </ul>
+    </nav>
+  </div>
+
+
+  <!-- Lets make the container thiner for this specific page -->
+  <style>
+    .container {
+      max-width: 740px;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+  </style>
+
+  <section id="anonymous-function">
+    <div class="container">
+      <h1>Anonymous function</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1
+function(toto){ 1+1} // comment</code></pre>
+    </div>
+  </section>
+
+  <section id="hoisting">
+    <div class="container">
+      <h1>Hoisting</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1</code></pre>
+    </div>
+  </section>
+
+  <section id="ternary-operator">
+    <div class="container">
+      <h1>Ternary operator</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1</code></pre>
+    </div>
+  </section>
+
+
+  <!-- Build the left hand side summary -->
+  <script>
+    const upperCaseFirst = (str) =>
+      str.charAt(0).toUpperCase() + str.substring(1);
+
+    const allItems = document.getElementsByTagName("section")
+    const ul = document.getElementById("tableOfContent");
+
+    for (i = 0; i < allItems.length; i++) {
+      id = allItems[i].id
+
+      // create an item in the table of content
+      li = document.createElement("li");
+      li.classList.add("nav-item");
+
+      // create a link
+      itemLink = document.createElement('a');
+      itemLink.setAttribute('class', 'nav-link');
+      itemLink.setAttribute('href', '#' + id);
+      let linkText = document.createTextNode(upperCaseFirst(id.replace("-", " ")));
+      itemLink.appendChild(linkText);
+
+      // Add link to item, and item to the list
+      li.appendChild(itemLink);
+      ul.appendChild(li);
+    }
+
+  </script>
+
+
+  <!-- ============================ CONTACT SECTION ============================ -->
+  <section id="contact" class="bg" style="background-color: white"></section>
+
+  <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+  <script>
+    $(function () {
+      $("#contact").load("html_chunk/contact.html");
+    });
+  </script>
+
+  <!-- ============================ FOOTER SECTION ============================ -->
+  <footer class="bg-light" id="myFooter"></footer>
+
+  <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+  <script>
+    $(function () {
+      $("#myFooter").load("html_chunk/footer.html");
+    });
+  </script>
+
+  <!-- ============================ -->
+
+</body>
+
+</html>
