@@ -345,6 +345,31 @@ function(toto){ 1+1} // comment</code></pre>
     </div>
   </section>
 
+  <section id="spread">
+    <div class="container">
+      <h1>Spread syntax <code>...</code></h1>
+      <hr>
+      <p>The spread syntax allows to merge or clone object and concatenate arrays. <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">Full
+          reference</a></p>
+      <p><code>&rarr; Merge</code>: Note that if a property exists in
+        several objects, its final value
+        will be the last observed:</p>
+      <pre class="language-javascript"><code>const obj1 = { a: 1, b: 2 }
+const obj2 = { a: 1, b: 4 }
+console.log({ ...obj1, ...obj2 }) // { a: 1, b: 4 }</code></pre>
+      <p><code>&rarr; Clone</code>: shallow cloning here.</p>
+      <pre class="language-javascript"><code>let obj = { a: 2 };
+let clone = { ...obj };</code></pre>
+      <p><code>&rarr; Concatenate</code>: For arrays</p>
+      <pre class="language-javascript"><code>let arr1 = [0, 1, 2];
+let arr2 = [3, 4, 5];
+let concatArray = [...arr1, ...arr2];
+console.log(concatArray) // [0, 1, 2, 3, 4, 5]</code></pre>
+    </div>
+  </section>
+
+
   <section id="ternary-operator">
     <div class="container">
       <h1>Ternary operator</h1>
