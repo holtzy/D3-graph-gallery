@@ -1,0 +1,41 @@
+[
+    {
+        "name": "company.salesManager.salesPersonA",
+        "totalPrReviewed": 12,
+        "imports": [
+            "company.salesManager.salesPersonB",
+            "company.HRManager.recruiterB",
+            "company.engineerManager.engineerB"
+        ]
+    },
+    {
+        "name": "company.salesManager.salesPersonB",
+        "totalPrReviewed": 2,
+        "imports": []
+    },
+    {
+        "name": "company.HRManager.recruiterA",
+        "totalPrReviewed": 120,
+        "imports": [
+            "company.HRManager.recruiterB",
+            "company.salesManager.salesPersonA"
+        ]
+    },
+    {
+        "name": "company.HRManager.recruiterB",
+        "totalPrReviewed": 19,
+        "imports": []
+    },
+    {
+        "name": "company.engineerManager.engineerA",
+        "totalPrReviewed": 121,
+        "imports": []
+    },
+    {
+        "name": "company.engineerManager.engineerB",
+        "totalPrReviewed": 127,
+        "imports": [
+            "company.engineerManager.engineerA"
+        ]
+    }
+]
