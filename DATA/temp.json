@@ -2,6 +2,7 @@
     {
         "name": "company.salesManager.salesPersonA",
         "totalPrReviewed": 12,
+        "totalPrMerged": 140,
         "imports": [
             "company.salesManager.salesPersonB",
             "company.HRManager.recruiterB",
@@ -11,11 +12,13 @@
     {
         "name": "company.salesManager.salesPersonB",
         "totalPrReviewed": 2,
+        "totalPrMerged": 80,
         "imports": []
     },
     {
         "name": "company.HRManager.recruiterA",
         "totalPrReviewed": 120,
+        "totalPrMerged": 120,
         "imports": [
             "company.HRManager.recruiterB",
             "company.salesManager.salesPersonA"
@@ -24,16 +27,19 @@
     {
         "name": "company.HRManager.recruiterB",
         "totalPrReviewed": 19,
+        "totalPrMerged": 1,
         "imports": []
     },
     {
         "name": "company.engineerManager.engineerA",
         "totalPrReviewed": 121,
+        "totalPrMerged": 14,
         "imports": []
     },
     {
         "name": "company.engineerManager.engineerB",
         "totalPrReviewed": 127,
+        "totalPrMerged": 10,
         "imports": [
             "company.engineerManager.engineerA"
         ]
