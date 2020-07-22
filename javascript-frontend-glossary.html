@@ -273,6 +273,53 @@ function(toto){ 1+1} // comment</code></pre>
     </div>
   </section>
 
+  <section id="headless">
+    <div class="container">
+      <h1>Headless UI library or component</h1>
+      <hr>
+      <p>Headless user interface components separate the logic & behavior of a component
+        from its visual representation. For instance, <a href="">React-table</a> provides a set of
+        usefull functions to create tables, but does not render it for you.
+      </p>
+      <pre class="language-javascript"><code>const toto = 1 + 1</code></pre>
+    </div>
+  </section>
+
+
+  <section id="CSS-selector">
+    <div class="container">
+      <h1>CSS selector combination</h1>
+      <hr>
+      <p>A CSS selector allows to select a specific part of the DOM to give it some style. For instance, make the
+        background red for the class called "classA"</p>
+      <pre class="language-css"><code>.classA {
+  background-color: red;
+}</code></pre>
+      <p>You can do the same with ids (<code>#classA</code>)or with html elements ( <code>p</code> or <code>h1</code> ).
+      </p>
+      <p>It is also possible to combine selectors and I always forget how it works</p>
+      <ul>
+        <li>Grouping: <code>.class1, .class2, .class3 { ... }</code> select those 3 classes.</li>
+        <li>Descendant: <code>.class1 .class2 {...}</code> select class2 when it is inside a class1.</li>
+        <li>Adjacent sibling: <code>.class1 + .class2</code> select class2 when it comes right after class1 at the same
+          level.</li>
+        <li>General sibling: <code>.class1 ~ .class2</code> select class2 when at the same level than class1</li>
+        <li>Child: <code>.class1 > .class2</code> select class2 when it comes right after class1 as a children.</li>
+      </ul>
+      <p>See more in this <a href="https://gist.github.com/magicznyleszek/809a69dd05e1d5f12d01">Cheatsheet</a>.</p>
+      <!-- Playground
+      <div class="toto">
+        <p class="titi">tititititititti</p>
+      </div>
+      <p class="titi">tititititititti</p>
+      <style>
+        .toto~.titi {
+          background-color: red;
+        }
+      </style> -->
+  </section>
+
+
   <section id="hoisting">
     <div class="container">
       <h1>Hoisting</h1>
