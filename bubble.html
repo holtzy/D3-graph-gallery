@@ -321,6 +321,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // -1- Create a tooltip div that is hidden by default:
   var tooltip = d3.select("#my_dataviz")
+    .style("position", "relative")
     .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
