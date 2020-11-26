@@ -331,14 +331,15 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
   var showTooltip = function(d) {
+    tooltip    
+      .html("Country: " + d.country);
+    
     tooltip
       .transition()
       .duration(200)
-    tooltip
       .style("opacity", 1)
-      .html("Country: " + d.country)
       .style("left", (d3.event.pageX+20) + "px")
-      .style("top", (d3.event.pageY-30) + "px")
+      .style("top", (d3.event.pageY-30) + "px");
   }
   var moveTooltip = function(d) {
     tooltip
