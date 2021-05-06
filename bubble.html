@@ -321,6 +321,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // -1- Create a tooltip div that is hidden by default:
   var tooltip = d3.select("#my_dataviz")
+    .style("position", "relative")
     .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
@@ -328,17 +329,20 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
       .style("border-radius", "5px")
       .style("padding", "10px")
       .style("color", "white")
+      .style("z-index", "1070")
+      .style("position", "absolute")
 
   // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
   var showTooltip = function(d) {
+    tooltip    
+      .html("Country: " + d.country);
+    
     tooltip
       .transition()
       .duration(200)
-    tooltip
       .style("opacity", 1)
-      .html("Country: " + d.country)
       .style("left", (d3.event.pageX+20) + "px")
-      .style("top", (d3.event.pageY-30) + "px")
+      .style("top", (d3.event.pageY-30) + "px");
   }
   var moveTooltip = function(d) {
     tooltip
