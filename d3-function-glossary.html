@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3523953066677938",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-79254642-6');
+  </script>
+  <script>
+    var getOutboundLink = function (url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function () { document.location = url; }
+      });
+    }
+  </script>
+
+  <meta charset="utf-8">
+  <title>A collection of d3 functions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description"
+    content="A list of all the functions offered by the d3 modules.">
+  <meta name="keywords" content="web, development, programing, glossary, vocabulary, list, javascript, beginner">
+  <meta name="author" content="Yan Holtz">
+  <link rel="icon" href="img/logo/D3_single_small.png">
+
+  <meta property="og:title" content="Javascript and Frontend glossary.">
+  <meta property="og:image" content="img/overview_RGG.png">
+  <meta property="og:description"
+    content="A list of all the functions offered by the d3 modules.">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/agency.css" rel="stylesheet">
+
+  <!-- PRISM -->
+  <script src="LIB/prism.js"></script>
+  <link href="LIB/prism.css" rel="stylesheet" />
+
+  <!-- JQUERY -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+
+  <!-- HTML TO CANVAS -->
+  <script src="js/html2canvas.js"></script>
+
+  <!-- Function to parse html and js code chunks made by Yan Holtz -->
+  <script src="js/myParser.js"></script>
+
+  <!-- Bootstrap js -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/agency.min.js"></script>
+
+  <!-- D3.JS v4 -->
+  <script src="js/d3.v4.js"></script>
+
+</head>
+
+
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+
+  <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+  <script>
+    $(function () {
+      $("#mainNav").load("html_chunk/menu.html");
+    });
+  </script>
+
+  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+  <div id="modal_menu_insertion"> </div>
+  <script>
+    $(function () {
+      $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+    });
+  </script>
+
+
+
+  <!-- Header -->
+  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+    <div class="textlanding">
+      <h1>A collection of d3 functions</h1>
+      <hr class="short_hr">
+      <br>
+      <ul class="list-inline social-buttons">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/R_Graph_Gallery">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://github.com/holtzy">
+            <i class="fa fa-github" style="color: white"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-buttons">
+          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+      </ul>
+      <br><br>
+      <p style="max-width: 700px; margin: auto">D3 is a collection of modules that can
+        be loaded independently. Each module offers a set of functions. This document
+        provides a list of them, with a short human readable explanation and some
+        code examples.</p>
+    </div>
+  </header>
+
+
+
+
+  <!--
+  <nav class="col-sm-3 col-4" id="myScrollspy">
+    <ul class="nav nav-pills flex-column" id="tableOfContent">
+    </ul>
+  </nav> -->
+
+
+  <!-- initialize the TABLE of CONTENT (will be dynamically filled later -->
+  <div>
+    <div
+      style="line-height: .8; margin-left: 30px; position: fixed; top: 20%; height: 60%; width:260px; overflow: scroll; font-size: 0.8rem;">
+      <nav id="myScrollspy">
+        <ul class="nav nav-pills flex-column" id="tableOfContent" style="position: static;">
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+
+
+  <!-- Lets make the container thiner for this specific page -->
+  <style>
+    .container {
+      max-width: 740px;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    section  h1::after {
+      content: "d3.hierarchy";
+      background-color: #69b3a2;
+      color: black;
+      border: black;
+      border-width: 2px;
+      border-radius:2px;
+      font-size: 15px;
+      padding: 6px;
+
+    }
+
+  </style>
+
+  <section id="d3.cluster">
+    <div class="container">
+      <h1 class="d3Hierarchy">d3.cluster()</h1>
+      <hr>
+      <p><code>d3.cluster()</code> is used to create a cluster layout = to provide some coordinates to every member of a hierarchy</p>
+      <p>Calling <code>d3.cluster()</code> creates a function.</p>
+      <pre class="language-javascript"><code>const clusterCreator = d3.cluster()</code></pre>
+      <p>The new <code>clusterCreator</code> accepts a <code>node</code> object as input. See <a href="d3.hierarchy">d3.hierarchy</a> to build it. Process looks like:</p>
+      <pre class="language-javascript"><code>// An object describing a hierarchy
+const data = {
+  name: "Boss",
+  children: [
+    {
+      name: "ProductManager1"
+    },
+    {
+      name: "ProductManager2",
+      children: [
+        {
+          name: "Engineer1"
+        },
+        {
+          name: "Engineer2"
+        }
+      ]
+    }
+  ]
+};
+
+// build a "node" object from it:
+const node = d3.hierarchy(data);</code></pre>
+      <p><code>clusterCreator</code> is gonna provide some coordinates to all the nodes of the <code>node</code> object:</p>
+      <pre class="language-javascript"><code>const nodeWithCoordinates = clusterCreator(node)</code></pre>
+      <p><code>nodeWithCoordinates</code> looks like:</p>
+      <pre class="language-javascript"><code>{
+  x: 0.45,
+  y: 0,
+  children: [
+    {
+      x: 0.2,
+      y: 1,
+      children: [Array]
+    },
+    {
+      x: 1
+      y: 0.8,
+      children: [Array]
+    }
+  ]
+}</code></pre>
+      <p>It's now easy to use this object to create a viz!</p>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+  <section id="d3.hierarchy">
+    <div class="container">
+      <h1>d3.hierarchy()</h1>
+      <hr>
+      <p><code>d3.hierarchy()</code> takes a hiearchic dataset and builds a <code>node</code> object from it.</p>
+      <p>What is a hiearchic dataset? It's a dataset that looks like this:</p>
+      <pre class="language-javascript"><code>const data = {
+  name: "Boss",
+  children: [
+    {
+      name: "ProductManager1"
+    },
+    {
+      name: "ProductManager2",
+      children: [
+        {
+          name: "Engineer1"
+        },
+        {
+          name: "Engineer2"
+        }
+      ]
+    }
+  ]
+};</code></pre>
+      <p>Basically, we have a <code>boss</code> in the company. Under him, 2 product managers. The second, <code>ProductManager2</code>, has 2 engineers working from him.</p>
+      <p><code>d3.hierarchy()</code> is gonna read this format and build a <code>node</code> with it: an object that provides many interesting features and will be used as input for many other d3 functions.</p>
+      <pre class="language-javascript"><code>const node = d3.hierarchy(data);</code></pre>
+      <p>The node object looks pretty much like this:</p>
+      <pre class="language-javascript"><code>{
+  data: Object // an object representing the hierarchy
+  height: 2 // # of levels of hierarchy
+  depth: 0 // level of this node in the hierarchy. 0 = root node, the highest
+  parent: null // no parent since this node is the root node
+  children: Array[2] // an array of nodes that have this format as well
+}</code></pre>
+      <p>The <code>node</code> object also has several methods allowing to work with it.</p>
+      <ul>
+        <li><code>node.leaves()</code> returns an array with each leaf.</li>
+        <li>See more</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="callback">
+    <div class="container">
+      <h1>Callback</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1
+function(toto){ 1+1} // comment</code></pre>
+    </div>
+  </section>
+
+  <section id="class">
+    <div class="container">
+      <h1>Class</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1
+function(toto){ 1+1} // comment</code></pre>
+    </div>
+  </section>
+
+  <section id="closure">
+    <div class="container">
+      <h1>Closure</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1
+function(toto){ 1+1} // comment</code></pre>
+    </div>
+  </section>
+
+  <section id="constructor">
+    <div class="container">
+      <h1>Constructor</h1>
+      <hr>
+      <p>Some text to give explananations</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1
+function(toto){ 1+1} // comment</code></pre>
+    </div>
+  </section>
+
+
+  <section id="VPN">
+    <div class="container">
+      <h1>VPN</h1>
+      <hr>
+      <p>VPN stands for <code>Virtual Private Network</code>.</p>
+      <pre class="language-javascript"><code>const toto = 1 + 1</code></pre>
+    </div>
+  </section>
+
+  <!-- Build the left hand side summary -->
+  <script>
+    const upperCaseFirst = (str) =>
+      str.charAt(0).toUpperCase() + str.substring(1);
+
+    const allItems = document.getElementsByTagName("section")
+    const ul = document.getElementById("tableOfContent");
+
+    for (i = 0; i < allItems.length; i++) {
+      id = allItems[i].id
+
+      // create an item in the table of content
+      li = document.createElement("li");
+      li.classList.add("nav-item");
+
+      // create a link
+      itemLink = document.createElement('a');
+      itemLink.setAttribute('class', 'nav-link');
+      itemLink.setAttribute('href', '#' + id);
+      let linkText = document.createTextNode(upperCaseFirst(id.replace("-", " ")));
+      itemLink.appendChild(linkText);
+
+      // Add link to item, and item to the list
+      li.appendChild(itemLink);
+      ul.appendChild(li);
+    }
+
+  </script>
+
+
+  <!-- ============================ CONTACT SECTION ============================ -->
+  <section id="contact" class="bg" style="background-color: white"></section>
+
+  <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+  <script>
+    $(function () {
+      $("#contact").load("html_chunk/contact.html");
+    });
+  </script>
+
+  <!-- ============================ FOOTER SECTION ============================ -->
+  <footer class="bg-light" id="myFooter"></footer>
+
+  <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+  <script>
+    $(function () {
+      $("#myFooter").load("html_chunk/footer.html");
+    });
+  </script>
+
+  <!-- ============================ -->
+
+</body>
+
+</html>

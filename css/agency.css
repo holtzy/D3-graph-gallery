@@ -124,7 +124,20 @@ section h3.section-subheading {
 }
 
 
+/* ---------- D3-V4 vs D3-V6 button ----------------- */
+.v4-v6-toggle {
+  position: absolute;
+  top: -30px;
+  right: 15px;
+  width: 100%;
+  text-align: right;
+}
 
+
+/* ---------- Remove ugly blue border around editable code on focus ----------------- */
+[contenteditable] {
+  outline: 0px solid transparent;
+}
 
 /* ---------- Read more tag ----------------- */
 
