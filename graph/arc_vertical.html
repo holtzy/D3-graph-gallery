@@ -46,9 +46,6 @@
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
 
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -168,6 +165,12 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
 
+<div class="v4-v6-toggle">
+  <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+  <span> | </span>
+  <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -180,6 +183,17 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+</xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -187,7 +201,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code V4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -272,6 +286,93 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
 <!-- ==================================== -->
 
 
+
+
+
+
+<!-- ========= show JS code V6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+const margin = {top: 20, right: 30, bottom: 20, left: 30},
+  width = 450 - margin.left - margin.right,
+  height = 300 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Read dummy data
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_network.json").then(function( data) {
+
+  // List of node names
+  const allNodes = data.nodes.map(d => d.name)
+
+  // A linear scale to position the nodes on the X axis
+  const y = d3.scalePoint()
+    .range([0, height])
+    .domain(allNodes)
+
+  // Add the circle for the nodes
+  svg
+    .selectAll("mynodes")
+    .data(data.nodes)
+    .enter()
+    .append("circle")
+      .attr("cx", 50)
+      .attr("cy", d => y(d.name))
+      .attr("r", 8)
+      .style("fill", "#69b3a2")
+
+  // And give them a label
+  svg
+    .selectAll("mylabels")
+    .data(data.nodes)
+    .enter()
+    .append("text")
+      .attr("x", 20)
+      .attr("y", d => y(d.name))
+      .text(d => d.name)
+      .style("text-anchor", "middle")
+      .style("alignment-baseline", "middle")
+
+  // Add links between nodes. Here is the tricky part.
+  // In my input data, links are provided between nodes -id-, NOT between node names.
+  // So I have to do a link between this id and the name
+  let idToNode = {};
+  data.nodes.forEach(function (n) {
+    idToNode[n.id] = n;
+  });
+  // Cool, now if I do idToNode["2"].name I've got the name of the node with id 2
+
+  // Add the links
+  svg
+    .selectAll('mylinks')
+    .data(data.links)
+    .enter()
+    .append('path')
+    .attr('d', function (d) {
+      start = y(idToNode[d.source].name)    // X position of start node on the X axis
+      end = y(idToNode[d.target].name)      // X position of end node
+      return ['M', 50, start,    // the arc starts at the coordinate x=start, y=height-30 (where the starting node is)
+        'A',                            // This means we're gonna build an elliptical arc
+        (start - end)/2*4, ',',    // Next 2 lines are the coordinates of the inflexion point. Height of this point is proportional with start - end distance
+        (start - end)/2, 0, 0, ',',
+        start < end ? 1 : 0, 50, ',', end] // We always want the arc on top. So if end is before start, putting 0 here turn the arc upside down.
+        .join(' ');
+    })
+    .style("fill", "none")
+    .attr("stroke", "black")
+
+})
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
