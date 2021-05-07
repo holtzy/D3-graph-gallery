@@ -1,0 +1,3434 @@
+143 results - 143 files
+
+graph/0_template.html:
+  271  
+  272: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  273: <script>
+  274: // At the beginning, I read the html and JS fragments
+  275: myHtmlParser('code', 'result')
+  276: myJSParser('codejs', 'result')
+  277: 
+  278: // If the user change the JS fragment, I run it again:
+  279: document.getElementById('codejs').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: 
+  285: // If the user change the HTML fragment, I run it again:
+  286: document.getElementById('code').addEventListener("input", function() {
+  287: d3.select('#result').html("");
+  288: myHtmlParser('code', 'result');
+  289: myJSParser('codejs', 'result');
+  290: })
+  291: </script>
+  292  
+
+graph/arc_highlight.html:
+  303  
+  304: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  305: <script>
+  306: // At the beginning, I read the html and JS fragments
+  307: myHtmlParser('code', 'result')
+  308: myJSParser('codejs', 'result')
+  309: 
+  310: // If the user change the JS fragment, I run it again:
+  311: document.getElementById('codejs').addEventListener("input", function() {
+  312: d3.select('#result').html("");
+  313: myHtmlParser('code', 'result');
+  314: myJSParser('codejs', 'result');
+  315: })
+  316: 
+  317: // If the user change the HTML fragment, I run it again:
+  318: document.getElementById('code').addEventListener("input", function() {
+  319: d3.select('#result').html("");
+  320: myHtmlParser('code', 'result');
+  321: myJSParser('codejs', 'result');
+  322: })
+  323: </script>
+  324  
+
+graph/arc_template.html:
+  323  
+  324: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  325: <script>
+  326: // At the beginning, I read the html and JS fragments
+  327: myHtmlParser('code', 'result')
+  328: myJSParser('codejs', 'result')
+  329: 
+  330: // If the user change the JS fragment, I run it again:
+  331: document.getElementById('codejs').addEventListener("input", function() {
+  332: d3.select('#result').html("");
+  333: myHtmlParser('code', 'result');
+  334: myJSParser('codejs', 'result');
+  335: })
+  336: 
+  337: // If the user change the HTML fragment, I run it again:
+  338: document.getElementById('code').addEventListener("input", function() {
+  339: d3.select('#result').html("");
+  340: myHtmlParser('code', 'result');
+  341: myJSParser('codejs', 'result');
+  342: })
+  343: </script>
+  344  
+
+graph/arc_vertical.html:
+  279  
+  280: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  281: <script>
+  282: // At the beginning, I read the html and JS fragments
+  283: myHtmlParser('code', 'result')
+  284: myJSParser('codejs', 'result')
+  285: 
+  286: // If the user change the JS fragment, I run it again:
+  287: document.getElementById('codejs').addEventListener("input", function() {
+  288: d3.select('#result').html("");
+  289: myHtmlParser('code', 'result');
+  290: myJSParser('codejs', 'result');
+  291: })
+  292: 
+  293: // If the user change the HTML fragment, I run it again:
+  294: document.getElementById('code').addEventListener("input", function() {
+  295: d3.select('#result').html("");
+  296: myHtmlParser('code', 'result');
+  297: myJSParser('codejs', 'result');
+  298: })
+  299: </script>
+  300  
+
+graph/area_basic.html:
+  255  
+  256: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  257: <script>
+  258: // At the beginning, I read the html and JS fragments
+  259: myHtmlParser('code', 'result')
+  260: myJSParser('codejs', 'result')
+  261: 
+  262: // If the user change the JS fragment, I run it again:
+  263: document.getElementById('codejs').addEventListener("input", function() {
+  264: d3.select('#result').html("");
+  265: myHtmlParser('code', 'result');
+  266: myJSParser('codejs', 'result');
+  267: })
+  268: 
+  269: // If the user change the HTML fragment, I run it again:
+  270: document.getElementById('code').addEventListener("input", function() {
+  271: d3.select('#result').html("");
+  272: myHtmlParser('code', 'result');
+  273: myJSParser('codejs', 'result');
+  274: })
+  275: </script>
+  276  
+
+graph/area_brushZoom.html:
+  321  
+  322: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  323: <script>
+  324: // At the beginning, I read the html and JS fragments
+  325: myHtmlParser('code', 'result')
+  326: myJSParser('codejs', 'result')
+  327: 
+  328: // If the user change the JS fragment, I run it again:
+  329: document.getElementById('codejs').addEventListener("input", function() {
+  330: d3.select('#result').html("");
+  331: myHtmlParser('code', 'result');
+  332: myJSParser('codejs', 'result');
+  333: })
+  334: 
+  335: // If the user change the HTML fragment, I run it again:
+  336: document.getElementById('code').addEventListener("input", function() {
+  337: d3.select('#result').html("");
+  338: myHtmlParser('code', 'result');
+  339: myJSParser('codejs', 'result');
+  340: })
+  341: </script>
+  342  
+
+graph/area_lineDot.html:
+  279  
+  280: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  281: <script>
+  282: // At the beginning, I read the html and JS fragments
+  283: myHtmlParser('code', 'result')
+  284: myJSParser('codejs', 'result')
+  285: 
+  286: // If the user change the JS fragment, I run it again:
+  287: document.getElementById('codejs').addEventListener("input", function() {
+  288: d3.select('#result').html("");
+  289: myHtmlParser('code', 'result');
+  290: myJSParser('codejs', 'result');
+  291: })
+  292: 
+  293: // If the user change the HTML fragment, I run it again:
+  294: document.getElementById('code').addEventListener("input", function() {
+  295: d3.select('#result').html("");
+  296: myHtmlParser('code', 'result');
+  297: myJSParser('codejs', 'result');
+  298: })
+  299: </script>
+  300  
+
+graph/area_responsive.html:
+  275  
+  276: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  277: <script>
+  278: // At the beginning, I read the html and JS fragments
+  279: myHtmlParser('code', 'result')
+  280: myJSParser('codejs', 'result')
+  281: 
+  282: // If the user change the JS fragment, I run it again:
+  283: document.getElementById('codejs').addEventListener("input", function() {
+  284: d3.select('#result').html("");
+  285: myHtmlParser('code', 'result');
+  286: myJSParser('codejs', 'result');
+  287: })
+  288: 
+  289: // If the user change the HTML fragment, I run it again:
+  290: document.getElementById('code').addEventListener("input", function() {
+  291: d3.select('#result').html("");
+  292: myHtmlParser('code', 'result');
+  293: myJSParser('codejs', 'result');
+  294: })
+  295: </script>
+  296  
+
+graph/area_smallmultiple.html:
+  274  
+  275: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  276: <script>
+  277: // At the beginning, I read the html and JS fragments
+  278: myHtmlParser('code', 'result')
+  279: myJSParser('codejs', 'result')
+  280: 
+  281: // If the user change the JS fragment, I run it again:
+  282: document.getElementById('codejs').addEventListener("input", function() {
+  283: d3.select('#result').html("");
+  284: myHtmlParser('code', 'result');
+  285: myJSParser('codejs', 'result');
+  286: })
+  287: 
+  288: // If the user change the HTML fragment, I run it again:
+  289: document.getElementById('code').addEventListener("input", function() {
+  290: d3.select('#result').html("");
+  291: myHtmlParser('code', 'result');
+  292: myJSParser('codejs', 'result');
+  293: })
+  294: </script>
+  295  
+
+graph/backgroundmap_basic.html:
+  235  
+  236: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  237: <script>
+  238: // At the beginning, I read the html and JS fragments
+  239: myHtmlParser('code', 'result')
+  240: myJSParser('codejs', 'result')
+  241: 
+  242: // If the user change the JS fragment, I run it again:
+  243: document.getElementById('codejs').addEventListener("input", function() {
+  244: d3.select('#result').html("");
+  245: myHtmlParser('code', 'result');
+  246: myJSParser('codejs', 'result');
+  247: })
+  248: 
+  249: // If the user change the HTML fragment, I run it again:
+  250: document.getElementById('code').addEventListener("input", function() {
+  251: d3.select('#result').html("");
+  252: myHtmlParser('code', 'result');
+  253: myJSParser('codejs', 'result');
+  254: })
+  255: </script>
+  256  
+
+graph/backgroundmap_canvas_basic.html:
+  247  
+  248: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  249: <script>
+  250: // At the beginning, I read the html and JS fragments
+  251: myHtmlParser('code', 'result')
+  252: myJSParser('codejs', 'result')
+  253: 
+  254: // If the user change the JS fragment, I run it again:
+  255: document.getElementById('codejs').addEventListener("input", function() {
+  256: d3.select('#result').html("");
+  257: myHtmlParser('code', 'result');
+  258: myJSParser('codejs', 'result');
+  259: })
+  260: 
+  261: // If the user change the HTML fragment, I run it again:
+  262: document.getElementById('code').addEventListener("input", function() {
+  263: d3.select('#result').html("");
+  264: myHtmlParser('code', 'result');
+  265: myJSParser('codejs', 'result');
+  266: })
+  267: </script>
+  268  
+
+graph/backgroundmap_canvas_responsive.html:
+  270  
+  271: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  272: <script>
+  273: // At the beginning, I read the html and JS fragments
+  274: myHtmlParser('code', 'result')
+  275: myJSParser('codejs', 'result')
+  276: 
+  277: // If the user change the JS fragment, I run it again:
+  278: document.getElementById('codejs').addEventListener("input", function() {
+  279: d3.select('#result').html("");
+  280: myHtmlParser('code', 'result');
+  281: myJSParser('codejs', 'result');
+  282: })
+  283: 
+  284: // If the user change the HTML fragment, I run it again:
+  285: document.getElementById('code').addEventListener("input", function() {
+  286: d3.select('#result').html("");
+  287: myHtmlParser('code', 'result');
+  288: myJSParser('codejs', 'result');
+  289: })
+  290: </script>
+  291  
+
+graph/backgroundmap_changeprojection.html:
+  238  
+  239: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  240: <script>
+  241: // At the beginning, I read the html and JS fragments
+  242: myHtmlParser('code', 'result')
+  243: myJSParser('codejs', 'result')
+  244: 
+  245: // If the user change the JS fragment, I run it again:
+  246: document.getElementById('codejs').addEventListener("input", function() {
+  247: d3.select('#result').html("");
+  248: myHtmlParser('code', 'result');
+  249: myJSParser('codejs', 'result');
+  250: })
+  251: 
+  252: // If the user change the HTML fragment, I run it again:
+  253: document.getElementById('code').addEventListener("input", function() {
+  254: d3.select('#result').html("");
+  255: myHtmlParser('code', 'result');
+  256: myJSParser('codejs', 'result');
+  257: })
+  258: </script>
+  259  
+
+graph/backgroundmap_country.html:
+  240  
+  241: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  242: <script>
+  243: // At the beginning, I read the html and JS fragments
+  244: myHtmlParser('code', 'result')
+  245: myJSParser('codejs', 'result')
+  246: 
+  247: // If the user change the JS fragment, I run it again:
+  248: document.getElementById('codejs').addEventListener("input", function() {
+  249: d3.select('#result').html("");
+  250: myHtmlParser('code', 'result');
+  251: myJSParser('codejs', 'result');
+  252: })
+  253: 
+  254: // If the user change the HTML fragment, I run it again:
+  255: document.getElementById('code').addEventListener("input", function() {
+  256: d3.select('#result').html("");
+  257: myHtmlParser('code', 'result');
+  258: myJSParser('codejs', 'result');
+  259: })
+  260: </script>
+  261  
+
+graph/backgroundmap_leaflet_buttonLayer.html:
+  266  
+  267: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  268: <script>
+  269: // At the beginning, I read the html and JS fragments
+  270: myHtmlParser('code', 'result')
+  271: myJSParser('codejs', 'result')
+  272: 
+  273: // If the user change the JS fragment, I run it again:
+  274: document.getElementById('codejs').addEventListener("input", function() {
+  275: d3.select('#result').html("");
+  276: myHtmlParser('code', 'result');
+  277: myJSParser('codejs', 'result');
+  278: })
+  279: 
+  280: // If the user change the HTML fragment, I run it again:
+  281: document.getElementById('code').addEventListener("input", function() {
+  282: d3.select('#result').html("");
+  283: myHtmlParser('code', 'result');
+  284: myJSParser('codejs', 'result');
+  285: })
+  286: </script>
+  287  
+
+graph/backgroundmap_leaflet.html:
+  242  
+  243: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  244: <script>
+  245: // At the beginning, I read the html and JS fragments
+  246: myHtmlParser('code', 'result')
+  247: myJSParser('codejs', 'result')
+  248: 
+  249: // If the user change the JS fragment, I run it again:
+  250: document.getElementById('codejs').addEventListener("input", function() {
+  251: d3.select('#result').html("");
+  252: myHtmlParser('code', 'result');
+  253: myJSParser('codejs', 'result');
+  254: })
+  255: 
+  256: // If the user change the HTML fragment, I run it again:
+  257: document.getElementById('code').addEventListener("input", function() {
+  258: d3.select('#result').html("");
+  259: myHtmlParser('code', 'result');
+  260: myJSParser('codejs', 'result');
+  261: })
+  262: </script>
+  263  
+
+graph/barplot_animation_start.html:
+  258  
+  259: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  260: <script>
+  261: // At the beginning, I read the html and JS fragments
+  262: myHtmlParser('code', 'result')
+  263: myJSParser('codejs', 'result')
+  264: 
+  265: // If the user change the JS fragment, I run it again:
+  266: document.getElementById('codejs').addEventListener("input", function() {
+  267: d3.select('#result').html("");
+  268: myHtmlParser('code', 'result');
+  269: myJSParser('codejs', 'result');
+  270: })
+  271: 
+  272: // If the user change the HTML fragment, I run it again:
+  273: document.getElementById('code').addEventListener("input", function() {
+  274: d3.select('#result').html("");
+  275: myHtmlParser('code', 'result');
+  276: myJSParser('codejs', 'result');
+  277: })
+  278: </script>
+  279  
+
+graph/barplot_basic.html:
+  253  
+  254: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  255: <script>
+  256: // At the beginning, I read the html and JS fragments
+  257: myHtmlParser('code', 'result')
+  258: myJSParser('codejs', 'result')
+  259: 
+  260: // If the user change the JS fragment, I run it again:
+  261: document.getElementById('codejs').addEventListener("input", function() {
+  262: d3.select('#result').html("");
+  263: myHtmlParser('code', 'result');
+  264: myJSParser('codejs', 'result');
+  265: })
+  266: 
+  267: // If the user change the HTML fragment, I run it again:
+  268: document.getElementById('code').addEventListener("input", function() {
+  269: d3.select('#result').html("");
+  270: myHtmlParser('code', 'result');
+  271: myJSParser('codejs', 'result');
+  272: })
+  273: </script>
+  274  
+
+graph/barplot_button_color.html:
+  273  
+  274: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  275: <script>
+  276: // At the beginning, I read the html and JS fragments
+  277: myHtmlParser('code', 'result')
+  278: myJSParser('codejs', 'result')
+  279: 
+  280: // If the user change the JS fragment, I run it again:
+  281: document.getElementById('codejs').addEventListener("input", function() {
+  282: d3.select('#result').html("");
+  283: myHtmlParser('code', 'result');
+  284: myJSParser('codejs', 'result');
+  285: })
+  286: 
+  287: // If the user change the HTML fragment, I run it again:
+  288: document.getElementById('code').addEventListener("input", function() {
+  289: d3.select('#result').html("");
+  290: myHtmlParser('code', 'result');
+  291: myJSParser('codejs', 'result');
+  292: })
+  293: </script>
+  294  
+
+graph/barplot_button_data_csv.html:
+  270  
+  271: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  272: <script>
+  273: // At the beginning, I read the html and JS fragments
+  274: myHtmlParser('code', 'result')
+  275: myJSParser('codejs', 'result')
+  276: 
+  277: // If the user change the JS fragment, I run it again:
+  278: document.getElementById('codejs').addEventListener("input", function() {
+  279: d3.select('#result').html("");
+  280: myHtmlParser('code', 'result');
+  281: myJSParser('codejs', 'result');
+  282: })
+  283: 
+  284: // If the user change the HTML fragment, I run it again:
+  285: document.getElementById('code').addEventListener("input", function() {
+  286: d3.select('#result').html("");
+  287: myHtmlParser('code', 'result');
+  288: myJSParser('codejs', 'result');
+  289: })
+  290: </script>
+  291  
+
+graph/barplot_button_data_hard.html:
+  281  
+  282: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  283: <script>
+  284: // At the beginning, I read the html and JS fragments
+  285: myHtmlParser('code', 'result')
+  286: myJSParser('codejs', 'result')
+  287: 
+  288: // If the user change the JS fragment, I run it again:
+  289: document.getElementById('codejs').addEventListener("input", function() {
+  290: d3.select('#result').html("");
+  291: myHtmlParser('code', 'result');
+  292: myJSParser('codejs', 'result');
+  293: })
+  294: 
+  295: // If the user change the HTML fragment, I run it again:
+  296: document.getElementById('code').addEventListener("input", function() {
+  297: d3.select('#result').html("");
+  298: myHtmlParser('code', 'result');
+  299: myJSParser('codejs', 'result');
+  300: })
+  301: </script>
+  302  
+
+graph/barplot_button_data_simple.html:
+  271  
+  272: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  273: <script>
+  274: // At the beginning, I read the html and JS fragments
+  275: myHtmlParser('code', 'result')
+  276: myJSParser('codejs', 'result')
+  277: 
+  278: // If the user change the JS fragment, I run it again:
+  279: document.getElementById('codejs').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: 
+  285: // If the user change the HTML fragment, I run it again:
+  286: document.getElementById('code').addEventListener("input", function() {
+  287: d3.select('#result').html("");
+  288: myHtmlParser('code', 'result');
+  289: myJSParser('codejs', 'result');
+  290: })
+  291: </script>
+  292  
+
+graph/barplot_grouped_basicWide.html:
+  268  
+  269: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  270: <script>
+  271: // At the beginning, I read the html and JS fragments
+  272: myHtmlParser('code', 'result')
+  273: myJSParser('codejs', 'result')
+  274: 
+  275: // If the user change the JS fragment, I run it again:
+  276: document.getElementById('codejs').addEventListener("input", function() {
+  277: d3.select('#result').html("");
+  278: myHtmlParser('code', 'result');
+  279: myJSParser('codejs', 'result');
+  280: })
+  281: 
+  282: // If the user change the HTML fragment, I run it again:
+  283: document.getElementById('code').addEventListener("input", function() {
+  284: d3.select('#result').html("");
+  285: myHtmlParser('code', 'result');
+  286: myJSParser('codejs', 'result');
+  287: })
+  288: </script>
+  289  
+
+graph/barplot_horizontal.html:
+  258  
+  259: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  260: <script>
+  261: // At the beginning, I read the html and JS fragments
+  262: myHtmlParser('code', 'result')
+  263: myJSParser('codejs', 'result')
+  264: 
+  265: // If the user change the JS fragment, I run it again:
+  266: document.getElementById('codejs').addEventListener("input", function() {
+  267: d3.select('#result').html("");
+  268: myHtmlParser('code', 'result');
+  269: myJSParser('codejs', 'result');
+  270: })
+  271: 
+  272: // If the user change the HTML fragment, I run it again:
+  273: document.getElementById('code').addEventListener("input", function() {
+  274: d3.select('#result').html("");
+  275: myHtmlParser('code', 'result');
+  276: myJSParser('codejs', 'result');
+  277: })
+  278: </script>
+  279  
+
+graph/barplot_ordered.html:
+  252  
+  253: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  254: <script>
+  255: // At the beginning, I read the html and JS fragments
+  256: myHtmlParser('code', 'result')
+  257: myJSParser('codejs', 'result')
+  258: 
+  259: // If the user change the JS fragment, I run it again:
+  260: document.getElementById('codejs').addEventListener("input", function() {
+  261: d3.select('#result').html("");
+  262: myHtmlParser('code', 'result');
+  263: myJSParser('codejs', 'result');
+  264: })
+  265: 
+  266: // If the user change the HTML fragment, I run it again:
+  267: document.getElementById('code').addEventListener("input", function() {
+  268: d3.select('#result').html("");
+  269: myHtmlParser('code', 'result');
+  270: myJSParser('codejs', 'result');
+  271: })
+  272: </script>
+  273  
+
+graph/barplot_stacked_basicLong.html:
+  260  
+  261: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  262: <script>
+  263: // At the beginning, I read the html and JS fragments
+  264: myHtmlParser('code', 'result')
+  265: myJSParser('codejs', 'result')
+  266: 
+  267: // If the user change the JS fragment, I run it again:
+  268: document.getElementById('codejs').addEventListener("input", function() {
+  269: d3.select('#result').html("");
+  270: myHtmlParser('code', 'result');
+  271: myJSParser('codejs', 'result');
+  272: })
+  273: 
+  274: // If the user change the HTML fragment, I run it again:
+  275: document.getElementById('code').addEventListener("input", function() {
+  276: d3.select('#result').html("");
+  277: myHtmlParser('code', 'result');
+  278: myJSParser('codejs', 'result');
+  279: })
+  280: </script>
+  281  
+
+graph/barplot_stacked_basicWide.html:
+  267  
+  268: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  269: <script>
+  270: // At the beginning, I read the html and JS fragments
+  271: myHtmlParser('code', 'result')
+  272: myJSParser('codejs', 'result')
+  273: 
+  274: // If the user change the JS fragment, I run it again:
+  275: document.getElementById('codejs').addEventListener("input", function() {
+  276: d3.select('#result').html("");
+  277: myHtmlParser('code', 'result');
+  278: myJSParser('codejs', 'result');
+  279: })
+  280: 
+  281: // If the user change the HTML fragment, I run it again:
+  282: document.getElementById('code').addEventListener("input", function() {
+  283: d3.select('#result').html("");
+  284: myHtmlParser('code', 'result');
+  285: myJSParser('codejs', 'result');
+  286: })
+  287: </script>
+  288  
+
+graph/barplot_stacked_highlight.html:
+  299  
+  300: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  301: <script>
+  302: // At the beginning, I read the html and JS fragments
+  303: myHtmlParser('code', 'result')
+  304: myJSParser('codejs', 'result')
+  305: 
+  306: // If the user change the JS fragment, I run it again:
+  307: document.getElementById('codejs').addEventListener("input", function() {
+  308: d3.select('#result').html("");
+  309: myHtmlParser('code', 'result');
+  310: myJSParser('codejs', 'result');
+  311: })
+  312: 
+  313: // If the user change the HTML fragment, I run it again:
+  314: document.getElementById('code').addEventListener("input", function() {
+  315: d3.select('#result').html("");
+  316: myHtmlParser('code', 'result');
+  317: myJSParser('codejs', 'result');
+  318: })
+  319: </script>
+  320  
+
+graph/barplot_stacked_hover.html:
+  307  
+  308: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  309: <script>
+  310: // At the beginning, I read the html and JS fragments
+  311: myHtmlParser('code', 'result')
+  312: myJSParser('codejs', 'result')
+  313: 
+  314: // If the user change the JS fragment, I run it again:
+  315: document.getElementById('codejs').addEventListener("input", function() {
+  316: d3.select('#result').html("");
+  317: myHtmlParser('code', 'result');
+  318: myJSParser('codejs', 'result');
+  319: })
+  320: 
+  321: // If the user change the HTML fragment, I run it again:
+  322: document.getElementById('code').addEventListener("input", function() {
+  323: d3.select('#result').html("");
+  324: myHtmlParser('code', 'result');
+  325: myJSParser('codejs', 'result');
+  326: })
+  327: </script>
+  328  
+
+graph/barplot_stacked_percent.html:
+  278  
+  279: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  280: <script>
+  281: // At the beginning, I read the html and JS fragments
+  282: myHtmlParser('code', 'result')
+  283: myJSParser('codejs', 'result')
+  284: 
+  285: // If the user change the JS fragment, I run it again:
+  286: document.getElementById('codejs').addEventListener("input", function() {
+  287: d3.select('#result').html("");
+  288: myHtmlParser('code', 'result');
+  289: myJSParser('codejs', 'result');
+  290: })
+  291: 
+  292: // If the user change the HTML fragment, I run it again:
+  293: document.getElementById('code').addEventListener("input", function() {
+  294: d3.select('#result').html("");
+  295: myHtmlParser('code', 'result');
+  296: myJSParser('codejs', 'result');
+  297: })
+  298: </script>
+  299  
+
+graph/beeswarm_basic.html:
+  257  
+  258: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  259: <script>
+  260: // At the beginning, I read the html and JS fragments
+  261: myHtmlParser('code', 'result')
+  262: myJSParser('codejs', 'result')
+  263: 
+  264: // If the user change the JS fragment, I run it again:
+  265: document.getElementById('codejs').addEventListener("input", function() {
+  266: d3.select('#result').html("");
+  267: myHtmlParser('code', 'result');
+  268: myJSParser('codejs', 'result');
+  269: })
+  270: 
+  271: // If the user change the HTML fragment, I run it again:
+  272: document.getElementById('code').addEventListener("input", function() {
+  273: d3.select('#result').html("");
+  274: myHtmlParser('code', 'result');
+  275: myJSParser('codejs', 'result');
+  276: })
+  277: </script>
+  278  
+
+graph/boxplot_basic.html:
+  277  
+  278: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  279: <script>
+  280: // At the beginning, I read the html and JS fragments
+  281: myHtmlParser('code', 'result')
+  282: myJSParser('codejs', 'result')
+  283: 
+  284: // If the user change the JS fragment, I run it again:
+  285: document.getElementById('codejs').addEventListener("input", function() {
+  286: d3.select('#result').html("");
+  287: myHtmlParser('code', 'result');
+  288: myJSParser('codejs', 'result');
+  289: })
+  290: 
+  291: // If the user change the HTML fragment, I run it again:
+  292: document.getElementById('code').addEventListener("input", function() {
+  293: d3.select('#result').html("");
+  294: myHtmlParser('code', 'result');
+  295: myJSParser('codejs', 'result');
+  296: })
+  297: </script>
+  298  
+
+graph/boxplot_horizontal.html:
+  378  
+  379: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  380: <script>
+  381: // At the beginning, I read the html and JS fragments
+  382: myHtmlParser('code', 'result')
+  383: myJSParser('codejs', 'result')
+  384: 
+  385: // If the user change the JS fragment, I run it again:
+  386: document.getElementById('codejs').addEventListener("input", function() {
+  387: d3.select('#result').html("");
+  388: myHtmlParser('code', 'result');
+  389: myJSParser('codejs', 'result');
+  390: })
+  391: 
+  392: // If the user change the HTML fragment, I run it again:
+  393: document.getElementById('code').addEventListener("input", function() {
+  394: d3.select('#result').html("");
+  395: myHtmlParser('code', 'result');
+  396: myJSParser('codejs', 'result');
+  397: })
+  398: </script>
+  399  
+
+graph/boxplot_several_groups.html:
+  289  
+  290: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  291: <script>
+  292: // At the beginning, I read the html and JS fragments
+  293: myHtmlParser('code', 'result')
+  294: myJSParser('codejs', 'result')
+  295: 
+  296: // If the user change the JS fragment, I run it again:
+  297: document.getElementById('codejs').addEventListener("input", function() {
+  298: d3.select('#result').html("");
+  299: myHtmlParser('code', 'result');
+  300: myJSParser('codejs', 'result');
+  301: })
+  302: 
+  303: // If the user change the HTML fragment, I run it again:
+  304: document.getElementById('code').addEventListener("input", function() {
+  305: d3.select('#result').html("");
+  306: myHtmlParser('code', 'result');
+  307: myJSParser('codejs', 'result');
+  308: })
+  309: </script>
+  310  
+
+graph/boxplot_show_individual_points.html:
+  303  
+  304: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  305: <script>
+  306: // At the beginning, I read the html and JS fragments
+  307: myHtmlParser('code', 'result')
+  308: myJSParser('codejs', 'result')
+  309: 
+  310: // If the user change the JS fragment, I run it again:
+  311: document.getElementById('codejs').addEventListener("input", function() {
+  312: d3.select('#result').html("");
+  313: myHtmlParser('code', 'result');
+  314: myJSParser('codejs', 'result');
+  315: })
+  316: 
+  317: // If the user change the HTML fragment, I run it again:
+  318: document.getElementById('code').addEventListener("input", function() {
+  319: d3.select('#result').html("");
+  320: myHtmlParser('code', 'result');
+  321: myJSParser('codejs', 'result');
+  322: })
+  323: </script>
+  324  
+
+graph/bubble_basic.html:
+  252  
+  253: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  254: <script>
+  255: // At the beginning, I read the html and JS fragments
+  256: myHtmlParser('code', 'result')
+  257: myJSParser('codejs', 'result')
+  258: 
+  259: // If the user change the JS fragment, I run it again:
+  260: document.getElementById('codejs').addEventListener("input", function() {
+  261: d3.select('#result').html("");
+  262: myHtmlParser('code', 'result');
+  263: myJSParser('codejs', 'result');
+  264: })
+  265: 
+  266: // If the user change the HTML fragment, I run it again:
+  267: document.getElementById('code').addEventListener("input", function() {
+  268: d3.select('#result').html("");
+  269: myHtmlParser('code', 'result');
+  270: myJSParser('codejs', 'result');
+  271: })
+  272: </script>
+  273  
+
+graph/bubble_color.html:
+  260  
+  261: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  262: <script>
+  263: // At the beginning, I read the html and JS fragments
+  264: myHtmlParser('code', 'result')
+  265: myJSParser('codejs', 'result')
+  266: 
+  267: // If the user change the JS fragment, I run it again:
+  268: document.getElementById('codejs').addEventListener("input", function() {
+  269: d3.select('#result').html("");
+  270: myHtmlParser('code', 'result');
+  271: myJSParser('codejs', 'result');
+  272: })
+  273: 
+  274: // If the user change the HTML fragment, I run it again:
+  275: document.getElementById('code').addEventListener("input", function() {
+  276: d3.select('#result').html("");
+  277: myHtmlParser('code', 'result');
+  278: myJSParser('codejs', 'result');
+  279: })
+  280: </script>
+  281  
+
+graph/bubble_legend.html:
+  250  
+  251: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  252: <script>
+  253: // At the beginning, I read the html and JS fragments
+  254: myHtmlParser('code', 'result')
+  255: myJSParser('codejs', 'result')
+  256: 
+  257: // If the user change the JS fragment, I run it again:
+  258: document.getElementById('codejs').addEventListener("input", function() {
+  259: d3.select('#result').html("");
+  260: myHtmlParser('code', 'result');
+  261: myJSParser('codejs', 'result');
+  262: })
+  263: 
+  264: // If the user change the HTML fragment, I run it again:
+  265: document.getElementById('code').addEventListener("input", function() {
+  266: d3.select('#result').html("");
+  267: myHtmlParser('code', 'result');
+  268: myJSParser('codejs', 'result');
+  269: })
+  270: </script>
+  271  
+
+graph/bubble_template.html:
+  439  
+  440: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  441: <script>
+  442: // At the beginning, I read the html and JS fragments
+  443: myHtmlParser('code', 'result')
+  444: myJSParser('codejs', 'result')
+  445: 
+  446: // If the user change the JS fragment, I run it again:
+  447: document.getElementById('codejs').addEventListener("input", function() {
+  448: d3.select('#result').html("");
+  449: myHtmlParser('code', 'result');
+  450: myJSParser('codejs', 'result');
+  451: })
+  452: 
+  453: // If the user change the HTML fragment, I run it again:
+  454: document.getElementById('code').addEventListener("input", function() {
+  455: d3.select('#result').html("");
+  456: myHtmlParser('code', 'result');
+  457: myJSParser('codejs', 'result');
+  458: })
+  459: </script>
+  460  
+
+graph/bubble_tooltip.html:
+  311  
+  312: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  313: <script>
+  314: // At the beginning, I read the html and JS fragments
+  315: myHtmlParser('code', 'result')
+  316: myJSParser('codejs', 'result')
+  317: 
+  318: // If the user change the JS fragment, I run it again:
+  319: document.getElementById('codejs').addEventListener("input", function() {
+  320: d3.select('#result').html("");
+  321: myHtmlParser('code', 'result');
+  322: myJSParser('codejs', 'result');
+  323: })
+  324: 
+  325: // If the user change the HTML fragment, I run it again:
+  326: document.getElementById('code').addEventListener("input", function() {
+  327: d3.select('#result').html("");
+  328: myHtmlParser('code', 'result');
+  329: myJSParser('codejs', 'result');
+  330: })
+  331: </script>
+  332  
+
+graph/bubblemap_basic.html:
+  263  
+  264: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  265: <script>
+  266: // At the beginning, I read the html and JS fragments
+  267: myHtmlParser('code', 'result')
+  268: myJSParser('codejs', 'result')
+  269: 
+  270: // If the user change the JS fragment, I run it again:
+  271: document.getElementById('codejs').addEventListener("input", function() {
+  272: d3.select('#result').html("");
+  273: myHtmlParser('code', 'result');
+  274: myJSParser('codejs', 'result');
+  275: })
+  276: 
+  277: // If the user change the HTML fragment, I run it again:
+  278: document.getElementById('code').addEventListener("input", function() {
+  279: d3.select('#result').html("");
+  280: myHtmlParser('code', 'result');
+  281: myJSParser('codejs', 'result');
+  282: })
+  283: </script>
+  284  
+
+graph/bubblemap_buttonControl.html:
+  306  
+  307: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  308: <script>
+  309: // At the beginning, I read the html and JS fragments
+  310: myHtmlParser('code', 'result')
+  311: myJSParser('codejs', 'result')
+  312: 
+  313: // If the user change the JS fragment, I run it again:
+  314: document.getElementById('codejs').addEventListener("input", function() {
+  315: d3.select('#result').html("");
+  316: myHtmlParser('code', 'result');
+  317: myJSParser('codejs', 'result');
+  318: })
+  319: 
+  320: // If the user change the HTML fragment, I run it again:
+  321: document.getElementById('code').addEventListener("input", function() {
+  322: d3.select('#result').html("");
+  323: myHtmlParser('code', 'result');
+  324: myJSParser('codejs', 'result');
+  325: })
+  326: </script>
+  327  
+
+graph/bubblemap_circleFeatures.html:
+  273  
+  274: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  275: <script>
+  276: // At the beginning, I read the html and JS fragments
+  277: myHtmlParser('code', 'result')
+  278: myJSParser('codejs', 'result')
+  279: 
+  280: // If the user change the JS fragment, I run it again:
+  281: document.getElementById('codejs').addEventListener("input", function() {
+  282: d3.select('#result').html("");
+  283: myHtmlParser('code', 'result');
+  284: myJSParser('codejs', 'result');
+  285: })
+  286: 
+  287: // If the user change the HTML fragment, I run it again:
+  288: document.getElementById('code').addEventListener("input", function() {
+  289: d3.select('#result').html("");
+  290: myHtmlParser('code', 'result');
+  291: myJSParser('codejs', 'result');
+  292: })
+  293: </script>
+  294  
+
+graph/bubblemap_leaflet_basic.html:
+  267  
+  268: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  269: <script>
+  270: // At the beginning, I read the html and JS fragments
+  271: myHtmlParser('code', 'result')
+  272: myJSParser('codejs', 'result')
+  273: 
+  274: // If the user change the JS fragment, I run it again:
+  275: document.getElementById('codejs').addEventListener("input", function() {
+  276: d3.select('#result').html("");
+  277: myHtmlParser('code', 'result');
+  278: myJSParser('codejs', 'result');
+  279: })
+  280: 
+  281: // If the user change the HTML fragment, I run it again:
+  282: document.getElementById('code').addEventListener("input", function() {
+  283: d3.select('#result').html("");
+  284: myHtmlParser('code', 'result');
+  285: myJSParser('codejs', 'result');
+  286: })
+  287: </script>
+  288  
+
+graph/bubblemap_template.html:
+  326  
+  327: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  328: <script>
+  329: // At the beginning, I read the html and JS fragments
+  330: myHtmlParser('code', 'result')
+  331: myJSParser('codejs', 'result')
+  332: 
+  333: // If the user change the JS fragment, I run it again:
+  334: document.getElementById('codejs').addEventListener("input", function() {
+  335: d3.select('#result').html("");
+  336: myHtmlParser('code', 'result');
+  337: myJSParser('codejs', 'result');
+  338: })
+  339: 
+  340: // If the user change the HTML fragment, I run it again:
+  341: document.getElementById('code').addEventListener("input", function() {
+  342: d3.select('#result').html("");
+  343: myHtmlParser('code', 'result');
+  344: myJSParser('codejs', 'result');
+  345: })
+  346: </script>
+  347  
+
+graph/bubblemap_tooltip.html:
+  303  
+  304: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  305: <script>
+  306: // At the beginning, I read the html and JS fragments
+  307: myHtmlParser('code', 'result')
+  308: myJSParser('codejs', 'result')
+  309: 
+  310: // If the user change the JS fragment, I run it again:
+  311: document.getElementById('codejs').addEventListener("input", function() {
+  312: d3.select('#result').html("");
+  313: myHtmlParser('code', 'result');
+  314: myJSParser('codejs', 'result');
+  315: })
+  316: 
+  317: // If the user change the HTML fragment, I run it again:
+  318: document.getElementById('code').addEventListener("input", function() {
+  319: d3.select('#result').html("");
+  320: myHtmlParser('code', 'result');
+  321: myJSParser('codejs', 'result');
+  322: })
+  323: </script>
+  324  
+
+graph/chord_axis_labels.html:
+  292  
+  293: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  294: <script>
+  295: // At the beginning, I read the html and JS fragments
+  296: myHtmlParser('code', 'result')
+  297: myJSParser('codejs', 'result')
+  298: 
+  299: // If the user change the JS fragment, I run it again:
+  300: document.getElementById('codejs').addEventListener("input", function() {
+  301: d3.select('#result').html("");
+  302: myHtmlParser('code', 'result');
+  303: myJSParser('codejs', 'result');
+  304: })
+  305: 
+  306: // If the user change the HTML fragment, I run it again:
+  307: document.getElementById('code').addEventListener("input", function() {
+  308: d3.select('#result').html("");
+  309: myHtmlParser('code', 'result');
+  310: myJSParser('codejs', 'result');
+  311: })
+  312: </script>
+  313  
+
+graph/chord_basic.html:
+  257  
+  258: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  259: <script>
+  260: // At the beginning, I read the html and JS fragments
+  261: myHtmlParser('code', 'result')
+  262: myJSParser('codejs', 'result')
+  263: 
+  264: // If the user change the JS fragment, I run it again:
+  265: document.getElementById('codejs').addEventListener("input", function() {
+  266: d3.select('#result').html("");
+  267: myHtmlParser('code', 'result');
+  268: myJSParser('codejs', 'result');
+  269: })
+  270: 
+  271: // If the user change the HTML fragment, I run it again:
+  272: document.getElementById('code').addEventListener("input", function() {
+  273: d3.select('#result').html("");
+  274: myHtmlParser('code', 'result');
+  275: myJSParser('codejs', 'result');
+  276: })
+  277: </script>
+  278  
+
+graph/chord_colors.html:
+  256  
+  257: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  258: <script>
+  259: // At the beginning, I read the html and JS fragments
+  260: myHtmlParser('code', 'result')
+  261: myJSParser('codejs', 'result')
+  262: 
+  263: // If the user change the JS fragment, I run it again:
+  264: document.getElementById('codejs').addEventListener("input", function() {
+  265: d3.select('#result').html("");
+  266: myHtmlParser('code', 'result');
+  267: myJSParser('codejs', 'result');
+  268: })
+  269: 
+  270: // If the user change the HTML fragment, I run it again:
+  271: document.getElementById('code').addEventListener("input", function() {
+  272: d3.select('#result').html("");
+  273: myHtmlParser('code', 'result');
+  274: myJSParser('codejs', 'result');
+  275: })
+  276: </script>
+  277  
+
+graph/choropleth_basic.html:
+  253  
+  254: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  255: <script>
+  256: // At the beginning, I read the html and JS fragments
+  257: myHtmlParser('code', 'result')
+  258: myJSParser('codejs', 'result')
+  259: 
+  260: // If the user change the JS fragment, I run it again:
+  261: document.getElementById('codejs').addEventListener("input", function() {
+  262: d3.select('#result').html("");
+  263: myHtmlParser('code', 'result');
+  264: myJSParser('codejs', 'result');
+  265: })
+  266: 
+  267: // If the user change the HTML fragment, I run it again:
+  268: document.getElementById('code').addEventListener("input", function() {
+  269: d3.select('#result').html("");
+  270: myHtmlParser('code', 'result');
+  271: myJSParser('codejs', 'result');
+  272: })
+  273: </script>
+  274  
+
+graph/choropleth_hover_effect.html:
+  281  
+  282: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  283: <script>
+  284: // At the beginning, I read the html and JS fragments
+  285: myHtmlParser('code', 'result')
+  286: myJSParser('codejs', 'result')
+  287: 
+  288: // If the user change the JS fragment, I run it again:
+  289: document.getElementById('codejs').addEventListener("input", function() {
+  290: d3.select('#result').html("");
+  291: myHtmlParser('code', 'result');
+  292: myJSParser('codejs', 'result');
+  293: })
+  294: 
+  295: // If the user change the HTML fragment, I run it again:
+  296: document.getElementById('code').addEventListener("input", function() {
+  297: d3.select('#result').html("");
+  298: myHtmlParser('code', 'result');
+  299: myJSParser('codejs', 'result');
+  300: })
+  301: </script>
+  302  
+
+graph/circular_barplot_basic.html:
+  252  
+  253: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  254: <script>
+  255: // At the beginning, I read the html and JS fragments
+  256: myHtmlParser('code', 'result')
+  257: myJSParser('codejs', 'result')
+  258: 
+  259: // If the user change the JS fragment, I run it again:
+  260: document.getElementById('codejs').addEventListener("input", function() {
+  261: d3.select('#result').html("");
+  262: myHtmlParser('code', 'result');
+  263: myJSParser('codejs', 'result');
+  264: })
+  265: 
+  266: // If the user change the HTML fragment, I run it again:
+  267: document.getElementById('code').addEventListener("input", function() {
+  268: d3.select('#result').html("");
+  269: myHtmlParser('code', 'result');
+  270: myJSParser('codejs', 'result');
+  271: })
+  272: </script>
+  273  
+
+graph/circular_barplot_double.html:
+  285  
+  286: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  287: <script>
+  288: // At the beginning, I read the html and JS fragments
+  289: myHtmlParser('code', 'result')
+  290: myJSParser('codejs', 'result')
+  291: 
+  292: // If the user change the JS fragment, I run it again:
+  293: document.getElementById('codejs').addEventListener("input", function() {
+  294: d3.select('#result').html("");
+  295: myHtmlParser('code', 'result');
+  296: myJSParser('codejs', 'result');
+  297: })
+  298: 
+  299: // If the user change the HTML fragment, I run it again:
+  300: document.getElementById('code').addEventListener("input", function() {
+  301: d3.select('#result').html("");
+  302: myHtmlParser('code', 'result');
+  303: myJSParser('codejs', 'result');
+  304: })
+  305: </script>
+  306  
+
+graph/circular_barplot_label.html:
+  264  
+  265: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  266: <script>
+  267: // At the beginning, I read the html and JS fragments
+  268: myHtmlParser('code', 'result')
+  269: myJSParser('codejs', 'result')
+  270: 
+  271: // If the user change the JS fragment, I run it again:
+  272: document.getElementById('codejs').addEventListener("input", function() {
+  273: d3.select('#result').html("");
+  274: myHtmlParser('code', 'result');
+  275: myJSParser('codejs', 'result');
+  276: })
+  277: 
+  278: // If the user change the HTML fragment, I run it again:
+  279: document.getElementById('code').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: </script>
+  285  
+
+graph/circular_barplot_template.html:
+  264  
+  265: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  266: <script>
+  267: // At the beginning, I read the html and JS fragments
+  268: myHtmlParser('code', 'result')
+  269: myJSParser('codejs', 'result')
+  270: 
+  271: // If the user change the JS fragment, I run it again:
+  272: document.getElementById('codejs').addEventListener("input", function() {
+  273: d3.select('#result').html("");
+  274: myHtmlParser('code', 'result');
+  275: myJSParser('codejs', 'result');
+  276: })
+  277: 
+  278: // If the user change the HTML fragment, I run it again:
+  279: document.getElementById('code').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: </script>
+  285  
+
+graph/circularpacking_basic.html:
+  249  
+  250: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  251: <script>
+  252: // At the beginning, I read the html and JS fragments
+  253: myHtmlParser('code', 'result')
+  254: myJSParser('codejs', 'result')
+  255: 
+  256: // If the user change the JS fragment, I run it again:
+  257: document.getElementById('codejs').addEventListener("input", function() {
+  258: d3.select('#result').html("");
+  259: myHtmlParser('code', 'result');
+  260: myJSParser('codejs', 'result');
+  261: })
+  262: 
+  263: // If the user change the HTML fragment, I run it again:
+  264: document.getElementById('code').addEventListener("input", function() {
+  265: d3.select('#result').html("");
+  266: myHtmlParser('code', 'result');
+  267: myJSParser('codejs', 'result');
+  268: })
+  269: </script>
+  270  
+
+graph/circularpacking_drag.html:
+  262  
+  263: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  264: <script>
+  265: // At the beginning, I read the html and JS fragments
+  266: myHtmlParser('code', 'result')
+  267: myJSParser('codejs', 'result')
+  268: 
+  269: // If the user change the JS fragment, I run it again:
+  270: document.getElementById('codejs').addEventListener("input", function() {
+  271: d3.select('#result').html("");
+  272: myHtmlParser('code', 'result');
+  273: myJSParser('codejs', 'result');
+  274: })
+  275: 
+  276: // If the user change the HTML fragment, I run it again:
+  277: document.getElementById('code').addEventListener("input", function() {
+  278: d3.select('#result').html("");
+  279: myHtmlParser('code', 'result');
+  280: myJSParser('codejs', 'result');
+  281: })
+  282: </script>
+  283  
+
+graph/circularpacking_group.html:
+  276  
+  277: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  278: <script>
+  279: // At the beginning, I read the html and JS fragments
+  280: myHtmlParser('code', 'result')
+  281: myJSParser('codejs', 'result')
+  282: 
+  283: // If the user change the JS fragment, I run it again:
+  284: document.getElementById('codejs').addEventListener("input", function() {
+  285: d3.select('#result').html("");
+  286: myHtmlParser('code', 'result');
+  287: myJSParser('codejs', 'result');
+  288: })
+  289: 
+  290: // If the user change the HTML fragment, I run it again:
+  291: document.getElementById('code').addEventListener("input", function() {
+  292: d3.select('#result').html("");
+  293: myHtmlParser('code', 'result');
+  294: myJSParser('codejs', 'result');
+  295: })
+  296: </script>
+  297  
+
+graph/circularpacking_template.html:
+  321  
+  322: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  323: <script>
+  324: // At the beginning, I read the html and JS fragments
+  325: myHtmlParser('code', 'result')
+  326: myJSParser('codejs', 'result')
+  327: 
+  328: // If the user change the JS fragment, I run it again:
+  329: document.getElementById('codejs').addEventListener("input", function() {
+  330: d3.select('#result').html("");
+  331: myHtmlParser('code', 'result');
+  332: myJSParser('codejs', 'result');
+  333: })
+  334: 
+  335: // If the user change the HTML fragment, I run it again:
+  336: document.getElementById('code').addEventListener("input", function() {
+  337: d3.select('#result').html("");
+  338: myHtmlParser('code', 'result');
+  339: myJSParser('codejs', 'result');
+  340: })
+  341: </script>
+  342  
+
+graph/connectedscatter_legend.html:
+  329  
+  330: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  331: <script>
+  332: // At the beginning, I read the html and JS fragments
+  333: myHtmlParser('code', 'result')
+  334: myJSParser('codejs', 'result')
+  335: 
+  336: // If the user change the JS fragment, I run it again:
+  337: document.getElementById('codejs').addEventListener("input", function() {
+  338: d3.select('#result').html("");
+  339: myHtmlParser('code', 'result');
+  340: myJSParser('codejs', 'result');
+  341: })
+  342: 
+  343: // If the user change the HTML fragment, I run it again:
+  344: document.getElementById('code').addEventListener("input", function() {
+  345: d3.select('#result').html("");
+  346: myHtmlParser('code', 'result');
+  347: myJSParser('codejs', 'result');
+  348: })
+  349: </script>
+  350  
+
+graph/connectedscatter_multi.html:
+  305  
+  306: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  307: <script>
+  308: // At the beginning, I read the html and JS fragments
+  309: myHtmlParser('code', 'result')
+  310: myJSParser('codejs', 'result')
+  311: 
+  312: // If the user change the JS fragment, I run it again:
+  313: document.getElementById('codejs').addEventListener("input", function() {
+  314: d3.select('#result').html("");
+  315: myHtmlParser('code', 'result');
+  316: myJSParser('codejs', 'result');
+  317: })
+  318: 
+  319: // If the user change the HTML fragment, I run it again:
+  320: document.getElementById('code').addEventListener("input", function() {
+  321: d3.select('#result').html("");
+  322: myHtmlParser('code', 'result');
+  323: myJSParser('codejs', 'result');
+  324: })
+  325: </script>
+  326  
+
+graph/connectedscatter_select.html:
+  313  
+  314: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  315: <script>
+  316: // At the beginning, I read the html and JS fragments
+  317: myHtmlParser('code', 'result')
+  318: myJSParser('codejs', 'result')
+  319: 
+  320: // If the user change the JS fragment, I run it again:
+  321: document.getElementById('codejs').addEventListener("input", function() {
+  322: d3.select('#result').html("");
+  323: myHtmlParser('code', 'result');
+  324: myJSParser('codejs', 'result');
+  325: })
+  326: 
+  327: // If the user change the HTML fragment, I run it again:
+  328: document.getElementById('code').addEventListener("input", function() {
+  329: d3.select('#result').html("");
+  330: myHtmlParser('code', 'result');
+  331: myJSParser('codejs', 'result');
+  332: })
+  333: </script>
+  334  
+
+graph/connectedscatter_tooltip.html:
+  305  
+  306: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  307: <script>
+  308: // At the beginning, I read the html and JS fragments
+  309: myHtmlParser('code', 'result')
+  310: myJSParser('codejs', 'result')
+  311: 
+  312: // If the user change the JS fragment, I run it again:
+  313: document.getElementById('codejs').addEventListener("input", function() {
+  314: d3.select('#result').html("");
+  315: myHtmlParser('code', 'result');
+  316: myJSParser('codejs', 'result');
+  317: })
+  318: 
+  319: // If the user change the HTML fragment, I run it again:
+  320: document.getElementById('code').addEventListener("input", function() {
+  321: d3.select('#result').html("");
+  322: myHtmlParser('code', 'result');
+  323: myJSParser('codejs', 'result');
+  324: })
+  325: </script>
+  326  
+
+graph/connectionmap_basic.html:
+  248  
+  249: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  250: <script>
+  251: // At the beginning, I read the html and JS fragments
+  252: myHtmlParser('code', 'result')
+  253: myJSParser('codejs', 'result')
+  254: 
+  255: // If the user change the JS fragment, I run it again:
+  256: document.getElementById('codejs').addEventListener("input", function() {
+  257: d3.select('#result').html("");
+  258: myHtmlParser('code', 'result');
+  259: myJSParser('codejs', 'result');
+  260: })
+  261: 
+  262: // If the user change the HTML fragment, I run it again:
+  263: document.getElementById('code').addEventListener("input", function() {
+  264: d3.select('#result').html("");
+  265: myHtmlParser('code', 'result');
+  266: myJSParser('codejs', 'result');
+  267: })
+  268: </script>
+  269  
+
+graph/connectionmap_csv.html:
+  262  
+  263: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  264: <script>
+  265: // At the beginning, I read the html and JS fragments
+  266: myHtmlParser('code', 'result')
+  267: myJSParser('codejs', 'result')
+  268: 
+  269: // If the user change the JS fragment, I run it again:
+  270: document.getElementById('codejs').addEventListener("input", function() {
+  271: d3.select('#result').html("");
+  272: myHtmlParser('code', 'result');
+  273: myJSParser('codejs', 'result');
+  274: })
+  275: 
+  276: // If the user change the HTML fragment, I run it again:
+  277: document.getElementById('code').addEventListener("input", function() {
+  278: d3.select('#result').html("");
+  279: myHtmlParser('code', 'result');
+  280: myJSParser('codejs', 'result');
+  281: })
+  282: </script>
+  283  
+
+graph/connectionmap_multi.html:
+  255  
+  256: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  257: <script>
+  258: // At the beginning, I read the html and JS fragments
+  259: myHtmlParser('code', 'result')
+  260: myJSParser('codejs', 'result')
+  261: 
+  262: // If the user change the JS fragment, I run it again:
+  263: document.getElementById('codejs').addEventListener("input", function() {
+  264: d3.select('#result').html("");
+  265: myHtmlParser('code', 'result');
+  266: myJSParser('codejs', 'result');
+  267: })
+  268: 
+  269: // If the user change the HTML fragment, I run it again:
+  270: document.getElementById('code').addEventListener("input", function() {
+  271: d3.select('#result').html("");
+  272: myHtmlParser('code', 'result');
+  273: myJSParser('codejs', 'result');
+  274: })
+  275: </script>
+  276  
+
+graph/correlogram_basic.html:
+  315  
+  316: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  317: <script>
+  318: // At the beginning, I read the html and JS fragments
+  319: myHtmlParser('code', 'result')
+  320: myJSParser('codejs', 'result')
+  321: 
+  322: // If the user change the JS fragment, I run it again:
+  323: document.getElementById('codejs').addEventListener("input", function() {
+  324: d3.select('#result').html("");
+  325: myHtmlParser('code', 'result');
+  326: myJSParser('codejs', 'result');
+  327: })
+  328: 
+  329: // If the user change the HTML fragment, I run it again:
+  330: document.getElementById('code').addEventListener("input", function() {
+  331: d3.select('#result').html("");
+  332: myHtmlParser('code', 'result');
+  333: myJSParser('codejs', 'result');
+  334: })
+  335: </script>
+  336  
+
+graph/correlogram_histo.html:
+  351  
+  352: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  353: <script>
+  354: // At the beginning, I read the html and JS fragments
+  355: myHtmlParser('code', 'result')
+  356: myJSParser('codejs', 'result')
+  357: 
+  358: // If the user change the JS fragment, I run it again:
+  359: document.getElementById('codejs').addEventListener("input", function() {
+  360: d3.select('#result').html("");
+  361: myHtmlParser('code', 'result');
+  362: myJSParser('codejs', 'result');
+  363: })
+  364: 
+  365: // If the user change the HTML fragment, I run it again:
+  366: document.getElementById('code').addEventListener("input", function() {
+  367: d3.select('#result').html("");
+  368: myHtmlParser('code', 'result');
+  369: myJSParser('codejs', 'result');
+  370: })
+  371: </script>
+  372  
+
+graph/correlogram_scatter.html:
+  317  
+  318: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  319: <script>
+  320: // At the beginning, I read the html and JS fragments
+  321: myHtmlParser('code', 'result')
+  322: myJSParser('codejs', 'result')
+  323: 
+  324: // If the user change the JS fragment, I run it again:
+  325: document.getElementById('codejs').addEventListener("input", function() {
+  326: d3.select('#result').html("");
+  327: myHtmlParser('code', 'result');
+  328: myJSParser('codejs', 'result');
+  329: })
+  330: 
+  331: // If the user change the HTML fragment, I run it again:
+  332: document.getElementById('code').addEventListener("input", function() {
+  333: d3.select('#result').html("");
+  334: myHtmlParser('code', 'result');
+  335: myJSParser('codejs', 'result');
+  336: })
+  337: </script>
+  338  
+
+graph/dendrogram_basic.html:
+  272  
+  273: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  274: <script>
+  275: // At the beginning, I read the html and JS fragments
+  276: myHtmlParser('code', 'result')
+  277: myJSParser('codejs', 'result')
+  278: 
+  279: // If the user change the JS fragment, I run it again:
+  280: document.getElementById('codejs').addEventListener("input", function() {
+  281: d3.select('#result').html("");
+  282: myHtmlParser('code', 'result');
+  283: myJSParser('codejs', 'result');
+  284: })
+  285: 
+  286: // If the user change the HTML fragment, I run it again:
+  287: document.getElementById('code').addEventListener("input", function() {
+  288: d3.select('#result').html("");
+  289: myHtmlParser('code', 'result');
+  290: myJSParser('codejs', 'result');
+  291: })
+  292: </script>
+  293  
+
+graph/dendrogram_radial_basic.html:
+  269  
+  270: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  271: <script>
+  272: // At the beginning, I read the html and JS fragments
+  273: myHtmlParser('code', 'result')
+  274: myJSParser('codejs', 'result')
+  275: 
+  276: // If the user change the JS fragment, I run it again:
+  277: document.getElementById('codejs').addEventListener("input", function() {
+  278: d3.select('#result').html("");
+  279: myHtmlParser('code', 'result');
+  280: myJSParser('codejs', 'result');
+  281: })
+  282: 
+  283: // If the user change the HTML fragment, I run it again:
+  284: document.getElementById('code').addEventListener("input", function() {
+  285: d3.select('#result').html("");
+  286: myHtmlParser('code', 'result');
+  287: myJSParser('codejs', 'result');
+  288: })
+  289: </script>
+  290  
+
+graph/density_basic.html:
+  271  
+  272: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  273: <script>
+  274: // At the beginning, I read the html and JS fragments
+  275: myHtmlParser('code', 'result')
+  276: myJSParser('codejs', 'result')
+  277: 
+  278: // If the user change the JS fragment, I run it again:
+  279: document.getElementById('codejs').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: 
+  285: // If the user change the HTML fragment, I run it again:
+  286: document.getElementById('code').addEventListener("input", function() {
+  287: d3.select('#result').html("");
+  288: myHtmlParser('code', 'result');
+  289: myJSParser('codejs', 'result');
+  290: })
+  291: </script>
+  292  
+
+graph/density_double.html:
+  294  
+  295: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  296: <script>
+  297: // At the beginning, I read the html and JS fragments
+  298: myHtmlParser('code', 'result')
+  299: myJSParser('codejs', 'result')
+  300: 
+  301: // If the user change the JS fragment, I run it again:
+  302: document.getElementById('codejs').addEventListener("input", function() {
+  303: d3.select('#result').html("");
+  304: myHtmlParser('code', 'result');
+  305: myJSParser('codejs', 'result');
+  306: })
+  307: 
+  308: // If the user change the HTML fragment, I run it again:
+  309: document.getElementById('code').addEventListener("input", function() {
+  310: d3.select('#result').html("");
+  311: myHtmlParser('code', 'result');
+  312: myJSParser('codejs', 'result');
+  313: })
+  314: </script>
+  315  
+
+graph/density_filter.html:
+  314  
+  315: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  316: <script>
+  317: // At the beginning, I read the html and JS fragments
+  318: myHtmlParser('code', 'result')
+  319: myJSParser('codejs', 'result')
+  320: 
+  321: // If the user change the JS fragment, I run it again:
+  322: document.getElementById('codejs').addEventListener("input", function() {
+  323: d3.select('#result').html("");
+  324: myHtmlParser('code', 'result');
+  325: myJSParser('codejs', 'result');
+  326: })
+  327: 
+  328: // If the user change the HTML fragment, I run it again:
+  329: document.getElementById('code').addEventListener("input", function() {
+  330: d3.select('#result').html("");
+  331: myHtmlParser('code', 'result');
+  332: myJSParser('codejs', 'result');
+  333: })
+  334: </script>
+  335  
+
+graph/density_mirror.html:
+  303  
+  304: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  305: <script>
+  306: // At the beginning, I read the html and JS fragments
+  307: myHtmlParser('code', 'result')
+  308: myJSParser('codejs', 'result')
+  309: 
+  310: // If the user change the JS fragment, I run it again:
+  311: document.getElementById('codejs').addEventListener("input", function() {
+  312: d3.select('#result').html("");
+  313: myHtmlParser('code', 'result');
+  314: myJSParser('codejs', 'result');
+  315: })
+  316: 
+  317: // If the user change the HTML fragment, I run it again:
+  318: document.getElementById('code').addEventListener("input", function() {
+  319: d3.select('#result').html("");
+  320: myHtmlParser('code', 'result');
+  321: myJSParser('codejs', 'result');
+  322: })
+  323: </script>
+  324  
+
+graph/density_slider.html:
+  300  
+  301: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  302: <script>
+  303: // At the beginning, I read the html and JS fragments
+  304: myHtmlParser('code', 'result')
+  305: myJSParser('codejs', 'result')
+  306: 
+  307: // If the user change the JS fragment, I run it again:
+  308: document.getElementById('codejs').addEventListener("input", function() {
+  309: d3.select('#result').html("");
+  310: myHtmlParser('code', 'result');
+  311: myJSParser('codejs', 'result');
+  312: })
+  313: 
+  314: // If the user change the HTML fragment, I run it again:
+  315: document.getElementById('code').addEventListener("input", function() {
+  316: d3.select('#result').html("");
+  317: myHtmlParser('code', 'result');
+  318: myJSParser('codejs', 'result');
+  319: })
+  320: </script>
+  321  
+
+graph/density2d_contour.html:
+  256  
+  257: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  258: <script>
+  259: // At the beginning, I read the html and JS fragments
+  260: myHtmlParser('code', 'result')
+  261: myJSParser('codejs', 'result')
+  262: 
+  263: // If the user change the JS fragment, I run it again:
+  264: document.getElementById('codejs').addEventListener("input", function() {
+  265: d3.select('#result').html("");
+  266: myHtmlParser('code', 'result');
+  267: myJSParser('codejs', 'result');
+  268: })
+  269: 
+  270: // If the user change the HTML fragment, I run it again:
+  271: document.getElementById('code').addEventListener("input", function() {
+  272: d3.select('#result').html("");
+  273: myHtmlParser('code', 'result');
+  274: myJSParser('codejs', 'result');
+  275: })
+  276: </script>
+  277  
+
+graph/density2d_hexbin.html:
+  271  
+  272: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  273: <script>
+  274: // At the beginning, I read the html and JS fragments
+  275: myHtmlParser('code', 'result')
+  276: myJSParser('codejs', 'result')
+  277: 
+  278: // If the user change the JS fragment, I run it again:
+  279: document.getElementById('codejs').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: 
+  285: // If the user change the HTML fragment, I run it again:
+  286: document.getElementById('code').addEventListener("input", function() {
+  287: d3.select('#result').html("");
+  288: myHtmlParser('code', 'result');
+  289: myJSParser('codejs', 'result');
+  290: })
+  291: </script>
+  292  
+
+graph/density2d_histogram2d.html:
+  287  
+  288: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  289: <script>
+  290: // At the beginning, I read the html and JS fragments
+  291: myHtmlParser('code', 'result')
+  292: myJSParser('codejs', 'result')
+  293: 
+  294: // If the user change the JS fragment, I run it again:
+  295: document.getElementById('codejs').addEventListener("input", function() {
+  296: d3.select('#result').html("");
+  297: myHtmlParser('code', 'result');
+  298: myJSParser('codejs', 'result');
+  299: })
+  300: 
+  301: // If the user change the HTML fragment, I run it again:
+  302: document.getElementById('code').addEventListener("input", function() {
+  303: d3.select('#result').html("");
+  304: myHtmlParser('code', 'result');
+  305: myJSParser('codejs', 'result');
+  306: })
+  307: </script>
+  308  
+
+graph/density2d_shading.html:
+  258  
+  259: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  260: <script>
+  261: // At the beginning, I read the html and JS fragments
+  262: myHtmlParser('code', 'result')
+  263: myJSParser('codejs', 'result')
+  264: 
+  265: // If the user change the JS fragment, I run it again:
+  266: document.getElementById('codejs').addEventListener("input", function() {
+  267: d3.select('#result').html("");
+  268: myHtmlParser('code', 'result');
+  269: myJSParser('codejs', 'result');
+  270: })
+  271: 
+  272: // If the user change the HTML fragment, I run it again:
+  273: document.getElementById('code').addEventListener("input", function() {
+  274: d3.select('#result').html("");
+  275: myHtmlParser('code', 'result');
+  276: myJSParser('codejs', 'result');
+  277: })
+  278: </script>
+  279  
+
+graph/donut_basic.html:
+  249  
+  250: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  251: <script>
+  252: // At the beginning, I read the html and JS fragments
+  253: myHtmlParser('code', 'result')
+  254: myJSParser('codejs', 'result')
+  255: 
+  256: // If the user change the JS fragment, I run it again:
+  257: document.getElementById('codejs').addEventListener("input", function() {
+  258: d3.select('#result').html("");
+  259: myHtmlParser('code', 'result');
+  260: myJSParser('codejs', 'result');
+  261: })
+  262: 
+  263: // If the user change the HTML fragment, I run it again:
+  264: document.getElementById('code').addEventListener("input", function() {
+  265: d3.select('#result').html("");
+  266: myHtmlParser('code', 'result');
+  267: myJSParser('codejs', 'result');
+  268: })
+  269: </script>
+  270  
+
+graph/donut_label.html:
+  301  
+  302: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  303: <script>
+  304: // At the beginning, I read the html and JS fragments
+  305: myHtmlParser('code', 'result')
+  306: myJSParser('codejs', 'result')
+  307: 
+  308: // If the user change the JS fragment, I run it again:
+  309: document.getElementById('codejs').addEventListener("input", function() {
+  310: d3.select('#result').html("");
+  311: myHtmlParser('code', 'result');
+  312: myJSParser('codejs', 'result');
+  313: })
+  314: 
+  315: // If the user change the HTML fragment, I run it again:
+  316: document.getElementById('code').addEventListener("input", function() {
+  317: d3.select('#result').html("");
+  318: myHtmlParser('code', 'result');
+  319: myJSParser('codejs', 'result');
+  320: })
+  321: </script>
+  322  
+
+graph/heatmap_basic.html:
+  260  
+  261: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  262: <script>
+  263: // At the beginning, I read the html and JS fragments
+  264: myHtmlParser('code', 'result')
+  265: myJSParser('codejs', 'result')
+  266: 
+  267: // If the user change the JS fragment, I run it again:
+  268: document.getElementById('codejs').addEventListener("input", function() {
+  269: d3.select('#result').html("");
+  270: myHtmlParser('code', 'result');
+  271: myJSParser('codejs', 'result');
+  272: })
+  273: 
+  274: // If the user change the HTML fragment, I run it again:
+  275: document.getElementById('code').addEventListener("input", function() {
+  276: d3.select('#result').html("");
+  277: myHtmlParser('code', 'result');
+  278: myJSParser('codejs', 'result');
+  279: })
+  280: </script>
+  281  
+
+graph/heatmap_style.html:
+  328  
+  329: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  330: <script>
+  331: // At the beginning, I read the html and JS fragments
+  332: myHtmlParser('code', 'result')
+  333: myJSParser('codejs', 'result')
+  334: 
+  335: // If the user change the JS fragment, I run it again:
+  336: document.getElementById('codejs').addEventListener("input", function() {
+  337: d3.select('#result').html("");
+  338: myHtmlParser('code', 'result');
+  339: myJSParser('codejs', 'result');
+  340: })
+  341: 
+  342: // If the user change the HTML fragment, I run it again:
+  343: document.getElementById('code').addEventListener("input", function() {
+  344: d3.select('#result').html("");
+  345: myHtmlParser('code', 'result');
+  346: myJSParser('codejs', 'result');
+  347: })
+  348: </script>
+  349  
+
+graph/heatmap_tooltip.html:
+  288  
+  289: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  290: <script>
+  291: // At the beginning, I read the html and JS fragments
+  292: myHtmlParser('code', 'result')
+  293: myJSParser('codejs', 'result')
+  294: 
+  295: // If the user change the JS fragment, I run it again:
+  296: document.getElementById('codejs').addEventListener("input", function() {
+  297: d3.select('#result').html("");
+  298: myHtmlParser('code', 'result');
+  299: myJSParser('codejs', 'result');
+  300: })
+  301: 
+  302: // If the user change the HTML fragment, I run it again:
+  303: document.getElementById('code').addEventListener("input", function() {
+  304: d3.select('#result').html("");
+  305: myHtmlParser('code', 'result');
+  306: myJSParser('codejs', 'result');
+  307: })
+  308: </script>
+  309  
+
+graph/hexbinmap_geo_basic.html:
+  235  
+  236: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  237: <script>
+  238: // At the beginning, I read the html and JS fragments
+  239: myHtmlParser('code', 'result')
+  240: myJSParser('codejs', 'result')
+  241: 
+  242: // If the user change the JS fragment, I run it again:
+  243: document.getElementById('codejs').addEventListener("input", function() {
+  244: d3.select('#result').html("");
+  245: myHtmlParser('code', 'result');
+  246: myJSParser('codejs', 'result');
+  247: })
+  248: 
+  249: // If the user change the HTML fragment, I run it again:
+  250: document.getElementById('code').addEventListener("input", function() {
+  251: d3.select('#result').html("");
+  252: myHtmlParser('code', 'result');
+  253: myJSParser('codejs', 'result');
+  254: })
+  255: </script>
+  256  
+
+graph/hexbinmap_geo_label.html:
+  250  
+  251: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  252: <script>
+  253: // At the beginning, I read the html and JS fragments
+  254: myHtmlParser('code', 'result')
+  255: myJSParser('codejs', 'result')
+  256: 
+  257: // If the user change the JS fragment, I run it again:
+  258: document.getElementById('codejs').addEventListener("input", function() {
+  259: d3.select('#result').html("");
+  260: myHtmlParser('code', 'result');
+  261: myJSParser('codejs', 'result');
+  262: })
+  263: 
+  264: // If the user change the HTML fragment, I run it again:
+  265: document.getElementById('code').addEventListener("input", function() {
+  266: d3.select('#result').html("");
+  267: myHtmlParser('code', 'result');
+  268: myJSParser('codejs', 'result');
+  269: })
+  270: </script>
+  271  
+
+graph/histogram_basic.html:
+  256  
+  257: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  258: <script>
+  259: // At the beginning, I read the html and JS fragments
+  260: myHtmlParser('code', 'result')
+  261: myJSParser('codejs', 'result')
+  262: 
+  263: // If the user change the JS fragment, I run it again:
+  264: document.getElementById('codejs').addEventListener("input", function() {
+  265: d3.select('#result').html("");
+  266: myHtmlParser('code', 'result');
+  267: myJSParser('codejs', 'result');
+  268: })
+  269: 
+  270: // If the user change the HTML fragment, I run it again:
+  271: document.getElementById('code').addEventListener("input", function() {
+  272: d3.select('#result').html("");
+  273: myHtmlParser('code', 'result');
+  274: myJSParser('codejs', 'result');
+  275: })
+  276: </script>
+  277  
+
+graph/histogram_binSize.html:
+  293  
+  294: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  295: <script>
+  296: // At the beginning, I read the html and JS fragments
+  297: myHtmlParser('code', 'result')
+  298: myJSParser('codejs', 'result')
+  299: 
+  300: // If the user change the JS fragment, I run it again:
+  301: document.getElementById('codejs').addEventListener("input", function() {
+  302: d3.select('#result').html("");
+  303: myHtmlParser('code', 'result');
+  304: myJSParser('codejs', 'result');
+  305: })
+  306: 
+  307: // If the user change the HTML fragment, I run it again:
+  308: document.getElementById('code').addEventListener("input", function() {
+  309: d3.select('#result').html("");
+  310: myHtmlParser('code', 'result');
+  311: myJSParser('codejs', 'result');
+  312: })
+  313: </script>
+  314  
+
+graph/histogram_coloredTail.html:
+  268  
+  269: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  270: <script>
+  271: // At the beginning, I read the html and JS fragments
+  272: myHtmlParser('code', 'result')
+  273: myJSParser('codejs', 'result')
+  274: 
+  275: // If the user change the JS fragment, I run it again:
+  276: document.getElementById('codejs').addEventListener("input", function() {
+  277: d3.select('#result').html("");
+  278: myHtmlParser('code', 'result');
+  279: myJSParser('codejs', 'result');
+  280: })
+  281: 
+  282: // If the user change the HTML fragment, I run it again:
+  283: document.getElementById('code').addEventListener("input", function() {
+  284: d3.select('#result').html("");
+  285: myHtmlParser('code', 'result');
+  286: myJSParser('codejs', 'result');
+  287: })
+  288: </script>
+  289  
+
+graph/histogram_double.html:
+  274  
+  275: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  276: <script>
+  277: // At the beginning, I read the html and JS fragments
+  278: myHtmlParser('code', 'result')
+  279: myJSParser('codejs', 'result')
+  280: 
+  281: // If the user change the JS fragment, I run it again:
+  282: document.getElementById('codejs').addEventListener("input", function() {
+  283: d3.select('#result').html("");
+  284: myHtmlParser('code', 'result');
+  285: myJSParser('codejs', 'result');
+  286: })
+  287: 
+  288: // If the user change the HTML fragment, I run it again:
+  289: document.getElementById('code').addEventListener("input", function() {
+  290: d3.select('#result').html("");
+  291: myHtmlParser('code', 'result');
+  292: myJSParser('codejs', 'result');
+  293: })
+  294: </script>
+  295  
+
+graph/histogram_tooltip.html:
+  292  
+  293: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  294: <script>
+  295: // At the beginning, I read the html and JS fragments
+  296: myHtmlParser('code', 'result')
+  297: myJSParser('codejs', 'result')
+  298: 
+  299: // If the user change the JS fragment, I run it again:
+  300: document.getElementById('codejs').addEventListener("input", function() {
+  301: d3.select('#result').html("");
+  302: myHtmlParser('code', 'result');
+  303: myJSParser('codejs', 'result');
+  304: })
+  305: 
+  306: // If the user change the HTML fragment, I run it again:
+  307: document.getElementById('code').addEventListener("input", function() {
+  308: d3.select('#result').html("");
+  309: myHtmlParser('code', 'result');
+  310: myJSParser('codejs', 'result');
+  311: })
+  312: </script>
+  313  
+
+graph/line_basic.html:
+  255  
+  256: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  257: <script>
+  258: // At the beginning, I read the html and JS fragments
+  259: myHtmlParser('code', 'result')
+  260: myJSParser('codejs', 'result')
+  261: 
+  262: // If the user change the JS fragment, I run it again:
+  263: document.getElementById('codejs').addEventListener("input", function() {
+  264: d3.select('#result').html("");
+  265: myHtmlParser('code', 'result');
+  266: myJSParser('codejs', 'result');
+  267: })
+  268: 
+  269: // If the user change the HTML fragment, I run it again:
+  270: document.getElementById('code').addEventListener("input", function() {
+  271: d3.select('#result').html("");
+  272: myHtmlParser('code', 'result');
+  273: myJSParser('codejs', 'result');
+  274: })
+  275: </script>
+  276  
+
+graph/line_brushZoom.html:
+  324  
+  325: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  326: <script>
+  327: // At the beginning, I read the html and JS fragments
+  328: myHtmlParser('code', 'result')
+  329: myJSParser('codejs', 'result')
+  330: 
+  331: // If the user change the JS fragment, I run it again:
+  332: document.getElementById('codejs').addEventListener("input", function() {
+  333: d3.select('#result').html("");
+  334: myHtmlParser('code', 'result');
+  335: myJSParser('codejs', 'result');
+  336: })
+  337: 
+  338: // If the user change the HTML fragment, I run it again:
+  339: document.getElementById('code').addEventListener("input", function() {
+  340: d3.select('#result').html("");
+  341: myHtmlParser('code', 'result');
+  342: myJSParser('codejs', 'result');
+  343: })
+  344: </script>
+  345  
+
+graph/line_change_data.html:
+  284  
+  285: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  286: <script>
+  287: // At the beginning, I read the html and JS fragments
+  288: myHtmlParser('code', 'result')
+  289: myJSParser('codejs', 'result')
+  290: 
+  291: // If the user change the JS fragment, I run it again:
+  292: document.getElementById('codejs').addEventListener("input", function() {
+  293: d3.select('#result').html("");
+  294: myHtmlParser('code', 'result');
+  295: myJSParser('codejs', 'result');
+  296: })
+  297: 
+  298: // If the user change the HTML fragment, I run it again:
+  299: document.getElementById('code').addEventListener("input", function() {
+  300: d3.select('#result').html("");
+  301: myHtmlParser('code', 'result');
+  302: myJSParser('codejs', 'result');
+  303: })
+  304: </script>
+  305  
+
+graph/line_color_gradient_svg.html:
+  273  
+  274: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  275: <script>
+  276: // At the beginning, I read the html and JS fragments
+  277: myHtmlParser('code', 'result')
+  278: myJSParser('codejs', 'result')
+  279: 
+  280: // If the user change the JS fragment, I run it again:
+  281: document.getElementById('codejs').addEventListener("input", function() {
+  282: d3.select('#result').html("");
+  283: myHtmlParser('code', 'result');
+  284: myJSParser('codejs', 'result');
+  285: })
+  286: 
+  287: // If the user change the HTML fragment, I run it again:
+  288: document.getElementById('code').addEventListener("input", function() {
+  289: d3.select('#result').html("");
+  290: myHtmlParser('code', 'result');
+  291: myJSParser('codejs', 'result');
+  292: })
+  293: </script>
+  294  
+
+graph/line_confidence_interval.html:
+  259  
+  260: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  261: <script>
+  262: // At the beginning, I read the html and JS fragments
+  263: myHtmlParser('code', 'result')
+  264: myJSParser('codejs', 'result')
+  265: 
+  266: // If the user change the JS fragment, I run it again:
+  267: document.getElementById('codejs').addEventListener("input", function() {
+  268: d3.select('#result').html("");
+  269: myHtmlParser('code', 'result');
+  270: myJSParser('codejs', 'result');
+  271: })
+  272: 
+  273: // If the user change the HTML fragment, I run it again:
+  274: document.getElementById('code').addEventListener("input", function() {
+  275: d3.select('#result').html("");
+  276: myHtmlParser('code', 'result');
+  277: myJSParser('codejs', 'result');
+  278: })
+  279: </script>
+  280  
+
+graph/line_cursor.html:
+  304  
+  305: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  306: <script>
+  307: // At the beginning, I read the html and JS fragments
+  308: myHtmlParser('code', 'result')
+  309: myJSParser('codejs', 'result')
+  310: 
+  311: // If the user change the JS fragment, I run it again:
+  312: document.getElementById('codejs').addEventListener("input", function() {
+  313: d3.select('#result').html("");
+  314: myHtmlParser('code', 'result');
+  315: myJSParser('codejs', 'result');
+  316: })
+  317: 
+  318: // If the user change the HTML fragment, I run it again:
+  319: document.getElementById('code').addEventListener("input", function() {
+  320: d3.select('#result').html("");
+  321: myHtmlParser('code', 'result');
+  322: myJSParser('codejs', 'result');
+  323: })
+  324: </script>
+  325  
+
+graph/line_filter.html:
+  301  
+  302: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  303: <script>
+  304: // At the beginning, I read the html and JS fragments
+  305: myHtmlParser('code', 'result')
+  306: myJSParser('codejs', 'result')
+  307: 
+  308: // If the user change the JS fragment, I run it again:
+  309: document.getElementById('codejs').addEventListener("input", function() {
+  310: d3.select('#result').html("");
+  311: myHtmlParser('code', 'result');
+  312: myJSParser('codejs', 'result');
+  313: })
+  314: 
+  315: // If the user change the HTML fragment, I run it again:
+  316: document.getElementById('code').addEventListener("input", function() {
+  317: d3.select('#result').html("");
+  318: myHtmlParser('code', 'result');
+  319: myJSParser('codejs', 'result');
+  320: })
+  321: </script>
+  322  
+
+graph/line_select.html:
+  301  
+  302: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  303: <script>
+  304: // At the beginning, I read the html and JS fragments
+  305: myHtmlParser('code', 'result')
+  306: myJSParser('codejs', 'result')
+  307: 
+  308: // If the user change the JS fragment, I run it again:
+  309: document.getElementById('codejs').addEventListener("input", function() {
+  310: d3.select('#result').html("");
+  311: myHtmlParser('code', 'result');
+  312: myJSParser('codejs', 'result');
+  313: })
+  314: 
+  315: // If the user change the HTML fragment, I run it again:
+  316: document.getElementById('code').addEventListener("input", function() {
+  317: d3.select('#result').html("");
+  318: myHtmlParser('code', 'result');
+  319: myJSParser('codejs', 'result');
+  320: })
+  321: </script>
+  322  
+
+graph/line_several_group.html:
+  261  
+  262: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  263: <script>
+  264: // At the beginning, I read the html and JS fragments
+  265: myHtmlParser('code', 'result')
+  266: myJSParser('codejs', 'result')
+  267: 
+  268: // If the user change the JS fragment, I run it again:
+  269: document.getElementById('codejs').addEventListener("input", function() {
+  270: d3.select('#result').html("");
+  271: myHtmlParser('code', 'result');
+  272: myJSParser('codejs', 'result');
+  273: })
+  274: 
+  275: // If the user change the HTML fragment, I run it again:
+  276: document.getElementById('code').addEventListener("input", function() {
+  277: d3.select('#result').html("");
+  278: myHtmlParser('code', 'result');
+  279: myJSParser('codejs', 'result');
+  280: })
+  281: </script>
+  282  
+
+graph/line_smallmultiple.html:
+  274  
+  275: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  276: <script>
+  277: // At the beginning, I read the html and JS fragments
+  278: myHtmlParser('code', 'result')
+  279: myJSParser('codejs', 'result')
+  280: 
+  281: // If the user change the JS fragment, I run it again:
+  282: document.getElementById('codejs').addEventListener("input", function() {
+  283: d3.select('#result').html("");
+  284: myHtmlParser('code', 'result');
+  285: myJSParser('codejs', 'result');
+  286: })
+  287: 
+  288: // If the user change the HTML fragment, I run it again:
+  289: document.getElementById('code').addEventListener("input", function() {
+  290: d3.select('#result').html("");
+  291: myHtmlParser('code', 'result');
+  292: myJSParser('codejs', 'result');
+  293: })
+  294: </script>
+  295  
+
+graph/lollipop_animationStart.html:
+  274  
+  275: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  276: <script>
+  277: // At the beginning, I read the html and JS fragments
+  278: myHtmlParser('code', 'result')
+  279: myJSParser('codejs', 'result')
+  280: 
+  281: // If the user change the JS fragment, I run it again:
+  282: document.getElementById('codejs').addEventListener("input", function() {
+  283: d3.select('#result').html("");
+  284: myHtmlParser('code', 'result');
+  285: myJSParser('codejs', 'result');
+  286: })
+  287: 
+  288: // If the user change the HTML fragment, I run it again:
+  289: document.getElementById('code').addEventListener("input", function() {
+  290: d3.select('#result').html("");
+  291: myHtmlParser('code', 'result');
+  292: myJSParser('codejs', 'result');
+  293: })
+  294: </script>
+  295  
+
+graph/lollipop_basic.html:
+  262  
+  263: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  264: <script>
+  265: // At the beginning, I read the html and JS fragments
+  266: myHtmlParser('code', 'result')
+  267: myJSParser('codejs', 'result')
+  268: 
+  269: // If the user change the JS fragment, I run it again:
+  270: document.getElementById('codejs').addEventListener("input", function() {
+  271: d3.select('#result').html("");
+  272: myHtmlParser('code', 'result');
+  273: myJSParser('codejs', 'result');
+  274: })
+  275: 
+  276: // If the user change the HTML fragment, I run it again:
+  277: document.getElementById('code').addEventListener("input", function() {
+  278: d3.select('#result').html("");
+  279: myHtmlParser('code', 'result');
+  280: myJSParser('codejs', 'result');
+  281: })
+  282: </script>
+  283  
+
+graph/lollipop_button_data_csv.html:
+  288  
+  289: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  290: <script>
+  291: // At the beginning, I read the html and JS fragments
+  292: myHtmlParser('code', 'result')
+  293: myJSParser('codejs', 'result')
+  294: 
+  295: // If the user change the JS fragment, I run it again:
+  296: document.getElementById('codejs').addEventListener("input", function() {
+  297: d3.select('#result').html("");
+  298: myHtmlParser('code', 'result');
+  299: myJSParser('codejs', 'result');
+  300: })
+  301: 
+  302: // If the user change the HTML fragment, I run it again:
+  303: document.getElementById('code').addEventListener("input", function() {
+  304: d3.select('#result').html("");
+  305: myHtmlParser('code', 'result');
+  306: myJSParser('codejs', 'result');
+  307: })
+  308: </script>
+  309  
+
+graph/lollipop_cleveland.html:
+  264  
+  265: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  266: <script>
+  267: // At the beginning, I read the html and JS fragments
+  268: myHtmlParser('code', 'result')
+  269: myJSParser('codejs', 'result')
+  270: 
+  271: // If the user change the JS fragment, I run it again:
+  272: document.getElementById('codejs').addEventListener("input", function() {
+  273: d3.select('#result').html("");
+  274: myHtmlParser('code', 'result');
+  275: myJSParser('codejs', 'result');
+  276: })
+  277: 
+  278: // If the user change the HTML fragment, I run it again:
+  279: document.getElementById('code').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: </script>
+  285  
+
+graph/lollipop_horizontal.html:
+  257  
+  258: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  259: <script>
+  260: // At the beginning, I read the html and JS fragments
+  261: myHtmlParser('code', 'result')
+  262: myJSParser('codejs', 'result')
+  263: 
+  264: // If the user change the JS fragment, I run it again:
+  265: document.getElementById('codejs').addEventListener("input", function() {
+  266: d3.select('#result').html("");
+  267: myHtmlParser('code', 'result');
+  268: myJSParser('codejs', 'result');
+  269: })
+  270: 
+  271: // If the user change the HTML fragment, I run it again:
+  272: document.getElementById('code').addEventListener("input", function() {
+  273: d3.select('#result').html("");
+  274: myHtmlParser('code', 'result');
+  275: myJSParser('codejs', 'result');
+  276: })
+  277: </script>
+  278  
+
+graph/lollipop_ordered.html:
+  263  
+  264: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  265: <script>
+  266: // At the beginning, I read the html and JS fragments
+  267: myHtmlParser('code', 'result')
+  268: myJSParser('codejs', 'result')
+  269: 
+  270: // If the user change the JS fragment, I run it again:
+  271: document.getElementById('codejs').addEventListener("input", function() {
+  272: d3.select('#result').html("");
+  273: myHtmlParser('code', 'result');
+  274: myJSParser('codejs', 'result');
+  275: })
+  276: 
+  277: // If the user change the HTML fragment, I run it again:
+  278: document.getElementById('code').addEventListener("input", function() {
+  279: d3.select('#result').html("");
+  280: myHtmlParser('code', 'result');
+  281: myJSParser('codejs', 'result');
+  282: })
+  283: </script>
+  284  
+
+graph/network_animationStart.html:
+  258  
+  259: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  260: <script>
+  261: // At the beginning, I read the html and JS fragments
+  262: myHtmlParser('code', 'result')
+  263: myJSParser('codejs', 'result')
+  264: 
+  265: // If the user change the JS fragment, I run it again:
+  266: document.getElementById('codejs').addEventListener("input", function() {
+  267: d3.select('#result').html("");
+  268: myHtmlParser('code', 'result');
+  269: myJSParser('codejs', 'result');
+  270: })
+  271: 
+  272: // If the user change the HTML fragment, I run it again:
+  273: document.getElementById('code').addEventListener("input", function() {
+  274: d3.select('#result').html("");
+  275: myHtmlParser('code', 'result');
+  276: myJSParser('codejs', 'result');
+  277: })
+  278: </script>
+  279  
+
+graph/network_basic.html:
+  268  
+  269: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  270: <script>
+  271: // At the beginning, I read the html and JS fragments
+  272: myHtmlParser('code', 'result')
+  273: myJSParser('codejs', 'result')
+  274: 
+  275: // If the user change the JS fragment, I run it again:
+  276: document.getElementById('codejs').addEventListener("input", function() {
+  277: d3.select('#result').html("");
+  278: myHtmlParser('code', 'result');
+  279: myJSParser('codejs', 'result');
+  280: })
+  281: 
+  282: // If the user change the HTML fragment, I run it again:
+  283: document.getElementById('code').addEventListener("input", function() {
+  284: d3.select('#result').html("");
+  285: myHtmlParser('code', 'result');
+  286: myJSParser('codejs', 'result');
+  287: })
+  288: </script>
+  289  
+
+graph/network_test.html:
+  258  
+  259: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  260: <script>
+  261: // At the beginning, I read the html and JS fragments
+  262: myHtmlParser('code', 'result')
+  263: myJSParser('codejs', 'result')
+  264: 
+  265: // If the user change the JS fragment, I run it again:
+  266: document.getElementById('codejs').addEventListener("input", function() {
+  267: d3.select('#result').html("");
+  268: myHtmlParser('code', 'result');
+  269: myJSParser('codejs', 'result');
+  270: })
+  271: 
+  272: // If the user change the HTML fragment, I run it again:
+  273: document.getElementById('code').addEventListener("input", function() {
+  274: d3.select('#result').html("");
+  275: myHtmlParser('code', 'result');
+  276: myJSParser('codejs', 'result');
+  277: })
+  278: </script>
+  279  
+
+graph/parallel_basic.html:
+  275  
+  276: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  277: <script>
+  278: // At the beginning, I read the html and JS fragments
+  279: myHtmlParser('code', 'result')
+  280: myJSParser('codejs', 'result')
+  281: 
+  282: // If the user change the JS fragment, I run it again:
+  283: document.getElementById('codejs').addEventListener("input", function() {
+  284: d3.select('#result').html("");
+  285: myHtmlParser('code', 'result');
+  286: myJSParser('codejs', 'result');
+  287: })
+  288: 
+  289: // If the user change the HTML fragment, I run it again:
+  290: document.getElementById('code').addEventListener("input", function() {
+  291: d3.select('#result').html("");
+  292: myHtmlParser('code', 'result');
+  293: myJSParser('codejs', 'result');
+  294: })
+  295: </script>
+  296  
+
+graph/parallel_custom.html:
+  320  
+  321: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  322: <script>
+  323: // At the beginning, I read the html and JS fragments
+  324: myHtmlParser('code', 'result')
+  325: myJSParser('codejs', 'result')
+  326: 
+  327: // If the user change the JS fragment, I run it again:
+  328: document.getElementById('codejs').addEventListener("input", function() {
+  329: d3.select('#result').html("");
+  330: myHtmlParser('code', 'result');
+  331: myJSParser('codejs', 'result');
+  332: })
+  333: 
+  334: // If the user change the HTML fragment, I run it again:
+  335: document.getElementById('code').addEventListener("input", function() {
+  336: d3.select('#result').html("");
+  337: myHtmlParser('code', 'result');
+  338: myJSParser('codejs', 'result');
+  339: })
+  340: </script>
+  341  
+
+graph/parallel_selection.html:
+  290  
+  291: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  292: <script>
+  293: // At the beginning, I read the html and JS fragments
+  294: myHtmlParser('code', 'result')
+  295: myJSParser('codejs', 'result')
+  296: 
+  297: // If the user change the JS fragment, I run it again:
+  298: document.getElementById('codejs').addEventListener("input", function() {
+  299: d3.select('#result').html("");
+  300: myHtmlParser('code', 'result');
+  301: myJSParser('codejs', 'result');
+  302: })
+  303: 
+  304: // If the user change the HTML fragment, I run it again:
+  305: document.getElementById('code').addEventListener("input", function() {
+  306: d3.select('#result').html("");
+  307: myHtmlParser('code', 'result');
+  308: myJSParser('codejs', 'result');
+  309: })
+  310: </script>
+  311  
+
+graph/pie_annotation.html:
+  264  
+  265: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  266: <script>
+  267: // At the beginning, I read the html and JS fragments
+  268: myHtmlParser('code', 'result')
+  269: myJSParser('codejs', 'result')
+  270: 
+  271: // If the user change the JS fragment, I run it again:
+  272: document.getElementById('codejs').addEventListener("input", function() {
+  273: d3.select('#result').html("");
+  274: myHtmlParser('code', 'result');
+  275: myJSParser('codejs', 'result');
+  276: })
+  277: 
+  278: // If the user change the HTML fragment, I run it again:
+  279: document.getElementById('code').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: </script>
+  285  
+
+graph/pie_basic.html:
+  247  
+  248: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  249: <script>
+  250: // At the beginning, I read the html and JS fragments
+  251: myHtmlParser('code', 'result')
+  252: myJSParser('codejs', 'result')
+  253: 
+  254: // If the user change the JS fragment, I run it again:
+  255: document.getElementById('codejs').addEventListener("input", function() {
+  256: d3.select('#result').html("");
+  257: myHtmlParser('code', 'result');
+  258: myJSParser('codejs', 'result');
+  259: })
+  260: 
+  261: // If the user change the HTML fragment, I run it again:
+  262: document.getElementById('code').addEventListener("input", function() {
+  263: d3.select('#result').html("");
+  264: myHtmlParser('code', 'result');
+  265: myJSParser('codejs', 'result');
+  266: })
+  267: </script>
+  268  
+
+graph/pie_changeData.html:
+  273  
+  274: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  275: <script>
+  276: // At the beginning, I read the html and JS fragments
+  277: myHtmlParser('code', 'result')
+  278: myJSParser('codejs', 'result')
+  279: 
+  280: // If the user change the JS fragment, I run it again:
+  281: document.getElementById('codejs').addEventListener("input", function() {
+  282: d3.select('#result').html("");
+  283: myHtmlParser('code', 'result');
+  284: myJSParser('codejs', 'result');
+  285: })
+  286: 
+  287: // If the user change the HTML fragment, I run it again:
+  288: document.getElementById('code').addEventListener("input", function() {
+  289: d3.select('#result').html("");
+  290: myHtmlParser('code', 'result');
+  291: myJSParser('codejs', 'result');
+  292: })
+  293: </script>
+  294  
+
+graph/ridgeline_animation.html:
+  338  
+  339: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  340: <script>
+  341: // At the beginning, I read the html and JS fragments
+  342: myHtmlParser('code', 'result')
+  343: myJSParser('codejs', 'result')
+  344: 
+  345: // If the user change the JS fragment, I run it again:
+  346: document.getElementById('codejs').addEventListener("input", function() {
+  347: d3.select('#result').html("");
+  348: myHtmlParser('code', 'result');
+  349: myJSParser('codejs', 'result');
+  350: })
+  351: 
+  352: // If the user change the HTML fragment, I run it again:
+  353: document.getElementById('code').addEventListener("input", function() {
+  354: d3.select('#result').html("");
+  355: myHtmlParser('code', 'result');
+  356: myJSParser('codejs', 'result');
+  357: })
+  358: </script>
+  359  
+
+graph/ridgeline_basic.html:
+  284  
+  285: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  286: <script>
+  287: // At the beginning, I read the html and JS fragments
+  288: myHtmlParser('code', 'result')
+  289: myJSParser('codejs', 'result')
+  290: 
+  291: // If the user change the JS fragment, I run it again:
+  292: document.getElementById('codejs').addEventListener("input", function() {
+  293: d3.select('#result').html("");
+  294: myHtmlParser('code', 'result');
+  295: myJSParser('codejs', 'result');
+  296: })
+  297: 
+  298: // If the user change the HTML fragment, I run it again:
+  299: document.getElementById('code').addEventListener("input", function() {
+  300: d3.select('#result').html("");
+  301: myHtmlParser('code', 'result');
+  302: myJSParser('codejs', 'result');
+  303: })
+  304: </script>
+  305  
+
+graph/ridgeline_template.html:
+  322  
+  323: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  324: <script>
+  325: // At the beginning, I read the html and JS fragments
+  326: myHtmlParser('code', 'result')
+  327: myJSParser('codejs', 'result')
+  328: 
+  329: // If the user change the JS fragment, I run it again:
+  330: document.getElementById('codejs').addEventListener("input", function() {
+  331: d3.select('#result').html("");
+  332: myHtmlParser('code', 'result');
+  333: myJSParser('codejs', 'result');
+  334: })
+  335: 
+  336: // If the user change the HTML fragment, I run it again:
+  337: document.getElementById('code').addEventListener("input", function() {
+  338: d3.select('#result').html("");
+  339: myHtmlParser('code', 'result');
+  340: myJSParser('codejs', 'result');
+  341: })
+  342: </script>
+  343  
+
+graph/sankey_basic.html:
+  312  
+  313: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  314: <script>
+  315: // At the beginning, I read the html and JS fragments
+  316: myHtmlParser('code', 'result')
+  317: myJSParser('codejs', 'result')
+  318: 
+  319: // If the user change the JS fragment, I run it again:
+  320: document.getElementById('codejs').addEventListener("input", function() {
+  321: d3.select('#result').html("");
+  322: myHtmlParser('code', 'result');
+  323: myJSParser('codejs', 'result');
+  324: })
+  325: 
+  326: // If the user change the HTML fragment, I run it again:
+  327: document.getElementById('code').addEventListener("input", function() {
+  328: d3.select('#result').html("");
+  329: myHtmlParser('code', 'result');
+  330: myJSParser('codejs', 'result');
+  331: })
+  332: </script>
+  333  
+
+graph/scatter_animation_start.html:
+  262  
+  263: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  264: <script>
+  265: // At the beginning, I read the html and JS fragments
+  266: myHtmlParser('code', 'result')
+  267: myJSParser('codejs', 'result')
+  268: 
+  269: // If the user change the JS fragment, I run it again:
+  270: document.getElementById('codejs').addEventListener("input", function() {
+  271: d3.select('#result').html("");
+  272: myHtmlParser('code', 'result');
+  273: myJSParser('codejs', 'result');
+  274: })
+  275: 
+  276: // If the user change the HTML fragment, I run it again:
+  277: document.getElementById('code').addEventListener("input", function() {
+  278: d3.select('#result').html("");
+  279: myHtmlParser('code', 'result');
+  280: myJSParser('codejs', 'result');
+  281: })
+  282: </script>
+  283  
+
+graph/scatter_basic.html:
+  246  
+  247: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  248: <script>
+  249: // At the beginning, I read the html and JS fragments
+  250: myHtmlParser('code', 'result')
+  251: myJSParser('codejs', 'result')
+  252: 
+  253: // If the user change the JS fragment, I run it again:
+  254: document.getElementById('codejs').addEventListener("input", function() {
+  255: d3.select('#result').html("");
+  256: myHtmlParser('code', 'result');
+  257: myJSParser('codejs', 'result');
+  258: })
+  259: 
+  260: // If the user change the HTML fragment, I run it again:
+  261: document.getElementById('code').addEventListener("input", function() {
+  262: d3.select('#result').html("");
+  263: myHtmlParser('code', 'result');
+  264: myJSParser('codejs', 'result');
+  265: })
+  266: </script>
+  267  
+
+graph/scatter_buttonXlim.html:
+  272  
+  273: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  274: <script>
+  275: // At the beginning, I read the html and JS fragments
+  276: myHtmlParser('code', 'result')
+  277: myJSParser('codejs', 'result')
+  278: 
+  279: // If the user change the JS fragment, I run it again:
+  280: document.getElementById('codejs').addEventListener("input", function() {
+  281: d3.select('#result').html("");
+  282: myHtmlParser('code', 'result');
+  283: myJSParser('codejs', 'result');
+  284: })
+  285: 
+  286: // If the user change the HTML fragment, I run it again:
+  287: document.getElementById('code').addEventListener("input", function() {
+  288: d3.select('#result').html("");
+  289: myHtmlParser('code', 'result');
+  290: myJSParser('codejs', 'result');
+  291: })
+  292: </script>
+  293  
+
+graph/scatter_canvas.html:
+  246  
+  247: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  248: <script>
+  249: // At the beginning, I read the html and JS fragments
+  250: myHtmlParser('code', 'result')
+  251: myJSParser('codejs', 'result')
+  252: 
+  253: // If the user change the JS fragment, I run it again:
+  254: document.getElementById('codejs').addEventListener("input", function() {
+  255: d3.select('#result').html("");
+  256: myHtmlParser('code', 'result');
+  257: myJSParser('codejs', 'result');
+  258: })
+  259: 
+  260: // If the user change the HTML fragment, I run it again:
+  261: document.getElementById('code').addEventListener("input", function() {
+  262: d3.select('#result').html("");
+  263: myHtmlParser('code', 'result');
+  264: myJSParser('codejs', 'result');
+  265: })
+  266: </script>
+  267  
+
+graph/scatter_grouped_highlight.html:
+  279  
+  280: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  281: <script>
+  282: // At the beginning, I read the html and JS fragments
+  283: myHtmlParser('code', 'result')
+  284: myJSParser('codejs', 'result')
+  285: 
+  286: // If the user change the JS fragment, I run it again:
+  287: document.getElementById('codejs').addEventListener("input", function() {
+  288: d3.select('#result').html("");
+  289: myHtmlParser('code', 'result');
+  290: myJSParser('codejs', 'result');
+  291: })
+  292: 
+  293: // If the user change the HTML fragment, I run it again:
+  294: document.getElementById('code').addEventListener("input", function() {
+  295: d3.select('#result').html("");
+  296: myHtmlParser('code', 'result');
+  297: myJSParser('codejs', 'result');
+  298: })
+  299: </script>
+  300  
+
+graph/scatter_grouped.html:
+  250  
+  251: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  252: <script>
+  253: // At the beginning, I read the html and JS fragments
+  254: myHtmlParser('code', 'result')
+  255: myJSParser('codejs', 'result')
+  256: 
+  257: // If the user change the JS fragment, I run it again:
+  258: document.getElementById('codejs').addEventListener("input", function() {
+  259: d3.select('#result').html("");
+  260: myHtmlParser('code', 'result');
+  261: myJSParser('codejs', 'result');
+  262: })
+  263: 
+  264: // If the user change the HTML fragment, I run it again:
+  265: document.getElementById('code').addEventListener("input", function() {
+  266: d3.select('#result').html("");
+  267: myHtmlParser('code', 'result');
+  268: myJSParser('codejs', 'result');
+  269: })
+  270: </script>
+  271  
+
+graph/scatter_tooltip.html:
+  283  
+  284: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  285: <script>
+  286: // At the beginning, I read the html and JS fragments
+  287: myHtmlParser('code', 'result')
+  288: myJSParser('codejs', 'result')
+  289: 
+  290: // If the user change the JS fragment, I run it again:
+  291: document.getElementById('codejs').addEventListener("input", function() {
+  292: d3.select('#result').html("");
+  293: myHtmlParser('code', 'result');
+  294: myJSParser('codejs', 'result');
+  295: })
+  296: 
+  297: // If the user change the HTML fragment, I run it again:
+  298: document.getElementById('code').addEventListener("input", function() {
+  299: d3.select('#result').html("");
+  300: myHtmlParser('code', 'result');
+  301: myJSParser('codejs', 'result');
+  302: })
+  303: </script>
+  304  
+
+graph/stackedarea_basic.html:
+  269  
+  270: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  271: <script>
+  272: // At the beginning, I read the html and JS fragments
+  273: myHtmlParser('code', 'result')
+  274: myJSParser('codejs', 'result')
+  275: 
+  276: // If the user change the JS fragment, I run it again:
+  277: document.getElementById('codejs').addEventListener("input", function() {
+  278: d3.select('#result').html("");
+  279: myHtmlParser('code', 'result');
+  280: myJSParser('codejs', 'result');
+  281: })
+  282: 
+  283: // If the user change the HTML fragment, I run it again:
+  284: document.getElementById('code').addEventListener("input", function() {
+  285: d3.select('#result').html("");
+  286: myHtmlParser('code', 'result');
+  287: myJSParser('codejs', 'result');
+  288: })
+  289: </script>
+  290  
+
+graph/stackedarea_template.html:
+  400  
+  401: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  402: <script>
+  403: // At the beginning, I read the html and JS fragments
+  404: myHtmlParser('code', 'result')
+  405: myJSParser('codejs', 'result')
+  406: 
+  407: // If the user change the JS fragment, I run it again:
+  408: document.getElementById('codejs').addEventListener("input", function() {
+  409: d3.select('#result').html("");
+  410: myHtmlParser('code', 'result');
+  411: myJSParser('codejs', 'result');
+  412: })
+  413: 
+  414: // If the user change the HTML fragment, I run it again:
+  415: document.getElementById('code').addEventListener("input", function() {
+  416: d3.select('#result').html("");
+  417: myHtmlParser('code', 'result');
+  418: myJSParser('codejs', 'result');
+  419: })
+  420: </script>
+  421  
+
+graph/stackedarea_wideinput.html:
+  264  
+  265: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  266: <script>
+  267: // At the beginning, I read the html and JS fragments
+  268: myHtmlParser('code', 'result')
+  269: myJSParser('codejs', 'result')
+  270: 
+  271: // If the user change the JS fragment, I run it again:
+  272: document.getElementById('codejs').addEventListener("input", function() {
+  273: d3.select('#result').html("");
+  274: myHtmlParser('code', 'result');
+  275: myJSParser('codejs', 'result');
+  276: })
+  277: 
+  278: // If the user change the HTML fragment, I run it again:
+  279: document.getElementById('code').addEventListener("input", function() {
+  280: d3.select('#result').html("");
+  281: myHtmlParser('code', 'result');
+  282: myJSParser('codejs', 'result');
+  283: })
+  284: </script>
+  285  
+
+graph/streamgraph_basic.html:
+  261  
+  262: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  263: <script>
+  264: // At the beginning, I read the html and JS fragments
+  265: myHtmlParser('code', 'result')
+  266: myJSParser('codejs', 'result')
+  267: 
+  268: // If the user change the JS fragment, I run it again:
+  269: document.getElementById('codejs').addEventListener("input", function() {
+  270: d3.select('#result').html("");
+  271: myHtmlParser('code', 'result');
+  272: myJSParser('codejs', 'result');
+  273: })
+  274: 
+  275: // If the user change the HTML fragment, I run it again:
+  276: document.getElementById('code').addEventListener("input", function() {
+  277: d3.select('#result').html("");
+  278: myHtmlParser('code', 'result');
+  279: myJSParser('codejs', 'result');
+  280: })
+  281: </script>
+  282  
+
+graph/streamgraph_template.html:
+  300  
+  301: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  302: <script>
+  303: // At the beginning, I read the html and JS fragments
+  304: myHtmlParser('code', 'result')
+  305: myJSParser('codejs', 'result')
+  306: 
+  307: // If the user change the JS fragment, I run it again:
+  308: document.getElementById('codejs').addEventListener("input", function() {
+  309: d3.select('#result').html("");
+  310: myHtmlParser('code', 'result');
+  311: myJSParser('codejs', 'result');
+  312: })
+  313: 
+  314: // If the user change the HTML fragment, I run it again:
+  315: document.getElementById('code').addEventListener("input", function() {
+  316: d3.select('#result').html("");
+  317: myHtmlParser('code', 'result');
+  318: myJSParser('codejs', 'result');
+  319: })
+  320: </script>
+  321  
+
+graph/treemap_basic.html:
+  255  
+  256: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  257: <script>
+  258: // At the beginning, I read the html and JS fragments
+  259: myHtmlParser('code', 'result')
+  260: myJSParser('codejs', 'result')
+  261: 
+  262: // If the user change the JS fragment, I run it again:
+  263: document.getElementById('codejs').addEventListener("input", function() {
+  264: d3.select('#result').html("");
+  265: myHtmlParser('code', 'result');
+  266: myJSParser('codejs', 'result');
+  267: })
+  268: 
+  269: // If the user change the HTML fragment, I run it again:
+  270: document.getElementById('code').addEventListener("input", function() {
+  271: d3.select('#result').html("");
+  272: myHtmlParser('code', 'result');
+  273: myJSParser('codejs', 'result');
+  274: })
+  275: </script>
+  276  
+
+graph/treemap_custom.html:
+  298  
+  299: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  300: <script>
+  301: // At the beginning, I read the html and JS fragments
+  302: myHtmlParser('code', 'result')
+  303: myJSParser('codejs', 'result')
+  304: 
+  305: // If the user change the JS fragment, I run it again:
+  306: document.getElementById('codejs').addEventListener("input", function() {
+  307: d3.select('#result').html("");
+  308: myHtmlParser('code', 'result');
+  309: myJSParser('codejs', 'result');
+  310: })
+  311: 
+  312: // If the user change the HTML fragment, I run it again:
+  313: document.getElementById('code').addEventListener("input", function() {
+  314: d3.select('#result').html("");
+  315: myHtmlParser('code', 'result');
+  316: myJSParser('codejs', 'result');
+  317: })
+  318: </script>
+  319  
+
+graph/treemap_json.html:
+  245  
+  246: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  247: <script>
+  248: // At the beginning, I read the html and JS fragments
+  249: myHtmlParser('code', 'result')
+  250: myJSParser('codejs', 'result')
+  251: 
+  252: // If the user change the JS fragment, I run it again:
+  253: document.getElementById('codejs').addEventListener("input", function() {
+  254: d3.select('#result').html("");
+  255: myHtmlParser('code', 'result');
+  256: myJSParser('codejs', 'result');
+  257: })
+  258: 
+  259: // If the user change the HTML fragment, I run it again:
+  260: document.getElementById('code').addEventListener("input", function() {
+  261: d3.select('#result').html("");
+  262: myHtmlParser('code', 'result');
+  263: myJSParser('codejs', 'result');
+  264: })
+  265: </script>
+  266  
+
+graph/violin_basicDens.html:
+  292  
+  293: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  294: <script>
+  295: // At the beginning, I read the html and JS fragments
+  296: myHtmlParser('code', 'result')
+  297: myJSParser('codejs', 'result')
+  298: 
+  299: // If the user change the JS fragment, I run it again:
+  300: document.getElementById('codejs').addEventListener("input", function() {
+  301: d3.select('#result').html("");
+  302: myHtmlParser('code', 'result');
+  303: myJSParser('codejs', 'result');
+  304: })
+  305: 
+  306: // If the user change the HTML fragment, I run it again:
+  307: document.getElementById('code').addEventListener("input", function() {
+  308: d3.select('#result').html("");
+  309: myHtmlParser('code', 'result');
+  310: myJSParser('codejs', 'result');
+  311: })
+  312: </script>
+  313  
+
+graph/violin_basicHist.html:
+  284  
+  285: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  286: <script>
+  287: // At the beginning, I read the html and JS fragments
+  288: myHtmlParser('code', 'result')
+  289: myJSParser('codejs', 'result')
+  290: 
+  291: // If the user change the JS fragment, I run it again:
+  292: document.getElementById('codejs').addEventListener("input", function() {
+  293: d3.select('#result').html("");
+  294: myHtmlParser('code', 'result');
+  295: myJSParser('codejs', 'result');
+  296: })
+  297: 
+  298: // If the user change the HTML fragment, I run it again:
+  299: document.getElementById('code').addEventListener("input", function() {
+  300: d3.select('#result').html("");
+  301: myHtmlParser('code', 'result');
+  302: myJSParser('codejs', 'result');
+  303: })
+  304: </script>
+  305  
+
+graph/violin_buttonLog.html:
+  306  
+  307: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  308: <script>
+  309: // At the beginning, I read the html and JS fragments
+  310: myHtmlParser('code', 'result')
+  311: myJSParser('codejs', 'result')
+  312: 
+  313: // If the user change the JS fragment, I run it again:
+  314: document.getElementById('codejs').addEventListener("input", function() {
+  315: d3.select('#result').html("");
+  316: myHtmlParser('code', 'result');
+  317: myJSParser('codejs', 'result');
+  318: })
+  319: 
+  320: // If the user change the HTML fragment, I run it again:
+  321: document.getElementById('code').addEventListener("input", function() {
+  322: d3.select('#result').html("");
+  323: myHtmlParser('code', 'result');
+  324: myJSParser('codejs', 'result');
+  325: })
+  326: </script>
+  327  
+
+graph/violin_jitter.html:
+  301  
+  302: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  303: <script>
+  304: // At the beginning, I read the html and JS fragments
+  305: myHtmlParser('code', 'result')
+  306: myJSParser('codejs', 'result')
+  307: 
+  308: // If the user change the JS fragment, I run it again:
+  309: document.getElementById('codejs').addEventListener("input", function() {
+  310: d3.select('#result').html("");
+  311: myHtmlParser('code', 'result');
+  312: myJSParser('codejs', 'result');
+  313: })
+  314: 
+  315: // If the user change the HTML fragment, I run it again:
+  316: document.getElementById('code').addEventListener("input", function() {
+  317: d3.select('#result').html("");
+  318: myHtmlParser('code', 'result');
+  319: myJSParser('codejs', 'result');
+  320: })
+  321: </script>
+  322  
+
+graph/wordcloud_basic.html:
+  250  
+  251: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  252: <script>
+  253: // At the beginning, I read the html and JS fragments
+  254: myHtmlParser('code', 'result')
+  255: myJSParser('codejs', 'result')
+  256: 
+  257: // If the user change the JS fragment, I run it again:
+  258: document.getElementById('codejs').addEventListener("input", function() {
+  259: d3.select('#result').html("");
+  260: myHtmlParser('code', 'result');
+  261: myJSParser('codejs', 'result');
+  262: })
+  263: 
+  264: // If the user change the HTML fragment, I run it again:
+  265: document.getElementById('code').addEventListener("input", function() {
+  266: d3.select('#result').html("");
+  267: myHtmlParser('code', 'result');
+  268: myJSParser('codejs', 'result');
+  269: })
+  270: </script>
+  271  
+
+graph/wordcloud_custom.html:
+  256  
+  257: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  258: <script>
+  259: // At the beginning, I read the html and JS fragments
+  260: myHtmlParser('code', 'result')
+  261: myJSParser('codejs', 'result')
+  262: 
+  263: // If the user change the JS fragment, I run it again:
+  264: document.getElementById('codejs').addEventListener("input", function() {
+  265: d3.select('#result').html("");
+  266: myHtmlParser('code', 'result');
+  267: myJSParser('codejs', 'result');
+  268: })
+  269: 
+  270: // If the user change the HTML fragment, I run it again:
+  271: document.getElementById('code').addEventListener("input", function() {
+  272: d3.select('#result').html("");
+  273: myHtmlParser('code', 'result');
+  274: myJSParser('codejs', 'result');
+  275: })
+  276: </script>
+  277  
+
+graph/wordcloud_size.html:
+  251  
+  252: <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+  253: <script>
+  254: // At the beginning, I read the html and JS fragments
+  255: myHtmlParser('code', 'result')
+  256: myJSParser('codejs', 'result')
+  257: 
+  258: // If the user change the JS fragment, I run it again:
+  259: document.getElementById('codejs').addEventListener("input", function() {
+  260: d3.select('#result').html("");
+  261: myHtmlParser('code', 'result');
+  262: myJSParser('codejs', 'result');
+  263: })
+  264: 
+  265: // If the user change the HTML fragment, I run it again:
+  266: document.getElementById('code').addEventListener("input", function() {
+  267: d3.select('#result').html("");
+  268: myHtmlParser('code', 'result');
+  269: myJSParser('codejs', 'result');
+  270: })
+  271: </script>
+  272  
+

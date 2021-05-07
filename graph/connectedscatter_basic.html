@@ -171,7 +171,7 @@ $(function(){
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -189,7 +189,7 @@ $(function(){
 
 
 <!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+<pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
@@ -394,18 +394,9 @@ $(function(){
 </script>
 
 
-<!-- Function to download the content of the div -->
+
 <script>
-function download(){
-    var a = document.body.appendChild(
-        document.createElement("a")
-    );
-    a.download = "export.html";
-    var command = document.getElementById('code').innerHTML;
-    command = command.replace(/<\/?span[^>]*>/g,"");
-    a.href = "data:html" + command
-    a.click(); // Trigger a click on the element
-}
+showCodeVersion('v4')
 </script>
 
 

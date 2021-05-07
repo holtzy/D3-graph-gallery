@@ -65,21 +65,23 @@ function showCodeVersion(version) {
     allV4 = document.querySelectorAll(".d3v4-chunk")
     allV4.forEach( el => el.classList.remove('d-none'))
     // Swap the selected button
-    document.getElementById('button-show-v4').classList.add("active")
-    document.getElementById('button-show-v6').classList.remove("active")
-    // Load d3V4
-    $.getScript("https://d3js.org/d3.v4.js", function(){
-      // Run the according code to update the graph
-      myHtmlParser('code-html-v4', 'result')
-      myJSParser('code-js-v4')
-    });
+    document.getElementById('button-show-v4')?.classList.add("active")
+    document.getElementById('button-show-v6')?.classList.remove("active")
+    // Load d3V4 and the scale chromatic module necessary for many charts
+    $.getScript("https://d3js.org/d3.v4.min.js", function(){
+      $.getScript("https://d3js.org/d3-scale-chromatic.v1.min.js", function(){
+        // Run the according code to update the graph
+        myHtmlParser('code-html-v4', 'result')
+        myJSParser('code-js-v4')
+      })
+    })
     // Add event listener to the editable code of v4
     document.getElementById('code-js-v4').addEventListener("input", function() {
       myHtmlParser('code-html-v4', 'result')
       myJSParser('code-js-v4')
     })
     // Remove event listener to the editable code of v6
-    document.getElementById('code-js-v6').removeEventListener("input", function() {
+    document.getElementById('code-js-v6')?.removeEventListener("input", function() {
       myHtmlParser('code-html-v6', 'result')
       myJSParser('code-js-v6')
     })
@@ -93,10 +95,10 @@ function showCodeVersion(version) {
     allV6 = document.querySelectorAll(".d3v6-chunk")
     allV6.forEach( el => el.classList.remove('d-none'))
     // Swap the selected button
-    document.getElementById('button-show-v6').classList.add("active")
-    document.getElementById('button-show-v4').classList.remove("active")
+    document.getElementById('button-show-v6')?.classList.add("active")
+    document.getElementById('button-show-v4')?.classList.remove("active")
     // Load d3V6
-    $.getScript("https://d3js.org/d3.v6.js", function(){
+    $.getScript("https://d3js.org/d3.v6.min.js", function(){
       // Run the according code to update the graph
       myHtmlParser('code-html-v6', 'result')
       myJSParser('code-js-v6')
@@ -107,7 +109,7 @@ function showCodeVersion(version) {
       myJSParser('code-js-v6')
     })
     // Remove event listener to the editable code of v6
-    document.getElementById('code-js-v4').removeEventListener("input", function() {
+    document.getElementById('code-js-v4')?.removeEventListener("input", function() {
       myHtmlParser('code-html-v4', 'result')
       myJSParser('code-js-v4')
     })

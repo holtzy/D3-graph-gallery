@@ -493,22 +493,9 @@ $(function(){
 </script>
 
 
-<!-- Function to download the content of the div -->
+
 <script>
-function download(){
-    var a = document.body.appendChild(
-        document.createElement("a")
-    );
-    a.download = "export.html";
-    var command = document.getElementById('code').innerHTML;
-    command = command.replace(/<\/?span[^>]*>/g,"");
-    a.href = "data:html" + command
-    a.click(); // Trigger a click on the element
-}
-
-// Render the page with d3.js v4
 showCodeVersion('v4')
-
 </script>
 
 
