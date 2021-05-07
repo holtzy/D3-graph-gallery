@@ -194,6 +194,7 @@ $(function(){
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
+
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
   .append("svg")
@@ -202,6 +203,7 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
 //Read the data
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/connectedscatter.csv",
   // When reading the csv, I must format variables:
@@ -251,27 +253,6 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
 
 
 
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('code', 'result')
-myJSParser('codejs', 'result')
-// If the user change the JS fragment, I run it again:
-document.getElementById('codejs').addEventListener("input", function() {
-d3.select('#result').html("");
-myHtmlParser('code', 'result');
-myJSParser('codejs', 'result');
-})
-// If the user change the HTML fragment, I run it again:
-document.getElementById('code').addEventListener("input", function() {
-d3.select('#result').html("");
-myHtmlParser('code', 'result');
-myJSParser('codejs', 'result');
-})
-</script>
 
 </div>
 
@@ -396,7 +377,7 @@ $(function(){
 
 
 <script>
-showCodeVersion('v4')
+  showCodeVersion('v4')
 </script>
 
 

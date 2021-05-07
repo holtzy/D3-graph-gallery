@@ -290,27 +290,6 @@ svg
 
 
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('code', 'result')
-myJSParser('codejs', 'result')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('codejs').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('code').addEventListener("input", function() {
-  d3.select('#result').html("");
-  myHtmlParser('code', 'result');
-  myJSParser('codejs', 'result');
-})
-</script>
-
 
 
 
@@ -478,34 +457,9 @@ document.getElementById('code').addEventListener("input", function() {
     </script>
 
 
-
     <script>
-    function download(){
-        var a = document.body.appendChild(
-            document.createElement("a")
-        );
-        a.download = "export.html";
-        var command = document.getElementById('code').innerHTML;
-        command = command.replace(/<\/?span[^>]*>/g,"");
-        a.href = "data:html" + command
-        a.click(); // Trigger a click on the element
-    }
+      showCodeVersion('v4')
     </script>
-
-
-    <!-- Function to download the graphic as png automatically -->
-<!--     <script>
-        html2canvas($('#content'),
-        {
-          onrendered: function (canvas) {
-            var a = document.createElement('a');
-            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            a.download = 'somefilename.jpg';
-            a.click();
-          }
-        });
-    </script> -->
 
 
 
