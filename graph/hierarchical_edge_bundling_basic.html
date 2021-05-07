@@ -184,7 +184,7 @@
 
                     <!-- ========= show html code ============== -->
                     <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-                    <pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+                    <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -202,7 +202,7 @@
 
 
                     <!-- ========= show JS code ==============  -->
-                    <pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+                    <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 // Some constants controlling the graph appearance
 const PADDING_BUBBLE = 15 // distance between edge end and bubble
 const PADDING_LABEL = 30 // distance between edge end and engineer name
@@ -336,27 +336,6 @@ function packageImports(nodes) {
 
 
 
-                    <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-                    <script>
-                        // At the beginning, I read the html and JS fragments
-                        myHtmlParser('code', 'result')
-                        myJSParser('codejs', 'result')
-
-                        // If the user change the JS fragment, I run it again:
-                        document.getElementById('codejs').addEventListener("input", function () {
-                            d3.select('#result').html("");
-                            myHtmlParser('code', 'result');
-                            myJSParser('codejs', 'result');
-                        })
-
-                        // If the user change the HTML fragment, I run it again:
-                        document.getElementById('code').addEventListener("input", function () {
-                            d3.select('#result').html("");
-                            myHtmlParser('code', 'result');
-                            myJSParser('codejs', 'result');
-                        })
-                    </script>
-
                 </div>
 
 
@@ -422,6 +401,11 @@ function packageImports(nodes) {
         });
     </script>
 
+    <script>
+        showCodeVersion('v4')
+    </script>
+
+
 
 
 
@@ -479,7 +463,7 @@ function packageImports(nodes) {
     </script>
 
 
-    <!-- Function to download the content of the div -->
+
     <script>
         function download() {
             var a = document.body.appendChild(

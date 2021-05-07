@@ -120,7 +120,7 @@ $(function(){
       <p style="max-width: 700px; margin: auto">This post describes how add labels to a <a href="../circular_barplot.html">circular barplot</a> with d3.js. You can see many other examples in the <a href="../circular_barplot.html">circular barplot section</a> of the gallery. Learn more about this type of chart in <a href="https://www.data-to-viz.com/graph/circularbarplot.html">data-to-viz.com</a>.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../circular_barplot.html">Circular barplot section</a>
-      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
   </div>
 </header>
 
@@ -173,7 +173,7 @@ $(function(){
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -194,7 +194,7 @@ $(function(){
 
 
 <!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+<pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 100, right: 0, bottom: 0, left: 0},
@@ -262,26 +262,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
 
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('code', 'result')
-myJSParser('codejs', 'result')
 
-// If the user change the JS fragment, I run it again:
-document.getElementById('codejs').addEventListener("input", function() {
-d3.select('#result').html("");
-myHtmlParser('code', 'result');
-myJSParser('codejs', 'result');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('code').addEventListener("input", function() {
-d3.select('#result').html("");
-myHtmlParser('code', 'result');
-myJSParser('codejs', 'result');
-})
-</script>
 
 </div>
 
@@ -403,18 +384,9 @@ $(function(){
 </script>
 
 
-<!-- Function to download the content of the div -->
+
 <script>
-function download(){
-    var a = document.body.appendChild(
-        document.createElement("a")
-    );
-    a.download = "export.html";
-    var command = document.getElementById('code').innerHTML;
-    command = command.replace(/<\/?span[^>]*>/g,"");
-    a.href = "data:html" + command
-    a.click(); // Trigger a click on the element
-}
+showCodeVersion('v4')
 </script>
 
 

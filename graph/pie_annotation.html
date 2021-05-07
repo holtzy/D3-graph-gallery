@@ -118,7 +118,7 @@ $(function(){
       <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="../pie.html">pie chart</a> with d3.js and annotate each group with their name. You can see many other examples in the <a href="../pie.html">pie chart section</a> of the gallery. <u>Watch out</u>: pie chart is most of the time a very bad way to convey information as explained in <a href="https://www.data-to-viz.com/caveat/pie.html">this post</a>.</p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../pie.html">Pie chart section</a>
-      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download code</button>
+      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
   </div>
 </header>
 
@@ -171,7 +171,7 @@ $(function(){
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="code" contenteditable="true"><xmp><!DOCTYPE html>
+<pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -192,7 +192,7 @@ $(function(){
 
 
 <!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="codejs" contenteditable="true"><xmp><script>
+<pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var width = 450
@@ -262,26 +262,7 @@ svg
 
 
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('code', 'result')
-myJSParser('codejs', 'result')
 
-// If the user change the JS fragment, I run it again:
-document.getElementById('codejs').addEventListener("input", function() {
-d3.select('#result').html("");
-myHtmlParser('code', 'result');
-myJSParser('codejs', 'result');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('code').addEventListener("input", function() {
-d3.select('#result').html("");
-myHtmlParser('code', 'result');
-myJSParser('codejs', 'result');
-})
-</script>
 
 </div>
 
@@ -405,18 +386,9 @@ $(function(){
 </script>
 
 
-<!-- Function to download the content of the div -->
+
 <script>
-function download(){
-    var a = document.body.appendChild(
-        document.createElement("a")
-    );
-    a.download = "export.html";
-    var command = document.getElementById('code').innerHTML;
-    command = command.replace(/<\/?span[^>]*>/g,"");
-    a.href = "data:html" + command
-    a.click(); // Trigger a click on the element
-}
+showCodeVersion('v4')
 </script>
 
 
