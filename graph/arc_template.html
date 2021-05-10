@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Arc diagram template for d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="A clean arc diagram example in d3.js: includes custom node color, highlight on hover, node labeling and more.">
+  <meta name="description" content="A clean arc diagram example in d3.js: includes custom node color, highlight on hover, node labeling and more (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, boxplot">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Highlight links in arc diagram on hover">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="A clean arc diagram example in d3.js: includes custom node color, highlight on hover, node labeling and more.">
+  <meta property="og:description" content="A clean arc diagram example in d3.js: includes custom node color, highlight on hover, node labeling and more (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -111,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This example describes the relationships between all the co-authors of a researcher. Basically, 2 researchers are linked if they've published a paper together.</p>
+      <p style="max-width: 700px; margin: auto">This example describes the relationships between all the co-authors of a researcher. Basically, 2 researchers are linked if they've published a paper together. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../arc.html">Arc diagram section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -163,6 +163,12 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-5 text-center .align-middle">
 
+  <div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+  </div>
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -178,6 +184,16 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+  <meta charset="utf-8">
+  
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v6.js"></script>
+  
+  <!-- Create a div where the graph will take place -->
+  <div id="my_dataviz"></div>
+  </xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -185,7 +201,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -312,12 +328,128 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+ // set the dimensions and margins of the graph
+ const margin = {top: 0, right: 30, bottom: 50, left: 60},
+      width = 650 - margin.left - margin.right,
+      height = 400 - margin.top - margin.bottom;
+    
+  // append the svg object to the body of the page
+  const svg = d3.select("#my_dataviz")
+      .append("svg")
+    .attr("viewBox",[0,0,width+90,height+80])
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",`translate(${margin.left},${margin.top})`);
+    
+  // Read dummy data
+  d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_researcherNetwork.json").then( function(data) {
+    
+  // List of node names
+  const allNodes = data.nodes.map(d=> d.name)
+    
+  // List of groups
+  let allGroups = data.nodes.map(d=> d.grp)
+      allGroups = [...new Set(allGroups)]
 
+  // A color scale for groups:
+  const color = d3.scaleOrdinal()
+        .domain(allGroups)
+        .range(d3.schemeSet3);
+    
+  // A linear scale for node size
+  const size = d3.scaleLinear()
+        .domain([1,10])
+        .range([0.5,8]);
+    
+  // A linear scale to position the nodes on the X axis
+  const x = d3.scalePoint()
+        .range([0, width])
+        .domain(allNodes)
+    
+  // In my input data, links are provided between nodes -id-, NOT between node names.
+  // So I have to do a link between this id and the name
+  const idToNode = {};
+      data.nodes.forEach(function (n) {
+        idToNode[n.id] = n;
+      });
+    
+  // Add the links
+  const links = svg
+        .selectAll('mylinks')
+        .data(data.links)
+        .join('path')
+        .attr('d', d=> {
+          start = x(idToNode[d.source].name)    // X position of start node on the X axis
+          end = x(idToNode[d.target].name)      // X position of end node
+          return ['M', start, height-30,    // the arc starts at the coordinate x=start, y=height-30 (where the starting node is)
+            'A',                            // This means we're gonna build an elliptical arc
+            (start - end)/2, ',',    // Next 2 lines are the coordinates of the inflexion point. Height of this point is proportional with start - end distance
+            (start - end)/2, 0, 0, ',',
+            start < end ? 1 : 0, end, ',', height-30] // We always want the arc on top. So if end is before start, putting 0 here turn the arc upside down.
+            .join(' ');
+        })
+        .style("fill", "none")
+        .attr("stroke", "grey")
+        .style("stroke-width", 1)
+    
+  // Add the circle for the nodes
+  const nodes = svg
+        .selectAll("mynodes")
+        .data(data.nodes.sort((a,b) =>{+b.n - +a.n }))
+        .join("circle")
+          .attr("cx", d=>x(d.name))
+          .attr("cy", height-30)
+          .attr("r", d=>size(d.n))
+          .style("fill", d=> color(d.grp))
+          .attr("stroke", "white")
+    
+  // And give them a label
+  const labels = svg
+        .selectAll("mylabels")
+        .data(data.nodes)
+        .join("text")
+          .attr("x", 0)
+          .attr("y", 0)
+          .text(d=>d.name)
+          .style("text-anchor", "end")
+          .attr("transform",d=>`translate(${x(d.name)},${height-15}) rotate(-45)`)
+          .style("font-size", 6)
+    
+  // Add the highlighting functionality
+  nodes
+      .on('mouseover', function(event,d){
+  // Highlight the nodes: every node is green except of him
+  nodes
+      .style('opacity', .2)
+  d3.select(this)
+      .style('opacity', 1)
+  // Highlight the connections
+  links
+      .style('stroke', a=> a.source === d.id || a.target === d.id ? color(d.grp) : '#b8b8b8')
+      .style('stroke-opacity', a=> a.source === d.id || a.target === d.id ? 1 : .2)
+      .style('stroke-width', a=> a.source === d.id || a.target === d.id ? 4 : 1)
+  labels
+      .style("font-size", b=>b.name === d.name ? 18.9 : 2)
+      .attr("y", b=> b.name === d.name ? 10 : 0)
+      })
+      .on('mouseout', d=> {
+          nodes.style('opacity', 1)
+          links
+            .style('stroke', 'grey')
+            .style('stroke-opacity', .8)
+            .style('stroke-width', '1')
+          labels
+            .style("font-size", 6 )
+    
+        })
+    })
 
-
-
-
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 </div>
