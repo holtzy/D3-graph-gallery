@@ -23,14 +23,14 @@
   <meta charset="utf-8">
   <title>Basic background map in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic background map">
+  <meta name="description" content="Using d3.js to create a very basic background map. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, map">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Basic background map in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic background map">
+  <meta property="og:description" content="Using d3.js to create a very basic background map. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -44,11 +44,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -115,7 +110,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/backgroundmap">background map</a> of the world with d3.js. Note that the same kind of code would work with any geospatial data stored in <code>geojson</code> format. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/backgroundmap">background map section</a> of the gallery.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a href="https://www.d3-graph-gallery.com/backgroundmap">background map</a> of the world with d3.js. Note that the same kind of code would work with any geospatial data stored in <code>geojson</code> format. You can see many other examples in the <a href="https://wwww.d3-graph-gallery.com/backgroundmap">background map section</a> of the gallery. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../backgroundmap.html">Background map section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -175,6 +170,12 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
 
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -189,6 +190,17 @@ $(function(){
 <svg id="my_dataviz" width="400" height="300"></svg>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+        
+<!-- Create an element where the map will take place -->
+<svg id="my_dataviz" width="400" height="300"></svg>
+    
+</xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -196,7 +208,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4  ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // The svg
@@ -205,7 +217,7 @@ var svg = d3.select("svg"),
     height = +svg.attr("height");
 
 // Map and projection
-var projection = d3.geoNaturalEarth()
+var projection = d3.geoNaturalEarth1()
     .scale(width / 1.3 / Math.PI)
     .translate([width / 2, height / 2])
 
@@ -227,7 +239,35 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
-
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
+// The svg
+const svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+    
+// Map and projection
+const projection = d3.geoNaturalEarth1()
+    .scale(width / 1.3 / Math.PI)
+    .translate([width / 2, height / 2])
+    
+// Load external data and boot
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then( function(data) {
+    
+    // Draw the map
+    svg.append("g")
+        .selectAll("path")
+        .data(data.features)
+        .join("path")
+            .attr("fill", "#69b3a2")
+            .attr("d", d3.geoPath()
+            .projection(projection)
+            )
+            .style("stroke", "#fff")
+        
+})
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
