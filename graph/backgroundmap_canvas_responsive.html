@@ -23,14 +23,14 @@
   <meta charset="utf-8">
   <title>Responsive map with d3.js and canvas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a responsive map on canvas">
+  <meta name="description" content="Using d3.js to create a responsive map on canvas. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, map">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Responsive map with d3.js and canvas">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a responsive map on canvas">
+  <meta property="og:description" content="Using d3.js to create a responsive map on canvas. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -44,10 +44,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -114,7 +110,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post extends the <a href="backgroundmap_canvas_basic.html">previous basic map</a> done with canvas. It shows how to make it responsive. Basically, resizing the window will change the map size accurately. Try it now to see how the map below behave.</p>
+      <p style="max-width: 700px; margin: auto">This post extends the <a href="backgroundmap_canvas_basic.html">previous basic map</a> done with canvas. It shows how to make it responsive. Basically, resizing the window will change the map size accurately. Try it now to see how the map below behave. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../backgroundmap.html">Background map section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -174,6 +170,12 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
 
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -194,6 +196,24 @@ $(function(){
 </style>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+  
+<!-- Create an element where the map will take place -->
+<canvas id="my_dataviz"></canvas>
+  
+<style>
+#my_dataviz{
+    border: solid 1px blue;
+    width: 100%;
+}
+</style>
+
+</xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -201,7 +221,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // select the canvas and the container element
@@ -262,6 +282,65 @@ window.addEventListener('resize', drawChart );
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
+
+// select the canvas and the container element
+const canvas = document.getElementById('my_dataviz');
+
+// Get the 'context'
+const ctx = canvas.getContext('2d');
+
+// A function that finishes to draw the chart for a specific device size.
+function drawChart() {
+
+  // get the current width of the div where the chart appear
+  const width = parseInt( d3.select('#my_dataviz').style('width'), 10 )
+
+  // Set the canvas height = height of the width
+  const height = width/2
+  ctx.height= height
+
+console.log(width, height)
+  // Set a projection for the map. Projection = transform a lat/long on a position on the 2d map.
+  const projection = d3.geoMercator()
+      .scale(35)
+      .translate([150,100])
+
+  // geographic path generator for given projection and canvas context
+  const pathGenerator = d3.geoPath(projection, ctx);
+
+  // Load external data and boot
+  d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then( function(data){
+
+    // remove the current map if there is one
+    ctx.clearRect(0, 0, width, height)
+
+    // initialize the path
+    ctx.beginPath();
+
+    // Got the positions of the path
+    pathGenerator(data);
+
+    // Fill the paths
+    ctx.fillStyle = "#999";
+    ctx.fill();
+
+    // Add stroke
+    // ctx.strokeStyle = "#69b3a2";
+    // ctx.stroke()
+
+  })
+
+}
+
+// Initialize the chart
+drawChart()
+
+// Add an event listener that run the function when dimension change
+window.addEventListener('resize', drawChart );
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
