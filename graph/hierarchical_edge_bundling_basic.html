@@ -117,8 +117,8 @@
             <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a
                     href="../bundle.html">hierarchical edge bundling</a> with d3.js. You can see many other examples in
                 the <a href="../bundle.html">hierarchical edge bundling section</a> of the gallery. Learn more about the
-                theory of this chart in TODO <a
-                    href="https://www.data-to-viz.com/graph/bubble.html">data-to-viz.com</a>.</p>
+                theory of this chart in <a
+                    href="https://www.data-to-viz.com/graph/edge_bundling.html">data-to-viz.com</a>.</p>
             <br>
             <a class="btn btn-secondary btn-md text-uppercase" href="../bundle.html">Hierarchical edge bundling
                 section</a>
@@ -155,20 +155,14 @@
                             <h5>Steps:</h5>
                             <ul>
                                 <br>
-                                <li>The Html part of the code just creates a <code>div</code> that will be modified by
-                                    d3 later on.</li>
+                                <li>The <a href='https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_hierarchical_edge_bundling.json'>dataset</a> is an
+                                    array. Each item represents a node of the underlying hierarchy. This node has a name, a numeric value used for the bubble, and a list of connections.</li>
                                 <br>
-                                <li>The first part of the javascript code set a <code>svg</code> area. It specify the
-                                    chart size and its margin. <a href="">Read more</a>.</li>
+                                <li>The <code>cluster()</code> function is used to compute the position of each node as a circular <a href='../dendrogram.html'>dendrogram</a>. Have a look to the related <a href="../dendrogram.html">dendrogram section</a> of the
+                                gallery to understand that step.</li>
                                 <br>
-                                <li>Here the <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder
-                                        dataset</a> is used, showing the relationship between life expectancy, gdp per
-                                    capita and population size for more than 100 countries. (<code>.csv</code> format).
+                                <li>Once the nodes are positioned, links are done thanks to the <code>radialLine</code> and <code>curveBundle</code> functions.
                                 </li>
-                                <br>
-                                <li>The building process is basically the same as for a <a
-                                        href="scatter_basic.html">scatterplot</a>. Just add a <code>linear scale</code>
-                                    for the circle size.</li>
                             </ul>
                         </div>
                     </div>
@@ -254,14 +248,14 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
     leaves = root.leaves()
 
     // Leaves is an array of Objects. 1 item = one leaf. Provides x and y for leaf position in the svg. Also gives details about its parent.
-    // console.log(leaves)
-
     link = link
         .data(packageImports(leaves))
         .enter().append("path")
         .each(function (d) { d.source = d[0], d.target = d[d.length - 1]; })
         .attr("class", "link")
-        .attr("d", line);
+        .attr("d", line)
+        .attr("fill", "none")
+        .attr("stroke", "black")
 
     label = label
         .data(leaves)
@@ -364,13 +358,7 @@ function packageImports(nodes) {
                 </div>
                 <div class="col-lg-5">
                     <ul>
-                        <li><i>Bubble chart section - </i><a href="../bubble.html">link</a></li>
-                        <br>
-                        <li><i>Bubble chart - </i>by <a
-                                href="https://bl.ocks.org/tlfrd/aa1bb8f6f3dae3148345fbb54305bdf7">Cale Tilford</a></li>
-                        <br>
-                        <li><i>Most basic scatterplot - </i>by <a href="scatter_basic.html">the d3 graph gallery</a>
-                        </li>
+                        <li><i>Hierarchical Edge Bundling section - </i><a href="../bundle.html">link</a></li>
                     </ul>
                 </div>
             </div>
