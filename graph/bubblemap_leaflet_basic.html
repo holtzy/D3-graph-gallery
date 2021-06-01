@@ -23,14 +23,14 @@
   <meta charset="utf-8">
   <title>Basic bubblemap with leaflet.js and d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="This post explains how to build a bubblemap with d3.js on top of a leaflet.js background.">
+  <meta name="description" content="This post explains how to build a bubblemap with d3.js on top of a leaflet.js background. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, map">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Basic bubblemap with leaflet.js and d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="This post explains how to build a bubblemap with d3.js on top of a leaflet.js background.">
+  <meta property="og:description" content="This post explains how to build a bubblemap with d3.js on top of a leaflet.js background. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -44,11 +44,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -119,7 +114,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a basic <a href="../bubblemap.html">bubble map</a> with d3.js on top of a <a href="../backgroundmap.html">leaflet background</a>. See more bubblemap examples <a href="../bubblemap.html">here</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a basic <a href="../bubblemap.html">bubble map</a> with d3.js on top of a <a href="../backgroundmap.html">leaflet background</a>. See more bubblemap examples <a href="../bubblemap.html">here</a>. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../bubblemap.html">Bubble map section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -176,6 +171,13 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
 
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -197,6 +199,26 @@ $(function(){
 </style>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+          
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<!-- Load Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+
+<!-- Create an element where the map will take place -->
+<div id="mapid"></div>
+
+<style>
+#mapid { height: 400px; }
+</style>
+      
+</xmp></code></pre>
+  
 <!-- ==================================== -->
 
 
@@ -204,7 +226,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 // mapid is the id of the div where the map will appear
 var map = L
@@ -259,7 +281,60 @@ map.on("moveend", update)
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// mapid is the id of the div where the map will appear
+const map = L
+  .map('mapid')
+  .setView([47, 2], 5);   // center position + zoom
+
+// Add a tile to the map = a background. Comes from OpenStreetmap
+L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+    maxZoom: 6,
+    }).addTo(map);
+
+// Add a svg layer to the map
+L.svg().addTo(map);
+
+// Create data for circles:
+const markers = [
+  {long: 9.083, lat: 42.149}, // corsica
+  {long: 7.26, lat: 43.71}, // nice
+  {long: 2.349, lat: 48.864}, // Paris
+  {long: -1.397, lat: 43.664}, // Hossegor
+  {long: 3.075, lat: 50.640}, // Lille
+  {long: -3.83, lat: 48}, // Morlaix
+];
+
+// Select the svg area and add circles:
+d3.select("#mapid")
+  .select("svg")
+  .selectAll("myCircles")
+  .data(markers)
+  .join("circle")
+    .attr("cx", d => map.latLngToLayerPoint([d.lat, d.long]).x)
+    .attr("cy", d => map.latLngToLayerPoint([d.lat, d.long]).y)
+    .attr("r", 14)
+    .style("fill", "red")
+    .attr("stroke", "red")
+    .attr("stroke-width", 3)
+    .attr("fill-opacity", .4)
+
+// Function that update circle position if something change
+function update() {
+  d3.selectAll("circle")
+    .attr("cx", d => map.latLngToLayerPoint([d.lat, d.long]).x)
+    .attr("cy", d => map.latLngToLayerPoint([d.lat, d.long]).y)
+}
+
+// If the user change the map (zoom or drag), I update circle position:
+map.on("moveend", update)
+  
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 

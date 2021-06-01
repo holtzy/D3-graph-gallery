@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Basic beeswarm plot in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic beeswarm plot.">
+  <meta name="description" content="Using d3.js to create a very basic beeswarm plot. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, beeswarm">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Basic beeswarm plot in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic beeswarm plot.">
+  <meta property="og:description" content="Using d3.js to create a very basic beeswarm plot. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -114,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic beeswarm plot with d3.js. The advantage of beeswarm compared to <a href="../histogram.html">histogram</a> or <a href="../density.html">density plot</a> is that it allows to see every single elements of the dataset, and potentially to add a tooltip to them.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a very basic beeswarm plot with d3.js. The advantage of beeswarm compared to <a href="../histogram.html">histogram</a> or <a href="../density.html">density plot</a> is that it allows to see every single elements of the dataset, and potentially to add a tooltip to them. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../histogram.html">Histogram section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -168,6 +165,12 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
 
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -180,6 +183,17 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+          
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+          
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+      
+</xmp></code></pre>  
 <!-- ==================================== -->
 
 
@@ -187,7 +201,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -246,6 +260,62 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
         .attr("cy", function(d) { return d.data.y; });
 
 })
+</script></xmp></code></pre>
+<!-- ==================================== -->
+
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
+
+// set the dimensions and margins of the graph
+const margin = {top: 10, right: 10, bottom: 70, left: 70},
+  width = 440 - margin.left - margin.right,
+  height = 300 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+.append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+
+// Add a X axis
+const x = d3.scaleLinear()
+  .domain([0, 13000])
+  .range([0, width]);
+svg
+  .append("g")
+  .attr("transform", `translate(0, ${height})`)
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-2,10)rotate(-45)")
+    .style("text-anchor", "end")
+
+// Read the csv, it has a column called Value and another called Country
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv").then( function(data) {
+
+  // Use d3-force algorithm to find a position for each entity
+  const simulation = d3.forceSimulation(data)
+      .force("x", d3.forceX(d => x(d.Value)).strength(5))
+      .force("y", d3.forceY(height / 2))
+      .force("collide", d3.forceCollide(6))
+      .stop();
+  for (let i = 0; i < 300; ++i) simulation.tick();
+
+  // prepare data
+  const cell = svg.append("g")
+    .selectAll("g")
+    .data(data)
+    .join("g");
+
+  // Finally append the circles
+  cell.append("circle")
+        .attr("r", 5)
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y);
+
+})
+
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
