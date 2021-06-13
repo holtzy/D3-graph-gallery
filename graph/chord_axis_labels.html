@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Adding labels to chord diagram in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Reproducible code to add labels to d3.js chord diagram">
+  <meta name="description" content="Reproducible code to add labels to d3.js chord diagram. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, chord, diagram">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Adding labels to chord diagram in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Reproducible code to add labels to d3.js chord diagram">
+  <meta property="og:description" content="Reproducible code to add labels to d3.js chord diagram. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -114,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post directly follows the previous <a href="chord_basic.html">basic chord diagram</a>. It describes how to add axis and labels around the outer circle. See the <a href="../chord.html">chord section</a> for more examples.</p>
+      <p style="max-width: 700px; margin: auto">This post directly follows the previous <a href="chord_basic.html">basic chord diagram</a>. It describes how to add axis and labels around the outer circle. See the <a href="../chord.html">chord section</a> for more examples. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../chord.html">chord diagram section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -168,6 +165,12 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
 
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -180,6 +183,18 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+          
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+          
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+      
+</xmp></code></pre>
+  
 <!-- ==================================== -->
 
 
@@ -187,7 +202,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 
@@ -284,7 +299,99 @@ function groupTicks(d, step) {
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// create the svg area
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", 440)
+    .attr("height", 440)
+  .append("g")
+    .attr("transform", "translate(220,220)")
+
+// create a matrix
+const matrix = [
+  [11,  58, 89, 28],
+  [ 51, 18, 20, 61],
+  [ 80, 145, 80, 85],
+  [ 103,   99,  40, 71]
+];
+
+// give this matrix to d3.chord(): it will calculates all the info we need to draw arc and ribbon
+const res = d3.chord()
+    .padAngle(0.05)
+    .sortSubgroups(d3.descending)
+    (matrix)
+
+// Add the links between groups
+svg
+  .datum(res)
+  .append("g")
+  .selectAll("path")
+  .data(d => d)
+  .join("path")
+    .attr("d", d3.ribbon()
+      .radius(190)
+    )
+    .style("fill", "#69b3a2")
+    .style("stroke", "black");
+
+// this group object use each group of the data.groups object
+const group = svg
+  .datum(res)
+  .append("g")
+  .selectAll("g")
+  .data(d => d.groups)
+  .enter()
+
+// add the group arcs on the outer part of the circle
+group.append("g")
+    .append("path")
+    .style("fill", "grey")
+    .style("stroke", "black")
+    .attr("d", d3.arc()
+      .innerRadius(190)
+      .outerRadius(200)
+    )
+
+// Add the ticks
+group
+  .selectAll(".group-tick")
+  .data(d => groupTicks(d, 25))    // Controls the number of ticks: one tick each 25 here.
+  .join("g")
+  .attr("transform", d => `rotate(${d.angle * 180 / Math.PI - 90}) translate(200,0)`)
+  .append("line")               // By default, x1 = y1 = y2 = 0, so no need to specify it.
+    .attr("x2", 6)
+    .attr("stroke", "black")
+
+// Add the labels of a few ticks:
+group
+  .selectAll(".group-tick-label")
+  .data(d => groupTicks(d, 25))
+  .enter()
+  .filter(d => d.value % 25 === 0)
+  .append("g")
+    .attr("transform", d => `rotate(${d.angle * 180 / Math.PI - 90}) translate(200,0)`)
+  .append("text")
+    .attr("x", 8)
+    .attr("dy", ".35em")
+    .attr("transform", function(d) { return d.angle > Math.PI ? "rotate(180) translate(-16)" : null; })
+    .style("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+    .text(d => d.value)
+    .style("font-size", 9)
+
+
+// Returns an array of tick angles and values for a given group and step.
+function groupTicks(d, step) {
+  const k = (d.endAngle - d.startAngle) / d.value;
+  return d3.range(0, d.value, step).map(function(value) {
+    return {value: value, angle: value * k + d.startAngle};
+  });
+}
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 

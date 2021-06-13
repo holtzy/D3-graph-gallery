@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Bubble chart template in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="A clean bubble chart template for d3.js. Includes interactive legend, color scale, tooltips and more. Reproducible code provided.">
+  <meta name="description" content="A clean bubble chart template for d3.js. Includes interactive legend, color scale, tooltips and more. Reproducible code provided. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, bubble plot">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Bubble chart template in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="A clean bubble chart template for d3.js. Includes interactive legend, color scale, tooltips and more. Reproducible code provided.">
+  <meta property="og:description" content="A clean bubble chart template for d3.js. Includes interactive legend, color scale, tooltips and more. Reproducible code provided. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,10 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -115,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post explains how to add tooltip to your <a href="../bubble.html">bubble chart</a>. This add a lot of insight to the plot: to go beyond the trend, reader are usually curious to know who's hidden behind each data point. Visit the <a href="../bubble.html">bubble plot</a> section for more examples.</p>
+      <p style="max-width: 700px; margin: auto">This post explains how to add tooltip to your <a href="../bubble.html">bubble chart</a>. This add a lot of insight to the plot: to go beyond the trend, reader are usually curious to know who's hidden behind each data point. Visit the <a href="../bubble.html">bubble plot</a> section for more examples. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../bubble.html">Bubbleplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -172,6 +168,12 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-6 text-center .align-middle">
 
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -199,6 +201,29 @@ $(function(){
 </style>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+          
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+          
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<!-- A bit of CSS: change stroke color of circle on hover (white -> black) -->
+<style>
+  .bubbles {
+    stroke-width: 1px;
+    stroke: black;
+    opacity: .8
+  }
+  .bubbles:hover {
+    stroke: black;
+  }
+</style>
+      
+</xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -206,7 +231,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -431,7 +456,225 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// set the dimensions and margins of the graph
+const margin = {top: 40, right: 150, bottom: 60, left: 30},
+    width = 500 - margin.left - margin.right,
+    height = 420 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/4_ThreeNum.csv").then( function(data) {
+
+  // ---------------------------//
+  //       AXIS  AND SCALE      //
+  // ---------------------------//
+
+  // Add X axis
+  const x = d3.scaleLinear()
+    .domain([0, 45000])
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("transform", `translate(0, ${height})`)
+    .call(d3.axisBottom(x).ticks(3));
+
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height+50 )
+      .text("Gdp per Capita");
+
+  // Add Y axis
+  const y = d3.scaleLinear()
+    .domain([35, 90])
+    .range([ height, 0]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
+
+  // Add Y axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", 0)
+      .attr("y", -20 )
+      .text("Life expectancy")
+      .attr("text-anchor", "start")
+
+  // Add a scale for bubble size
+  const z = d3.scaleSqrt()
+    .domain([200000, 1310000000])
+    .range([ 2, 30]);
+
+  // Add a scale for bubble color
+  const myColor = d3.scaleOrdinal()
+    .domain(["Asia", "Europe", "Americas", "Africa", "Oceania"])
+    .range(d3.schemeSet1);
+
+
+  // ---------------------------//
+  //      TOOLTIP               //
+  // ---------------------------//
+
+  // -1- Create a tooltip div that is hidden by default:
+  const tooltip = d3.select("#my_dataviz")
+    .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "black")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("color", "white")
+
+  // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+  const showTooltip = function(event,d) {
+    tooltip
+      .transition()
+      .duration(200)
+    tooltip
+      .style("opacity", 1)
+      .html("Country: " + d.country)
+      .style("left", (event.x)/2 + "px")
+      .style("top", (event.y)/2-50 + "px")
+  }
+  const moveTooltip = function(event, d) {
+    tooltip
+      .style("left", (event.x)/2 + "px")
+      .style("top", (event.y)/2-50 + "px")
+  }
+  const hideTooltip = function(event, d) {
+    tooltip
+      .transition()
+      .duration(200)
+      .style("opacity", 0)
+  }
+
+
+  // ---------------------------//
+  //       HIGHLIGHT GROUP      //
+  // ---------------------------//
+
+  // What to do when one group is hovered
+  const highlight = function(event, d){
+    // reduce opacity of all groups
+    d3.selectAll(".bubbles").style("opacity", .05)
+    // expect the one that is hovered
+    d3.selectAll("."+d).style("opacity", 1)
+  }
+
+  // And when it is not hovered anymore
+  const noHighlight = function(event, d){
+    d3.selectAll(".bubbles").style("opacity", 1)
+  }
+
+
+  // ---------------------------//
+  //       CIRCLES              //
+  // ---------------------------//
+
+  // Add dots
+  svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .join("circle")
+      .attr("class", function(d) { return "bubbles " + d.continent })
+      .attr("cx", d => x(d.gdpPercap))
+      .attr("cy", d => y(d.lifeExp))
+      .attr("r", d => z(d.pop))
+      .style("fill", d => myColor(d.continent))
+    // -3- Trigger the functions for hover
+    .on("mouseover", showTooltip )
+    .on("mousemove", moveTooltip )
+    .on("mouseleave", hideTooltip )
+
+
+
+    // ---------------------------//
+    //       LEGEND              //
+    // ---------------------------//
+
+    // Add legend: circles
+    const valuesToShow = [10000000, 100000000, 1000000000]
+    const xCircle = 390
+    const xLabel = 440
+    svg
+      .selectAll("legend")
+      .data(valuesToShow)
+      .join("circle")
+        .attr("cx", xCircle)
+        .attr("cy", d => height - 100 - z(d))
+        .attr("r", d => z(d))
+        .style("fill", "none")
+        .attr("stroke", "black")
+
+    // Add legend: segments
+    svg
+      .selectAll("legend")
+      .data(valuesToShow)
+      .join("line")
+        .attr('x1', d => xCircle + z(d))
+        .attr('x2', xLabel)
+        .attr('y1', d => height - 100 - z(d))
+        .attr('y2', d => height - 100 - z(d))
+        .attr('stroke', 'black')
+        .style('stroke-dasharray', ('2,2'))
+
+    // Add legend: labels
+    svg
+      .selectAll("legend")
+      .data(valuesToShow)
+      .join("text")
+        .attr('x', xLabel)
+        .attr('y', d => height - 100 - z(d))
+        .text( d => d/1000000)
+        .style("font-size", 10)
+        .attr('alignment-baseline', 'middle')
+
+    // Legend title
+    svg.append("text")
+      .attr('x', xCircle)
+      .attr("y", height - 100 +30)
+      .text("Population (M)")
+      .attr("text-anchor", "middle")
+
+    // Add one dot in the legend for each name.
+    const size = 20
+    const allgroups = ["Asia", "Europe", "Americas", "Africa", "Oceania"]
+    svg.selectAll("myrect")
+      .data(allgroups)
+      .join("circle")
+        .attr("cx", 390)
+        .attr("cy", (d,i) => 10 + i*(size+5)) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("r", 7)
+        .style("fill", d =>  myColor(d))
+        .on("mouseover", highlight)
+        .on("mouseleave", noHighlight)
+
+    // Add labels beside legend dots
+    svg.selectAll("mylabels")
+      .data(allgroups)
+      .enter()
+      .append("text")
+        .attr("x", 390 + size*.8)
+        .attr("y", (d,i) =>  i * (size + 5) + (size/2)) // 100 is where the first dot appears. 25 is the distance between dots
+        .style("fill", d => myColor(d))
+        .text(d => d)
+        .attr("text-anchor", "left")
+        .style("alignment-baseline", "middle")
+        .on("mouseover", highlight)
+        .on("mouseleave", noHighlight)
+  })
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
