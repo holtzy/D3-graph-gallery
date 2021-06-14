@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Displaying label on a circular barplot in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a circular barplot with labels written on top of each bar. A post with explanation and reproducible code.">
+  <meta name="description" content="Using d3.js to create a circular barplot with labels written on top of each bar. A post with explanation and reproducible code. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, circular barplot">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Displaying label on a circular barplot in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a circular barplot with labels written on top of each bar. A post with explanation and reproducible code.">
+  <meta property="og:description" content="Using d3.js to create a circular barplot with labels written on top of each bar. A post with explanation and reproducible code. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -117,7 +114,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how add labels to a <a href="../circular_barplot.html">circular barplot</a> with d3.js. You can see many other examples in the <a href="../circular_barplot.html">circular barplot section</a> of the gallery. Learn more about this type of chart in <a href="https://www.data-to-viz.com/graph/circularbarplot.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how add labels to a <a href="../circular_barplot.html">circular barplot</a> with d3.js. You can see many other examples in the <a href="../circular_barplot.html">circular barplot section</a> of the gallery. Learn more about this type of chart in <a href="https://www.data-to-viz.com/graph/circularbarplot.html">data-to-viz.com</a>. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../circular_barplot.html">Circular barplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -171,6 +168,13 @@ $(function(){
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
 
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
+
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
 <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
@@ -186,6 +190,18 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+          
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+          
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+      
+</xmp></code></pre>
+  
 <!-- ==================================== -->
 
 
@@ -193,7 +209,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -256,7 +272,67 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// set the dimensions and margins of the graph
+const margin = {top: 100, right: 0, bottom: 0, left: 0},
+    width = 460 - margin.left - margin.right,
+    height = 460 - margin.top - margin.bottom,
+    innerRadius = 90,
+    outerRadius = Math.min(width, height) / 2;   // the outerRadius goes from the middle of the SVG area to the border
+
+// append the svg object
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", `translate(${width/2+margin.left}, ${height/2+margin.top})`);
+
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv").then( function(data) {
+
+  // Scales
+  const x = d3.scaleBand()
+      .range([0, 2 * Math.PI])    // X axis goes from 0 to 2pi = all around the circle. If I stop at 1Pi, it will be around a half circle
+      .align(0)                  // This does nothing
+      .domain(data.map(d => d.Country)); // The domain of the X axis is the list of states.
+  const y = d3.scaleRadial()
+      .range([innerRadius, outerRadius])   // Domain will be define later.
+      .domain([0, 14000]); // Domain of Y is from 0 to the max seen in the data
+
+  // Add the bars
+  svg.append("g")
+    .selectAll("path")
+    .data(data)
+    .join("path")
+      .attr("fill", "#69b3a2")
+      .attr("d", d3.arc()     // imagine your doing a part of a donut plot
+          .innerRadius(innerRadius)
+          .outerRadius(d => y(d['Value']))
+          .startAngle(d => x(d.Country))
+          .endAngle(d => x(d.Country) + x.bandwidth())
+          .padAngle(0.01)
+          .padRadius(innerRadius))
+
+  // Add the labels
+  svg.append("g")
+      .selectAll("g")
+      .data(data)
+      .join("g")
+        .attr("text-anchor", function(d) { return (x(d.Country) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
+        .attr("transform", function(d) { return "rotate(" + ((x(d.Country) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")"+"translate(" + (y(d['Value'])+10) + ",0)"; })
+      .append("text")
+        .text(function(d){return(d.Country)})
+        .attr("transform", function(d) { return (x(d.Country) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
+        .style("font-size", "11px")
+        .attr("alignment-baseline", "middle")
+
+});
+
+
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
