@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Basic density plot in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic density plot: a post with explanation and reproducible code.">
+  <meta name="description" content="Using d3.js to create a very basic density plot: a post with explanation and reproducible code. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, boxplot">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Basic density plot in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic density plot: a post with explanation and reproducible code.">
+  <meta property="og:description" content="Using d3.js to create a very basic density plot: a post with explanation and reproducible code. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -169,6 +166,11 @@ $(function(){
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -182,6 +184,16 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+        
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+    
+</xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -189,7 +201,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -263,7 +275,77 @@ function kernelEpanechnikov(k) {
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// set the dimensions and margins of the graph
+const margin = {top: 30, right: 30, bottom: 30, left: 50},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+// get the data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv").then( function(data) {
+
+  // add the x Axis
+  const x = d3.scaleLinear()
+            .domain([0, 1000])
+            .range([0, width]);
+  svg.append("g")
+      .attr("transform", `translate(0, ${height})`)
+      .call(d3.axisBottom(x));
+
+  // add the y Axis
+  const y = d3.scaleLinear()
+            .range([height, 0])
+            .domain([0, 0.01]);
+  svg.append("g")
+      .call(d3.axisLeft(y));
+
+  // Compute kernel density estimation
+  const kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40))
+  const density =  kde( data.map(function(d){  return d.price; }) )
+
+  // Plot the area
+  svg.append("path")
+      .attr("class", "mypath")
+      .datum(density)
+      .attr("fill", "#69b3a2")
+      .attr("opacity", ".8")
+      .attr("stroke", "#000")
+      .attr("stroke-width", 1)
+      .attr("stroke-linejoin", "round")
+      .attr("d",  d3.line()
+        .curve(d3.curveBasis)
+          .x(function(d) { return x(d[0]); })
+          .y(function(d) { return y(d[1]); })
+      );
+
+});
+
+
+// Function to compute density
+function kernelDensityEstimator(kernel, X) {
+  return function(V) {
+    return X.map(function(x) {
+      return [x, d3.mean(V, function(v) { return kernel(x - v); })];
+    });
+  };
+}
+function kernelEpanechnikov(k) {
+  return function(v) {
+    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
+  };
+}
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
