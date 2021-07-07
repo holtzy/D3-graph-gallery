@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Ridgeline plot template in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="My template for ridgeline plots in d3.js: post with explanation and reproducible code.">
+  <meta name="description" content="My template for ridgeline plots in d3.js: post with explanation and reproducible code. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, ridgeline">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Ridgeline plot template in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="My template for ridgeline plots in d3.js: post with explanation and reproducible code.">
+  <meta property="og:description" content="My template for ridgeline plots in d3.js: post with explanation and reproducible code. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,10 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -115,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post provides a clean template for <a href="../ridgeline.html">ridgeline plot</a> with d3.js (also called joy plot). Color depends on average value, axes are labeled, and background is customized. See other examples in the <a href="../ridgeline.html">ridgeline section</a> of the gallery. </p>
+      <p style="max-width: 700px; margin: auto">This post provides a clean template for <a href="../ridgeline.html">ridgeline plot</a> with d3.js (also called joy plot). Color depends on average value, axes are labeled, and background is customized. See other examples in the <a href="../ridgeline.html">ridgeline section</a> of the gallery. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../ridgeline.html">Ridgeline section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -166,6 +162,11 @@ $(function(){
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -189,6 +190,23 @@ $(function(){
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 </xmp></code></pre>
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+        
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<!-- Style -->
+<style>
+.xAxis line {
+  stroke: #B8B8B8;
+}
+</style>
+    
+</xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -196,7 +214,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -314,7 +332,122 @@ function kernelEpanechnikov(k) {
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+
+// set the dimensions and margins of the graph
+const margin = {top: 80, right: 30, bottom: 50, left:110},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          `translate(${margin.left}, ${margin.top})`);
+
+//read data
+d3.csv("https://raw.githubusercontent.com/zonination/perceptions/master/probly.csv").then(function(data) {
+
+  // Get the different categories and count them
+  const categories = ["Almost Certainly", "Very Good Chance", "We Believe", "Likely", "About Even", "Little Chance", "Chances Are Slight", "Almost No Chance" ]
+  const n = categories.length
+
+  // Compute the mean of each group
+  allMeans = []
+  for (i in categories){
+    currentGroup = categories[i]
+    mean = d3.mean(data, function(d) { return +d[currentGroup] })
+    allMeans.push(mean)
+  }
+
+  // Create a color scale using these means.
+  const myColor = d3.scaleSequential()
+    .domain([0,100])
+    .interpolator(d3.interpolateViridis);
+
+  // Add X axis
+  const x = d3.scaleLinear()
+    .domain([-10, 120])
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("class", "xAxis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickValues([0,25, 50, 75, 100]).tickSize(-height) )
+    .select(".domain").remove()
+
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height + 40)
+      .text("Probability (%)");
+
+  // Create a Y scale for densities
+  const y = d3.scaleLinear()
+    .domain([0, 0.25])
+    .range([ height, 0]);
+
+  // Create the Y axis for names
+  const yName = d3.scaleBand()
+    .domain(categories)
+    .range([0, height])
+    .paddingInner(1)
+  svg.append("g")
+    .call(d3.axisLeft(yName).tickSize(0))
+    .select(".domain").remove()
+
+  // Compute kernel density estimation for each column:
+  const kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40)) // increase this 40 for more accurate density.
+  const allDensity = []
+  for (i = 0; i < n; i++) {
+      key = categories[i]
+      density = kde( data.map(function(d){  return d[key]; }) )
+      allDensity.push({key: key, density: density})
+  }
+
+  // Add areas
+  svg.selectAll("areas")
+    .data(allDensity)
+    .join("path")
+      .attr("transform", function(d){return(`translate(0, ${(yName(d.key)-height)})` )})
+      .attr("fill", function(d){
+        grp = d.key ;
+        index = categories.indexOf(grp)
+        value = allMeans[index]
+        return myColor( value  )
+      })
+      .datum(function(d){return(d.density)})
+      .attr("opacity", 0.7)
+      .attr("stroke", "#000")
+      .attr("stroke-width", 0.1)
+      .attr("d",  d3.line()
+          .curve(d3.curveBasis)
+          .x(function(d) { return x(d[0]); })
+          .y(function(d) { return y(d[1]); })
+      )
+
+})
+
+// This is what I need to compute kernel density estimation
+function kernelDensityEstimator(kernel, X) {
+  return function(V) {
+    return X.map(function(x) {
+      return [x, d3.mean(V, function(v) { return kernel(x - v); })];
+    });
+  };
+}
+function kernelEpanechnikov(k) {
+  return function(v) {
+    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
+  };
+}
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 

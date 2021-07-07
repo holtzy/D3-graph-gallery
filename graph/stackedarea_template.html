@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Stacked area chart template for d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a clean stacked area chart with nice color palette, clean axis, hover feature and more. Reproducible code provided.">
+  <meta name="description" content="Using d3.js to create a clean stacked area chart with nice color palette, clean axis, hover feature and more. Reproducible code provided. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, streamgraph">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Stacked area chart template for d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a clean stacked area chart with nice color palette, clean axis, hover feature and more. Reproducible code provided.">
+  <meta property="og:description" content="Using d3.js to create a clean stacked area chart with nice color palette, clean axis, hover feature and more. Reproducible code provided. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,10 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -168,6 +164,11 @@ $(function(){
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-6 text-center .align-middle">
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -182,6 +183,17 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+        
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+    
+</xmp></code></pre>
+  
 <!-- ==================================== -->
 
 
@@ -189,7 +201,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -393,7 +405,204 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 <!-- ==================================== -->
 
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// set the dimensions and margins of the graph
+const margin = {top: 60, right: 230, bottom: 50, left: 50},
+    width = 660 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          `translate(${margin.left}, ${margin.top})`);
+
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv").then( function(data) {
+
+
+  //////////
+  // GENERAL //
+  //////////
+
+  // List of groups = header of the csv files
+  const keys = data.columns.slice(1)
+
+  // color palette
+  const color = d3.scaleOrdinal()
+    .domain(keys)
+    .range(d3.schemeSet2);
+
+  //stack the data?
+  const stackedData = d3.stack()
+    .keys(keys)
+    (data)
+
+
+
+  //////////
+  // AXIS //
+  //////////
+
+  // Add X axis
+  const x = d3.scaleLinear()
+    .domain(d3.extent(data, function(d) { return d.year; }))
+    .range([ 0, width ]);
+  const xAxis = svg.append("g")
+    .attr("transform", `translate(0, ${height})`)
+    .call(d3.axisBottom(x).ticks(5))
+
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height+40 )
+      .text("Time (year)");
+
+  // Add Y axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", 0)
+      .attr("y", -20 )
+      .text("# of baby born")
+      .attr("text-anchor", "start")
+
+  // Add Y axis
+  const y = d3.scaleLinear()
+    .domain([0, 200000])
+    .range([ height, 0 ]);
+  svg.append("g")
+    .call(d3.axisLeft(y).ticks(5))
+
+
+
+  //////////
+  // BRUSHING AND CHART //
+  //////////
+
+  // Add a clipPath: everything out of this area won't be drawn.
+  const clip = svg.append("defs").append("svg:clipPath")
+      .attr("id", "clip")
+      .append("svg:rect")
+      .attr("width", width )
+      .attr("height", height )
+      .attr("x", 0)
+      .attr("y", 0);
+
+  // Add brushing
+  const brush = d3.brushX()                 // Add the brush feature using the d3.brush function
+      .extent( [ [0,0], [width,height] ] ) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+      .on("end", updateChart) // Each time the brush selection changes, trigger the 'updateChart' function
+
+  // Create the scatter variable: where both the circles and the brush take place
+  const areaChart = svg.append('g')
+    .attr("clip-path", "url(#clip)")
+
+  // Area generator
+  const area = d3.area()
+    .x(function(d) { return x(d.data.year); })
+    .y0(function(d) { return y(d[0]); })
+    .y1(function(d) { return y(d[1]); })
+
+  // Show the areas
+  areaChart
+    .selectAll("mylayers")
+    .data(stackedData)
+    .join("path")
+      .attr("class", function(d) { return "myArea " + d.key })
+      .style("fill", function(d) { return color(d.key); })
+      .attr("d", area)
+
+  // Add the brushing
+  areaChart
+    .append("g")
+      .attr("class", "brush")
+      .call(brush);
+
+  let idleTimeout
+  function idled() { idleTimeout = null; }
+
+  // A function that update the chart for given boundaries
+  function updateChart(event,d) {
+
+    extent = event.selection
+
+    // If no selection, back to initial coordinate. Otherwise, update X axis domain
+    if(!extent){
+      if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+      x.domain(d3.extent(data, function(d) { return d.year; }))
+    }else{
+      x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
+      areaChart.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+    }
+
+    // Update axis and area position
+    xAxis.transition().duration(1000).call(d3.axisBottom(x).ticks(5))
+    areaChart
+      .selectAll("path")
+      .transition().duration(1000)
+      .attr("d", area)
+    }
+
+
+
+    //////////
+    // HIGHLIGHT GROUP //
+    //////////
+
+    // What to do when one group is hovered
+    const highlight = function(event,d){
+      // reduce opacity of all groups
+      d3.selectAll(".myArea").style("opacity", .1)
+      // expect the one that is hovered
+      d3.select("."+d).style("opacity", 1)
+    }
+
+    // And when it is not hovered anymore
+    const noHighlight = function(event,d){
+      d3.selectAll(".myArea").style("opacity", 1)
+    }
+
+
+
+    //////////
+    // LEGEND //
+    //////////
+
+    // Add one dot in the legend for each name.
+    const size = 20
+    svg.selectAll("myrect")
+      .data(keys)
+      .join("rect")
+        .attr("x", 400)
+        .attr("y", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("width", size)
+        .attr("height", size)
+        .style("fill", function(d){ return color(d)})
+        .on("mouseover", highlight)
+        .on("mouseleave", noHighlight)
+
+    // Add one dot in the legend for each name.
+    svg.selectAll("mylabels")
+      .data(keys)
+      .join("text")
+        .attr("x", 400 + size*1.2)
+        .attr("y", function(d,i){ return 10 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .style("fill", function(d){ return color(d)})
+        .text(function(d){ return d})
+        .attr("text-anchor", "left")
+        .style("alignment-baseline", "middle")
+        .on("mouseover", highlight)
+        .on("mouseleave", noHighlight)
+
+})
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 

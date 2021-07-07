@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Basic correlogram in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a very basic correlogram: reproducible code with explanation">
+  <meta name="description" content="Using d3.js to create a very basic correlogram: reproducible code with explanation. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, correlogram">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Basic correlogram in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a very basic correlogram: reproducible code with explanation">
+  <meta property="og:description" content="Using d3.js to create a very basic correlogram: reproducible code with explanation. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -115,7 +112,7 @@
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build the most basic <a href="../correlogram.html">correlogram</a> with d3.js. You can see many other examples in the <a href="../correlogram.html">correlogram section</a> of the gallery. Learn more about the theory of correlogram in <a href="https://www.data-to-viz.com/graph/correlogram.html">data-to-viz.com</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build the most basic <a href="../correlogram.html">correlogram</a> with d3.js. You can see many other examples in the <a href="../correlogram.html">correlogram section</a> of the gallery. Learn more about the theory of correlogram in <a href="https://www.data-to-viz.com/graph/correlogram.html">data-to-viz.com</a>. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../correlogram.html">Correlogram section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -168,6 +165,12 @@
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
+
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -181,6 +184,16 @@
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+        
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+    
+</xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -188,7 +201,7 @@
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // Graph dimension
@@ -307,7 +320,122 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// Graph dimension
+const margin = {top: 20, right: 20, bottom: 20, left: 20},
+    width = 430 - margin.left - margin.right,
+    height = 430 - margin.top - margin.bottom
+
+// Create the svg area
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`); 
+
+
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_correlogram.csv").then(function(rows) {
+ // if (error) throw error
+  // Going from wide to long format
+  const data = [];
+  rows.forEach(function(d) {
+    let x = d[""];
+    delete d[""];
+    for (prop in d) {
+      let y = prop,
+        value = d[prop];
+      data.push({
+        x: x,
+        y: y,
+        value: +value
+      });
+    }
+  });
+
+  // List of all variables and number of them
+  const domain = Array.from(new Set(data.map(function(d) { return d.x })))
+  const num = Math.sqrt(data.length)
+
+  // Create a color scale
+  const color = d3.scaleLinear()
+    .domain([-1, 0, 1])
+    .range(["#B22222", "#fff", "#000080"]);
+
+  // Create a size scale for bubbles on top right. Watch out: must be a rootscale!
+  const size = d3.scaleSqrt()
+    .domain([0, 1])
+    .range([0, 9]);
+
+  // X scale
+  const x = d3.scalePoint()
+    .range([0, width])
+    .domain(domain)
+
+  // Y scale
+  const y = d3.scalePoint()
+    .range([0, height])
+    .domain(domain)
+
+  // Create one 'g' element for each cell of the correlogram
+  const cor = svg.selectAll(".cor")
+    .data(data)
+    .join("g")
+      .attr("class", "cor")
+      .attr("transform", function(d) {
+        return `translate(${x(d.x)}, ${y(d.y)})`
+      });
+
+  // Low left part + Diagonal: Add the text with specific color
+  cor
+    .filter(function(d){
+      const ypos = domain.indexOf(d.y);
+      const xpos = domain.indexOf(d.x);
+      return xpos <= ypos;
+    })
+    .append("text")
+      .attr("y", 5)
+      .text(function(d) {
+        if (d.x === d.y) {
+          return d.x;
+        } else {
+          return d.value.toFixed(2);
+        }
+      })
+      .style("font-size", 11)
+      .style("text-align", "center")
+      .style("fill", function(d){
+        if (d.x === d.y) {
+          return "#000";
+        } else {
+          return color(d.value);
+        }
+      });
+
+
+  // Up right part: add circles
+  cor
+    .filter(function(d){
+      const ypos = domain.indexOf(d.y);
+      const xpos = domain.indexOf(d.x);
+      return xpos > ypos;
+    })
+    .append("circle")
+      .attr("r", function(d){ return size(Math.abs(d.value)) })
+      .style("fill", function(d){
+        if (d.x === d.y) {
+          return "#000";
+        } else {
+          return color(d.value);
+        }
+      })
+      .style("opacity", 0.8)
+
+})
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 

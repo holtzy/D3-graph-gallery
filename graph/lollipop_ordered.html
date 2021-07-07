@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Order groups in lollipop chart in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="How to reorder groups in your lollipop chart with d3.js">
+  <meta name="description" content="How to reorder groups in your lollipop chart with d3.js. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, lollipop">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Order groups in lollipop chart in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="How to reorder groups in your lollipop chart with d3.js">
+  <meta property="og:description" content="How to reorder groups in your lollipop chart with d3.js. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -114,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to reorder groups in your <a href="https://www.d3-graph-gallery.com/lollipop">lollipop chart</a> with d3.js. Indeed, reordering gives much more insight to your chart as stated <a href="https://www.data-to-viz.com/caveat/order_data.html">here</a>. Note that your probably interested in <a href="lollipop_basic.html">this post</a> about the basics of lollipop plot.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to reorder groups in your <a href="https://www.d3-graph-gallery.com/lollipop">lollipop chart</a> with d3.js. Indeed, reordering gives much more insight to your chart as stated <a href="https://www.data-to-viz.com/caveat/order_data.html">here</a>. Note that your probably interested in <a href="lollipop_basic.html">this post</a> about the basics of lollipop plot. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../lollipop.html">Lollipop section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -165,6 +162,11 @@ $(function(){
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -178,6 +180,17 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+        
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+    
+</xmp></code></pre>
+  
 <!-- ==================================== -->
 
 
@@ -185,7 +198,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -255,7 +268,72 @@ svg.selectAll("mycircle")
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// set the dimensions and margins of the graph
+const margin = {top: 10, right: 30, bottom: 40, left: 100},
+    width = 460 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          `translate(${margin.left}, ${margin.top})`);
+
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv").then( function(data) {
+
+// sort data
+data.sort(function(b, a) {
+  return a.Value - b.Value;
+});
+
+// Add X axis
+const x = d3.scaleLinear()
+  .domain([0, 13000])
+  .range([ 0, width]);
+svg.append("g")
+  .attr("transform", `translate(0, ${height})`)
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+
+// Y axis
+const y = d3.scaleBand()
+  .range([ 0, height ])
+  .domain(data.map(function(d) { return d.Country; }))
+  .padding(1);
+svg.append("g")
+  .call(d3.axisLeft(y))
+
+// Lines
+svg.selectAll("myline")
+  .data(data)
+  .join("line")
+    .attr("x1", function(d) { return x(d.Value); })
+    .attr("x2", x(0))
+    .attr("y1", function(d) { return y(d.Country); })
+    .attr("y2", function(d) { return y(d.Country); })
+    .attr("stroke", "grey")
+
+// Circles
+svg.selectAll("mycircle")
+  .data(data)
+  .join("circle")
+    .attr("cx", function(d) { return x(d.Value); })
+    .attr("cy", function(d) { return y(d.Country); })
+    .attr("r", "7")
+    .style("fill", "#69b3a2")
+    .attr("stroke", "black")
+})
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
