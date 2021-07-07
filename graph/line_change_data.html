@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Input data transition for d3.js line chart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Swap between different dataset for your line chart in d3.js">
+  <meta name="description" content="Swap between different dataset for your line chart in d3.js. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, linechart">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Input data transition for d3.js line chart">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Swap between different dataset for your line chart in d3.js">
+  <meta property="og:description" content="Swap between different dataset for your line chart in d3.js. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -114,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to swap from one <a href="../line.html">line chart</a> input dataset to another with a smooth transition with d3.js. It aims to understand how to build an <code>update()</code> function, a concept that is used in many d3.js charts.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to swap from one <a href="../line.html">line chart</a> input dataset to another with a smooth transition with d3.js. It aims to understand how to build an <code>update()</code> function, a concept that is used in many d3.js charts. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../line.html">Lineplot section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -167,6 +164,11 @@ $(function(){
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -184,6 +186,20 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<!-- Add 2 buttons -->
+<button onclick="update(data1)">Dataset 1</button>
+<button onclick="update(data2)">Dataset 2</button>
+        
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+    
+</xmp></code></pre>
 <!-- ==================================== -->
 
 
@@ -191,7 +207,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // Create 2 datasets
@@ -276,7 +292,86 @@ update(data1)
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// Create 2 datasets
+const data1 = [
+   {ser1: 0.3, ser2: 4},
+   {ser1: 2, ser2: 16},
+   {ser1: 3, ser2: 8}
+];
+
+const data2 = [
+   {ser1: 1, ser2: 7},
+   {ser1: 4, ser2: 1},
+   {ser1: 6, ser2: 8}
+];
+
+// set the dimensions and margins of the graph
+const margin = {top: 10, right: 30, bottom: 30, left: 50},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+// Initialise a X axis:
+const x = d3.scaleLinear().range([0,width]);
+const xAxis = d3.axisBottom().scale(x);
+svg.append("g")
+  .attr("transform", `translate(0, ${height})`)
+  .attr("class","myXaxis")
+
+// Initialize an Y axis
+const y = d3.scaleLinear().range([height, 0]);
+const yAxis = d3.axisLeft().scale(y);
+svg.append("g")
+  .attr("class","myYaxis")
+
+// Create a function that takes a dataset as input and update the plot:
+function update(data) {
+
+  // Create the X axis:
+  x.domain([0, d3.max(data, function(d) { return d.ser1 }) ]);
+  svg.selectAll(".myXaxis").transition()
+    .duration(3000)
+    .call(xAxis);
+
+  // create the Y axis
+  y.domain([0, d3.max(data, function(d) { return d.ser2  }) ]);
+  svg.selectAll(".myYaxis")
+    .transition()
+    .duration(3000)
+    .call(yAxis);
+
+  // Create a update selection: bind to the new data
+  const u = svg.selectAll(".lineTest")
+    .data([data], function(d){ return d.ser1 });
+
+  // Updata the line
+  u
+    .join("path")
+    .attr("class","lineTest")
+    .transition()
+    .duration(3000)
+    .attr("d", d3.line()
+      .x(function(d) { return x(d.ser1); })
+      .y(function(d) { return y(d.ser2); }))
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 2.5)
+}
+
+// At the beginning, I run the update function on the first dataset:
+update(data1)
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 

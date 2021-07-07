@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Pie chart with annotation in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a pie chart with group names: example with reproducible code.">
+  <meta name="description" content="Using d3.js to create a pie chart with group names: example with reproducible code. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, pie chart">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Pie chart with annotation in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a pie chart with group names: example with reproducible code.">
+  <meta property="og:description" content="Using d3.js to create a pie chart with group names: example with reproducible code. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,10 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -115,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="../pie.html">pie chart</a> with d3.js and annotate each group with their name. You can see many other examples in the <a href="../pie.html">pie chart section</a> of the gallery. <u>Watch out</u>: pie chart is most of the time a very bad way to convey information as explained in <a href="https://www.data-to-viz.com/caveat/pie.html">this post</a>.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="../pie.html">pie chart</a> with d3.js and annotate each group with their name. You can see many other examples in the <a href="../pie.html">pie chart section</a> of the gallery. <u>Watch out</u>: pie chart is most of the time a very bad way to convey information as explained in <a href="https://www.data-to-viz.com/caveat/pie.html">this post</a>. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../pie.html">Pie chart section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -168,6 +164,11 @@ $(function(){
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -184,6 +185,17 @@ $(function(){
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 </xmp></code></pre>
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+        
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+    
+</xmp></code></pre>
+  
 <!-- ==================================== -->
 
 
@@ -191,7 +203,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -256,7 +268,65 @@ svg
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// set the dimensions and margins of the graph
+const width = 450,
+    height = 450,
+    margin = 40;
+
+// The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+const radius = Math.min(width, height) / 2 - margin
+
+// append the svg object to the div called 'my_dataviz'
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+// Create dummy data
+const data = {a: 9, b: 20, c:30, d:8, e:12}
+
+// set the color scale
+const color = d3.scaleOrdinal()
+  .range(d3.schemeSet2);
+
+// Compute the position of each group on the pie:
+const pie = d3.pie()
+  .value(function(d) {return d[1]})
+const data_ready = pie(Object.entries(data))
+// Now I know that group A goes from 0 degrees to x degrees and so on.
+
+// shape helper to build arcs:
+const arcGenerator = d3.arc()
+  .innerRadius(0)
+  .outerRadius(radius)
+
+// Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+svg
+  .selectAll('mySlices')
+  .data(data_ready)
+  .join('path')
+    .attr('d', arcGenerator)
+    .attr('fill', function(d){ return(color(d.data[0])) })
+    .attr("stroke", "black")
+    .style("stroke-width", "2px")
+    .style("opacity", 0.7)
+
+// Now add the annotation. Use the centroid method to get the best coordinates
+svg
+  .selectAll('mySlices')
+  .data(data_ready)
+  .join('text')
+  .text(function(d){ return "grp " + d.data[0]})
+  .attr("transform", function(d) { return `translate(${arcGenerator.centroid(d)})`})
+  .style("text-anchor", "middle")
+  .style("font-size", 17)
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 

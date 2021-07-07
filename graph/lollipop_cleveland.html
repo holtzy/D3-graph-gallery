@@ -24,14 +24,14 @@
   <meta charset="utf-8">
   <title>Cleveland dot plot in d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Using d3.js to create a simple cleveland dot plot.">
+  <meta name="description" content="Using d3.js to create a simple cleveland dot plot. Example with code (d3.js v4 and v6).">
   <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, lollipop, cleveland">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
 
   <meta property="og:title" content="Cleveland dot plot in d3.js">
   <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="Using d3.js to create a simple Cleveland dot plot.">
+  <meta property="og:description" content="Using d3.js to create a simple Cleveland dot plot. Example with code (d3.js v4 and v6).">
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +45,6 @@
   <!-- PRISM -->
   <script src="../LIB/prism.js"></script>
   <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
 
   <!-- JQUERY -->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -114,7 +111,7 @@ $(function(){
         </li>
       </ul>
       <br><br>
-      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="https://www.d3-graph-gallery.com/lollipop">Cleveland dot plot</a> with d3.js. It is basically a <a href="https://www.d3-graph-gallery.com/lollipop">lollipop plot</a> with 2 data series represented for each group.</p>
+      <p style="max-width: 700px; margin: auto">This post describes how to build a <a href="https://www.d3-graph-gallery.com/lollipop">Cleveland dot plot</a> with d3.js. It is basically a <a href="https://www.d3-graph-gallery.com/lollipop">lollipop plot</a> with 2 data series represented for each group. This example works with d3.js <code>v4</code> and <code>v6</code></p>
       <br>
       <a class="btn btn-secondary btn-md text-uppercase" href="../lollipop.html">Lollipop section</a>
       <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
@@ -163,6 +160,11 @@ $(function(){
 
 <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
 <div class="col-lg-7 text-center .align-middle">
+<div class="v4-v6-toggle">
+    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
+    <span> | </span>
+    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
+</div>
 
 <!-- ========= show html code ============== -->
 <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
@@ -176,6 +178,17 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
+<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+<meta charset="utf-8">
+        
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+        
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+    
+</xmp></code></pre>
+  
 <!-- ==================================== -->
 
 
@@ -183,7 +196,7 @@ $(function(){
 
 
 
-<!-- ========= show JS code ==============  -->
+<!-- ========= show JS code v4 ==============  -->
 <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
@@ -256,7 +269,73 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
+<!-- ========= show JS code v6 ==============  -->
+<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
 
+// set the dimensions and margins of the graph
+const margin = {top: 10, right: 30, bottom: 30, left: 30},
+    width = 460 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_cleveland.csv").then( function(data) {
+
+
+  // Add X axis
+  const x = d3.scaleLinear()
+    .domain([-1, 6])
+    .range([ 0, width]);
+  svg.append("g")
+    .attr("transform", `translate(0, ${height})`)
+    .call(d3.axisBottom(x))
+
+  // Y axis
+  const y = d3.scaleBand()
+    .range([ 0, height ])
+    .domain(data.map(function(d) { return d.group; }))
+    .padding(1);
+  svg.append("g")
+    .call(d3.axisLeft(y))
+
+  // Lines
+  svg.selectAll("myline")
+    .data(data)
+    .join("line")
+      .attr("x1", function(d) { return x(d.value1); })
+      .attr("x2", function(d) { return x(d.value2); })
+      .attr("y1", function(d) { return y(d.group); })
+      .attr("y2", function(d) { return y(d.group); })
+      .attr("stroke", "grey")
+      .attr("stroke-width", "1px")
+
+  // Circles of variable 1
+  svg.selectAll("mycircle")
+    .data(data)
+    .join("circle")
+      .attr("cx", function(d) { return x(d.value1); })
+      .attr("cy", function(d) { return y(d.group); })
+      .attr("r", "6")
+      .style("fill", "#69b3a2")
+
+  // Circles of variable 2
+  svg.selectAll("mycircle")
+    .data(data)
+    .join("circle")
+      .attr("cx", function(d) { return x(d.value2); })
+      .attr("cy", function(d) { return y(d.group); })
+      .attr("r", "6")
+      .style("fill", "#4C4082")
+})
+</script></xmp></code></pre>
+<!-- ==================================== -->
 
 
 
