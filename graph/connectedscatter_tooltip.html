@@ -381,13 +381,15 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
       const mousemove = function(event,d) {
         Tooltip
           .html("Exact value: " + d.value)
-          .style("left", (event.x)/2 + "px")
-          .style("top", (event.y)/2 + "px")
+          .style("left", `${event.layerX+10}px`)
+          .style("top", `${event.layerY}px`)
       }
       const mouseleave = function(event,d) {
         Tooltip
           .style("opacity", 0)
       }
+
+      
 
     // Add the points
     svg
