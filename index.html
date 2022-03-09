@@ -30,6 +30,19 @@
   }
   </script>
 
+
+  <!-- Allow Ezoic to place ads on the page -->
+  <script type="text/javascript">
+    var ezstandalone = ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+    ezstandalone.cmd.push(function() {
+      ezstandalone.define(100, 101);
+      ezstandalone.enable();
+      ezstandalone.display();
+    });
+  </script>
+  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+
   <meta charset="utf-8">
   <title>The D3 Graph Gallery &#8211; Simple charts made with d3.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -133,17 +146,18 @@ $(function(){
 
 
 <!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-<div id="position_for_images"> </div>
+<!-- <div id="position_for_images"> </div>
 <script>
 $(function(){
   $("#position_for_images").load("../html_chunk/images.html");
 });
-</script>
+</script> -->
 
 
-
-
-
+<div
+  style="height: 150px; width: '100%'; background-color: red;"
+  id="ezoic-pub-ad-placeholder-100">
+</div>
 
 
 
@@ -671,7 +685,10 @@ $(function(){
 
 
 
-
+<div
+  style="height: 150px; width: '100%'; background-color: red;"
+  id="ezoic-pub-ad-placeholder-101">
+</div>
 
 
 
