@@ -20,16 +20,6 @@
 
     gtag('config', 'UA-79254642-6');
   </script>
-  <script>
-  var getOutboundLink = function(url) {
-    gtag('event', 'click', {
-      'event_category': 'outbound',
-      'event_label': url,
-      'transport_type': 'beacon',
-      'event_callback': function(){document.location = url;}
-    });
-  }
-  </script>
 
   <meta charset="utf-8">
   <title>Basic network graph in d3.js</title>
@@ -192,15 +182,15 @@ $(function(){
 </xmp></code></pre>
 <pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
-        
+
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v6.js"></script>
-        
+
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
-    
+
 </xmp></code></pre>
-  
+
 <!-- ==================================== -->
 
 
