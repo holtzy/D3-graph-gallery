@@ -12,7 +12,11 @@
   </script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
+
+  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -189,13 +193,13 @@ $(function(){
 </xmp></code></pre>
 <pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
-          
+
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v6.js"></script>
 
 <!-- Create an element where the map will take place -->
 <svg id="my_dataviz" width="440" height="400"></svg>
-      
+
 </xmp></code></pre>
 <!-- ==================================== -->
 
@@ -292,7 +296,7 @@ function (initialize) {
 
     let dataGeo = initialize[0]
     let data = initialize[1]
-    
+
     // Reformat the list of link. Note that columns in csv file are called long1, long2, lat1, lat2
     const link = []
     data.forEach(function(row){

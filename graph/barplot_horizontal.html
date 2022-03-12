@@ -12,7 +12,11 @@
   </script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
+
+  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -187,13 +191,13 @@ $(function(){
 
 <pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
-          
+
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v6.js"></script>
-          
+
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
-      
+
 </xmp></code></pre>
 <!-- ==================================== -->
 
@@ -312,7 +316,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .attr("width", d => x(d.Value))
     .attr("height", y.bandwidth())
     .attr("fill", "#69b3a2")
-    
+
 })
 
 </script></xmp></code></pre>
