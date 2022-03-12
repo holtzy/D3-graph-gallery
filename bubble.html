@@ -12,7 +12,11 @@
   </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+
+  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -334,9 +338,9 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
   var showTooltip = function(d) {
-    tooltip    
+    tooltip
       .html("Country: " + d.country);
-    
+
     tooltip
       .transition()
       .duration(200)

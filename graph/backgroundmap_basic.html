@@ -11,7 +11,11 @@
        });
   </script>
 
+
+  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -193,13 +197,13 @@ $(function(){
 
 <pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
-        
+
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v6.js"></script>
-        
+
 <!-- Create an element where the map will take place -->
 <svg id="my_dataviz" width="400" height="300"></svg>
-    
+
 </xmp></code></pre>
 <!-- ==================================== -->
 
@@ -245,15 +249,15 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
 const svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
-    
+
 // Map and projection
 const projection = d3.geoNaturalEarth1()
     .scale(width / 1.3 / Math.PI)
     .translate([width / 2, height / 2])
-    
+
 // Load external data and boot
 d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then( function(data) {
-    
+
     // Draw the map
     svg.append("g")
         .selectAll("path")
@@ -264,7 +268,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
             .projection(projection)
             )
             .style("stroke", "#fff")
-        
+
 })
 </script></xmp></code></pre>
 <!-- ==================================== -->
