@@ -7,13 +7,7 @@
 
 <head>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-3523953066677938",
-            enable_page_level_ads: true
-       });
-  </script>
+
   <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
   <script src="https://d3js.org/d3-array.v1.min.js"></script>
   <p> A basic scatterplot </p>
@@ -21,14 +15,14 @@
 
 
 <div id="option">
-    <input name="updateButton" 
-           type="button" 
-           value="Update" 
+    <input name="updateButton"
+           type="button"
+           value="Update"
            onclick="showData1()" />
-    <input name="updateButton" 
-           type="button" 
-           value="Update" 
-           onclick="showData2()" />           
+    <input name="updateButton"
+           type="button"
+           value="Update"
+           onclick="showData2()" />
 </div>
 
 
@@ -95,7 +89,7 @@ var dots = chart.append('g')
   .selectAll("scatter-dots")
   .data(data)
   .enter()
-  .append("circle")       
+  .append("circle")
         .attr("r", 8)
         .attr("class", "circle")
         .attr("cx", 0)
@@ -113,7 +107,7 @@ dots.transition()
 
 
 // Change dataset
-function showData1() { 
+function showData1() {
   console.log("yo")
   dots
     .data(data)
@@ -123,7 +117,7 @@ function showData1() {
     .attr("cy", function (d) { return y(d[1]); } )
     .style("fill", "red")
 }
-function showData2() { 
+function showData2() {
   console.log("yo")
   dots
     .data(data2)
