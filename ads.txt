@@ -997,3 +997,136 @@ yieldmo.com, 2898690995346416534, RESELLER
 yieldmo.com, 2900260163292176711, RESELLER
 yieldnexus.com, 96204, RESELLER
 yldbt.com, 5b522cc167f6b300b89dc6d3, RESELLER, cd184cb30abaabb5
+vidoomy.com, 2252369, DIRECT
+google.com, pub-2403018226404213, RESELLER, f08c47fec0942fa0
+lijit.com, 230102, DIRECT, fafdf38b16bf6b2b
+freewheel.tv, 1119425, RESELLER
+rubiconproject.com, 23404, DIRECT, 0bfd66d529a55807
+pubmatic.com, 156262, RESELLER, 5d62403b186f2ace
+appnexus.com, 12495, RESELLER
+google.com, pub-2500372977609723, RESELLER, f08c47fec0942fa0
+emxdgt.com, 1889, RESELLER, 1e1d41537f7cad7f
+onetag.com, 6b859b96c564fbe, RESELLER
+yahoo.com, 59261, RESELLER
+pubmatic.com, 160350, RESELLER, 5d62403b186f2ace
+spotx.tv, 280397, RESELLER, 7842df1d2fe2db34
+google.com, pub-1835e489473992347, RESELLER, f08c47fec0942fa0
+lijit.com, 280159-eb, RESELLER, fafdf38b16bf6b2b
+sharethrough.com, 5926d422, RESELLER, d53b998a7bd4ecd2
+indexexchange.com, 194364, RESELLER, 50b1c356f2c5c8fc
+indexexchange.com, 194590, RESELLER, 50b1c356f2c5c8fc
+sunmedia.tv, 101, DIRECT
+contextweb.com, 561561, RESELLER, 89ff185a4c4e857c
+video.unrulymedia.com, 1222734754, DIRECT
+appnexus.com, 8610, RESELLER, f5ab79cb980f11d1
+adwmg.com, 142088, RESELLER
+yahoo.com, 55317, RESELLER, e1a5b5b6e3255540
+lijit.com, 280159, RESELLER, fafdf38b16bf6b2b
+appnexus.com, 8148, RESELLER
+sovrn.com, 284585, RESELLER, fafdf38b16bf6b2b
+openx.com, 544021216, RESELLER, 6a698e2ec38604c6
+yieldmo.com, 2754490424016969782, RESELLER
+pubmatic.com, 159175, RESELLER, 5d62403b186f2ace
+pubmatic.com, 156736, RESELLER, 5d62403b186f2ace
+sovrn.com, 230102, DIRECT, fafdf38b16bf6b2b
+rhythmone.com, 3736940343, DIRECT, a670c89d4a324e47
+appnexus.com, 8950, RESELLER
+spotxchange.com, 280397, RESELLER, 7842df1d2fe2db34
+criteo.com, 174835, RESELLER
+rubiconproject.com, 23876, RESELLER, 0bfd66d529a55807
+google.com, pub-5047281084957012, RESELLER, f08c47fec0942fa0
+sovrn.com, 276595, DIRECT, fafdf38b16bf6b2b
+criteo.com, 155036, RESELLER
+openx.com, 541072983, RESELLER, 6a698e2ec38604c6
+openx.com, 541073624, RESELLER, 6a698e2ec38604c6
+pubmatic.com, 161562, RESELLER, 5d62403b186f2ace
+33across.com, 0010b00002Xbn7QAAR, RESELLER, bbea06d9c4d2853c
+spotx.tv, 71451, RESELLER
+freewheel.tv, 799921, RESELLER
+lijit.com, 276595-eb, DIRECT, fafdf38b16bf6b2b
+appnexus.com, 9684, RESELLER, f5ab79cb980f11d1
+video.unrulymedia.com, 3736940343, DIRECT
+google.com, pub-8309773808661346, RESELLER, f08c47fec0942fa0
+imonomy.com, 2189, RESELLER
+adagio.io, 1069, RESELLER
+lijit.com, 276595, DIRECT, fafdf38b16bf6b2b
+google.com, pub-7169237679086737, RESELLER, f08c47fec0942fa0
+vi.ai, 573653530726003, RESELLER
+projectagora.com, 101038, RESELLER
+rubiconproject.com, 19652, RESELLER, 0bfd66d529a55807
+rhythmone.com, 1222734754, DIRECT, a670c89d4a324e47
+33across.com, 0010b00002MpnPqAAJ, DIRECT, bbea06d9c4d2853c
+richaudience.com, 1BTOoaD22a, RESELLER
+google.com, pub-7094677798399606, RESELLER, f08c47fec0942fa0
+sunmedia.tv, b27878b7-6b9e-47c6-9825-c06baa2f7795, DIRECT
+smartadserver.com, 3277, RESELLER
+onetag.com, 61d88450bdb25bc, RESELLER
+openx.com, 541180797, RESELLER, 6a698e2ec38604c6
+openx.com, 543870158, RESELLER, 6a698e2ec38604c6
+sovrn.com, 280159, RESELLER, fafdf38b16bf6b2b
+indexexchange.com, 194558, RESELLER
+sovrn.com, 327078, RESELLER, fafdf38b16bf6b2b
+sunmedia.tv, 4d851cea-6c8f-4489-8844-9e29bfd95489, DIRECT
+lijit.com, 230102-eb, DIRECT, fafdf38b16bf6b2b
+lijit.com, 327078, RESELLER, fafdf38b16bf6b2b
+cpmstar.com, 51543, RESELLER
+nobid.io, 22579573251, RESELLER
+pubmatic.com, 157335, RESELLER, 5d62403b186f2ace
+Media.net, 8CUQ6928Q, RESELLER
+freewheel.tv, 799841, RESELLER
+openx.com, 540606043, RESELLER, 6a698e2ec38604c6
+Contextweb.com, 562615, RESELLER, 89ff185a4c4e857c
+lijit.com, 327078-eb, RESELLER, fafdf38b16bf6b2b
+conversantmedia.com, 100141, DIRECT
+connectad.io, 203, RESELLER
+freewheel.tv, 1064705, RESELLER
+inmobi.com, 64d831e7ed4840ac8ea2283745f07d75, RESELLER, 83e75a7ae333ca9d
+connatix.com, 985704552967867, DIRECT, 2af98acdee0e81ed
+spotx.tv, 136839, RESELLER, 7842df1d2fe2db34
+synacor.com, 82461, RESELLER, e108f11b2cdf7d5b
+rubiconproject.com, 19564, RESELLER, 0bfd66d529a55807
+google.com, pub-1929615694373103, RESELLER, f08c47fec0942fa0
+tremorhub.com, cd009, RESELLER, 1a4e959a1b50034a
+contextweb.com, 561340, RESELLER, 89ff185a4c4e857c
+telaria.com, cd009, RESELLER, 1a4e959a1b50034a
+pubmatic.com, 156592, RESELLER, 5d62403b186f2ace
+indexexchange.com, 190549, RESELLER
+openx.com, 539496816, RESELLER, 6a698e2ec38604c6
+spotxchange.com, 136839, RESELLER, 7842df1d2fe2db34
+33across.com, _0010b00002MpnPqAAJ_, DIRECT, bbea06d9c4d2853c
+pubmatic.com, 161593, RESELLER, 5d62403b186f2ace
+lijit.com, 57813, RESELLER, fafdf38b16bf6b2b
+smilewanted.com, 3392, RESELLER
+openx.com, 543731411, RESELLER, 6a698e2ec38604c6
+pubmatic.com, 158826, RESELLER, 5d62403b186f2ace
+rubiconproject.com, 17544, RESELLER, 0bfd66d529a55807
+pubmatic.com, 158984, RESELLER, 5d62403b186f2ace
+appnexus.com, 9847, RESELLER
+Media.net, 8PR6YK195, RESELLER
+152media.info, 152M1, RESELLER
+yahoo.com, 57004, RESELLER
+yieldmo.com, 2724005447462757095, RESELLER
+onetag.com, 66d66dec41ef0cc, RESELLER
+rubiconproject.com, 23280, RESELLER, 0bfd66d529a55807
+smartadserver.com, 4102, RESELLER
+indexexchange.com, 186268, RESELLER
+indexexchange.com, 192393, RESELLER
+roimediaconsultants.com, 20, RESELLER
+google.com, pub-5912840019437959, RESELLER, f08c47fec0942fa0
+aax.media, AAX65WOCF, DIRECT
+sharethrough.com, aab3fb7d, RESELLER, d53b998a7bd4ecd2
+yahoo.com, 49648, RESELLER
+smartadserver.com, 4283, DIRECT
+google.com, pub-6396844742497208, RESELLER, f08c47fec0942fa0
+improvedigital.com, 2050, RESELLER
+appnexus.com, 13381, RESELLER, f5ab79cb980f11d1
+rubiconproject.com, 22884, DIRECT, 0bfd66d529a55807
+voicemediagroup.com, 9262, DIRECT
+conversantmedia.com, 100270, RESELLER, 03113cd04947736d
+rhythmone.com, 3463482822, RESELLER, a670c89d4a324e47
+pubmatic.com, 160648, RESELLER, 5d62403b186f2ace
+yieldmo, 2676856567361380607, DIRECT
+yieldmo, 2723393041019642186, DIRECT
+admanmedia.com, 746, RESELLER
+yieldmo, 2834292204858450860, DIRECT
+video.unrulymedia.com, 3463482822, RESELLER
