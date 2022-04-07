@@ -62,7 +62,13 @@ section h3.section-subheading {
   }
 }
 
-
+code {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: #afb8c133;
+  border-radius: 6px;
+}
 
 
 /* ---------- Table of content on the left----------------- */

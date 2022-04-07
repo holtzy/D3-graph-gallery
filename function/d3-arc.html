@@ -26,15 +26,15 @@
 
   <!-- Page Header Content -->
   <meta charset="utf-8">
-  <title>The xxx function explained &#124; the D3 Graph Gallery</title>
+  <title>The d3.arc() function explained &#124; the D3 Graph Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Learn how to use the xxx function of the d3.js library. Simple explanation, code interactive examples and real chart demo.">
+  <meta name="description" content="Learn how to use the d3.arc() function of the d3.js library. Simple explanation, code interactive examples and real chart demo.">
   <meta name="keywords" content="Data,Dataviz,Data visualization,Javascript,D3,D3.js,function,tutorial">
   <meta name="author" content="Yan Holtz">
   <link rel="icon" href="../img/logo/D3_single_small.png">
-  <meta property="og:title" content="The xxx function explained &#124; the D3 Graph Gallery">
+  <meta property="og:title" content="The d3.arc() function explained &#124; the D3 Graph Gallery">
   <meta property="og:image" content="img/overview_RGG.png">
-  <meta property="og:description" content="Learn how to use the xxx function of the d3.js library. Simple explanation, code interactive examples and real chart demo.">
+  <meta property="og:description" content="Learn how to use the d3.arc() function of the d3.js library. Simple explanation, code interactive examples and real chart demo.">
 
   <!-- Styling -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -71,7 +71,7 @@ $(function(){
 <!-- Title and blog description section -->
 <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
   <div class="textlanding">
-    <h1>A tour of the d3.js <code>d3.xxx()</code> function</h1>
+    <h1>A tour of the <code>d3.arc()</code> function</h1>
     <hr class="short_hr">
     <br>
     <ul class="list-inline social-buttons">
@@ -98,8 +98,10 @@ $(function(){
     </ul>
     <br><br>
     <p style="max-width: 700px; margin: auto">
-      The <code>xxx() </code>function of the d3.js library is a corner stone of the xxx module. It is indeed
-      required to build any chart that involves that kind of thing! You can seee it alive here for instance.
+      The <code>d3.arc()</code> function is a shape generator, used to create
+      arcs. It is part of the <code>d3-shape</code> module. Arcs can be created in
+      pute svg, but this helper function will make the link between the data and the
+      shape seamless.
     </p>
   </div>
 </header>
@@ -112,20 +114,19 @@ $(function(){
 
 
 
-<!-- ====== Most Basic Usage ============ -->
+<!-- ====== Drawing an arc with svg ============ -->
 <br><br><br><br>
 <section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
   <div class="container">
-    <div class="mySeryTitle">Most basic usage of <code>xxx()</code></div>
+    <div class="mySeryTitle">Drawing an arc in pure svg</div>
     <hr>
     <p>
-      This is the very first section of the tutorial. It basically explains what the function
-      is made for, and adds a sandbox to demo the most basic usage.
+      It is totally doable to draw an arc in pure html and svg.
     </p>
     <p>Sandbox!</p>
 
     <iframe
-      src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/test?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
+      src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-pure-svg?fontsize=14&hidenavigation=1&theme=dark"
       style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
       allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
       sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
