@@ -174,7 +174,7 @@ $(function(){
 <br><br><br><br>
 <section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
   <div class="container">
-    <div class="mySeryTitle">Use <code>d3.arc()</code> to render a simple arc</div>
+    <div class="mySeryTitle">✏️ Use <code>d3.arc()</code> to render a simple arc</div>
     <hr>
     <p>
       Now let's get closer to real life. It's great to have everything we need to
@@ -186,7 +186,7 @@ $(function(){
       javascript. Code looks like this:
     </p>
     <iframe
-    src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-basic-shape?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
+    src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-basic-shape?fontsize=14&hidenavigation=1&theme=dark"
     style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -196,52 +196,53 @@ $(function(){
 
 
 
+
+
 <br><br><br><br>
 <section class="bg" id="portfolio" style="padding-top: 10px">
   <div class="container">
-    <div class="mySeryTitle">Chart examples using <code>xxx()</code></div>
+    <div class="mySeryTitle">Chart examples using <code>d3.arc()</code></div>
     <hr>
     <p>
-      The following most <a href="graph/arc_basic.html">basic arc diagram</a> will guide
-      you through the core steps of this chart. Next charts show how to turn
-      it <a href="graph/arc_vertical.html">vertical</a> and how
-      to <a href="graph/arc_highlight.html">highlight links</a> on hover.
+      Now that you have a good understanding of the d3.arc() function, it is
+      probably time to dive into real chart examples. Here is a list of some graphs
+      using this function:
     </p>
     <div id="portfolio-items" class="row">
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/arc_basic.html">
+        <a class="portfolio-link" href="../graph/pie_basic.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Most basic</p>
+              <p>Basic pie chart</p>
               <hr>
-              <p class="explanation_portfolio">The most basic arc diagram you can do in d3.js. Keeping only the core code.</p>
+              <p class="explanation_portfolio">The most basic pie chart you can do in d3.js. Keeping only the core code.</p>
             </div>
           </div>
-          <img class="img-fluid" src="../img/graph/arc_basic.png" alt="">
+          <img class="img-fluid" src="../img/graph/pie_basic.png" alt="">
         </a>
       </div>
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/arc_basic.html">
+        <a class="portfolio-link" href="../graph/donut_basic.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Most basic</p>
+              <p>Basic donut chart</p>
               <hr>
-              <p class="explanation_portfolio">The most basic arc diagram you can do in d3.js. Keeping only the core code.</p>
+              <p class="explanation_portfolio">The most basic donut chart you can do in d3.js. Keeping only the core code.</p>
             </div>
           </div>
-          <img class="img-fluid" src="../img/graph/arc_basic.png" alt="">
+          <img class="img-fluid" src="../img/graph/donut_basic.png" alt="">
         </a>
       </div>
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/arc_basic.html">
+        <a class="portfolio-link" href="../graph/donut_label.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
-              <p>Most basic</p>
+              <p>Donut chart with annotation</p>
               <hr>
-              <p class="explanation_portfolio">The most basic arc diagram you can do in d3.js. Keeping only the core code.</p>
+              <p class="explanation_portfolio">Add annotation outside the chart using polylines</p>
             </div>
           </div>
-          <img class="img-fluid" src="../img/graph/arc_basic.png" alt="">
+          <img class="img-fluid" src="../img/graph/donut_label.png" alt="">
         </a>
       </div>
     </div>
@@ -251,7 +252,7 @@ $(function(){
 <!-- ====== Section with some related chart types, using the studied function ============ -->
 <section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
   <div class="container">
-    <p class="mySeryTitle">Chart types using the <code>xxx()</code> function</p>
+    <p class="mySeryTitle">Chart types using the <code>d3.arc()</code> function</p>
     <hr>
     <div class="row">
       <div class="col-md-2 col-sm-4 portfolio-item">
@@ -266,48 +267,26 @@ $(function(){
         <div class="captionPortfolio">Chord diagram</div>
       </div>
       <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="network.html">
+        <a class="portfolio-link" href="../pie.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
               <i class="fa fa-plus fa-3x"></i>
             </div>
           </div>
-          <img class="img-fluid" src="../img/section/Network150.png" alt="">
+          <img class="img-fluid" src="../img/section/Pie150.png" alt="">
         </a>
-        <div class="captionPortfolio">Network</div>
+        <div class="captionPortfolio">Pie chart</div>
       </div>
       <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="sankey.html">
+        <a class="portfolio-link"  href="../dendrogram.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
               <i class="fa fa-plus fa-3x"></i>
             </div>
           </div>
-          <img class="img-fluid" src="../img/section/Sankey150.png" alt="">
+          <img class="img-fluid" src="../img/section/Dendrogram150.png" alt="">
         </a>
-        <div class="captionPortfolio">Sankey</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="arc.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/section/Arc150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Arc diagram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="bundle.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/section/Bundle150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Edge bundling</div>
+        <div class="captionPortfolio">Dendrogram</div>
       </div>
     </div>
   </div>
