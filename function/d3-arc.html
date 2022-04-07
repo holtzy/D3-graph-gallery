@@ -118,33 +118,53 @@ $(function(){
 <br><br><br><br>
 <section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
   <div class="container">
-    <div class="mySeryTitle">Drawing an arc in pure svg</div>
+    <div class="mySeryTitle">🦕 Drawing an arc in pure svg</div>
     <hr>
     <p>
-      It is totally doable to draw an arc in pure html and svg.
+      Drawing an arc is useful for a number of chart types, including
+      the famous <a href='https://d3-graph-gallery.com/pie'>pie chart</a> or its
+      cousin the <a href='https://d3-graph-gallery.com/donut.html'>donut chart</a>. It is totally doable
+      to draw an arc in pure <code>html</code>, using an <code>svg</code> element.
     </p>
-    <p>Sandbox!</p>
-
+    <p>
+      Once you have set a <code>svg</code> element with a <code>width</code> and
+      a <code>height</code>, call the <code>path</code> element inside it. A <code>path</code> is a
+      powerful element allowing to draw any kind of shape. You can read more
+      about it <a href='https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths'>in the doc</a>.
+    </p>
+    <p>
+      The shape of a <code>path</code> element is defined by one parameter: <code>d</code>. But as
+      you can see in the example below, understanding the <code>d</code> language is not a piece
+      of cake. It would be much easier to provide the coordinate of the arc center, its inner radius
+      and its outer radius.
+    </p>
+    <p>Good news! This is exactly what the <code>d3.arc()</code> function is made for!</p>
     <iframe
       src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-pure-svg?fontsize=14&hidenavigation=1&theme=dark"
-      style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
+      style="width: 100%; height: 400px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
       allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
       sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
     ></iframe>
   </div>
 </section>
 
+
 <!-- ====== Options ============ -->
 <br><br><br><br>
 <section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
   <div class="container">
-    <div class="mySeryTitle">Going further with <code>xxx()</code></div>
+    <div class="mySeryTitle">Most basic usage of <code>d3.arc()</code></div>
     <hr>
     <p>
       The second step goes more in depth. It shows what are the main arguments
       accepted by the function and how to use them.
     </p>
-    <p>Sandbox!</p>
+    <iframe
+    src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-basic?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
+    style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  ></iframe>
   </div>
 </section>
 
