@@ -112,9 +112,6 @@ $(function(){
 
 
 
-
-
-<!-- ====== Drawing an arc with svg ============ -->
 <br><br><br><br>
 <section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
   <div class="container">
@@ -149,18 +146,23 @@ $(function(){
 </section>
 
 
-<!-- ====== Options ============ -->
+
 <br><br><br><br>
 <section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
   <div class="container">
-    <div class="mySeryTitle">Most basic usage of <code>d3.arc()</code></div>
+    <div class="mySeryTitle">💡 Most basic usage of <code>d3.arc()</code></div>
     <hr>
     <p>
-      The second step goes more in depth. It shows what are the main arguments
-      accepted by the function and how to use them.
+      The <code>d3.arc()</code> function is here to create the content of the <code>d</code> parameter
+      of the <code>path</code> element. When you call <code>d3.arc()</code>, it returns a
+      function that we call a generator.
+    </p>
+    <p>This generator is the function we dreamed of! It accepts an object with 4 properties and
+      return the path we need. The arguments are <code>innerRadius</code>, <code>outerRadius</code>, <code>startAngle</code> and <code>endAngle</code>. Those
+      names are self-explanatory 😃.
     </p>
     <iframe
-    src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-basic?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
+    src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-function-call?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
     style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -169,18 +171,29 @@ $(function(){
 </section>
 
 
-<!-- ====== Real life ============ -->
+<br><br><br><br>
 <section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <br><br><br><br>
   <div class="container">
-    <div class="mySeryTitle"><code>xxx()</code> in real life</div>
+    <div class="mySeryTitle">Use <code>d3.arc()</code> to render a simple arc</div>
     <hr>
     <p>
-      Show how to build a d3 chart using this function
+      Now let's get closer to real life. It's great to have everything we need to
+      get the d attribute content, but we need to send it to an svg element.
     </p>
-    <p>Sandbox!</p>
+    <p>
+      This is possible thanks to other very popular functions of d3.js
+      called append. We need to select an existing svg element and add a path element to it using
+      javascript. Code looks like this:
+    </p>
+    <iframe
+    src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-basic-shape?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
+    style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  ></iframe>
   </div>
 </section>
+
 
 
 <br><br><br><br>

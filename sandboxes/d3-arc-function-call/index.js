@@ -2,11 +2,11 @@
 import { arc } from "d3-shape";
 
 // The arc function returns a function when its called
-const buildArc = arc();
+const arcGenerator = arc();
 
-// The buildArc function that we now have is very handy to build svg path
+// The arcGenerator function that we now have is very handy to build svg path
 // You need to provide it the features of your arc:
-const firstArc = buildArc({
+const firstArc = arcGenerator({
   innerRadius: 0,
   outerRadius: 100,
   startAngle: 0,
