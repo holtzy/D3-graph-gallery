@@ -486,7 +486,7 @@ document.getElementById('code-svg').addEventListener("input", function() {
 <pre class="language-js"><code id="js-basicTrigger" contenteditable="true"><xmp><script>
 d3
   .select(".target")  // select the elements that have the class 'target'
-  .style("stroke-width", 8) // change their style: stroke width is not equal to 8 pixels
+  .style("stroke-width", 8); // change their style: stroke width is not equal to 8 pixels
 </script></xmp></code></pre>
 <!-- ==================================== -->
 
@@ -612,7 +612,7 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="js-coord" contenteditable="true"><xmp><script>
-var svg = d3.select("#dataviz_area")
+var svg = d3.select("#dataviz_area");
 svg.append("circle")
   .attr("cx", 2).attr("cy", 2).attr("r", 40).style("fill", "blue");
 svg.append("circle")
@@ -721,7 +721,7 @@ myJSParser('js-coord', 'res-coord');
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="js-scale" contenteditable="true"><xmp><script>
 // Select the svg area
-var svg = d3.select("#viz_area")
+var svg = d3.select("#viz_area");
 
 // Create a scale: transform value in pixel
 var x = d3.scaleLinear()
@@ -838,7 +838,7 @@ myJSParser('js-scale', 'res-scale');
 <!-- ========= show JS code ==============  -->
 <pre class="language-js"><code id="js-axis" contenteditable="true"><xmp><script>
 // Select the svg area
-var svg = d3.select("#Viz_area")
+var svg = d3.select("#Viz_area");
 
 // Create a scale: transform value in pixel
 var x = d3.scaleLinear()
