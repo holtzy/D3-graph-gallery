@@ -1,5 +1,4 @@
-group,Nitrogen,normal,stress
-banana,12,1,13
-poacee,6,6,33
-sorgho,11,28,12
-triticum,19,6,1
+group,0-10,10-20,20-30,30-40,40-50,50-60
+father,0,11,22,30,20,7
+mother,8,31,75,89,56,14
+other,2,3,12,9,5,1
