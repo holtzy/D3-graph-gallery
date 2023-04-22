@@ -235,12 +235,16 @@ var data = [12,19,11,13,12,22,13,4,15,16,18,19,20,12,11,9]
 
 // Compute summary statistics used for the box:
 var data_sorted = data.sort(d3.ascending)
+var min_data = data_sorted[0]
+var max_data = data_sorted[data_sorted.length - 1]
 var q1 = d3.quantile(data_sorted, .25)
 var median = d3.quantile(data_sorted, .5)
 var q3 = d3.quantile(data_sorted, .75)
 var interQuantileRange = q3 - q1
-var min = q1 - 1.5 * interQuantileRange
-var max = q1 + 1.5 * interQuantileRange
+var lowerExtremeValue = q1 - 1.5 * interQuantileRange
+var upperExtremeValue = q3 + 1.5 * interQuantileRange
+var min = d3.max([min_data, lowerExtremeValue])
+var max = d3.min([max_data, upperExtremeValue])
 
 // Show the Y scale
 var y = d3.scaleLinear()
