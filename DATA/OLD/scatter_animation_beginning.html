@@ -1,107 +1,118 @@
 <!DOCTYPE html>
 <html>
+  <!-- Inspired from https://pudding.cool/process/flexbox-layout/ -->
 
+  <head>
+    <!-- AdThrive Head Tag Manual -->
+    <script data-no-optimize="1" data-cfasync="false">
+      (function (w, d) {
+        w.adthrive = w.adthrive || {};
+        w.adthrive.cmd = w.adthrive.cmd || [];
+        w.adthrive.plugin = "adthrive-ads-manual";
+        w.adthrive.host = "ads.adthrive.com";
+        var s = d.createElement("script");
+        s.async = true;
+        s.referrerpolicy = "no-referrer-when-downgrade";
+        s.src =
+          "https://" +
+          w.adthrive.host +
+          "/sites/643436a4e6d20859e40a446b/ads.min.js?referrer=" +
+          w.encodeURIComponent(w.location.href) +
+          "&cb=" +
+          (Math.floor(Math.random() * 100) + 1);
+        var n = d.getElementsByTagName("script")[0];
+        n.parentNode.insertBefore(s, n);
+      })(window, document);
+    </script>
+    <!-- End of AdThrive Head Tag -->
 
-<!-- Inspired from https://pudding.cool/process/flexbox-layout/ -->
+    <script
+      type="text/javascript"
+      src="http://mbostock.github.com/d3/d3.js"
+    ></script>
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <p>A basic scatterplot</p>
+  </head>
 
+  <svg class="chart"></svg>
 
-<head>
+  <script>
+    // create data
+    var data = [
+      [5, 3],
+      [10, 17],
+      [15, 4],
+      [2, 8],
+    ];
 
+    // show data
+    console.log(data[0]);
 
-  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
-  <script src="https://d3js.org/d3-array.v1.min.js"></script>
-  <p> A basic scatterplot </p>
-</head>
-
-
-
-<svg class="chart"></svg>
-
-
-
-<script>
-
-// create data
-var data = [[5,3], [10,17], [15,4], [2,8]]
-
-// show data
-console.log(data[0])
-
-
-
-// Chart Size Setup
-var margin = { top: 55, right: 20, bottom: 50, left: 70 };
-var width = 1060 - margin.left - margin.right;
-var height = 700 - margin.top - margin.bottom;
-var chart = d3.select(".chart")
+    // Chart Size Setup
+    var margin = { top: 55, right: 20, bottom: 50, left: 70 };
+    var width = 1060 - margin.left - margin.right;
+    var height = 700 - margin.top - margin.bottom;
+    var chart = d3
+      .select(".chart")
       .attr("width", 1060)
       .attr("height", 700)
-    .append("g")
+      .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    // Add X axis
+    var maxX = d3.max(data, function (d) {
+      return d[0];
+    });
+    console.log(maxX);
+    var x = d3.scale.linear().domain([0, maxX]).range([0, width]);
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+    chart
+      .append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .attr("class", "axis")
+      .call(xAxis);
 
+    // Add Y axis
+    var maxY = d3.max(data, function (d) {
+      return d[1];
+    });
+    console.log(maxX);
+    var y = d3.scale.linear().domain([0, maxY]).range([height, 0]);
+    var yAxis = d3.svg.axis().scale(y).orient("left");
+    chart.append("g").attr("class", "axis").call(yAxis);
 
-// Add X axis
-var maxX = d3.max(data, function(d) { return d[0]; })
-console.log(maxX)
-var x = d3.scale.linear()
-              .domain([0, maxX])
-              .range([ 0, width ]);
-var xAxis = d3.svg.axis()
-  .scale(x)
-  .orient('bottom');
-chart.append('g')
-  .attr('transform', 'translate(0,' + height + ')')
-  .attr('class', 'axis')
-  .call(xAxis);
+    // Add dots
+    var dots = chart
+      .append("g")
+      .selectAll("scatter-dots")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("r", 8)
+      .attr("class", "circle")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .style("fill", "blue")
+      .style("opacity", "0");
 
-
-
-// Add Y axis
-var maxY = d3.max(data, function(d) { return d[1]; })
-console.log(maxX)
-var y = d3.scale.linear()
-              .domain([0, maxY])
-              .range([ height, 0 ]);
-var yAxis = d3.svg.axis()
-  .scale(y)
-  .orient('left');
-chart.append('g')
-  .attr('class', 'axis')
-  .call(yAxis);
-
-
-
-// Add dots
-var dots = chart.append('g')
-  .selectAll("scatter-dots")
-  .data(data)
-  .enter()
-  .append("circle")
-        .attr("r", 8)
-        .attr("class", "circle")
-        .attr("cx", 0)
-        .attr("cy", 0)
-        .style("fill", "blue")
-        .style("opacity", "0")
-
-dots.transition()
+    dots
+      .transition()
       .duration(15000)
       .ease("elastic")
-      .attr("cx", function (d,i) { return x(d[0]); } )
-      .attr("cy", function (d) { return y(d[1]); } )
+      .attr("cx", function (d, i) {
+        return x(d[0]);
+      })
+      .attr("cy", function (d) {
+        return y(d[1]);
+      })
       .style("opacity", "1")
-      .style("fill", "red")
+      .style("fill", "red");
+  </script>
 
-</script>
-
-
-<style>
-.axis {
-    stroke: grey;
-    fill: none;
-}
-
-</style>
-
+  <style>
+    .axis {
+      stroke: grey;
+      fill: none;
+    }
+  </style>
 </html>
