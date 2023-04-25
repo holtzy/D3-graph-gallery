@@ -1,308 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Google analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-79254642-6");
+    </script>
 
-<head>
+    <!-- Page Header Content -->
+    <meta charset="utf-8" />
+    <title>The xxx function explained &#124; the D3 Graph Gallery</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Learn how to use the xxx function of the d3.js library. Simple explanation, code interactive examples and real chart demo."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Data visualization,Javascript,D3,D3.js,function,tutorial"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
+    <meta
+      property="og:title"
+      content="The xxx function explained &#124; the D3 Graph Gallery"
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="Learn how to use the xxx function of the d3.js library. Simple explanation, code interactive examples and real chart demo."
+    />
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <!-- Styling -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="../css/agency.css" rel="stylesheet" />
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
-  <!-- Google analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-79254642-6');
-  </script>
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+  </head>
 
-  <!-- Page Header Content -->
-  <meta charset="utf-8">
-  <title>The xxx function explained &#124; the D3 Graph Gallery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Learn how to use the xxx function of the d3.js library. Simple explanation, code interactive examples and real chart demo.">
-  <meta name="keywords" content="Data,Dataviz,Data visualization,Javascript,D3,D3.js,function,tutorial">
-  <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
-  <meta property="og:title" content="The xxx function explained &#124; the D3 Graph Gallery">
-  <meta property="og:image" content="img/overview_RGG.png">
-  <meta property="og:description" content="Learn how to use the xxx function of the d3.js library. Simple explanation, code interactive examples and real chart demo.">
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
+      });
+    </script>
 
-  <!-- Styling -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-  <link href="../css/agency.css" rel="stylesheet">
-  <script src="../vendor/jquery/jquery.min.js"></script>
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
+    </script>
 
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-
-</head>
-
-<body id="page-top">
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-});
-</script>
-
-<!-- Title and blog description section -->
-<header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-  <div class="textlanding">
-    <h1>A tour of the d3.js <code>d3.xxx()</code> function</h1>
-    <hr class="short_hr">
-    <br>
-    <ul class="list-inline social-buttons">
-      <li class="list-inline-item">
-        <a href="https://twitter.com/R_Graph_Gallery">
-          <i class="fa fa-twitter"></i>
-        </a>
-      </li>
-      <li class="list-inline-item social-buttons">
-        <a href="https://github.com/holtzy">
-          <i class="fa fa-github" style="color: white"></i>
-        </a>
-      </li>
-      <li class="list-inline-item social-buttons">
-        <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-          <i class="fa fa-linkedin"></i>
-        </a>
-      </li>
-      <li class="list-inline-item social-buttons">
-        <a href="https://www.yan-holtz.com">
-          <i class="fa fa-home"></i>
-        </a>
-      </li>
-    </ul>
-    <br><br>
-    <p style="max-width: 700px; margin: auto">
-      The <code>xxx() </code>function of the d3.js library is a corner stone of the xxx module. It is indeed
-      required to build any chart that involves that kind of thing! You can seee it alive here for instance.
-    </p>
-  </div>
-</header>
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-
-
-<!-- ====== Most Basic Usage ============ -->
-<br><br><br><br>
-<section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <div class="container">
-    <div class="mySeryTitle">Most basic usage of <code>xxx()</code></div>
-    <hr>
-    <p>
-      This is the very first section of the tutorial. It basically explains what the function
-      is made for, and adds a sandbox to demo the most basic usage.
-    </p>
-    <p>Sandbox!</p>
-
-    <iframe
-      src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/test?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
-      style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
-      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-    ></iframe>
-  </div>
-</section>
-
-<!-- ====== Options ============ -->
-<br><br><br><br>
-<section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <div class="container">
-    <div class="mySeryTitle">Going further with <code>xxx()</code></div>
-    <hr>
-    <p>
-      The second step goes more in depth. It shows what are the main arguments
-      accepted by the function and how to use them.
-    </p>
-    <p>Sandbox!</p>
-  </div>
-</section>
-
-
-<!-- ====== Real life ============ -->
-<section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <br><br><br><br>
-  <div class="container">
-    <div class="mySeryTitle"><code>xxx()</code> in real life</div>
-    <hr>
-    <p>
-      Show how to build a d3 chart using this function
-    </p>
-    <p>Sandbox!</p>
-  </div>
-</section>
-
-
-<br><br><br><br>
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-    <div class="mySeryTitle">Chart examples using <code>xxx()</code></div>
-    <hr>
-    <p>
-      The following most <a href="graph/arc_basic.html">basic arc diagram</a> will guide
-      you through the core steps of this chart. Next charts show how to turn
-      it <a href="graph/arc_vertical.html">vertical</a> and how
-      to <a href="graph/arc_highlight.html">highlight links</a> on hover.
-    </p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/arc_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic arc diagram you can do in d3.js. Keeping only the core code.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/arc_basic.png" alt="">
-        </a>
+    <!-- Title and blog description section -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>A tour of the d3.js <code>d3.xxx()</code> function</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          The <code>xxx() </code>function of the d3.js library is a corner stone
+          of the xxx module. It is indeed required to build any chart that
+          involves that kind of thing! You can seee it alive here for instance.
+        </p>
       </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/arc_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic arc diagram you can do in d3.js. Keeping only the core code.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/arc_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/arc_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic arc diagram you can do in d3.js. Keeping only the core code.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/arc_basic.png" alt="">
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- ====== Section with some related chart types, using the studied function ============ -->
-<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <div class="container">
-    <p class="mySeryTitle">Chart types using the <code>xxx()</code> function</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="chord.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/section/Chord150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Chord diagram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="network.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/section/Network150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Network</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="sankey.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/section/Sankey150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Sankey</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="arc.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/section/Arc150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Arc diagram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="bundle.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/section/Bundle150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Edge bundling</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- ====== Most Basic Usage ============ -->
+    <br /><br /><br /><br />
+    <section
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <div class="mySeryTitle">Most basic usage of <code>xxx()</code></div>
+        <hr />
+        <p>
+          This is the very first section of the tutorial. It basically explains
+          what the function is made for, and adds a sandbox to demo the most
+          basic usage.
+        </p>
+        <p>Sandbox!</p>
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
+        <iframe
+          src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/test?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
+          style="
+            width: 100%;
+            height: 500px;
+            border: solid;
+            border-width: 2px;
+            border-radius: 4px;
+            overflow: hidden;
+          "
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        ></iframe>
+      </div>
+    </section>
 
-<!-- ============================ CONTACT SECTION ============================ -->
-<a name="contactanchor"></a>
-<section id="contact" class="bg" style="background-color: white"></section>
-<script>
-$(function(){
-  $("#contact").load("html_chunk/contact.html");
-});
-</script>
+    <!-- ====== Options ============ -->
+    <br /><br /><br /><br />
+    <section
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <div class="mySeryTitle">Going further with <code>xxx()</code></div>
+        <hr />
+        <p>
+          The second step goes more in depth. It shows what are the main
+          arguments accepted by the function and how to use them.
+        </p>
+        <p>Sandbox!</p>
+      </div>
+    </section>
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
+    <!-- ====== Real life ============ -->
+    <section
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <br /><br /><br /><br />
+      <div class="container">
+        <div class="mySeryTitle"><code>xxx()</code> in real life</div>
+        <hr />
+        <p>Show how to build a d3 chart using this function</p>
+        <p>Sandbox!</p>
+      </div>
+    </section>
 
-<!-- ============================ FOOTER SECTION ============================ -->
-<footer class="bg-light" id="myFooter"></footer>
-<script>
-$(function(){
-  $("#myFooter").load("html_chunk/footer.html");
-});
-</script>
+    <br /><br /><br /><br />
+    <section class="bg" id="portfolio" style="padding-top: 10px">
+      <div class="container">
+        <div class="mySeryTitle">Chart examples using <code>xxx()</code></div>
+        <hr />
+        <p>
+          The following most
+          <a href="graph/arc_basic.html">basic arc diagram</a> will guide you
+          through the core steps of this chart. Next charts show how to turn it
+          <a href="graph/arc_vertical.html">vertical</a> and how to
+          <a href="graph/arc_highlight.html">highlight links</a> on hover.
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/arc_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic arc diagram you can do in d3.js. Keeping only
+                    the core code.
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="../img/graph/arc_basic.png" alt="" />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/arc_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic arc diagram you can do in d3.js. Keeping only
+                    the core code.
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="../img/graph/arc_basic.png" alt="" />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/arc_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic arc diagram you can do in d3.js. Keeping only
+                    the core code.
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="../img/graph/arc_basic.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</body>
+    <!-- ====== Section with some related chart types, using the studied function ============ -->
+    <section
+      class="bg-light"
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <p class="mySeryTitle">
+          Chart types using the <code>xxx()</code> function
+        </p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="chord.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="../img/section/Chord150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Chord diagram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="network.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/section/Network150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Network</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="sankey.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/section/Sankey150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Sankey</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="arc.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="../img/section/Arc150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Arc diagram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="bundle.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/section/Bundle150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Edge bundling</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ CONTACT SECTION ============================ -->
+    <a name="contactanchor"></a>
+    <section id="contact" class="bg" style="background-color: white"></section>
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
+
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
+  </body>
 </html>

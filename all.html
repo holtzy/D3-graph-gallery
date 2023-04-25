@@ -1,1008 +1,1486 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
-<head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
+      gtag("config", "UA-79254642-6");
+    </script>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta charset="utf-8" />
+    <title>All Chart &#124; the D3 Graph Gallery</title>
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="A list of about 300 simple charts made using d3.js, linking to explanation and reproducible code."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,all chart"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="img/logo/D3_single_small.png" />
 
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <meta property="og:title" content="All Chart &#124; the D3 Graph Gallery" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="A list of about 300 simple charts made using d3.js, linking to explanation and reproducible code."
+    />
 
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <!-- Custom fonts for this template -->
+    <link
+      href="vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <!-- Custom styles for this template -->
+    <link href="css/agency.css" rel="stylesheet" />
 
-    gtag('config', 'UA-79254642-6');
-  </script>
+    <!-- JQUERY -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+  </head>
 
-  <meta charset="utf-8">
-  <title>All Chart &#124; the D3 Graph Gallery</title>
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
+      });
+    </script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description"
-    content="A list of about 300 simple charts made using d3.js, linking to explanation and reproducible code.">
-  <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,all chart">
-  <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="img/logo/D3_single_small.png">
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
+    </script>
 
-  <meta property="og:title" content="All Chart &#124; the D3 Graph Gallery">
-  <meta property="og:image" content="img/overview_RGG.png">
-  <meta property="og:description"
-    content="A list of about 300 simple charts made using d3.js, linking to explanation and reproducible code.">
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
-    type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-  <!-- Custom styles for this template -->
-  <link href="css/agency.css" rel="stylesheet">
-
-  <!-- JQUERY -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-
-</head>
-
-
-
-<body id="page-top">
-
-
-  <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-  <script>
-    $(function () {
-      $("#mainNav").load("html_chunk/menu.html");
-    });
-  </script>
-
-  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-  <div id="modal_menu_insertion"> </div>
-  <script>
-    $(function () {
-      $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-    });
-  </script>
-
-
-
-
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-<!-- ======================== PORTFOLIO SECTION ============================ -->  <!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
-  <section class="bg" id="portfolio" style="padding: 30px; background-color: #323232">
-    <div class="row mx-auto">
-
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/area_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic area chart you can do in d3.js. Keeping only the core
-                code.</p>
+    <!-- ======================== PORTFOLIO SECTION ============================ -->
+    <!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+    <section
+      class="bg"
+      id="portfolio"
+      style="padding: 30px; background-color: #323232"
+    >
+      <div class="row mx-auto">
+        <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard">
+          <a class="portfolio-link" href="graph/area_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic area chart you can do in d3.js. Keeping only
+                  the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard" src="img/graph/area_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/density2d_histogram2d.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>2d histogram</p>
-              <hr>
-              <p class="explanation_portfolio">Group two-dimensional points into rectangular bins. Possible thanks to
-                the <code>d3-rectbin</code> plugin.</p>
+            <img
+              class="img-fluid imgBoard"
+              src="img/graph/area_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/density2d_histogram2d.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>2d histogram</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Group two-dimensional points into rectangular bins. Possible
+                  thanks to the <code>d3-rectbin</code> plugin.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/density2d_histogram2d.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/density2d_contour.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Contour plot</p>
-              <hr>
-              <p class="explanation_portfolio">Representation of contour polygons computed using marching squares</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/density2d_histogram2d.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/density2d_contour.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Contour plot</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Representation of contour polygons computed using marching
+                  squares
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/density2d_contour.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/donut_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic donut chart you can do in d3.js. Keeping only the core
-                code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/density2d_contour.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/donut_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic donut chart you can do in d3.js. Keeping only
+                  the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/donut_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/heatmap_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic heatmap you can do in d3.js. Keeping only the core code.
-              </p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/donut_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/heatmap_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic heatmap you can do in d3.js. Keeping only the
+                  core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/heatmap_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/heatmap_tooltip.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Add tooltip to heatmap</p>
-              <hr>
-              <p class="explanation_portfolio">Add a tooltip that displays the exact value of a cell and whatever other
-                text.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/heatmap_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/heatmap_tooltip.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Add tooltip to heatmap</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Add a tooltip that displays the exact value of a cell and
+                  whatever other text.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/heatmap_tooltip.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/heatmap_style.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Ready to go heatmap</p>
-              <hr>
-              <p class="explanation_portfolio">A customized heatmap, include hover effect, custom axis, title, fancy
-                color palette, tooltip and more</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/heatmap_tooltip.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/heatmap_style.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Ready to go heatmap</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  A customized heatmap, include hover effect, custom axis,
+                  title, fancy color palette, tooltip and more
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/heatmap_style.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="https://bost.ocks.org/mike/miserables/">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Visualization of <i>Les Misérables</i></p>
-              <hr>
-              <p class="explanation_portfolio">Interactive heatmap with possible switch in group order</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/heatmap_style.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="https://bost.ocks.org/mike/miserables/"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Visualization of <i>Les Misérables</i></p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Interactive heatmap with possible switch in group order
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/block_heatmap_miserables.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/area_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic area chart you can do in d3.js. Keeping only the core
-                code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/block_heatmap_miserables.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/area_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic area chart you can do in d3.js. Keeping only
+                  the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/area_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/histogram_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic histogram you can do in d3.js. Keeping only the core code.
-              </p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/area_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/histogram_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic histogram you can do in d3.js. Keeping only the
+                  core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/histogram_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/histogram_coloredTail.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Color a specific part</p>
-              <hr>
-              <p class="explanation_portfolio">Use a simple <code>if - else</code> statement to color a part of the
-                histogram.<br><br>Also show how to add a vertical bar annotation.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/histogram_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/histogram_coloredTail.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Color a specific part</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Use a simple <code>if - else</code> statement to color a part
+                  of the histogram.<br /><br />Also show how to add a vertical
+                  bar annotation.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/histogram_coloredTail.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/histogram_double.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Double histogram</p>
-              <hr>
-              <p class="explanation_portfolio">A double histogram can be handy to compare the distribution of 2
-                variables.<br><br>Good to see how the <code>filter()</code> function works.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/histogram_coloredTail.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/histogram_double.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Double histogram</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  A double histogram can be handy to compare the distribution of
+                  2 variables.<br /><br />Good to see how the
+                  <code>filter()</code> function works.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/histogram_double.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/histogram_binSize.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Button to control bin size</p>
-              <hr>
-              <p class="explanation_portfolio">Add a button that controls bin size. Good example to learn how to create
-                an update function that also update an axis.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/histogram_double.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/histogram_binSize.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Button to control bin size</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Add a button that controls bin size. Good example to learn how
+                  to create an update function that also update an axis.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/histogram_binSize.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/histogram_tooltip.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Add tooltip</p>
-              <hr>
-              <p class="explanation_portfolio">Useful to get the threshold of each bar range. Needs to be improved
-                though.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/histogram_binSize.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/histogram_tooltip.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Add tooltip</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Useful to get the threshold of each bar range. Needs to be
+                  improved though.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/histogram_tooltip.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/tooltip_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic tooltip you can do in d3.js.<br>It just create one tooltip
-                for one circle</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/histogram_tooltip.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/tooltip_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic tooltip you can do in d3.js.<br />It just
+                  create one tooltip for one circle
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/tooltip_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/interactivity_tooltip.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>HTML in tooltip</p>
-              <hr>
-              <p class="explanation_portfolio">Learn how to customize your tooltip: you can apply any html code to it!
-              </p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/tooltip_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/interactivity_tooltip.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>HTML in tooltip</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Learn how to customize your tooltip: you can apply any html
+                  code to it!
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/tooltip_html.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/scatter_tooltip.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Tooltip linked with data</p>
-              <hr>
-              <p class="explanation_portfolio">This example shows how to create a tooltip that is different for each
-                datapoint</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/tooltip_html.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/scatter_tooltip.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Tooltip linked with data</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  This example shows how to create a tooltip that is different
+                  for each datapoint
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_tooltip.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/interactivity_brush.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Brushing</p>
-              <hr>
-              <p class="explanation_portfolio">How to apply brushing on a chart to select dots.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_tooltip.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/interactivity_brush.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Brushing</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  How to apply brushing on a chart to select dots.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_brush.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/interactivity_button.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>HTML button types</p>
-              <hr>
-              <p class="explanation_portfolio">HTML natively offers different types of button: here is a description of
-                them with the associated code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_brush.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/interactivity_button.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>HTML button types</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  HTML natively offers different types of button: here is a
+                  description of them with the associated code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/interactivity_button.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/histogram_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic transition you can do in d3.js.<br>It just modify the
-                width attribute of a div using d3.js, keeping only the core code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/interactivity_button.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/histogram_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic transition you can do in d3.js.<br />It just
+                  modify the width attribute of a div using d3.js, keeping only
+                  the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/transition_basic.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/transition_pipe.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Pipe several transition</p>
-              <hr>
-              <p class="explanation_portfolio">Run several transitions one after another. Involves different attributes
-                like color and width.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/transition_basic.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/transition_pipe.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Pipe several transition</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Run several transitions one after another. Involves different
+                  attributes like color and width.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/transition_pipe.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="https://www.d3-graph-gallery.com/interactivity.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Progressive transition</p>
-              <hr>
-              <p class="explanation_portfolio">This example applies a different <code>delay</code> to each element. It
-                gives a progressive transition where elements start moving one by one.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/transition_pipe.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="https://www.d3-graph-gallery.com/interactivity.html"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Progressive transition</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  This example applies a different <code>delay</code> to each
+                  element. It gives a progressive transition where elements
+                  start moving one by one.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/transition_delay.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/line_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic line chart you can do in d3.js. Keeping only the core
-                code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/transition_delay.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/line_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic line chart you can do in d3.js. Keeping only
+                  the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/line_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/line_several_group.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Several groups</p>
-              <hr>
-              <p class="explanation_portfolio">Learn how to represent several groups on the line plot. This requires to
-                group the data using the d3.nest function.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/line_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/line_several_group.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Several groups</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Learn how to represent several groups on the line plot. This
+                  requires to group the data using the d3.nest function.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/line_several_group.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/line_change_data.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Transition between input data</p>
-              <hr>
-              <p class="explanation_portfolio">Add a button that allows to go from one dataset to another with a smooth
-                transition. Useful to understand how to build a <code>update()</code> function.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/line_several_group.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/line_change_data.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Transition between input data</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Add a button that allows to go from one dataset to another
+                  with a smooth transition. Useful to understand how to build a
+                  <code>update()</code> function.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/line_change_data.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/lollipop_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic lollipop chart you can do in d3.js. Keeping only the core
-                code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/line_change_data.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/lollipop_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic lollipop chart you can do in d3.js. Keeping
+                  only the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/lollipop_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/lollipop_horizontal.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Turn it horizontal</p>
-              <hr>
-              <p class="explanation_portfolio">Lollipop plot often looks better horizontal: it makes label easier to be
-                read. Find how to do it!</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/lollipop_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/lollipop_horizontal.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Turn it horizontal</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Lollipop plot often looks better horizontal: it makes label
+                  easier to be read. Find how to do it!
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/lollipop_horizontal.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/lollipop_ordered.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Order groups</p>
-              <hr>
-              <p class="explanation_portfolio">Give more insight to your chart: reorder groups with just 3 more lines of
-                code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/lollipop_horizontal.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/lollipop_ordered.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Order groups</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Give more insight to your chart: reorder groups with just 3
+                  more lines of code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/lollipop_ordered.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/lollipop_cleveland.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Cleveland dot plot</p>
-              <hr>
-              <p class="explanation_portfolio">A variation of the lollipop where 2 data series are available for each
-                group.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/lollipop_ordered.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/lollipop_cleveland.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Cleveland dot plot</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  A variation of the lollipop where 2 data series are available
+                  for each group.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/lollipop_cleveland.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/lollipop_animationStart.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Basic animation at loading</p>
-              <hr>
-              <p class="explanation_portfolio">Points start at x=0 and then take their real position.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/lollipop_cleveland.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/lollipop_animationStart.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Basic animation at loading</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Points start at x=0 and then take their real position.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/lollipop_animationStart.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/network_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic network graph you can do in d3.js. Keeping only the core
-                code.<br><br>Input format: Json</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/lollipop_animationStart.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/network_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic network graph you can do in d3.js. Keeping only
+                  the core code.<br /><br />Input format: Json
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/network_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/parallel_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic Parallel Coordinates chart you can do in d3.js. Keeping
-                only the core code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/network_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/parallel_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic Parallel Coordinates chart you can do in d3.js.
+                  Keeping only the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/parallel_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/pie_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic pie chart you can do in d3.js. Keeping only the core code.
-              </p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/parallel_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/pie_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic pie chart you can do in d3.js. Keeping only the
+                  core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/pie_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/ridgeline_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic ridgeline chart you can do in d3.js. Keeping only the core
-                code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/pie_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/ridgeline_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic ridgeline chart you can do in d3.js. Keeping
+                  only the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/ridgeline_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="https://bl.ocks.org/armollica/3b5f83836c1de5cca7b1d35409a013e3">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Pick time of day for sports</p>
-              <hr>
-              <p class="explanation_portfolio">A good looking ridgeline plot by Andrew Mollica showing the umber of
-                participants for a few sports throughout the day.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/ridgeline_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="https://bl.ocks.org/armollica/3b5f83836c1de5cca7b1d35409a013e3"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Pick time of day for sports</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  A good looking ridgeline plot by Andrew Mollica showing the
+                  umber of participants for a few sports throughout the day.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard showBlock" src="img/block/block_ridgeline.png"
-            alt="circular barchart">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="https://beta.observablehq.com/@mbostock/d3-ridgeline-plot">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Ridge line or Joy plot</p>
-              <hr>
-              <p class="explanation_portfolio">An implementation by Mike Bostock. <br><br>Use d3.v5. It is an observable
-                notebooks -> even better.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard showBlock"
+              src="img/block/block_ridgeline.png"
+              alt="circular barchart"
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="https://beta.observablehq.com/@mbostock/d3-ridgeline-plot"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Ridge line or Joy plot</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  An implementation by Mike Bostock. <br /><br />Use d3.v5. It
+                  is an observable notebooks -> even better.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard showBlock" src="img/block/block_ridgelineMBostock.png"
-            alt="circular barchart">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/sankey_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic sankey diagram you can do in d3.js. Keeping only the core
-                code.<br><br>Input data format: Json</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard showBlock"
+              src="img/block/block_ridgelineMBostock.png"
+              alt="circular barchart"
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/sankey_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic sankey diagram you can do in d3.js. Keeping
+                  only the core code.<br /><br />Input data format: Json
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/sankey_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="https://beta.observablehq.com/@mbostock/d3-sankey-diagram">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Energy production flow</p>
-              <hr>
-              <p class="explanation_portfolio">UK energy production and consumption in 2050: energy supplies are on the
-                left, and demands are on the right</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/sankey_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="https://beta.observablehq.com/@mbostock/d3-sankey-diagram"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Energy production flow</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  UK energy production and consumption in 2050: energy supplies
+                  are on the left, and demands are on the right
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/block_sankey.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/scatter_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic scatterplot you can do in d3.js. Keeping only the core
-                code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/block_sankey.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/scatter_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic scatterplot you can do in d3.js. Keeping only
+                  the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/scatter_tooltip.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Add tooltips</p>
-              <hr>
-              <p class="explanation_portfolio">Add a tooltip that appears beside each datapoint when you hover it</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/scatter_tooltip.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Add tooltips</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Add a tooltip that appears beside each datapoint when you
+                  hover it
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_tooltip.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/scatter_grouped.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">Basic grouped scatterplot: each group has a different color.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_tooltip.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/scatter_grouped.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Basic grouped scatterplot: each group has a different color.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_grouped.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/scatter_grouped_highlight.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Highlight a group</p>
-              <hr>
-              <p class="explanation_portfolio">Highlight a group of point when one of its member is hovered</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_grouped.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/scatter_grouped_highlight.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Highlight a group</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Highlight a group of point when one of its member is hovered
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_grouped_highlight.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/scatter_animation_start.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Animation at start</p>
-              <hr>
-              <p class="explanation_portfolio">Make the dots appear one after the other using a different delay for
-                each.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_grouped_highlight.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/scatter_animation_start.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Animation at start</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Make the dots appear one after the other using a different
+                  delay for each.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_animation_start.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/scatter_brush.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Brush</p>
-              <hr>
-              <p class="explanation_portfolio">Learn how to allow brushing, and how to modify points in the brush area
-              </p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_animation_start.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/scatter_brush.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Brush</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Learn how to allow brushing, and how to modify points in the
+                  brush area
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_brush.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/scatter_buttonXlim.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Update X axis limits</p>
-              <hr>
-              <p class="explanation_portfolio">A button control the X axis upper limit and trigger a smooth transition
-                to the new limit</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_brush.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/scatter_buttonXlim.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Update X axis limits</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  A button control the X axis upper limit and trigger a smooth
+                  transition to the new limit
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/scatter_buttonXlim.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="https://github.com/alangrafu/radar-chart-d3">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Initial radar chart function</p>
-              <hr>
-              <p class="explanation_portfolio">Alvaro Graves was the first building a function for radar
-                chart.<br><br>Click to visit the github repo and find a few examples.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/scatter_buttonXlim.gif"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="https://github.com/alangrafu/radar-chart-d3"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Initial radar chart function</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Alvaro Graves was the first building a function for radar
+                  chart.<br /><br />Click to visit the github repo and find a
+                  few examples.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/block_spider_alangrafu.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="http://bl.ocks.org/nbremer/21746a9668ffdf6d8242">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Radar Chart Redesign</p>
-              <hr>
-              <p class="explanation_portfolio">Nadieh Bremer revisited the previous chart with a more straightforward
-                code and a different look.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/block_spider_alangrafu.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="http://bl.ocks.org/nbremer/21746a9668ffdf6d8242"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Radar Chart Redesign</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Nadieh Bremer revisited the previous chart with a more
+                  straightforward code and a different look.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/block_spider_bremer.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/stackedarea_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Basic from long input</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic stacked area chart you can do in d3.js. Keeping only the
-                core code.<br><br>Input format:long (tidy)</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/block_spider_bremer.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/stackedarea_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Basic from long input</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic stacked area chart you can do in d3.js. Keeping
+                  only the core code.<br /><br />Input format:long (tidy)
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/stackedarea_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/stackedarea_wideinput.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Basic from wide input</p>
-              <hr>
-              <p class="explanation_portfolio">Another basic stacked area chart made in d3.js.<br><br>Note that here the
-                input format is wide (untidy): each group is provided in a specific column.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/stackedarea_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/stackedarea_wideinput.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Basic from wide input</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Another basic stacked area chart made in d3.js.<br /><br />Note
+                  that here the input format is wide (untidy): each group is
+                  provided in a specific column.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/stackedarea_wideinput.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/streamgraph_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic streamgraph you can do in d3.js. Keeping only the core
-                code.<br><br>Input format: wide (untidy)</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/stackedarea_wideinput.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/streamgraph_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic streamgraph you can do in d3.js. Keeping only
+                  the core code.<br /><br />Input format: wide (untidy)
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/streamgraph_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/treemap_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic treemap you can do in d3.js. Only one level of a hierarchy
-                is represented.<br><br>Input: csv format</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/streamgraph_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/treemap_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic treemap you can do in d3.js. Only one level of
+                  a hierarchy is represented.<br /><br />Input: csv format
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/treemap_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/violin_basicHist.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Violin chart</p>
-              <hr>
-              <p class="explanation_portfolio">Here a smoothing function is used to transformed the mirror histogram in
-                a violin plot.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/treemap_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/violin_basicHist.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Violin chart</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Here a smoothing function is used to transformed the mirror
+                  histogram in a violin plot.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/violin_basicHist1.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/violin_basicHist.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Variation: no smoothing</p>
-              <hr>
-              <p class="explanation_portfolio">A variation of the previous chart without any smoothing</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/violin_basicHist1.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/violin_basicHist.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Variation: no smoothing</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  A variation of the previous chart without any smoothing
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/violin_basicHist2.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/violin_basicHist.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Variation: show steps</p>
-              <hr>
-              <p class="explanation_portfolio">Here the curveStep function is used to interpolate values: it reveals the
-                underlying histogram structure.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/violin_basicHist2.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/violin_basicHist.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Variation: show steps</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Here the curveStep function is used to interpolate values: it
+                  reveals the underlying histogram structure.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/violin_basicHist3.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/violin_basicDens.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic violin chart you can do in d3.js. Keeping only the core
-                code.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/violin_basicHist3.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/violin_basicDens.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic violin chart you can do in d3.js. Keeping only
+                  the core code.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/violin_basicDens.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/violin_jitter.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Violin with jitter</p>
-              <hr>
-              <p class="explanation_portfolio">Half of the violin is removed to show the single observations. Jittering
-                is used to avoid dots overlap.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/violin_basicDens.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/violin_jitter.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Violin with jitter</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Half of the violin is removed to show the single observations.
+                  Jittering is used to avoid dots overlap.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/violin_jitter.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="https://bl.ocks.org/KingOfCramers/f019d2b34a3e8f8da307958b0d9e30cf">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Violin Chart</p>
-              <hr>
-              <p class="explanation_portfolio">Short code building a violin chart from 3 dummy arrays.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/violin_jitter.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="https://bl.ocks.org/KingOfCramers/f019d2b34a3e8f8da307958b0d9e30cf"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Violin Chart</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Short code building a violin chart from 3 dummy arrays.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard showBlock" style="opacity: 0.6"
-            src="img/block/block_violin1.png" alt="circular barchart">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="http://bl.ocks.org/asielen/d15a4f16fa618273e10f">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Violin + boxplot</p>
-              <hr>
-              <p class="explanation_portfolio">Implementation by Andrew Sielen, with button to understand how to custom
-                each part of the char.</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard showBlock"
+              style="opacity: 0.6"
+              src="img/block/block_violin1.png"
+              alt="circular barchart"
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a
+            class="portfolio-link"
+            href="http://bl.ocks.org/asielen/d15a4f16fa618273e10f"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Violin + boxplot</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Implementation by Andrew Sielen, with button to understand how
+                  to custom each part of the char.
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard showBlock" style="opacity: 0.6"
-            src="img/block/block_violin2.png" alt="circular barchart">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/wordcloud_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic wordcloud you can do in d3.js. It calls the
-                <code>d3-cloud</code> plugin without any argument.<br><br>Input data: vector written in code</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard showBlock"
+              style="opacity: 0.6"
+              src="img/block/block_violin2.png"
+              alt="circular barchart"
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/wordcloud_basic.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Most basic</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  The most basic wordcloud you can do in d3.js. It calls the
+                  <code>d3-cloud</code> plugin without any argument.<br /><br />Input
+                  data: vector written in code
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/wordcloud_basic.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/wordcloud_custom.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>General customization</p>
-              <hr>
-              <p class="explanation_portfolio">Apply basic customization to the wordcloud: color, angles, font, size and
-                more.<br><br>Input data: vector written in code</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/wordcloud_basic.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/wordcloud_custom.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>General customization</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  Apply basic customization to the wordcloud: color, angles,
+                  font, size and more.<br /><br />Input data: vector written in
+                  code
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard" src="img/graph/wordcloud_custom.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard">
-        <a class="portfolio-link" href="graph/wordcloud_size.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Proportional size</p>
-              <hr>
-              <p class="explanation_portfolio">This post will teach you how to make the word size proportional to their
-                occurrence.<br><br>Input data: vector written in code</p>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard"
+              src="img/graph/wordcloud_custom.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="col-md-4 col-sm-6 portfolio-item col-lg-2 colBoard col-lg-2 colBoard col-lg-2 colBoard"
+        >
+          <a class="portfolio-link" href="graph/wordcloud_size.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Proportional size</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  This post will teach you how to make the word size
+                  proportional to their occurrence.<br /><br />Input data:
+                  vector written in code
+                </p>
+              </div>
             </div>
-          </div>
-          <img class="img-fluid imgBoard imgBoard imgBoard imgBoard" src="img/graph/wordcloud_size.png" alt="">
-        </a>
+            <img
+              class="img-fluid imgBoard imgBoard imgBoard imgBoard"
+              src="img/graph/wordcloud_size.png"
+              alt=""
+            />
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <style>
+      .colBoard {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
 
-  <style>
-    .colBoard {
-      padding-right: 15px;
-      padding-left: 15px;
-    }
+      .imgBoard {
+        border-radius: 10px;
+        border: 1px solid black;
+      }
+    </style>
 
-    .imgBoard {
-      border-radius: 10px;
-      border: 1px solid black;
-    }
-  </style>
+    <!-- ======================================================================= -->
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
-  <!-- ======================================================================= -->
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
 
+    <!-- ============================ -->
 
+    <!-- =============== JAVASCRIPT SECTION =============== -->
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
 
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>
 
-  <!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
 
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-  <section id="contact" class="bg" style="background-color: white"></section>
-
-  <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-  <script>
-    $(function () {
-      $("#contact").load("html_chunk/contact.html");
-    });
-  </script>
-
-
-
-
-
-  <!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ -->  <footer class="bg-light" id="myFooter"></footer>
-
-  <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-  <script>
-    $(function () {
-      $("#myFooter").load("html_chunk/footer.html");
-    });
-  </script>
-
-  <!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- =============== JAVASCRIPT SECTION =============== -->
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Contact form JavaScript -->
-  <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="js/agency.min.js"></script>
-
-  <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-  <script>
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-  </script>
-
-
-
-
-
-  <!--============================== -->
-
-
-
-</body>
-
+    <!--============================== -->
+  </body>
 </html>

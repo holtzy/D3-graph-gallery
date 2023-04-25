@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Drawing axis in d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Drawing axis with d3.js: many examples describing the different types of axis and how to custom them. Reproducible and interactive code provided.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Drawing axis with d3.js: many examples describing the different types of axis and how to custom them. Reproducible and interactive code provided."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Drawing axis with d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Drawing axis with d3.js: many examples describing the different types of axis and how to custom them. Reproducible and interactive code provided.">
+    <meta property="og:title" content="Drawing axis with d3.js" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="Drawing axis with d3.js: many examples describing the different types of axis and how to custom them. Reproducible and interactive code provided."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -71,123 +74,126 @@
     <!-- Bootstrap js -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/agency.min.js"></script>
-
   </head>
 
-
-
-
   <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-    $(function(){
-      $("#mainNav").load("../html_chunk/menu.html");
-    });
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-    $(function(){
-      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-    });
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
     </script>
-
-
 
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>Drawing axis in d3.js</h1>
-          <hr class="short_hr">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to draw <u>axis</u> with d3.js. Different <u>scale types</u> are described first, followed by <u>customization</u> possibilities. It is composed by several <u>interactive examples</u>, allowing to play with the code to understand better how it works.</p>
+        <h1>Drawing axis in d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          This is document gives a few insights on how to draw <u>axis</u> with
+          d3.js. Different <u>scale types</u> are described first, followed by
+          <u>customization</u> possibilities. It is composed by several
+          <u>interactive examples</u>, allowing to play with the code to
+          understand better how it works.
+        </p>
       </div>
     </header>
 
-
-
-
     <!-- TABLE of CONTENT -->
     <div>
-        <nav class="col-sm-3 col-4" id="myScrollspy">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#linear">Linear axis - <i><span style="color: #C8C8C8">scaleLinear()</span></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#log">Log scale - <i><span style="color: #C8C8C8">scaleLog()</span></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#scalepoint">Categoric axis - <i><span style="color: #C8C8C8">scalePoint()</span></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#scaleband">Categoric axis - <i><span style="color: #C8C8C8">scaleBand()</span></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#verticalAxis">Vertical axis</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#axislabels">Custom axis labels</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#axistitles">Custom axis titles</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#other">More customization</a>
-            </li>
-          </ul>
-        </nav>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#linear"
+              >Linear axis -
+              <i><span style="color: #c8c8c8">scaleLinear()</span></i></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#log"
+              >Log scale -
+              <i><span style="color: #c8c8c8">scaleLog()</span></i></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#scalepoint"
+              >Categoric axis -
+              <i><span style="color: #c8c8c8">scalePoint()</span></i></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#scaleband"
+              >Categoric axis -
+              <i><span style="color: #c8c8c8">scaleBand()</span></i></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#verticalAxis">Vertical axis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#axislabels">Custom axis labels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#axistitles">Custom axis titles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#other">More customization</a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
+    <!-- ==================== BASIC LINEAR AXIS ==================== -->
 
+    <section id="linear">
+      <div class="container">
+        <h1>Basic linear axis with <code>scaleLinear()</code></h1>
+        <hr />
+        <p>
+          Let's start with the most common type of axis: the linear axis.
+          Basically, the idea is to map a numeric variable to the axis. It is
+          used in most of chart types, like
+          <a href="../scatter.html">scatterplot</a> or
+          <a href="../histogram.html">histogram</a>.
+        </p>
+        <p>
+          Here is the code allowing to add a linear axis in a
+          <code>div</code> that has the id <code>res</code> (html code not shown
+          here).
+        </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== BASIC LINEAR AXIS ==================== -->
-
-  <section id="linear">
-  <div class="container" >
-
-    <h1>Basic linear axis with <code>scaleLinear()</code></h1>
-    <hr>
-    <p>Let's start with the most common type of axis: the linear axis. Basically, the idea is to map a numeric variable to the axis. It is used in most of chart types, like <a href="../scatter.html">scatterplot</a> or <a href="../histogram.html">histogram</a>.</p>
-    <p>Here is the code allowing to add a linear axis in a <code>div</code> that has the id <code>res</code> (html code not shown here).</p>
-
-
-      <div>
-        <pre class="language-js"><code id="code-basic-linear" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code-basic-linear" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#res")
   .append("svg")
     .attr("width", 1000)
@@ -202,53 +208,50 @@ svg
   .append("g")
   .attr("transform", "translate(0,50)")      // This controls the vertical position of the Axis
   .call(d3.axisBottom(x));</xmp></code></pre>
+        </div>
+
+        <div id="res"></div>
       </div>
+    </section>
 
-      <div id="res"></div>
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-basic-linear");
+      document
+        .getElementById("code-basic-linear")
+        .addEventListener("input", function () {
+          d3.select("#res").html("");
+          myJSParser("code-basic-linear", "result");
+        });
+    </script>
 
-  </div>
-</section>
+    <!-- ================================================================================= -->
 
+    <br /><br />
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-basic-linear')
-document.getElementById('code-basic-linear').addEventListener("input", function() {
-  d3.select('#res').html("");
-  myJSParser('code-basic-linear', 'result');
-})
-</script>
+    <br /><br />
 
+    <!-- ==================== LOG SCALE ==================== -->
 
-<!-- ================================================================================= -->
+    <section id="log">
+      <div class="container">
+        <h1>Log scale with <code>scaleLog()</code></h1>
+        <hr />
+        <p></p>
+        <p>
+          Very similar to linear scales above,but applies a logarithmic
+          transform to the input domain value before the output range value is
+          computed.
+        </p>
+        <p>
+          <u>Note:</u> log(0)=-∞, thus the <code>domain</code> must be strictly
+          positive or strictly negative.
+        </p>
 
-
-
-
-<br><br>
-
-
-
-
-
-
-
-
-<br><br>
-
-<!-- ==================== LOG SCALE ==================== -->
-
-<section id="log">
-  <div class="container" >
-
-    <h1>Log scale with <code>scaleLog()</code></h1>
-    <hr>
-    <p></p>
-    <p>Very similar to linear scales above,but applies a logarithmic transform to the input domain value before the output range value is computed.</p>
-    <p><u>Note:</u> log(0)=-∞, thus the <code>domain</code> must be strictly positive or strictly negative.</p>
-
-      <div>
-        <pre class="language-js"><code id="code_log_demo" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code_log_demo" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#log_demo")
   .append("svg")
   .attr("width", 1000)
@@ -268,53 +271,43 @@ svg
 
 
 </xmp></code></pre>
+        </div>
+
+        <div id="log_demo"></div>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code_log_demo");
+      document
+        .getElementById("code_log_demo")
+        .addEventListener("input", function () {
+          d3.select("#log_demo").html("");
+          myJSParserShort("code_log_demo");
+        });
+    </script>
 
-      <div id="log_demo"></div>
+    <!-- ================================================================================= -->
 
-  </div>
-</section>
+    <br /><br />
 
+    <!-- ==================== SCALE POINT ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code_log_demo')
-document.getElementById('code_log_demo').addEventListener("input", function() {
-  d3.select('#log_demo').html("");
-  myJSParserShort('code_log_demo');
-})
-</script>
+    <section id="scalepoint">
+      <div class="container">
+        <h1>Categoric axis with <code>scalePoint()</code></h1>
+        <hr />
+        <p></p>
+        <p>
+          Here is the Javascript code allowing to add a linear axis in a div
+          that has the id 'res'.
+        </p>
 
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-
-<!-- ==================== SCALE POINT ==================== -->
-
-<section id="scalepoint">
-  <div class="container" >
-
-    <h1>Categoric axis with <code>scalePoint()</code></h1>
-    <hr>
-    <p></p>
-    <p>Here is the Javascript code allowing to add a linear axis in a div that has the id 'res'.</p>
-
-      <div>
-        <pre class="language-js"><code id="code_ordinal_demo" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code_ordinal_demo" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#ordinal_demo")
   .append("svg")
   .attr("width", 1000)
@@ -339,49 +332,48 @@ svg
   .attr("r", 8)
 
 </xmp></code></pre>
+        </div>
+
+        <div id="ordinal_demo"></div>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code_ordinal_demo");
+      document
+        .getElementById("code_ordinal_demo")
+        .addEventListener("input", function () {
+          d3.select("#ordinal_demo").html("");
+          myJSParserShort("code_ordinal_demo");
+        });
+    </script>
 
-      <div id="ordinal_demo"></div>
+    <!-- ================================================================================= -->
 
-  </div>
-</section>
+    <br /><br />
 
+    <!-- ==================== SCALE BAND ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code_ordinal_demo')
-document.getElementById('code_ordinal_demo').addEventListener("input", function() {
-  d3.select('#ordinal_demo').html("");
-  myJSParserShort('code_ordinal_demo');
-})
-</script>
+    <section id="scaleband">
+      <div class="container">
+        <h1>Categoric axis with <code>scaleBand</code></h1>
+        <hr />
+        <p>
+          The <code>scaleBand()</code> function is ideal to build categorical
+          axis. It is thus useful for common charts like
+          <a href="../barplot.html">barplot</a> or
+          <a href="../boxplot.html">boxplot</a>.
+        </p>
+        <p>
+          Here is the Javascript code allowing to add a categoric axis in a div
+          that has the id 'res'.
+        </p>
 
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-<br><br>
-
-<!-- ==================== SCALE BAND ==================== -->
-
-<section id="scaleband">
-  <div class="container" >
-
-    <h1>Categoric axis with <code>scaleBand</code></h1>
-    <hr>
-    <p>The <code>scaleBand()</code> function is ideal to build categorical axis. It is thus useful for common charts like <a href="../barplot.html">barplot</a> or <a href="../boxplot.html">boxplot</a>.</p>
-    <p>Here is the Javascript code allowing to add a categoric axis in a div that has the id 'res'.
-
-      <div>
-        <pre class="language-js"><code id="code_band_demo" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code_band_demo" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#band_demo")
   .append("svg")
     .attr("width", 1000)
@@ -410,52 +402,39 @@ svg
     .style("opacity", 0.5)
 
 </xmp></code></pre>
+        </div>
+
+        <div id="band_demo"></div>
+
+        <script>
+          // Read the JS fragment at the beginning. Read it again if it changes
+          myJSParserShort("code_band_demo");
+          document
+            .getElementById("code_band_demo")
+            .addEventListener("input", function () {
+              d3.select("#band_demo").html("");
+              myJSParserShort("code_band_demo");
+            });
+        </script>
       </div>
+    </section>
 
-      <div  id="band_demo"></div>
+    <!-- ================================================================================= -->
 
+    <br /><br />
 
+    <!-- ==================== VERTICAL AXIS ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code_band_demo')
-document.getElementById('code_band_demo').addEventListener("input", function() {
-  d3.select('#band_demo').html("");
-  myJSParserShort('code_band_demo');
-})
-</script>
+    <section id="verticalAxis">
+      <div class="container">
+        <h1>Vertical axis with <code>axisLeft</code></h1>
+        <hr />
+        <p>All the scale described above can be set vertically.</p>
 
-
-</div>
-</section>
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-<br><br>
-
-
-
-
-
-
-<!-- ==================== VERTICAL AXIS ==================== -->
-
-<section id="verticalAxis">
-  <div class="container" >
-
-    <h1>Vertical axis with <code>axisLeft</code></h1>
-    <hr>
-    <p>All the scale described above can be set vertically.</p>
-
-
-      <div>
-        <pre class="language-js"><code id="code-vertical" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code-vertical" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#vertical")
   .append("svg")
     .attr("width", 1000)
@@ -471,49 +450,42 @@ svg
   .append("g")
   .attr("transform", "translate(50,0)")      // This controls the vertical position of the Axis
   .call(d3.axisLeft(y));</xmp></code></pre>
+        </div>
+
+        <div id="vertical"></div>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-vertical");
+      document
+        .getElementById("code-vertical")
+        .addEventListener("input", function () {
+          d3.select("#vertical").html("");
+          myJSParserShort("code-vertical");
+        });
+    </script>
 
-      <div id="vertical"></div>
+    <!-- ================================================================================= -->
 
-  </div>
-</section>
+    <br /><br />
 
+    <!-- ==================== ROTATE ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-vertical')
-document.getElementById('code-vertical').addEventListener("input", function() {
-  d3.select('#vertical').html("");
-  myJSParserShort('code-vertical');
-})
-</script>
+    <section id="axislabels">
+      <div class="container">
+        <h1>Rotate and custom axis labels</h1>
+        <hr />
+        <p>
+          It is sometimes useful to rotate the labels of an axis, especially
+          when this labels are quite long.
+        </p>
 
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-<br><br>
-
-
-
-
-<!-- ==================== ROTATE ==================== -->
-
-  <section id="axislabels">
-  <div class="container" >
-
-    <h1>Rotate and custom axis labels</h1>
-    <hr>
-    <p>It is sometimes useful to rotate the labels of an axis, especially when this labels are quite long.</p>
-
-
-      <div>
-        <pre class="language-js"><code id="code-rotate" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code-rotate" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#rotate")
   .append("svg")
     .attr("width", 1000)
@@ -535,53 +507,43 @@ svg
     .style("font-size", 20)
     .style("fill", "#69a3b2")
 </xmp></code></pre>
+        </div>
+
+        <div id="rotate"></div>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-rotate");
+      document
+        .getElementById("code-rotate")
+        .addEventListener("input", function () {
+          d3.select("#rotate").html("");
+          myJSParserShort("code-rotate");
+        });
+    </script>
 
-      <div id="rotate"></div>
+    <!-- ================================================================================= -->
 
-  </div>
-</section>
+    <br /><br />
 
+    <!-- ==================== AXIS TITLE ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-rotate')
-document.getElementById('code-rotate').addEventListener("input", function() {
-  d3.select('#rotate').html("");
-  myJSParserShort('code-rotate');
-})
-</script>
+    <section id="axistitles">
+      <div class="container">
+        <h1>Axis titles</h1>
+        <hr />
+        <p>
+          Axis titles aren't built-in to D3's axis component, but are essential
+          for a chart. You can add titles yourself simply by adding an svg
+          <code>text</code> element. As shown in the chart below:
+        </p>
 
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-
-
-
-<!-- ==================== AXIS TITLE ==================== -->
-
-  <section id="axistitles">
-  <div class="container" >
-
-    <h1>Axis titles</h1>
-    <hr>
-    <p>Axis titles aren't built-in to D3's axis component, but are essential for a chart. You can add titles yourself simply by adding an svg <code>text</code> element. As shown in the chart below:</p>
-
-
-      <div>
-        <pre class="language-js"><code id="code-title" contenteditable="true"><xmp>// set the dimensions and margins of the graph
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code-title" contenteditable="true"><xmp>// set the dimensions and margins of the graph
 var margin = {top: 20, right: 20, bottom: 40, left: 60},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
@@ -624,259 +586,212 @@ svg.append("text")
     .text("Y axis title")
 
 </xmp></code></pre>
+        </div>
+
+        <center><div id="title"></div></center>
+
+        <br /><br />
+        <p>
+          <u>Note</u>: The Y axis title uses a 90° rotation to be readable. It
+          causes the whole coordinate system to rotate. Thus <code>x</code> and
+          <code>y</code> attributes for positioning are really tricky to set up
+          properly.
+        </p>
+        <p>
+          <u>Note</u>: Check the way margins are handled in this example. This
+          is a very common way to proceed in d3.js, as described in
+          <a href="">this post</a>.
+        </p>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-title");
+      document
+        .getElementById("code-title")
+        .addEventListener("input", function () {
+          d3.select("#title").html("");
+          myJSParserShort("code-title");
+        });
+    </script>
 
-      <center><div id="title"></div></center>
+    <!-- ================================================================================= -->
 
+    <br /><br />
 
-<br><br>
-<p><u>Note</u>: The Y axis title uses a 90° rotation to be readable. It causes the whole coordinate system to rotate. Thus <code>x</code> and <code>y</code> attributes for positioning are really tricky to set up properly.</p>
-<p><u>Note</u>: Check the way margins are handled in this example. This is a very common way to proceed in d3.js, as described in <a href="">this post</a>.</p>
+    <!-- ==================== USUAL CUSTOMIZATION ==================== -->
 
-  </div>
-</section>
+    <section id="other">
+      <div class="container">
+        <h1>Other usual customization</h1>
+        <hr />
+        <p>
+          This is my cheat sheet for usual customization I perform on my charts:
+        </p>
 
-
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-title')
-document.getElementById('code-title').addEventListener("input", function() {
-  d3.select('#title').html("");
-  myJSParserShort('code-title');
-})
-</script>
-
-
-<!-- ================================================================================= -->
-
-
-
-
-<br><br>
-
-
-
-<!-- ==================== USUAL CUSTOMIZATION ==================== -->
-
-  <section id="other">
-  <div class="container" >
-
-    <h1>Other usual customization</h1>
-    <hr>
-    <p>This is my cheat sheet for usual customization I perform on my charts:</p>
-
-
-<h6>Remove ticks</h6>
-<pre class="language-js">
+        <h6>Remove ticks</h6>
+        <pre class="language-js">
 svg.append("g")
   .call(d3.axisBottom(x).tickSize(0))
-</pre>
-<br>
+</pre
+        >
+        <br />
 
-<h6>Control which ticks are written</h6>
-<pre class="language-js">
+        <h6>Control which ticks are written</h6>
+        <pre class="language-js">
 svg.append("g")
   .call(d3.axisBottom(x).tickValues(["A", "B", "C"]))
-</pre>
-<br>
+</pre
+        >
+        <br />
 
-<h6>Control the number of ticks approximatively</h6>
-<pre class="language-js">
+        <h6>Control the number of ticks approximatively</h6>
+        <pre class="language-js">
 var yAxis = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
-</pre>
-<br>
+</pre
+        >
+        <br />
 
-<h6>Remove the last tick of the axis</h6>
-<pre class="language-js">
+        <h6>Remove the last tick of the axis</h6>
+        <pre class="language-js">
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x).tickSizeOuter(0))
-</pre>
-<br>
+</pre
+        >
+        <br />
 
-<h6>Remove the main bar of the axis</h6>
-<pre class="language-js">
+        <h6>Remove the main bar of the axis</h6>
+        <pre class="language-js">
   svg.append("g")
     .call(d3.axisBottom(x))
     .select(".domain").remove()
-</pre>
-<br>
+</pre
+        >
+        <br />
 
-<h6>Change axis color (this is <code>.css</code> code)</h6>
-<pre class="language-js">
+        <h6>Change axis color (this is <code>.css</code> code)</h6>
+        <pre class="language-js">
   .yAxis path {
     stroke: #B8B8B8;
   }
-</pre>
+</pre
+        >
+      </div>
+    </section>
 
+    <br /><br />
 
+    <!-- ============================ GOING FURTHER ============================ -->
 
-  </div>
-</section>
+    <section class="bg" id="portfolio" style="padding-top: 10px">
+      <div class="container">
+        <br />
+        <div class="mySeryTitle">Selection of blocks</div>
+        <hr />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="https://codepen.io/idan/pen/xejuD">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Highly customized axis</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    An interesting approach: overlapping several axis to create
+                    complex axis.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid showBlock"
+                src="../img/block/block_crazyAxis.png"
+                alt="crazy axis in d3.js"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============================ RELATED BLOCKS ============================ -->
 
-
-
-
-
-
-<br><br>
-
-
-<!-- ============================ GOING FURTHER ============================ -->
-
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-
-    <br>
-    <div class="mySeryTitle">Selection of blocks</div>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://codepen.io/idan/pen/xejuD">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Highly customized axis</p>
-              <hr>
-              <p class="explanation_portfolio">An interesting approach: overlapping several axis to create complex axis.</p>
+    <section
+      id="related"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
             </div>
           </div>
-          <img class="img-fluid showBlock" src="../img/block/block_crazyAxis.png" alt="crazy axis in d3.js">
-        </a>
-      </div>
-
-    </div>
-
-
- </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>scaleOrdinal example - </i>by
+                    <a
+                      href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465"
+                      >d3indepth</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Multiple Simple graphs on one page - </i
+                    ><a href="http://bl.ocks.org/d3noob/5987480">link</a>
+                  </li>
+                  <br />
+                  <li>
+                    <i>Axis Labels in v4</i> - by
+                    <a
+                      href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e"
+                      >d3noob</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>scaleOrdinal example - </i>by <a href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465">d3indepth</a></li>
-            <br>
-            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
-            <br>
-            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ============================ -->
   </body>
-
 </html>

@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>An introduction to transition in d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A set of examples with code illustrating how to build transition in d3.js.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y, transition, animation">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="A set of examples with code illustrating how to build transition in d3.js."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y, transition, animation"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="An introduction to transition in d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="A set of examples with code illustrating how to build transition in d3.js.">
+    <meta
+      property="og:title"
+      content="An introduction to transition in d3.js"
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="A set of examples with code illustrating how to build transition in d3.js."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -71,166 +77,160 @@
     <!-- Bootstrap js -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/agency.min.js"></script>
-
   </head>
 
-
-
   <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-    $(function(){
-      $("#mainNav").load("../html_chunk/menu.html");
-    });
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-    $(function(){
-      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-    });
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
     </script>
-
-
 
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>An intro to transition with d3.js</h1>
-          <hr class="short_hr">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">This document displays several <code>d3.js</code> example illustration how to build <u>transitions</u>. Reproducible and editable code is provided, hopefully allowing you to get the key concept of transition.</p>
+        <h1>An intro to transition with d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          This document displays several <code>d3.js</code> example illustration
+          how to build <u>transitions</u>. Reproducible and editable code is
+          provided, hopefully allowing you to get the key concept of transition.
+        </p>
       </div>
     </header>
 
-
-
-
-
-
-
-
     <!-- TABLE of CONTENT -->
     <div>
-        <nav class="col-sm-3 col-4" id="myScrollspy" >
-          <ul class="nav nav-pills flex-column" style="top: 18%">
-            <li class="nav-item">
-              <i class="nav-link" style="opacity: 0.5">&rarr; without data</i>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#mostBasic">Most basic</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#button">Add button</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#pipe">Piping</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#delay">Delay</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#transitionAxis">Axis transition</a>
-            </li>
-            <br>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column" style="top: 18%">
+          <li class="nav-item">
+            <i class="nav-link" style="opacity: 0.5">&rarr; without data</i>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#mostBasic">Most basic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#button">Add button</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#pipe">Piping</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#delay">Delay</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#transitionAxis">Axis transition</a>
+          </li>
+          <br />
 
-            <li class="nav-item">
-              <i class="nav-link" style="opacity: 0.5">&rarr; with data</i>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#data1">Most basic</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#data2">New data = more entries</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#data3">New data = less entries</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#data4">Using index</a>
-            </li>
-            <br>
+          <li class="nav-item">
+            <i class="nav-link" style="opacity: 0.5">&rarr; with data</i>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#data1">Most basic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#data2">New data = more entries</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#data3">New data = less entries</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#data4">Using index</a>
+          </li>
+          <br />
 
-            <li class="nav-item">
-              <i class="nav-link" style="opacity: 0.5">&rarr; application</i>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#portfolio">15 examples</a>
-            </li>
-          </ul>
-        </nav>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== MOST BASIC RECTANGLE EXEMPLE ==================== -->
-
-<section id="mostBasic" class="bg">
-<div class="container" >
-  <h1>Most basic transition</h1>
-  <hr>
-  <p>This is the most basic transition you can build with <code>d3.js</code>. It smoothly changes the <code>width</code> attribute of a rectangle.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-mostBasic" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>For code clarity, the rectangle is built in <code>svg</code>. Visit <a href="shape.html">this page</a> for more on svg shapes.</li>
-          <br>
-          <li>The rectangle is then modified using d3. It starts by selecting the rect element thanks to <code>d3.select()</code>. Then <code>.transition()</code> is called to initialize the transition. An optional <code>.duration()</code> is specified: the animation here lasts 2000 ms. Finally, the <code>width</code> attribute is modified to 400px.</li>
+          <li class="nav-item">
+            <i class="nav-link" style="opacity: 0.5">&rarr; application</i>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#portfolio">15 examples</a>
+          </li>
         </ul>
-      </div>
+      </nav>
     </div>
-  </div>
 
+    <!-- ==================== MOST BASIC RECTANGLE EXEMPLE ==================== -->
 
+    <section id="mostBasic" class="bg">
+      <div class="container">
+        <h1>Most basic transition</h1>
+        <hr />
+        <p>
+          This is the most basic transition you can build with
+          <code>d3.js</code>. It smoothly changes the
+          <code>width</code> attribute of a rectangle.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-mostBasic"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    For code clarity, the rectangle is built in
+                    <code>svg</code>. Visit
+                    <a href="shape.html">this page</a> for more on svg shapes.
+                  </li>
+                  <br />
+                  <li>
+                    The rectangle is then modified using d3. It starts by
+                    selecting the rect element thanks to
+                    <code>d3.select()</code>. Then <code>.transition()</code> is
+                    called to initialize the transition. An optional
+                    <code>.duration()</code> is specified: the animation here
+                    lasts 2000 ms. Finally, the <code>width</code> attribute is
+                    modified to 400px.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-mostBasic" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-mostBasic" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -247,12 +247,12 @@
 </div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-mostBasic" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-mostBasic" contenteditable="true"><xmp><script>
 
 d3.select("#my_rect")
   .transition()
@@ -260,92 +260,89 @@ d3.select("#my_rect")
   .attr("width", "400")
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-mostBasic", "res-mostBasic");
+              myJSParser("js-mostBasic", "res-mostBasic");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-mostBasic")
+                .addEventListener("input", function () {
+                  d3.select("#res-mostBasic").html("");
+                  myHtmlParser("html-mostBasic", "res-mostBasic");
+                  myJSParser("js-mostBasic", "res-mostBasic");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-mostBasic', 'res-mostBasic')
-myJSParser('js-mostBasic', 'res-mostBasic')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-mostBasic').addEventListener("input", function() {
-d3.select('#res-mostBasic').html("");
-myHtmlParser('html-mostBasic', 'res-mostBasic');
-myJSParser('js-mostBasic', 'res-mostBasic');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-mostBasic').addEventListener("input", function() {
-d3.select('#res-mostBasic').html("");
-myHtmlParser('html-mostBasic', 'res-mostBasic');
-myJSParser('js-mostBasic', 'res-mostBasic');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== TRIGGER WITH BUTTON ==================== -->
-
-<section id="button" class="bg">
-<div class="container" >
-  <h1>Trigger transition with a button</h1>
-  <hr>
-  <p>It is important to understand that the animation instructions can be wrapped in a <code>function</code>. It allows to control when to trigger the animation. Here a <code>button</code> is used to trigger, but any other event could work as well.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-button" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Here, a button is created in html, and a <code>onclick</code> attribute is added. Read more about buttons on the dedicated <a href="interactivity_button.html">page</a>.</li>
-          <br>
-          <li>When the button is pressed, a function called <code>triggerTransition()</code> is triggered. This function contains the instructions for the animation as described in the first example of the series.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-mostBasic")
+                .addEventListener("input", function () {
+                  d3.select("#res-mostBasic").html("");
+                  myHtmlParser("html-mostBasic", "res-mostBasic");
+                  myJSParser("js-mostBasic", "res-mostBasic");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== TRIGGER WITH BUTTON ==================== -->
 
+    <section id="button" class="bg">
+      <div class="container">
+        <h1>Trigger transition with a button</h1>
+        <hr />
+        <p>
+          It is important to understand that the animation instructions can be
+          wrapped in a <code>function</code>. It allows to control when to
+          trigger the animation. Here a <code>button</code> is used to trigger,
+          but any other event could work as well.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-button"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Here, a button is created in html, and a
+                    <code>onclick</code> attribute is added. Read more about
+                    buttons on the dedicated
+                    <a href="interactivity_button.html">page</a>.
+                  </li>
+                  <br />
+                  <li>
+                    When the button is pressed, a function called
+                    <code>triggerTransition()</code> is triggered. This function
+                    contains the instructions for the animation as described in
+                    the first example of the series.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-button" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-button" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -365,12 +362,12 @@ myJSParser('js-mostBasic', 'res-mostBasic');
 </div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-button" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-button" contenteditable="true"><xmp><script>
 
 function triggerTransition(){
   d3.select("#rectArea")
@@ -381,84 +378,70 @@ function triggerTransition(){
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-button", "res-button");
+              myJSParser("js-button", "res-button");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-button")
+                .addEventListener("input", function () {
+                  d3.select("#res-button").html("");
+                  myHtmlParser("html-button", "res-button");
+                  myJSParser("js-button", "res-button");
+                });
 
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-button")
+                .addEventListener("input", function () {
+                  d3.select("#res-button").html("");
+                  myHtmlParser("html-button", "res-button");
+                  myJSParser("js-button", "res-button");
+                });
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br />
 
+    <!-- ==================== PIPING TRANSITION ==================== -->
 
+    <section id="pipe" class="bg">
+      <div class="container">
+        <h1>Piping transitions</h1>
+        <hr />
+        <p>
+          It is possible to <i>pipe</i> transitions: make them happen one after
+          each other instead of simultaneously. For this to happen, you have to
+          call the <code>transition()</code> function at the beginning of each
+          step of the pipeline.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-piping"></div>
+              <br />
+            </div>
+          </div>
 
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-button', 'res-button')
-myJSParser('js-button', 'res-button')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-button').addEventListener("input", function() {
-d3.select('#res-button').html("");
-myHtmlParser('html-button', 'res-button');
-myJSParser('js-button', 'res-button');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-button').addEventListener("input", function() {
-d3.select('#res-button').html("");
-myHtmlParser('html-button', 'res-button');
-myJSParser('js-button', 'res-button');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== PIPING TRANSITION ==================== -->
-
-<section id="pipe" class="bg">
-<div class="container" >
-  <h1>Piping transitions</h1>
-  <hr>
-  <p>It is possible to <i>pipe</i> transitions: make them happen one after each other instead of simultaneously. For this to happen, you have to call the <code>transition()</code> function at the beginning of each step of the pipeline.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-piping" ></div>
-      <br>
-    </div>
-  </div>
-
-
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-piping" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-piping" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -478,12 +461,12 @@ myJSParser('js-button', 'res-button');
 </div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-piping" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-piping" contenteditable="true"><xmp><script>
 
 function triggerTransitionPiping(){
 
@@ -510,90 +493,78 @@ function triggerTransitionPiping(){
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-piping", "res-piping");
+              myJSParser("js-piping", "res-piping");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-piping")
+                .addEventListener("input", function () {
+                  d3.select("#res-piping").html("");
+                  myHtmlParser("html-piping", "res-piping");
+                  myJSParser("js-piping", "res-piping");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-piping', 'res-piping')
-myJSParser('js-piping', 'res-piping')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-piping').addEventListener("input", function() {
-d3.select('#res-piping').html("");
-myHtmlParser('html-piping', 'res-piping');
-myJSParser('js-piping', 'res-piping');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-piping').addEventListener("input", function() {
-d3.select('#res-piping').html("");
-myHtmlParser('html-piping', 'res-piping');
-myJSParser('js-piping', 'res-piping');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== delay TRANSITION ==================== -->
-
-<section id="delay" class="bg">
-<div class="container" >
-  <h1>Adding delay between elements</h1>
-  <hr>
-  <p>It is possible to add delay between the transition of each element. Sometimes it adds a nice flow impression to the transition.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-delay" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Here, several elements are created. It is thus possible to provide a different delay value for each circle.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-piping")
+                .addEventListener("input", function () {
+                  d3.select("#res-piping").html("");
+                  myHtmlParser("html-piping", "res-piping");
+                  myJSParser("js-piping", "res-piping");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== delay TRANSITION ==================== -->
 
+    <section id="delay" class="bg">
+      <div class="container">
+        <h1>Adding delay between elements</h1>
+        <hr />
+        <p>
+          It is possible to add delay between the transition of each element.
+          Sometimes it adds a nice flow impression to the transition.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-delay"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Here, several elements are created. It is thus possible to
+                    provide a different delay value for each circle.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-delay" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-delay" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -606,12 +577,12 @@ myJSParser('js-piping', 'res-piping');
 <svg id="dataviz_delay" width="400px" height="320px"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-delay" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-delay" contenteditable="true"><xmp><script>
 
 // Position of the circles on the X axis
 var position = [50, 100, 150, 200, 250, 300, 350]
@@ -636,93 +607,90 @@ function triggerTransitionDelay(){
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-delay", "res-delay");
+              myJSParser("js-delay", "res-delay");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-delay")
+                .addEventListener("input", function () {
+                  d3.select("#res-delay").html("");
+                  myHtmlParser("html-delay", "res-delay");
+                  myJSParser("js-delay", "res-delay");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-delay', 'res-delay')
-myJSParser('js-delay', 'res-delay')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-delay').addEventListener("input", function() {
-d3.select('#res-delay').html("");
-myHtmlParser('html-delay', 'res-delay');
-myJSParser('js-delay', 'res-delay');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-delay').addEventListener("input", function() {
-d3.select('#res-delay').html("");
-myHtmlParser('html-delay', 'res-delay');
-myJSParser('js-delay', 'res-delay');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== axis TRANSITION ==================== -->
-
-<section id="transitionAxis" class="bg">
-<div class="container" >
-  <h1>Axis Transition</h1>
-  <hr>
-  <p>Let's consider an X axis. We want to update the upper limit of the axis from 100 to 1000, with a smooth transition. D3.js makes it a breeze using the same <code>transition()</code> function.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-axis" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>To read more about axis, visit the <a href="custom_axis.html">dedicated section</a>.</li>
-          <br>
-          <li>Here, we just change the X scale first, and then recall the <code>axisBottom()</code> function with a previous <code>transition()</code>.</li>
-          <br>
-          <li>Note: the position of any other element of the chart <u>will not</u> be updated, only this axis.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-delay")
+                .addEventListener("input", function () {
+                  d3.select("#res-delay").html("");
+                  myHtmlParser("html-delay", "res-delay");
+                  myJSParser("js-delay", "res-delay");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== axis TRANSITION ==================== -->
 
+    <section id="transitionAxis" class="bg">
+      <div class="container">
+        <h1>Axis Transition</h1>
+        <hr />
+        <p>
+          Let's consider an X axis. We want to update the upper limit of the
+          axis from 100 to 1000, with a smooth transition. D3.js makes it a
+          breeze using the same <code>transition()</code> function.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-axis"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    To read more about axis, visit the
+                    <a href="custom_axis.html">dedicated section</a>.
+                  </li>
+                  <br />
+                  <li>
+                    Here, we just change the X scale first, and then recall the
+                    <code>axisBottom()</code> function with a previous
+                    <code>transition()</code>.
+                  </li>
+                  <br />
+                  <li>
+                    Note: the position of any other element of the chart
+                    <u>will not</u> be updated, only this axis.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-axis" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-axis" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -735,12 +703,12 @@ myJSParser('js-delay', 'res-delay');
 <svg id="svgAxisTransition" width="960px" height="400px"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-axis" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-axis" contenteditable="true"><xmp><script>
 
 // Select the svg area
 svg = d3.select("#svgAxisTransition")
@@ -771,96 +739,105 @@ function triggerTransitionAxis(){
 // Note that this won't change your data points if you have some, you have to apply theme a transition() as well.
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-axis", "res-axis");
+              myJSParser("js-axis", "res-axis");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-axis")
+                .addEventListener("input", function () {
+                  d3.select("#res-axis").html("");
+                  myHtmlParser("html-axis", "res-axis");
+                  myJSParser("js-axis", "res-axis");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-axis', 'res-axis')
-myJSParser('js-axis', 'res-axis')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-axis').addEventListener("input", function() {
-d3.select('#res-axis').html("");
-myHtmlParser('html-axis', 'res-axis');
-myJSParser('js-axis', 'res-axis');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-axis').addEventListener("input", function() {
-d3.select('#res-axis').html("");
-myHtmlParser('html-axis', 'res-axis');
-myJSParser('js-axis', 'res-axis');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== DATA CHANGE SAME NUMBER OF ENTRY ==================== -->
-
-<section id="data1" class="bg">
-<div class="container" >
-  <h1>Change dataset with same index</h1>
-  <hr>
-  <p>Consider a dataset composed by 4 values. We map the X position of 4 circles to these values. We then switch to a second dataset that has exactly the same features.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-data1" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>This is the simplest example: both datasets have the same number of entry. We also consider they are ordered the same way, so position of circle 1 is always the first in the list.</li>
-          <br>
-          <li>First step: creating the circles. <code>enter()</code> allows to start a loop on every elements of <code>data</code>. <code>append()</code> is used to add a circle at each iteration.</li>
-          <br>
-          <li>Second step: bind the circles to a new dataset using <code>data()</code>. Here the number of entry is the same: no need to <code>enter()</code> to add new circle or to <code>exit()</code> to delete circles</li>
-          <br>
-          <li><u>Try</u>: add an element to the second list: this element won't appear.</li>
-          <br>
-          <li><u>Try</u>: remove the last element of the second list: the 4th circle won't disappear during the transition.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-axis")
+                .addEventListener("input", function () {
+                  d3.select("#res-axis").html("");
+                  myHtmlParser("html-axis", "res-axis");
+                  myJSParser("js-axis", "res-axis");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== DATA CHANGE SAME NUMBER OF ENTRY ==================== -->
 
+    <section id="data1" class="bg">
+      <div class="container">
+        <h1>Change dataset with same index</h1>
+        <hr />
+        <p>
+          Consider a dataset composed by 4 values. We map the X position of 4
+          circles to these values. We then switch to a second dataset that has
+          exactly the same features.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-data1"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    This is the simplest example: both datasets have the same
+                    number of entry. We also consider they are ordered the same
+                    way, so position of circle 1 is always the first in the
+                    list.
+                  </li>
+                  <br />
+                  <li>
+                    First step: creating the circles.
+                    <code>enter()</code> allows to start a loop on every
+                    elements of <code>data</code>. <code>append()</code> is used
+                    to add a circle at each iteration.
+                  </li>
+                  <br />
+                  <li>
+                    Second step: bind the circles to a new dataset using
+                    <code>data()</code>. Here the number of entry is the same:
+                    no need to <code>enter()</code> to add new circle or to
+                    <code>exit()</code> to delete circles
+                  </li>
+                  <br />
+                  <li>
+                    <u>Try</u>: add an element to the second list: this element
+                    won't appear.
+                  </li>
+                  <br />
+                  <li>
+                    <u>Try</u>: remove the last element of the second list: the
+                    4th circle won't disappear during the transition.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-data1" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-data1" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -873,12 +850,12 @@ myJSParser('js-axis', 'res-axis');
 <svg id="areaData1" width="960px" height="200px"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-data1" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-data1" contenteditable="true"><xmp><script>
 
 // create 2 datasets:
 var data1 = [50, 100, 200, 300]
@@ -909,105 +886,104 @@ function triggerTransition(){
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-data1", "res-data1");
+              myJSParser("js-data1", "res-data1");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-data1")
+                .addEventListener("input", function () {
+                  d3.select("#res-data1").html("");
+                  myHtmlParser("html-data1", "res-data1");
+                  myJSParser("js-data1", "res-data1");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-data1', 'res-data1')
-myJSParser('js-data1', 'res-data1')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-data1').addEventListener("input", function() {
-d3.select('#res-data1').html("");
-myHtmlParser('html-data1', 'res-data1');
-myJSParser('js-data1', 'res-data1');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-data1').addEventListener("input", function() {
-d3.select('#res-data1').html("");
-myHtmlParser('html-data1', 'res-data1');
-myJSParser('js-data1', 'res-data1');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== NEW DATASET = ONE MORE ENTRY ==================== -->
-
-<section id="data2" class="bg">
-<div class="container" >
-  <h1>New dataset has more entries</h1>
-  <hr>
-  <p>This example is almost the same as the previous one. However, there is now one more circle in the second list than in the first list.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-data2" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>This is the simplest example: both datasets have the same number of entry. We also consider they are ordered the same way, so position of circle 1 is always the first in the list.</li>
-          <br>
-          <li>First step: creating the circles. <code>enter()</code> allows to start a loop on every elements of <code>data</code>. <code>append()</code> is used to add a circle at each iteration.</li>
-          <br>
-          <li>Second step: bind the circles to a new dataset using <code>data()</code>. Here the number of entry is the same: no need to <code>enter()</code> to add new circle or to <code>exit()</code> to delete circles</li>
-          <br>
-          <li><u>Try</u>: add an element to the second list: this element won't appear.</li>
-          <br>
-          <li><u>Try</u>: remove the last element of the second list: the 4th circle won't disappear during the transition.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-data1")
+                .addEventListener("input", function () {
+                  d3.select("#res-data1").html("");
+                  myHtmlParser("html-data1", "res-data1");
+                  myJSParser("js-data1", "res-data1");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== NEW DATASET = ONE MORE ENTRY ==================== -->
 
+    <section id="data2" class="bg">
+      <div class="container">
+        <h1>New dataset has more entries</h1>
+        <hr />
+        <p>
+          This example is almost the same as the previous one. However, there is
+          now one more circle in the second list than in the first list.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-data2"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    This is the simplest example: both datasets have the same
+                    number of entry. We also consider they are ordered the same
+                    way, so position of circle 1 is always the first in the
+                    list.
+                  </li>
+                  <br />
+                  <li>
+                    First step: creating the circles.
+                    <code>enter()</code> allows to start a loop on every
+                    elements of <code>data</code>. <code>append()</code> is used
+                    to add a circle at each iteration.
+                  </li>
+                  <br />
+                  <li>
+                    Second step: bind the circles to a new dataset using
+                    <code>data()</code>. Here the number of entry is the same:
+                    no need to <code>enter()</code> to add new circle or to
+                    <code>exit()</code> to delete circles
+                  </li>
+                  <br />
+                  <li>
+                    <u>Try</u>: add an element to the second list: this element
+                    won't appear.
+                  </li>
+                  <br />
+                  <li>
+                    <u>Try</u>: remove the last element of the second list: the
+                    4th circle won't disappear during the transition.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-data2" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-data2" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -1020,12 +996,12 @@ myJSParser('js-data1', 'res-data1');
 <svg id="areadata2" width="960px" height="200px"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-data2" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-data2" contenteditable="true"><xmp><script>
 
 // create 2 datasets:
 var data1 = [50, 100, 200]
@@ -1063,87 +1039,104 @@ function triggerTransitionData2(){
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-data2", "res-data2");
+              myJSParser("js-data2", "res-data2");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-data2")
+                .addEventListener("input", function () {
+                  d3.select("#res-data2").html("");
+                  myHtmlParser("html-data2", "res-data2");
+                  myJSParser("js-data2", "res-data2");
+                });
 
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-data2', 'res-data2')
-myJSParser('js-data2', 'res-data2')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-data2').addEventListener("input", function() {
-d3.select('#res-data2').html("");
-myHtmlParser('html-data2', 'res-data2');
-myJSParser('js-data2', 'res-data2');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-data2').addEventListener("input", function() {
-d3.select('#res-data2').html("");
-myHtmlParser('html-data2', 'res-data2');
-myJSParser('js-data2', 'res-data2');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-<!-- ==================== NEW DATASET = ONE LESS ENTRY ==================== -->
-
-<section id="data3" class="bg">
-<div class="container" >
-  <h1>New dataset has less entries</h1>
-  <hr>
-  <p>This example is almost the same as the previous one. However, there is now one less circle in the second list than in the first list.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-data3" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>This is the simplest example: both datasets have the same number of entry. We also consider they are ordered the same way, so position of circle 1 is always the first in the list.</li>
-          <br>
-          <li>First step: creating the circles. <code>enter()</code> allows to start a loop on every elements of <code>data</code>. <code>append()</code> is used to add a circle at each iteration.</li>
-          <br>
-          <li>Second step: bind the circles to a new dataset using <code>data()</code>. Here the number of entry is the same: no need to <code>enter()</code> to add new circle or to <code>exit()</code> to delete circles</li>
-          <br>
-          <li><u>Try</u>: add an element to the second list: this element won't appear.</li>
-          <br>
-          <li><u>Try</u>: remove the last element of the second list: the 4th circle won't disappear during the transition.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-data2")
+                .addEventListener("input", function () {
+                  d3.select("#res-data2").html("");
+                  myHtmlParser("html-data2", "res-data2");
+                  myJSParser("js-data2", "res-data2");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== NEW DATASET = ONE LESS ENTRY ==================== -->
 
+    <section id="data3" class="bg">
+      <div class="container">
+        <h1>New dataset has less entries</h1>
+        <hr />
+        <p>
+          This example is almost the same as the previous one. However, there is
+          now one less circle in the second list than in the first list.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-data3"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    This is the simplest example: both datasets have the same
+                    number of entry. We also consider they are ordered the same
+                    way, so position of circle 1 is always the first in the
+                    list.
+                  </li>
+                  <br />
+                  <li>
+                    First step: creating the circles.
+                    <code>enter()</code> allows to start a loop on every
+                    elements of <code>data</code>. <code>append()</code> is used
+                    to add a circle at each iteration.
+                  </li>
+                  <br />
+                  <li>
+                    Second step: bind the circles to a new dataset using
+                    <code>data()</code>. Here the number of entry is the same:
+                    no need to <code>enter()</code> to add new circle or to
+                    <code>exit()</code> to delete circles
+                  </li>
+                  <br />
+                  <li>
+                    <u>Try</u>: add an element to the second list: this element
+                    won't appear.
+                  </li>
+                  <br />
+                  <li>
+                    <u>Try</u>: remove the last element of the second list: the
+                    4th circle won't disappear during the transition.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-data3" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-data3" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -1156,12 +1149,12 @@ myJSParser('js-data2', 'res-data2');
 <svg id="areadata3" width="960px" height="200px"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-data3" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-data3" contenteditable="true"><xmp><script>
 
 // create 2 datasets:
 var data1 = [50, 100, 200,300]
@@ -1204,357 +1197,398 @@ function triggerTransitionData3(){
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-data3", "res-data3");
+              myJSParser("js-data3", "res-data3");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-data3")
+                .addEventListener("input", function () {
+                  d3.select("#res-data3").html("");
+                  myHtmlParser("html-data3", "res-data3");
+                  myJSParser("js-data3", "res-data3");
+                });
 
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-data3', 'res-data3')
-myJSParser('js-data3', 'res-data3')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-data3').addEventListener("input", function() {
-d3.select('#res-data3').html("");
-myHtmlParser('html-data3', 'res-data3');
-myJSParser('js-data3', 'res-data3');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-data3').addEventListener("input", function() {
-d3.select('#res-data3').html("");
-myHtmlParser('html-data3', 'res-data3');
-myJSParser('js-data3', 'res-data3');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-<!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-    <h1>Application on real charts</h1>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="barplot_animation_start.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Animation at loading</p>
-              <hr>
-              <p class="explanation_portfolio">A couple of lines allow to add an animation effect when the plot is loading: bars start from 0 and reach their real value.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/barplot_animation.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="barplot_button_color.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Change color with a button</p>
-              <hr>
-              <p class="explanation_portfolio">Clicking on a button triggers a function that changes the style of all rectangles</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/barplot_button_color.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="barplot_button_data_simple.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Change input data: simple version</p>
-              <hr>
-              <p class="explanation_portfolio">How to go from one dataset to another with smooth transition.<br><br>Works only with same number of group and same Y range. (X and Y axis are not updated)</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/barplot_button_data_simple.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="barplot_button_data_hard.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Change input data: upgraded version</p>
-              <hr>
-              <p class="explanation_portfolio">How to go from one dataset to another with smooth transition. <u>Upgraded</u> version: X and Y axis axis are updated: data 1 and 2 can have different # of group.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/barplot_button_data_hard.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="barplot_button_data_csv.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Change input data: <code>.csv</code> input version</p>
-              <hr>
-              <p class="explanation_portfolio">Same as precedent plot, but use a <code>.csv</code> format as input file.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/barplot_button_data_csv.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="density_slider.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Slider to control bandwidth</p>
-              <hr>
-              <p class="explanation_portfolio">Slider update the bandwidth used for kernel density estimation with a smooth transition.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/density_slider.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="density_filter.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Dropdown to filter data</p>
-              <hr>
-              <p class="explanation_portfolio">Dropdown allows to filter data, keeping one group or the other.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/density_filter.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="histogram_binSize.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Button to control bin size</p>
-              <hr>
-              <p class="explanation_portfolio">Add a button that controls bin size. Good example to learn how to create an update function that also update an axis.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/histogram_binSize.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="scatter_buttonXlim.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Update X axis limits</p>
-              <hr>
-              <p class="explanation_portfolio">A button control the X axis upper limit and trigger a smooth transition to the new limit</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/scatter_buttonXlim.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="connectedscatter_legend.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Interactive legend</p>
-              <hr>
-              <p class="explanation_portfolio">Legend that allows to make group markers appear or disappear.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/connectedscatter_legend.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="connectedscatter_select.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Dropdown to select group</p>
-              <hr>
-              <p class="explanation_portfolio">A dropdown button allows to switch from one group to another with smooth transition.<br><br>Note: each group is in a different column in input</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/connectedscatter_select.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="line_change_data.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>1/ Transition between<br>input data</p>
-              <hr>
-              <p class="explanation_portfolio">Add a button that allows to go from one dataset to another with a smooth transition. Useful to understand how to build a <code>update()</code> function.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/line_change_data.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="line_select.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>2/ Transition between<br>column of input</p>
-              <hr>
-              <p class="explanation_portfolio">Dropdown button controls which columns of the dataset is displayed on the chart.<br><br>Wide format</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/line_select.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="line_filter.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>3/ Transition between<br>value of a column</p>
-              <hr>
-              <p class="explanation_portfolio">Dropdown button controls which value of a column is displayed on the chart.<br><br>Long format</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/line_filter.gif" alt="">
-        </a>
-      </div>
-    </div>
- </div>
-</section>
-
-
-<!-- ======================================================================= -->
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-data3")
+                .addEventListener("input", function () {
+                  d3.select("#res-data3").html("");
+                  myHtmlParser("html-data3", "res-data3");
+                  myJSParser("js-data3", "res-data3");
+                });
+            </script>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>Introduction to browser events- </i>by <a href="https://javascript.info/introduction-browser-events">Javascript Info</a></li>
-            <br>
-            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
-            <br>
-            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
-            </ul>
+    </section>
+    <br />
+
+    <!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+    <section class="bg" id="portfolio" style="padding-top: 10px">
+      <div class="container">
+        <h1>Application on real charts</h1>
+        <hr />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="barplot_animation_start.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Animation at loading</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    A couple of lines allow to add an animation effect when the
+                    plot is loading: bars start from 0 and reach their real
+                    value.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/barplot_animation.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="barplot_button_color.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Change color with a button</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Clicking on a button triggers a function that changes the
+                    style of all rectangles
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/barplot_button_color.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="barplot_button_data_simple.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Change input data: simple version</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    How to go from one dataset to another with smooth
+                    transition.<br /><br />Works only with same number of group
+                    and same Y range. (X and Y axis are not updated)
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/barplot_button_data_simple.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="barplot_button_data_hard.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Change input data: upgraded version</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    How to go from one dataset to another with smooth
+                    transition. <u>Upgraded</u> version: X and Y axis axis are
+                    updated: data 1 and 2 can have different # of group.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/barplot_button_data_hard.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="barplot_button_data_csv.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Change input data: <code>.csv</code> input version</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Same as precedent plot, but use a <code>.csv</code> format
+                    as input file.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/barplot_button_data_csv.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="density_slider.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Slider to control bandwidth</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Slider update the bandwidth used for kernel density
+                    estimation with a smooth transition.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/density_slider.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="density_filter.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Dropdown to filter data</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Dropdown allows to filter data, keeping one group or the
+                    other.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/density_filter.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="histogram_binSize.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Button to control bin size</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Add a button that controls bin size. Good example to learn
+                    how to create an update function that also update an axis.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/histogram_binSize.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="scatter_buttonXlim.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Update X axis limits</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    A button control the X axis upper limit and trigger a smooth
+                    transition to the new limit
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/scatter_buttonXlim.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="connectedscatter_legend.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Interactive legend</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Legend that allows to make group markers appear or
+                    disappear.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/connectedscatter_legend.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="connectedscatter_select.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Dropdown to select group</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    A dropdown button allows to switch from one group to another
+                    with smooth transition.<br /><br />Note: each group is in a
+                    different column in input
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/connectedscatter_select.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="line_change_data.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>1/ Transition between<br />input data</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Add a button that allows to go from one dataset to another
+                    with a smooth transition. Useful to understand how to build
+                    a <code>update()</code> function.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/line_change_data.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="line_select.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>2/ Transition between<br />column of input</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Dropdown button controls which columns of the dataset is
+                    displayed on the chart.<br /><br />Wide format
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/line_select.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="line_filter.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>3/ Transition between<br />value of a column</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Dropdown button controls which value of a column is
+                    displayed on the chart.<br /><br />Long format
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/line_filter.gif"
+                alt=""
+              />
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ======================================================================= -->
 
+    <!-- ============================ RELATED BLOCKS ============================ -->
 
+    <section
+      id="related"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>Introduction to browser events- </i>by
+                    <a
+                      href="https://javascript.info/introduction-browser-events"
+                      >Javascript Info</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Multiple Simple graphs on one page - </i
+                    ><a href="http://bl.ocks.org/d3noob/5987480">link</a>
+                  </li>
+                  <br />
+                  <li>
+                    <i>Axis Labels in v4</i> - by
+                    <a
+                      href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e"
+                      >d3noob</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ============================ -->
   </body>
-
 </html>

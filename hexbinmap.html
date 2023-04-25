@@ -1,395 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Hexbin map &#124; the D3 Graph Gallery</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How to build a hexbin map with Javascript and D3.js: a set of examples with code and explanation">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,area chart">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="How to build a hexbin map with Javascript and D3.js: a set of examples with code and explanation"
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,area chart"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Hexbin map &#124; the D3 Graph Gallery">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How to build a hexbin map with Javascript and D3.js: a set of examples with code and explanation.">
+    <meta
+      property="og:title"
+      content="Hexbin map &#124; the D3 Graph Gallery"
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="How to build a hexbin map with Javascript and D3.js: a set of examples with code and explanation."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link
+      href="vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="css/agency.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet" />
 
     <!-- JQUERY -->
     <script src="vendor/jquery/jquery.min.js"></script>
+  </head>
 
-</head>
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
+      });
+    </script>
 
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
+    </script>
 
-
-<body id="page-top">
-
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-});
-</script>
-
-  <!-- Header -->
-  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-    <div class="textlanding">
-      <h1>Hexbin map</h1>
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.yan-holtz.com">
-            <i class="fa fa-home"></i>
-          </a>
-        </li>
-      </ul>
-      <br><br>
-      <p style="max-width: 700px; margin: auto">A <a href="https://www.data-to-viz.com/graph/hexbinmap.html">hexbin map</a> refers to two different concepts. It can be based on a geospatial object where all regions of the map are represented as hexagons. Or it can refer to a 2d density technique described in <a href="density2d.html">this section</a>. Read the dedicated article in <a href="https://www.data-to-viz.com/graph/hexbinmap.html">data-to-viz</a> to make sure you understand the difference.</p>
-  </div>
-</header>
-
-
-
-<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-<div id="position_for_images"> </div>
-<script>
-$(function(){
-  $("#position_for_images").load("html_chunk/images.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-<!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-
-
-    <div class="mySeryTitle">Hexbin map from geospatial object</div>
-    <hr>
-    <p>In this case, the technique is very close from a <a href="choropleth.html">choropleth map</a>. It's actually exactly the same, except that the geoJson input gives hexagon boundaries instead of region boundaries. Thus, you probably want to visit the <a href="choropleth.html">choropleth section</a> for more examples.</p>
-    <a class="btn btn-secondary btn-md text-uppercase" href="choropleth.html">Choropleth section</a>
-    <br><br>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/hexbinmap_geo_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">Just a basic background map based on a geoJson input that gives the hexagon boundary.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/hexbinmap_geo_basic.png" alt="">
-        </a>
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>Hexbin map</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          A
+          <a href="https://www.data-to-viz.com/graph/hexbinmap.html"
+            >hexbin map</a
+          >
+          refers to two different concepts. It can be based on a geospatial
+          object where all regions of the map are represented as hexagons. Or it
+          can refer to a 2d density technique described in
+          <a href="density2d.html">this section</a>. Read the dedicated article
+          in
+          <a href="https://www.data-to-viz.com/graph/hexbinmap.html"
+            >data-to-viz</a
+          >
+          to make sure you understand the difference.
+        </p>
       </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/hexbinmap_geo_label.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Add label in centroids</p>
-              <hr>
-              <p class="explanation_portfolio">Use the <code>centroid()</code> function to add hexagon labels.</p>
-            </div>
+    </header>
+
+    <!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+    <div id="position_for_images"></div>
+    <script>
+      $(function () {
+        $("#position_for_images").load("html_chunk/images.html");
+      });
+    </script>
+
+    <!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+    <section class="bg" id="portfolio" style="padding-top: 10px">
+      <div class="container">
+        <div class="mySeryTitle">Hexbin map from geospatial object</div>
+        <hr />
+        <p>
+          In this case, the technique is very close from a
+          <a href="choropleth.html">choropleth map</a>. It's actually exactly
+          the same, except that the geoJson input gives hexagon boundaries
+          instead of region boundaries. Thus, you probably want to visit the
+          <a href="choropleth.html">choropleth section</a> for more examples.
+        </p>
+        <a
+          class="btn btn-secondary btn-md text-uppercase"
+          href="choropleth.html"
+          >Choropleth section</a
+        >
+        <br /><br />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/hexbinmap_geo_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Just a basic background map based on a geoJson input that
+                    gives the hexagon boundary.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/hexbinmap_geo_basic.png"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/hexbinmap_geo_label.png" alt="">
-        </a>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/hexbinmap_geo_label.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Add label in centroids</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Use the <code>centroid()</code> function to add hexagon
+                    labels.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/hexbinmap_geo_label.png"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+
+        <br /><br /><br /><br />
+        <div class="mySeryTitle">Hexbin map from list of coordinates</div>
+        <hr />
+        <p>
+          In this case, the required input is a list of coordinates. The map
+          area will be split in a multitude of hexagon, the number of data point
+          per hexagon will be counted and represented as a color. It is actually
+          a <a href="density2d.html">density 2d</a> technique plotted on top of
+          a map.
+        </p>
+        <a class="btn btn-secondary btn-md text-uppercase" href="density2d.html"
+          >Density 2d section</a
+        >
+        <br /><br />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/area_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic area chart you can do in d3.js. Keeping only
+                    the core code.
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/graph/area_basic.png" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <br /><br /><br /><br />
+        <div class="mySeryTitle">Selection of blocks</div>
+        <hr />
+        <p>
+          A few blocks with more complicated codes to showcase what's possible
+          to do with connection maps. First show how to display connections on
+          hover. Second show how to apply
+          <a href="bundle.html">edge bundling</a> to the connection to declutter
+          the chart.
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://bl.ocks.org/mbostock/4330486"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Bivariate Hexbin map</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Density 2d technique. Quantity of data per hexagon is
+                    represented through hexagon color and size.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid showBlock"
+                src="img/block/block_hexbinmapBivariate.png"
+                alt="Bivariate hexbin map"
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://bl.ocks.org/sjengle/2e58e83685f6d854aa40c7bc546aeb24"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>D3-hexbin documentation</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The complete documentation of d3-hexbin: the plugin that
+                    groups two-dimensional points into hexagonal bins.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid showBlock"
+                src="img/block/block_hexbinmapDoc.png"
+                alt="D3 hexbin documentation"
+              />
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <br><br><br><br>
-    <div class="mySeryTitle">Hexbin map from list of coordinates</div>
-    <hr>
-    <p>In this case, the required input is a list of coordinates. The map area will be split in a multitude of hexagon, the number of data point per hexagon will be counted and represented as a color. It is actually a <a href="density2d.html">density 2d</a> technique plotted on top of a map.</p>
-    <a class="btn btn-secondary btn-md text-uppercase" href="density2d.html">Density 2d section</a>
-    <br><br>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/area_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic area chart you can do in d3.js. Keeping only the core code.</p>
-            </div>
+    <!-- ======================================================================= -->
+
+    <!-- ============================ RELATED SECTION ============================ -->
+    <section
+      class="bg-light"
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <p class="mySeryTitle">Related chart types</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="backgroundmap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Map150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Map</div>
           </div>
-          <img class="img-fluid" src="img/graph/area_basic.png" alt="">
-        </a>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="choropleth.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Choropleth150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Choropleth</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="hexbinmap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/MapHexbin150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Hexbin map</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="cartogram.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Cartogram150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Cartogram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="connectionmap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/ConnectedMap150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Connection</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="bubblemap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/BubbleMap150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Bubble map</div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <br><br><br><br>
-    <div class="mySeryTitle">Selection of blocks</div>
-    <hr>
-    <p>A few blocks with more complicated codes to showcase what's possible to do with connection maps. First show how to display connections on hover. Second show how to apply <a href="bundle.html">edge bundling</a> to the connection to declutter the chart.</p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://bl.ocks.org/mbostock/4330486">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Bivariate Hexbin map</p>
-              <hr>
-              <p class="explanation_portfolio">Density 2d technique. Quantity of data per hexagon is represented through hexagon color and size.</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="img/block/block_hexbinmapBivariate.png" alt="Bivariate hexbin map">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://bl.ocks.org/sjengle/2e58e83685f6d854aa40c7bc546aeb24">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>D3-hexbin documentation</p>
-              <hr>
-              <p class="explanation_portfolio">The complete documentation of d3-hexbin: the plugin that groups two-dimensional points into hexagonal bins.</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="img/block/block_hexbinmapDoc.png" alt="D3 hexbin documentation">
-        </a>
-      </div>
-    </div>
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
- </div>
-</section>
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
 
-<!-- ======================================================================= -->
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
 
+    <!-- ============================ -->
 
-
-
-
-
-
-
-
-<!-- ============================ RELATED SECTION ============================ -->
-<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-
-<div class="container">
-
-  <p class="mySeryTitle">Related chart types</p>
-  <hr>
-  <div class="row">
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="backgroundmap.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Map150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Map</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="choropleth.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Choropleth150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Choropleth</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="hexbinmap.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/MapHexbin150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Hexbin map</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="cartogram.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Cartogram150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Cartogram</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="connectionmap.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/ConnectedMap150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Connection</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="bubblemap.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/BubbleMap150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Bubble map</div>
-    </div>
-  </div>
-
-</div>
-</section>
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-<!-- ANCHOR -->
-<a name="contactanchor"></a>
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============== JAVASCRIPT SECTION =============== -->
+    <!-- =============== JAVASCRIPT SECTION =============== -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -407,18 +451,10 @@ $(function(){
     <!-- Activate the bootstrap tooltip, must be after jQuery load -->
     <script>
       $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-   </script>
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
 
-
-
-
-
-<!--============================== -->
-
-
-
+    <!--============================== -->
   </body>
-
 </html>

@@ -1,284 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>About &#124; the D3 Graph Gallery</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="About the d3.js graph gallery: why it's been created, how it's been done, acknowledgment and more.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,about">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="About the d3.js graph gallery: why it's been created, how it's been done, acknowledgment and more."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,about"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="About &#124; the D3 Graph Gallery">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="About the d3.js graph gallery: why it's been created, how it's been done, acknowledgment and more.">
+    <meta property="og:title" content="About &#124; the D3 Graph Gallery" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="About the d3.js graph gallery: why it's been created, how it's been done, acknowledgment and more."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link
+      href="vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="css/agency.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet" />
 
     <!-- JQUERY -->
     <script src="../vendor/jquery/jquery.min.js"></script>
+  </head>
 
-</head>
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
+      });
+    </script>
 
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
+    </script>
 
-
-<body id="page-top">
-
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-});
-</script>
-
-  <!-- Header -->
-  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-    <div class="textlanding">
-      <h1>About  the gallery</h1>
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.yan-holtz.com">
-            <i class="fa fa-home"></i>
-          </a>
-        </li>
-      </ul>
-  </div>
-</header>
-
-
-
-
-
-
-
-
-
-
-
-<!-- ========================  ============================ -->
-<section class="bg" style="padding-top: 20px">
-  <div class="container">
-
-
-    <div class="row">
-
-      <div class="col-md-6 aboutCol">
-        <h2>What is d3.js</h2>
-        <hr>
-        <p><a href="https://d3js.org">D3.js</a> is a <u>JavaScript library</u> for manipulating documents based on data. Basically, it helps you build shapes based on <u>HTML, SVG, and CSS</u>.<br><br>D3.js has been created by <a href="https://bost.ocks.org/mike/">Mike Bostock</a> and its home is <a href="https://d3js.org">here</a>.<br><br>Why is d3 so awesome? Because it allows to build absolutely any type of visualization, <u>without any limits</u>.</p>
-      </div>
-
-      <div class="col-md-6 aboutCol">
-        <h2>Why this gallery</h2>
-        <hr>
-        <p>
-          D3.js already has awesome dedicated resources to get code example: a <a href="https://github.com/d3/d3/wiki/Gallery">wiki</a>, a <a href="http://christopheviau.com/d3list/gallery.html">gallery</a> and the very awesome <a href="http://blockbuilder.org/search">block builder</a>. Moreover, thousands of <a href="https://bl.ocks.org">blocks</a> are available online.
-          <br><br>
-          The d3 graph gallery aims to contribute to this documentation by providing a set of <u>simple examples</u>.
-          <br><br>
-          While blocks are awesome to demonstrate the possibilities offered by d3, it is sometimes hard to find a basic example illustrating a single concept: this gallery hopes to fill the gap.
-        </p>
-      </div>
-
-      <div class="col-md-6 aboutCol">
-        <h2>How the gallery works</h2>
-        <hr>
-        <p>
-          About <u>300 charts</u> are displayed in the gallery. They are classified in about <u>40 sections</u>: the main chart types describe in <a href="https://www.data-to-viz.com">data to viz</a>.
-          <br><br>
-          For each graph, the chart appears on the left at a <u>static position</u> and the <u>editable code</u> on the right. Playing with the code is the best way to understand how it works IMO.
-          <br><br>
-          <u>Technical details</u> are provided under each chart, linking to related docs. No consideration is given concerning dataviz best practice, links toward <a href="https://www.data-to-viz.com">data to viz</a> are provided for this concern.
-          <br><br>
-          Code is extensively <u>commented</u> and data are stored <u>online</u>. It allows to copy and paste the code in a <u>.html</u> file and make it works locally.
-      </div>
-
-      <div class="col-md-6 aboutCol">
-        <h2>Acknowledgment</h2>
-        <hr>
-        <ul>
-          <li><a href="https://twitter.com/mbostock">Mike Bostock</a> for creating d3.js, such an incredible piece of work</li>
-          <br>
-          <li><a href="https://twitter.com/John_J_McGrath">John McGrath</a>, for allowing me to learn d3.js for our mental health comorbidity dataviz <a href="https://www.nbepi.com">projects</a></li>
-          <br>
-          <li><a href="https://github.com/hipyhop">Tom Luff</a>, for answering my millions of silly javascript questions.</li>
-          <br>
-          <li><a href="https://www.conor.fr">Conor Healy</a>, for providing the logos and listening to my crazy dataviz ideas</li>
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>About the gallery</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
         </ul>
       </div>
+    </header>
 
-      <div class="col-md-6 aboutCol">
-        <h2>Disclaimer</h2>
-        <hr>
-        <p>
-          This gallery has been built while in the process of <u>learning</u> d3. It is thus imperfect, and code can probably be optimized in many cases.
-          <br><br>
-          Moreover, <u>english mistakes</u> are frequent since I'm not a native english speaker.
-          <br><br>
-          This website is entirely hosted on <a href="https://github.com/holtzy/D3-graph-gallery">github</a>. Submitting <a href="https://github.com/holtzy/D3-graph-gallery/issues">issues</a> or <a href="https://github.com/holtzy/D3-graph-gallery/pulls">pull requests</a> is the best way to interact, but you can also reach me via <a href="https://twitter.com/R_Graph_Gallery">twitter</a> or <a href="mailto:yan.holtz.data@gmail.com">mail</a>.
+    <!-- ========================  ============================ -->
+    <section class="bg" style="padding-top: 20px">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 aboutCol">
+            <h2>What is d3.js</h2>
+            <hr />
+            <p>
+              <a href="https://d3js.org">D3.js</a> is a
+              <u>JavaScript library</u> for manipulating documents based on
+              data. Basically, it helps you build shapes based on
+              <u>HTML, SVG, and CSS</u>.<br /><br />D3.js has been created by
+              <a href="https://bost.ocks.org/mike/">Mike Bostock</a> and its
+              home is <a href="https://d3js.org">here</a>.<br /><br />Why is d3
+              so awesome? Because it allows to build absolutely any type of
+              visualization, <u>without any limits</u>.
+            </p>
+          </div>
+
+          <div class="col-md-6 aboutCol">
+            <h2>Why this gallery</h2>
+            <hr />
+            <p>
+              D3.js already has awesome dedicated resources to get code example:
+              a <a href="https://github.com/d3/d3/wiki/Gallery">wiki</a>, a
+              <a href="http://christopheviau.com/d3list/gallery.html"
+                >gallery</a
+              >
+              and the very awesome
+              <a href="http://blockbuilder.org/search">block builder</a>.
+              Moreover, thousands of
+              <a href="https://bl.ocks.org">blocks</a> are available online.
+              <br /><br />
+              The d3 graph gallery aims to contribute to this documentation by
+              providing a set of <u>simple examples</u>. <br /><br />
+              While blocks are awesome to demonstrate the possibilities offered
+              by d3, it is sometimes hard to find a basic example illustrating a
+              single concept: this gallery hopes to fill the gap.
+            </p>
+          </div>
+
+          <div class="col-md-6 aboutCol">
+            <h2>How the gallery works</h2>
+            <hr />
+            <p>
+              About <u>300 charts</u> are displayed in the gallery. They are
+              classified in about <u>40 sections</u>: the main chart types
+              describe in <a href="https://www.data-to-viz.com">data to viz</a>.
+              <br /><br />
+              For each graph, the chart appears on the left at a
+              <u>static position</u> and the <u>editable code</u> on the right.
+              Playing with the code is the best way to understand how it works
+              IMO. <br /><br />
+              <u>Technical details</u> are provided under each chart, linking to
+              related docs. No consideration is given concerning dataviz best
+              practice, links toward
+              <a href="https://www.data-to-viz.com">data to viz</a> are provided
+              for this concern. <br /><br />
+              Code is extensively <u>commented</u> and data are stored
+              <u>online</u>. It allows to copy and paste the code in a
+              <u>.html</u> file and make it works locally.
+            </p>
+          </div>
+
+          <div class="col-md-6 aboutCol">
+            <h2>Acknowledgment</h2>
+            <hr />
+            <ul>
+              <li>
+                <a href="https://twitter.com/mbostock">Mike Bostock</a> for
+                creating d3.js, such an incredible piece of work
+              </li>
+              <br />
+              <li>
+                <a href="https://twitter.com/John_J_McGrath">John McGrath</a>,
+                for allowing me to learn d3.js for our mental health comorbidity
+                dataviz <a href="https://www.nbepi.com">projects</a>
+              </li>
+              <br />
+              <li>
+                <a href="https://github.com/hipyhop">Tom Luff</a>, for answering
+                my millions of silly javascript questions.
+              </li>
+              <br />
+              <li>
+                <a href="https://www.conor.fr">Conor Healy</a>, for providing
+                the logos and listening to my crazy dataviz ideas
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-6 aboutCol">
+            <h2>Disclaimer</h2>
+            <hr />
+            <p>
+              This gallery has been built while in the process of
+              <u>learning</u> d3. It is thus imperfect, and code can probably be
+              optimized in many cases. <br /><br />
+              Moreover, <u>english mistakes</u> are frequent since I'm not a
+              native english speaker. <br /><br />
+              This website is entirely hosted on
+              <a href="https://github.com/holtzy/D3-graph-gallery">github</a>.
+              Submitting
+              <a href="https://github.com/holtzy/D3-graph-gallery/issues"
+                >issues</a
+              >
+              or
+              <a href="https://github.com/holtzy/D3-graph-gallery/pulls"
+                >pull requests</a
+              >
+              is the best way to interact, but you can also reach me via
+              <a href="https://twitter.com/R_Graph_Gallery">twitter</a> or
+              <a href="mailto:yan.holtz.data@gmail.com">mail</a>.
+            </p>
+          </div>
+
+          <div class="col-md-6 aboutCol">
+            <h2>Tools used</h2>
+            <hr />
+            <ul>
+              <li>
+                All the examples featured in this website are based on
+                <a href="https://d3js.org">d3.js v4</a>
+              </li>
+              <li>
+                The whole website is construct on the
+                <a href="https://getbootstrap.com">Bootstrap</a> framework.
+              </li>
+              <li>
+                Code highlighting is done thanks to
+                <a href="https://prismjs.com">prism</a>
+              </li>
+              <li>
+                Everything is hosted on
+                <a href="https://github.com/holtzy/D3-graph-gallery">github</a>
+              </li>
+              <li>
+                The map sections often reference the
+                <a href="https://leafletjs.com">leaflet.js library</a>
+              </li>
+              <li>
+                Nothing would be possible without
+                <a href="https://en.wikipedia.org/wiki/JavaScript"
+                  >javascript</a
+                >
+                and <a href="https://jquery.com/">jquery</a> of course
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
+    </section>
 
+    <style>
+      .aboutCol {
+        margin-top: 50px;
+      }
+    </style>
+    <!-- ======================================================================= -->
 
-      <div class="col-md-6 aboutCol">
-        <h2>Tools used</h2>
-        <hr>
-        <ul>
-          <li>All the examples featured in this website are based on <a href="https://d3js.org">d3.js v4</a></li>
-          <li>The whole website is construct on the <a href="https://getbootstrap.com">Bootstrap</a> framework.</li>
-          <li>Code highlighting is done thanks to <a href="https://prismjs.com">prism</a></li>
-          <li>Everything is hosted on <a href="https://github.com/holtzy/D3-graph-gallery">github</a></li>
-          <li>The map sections often reference the <a href="https://leafletjs.com">leaflet.js library</a></li>
-          <li>Nothing would be possible without <a href="https://en.wikipedia.org/wiki/JavaScript">javascript</a> and <a href="https://jquery.com/">jquery</a> of course</li>
-        </ul>
-      </div>
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
-    </div>
+    <section id="contact" class="bg" style="background-color: white"></section>
 
- </div>
-</section>
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
 
-<style>
-.aboutCol {
-  margin-top: 50px;
-}
-</style>
-<!-- ======================================================================= -->
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
 
+    <!-- ============================ -->
 
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-<!-- ANCHOR -->
-<a name="contactanchor"></a>
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============== JAVASCRIPT SECTION =============== -->
+    <!-- =============== JAVASCRIPT SECTION =============== -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -296,18 +332,10 @@ $(function(){
     <!-- Activate the bootstrap tooltip, must be after jQuery load -->
     <script>
       $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-   </script>
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
 
-
-
-
-
-<!--============================== -->
-
-
-
+    <!--============================== -->
   </body>
-
 </html>

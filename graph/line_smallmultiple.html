@@ -1,195 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
-<head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
+      gtag("config", "UA-79254642-6");
+    </script>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta charset="utf-8" />
+    <title>Small multiple for line chart in d3.js</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="How to apply small multiple to a linechart to display the evolution of several groups. Example with code (d3.js v4 and v6)."
+    />
+    <meta
+      name="keywords"
+      content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, linechart"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
+    <meta
+      property="og:title"
+      content="Small multiple for line chart in d3.js"
+    />
+    <meta
+      property="og:image"
+      content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png"
+    />
+    <meta
+      property="og:description"
+      content="How to apply small multiple to a linechart to display the evolution of several groups. Example with code (d3.js v4 and v6)."
+    />
 
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
+    <!-- Custom fonts for this template -->
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <!-- Custom styles for this template -->
+    <link href="../css/agency.css" rel="stylesheet" />
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!-- PRISM -->
+    <script src="../LIB/prism.js"></script>
+    <link href="../LIB/prism.css" rel="stylesheet" />
 
-    gtag('config', 'UA-79254642-6');
-  </script>
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
 
-  <meta charset="utf-8">
-  <title>Small multiple for line chart in d3.js</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="How to apply small multiple to a linechart to display the evolution of several groups. Example with code (d3.js v4 and v6).">
-  <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, linechart">
-  <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+  </head>
 
-  <meta property="og:title" content="Small multiple for line chart in d3.js">
-  <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-  <meta property="og:description" content="How to apply small multiple to a linechart to display the evolution of several groups. Example with code (d3.js v4 and v6).">
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
+    </script>
 
-  <!-- Bootstrap core CSS -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
+    </script>
 
-  <!-- Custom fonts for this template -->
-  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-  <!-- Custom styles for this template -->
-  <link href="../css/agency.css" rel="stylesheet">
-
-  <!-- PRISM -->
-  <script src="../LIB/prism.js"></script>
-  <link href="../LIB/prism.css" rel="stylesheet" />
-
-  <!-- JQUERY -->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-
-  <!-- HTML TO CANVAS -->
-  <script src="../js/html2canvas.js"></script>
-
-  <!-- Function to parse html and js code chunks made by Yan Holtz -->
-  <script src="../js/myParser.js"></script>
-
-</head>
-
-
-
-
-
-
-<body id="page-top">
-
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("../html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-});
-</script>
-
-
-<!-- Header -->
-<header class="masthead">
-  <div class="textlanding">
-      <h1>Small multiple for line chart</h1>
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.yan-holtz.com">
-            <i class="fa fa-home"></i>
-          </a>
-        </li>
-      </ul>
-      <br><br>
-      <p style="max-width: 700px; margin: auto">Displaying more than a few groups on the same linechart most of the time result in a <a href="https://www.data-to-viz.com/caveat/spaghetti.html">spaghetti plot</a> that is almost unreadable. Using small multiple is a very good alternative, and this post describes how to implement it in d3.js. This example works with d3.js <code>v4</code> and <code>v6</code></p>
-      <br>
-      <a class="btn btn-secondary btn-md text-uppercase" href="../line.html">Lineplot section</a>
-      <button class="btn btn-secondary btn-md text-uppercase" onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')">Download code</button>
-  </div>
-</header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-
-<section class="bg" style="padding-top: 20px; padding-bottom: 20px"><div class="container" >
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-
-  <div class="col-lg-7 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="result" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>This is an advance technique. You probably need to understand how to build a <a href="line_basic.html">basic line plot</a> first, and then a <a href="line_several_group.html">lineplot with several groups</a>.</li>
-          <br>
-          <li>Instead of building one main svg area as usual, <u>many svg areas</u> are created: one per group</li>
-          <br>
-          <li>To do so, data is bound to each svg area. This is very handy: each time a component will be created, it will be done for each subchart</li>
-          <br>
-          <li>ToDo: improve explanation</li>
+    <!-- Header -->
+    <header class="masthead">
+      <div class="textlanding">
+        <h1>Small multiple for line chart</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
         </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          Displaying more than a few groups on the same linechart most of the
+          time result in a
+          <a href="https://www.data-to-viz.com/caveat/spaghetti.html"
+            >spaghetti plot</a
+          >
+          that is almost unreadable. Using small multiple is a very good
+          alternative, and this post describes how to implement it in d3.js.
+          This example works with d3.js <code>v4</code> and <code>v6</code>
+        </p>
+        <br />
+        <a class="btn btn-secondary btn-md text-uppercase" href="../line.html"
+          >Lineplot section</a
+        >
+        <button
+          class="btn btn-secondary btn-md text-uppercase"
+          onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code-html-v4', 'code-js-v4')"
+        >
+          Download code
+        </button>
       </div>
-    </div>
-  </div>
+    </header>
 
-<!-- ================================================================================= -->
+    <section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+      <div class="container">
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
+          <div class="col-lg-7 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="result"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    This is an advance technique. You probably need to
+                    understand how to build a
+                    <a href="line_basic.html">basic line plot</a> first, and
+                    then a
+                    <a href="line_several_group.html"
+                      >lineplot with several groups</a
+                    >.
+                  </li>
+                  <br />
+                  <li>
+                    Instead of building one main svg area as usual,
+                    <u>many svg areas</u> are created: one per group
+                  </li>
+                  <br />
+                  <li>
+                    To do so, data is bound to each svg area. This is very
+                    handy: each time a component will be created, it will be
+                    done for each subchart
+                  </li>
+                  <br />
+                  <li>ToDo: improve explanation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
+          <!-- ================================================================================= -->
 
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-5 text-center .align-middle">
+            <div class="v4-v6-toggle">
+              <button
+                id="button-show-v4"
+                onclick="showCodeVersion('v4')"
+                type="button"
+                class="btn btn-secondary btn-sm active"
+              >
+                d3 v4
+              </button>
+              <span> | </span>
+              <button
+                id="button-show-v6"
+                onclick="showCodeVersion('v6')"
+                type="button"
+                class="btn btn-secondary btn-sm"
+              >
+                d3 v6
+              </button>
+            </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-5 text-center .align-middle">
-<div class="v4-v6-toggle">
-    <button id="button-show-v4" onclick="showCodeVersion('v4')" type="button" class="btn  btn-secondary btn-sm active">d3 v4</button>
-    <span> | </span>
-    <button id="button-show-v6" onclick="showCodeVersion('v6')" type="button" class="btn  btn-secondary btn-sm">d3 v6</button>
-</div>
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html d-none d3v4-chunk"
+            ><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -199,7 +226,9 @@ $(function(){
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
-<pre class="language-html d-none d3v6-chunk"><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
+            <pre
+              class="language-html d-none d3v6-chunk"
+            ><code id="code-html-v6" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -210,15 +239,12 @@ $(function(){
 
 </xmp></code></pre>
 
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-
-
-
-<!-- ========= show JS code V4 ==============  -->
-<pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code V4 ==============  -->
+            <pre
+              class="language-js d-none d3v4-chunk"
+            ><code id="code-js-v4" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 30, right: 0, bottom: 30, left: 50},
@@ -293,10 +319,12 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
 })
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-<!-- ========= show JS code v6 ==============  -->
-<pre class="language-js d-none d3v6-chunk"><code id="code-js-v6" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code v6 ==============  -->
+            <pre
+              class="language-js d-none d3v6-chunk"
+            ><code id="code-js-v6" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 const margin = {top: 30, right: 0, bottom: 30, left: 50},
@@ -369,155 +397,86 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
 })
 </script></xmp></code></pre>
-<!-- ==================================== -->
-
-
-
-
-
-
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center align-self-center">
-        <h3 class="text-uppercase">Related blocks  &rarr;</h3>
+            <!-- ==================================== -->
+          </div>
+        </div>
       </div>
-      <div class="col-lg-5">
-        <ul>
-          <li><i>Small multiple area line charts - </i>by <a href="https://bl.ocks.org/tomshanley/b841837f5414b34b7c45055d97e7674d">Tom Shanley</a></li>
-          <br>
-          <li><i>Basic line chart - </i>by <a href="line_basic.html">the d3 graph gallery</a></li>        </ul>
+    </section>
+    <br />
+
+    <!-- ============================ -->
+
+    <!-- ============================ RELATED BLOCKS ============================ -->
+
+    <section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 text-center align-self-center">
+            <h3 class="text-uppercase">Related blocks &rarr;</h3>
+          </div>
+          <div class="col-lg-5">
+            <ul>
+              <li>
+                <i>Small multiple area line charts - </i>by
+                <a
+                  href="https://bl.ocks.org/tomshanley/b841837f5414b34b7c45055d97e7674d"
+                  >Tom Shanley</a
+                >
+              </li>
+              <br />
+              <li>
+                <i>Basic line chart - </i>by
+                <a href="line_basic.html">the d3 graph gallery</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
+    <!-- ============================ -->
 
+    <!-- ============================ JAVASCRIPT SECTION ============================ -->
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
+    <!-- Custom scripts for this template -->
+    <script src="../js/agency.min.js"></script>
 
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
 
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ JAVASCRIPT SECTION ============================ -->
-
-<!-- Bootstrap core JavaScript -->
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Custom scripts for this template -->
-<script src="../js/agency.min.js"></script>
-
-<!-- Activate the bootstrap tooltip, must be after jQuery load -->
-<script>
-  $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-  })
-</script>
-
-
-
-<script>
-showCodeVersion('v4')
-</script>
-
-
-
-
-
-
-
-</body>
-
+    <script>
+      showCodeVersion("v4");
+    </script>
+  </body>
 </html>

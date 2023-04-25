@@ -1,33 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-
-
   <head>
-
-
-
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Managing colors in d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How to call a color in d3.js, how to build color palettes, how to map it to a variable and more.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, color, palette, brewer">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="How to call a color in d3.js, how to build color palettes, how to map it to a variable and more."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, color, palette, brewer"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Managing colors in d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How to call a color in d3.js, how to build color palettes, how to map it to a variable and more.">
+    <meta property="og:title" content="Managing colors in d3.js" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="How to call a color in d3.js, how to build color palettes, how to map it to a variable and more."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -47,93 +56,90 @@
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
-
   </head>
 
-
-
-
   <body id="page-top">
-
-
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-    $(function(){
-      $("#mainNav").load("../html_chunk/menu.html");
-    });
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-    $(function(){
-      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-    });
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
     </script>
-
-
-
 
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>Managing colors in d3.js</h1>
-          <hr class="short_hr">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to manage <u>colors</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
+        <h1>Managing colors in d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          This is document gives a few insights on how to manage
+          <u>colors</u> with d3.js. It is composed by several interactive
+          examples, allowing to play with the code to understand better how it
+          works.
+        </p>
       </div>
     </header>
 
+    <!-- ==================== GIVING AN INDIVIDUAL COLOR ==================== -->
 
+    <section style="padding-top: 20px; padding-bottom: 20px">
+      <div class="container">
+        <h1>Just calling a color</h1>
+        <hr />
+        <p>
+          Starting basic: you have an element and want to color it. You have
+          several way to provide this color:
+        </p>
+        <ul>
+          <li>
+            <code>Hex</code> code, like <code>#69a3b2</code>. You can use
+            <a href="https://www.color-hex.com">this tool</a> to find the
+            Hexcode you need.
+          </li>
+          <li>
+            Using <code>rgb</code> or <code>rgba</code>: gives the quantity of
+            red, green and blue between 0 and 255.
+          </li>
+          <li>
+            Using the
+            <a href="https://github.com/d3/d3-color">d3-color</a> plugin. This
+            then allow to apply different type of customization.
+          </li>
+        </ul>
+        <p>Here is an illustration of these methods:</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== GIVING AN INDIVIDUAL COLOR ==================== -->
-
-  <section style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-
-    <h1>Just calling a color</h1>
-    <hr>
-    <p>Starting basic: you have an element and want to color it. You have several way to provide this color:</p>
-    <ul>
-      <li><code>Hex</code> code, like <code>#69a3b2</code>. You can use <a href="https://www.color-hex.com">this tool</a> to find the Hexcode you need.</li>
-      <li>Using <code>rgb</code> or <code>rgba</code>: gives the quantity of red, green and blue between 0 and 255.</li>
-      <li>Using the <a href="https://github.com/d3/d3-color">d3-color</a> plugin. This then allow to apply different type of customization.</li>
-    </ul>
-    <p>Here is an illustration of these methods:</p>
-
-      <div>
-        <pre class="language-js"><code id="code-basic-linear" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code-basic-linear" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#res").append("svg").attr("width", 1000).attr("height",200)
 
 // With Hex code
@@ -153,58 +159,57 @@ svg.append("circle").attr("cx",350).attr("cy",100).attr("r",20)
   .style("fill", "rgb(12,240,233)" )
 
 </xmp></code></pre>
+        </div>
 
+        <div id="res"></div>
       </div>
+    </section>
 
-      <div id="res"></div>
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-basic-linear");
+      document
+        .getElementById("code-basic-linear")
+        .addEventListener("input", function () {
+          d3.select("#res").html("");
+          myJSParser("code-basic-linear", "result");
+        });
+    </script>
 
-  </div>
-</section>
+    <!-- ================================================================================= -->
 
+    <br /><br />
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-basic-linear')
-document.getElementById('code-basic-linear').addEventListener("input", function() {
-  d3.select('#res').html("");
-  myJSParser('code-basic-linear', 'result');
-})
-</script>
+    <!-- ==================== SEQUENTIAL SCALE ==================== -->
 
+    <section style="padding-top: 20px; padding-bottom: 20px">
+      <div class="container">
+        <h1>Sequential color scale</h1>
+        <hr />
+        <p></p>
+        <p>
+          You have a numeric variable and want to map it to a color scale.
+          Several way to build this scale
+        </p>
+        <ul>
+          <li>Give 2 colors as a range. Use <code>scaleLinear()</code></li>
+          <li>
+            Use a palette coming from ColorBrewer. Use
+            <code>scaleSequential()</code>. List of available palette
+            <a href="https://www.r-graph-gallery.com/38-rcolorbrewers-palettes/"
+              >here</a
+            >. These color scale are offered in the
+            <a href="https://github.com/d3/d3-scale-chromatic"
+              >d3-scale-chromatic plugin</a
+            >
+          </li>
+          <li>Palette coming from viridis. Same idea.</li>
+        </ul>
 
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-
-<!-- ==================== SEQUENTIAL SCALE ==================== -->
-
-  <section style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-
-<h1>Sequential color scale</h1>
-<hr>
-<p></p>
-<p>You have a numeric variable and want to map it to a color scale. Several way to build this scale</p>
-<ul>
-  <li>Give 2 colors as a range. Use <code>scaleLinear()</code></li>
-  <li>Use a palette coming from ColorBrewer. Use <code>scaleSequential()</code>. List of available palette <a href="https://www.r-graph-gallery.com/38-rcolorbrewers-palettes/">here</a>. These color scale are offered in the <a href="https://github.com/d3/d3-scale-chromatic">d3-scale-chromatic plugin</a></li>
-  <li>Palette coming from viridis. Same idea.</li>
-</ul>
-
-<div>
-<pre class="language-js"><code id="code_divContinuous" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code_divContinuous" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#divContinuous").append("svg").attr("width", 1000).attr("height",400)
 
 // Create data
@@ -228,54 +233,57 @@ var myColor = d3.scaleSequential().domain([1,10])
 svg.selectAll(".secondrow").data(data).enter().append("circle").attr("cx", function(d,i){return 30 + i*60}).attr("cy", 250).attr("r", 19).attr("fill", function(d){return myColor(d) })
 
 </xmp></code></pre>
+        </div>
+
+        <div id="divContinuous"></div>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code_divContinuous");
+      document
+        .getElementById("code_divContinuous")
+        .addEventListener("input", function () {
+          d3.select("#divContinuous").html("");
+          myJSParserShort("code_divContinuous");
+        });
+    </script>
 
-      <div id="divContinuous"></div>
+    <!-- ================================================================================= -->
 
-  </div>
-</section>
+    <br /><br />
 
+    <!-- ==================== CATEGORICAL SCALE ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code_divContinuous')
-document.getElementById('code_divContinuous').addEventListener("input", function() {
-  d3.select('#divContinuous').html("");
-  myJSParserShort('code_divContinuous');
-})
-</script>
+    <section style="padding-top: 20px; padding-bottom: 20px">
+      <div class="container">
+        <h1>Categorical color scale</h1>
+        <hr />
+        <p></p>
+        <p>
+          You have a several groups, and want to attribute a specific color to
+          each group. Several way to build this scale
+        </p>
+        <ul>
+          <li>Give 2 colors as a range. Use <code>scaleLinear()</code></li>
+          <li>
+            Use a palette coming from ColorBrewer. Use
+            <code>scaleSequential()</code>. List of available palette
+            <a href="https://www.r-graph-gallery.com/38-rcolorbrewers-palettes/"
+              >here</a
+            >. These color scale are offered in the
+            <a href="https://github.com/d3/d3-scale-chromatic"
+              >d3-scale-chromatic plugin</a
+            >
+          </li>
+          <li>Palette coming from viridis. Same idea.</li>
+        </ul>
 
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-<br><br>
-
-<!-- ==================== CATEGORICAL SCALE ==================== -->
-
-  <section style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-
-<h1>Categorical color scale</h1>
-<hr>
-<p></p>
-<p>You have a several groups, and want to attribute a specific color to each group. Several way to build this scale</p>
-<ul>
-  <li>Give 2 colors as a range. Use <code>scaleLinear()</code></li>
-  <li>Use a palette coming from ColorBrewer. Use <code>scaleSequential()</code>. List of available palette <a href="https://www.r-graph-gallery.com/38-rcolorbrewers-palettes/">here</a>. These color scale are offered in the <a href="https://github.com/d3/d3-scale-chromatic">d3-scale-chromatic plugin</a></li>
-  <li>Palette coming from viridis. Same idea.</li>
-</ul>
-
-<div>
-<pre class="language-js"><code id="code_divCategoric" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code_divCategoric" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#divCategoric").append("svg").attr("width", 1000).attr("height",400)
 
 // Create data
@@ -294,151 +302,111 @@ svg.selectAll(".firstrow").data(data).enter().append("circle").attr("cx", functi
 
 
 </xmp></code></pre>
+        </div>
+
+        <div id="divCategoric"></div>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code_divCategoric");
+      document
+        .getElementById("code_divCategoric")
+        .addEventListener("input", function () {
+          d3.select("#divCategoric").html("");
+          myJSParserShort("code_divCategoric");
+        });
+    </script>
 
-      <div id="divCategoric"></div>
+    <!-- ================================================================================= -->
 
-  </div>
-</section>
+    <!-- ============================ RELATED BLOCKS ============================ -->
 
-
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code_divCategoric')
-document.getElementById('code_divCategoric').addEventListener("input", function() {
-  d3.select('#divCategoric').html("");
-  myJSParserShort('code_divCategoric');
-})
-</script>
-
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="contact" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+    <section
+      id="contact"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>scaleOrdinal example - </i>by
+                    <a
+                      href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465"
+                      >d3indepth</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>d3-scale-chromatic plugin - </i
+                    ><a href="https://github.com/d3/d3-scale-chromatic">link</a>
+                  </li>
+                  <br />
+                  <li>
+                    <i>Ordinal scale using Brewer colour scheme</i> - by
+                    <a
+                      href="https://bl.ocks.org/d3indepth/ab3336867f7469e0f4608b59b8aa125c"
+                      >d3 in depth</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>scaleOrdinal example - </i>by <a href="https://bl.ocks.org/d3indepth/fabe4d1adbf658c0b73c74d3ea36d465">d3indepth</a></li>
-            <br>
-            <li><i>d3-scale-chromatic plugin - </i><a href="https://github.com/d3/d3-scale-chromatic">link</a></li>
-            <br>
-            <li><i>Ordinal scale using Brewer colour scheme</i> - by <a href="https://bl.ocks.org/d3indepth/ab3336867f7469e0f4608b59b8aa125c">d3 in depth</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
+    <!-- ============================ -->
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ JAVASCRIPT SECTION ============================ -->
-
-
+    <!-- ============================ JAVASCRIPT SECTION ============================ -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-      <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
+    <!--<script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
     <!-- Contact form JavaScript -->
     <script src="../js/jqBootstrapValidation.js"></script>
@@ -449,35 +417,19 @@ $(function(){
     <!-- Activate the bootstrap tooltip, must be after jQuery load -->
     <script>
       $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
+        $('[data-toggle="tooltip"]').tooltip();
+      });
     </script>
-
-
 
     <script>
-    function download(){
-        var a = document.body.appendChild(
-            document.createElement("a")
-        );
+      function download() {
+        var a = document.body.appendChild(document.createElement("a"));
         a.download = "export.html";
-        var command = document.getElementById('code').innerHTML;
-        command = command.replace(/<\/?span[^>]*>/g,"");
-        a.href = "data:html" + command
+        var command = document.getElementById("code").innerHTML;
+        command = command.replace(/<\/?span[^>]*>/g, "");
+        a.href = "data:html" + command;
         a.click(); // Trigger a click on the element
-    }
+      }
     </script>
-
-
-
-
-
-
-
-
-
-
-
   </body>
-
 </html>

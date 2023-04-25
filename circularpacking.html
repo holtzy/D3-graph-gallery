@@ -1,61 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Circular Packing &#124; the D3 Graph Gallery</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Circular packing with Javascript and D3.js: from the most basic example to highly customized examples.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,pie chart">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Circular packing with Javascript and D3.js: from the most basic example to highly customized examples."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,pie chart"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Circular Packing &#124; the D3 Graph Gallery">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Circular packing with Javascript and D3.js: from the most basic example to highly customized examples.">
+    <meta
+      property="og:title"
+      content="Circular Packing &#124; the D3 Graph Gallery"
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="Circular packing with Javascript and D3.js: from the most basic example to highly customized examples."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link
+      href="vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="css/agency.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet" />
 
     <!-- JQUERY -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -63,486 +85,506 @@
     <!-- D3.js -->
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  </head>
 
-</head>
-
-
-
-<body id="page-top">
-
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-});
-</script>
-
-  <!-- Header -->
-  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-    <div class="textlanding">
-      <h1>Circular Packing</h1>
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.yan-holtz.com">
-            <i class="fa fa-home"></i>
-          </a>
-        </li>
-      </ul>
-      <br><br>
-      <p style="max-width: 700px; margin: auto"><a href="https://www.data-to-viz.com/graph/circularpacking.html">Circular packing</a> or <a href="https://www.data-to-viz.com/graph/circularpacking.html">circular treemap</a> allows to visualize a <u>hierarchic organization</u>. It is an equivalent of a <a href="treemap.html">treemap</a> or a <a href="dendrogram.html">dendrogram</a>, where each node of the tree is represented as a circle and its sub-nodes are represented as circles inside of it.</p>
-  </div>
-</header>
-
-
-
-<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-<div id="position_for_images"> </div>
-<script>
-$(function(){
-  $("#position_for_images").load("html_chunk/images.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-<!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-
-
-    <div class="mySeryTitle">Step by step</div>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/circularpacking_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic circular packing</p>
-              <hr>
-              <p class="explanation_portfolio">Most basic examples: just applying a few forces on 8 nodes</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/circularpacking_basic.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/circularpacking_drag.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Add dragging feature</p>
-              <hr>
-              <p class="explanation_portfolio">Dragging allows you to interactively modify a node position, updating other nodes automatically.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/circularpacking_drag.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/circularpacking_group.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Add group features</p>
-              <hr>
-              <p class="explanation_portfolio">How to use group information on circular packing: change color, attract to specific position...</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/circularpacking_group.png" alt="">
-        </a>
-      </div>
-    </div>
-
-
-    <br><br><br><br>
-    <div class="mySeryTitle">Template</div>
-    <hr>
-    <p>Here is the <a href="graph/circularpacking_template.html">template</a> I start with when needing to build a circular packing with <u>one level of hierarchy</u>. Input data is a <u><code>.csv</code> file</u> giving features for each node. Circle <u>size</u> an <u>color</u> depends on these features. You can <u>drag circles</u> to reorganize, and <u>hover</u> them for more information.</p>
-    <a class="btn btn-secondary btn-md text-uppercase" target="_blank" href="graph/circularpacking_template.html">See code</a>
-    <center><div id="my_dataviz"></div></center>
-
-
-    <br><br><br><br>
-  <div class="mySeryTitle">Selection of blocks</div>
-    <hr>
-    <p>A selection of examples showing the application of the basic concept to real life dataset.</p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://bl.ocks.org/HarryStevens/f636199a46fc4b210fbca3b1dc4ef372">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Circular packing with one level of hierarchy</p>
-              <hr>
-              <p class="explanation_portfolio">An example showing one bubble by country in a clean layout.</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="img/block/block_circularpack1level.png" alt="network graph les miserables">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://d3indepth.com/force-layout/">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Overview of force layout</p>
-              <hr>
-              <p class="explanation_portfolio">A cool post by d3 in depth I highly recommend to get introduced to forces</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="img/block/block_circularpackD3indepth.png" alt="network graph les miserables">
-        </a>
-      </div>
-    </div>
-
- </div>
-</section>
-
-
-<!-- ======================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ CIRCULAR PACKING CHART ============================ -->
-
-<style>
-.node:hover{
-  stroke-width: 7px !important;
-  opacity: 1 !important;
-}
-</style>
-
-<script>
-
-// set the dimensions and margins of the graph
-var width = 860
-var height = 460
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-
-// Read data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/11_SevCatOneNumNestedOneObsPerGroup.csv", function(data) {
-
-  // Filter a bit the data
-  data = data.filter(function(d){ return d.value>10000000 })
-
-  // Color palette for continents?
-  var color = d3.scaleOrdinal()
-    .domain(["Asia", "Europe", "Africa", "Oceania", "Americas"])
-    .range(d3.schemeSet1);
-
-  // Color palette for continents?
-  var size = d3.scaleLinear()
-    .domain([0, 1400000000])
-    .range([9,70])
-
-    // create a tooltip
-    var Tooltip = d3.select("#my_dataviz")
-      .append("div")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-      .style("background-color", "white")
-      .style("border", "solid")
-      .style("border-width", "2px")
-      .style("border-radius", "5px")
-      .style("padding", "5px")
-
-    // Three function that change the tooltip when user hover / move / leave a cell
-    var mouseover = function(d) {
-      Tooltip
-        .style("opacity", 1)
-    }
-    var mousemove = function(d) {
-      Tooltip
-        .html('<u>' + d.key + '</u>' + "<br>" + d.value + " inhabitants")
-        .style("left", (d3.event.pageX+20) + "px")
-        .style("top", (d3.event.pageY-30) + "px")
-    }
-    var mouseleave = function(d) {
-      Tooltip
-        .style("opacity", 0)
-    }
-
-  // Initialize the circle: all located at the center of the svg area
-  var node = svg.append("g")
-    .selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-      .attr("class", "node")
-      .attr("r", function(d){ return size(d.value)})
-      .attr("cx", width / 2)
-      .attr("cy", height / 2)
-      .style("fill", function(d){ return color(d.region)})
-      .style("fill-opacity", 0.7)
-      .attr("stroke", "black")
-      .style("stroke-width", 1)
-      .on("mouseover", mouseover)
-      .on("mousemove", mousemove)
-      .on("mouseleave", mouseleave)
-      .call(d3.drag() // call specific function when circle is dragged
-           .on("start", dragstarted)
-           .on("drag", dragged)
-           .on("end", dragended));
-
-  // Features of the forces applied to the nodes:
-  var simulation = d3.forceSimulation()
-      .force("y", d3.forceY().y(height / 2)) // Attraction to the center of the svg area
-      .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-      .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
-      .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(d.value)+3) }).iterations(1)) // Force that avoids circle overlapping
-
-  // Apply these forces to the nodes and update their positions.
-  // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-  simulation
-      .nodes(data)
-      .on("tick", function(d){
-        node
-            .attr("cx", function(d){ return d.x; })
-            .attr("cy", function(d){ return d.y; })
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
       });
+    </script>
 
-  // What happens when a circle is dragged?
-  function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(.03).restart();
-    d.fx = d.x;
-    d.fy = d.y;
-  }
-  function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-  }
-  function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(.03);
-    d.fx = null;
-    d.fy = null;
-  }
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
+    </script>
 
-})
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>Circular Packing</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          <a href="https://www.data-to-viz.com/graph/circularpacking.html"
+            >Circular packing</a
+          >
+          or
+          <a href="https://www.data-to-viz.com/graph/circularpacking.html"
+            >circular treemap</a
+          >
+          allows to visualize a <u>hierarchic organization</u>. It is an
+          equivalent of a <a href="treemap.html">treemap</a> or a
+          <a href="dendrogram.html">dendrogram</a>, where each node of the tree
+          is represented as a circle and its sub-nodes are represented as
+          circles inside of it.
+        </p>
+      </div>
+    </header>
 
-// Explanation
-svg
-  .append("text")
-    .attr("text-anchor", "end")
-    .style("fill", "#B8B8B8")
-    .style("font-size", "14px")
-    .attr("x", width-30)
-    .attr("y", height-90)
-    .attr("width", 90)
-    .html("Distribution of the world population")
-svg
-  .append("text")
-    .attr("text-anchor", "end")
-    .style("fill", "#B8B8B8")
-    .style("font-size", "14px")
-    .attr("x", width-30)
-    .attr("y", height-65)
-    .attr("width", 90)
-    .html("Hover and drag for more")
+    <!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+    <div id="position_for_images"></div>
+    <script>
+      $(function () {
+        $("#position_for_images").load("html_chunk/images.html");
+      });
+    </script>
 
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED SECTION ============================ -->
-<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-
-<div class="container">
-
-  <p class="mySeryTitle">Related chart types</p>
-  <hr>
-  <div class="row">
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="treemap.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
+    <!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+    <section class="bg" id="portfolio" style="padding-top: 10px">
+      <div class="container">
+        <div class="mySeryTitle">Step by step</div>
+        <hr />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/circularpacking_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic circular packing</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Most basic examples: just applying a few forces on 8 nodes
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/circularpacking_basic.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/circularpacking_drag.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Add dragging feature</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Dragging allows you to interactively modify a node position,
+                    updating other nodes automatically.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/circularpacking_drag.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/circularpacking_group.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Add group features</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    How to use group information on circular packing: change
+                    color, attract to specific position...
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/circularpacking_group.png"
+                alt=""
+              />
+            </a>
           </div>
         </div>
-        <img class="img-fluid" src="img/section/Tree150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Treemap</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="donut.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
+
+        <br /><br /><br /><br />
+        <div class="mySeryTitle">Template</div>
+        <hr />
+        <p>
+          Here is the
+          <a href="graph/circularpacking_template.html">template</a> I start
+          with when needing to build a circular packing with
+          <u>one level of hierarchy</u>. Input data is a
+          <u><code>.csv</code> file</u> giving features for each node. Circle
+          <u>size</u> an <u>color</u> depends on these features. You can
+          <u>drag circles</u> to reorganize, and <u>hover</u> them for more
+          information.
+        </p>
+        <a
+          class="btn btn-secondary btn-md text-uppercase"
+          target="_blank"
+          href="graph/circularpacking_template.html"
+          >See code</a
+        >
+        <center><div id="my_dataviz"></div></center>
+
+        <br /><br /><br /><br />
+        <div class="mySeryTitle">Selection of blocks</div>
+        <hr />
+        <p>
+          A selection of examples showing the application of the basic concept
+          to real life dataset.
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://bl.ocks.org/HarryStevens/f636199a46fc4b210fbca3b1dc4ef372"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Circular packing with one level of hierarchy</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    An example showing one bubble by country in a clean layout.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid showBlock"
+                src="img/block/block_circularpack1level.png"
+                alt="network graph les miserables"
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://d3indepth.com/force-layout/"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Overview of force layout</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    A cool post by d3 in depth I highly recommend to get
+                    introduced to forces
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid showBlock"
+                src="img/block/block_circularpackD3indepth.png"
+                alt="network graph les miserables"
+              />
+            </a>
           </div>
         </div>
-        <img class="img-fluid" src="img/section/Doughnut150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Doughnut</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="pie.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+
+    <!-- ============================ CIRCULAR PACKING CHART ============================ -->
+
+    <style>
+      .node:hover {
+        stroke-width: 7px !important;
+        opacity: 1 !important;
+      }
+    </style>
+
+    <script>
+      // set the dimensions and margins of the graph
+      var width = 860;
+      var height = 460;
+
+      // append the svg object to the body of the page
+      var svg = d3
+        .select("#my_dataviz")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      // Read data
+      d3.csv(
+        "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/11_SevCatOneNumNestedOneObsPerGroup.csv",
+        function (data) {
+          // Filter a bit the data
+          data = data.filter(function (d) {
+            return d.value > 10000000;
+          });
+
+          // Color palette for continents?
+          var color = d3
+            .scaleOrdinal()
+            .domain(["Asia", "Europe", "Africa", "Oceania", "Americas"])
+            .range(d3.schemeSet1);
+
+          // Color palette for continents?
+          var size = d3.scaleLinear().domain([0, 1400000000]).range([9, 70]);
+
+          // create a tooltip
+          var Tooltip = d3
+            .select("#my_dataviz")
+            .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-width", "2px")
+            .style("border-radius", "5px")
+            .style("padding", "5px");
+
+          // Three function that change the tooltip when user hover / move / leave a cell
+          var mouseover = function (d) {
+            Tooltip.style("opacity", 1);
+          };
+          var mousemove = function (d) {
+            Tooltip.html(
+              "<u>" + d.key + "</u>" + "<br>" + d.value + " inhabitants"
+            )
+              .style("left", d3.event.pageX + 20 + "px")
+              .style("top", d3.event.pageY - 30 + "px");
+          };
+          var mouseleave = function (d) {
+            Tooltip.style("opacity", 0);
+          };
+
+          // Initialize the circle: all located at the center of the svg area
+          var node = svg
+            .append("g")
+            .selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("class", "node")
+            .attr("r", function (d) {
+              return size(d.value);
+            })
+            .attr("cx", width / 2)
+            .attr("cy", height / 2)
+            .style("fill", function (d) {
+              return color(d.region);
+            })
+            .style("fill-opacity", 0.7)
+            .attr("stroke", "black")
+            .style("stroke-width", 1)
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave)
+            .call(
+              d3
+                .drag() // call specific function when circle is dragged
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended)
+            );
+
+          // Features of the forces applied to the nodes:
+          var simulation = d3
+            .forceSimulation()
+            .force("y", d3.forceY().y(height / 2)) // Attraction to the center of the svg area
+            .force(
+              "center",
+              d3
+                .forceCenter()
+                .x(width / 2)
+                .y(height / 2)
+            ) // Attraction to the center of the svg area
+            .force("charge", d3.forceManyBody().strength(0.1)) // Nodes are attracted one each other of value is > 0
+            .force(
+              "collide",
+              d3
+                .forceCollide()
+                .strength(0.2)
+                .radius(function (d) {
+                  return size(d.value) + 3;
+                })
+                .iterations(1)
+            ); // Force that avoids circle overlapping
+
+          // Apply these forces to the nodes and update their positions.
+          // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
+          simulation.nodes(data).on("tick", function (d) {
+            node
+              .attr("cx", function (d) {
+                return d.x;
+              })
+              .attr("cy", function (d) {
+                return d.y;
+              });
+          });
+
+          // What happens when a circle is dragged?
+          function dragstarted(d) {
+            if (!d3.event.active) simulation.alphaTarget(0.03).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+          }
+          function dragged(d) {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+          }
+          function dragended(d) {
+            if (!d3.event.active) simulation.alphaTarget(0.03);
+            d.fx = null;
+            d.fy = null;
+          }
+        }
+      );
+
+      // Explanation
+      svg
+        .append("text")
+        .attr("text-anchor", "end")
+        .style("fill", "#B8B8B8")
+        .style("font-size", "14px")
+        .attr("x", width - 30)
+        .attr("y", height - 90)
+        .attr("width", 90)
+        .html("Distribution of the world population");
+      svg
+        .append("text")
+        .attr("text-anchor", "end")
+        .style("fill", "#B8B8B8")
+        .style("font-size", "14px")
+        .attr("x", width - 30)
+        .attr("y", height - 65)
+        .attr("width", 90)
+        .html("Hover and drag for more");
+    </script>
+
+    <!-- ============================ RELATED SECTION ============================ -->
+    <section
+      class="bg-light"
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <p class="mySeryTitle">Related chart types</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="treemap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Tree150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Treemap</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="donut.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Doughnut150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Doughnut</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="pie.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Pie150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Pie chart</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="dendrogram.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Dendrogram150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Dendrogram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="circularpacking.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/CircularPacking150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Circular packing</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="sunburst.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Sunburst150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Sunburst</div>
           </div>
         </div>
-        <img class="img-fluid" src="img/section/Pie150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Pie chart</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="dendrogram.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Dendrogram150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Dendrogram</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="circularpacking.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/CircularPacking150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Circular packing</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="sunburst.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Sunburst150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Sunburst</div>
-    </div>
-  </div>
+      </div>
+    </section>
 
-</div>
-</section>
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
+    <!-- ============================ -->
 
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-<!-- ANCHOR -->
-<a name="contactanchor"></a>
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============== JAVASCRIPT SECTION =============== -->
+    <!-- =============== JAVASCRIPT SECTION =============== -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -553,11 +595,6 @@ $(function(){
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
 
-
-<!--============================== -->
-
-
-
+    <!--============================== -->
   </body>
-
 </html>

@@ -1,321 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Google analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-79254642-6");
+    </script>
 
-<head>
+    <!-- Page Header Content -->
+    <meta charset="utf-8" />
+    <title>The d3.arc() function explained &#124; the D3 Graph Gallery</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Learn how to use the d3.arc() function of the d3.js library. Simple explanation, code interactive examples and real chart demo."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Data visualization,Javascript,D3,D3.js,function,tutorial"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
+    <meta
+      property="og:title"
+      content="The d3.arc() function explained &#124; the D3 Graph Gallery"
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="Learn how to use the d3.arc() function of the d3.js library. Simple explanation, code interactive examples and real chart demo."
+    />
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <!-- Styling -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="../css/agency.css" rel="stylesheet" />
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
-  <!-- Google analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-79254642-6');
-  </script>
+    <!-- D3.JS v4 -->
+    <script src="../js/d3.v4.js"></script>
+  </head>
 
-  <!-- Page Header Content -->
-  <meta charset="utf-8">
-  <title>The d3.arc() function explained &#124; the D3 Graph Gallery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Learn how to use the d3.arc() function of the d3.js library. Simple explanation, code interactive examples and real chart demo.">
-  <meta name="keywords" content="Data,Dataviz,Data visualization,Javascript,D3,D3.js,function,tutorial">
-  <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
-  <meta property="og:title" content="The d3.arc() function explained &#124; the D3 Graph Gallery">
-  <meta property="og:image" content="img/overview_RGG.png">
-  <meta property="og:description" content="Learn how to use the d3.arc() function of the d3.js library. Simple explanation, code interactive examples and real chart demo.">
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
+      });
+    </script>
 
-  <!-- Styling -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-  <link href="../css/agency.css" rel="stylesheet">
-  <script src="../vendor/jquery/jquery.min.js"></script>
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
+    </script>
 
-  <!-- D3.JS v4 -->
-  <script src="../js/d3.v4.js"></script>
-
-</head>
-
-<body id="page-top">
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-});
-</script>
-
-<!-- Title and blog description section -->
-<header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-  <div class="textlanding">
-    <h1>A tour of the <code>d3.arc()</code> function</h1>
-    <hr class="short_hr">
-    <br>
-    <ul class="list-inline social-buttons">
-      <li class="list-inline-item">
-        <a href="https://twitter.com/R_Graph_Gallery">
-          <i class="fa fa-twitter"></i>
-        </a>
-      </li>
-      <li class="list-inline-item social-buttons">
-        <a href="https://github.com/holtzy">
-          <i class="fa fa-github" style="color: white"></i>
-        </a>
-      </li>
-      <li class="list-inline-item social-buttons">
-        <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-          <i class="fa fa-linkedin"></i>
-        </a>
-      </li>
-      <li class="list-inline-item social-buttons">
-        <a href="https://www.yan-holtz.com">
-          <i class="fa fa-home"></i>
-        </a>
-      </li>
-    </ul>
-    <br><br>
-    <p style="max-width: 700px; margin: auto">
-      The <code>d3.arc()</code> function is a shape generator, used to create
-      arcs. It is part of the <code>d3-shape</code> module. Arcs can be created in
-      pute svg, but this helper function will make the link between the data and the
-      shape seamless.
-    </p>
-  </div>
-</header>
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-<br><br><br><br>
-<section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <div class="container">
-    <div class="mySeryTitle">🦕 Drawing an arc in pure svg</div>
-    <hr>
-    <p>
-      Drawing an arc is useful for a number of chart types, including
-      the famous <a href='https://d3-graph-gallery.com/pie'>pie chart</a> or its
-      cousin the <a href='https://d3-graph-gallery.com/donut.html'>donut chart</a>. It is totally doable
-      to draw an arc in pure <code>html</code>, using an <code>svg</code> element.
-    </p>
-    <p>
-      Once you have set a <code>svg</code> element with a <code>width</code> and
-      a <code>height</code>, call the <code>path</code> element inside it. A <code>path</code> is a
-      powerful element allowing to draw any kind of shape. You can read more
-      about it <a href='https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths'>in the doc</a>.
-    </p>
-    <p>
-      The shape of a <code>path</code> element is defined by one parameter: <code>d</code>. But as
-      you can see in the example below, understanding the <code>d</code> language is not a piece
-      of cake. It would be much easier to provide the coordinate of the arc center, its inner radius
-      and its outer radius.
-    </p>
-    <p>Good news! This is exactly what the <code>d3.arc()</code> function is made for!</p>
-    <iframe
-      src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-pure-svg?fontsize=14&hidenavigation=1&theme=dark"
-      style="width: 100%; height: 400px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
-      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-    ></iframe>
-  </div>
-</section>
-
-
-
-<br><br><br><br>
-<section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <div class="container">
-    <div class="mySeryTitle">💡 Most basic usage of <code>d3.arc()</code></div>
-    <hr>
-    <p>
-      The <code>d3.arc()</code> function is here to create the content of the <code>d</code> parameter
-      of the <code>path</code> element. When you call <code>d3.arc()</code>, it returns a
-      function that we call a generator.
-    </p>
-    <p>This generator is the function we dreamed of! It accepts an object with 4 properties and
-      return the path we need. The arguments are <code>innerRadius</code>, <code>outerRadius</code>, <code>startAngle</code> and <code>endAngle</code>. Those
-      names are self-explanatory 😃.
-    </p>
-    <iframe
-    src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-function-call?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
-    style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-  ></iframe>
-  </div>
-</section>
-
-
-<br><br><br><br>
-<section id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <div class="container">
-    <div class="mySeryTitle">✏️ Use <code>d3.arc()</code> to render a simple arc</div>
-    <hr>
-    <p>
-      Now let's get closer to real life. It's great to have everything we need to
-      get the d attribute content, but we need to send it to an svg element.
-    </p>
-    <p>
-      This is possible thanks to other very popular functions of d3.js
-      called append. We need to select an existing svg element and add a path element to it using
-      javascript. Code looks like this:
-    </p>
-    <iframe
-    src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-basic-shape?fontsize=14&hidenavigation=1&theme=dark"
-    style="width: 100%; height: 500px; border: solid; border-width: 2px; border-radius: 4px; overflow: hidden;"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-  ></iframe>
-  </div>
-</section>
-
-
-
-
-
-<br><br><br><br>
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-    <div class="mySeryTitle">Chart examples using <code>d3.arc()</code></div>
-    <hr>
-    <p>
-      Now that you have a good understanding of the d3.arc() function, it is
-      probably time to dive into real chart examples. Here is a list of some graphs
-      using this function:
-    </p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/pie_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Basic pie chart</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic pie chart you can do in d3.js. Keeping only the core code.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/pie_basic.png" alt="">
-        </a>
+    <!-- Title and blog description section -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>A tour of the <code>d3.arc()</code> function</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          The <code>d3.arc()</code> function is a shape generator, used to
+          create arcs. It is part of the <code>d3-shape</code> module. Arcs can
+          be created in pute svg, but this helper function will make the link
+          between the data and the shape seamless.
+        </p>
       </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/donut_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Basic donut chart</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic donut chart you can do in d3.js. Keeping only the core code.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/donut_basic.png" alt="">
-        </a>
+    </header>
+
+    <br /><br /><br /><br />
+    <section
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <div class="mySeryTitle">🦕 Drawing an arc in pure svg</div>
+        <hr />
+        <p>
+          Drawing an arc is useful for a number of chart types, including the
+          famous <a href="https://d3-graph-gallery.com/pie">pie chart</a> or its
+          cousin the
+          <a href="https://d3-graph-gallery.com/donut.html">donut chart</a>. It
+          is totally doable to draw an arc in pure <code>html</code>, using an
+          <code>svg</code> element.
+        </p>
+        <p>
+          Once you have set a <code>svg</code> element with a
+          <code>width</code> and a <code>height</code>, call the
+          <code>path</code> element inside it. A <code>path</code> is a powerful
+          element allowing to draw any kind of shape. You can read more about it
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths"
+            >in the doc</a
+          >.
+        </p>
+        <p>
+          The shape of a <code>path</code> element is defined by one parameter:
+          <code>d</code>. But as you can see in the example below, understanding
+          the <code>d</code> language is not a piece of cake. It would be much
+          easier to provide the coordinate of the arc center, its inner radius
+          and its outer radius.
+        </p>
+        <p>
+          Good news! This is exactly what the <code>d3.arc()</code> function is
+          made for!
+        </p>
+        <iframe
+          src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-pure-svg?fontsize=14&hidenavigation=1&theme=dark"
+          style="
+            width: 100%;
+            height: 400px;
+            border: solid;
+            border-width: 2px;
+            border-radius: 4px;
+            overflow: hidden;
+          "
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        ></iframe>
       </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/donut_label.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Donut chart with annotation</p>
-              <hr>
-              <p class="explanation_portfolio">Add annotation outside the chart using polylines</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/donut_label.png" alt="">
-        </a>
+    </section>
+
+    <br /><br /><br /><br />
+    <section
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <div class="mySeryTitle">
+          💡 Most basic usage of <code>d3.arc()</code>
+        </div>
+        <hr />
+        <p>
+          The <code>d3.arc()</code> function is here to create the content of
+          the <code>d</code> parameter of the <code>path</code> element. When
+          you call <code>d3.arc()</code>, it returns a function that we call a
+          generator.
+        </p>
+        <p>
+          This generator is the function we dreamed of! It accepts an object
+          with 4 properties and return the path we need. The arguments are
+          <code>innerRadius</code>, <code>outerRadius</code>,
+          <code>startAngle</code> and <code>endAngle</code>. Those names are
+          self-explanatory 😃.
+        </p>
+        <iframe
+          src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-function-call?fontsize=14&hidenavigation=1&theme=dark&previewwindow=console"
+          style="
+            width: 100%;
+            height: 500px;
+            border: solid;
+            border-width: 2px;
+            border-radius: 4px;
+            overflow: hidden;
+          "
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        ></iframe>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ====== Section with some related chart types, using the studied function ============ -->
-<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-  <div class="container">
-    <p class="mySeryTitle">Chart types using the <code>d3.arc()</code> function</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="chord.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/section/Chord150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Chord diagram</div>
+    <br /><br /><br /><br />
+    <section
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <div class="mySeryTitle">
+          ✏️ Use <code>d3.arc()</code> to render a simple arc
+        </div>
+        <hr />
+        <p>
+          Now let's get closer to real life. It's great to have everything we
+          need to get the d attribute content, but we need to send it to an svg
+          element.
+        </p>
+        <p>
+          This is possible thanks to other very popular functions of d3.js
+          called append. We need to select an existing svg element and add a
+          path element to it using javascript. Code looks like this:
+        </p>
+        <iframe
+          src="https://codesandbox.io/embed/github/holtzy/D3-graph-gallery/tree/master/sandboxes/d3-arc-basic-shape?fontsize=14&hidenavigation=1&theme=dark"
+          style="
+            width: 100%;
+            height: 500px;
+            border: solid;
+            border-width: 2px;
+            border-radius: 4px;
+            overflow: hidden;
+          "
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        ></iframe>
       </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link" href="../pie.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+    </section>
+
+    <br /><br /><br /><br />
+    <section class="bg" id="portfolio" style="padding-top: 10px">
+      <div class="container">
+        <div class="mySeryTitle">
+          Chart examples using <code>d3.arc()</code>
+        </div>
+        <hr />
+        <p>
+          Now that you have a good understanding of the d3.arc() function, it is
+          probably time to dive into real chart examples. Here is a list of some
+          graphs using this function:
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/pie_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Basic pie chart</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic pie chart you can do in d3.js. Keeping only
+                    the core code.
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="../img/graph/pie_basic.png" alt="" />
+            </a>
           </div>
-          <img class="img-fluid" src="../img/section/Pie150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Pie chart</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="../dendrogram.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/donut_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Basic donut chart</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic donut chart you can do in d3.js. Keeping only
+                    the core code.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/donut_basic.png"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="../img/section/Dendrogram150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Dendrogram</div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/donut_label.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Donut chart with annotation</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Add annotation outside the chart using polylines
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/donut_label.png"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
+    <!-- ====== Section with some related chart types, using the studied function ============ -->
+    <section
+      class="bg-light"
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <p class="mySeryTitle">
+          Chart types using the <code>d3.arc()</code> function
+        </p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="chord.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="../img/section/Chord150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Chord diagram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="../pie.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="../img/section/Pie150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Pie chart</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="../dendrogram.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/section/Dendrogram150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Dendrogram</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- ============================ CONTACT SECTION ============================ -->
-<a name="contactanchor"></a>
-<section id="contact" class="bg" style="background-color: white"></section>
-<script>
-$(function(){
-  $("#contact").load("html_chunk/contact.html");
-});
-</script>
+    <!-- ============================ CONTACT SECTION ============================ -->
+    <a name="contactanchor"></a>
+    <section id="contact" class="bg" style="background-color: white"></section>
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-<!-- ============================ FOOTER SECTION ============================ -->
-<footer class="bg-light" id="myFooter"></footer>
-<script>
-$(function(){
-  $("#myFooter").load("html_chunk/footer.html");
-});
-</script>
-
-</body>
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
+  </body>
 </html>

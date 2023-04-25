@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Brushing in d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How brushing works in d3.js: a set of tiny examples with code to understand the concepts.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y, brushing">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="How brushing works in d3.js: a set of tiny examples with code to understand the concepts."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y, brushing"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Brushing in d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How brushing works in d3.js: a set of tiny examples with code to understand the concepts.">
+    <meta property="og:title" content="Brushing in d3.js" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="How brushing works in d3.js: a set of tiny examples with code to understand the concepts."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -71,138 +74,128 @@
     <!-- Bootstrap js -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/agency.min.js"></script>
-
   </head>
 
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
+    </script>
 
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
+    </script>
 
-
-<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
-
-  <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-  <script>
-  $(function(){
-    $("#mainNav").load("../html_chunk/menu.html");
-  });
-  </script>
-
-  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-  <div id="modal_menu_insertion"> </div>
-  <script>
-  $(function(){
-    $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-  });
-  </script>
-
-
-
-<!-- Header = title  + social media + a few lines of general description-->
-<header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-  <div class="textlanding">
-      <h1>Brushing in d3.js</h1>
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-      </ul>
-      <br><br>
-      <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to add <u>brushing</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
-  </div>
-</header>
-
-
-
-
-<!-- TABLE of CONTENT -->
-<div>
-    <nav class="col-sm-3 col-4" id="myScrollspy">
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="#brushingBasic">Most basic</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#brushing1D">One dimensional</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#triggerChange">Trigger a change</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#changecss">Update CSS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#realgraph">Scatterplot example</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#brushingforzoom">Brushing for zooming</a>
-        </li>
-      </ul>
-    </nav>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== BASIC 2D BRUSHING EXAMPLE ==================== -->
-
-<section class="bg" id="brushingBasic">
-<div class="container" >
-  <h1>Creating a brush area with <code>d3.brush()</code>.</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-basicBrush" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>This example just show how to add a brush area with <code>d3.brush</code>.</li>
-          <br>
-          <li>Note that this brush area does nothing yet.</li>
-          <br>
-          <li>The <code>.extent()</code> property specify the area where it is possible to brush: top left and bottom right corners of the rectangle.</li>
-
+    <!-- Header = title  + social media + a few lines of general description-->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>Brushing in d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
         </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          This is document gives a few insights on how to add
+          <u>brushing</u> with d3.js. It is composed by several interactive
+          examples, allowing to play with the code to understand better how it
+          works.
+        </p>
       </div>
+    </header>
+
+    <!-- TABLE of CONTENT -->
+    <div>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#brushingBasic">Most basic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#brushing1D">One dimensional</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#triggerChange">Trigger a change</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#changecss">Update CSS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#realgraph">Scatterplot example</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#brushingforzoom">Brushing for zooming</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </div>
 
+    <!-- ==================== BASIC 2D BRUSHING EXAMPLE ==================== -->
 
+    <section class="bg" id="brushingBasic">
+      <div class="container">
+        <h1>Creating a brush area with <code>d3.brush()</code>.</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-basicBrush"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    This example just show how to add a brush area with
+                    <code>d3.brush</code>.
+                  </li>
+                  <br />
+                  <li>Note that this brush area does nothing yet.</li>
+                  <br />
+                  <li>
+                    The <code>.extent()</code> property specify the area where
+                    it is possible to brush: top left and bottom right corners
+                    of the rectangle.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-basicBrush" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-basicBrush" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -212,12 +205,12 @@
 <svg width=400 height=400 id="dataviz_brushing"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-basicBrush" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-basicBrush" contenteditable="true"><xmp><script>
 
 // Draw a circle
 var myCircle = d3.select("#dataviz_brushing")
@@ -235,90 +228,82 @@ d3.select("#dataviz_brushing")
       )
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-basicBrush", "res-basicBrush");
+              myJSParser("js-basicBrush", "res-basicBrush");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-basicBrush")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicBrush").html("");
+                  myHtmlParser("html-basicBrush", "res-basicBrush");
+                  myJSParser("js-basicBrush", "res-basicBrush");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-basicBrush', 'res-basicBrush')
-myJSParser('js-basicBrush', 'res-basicBrush')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-basicBrush').addEventListener("input", function() {
-d3.select('#res-basicBrush').html("");
-myHtmlParser('html-basicBrush', 'res-basicBrush');
-myJSParser('js-basicBrush', 'res-basicBrush');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-basicBrush').addEventListener("input", function() {
-d3.select('#res-basicBrush').html("");
-myHtmlParser('html-basicBrush', 'res-basicBrush');
-myJSParser('js-basicBrush', 'res-basicBrush');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== 1D BRUSHING EXAMPLE ==================== -->
-
-<section class="bg" id="brushing1D">
-<div class="container" >
-  <h1>One dimensional brush with <code>d3.brushX()</code> and <code>d3.brushY()</code>.</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-basicBrush1D" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Just call <code>d3.brushX</code> instead of <code>d3.brush</code> and you get a 1 dimensional brush.</li>
-          <br>
-          <li>Note that here the zone is limited: only brushing around the circle works.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-basicBrush")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicBrush").html("");
+                  myHtmlParser("html-basicBrush", "res-basicBrush");
+                  myJSParser("js-basicBrush", "res-basicBrush");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== 1D BRUSHING EXAMPLE ==================== -->
 
+    <section class="bg" id="brushing1D">
+      <div class="container">
+        <h1>
+          One dimensional brush with <code>d3.brushX()</code> and
+          <code>d3.brushY()</code>.
+        </h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-basicBrush1D"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Just call <code>d3.brushX</code> instead of
+                    <code>d3.brush</code> and you get a 1 dimensional brush.
+                  </li>
+                  <br />
+                  <li>
+                    Note that here the zone is limited: only brushing around the
+                    circle works.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-basicBrush1D" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-basicBrush1D" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -328,12 +313,12 @@ myJSParser('js-basicBrush', 'res-basicBrush');
 <svg width=400 height=400 id="dataviz_brushing1D"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-basicBrush1D" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-basicBrush1D" contenteditable="true"><xmp><script>
 
 // Draw a circle
 var myCircle = d3.select("#dataviz_brushing1D")
@@ -351,102 +336,85 @@ d3.select("#dataviz_brushing1D")
       )
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-basicBrush1D", "res-basicBrush1D");
+              myJSParser("js-basicBrush1D", "res-basicBrush1D");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-basicBrush1D")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicBrush1D").html("");
+                  myHtmlParser("html-basicBrush1D", "res-basicBrush1D");
+                  myJSParser("js-basicBrush1D", "res-basicBrush1D");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-basicBrush1D', 'res-basicBrush1D')
-myJSParser('js-basicBrush1D', 'res-basicBrush1D')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-basicBrush1D').addEventListener("input", function() {
-d3.select('#res-basicBrush1D').html("");
-myHtmlParser('html-basicBrush1D', 'res-basicBrush1D');
-myJSParser('js-basicBrush1D', 'res-basicBrush1D');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-basicBrush1D').addEventListener("input", function() {
-d3.select('#res-basicBrush1D').html("");
-myHtmlParser('html-basicBrush1D', 'res-basicBrush1D');
-myJSParser('js-basicBrush1D', 'res-basicBrush1D');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== TRIGGER CHANGE ==================== -->
-
-<section class="bg" id="triggerChange">
-<div class="container" >
-  <h1>Trigger a change with <code>.on("start end", ...)</code></h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-4 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-brushChange" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Add <code>.on("start end", ...)</code> when the brush is created. This will trigger the function <code>updateChart</code> each time a new brush is made.</li>
-          <br>
-          <li>This function starts by getting the selection coordinates thanks to <code>d3.event.selection</code></li>
-          <br>
-          <li>Then it checks if the circles is in it and eventually changes its color.</li>
-
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-basicBrush1D")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicBrush1D").html("");
+                  myHtmlParser("html-basicBrush1D", "res-basicBrush1D");
+                  myJSParser("js-basicBrush1D", "res-basicBrush1D");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== TRIGGER CHANGE ==================== -->
 
+    <section class="bg" id="triggerChange">
+      <div class="container">
+        <h1>Trigger a change with <code>.on("start end", ...)</code></h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-4 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-brushChange"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Add <code>.on("start end", ...)</code> when the brush is
+                    created. This will trigger the function
+                    <code>updateChart</code> each time a new brush is made.
+                  </li>
+                  <br />
+                  <li>
+                    This function starts by getting the selection coordinates
+                    thanks to <code>d3.event.selection</code>
+                  </li>
+                  <br />
+                  <li>
+                    Then it checks if the circles is in it and eventually
+                    changes its color.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-8 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-brushChange" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-8 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-brushChange" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -456,12 +424,12 @@ myJSParser('js-basicBrush1D', 'res-basicBrush1D');
 <svg width=300 height=300 id="dataviz_brushChange"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-brushChange" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-brushChange" contenteditable="true"><xmp><script>
 
 // Draw a circle
 var myCircle = d3.select("#dataviz_brushChange")
@@ -498,92 +466,85 @@ function updateChart() {
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-brushChange", "res-brushChange");
+              myJSParser("js-brushChange", "res-brushChange");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-brushChange")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushChange").html("");
+                  myHtmlParser("html-brushChange", "res-brushChange");
+                  myJSParser("js-brushChange", "res-brushChange");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-brushChange', 'res-brushChange')
-myJSParser('js-brushChange', 'res-brushChange')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-brushChange').addEventListener("input", function() {
-d3.select('#res-brushChange').html("");
-myHtmlParser('html-brushChange', 'res-brushChange');
-myJSParser('js-brushChange', 'res-brushChange');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-brushChange').addEventListener("input", function() {
-d3.select('#res-brushChange').html("");
-myHtmlParser('html-brushChange', 'res-brushChange');
-myJSParser('js-brushChange', 'res-brushChange');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== CHANGE CSS ==================== -->
-
-<section class="bg" id="changecss">
-<div class="container" >
-  <h1>Use CSS to highlight selection with <code>.classed</code></h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-4 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-brushCSS" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Very close from previous example, but here the style is controlled using CSS.</li>
-          <br>
-          <li>A <code>selected</code> class is added to the circle if it is in the selection.</li>
-          <br>
-          <li>The <code>.classed</code> function is very handy since it automatically removes the class if elements are not in the selection anymore.</li>
-
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-brushChange")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushChange").html("");
+                  myHtmlParser("html-brushChange", "res-brushChange");
+                  myJSParser("js-brushChange", "res-brushChange");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== CHANGE CSS ==================== -->
 
+    <section class="bg" id="changecss">
+      <div class="container">
+        <h1>Use CSS to highlight selection with <code>.classed</code></h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-4 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-brushCSS"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Very close from previous example, but here the style is
+                    controlled using CSS.
+                  </li>
+                  <br />
+                  <li>
+                    A <code>selected</code> class is added to the circle if it
+                    is in the selection.
+                  </li>
+                  <br />
+                  <li>
+                    The <code>.classed</code> function is very handy since it
+                    automatically removes the class if elements are not in the
+                    selection anymore.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-8 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-brushCSS" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-8 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-brushCSS" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -601,12 +562,12 @@ myJSParser('js-brushChange', 'res-brushChange');
 </style>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-brushCSS" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-brushCSS" contenteditable="true"><xmp><script>
 
 // Draw a circle
 var myCircle = d3.select("#dataviz_brushCSS")
@@ -639,92 +600,78 @@ function updateChart() {
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-brushCSS", "res-brushCSS");
+              myJSParser("js-brushCSS", "res-brushCSS");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-brushCSS")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushCSS").html("");
+                  myHtmlParser("html-brushCSS", "res-brushCSS");
+                  myJSParser("js-brushCSS", "res-brushCSS");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-brushCSS', 'res-brushCSS')
-myJSParser('js-brushCSS', 'res-brushCSS')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-brushCSS').addEventListener("input", function() {
-d3.select('#res-brushCSS').html("");
-myHtmlParser('html-brushCSS', 'res-brushCSS');
-myJSParser('js-brushCSS', 'res-brushCSS');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-brushCSS').addEventListener("input", function() {
-d3.select('#res-brushCSS').html("");
-myHtmlParser('html-brushCSS', 'res-brushCSS');
-myJSParser('js-brushCSS', 'res-brushCSS');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== APPLY ON REAL GRAPH ==================== -->
-
-<section class="bg" id="realgraph">
-<div class="container" >
-  <h1>Application on a real <a href="../scatter.html">scatterplot</a></h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-brushScatter" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Exactly the same idea than before, with a real chart</li>
-          <br>
-          <li>Note that adding <code>!important</code> in the css part is necessary to overwrite a feature that specified in the javascript part.</li>
-          <br>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-brushCSS")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushCSS").html("");
+                  myHtmlParser("html-brushCSS", "res-brushCSS");
+                  myJSParser("js-brushCSS", "res-brushCSS");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== APPLY ON REAL GRAPH ==================== -->
 
+    <section class="bg" id="realgraph">
+      <div class="container">
+        <h1>Application on a real <a href="../scatter.html">scatterplot</a></h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-brushScatter"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>Exactly the same idea than before, with a real chart</li>
+                  <br />
+                  <li>
+                    Note that adding <code>!important</code> in the css part is
+                    necessary to overwrite a feature that specified in the
+                    javascript part.
+                  </li>
+                  <br />
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-brushScatter" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-brushScatter" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -743,12 +690,12 @@ myJSParser('js-brushCSS', 'res-brushCSS');
 </style>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-brushScatter" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-brushScatter" contenteditable="true"><xmp><script>
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
@@ -823,98 +770,91 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
 })
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-brushScatter", "res-brushScatter");
+              myJSParser("js-brushScatter", "res-brushScatter");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-brushScatter")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushScatter").html("");
+                  myHtmlParser("html-brushScatter", "res-brushScatter");
+                  myJSParser("js-brushScatter", "res-brushScatter");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-brushScatter', 'res-brushScatter')
-myJSParser('js-brushScatter', 'res-brushScatter')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-brushScatter').addEventListener("input", function() {
-d3.select('#res-brushScatter').html("");
-myHtmlParser('html-brushScatter', 'res-brushScatter');
-myJSParser('js-brushScatter', 'res-brushScatter');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-brushScatter').addEventListener("input", function() {
-d3.select('#res-brushScatter').html("");
-myHtmlParser('html-brushScatter', 'res-brushScatter');
-myJSParser('js-brushScatter', 'res-brushScatter');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== BRUSHING FOR ZOOMING ==================== -->
-
-<section class="bg" id="brushingforzoom">
-<div class="container" >
-  <h1>Brushing for zooming</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-brushZoom" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>Select a zone to zoom on it (X axis only). Double click to unzoom.</li>
-          <br>
-          <li>A <code>clipPath</code> is used to avoid displaying the circle outside the chart area.</li>
-          <br>
-          <li><code>all(brush.move, null)</code> is used to dismiss the grey brushing area once the selection has been done.</li>
-          <br>
-          <li>But this leads to synchronization problems: the brush boundaries are erased as soon as the selection is done --> It is necessary to wait a little bit to have time to update axis and circles</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-brushScatter")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushScatter").html("");
+                  myHtmlParser("html-brushScatter", "res-brushScatter");
+                  myJSParser("js-brushScatter", "res-brushScatter");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== BRUSHING FOR ZOOMING ==================== -->
 
+    <section class="bg" id="brushingforzoom">
+      <div class="container">
+        <h1>Brushing for zooming</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-brushZoom"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Select a zone to zoom on it (X axis only). Double click to
+                    unzoom.
+                  </li>
+                  <br />
+                  <li>
+                    A <code>clipPath</code> is used to avoid displaying the
+                    circle outside the chart area.
+                  </li>
+                  <br />
+                  <li>
+                    <code>all(brush.move, null)</code> is used to dismiss the
+                    grey brushing area once the selection has been done.
+                  </li>
+                  <br />
+                  <li>
+                    But this leads to synchronization problems: the brush
+                    boundaries are erased as soon as the selection is done -->
+                    It is necessary to wait a little bit to have time to update
+                    axis and circles
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-brushZoom" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-brushZoom" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -924,12 +864,12 @@ myJSParser('js-brushScatter', 'res-brushScatter');
 <div id="dataviz_brushZoom"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-brushZoom" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-brushZoom" contenteditable="true"><xmp><script>
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
@@ -1036,174 +976,114 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
 })
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-brushZoom", "res-brushZoom");
+              myJSParser("js-brushZoom", "res-brushZoom");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-brushZoom")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushZoom").html("");
+                  myHtmlParser("html-brushZoom", "res-brushZoom");
+                  myJSParser("js-brushZoom", "res-brushZoom");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-brushZoom', 'res-brushZoom')
-myJSParser('js-brushZoom', 'res-brushZoom')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-brushZoom').addEventListener("input", function() {
-d3.select('#res-brushZoom').html("");
-myHtmlParser('html-brushZoom', 'res-brushZoom');
-myJSParser('js-brushZoom', 'res-brushZoom');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-brushZoom').addEventListener("input", function() {
-d3.select('#res-brushZoom').html("");
-myHtmlParser('html-brushZoom', 'res-brushZoom');
-myJSParser('js-brushZoom', 'res-brushZoom');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-brushZoom")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushZoom").html("");
+                  myHtmlParser("html-brushZoom", "res-brushZoom");
+                  myJSParser("js-brushZoom", "res-brushZoom");
+                });
+            </script>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>D3-brush documentation - </i>by <a href="https://github.com/d3/d3-brush">Mike Bostock </a></li>
-            <br>
-            <li><i>Click-to-Recenter Brush - </i>by <a href="https://bl.ocks.org/mbostock/6498000">Mike Bostock</a></li>
-            <br>
-            <li><i>Scatter plot with zoom</i> - by <a href="https://bl.ocks.org/EfratVil/d956f19f2e56a05c31fb6583beccfda7">Efrat Vilenski</a></li>
-            </ul>
+    </section>
+    <br />
+
+    <!-- ============================ RELATED BLOCKS ============================ -->
+
+    <section
+      id="related"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>D3-brush documentation - </i>by
+                    <a href="https://github.com/d3/d3-brush">Mike Bostock </a>
+                  </li>
+                  <br />
+                  <li>
+                    <i>Click-to-Recenter Brush - </i>by
+                    <a href="https://bl.ocks.org/mbostock/6498000"
+                      >Mike Bostock</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Scatter plot with zoom</i> - by
+                    <a
+                      href="https://bl.ocks.org/EfratVil/d956f19f2e56a05c31fb6583beccfda7"
+                      >Efrat Vilenski</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
+    <!-- ============================ -->
+  </body>
 </html>

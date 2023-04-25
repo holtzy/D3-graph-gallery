@@ -1,72 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
     <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-3523953066677938",
-              enable_page_level_ads: true
-         });
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3523953066677938",
+        enable_page_level_ads: true,
+      });
     </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
     <script>
-    var getOutboundLink = function(url) {
-      gtag('event', 'click', {
-        'event_category': 'outbound',
-        'event_label': url,
-        'transport_type': 'beacon',
-        'event_callback': function(){document.location = url;}
-      });
-    }
+      var getOutboundLink = function (url) {
+        gtag("event", "click", {
+          event_category: "outbound",
+          event_label: url,
+          transport_type: "beacon",
+          event_callback: function () {
+            document.location = url;
+          },
+        });
+      };
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>An introduction to d3.js in 10 basic examples</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A set of 10 basic examples leading to a first chart made with d3.js. Discover the basics: html, css, svg, scale, data binding and more. Explanation and editable code provided">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="A set of 10 basic examples leading to a first chart made with d3.js. Discover the basics: html, css, svg, scale, data binding and more. Explanation and editable code provided"
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="An introduction to d3.js in 10 basic examples.">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="A set of 10 basic examples leading to a first chart made with d3.js. Discover the basics: html, css, svg, scale, data binding and more. Explanation and editable code provided.">
+    <meta
+      property="og:title"
+      content="An introduction to d3.js in 10 basic examples."
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="A set of 10 basic examples leading to a first chart made with d3.js. Discover the basics: html, css, svg, scale, data binding and more. Explanation and editable code provided."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="css/agency.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="LIB/prism.js"></script>
@@ -87,140 +100,149 @@
     <!-- Bootstrap js -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/agency.min.js"></script>
-
   </head>
 
-
-
   <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-    $(function(){
-      $("#mainNav").load("html_chunk/menu.html");
-    });
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-    $(function(){
-      $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-    });
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
     </script>
-
-
 
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>An introduction to d3.js in 10 basic examples.</h1>
-          <hr class="short_hr">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">
-            <a href="https://d3js.org">D3.js</a> is a <u>JavaScript library</u> for manipulating
-            documents based on data. It allows to build absolutely <a href="all.html">any type of
-              data visualization</a>. This document displays 10 interactive examples illustrating the
-              key concepts of d3, leading to a first basic scatterplot. Note that this <a href="https://click.linksynergy.com/deeplink?id=G7VKNifkCIY&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-d3js-for-data-visualization%2F">online course</a>
-              is a great resource to get you started with d3.js.</p>
+        <h1>An introduction to d3.js in 10 basic examples.</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          <a href="https://d3js.org">D3.js</a> is a
+          <u>JavaScript library</u> for manipulating documents based on data. It
+          allows to build absolutely
+          <a href="all.html">any type of data visualization</a>. This document
+          displays 10 interactive examples illustrating the key concepts of d3,
+          leading to a first basic scatterplot. Note that this
+          <a
+            href="https://click.linksynergy.com/deeplink?id=G7VKNifkCIY&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-d3js-for-data-visualization%2F"
+            >online course</a
+          >
+          is a great resource to get you started with d3.js.
+        </p>
       </div>
     </header>
 
-
-
-
-
-
-
-
     <!-- TABLE of CONTENT -->
     <div>
-        <nav class="col-sm-3 col-4" id="myScrollspy">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#html">HTML</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#css">CSS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#svg">SVG</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#d3">Javascript and d3.js</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#log">Console.log()</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#coord">Coordinate system</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#scale">Scale</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#axis">Axis</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#margin">Margin</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#data">Data binding</a>
-            </li>
-          </ul>
-        </nav>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#html">HTML</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#css">CSS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#svg">SVG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#d3">Javascript and d3.js</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#log">Console.log()</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#coord">Coordinate system</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#scale">Scale</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#axis">Axis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#margin">Margin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#data">Data binding</a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
+    <!-- ==================== HTML ==================== -->
 
+    <section id="html">
+      <div class="container">
+        <h1>What is <code>HTML</code>?</h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            <a href="https://en.wikipedia.org/wiki/HTML">HTML</a> stands for
+            <u>Hypertext Markup Language</u>. Basically, it is the language
+            behind any <u>website</u>. Web browsers like Mozilla or Safari read
+            this kind of file and translate it in a webpage.
+          </li>
+          <li>
+            In a HTML file, elements composing the webpage are created,
+            delineated by <u>tags</u>. For instance a title of level 1 is
+            represented by the <code>h1</code> tag, a paragraph with the
+            <code>p</code> tag, an image by the <code>img</code> tag and so on.
+          </li>
+          <li>
+            It is impossible to create a d3.js visualization without basic
+            knowledge on html.
+            <a href="https://www.w3schools.com/html/">This tutorial</a> by
+            W3School can be a good starting point in my opinion.
+          </li>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <div class="row">
+          <div
+            class="col-lg-5 bg-light"
+            style="padding: 50px"
+            id="res-allType"
+          ></div>
 
-
-
-
-
-<!-- ==================== HTML ==================== -->
-
-  <section id="html" >
-  <div class="container" >
-
-    <h1>What is <code>HTML</code>?</h1>
-    <hr>
-    <code>&rarr; Explanation:</code>
-    <br>
-    <ul style="margin-top: 5px">
-      <li><a href="https://en.wikipedia.org/wiki/HTML">HTML</a> stands for <u>Hypertext Markup Language</u>. Basically, it is the language behind any <u>website</u>. Web browsers like Mozilla or Safari read this kind of file and translate it in a webpage.</li>
-      <li>In a HTML file, elements composing the webpage are created, delineated by <u>tags</u>. For instance a title of level 1 is represented by the <code>h1</code> tag, a paragraph with the <code>p</code> tag, an image by the <code>img</code> tag and so on.</li>
-      <li>It is impossible to create a d3.js visualization without basic knowledge on html. <a href="https://www.w3schools.com/html/">This tutorial</a> by W3School can be a good starting point in my opinion.</li>
-    </ul>
-    <br>
-    <code>&rarr; Example:</code>
-    <div class="row">
-
-    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-allType"> </div>
-
-
-    <div class="col-lg-7">
-        <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-        <pre class="language-html"><code id="code-allType" contenteditable="true"><xmp><!DOCTYPE html>
+          <div class="col-lg-7">
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="code-allType" contenteditable="true"><xmp><!DOCTYPE html>
 
 <!-- Add a title -->
 <h1>First html document</h1>
@@ -232,67 +254,74 @@
 <p>This is <a href="https://www.d3-graph-gallery.com">a link to the d3 graph gallery</a></p>
 
 </xmp></code></pre>
+          </div>
+        </div>
+        <br /><br />
+        <code>&rarr; Try:</code>
+        <ul>
+          <li>
+            Copy and paste the code above in a local file. Call it something
+            like <code>test.html</code>. Open it with a browser. You've created
+            your first website!
+          </li>
+        </ul>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myHtmlParser("code-allType", "res-allType");
+      document
+        .getElementById("code-allType")
+        .addEventListener("input", function () {
+          d3.select("#res-allType").html("");
+          myHtmlParser("code-allType", "res-allType");
+        });
+    </script>
 
+    <!-- ================================================================================= -->
 
-    </div>
-    <br><br>
-    <code>&rarr; Try:</code>
-    <ul>
-      <li>Copy and paste the code above in a local file. Call it something like <code>test.html</code>. Open it with a browser. You've created your first website!</li>
-    </ul>
-  </div>
-</section>
+    <!-- ==================== CSS ==================== -->
 
+    <section id="css">
+      <div class="container">
+        <h1>Custom document style with <code>CSS</code></h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets"
+              >CSS</a
+            >
+            stands for <u>Cascading Style Sheet</u>. It allows to apply specific
+            styles to the elements created using <code>html</code> before.
+          </li>
+          <li>
+            As for html, it is impossible to create a d3.js visualization
+            without basic knowledge on <code>css</code>. If it is new for you,
+            check this
+            <a href="https://www.w3schools.com/css/default.asp">tutorial</a>.
+          </li>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <div class="row">
+          <div
+            class="col-lg-5 bg-light"
+            style="padding: 50px"
+            id="res-css"
+          ></div>
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myHtmlParser('code-allType', 'res-allType')
-document.getElementById('code-allType').addEventListener("input", function() {
-  d3.select('#res-allType').html("");
-  myHtmlParser('code-allType', 'res-allType');
-})
-</script>
-
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== CSS ==================== -->
-
-  <section id="css">
-  <div class="container" >
-
-    <h1>Custom document style with <code>CSS</code></h1>
-    <hr>
-    <code>&rarr; Explanation:</code>
-    <br>
-    <ul style="margin-top: 5px">
-      <li><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a> stands for <u>Cascading Style Sheet</u>. It allows to apply specific styles to the elements created using <code>html</code> before.</li>
-      <li>As for html, it is impossible to create a d3.js visualization without basic knowledge on <code>css</code>. If it is new for you, check this <a href="https://www.w3schools.com/css/default.asp">tutorial</a>.</li>
-    </ul>
-    <br>
-    <code>&rarr; Example:</code>
-    <div class="row">
-
-    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-css"> </div>
-
-
-    <div class="col-lg-7">
-        <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-        <pre class="language-html"><code id="code-css" contenteditable="true"><xmp><!DOCTYPE html>
+          <div class="col-lg-7">
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="code-css" contenteditable="true"><xmp><!DOCTYPE html>
 
 <!-- Apply specific style to the elements that have the class `inGreen` -->
 <style>
@@ -309,68 +338,81 @@ document.getElementById('code-allType').addEventListener("input", function() {
 <p>This is <a href="https://www.d3-graph-gallery.com">a link to the d3 graph gallery</a></p>
 
 </xmp></code></pre>
+          </div>
+        </div>
+        <br />
+        <code>&rarr; Try:</code>
+        <ul style="margin-top: 5px">
+          <li>
+            Give the class <code>inGreen</code> to one of the paragraph
+            <code>p</code>
+          </li>
+          <li>
+            Create a new class for the first sentence of the document. Change
+            its font size with <code>font-size: 20px</code> in css.
+          </li>
+        </ul>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myHtmlParser("code-css", "res-css");
+      document
+        .getElementById("code-css")
+        .addEventListener("input", function () {
+          d3.select("#res-css").html("");
+          myHtmlParser("code-css", "res-css");
+        });
+    </script>
 
+    <!-- ================================================================================= -->
 
-</div>
-<br>
-<code>&rarr; Try:</code>
-<ul style="margin-top: 5px">
-  <li>Give the class <code>inGreen</code> to one of the paragraph <code>p</code></li>
-  <li>Create a new class for the first sentence of the document. Change its font size with <code>font-size: 20px</code> in css.</li>
-</ul>
-  </div>
-</section>
+    <!-- ==================== SVG ==================== -->
 
+    <section id="svg">
+      <div class="container">
+        <h1>Build shapes with <code>SVG</code></h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics"
+              >SVG</a
+            >
+            stands for <u>Scalable Vector Graphic</u>. It is a vector image
+            format. Basically, it is a language that allows to build shapes with
+            code.
+          </li>
+          <li>
+            A d3.js chart is actually a set of <code>svg</code> shapes put
+            together. For instant, a scatterplot is just composed by several
+            circles as the one shown below.
+          </li>
+          <li>
+            This <a href="graph/shape.html">document</a> of the d3 graph gallery
+            showcases the different shapes offered by Svg.
+          </li>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <div class="row">
+          <div
+            class="col-lg-5 bg-light"
+            style="padding: 50px"
+            id="res-svg"
+          ></div>
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myHtmlParser('code-css', 'res-css')
-document.getElementById('code-css').addEventListener("input", function() {
-  d3.select('#res-css').html("");
-  myHtmlParser('code-css', 'res-css');
-})
-</script>
-
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== SVG ==================== -->
-
-  <section id="svg">
-  <div class="container" >
-
-    <h1>Build shapes with <code>SVG</code></h1>
-    <hr>
-    <code>&rarr; Explanation:</code>
-    <br>
-    <ul style="margin-top: 5px">
-      <li><a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> stands for <u>Scalable Vector Graphic</u>. It is a vector image format. Basically, it is a language that allows to build shapes with code.</li>
-      <li>A d3.js chart is actually a set of <code>svg</code> shapes put together. For instant, a scatterplot is just composed by several circles as the one shown below.</li>
-      <li>This <a href="graph/shape.html">document</a> of the d3 graph gallery showcases the different shapes offered by Svg.</li>
-    </ul>
-    <br>
-    <code>&rarr; Example:</code>
-    <div class="row">
-
-    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-svg"> </div>
-
-
-    <div class="col-lg-7">
-        <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-        <pre class="language-html"><code id="code-svg" contenteditable="true"><xmp><!DOCTYPE html>
+          <div class="col-lg-7">
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="code-svg" contenteditable="true"><xmp><!DOCTYPE html>
 <!-- Add a title -->
 <h1>First html document</h1>
 
@@ -383,19 +425,21 @@ document.getElementById('code-css').addEventListener("input", function() {
 </svg>
 
 </xmp></code></pre>
-      </div>
-
-
-
-</div>
-<br>
-<code>&rarr; Try:</code>
-<br>
-<ul style="margin-top: 5px">
-  <li>Modify the arguments of in the <code>svg</code> call to understand what feature they control.</li>
-  <li>Try to draw another type of shape using the cheat sheet below</li>
-</ul>
-<pre class="language-html"><code><xmp><line x1="0" y1="0" x2="10" y2="10" stroke="black"></line>
+          </div>
+        </div>
+        <br />
+        <code>&rarr; Try:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            Modify the arguments of in the <code>svg</code> call to understand
+            what feature they control.
+          </li>
+          <li>Try to draw another type of shape using the cheat sheet below</li>
+        </ul>
+        <pre
+          class="language-html"
+        ><code><xmp><line x1="0" y1="0" x2="10" y2="10" stroke="black"></line>
 <rect x="0" y="0" width="10" height="10"></rect>
 <circle cx="5" cy="5" r="5"></circle>
 <ellipse cx="10" cy="5" rx="10" ry="5"></ellipse>
@@ -403,67 +447,80 @@ document.getElementById('code-css').addEventListener("input", function() {
 <polyline points="0,0 10,5 20,0 20,20 10,15 0,20" stroke="black"></polyline>
 <path d="M65,10 a50,25 0 1,0 50,25"></path>
 </xmp></code></pre>
-<p style="text-align: right"><a style="font-size: 9px" href="https://codepen.io/chriscoyier/pen/dXKxvv">Example source</a></p>
-</div>
-</section>
+        <p style="text-align: right">
+          <a
+            style="font-size: 9px"
+            href="https://codepen.io/chriscoyier/pen/dXKxvv"
+            >Example source</a
+          >
+        </p>
+      </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myHtmlParser("code-svg", "res-svg");
+      document
+        .getElementById("code-svg")
+        .addEventListener("input", function () {
+          d3.select("#res-svg").html("");
+          myHtmlParser("code-svg", "res-svg");
+        });
+    </script>
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myHtmlParser('code-svg', 'res-svg')
-document.getElementById('code-svg').addEventListener("input", function() {
-  d3.select('#res-svg').html("");
-  myHtmlParser('code-svg', 'res-svg');
-})
-</script>
+    <!-- ================================================================================= -->
 
+    <!-- ==================== JAVASSCRIPT AND D3 ==================== -->
 
-<!-- ================================================================================= -->
+    <section id="d3" class="bg">
+      <div class="container">
+        <h1>
+          Modify elements with <code>Javascript</code> and <code>D3.js</code>
+        </h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            <a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> is
+            one of the three core technologies of the World Wide Web. It enables
+            <u>interactivity</u> in webpages.
+          </li>
+          <li>
+            <a href="">D3.js</a> is a javascript library particularly useful for
+            data visualization. It allows to create, select and modify elements.
+          </li>
+          <li>
+            In the example below, d3 is used to select the circle with a class
+            <code>target</code> and modify its <code>stroke-width</code>.
+          </li>
+          <li>
+            It is not very impressive yet. But we will use the same kind of
+            process to set the position of hundreds of circle and get a
+            scatterplot.
+          </li>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-basicTrigger"></div>
+            </div>
+          </div>
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== JAVASSCRIPT AND D3 ==================== -->
-
-<section id="d3" class="bg">
-<div class="container" >
-  <h1>Modify elements with <code>Javascript</code> and <code>D3.js</code></h1>
-  <hr>
-  <code>&rarr; Explanation:</code>
-  <br>
-  <ul style="margin-top: 5px">
-    <li><a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> is one of the three core technologies of the World Wide Web. It enables <u>interactivity</u> in webpages.</li>
-    <li><a href="">D3.js</a> is a javascript library particularly useful for data visualization. It allows to create, select and modify elements.</li>
-    <li>In the example below, d3 is used to select the circle with a class <code>target</code> and modify its <code>stroke-width</code>.</li>
-    <li>It is not very impressive yet. But we will use the same kind of process to set the position of hundreds of circle and get a scatterplot.</li>
-  </ul>
-  <br>
-  <code>&rarr; Example:</code>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-basicTrigger" ></div>
-    </div>
-  </div>
-
-
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-basicTrigger" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-basicTrigger" contenteditable="true"><xmp><!DOCTYPE html>
 <h1>First html document</h1>
 
 <!-- Add a bit of text -->
@@ -478,126 +535,134 @@ document.getElementById('code-svg').addEventListener("input", function() {
 <script src="https://d3js.org/d3.v4.js"></script>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-basicTrigger" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-basicTrigger" contenteditable="true"><xmp><script>
 d3
   .select(".target")  // select the elements that have the class 'target'
   .style("stroke-width", 8) // change their style: stroke width is not equal to 8 pixels
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-basicTrigger", "res-basicTrigger");
+              myJSParser("js-basicTrigger", "res-basicTrigger");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-basicTrigger")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicTrigger").html("");
+                  myHtmlParser("html-basicTrigger", "res-basicTrigger");
+                  myJSParser("js-basicTrigger", "res-basicTrigger");
+                });
 
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-basicTrigger")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicTrigger").html("");
+                  myHtmlParser("html-basicTrigger", "res-basicTrigger");
+                  myJSParser("js-basicTrigger", "res-basicTrigger");
+                });
+            </script>
+          </div>
+        </div>
+        <code>&rarr; Try:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            Change the circle opacity with the <code>opacity</code> style that
+            goes between 0 and 1.
+          </li>
+        </ul>
+      </div>
+    </section>
+    <br />
 
+    <!-- ==================== CONSOLE.LOG ==================== -->
 
+    <section id="coord" class="bg">
+      <div class="container">
+        <h1><code>Console.log()</code> is your friend.</h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            So the browser runs <code>Html</code>, <code>Css</code> and
+            <code>Javascript</code> code and shows the result as a webpage.
+          </li>
+          <li>
+            If there is something wrong, it will give notification in the
+            <u>console</u>.
+          </li>
+          <li>
+            Usually you can open the console with <u>right click</u> ->
+            <u>inspect element</u>
+          </li>
+          <li>
+            You can output stuff in the console using the
+            <code>console.log("sometext")</code> in your javascript code
+          </li>
+          <li>
+            This is obvious for people coming from web development. But isn't
+            for people coming from other field (R?). It is essential to be able
+            to debug your code.
+          </li>
+        </ul>
+      </div>
+    </section>
 
+    <!-- ==================== COORDINATE SYSTEM ==================== -->
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-basicTrigger', 'res-basicTrigger')
-myJSParser('js-basicTrigger', 'res-basicTrigger')
+    <section id="coord" class="bg">
+      <div class="container">
+        <h1>The coordinate system</h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            Building a d3.js chart starts by creating a
+            <code>svg</code> element. This element has a <code>width</code> and
+            a <code>height</code>, given in pixels.
+          </li>
+          <li>
+            It is important to understand that the top left corner has the
+            coordinate <code>x=0</code> and <code>y=0</code>. The bottom left
+            corner has the coordinate <code>x=0</code> and
+            <code>y=height</code>. The top right corner has the coordinate
+            <code>x=width</code> and <code>height=0</code>
+          </li>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <br />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-coord"></div>
+            </div>
+          </div>
 
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-basicTrigger').addEventListener("input", function() {
-d3.select('#res-basicTrigger').html("");
-myHtmlParser('html-basicTrigger', 'res-basicTrigger');
-myJSParser('js-basicTrigger', 'res-basicTrigger');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-basicTrigger').addEventListener("input", function() {
-d3.select('#res-basicTrigger').html("");
-myHtmlParser('html-basicTrigger', 'res-basicTrigger');
-myJSParser('js-basicTrigger', 'res-basicTrigger');
-})
-</script>
-
-</div>
-
-
-  </div>
-  <code>&rarr; Try:</code>
-  <br>
-  <ul style="margin-top: 5px">
-    <li>Change the circle opacity with the <code>opacity</code> style that goes between 0 and 1.</li>
-  </ul>
-
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== CONSOLE.LOG ==================== -->
-
-<section id="coord" class="bg">
-<div class="container">
-  <h1><code>Console.log()</code> is your friend.</h1>
-  <hr>
-  <code>&rarr; Explanation:</code>
-  <br>
-  <ul style="margin-top: 5px">
-    <li>So the browser runs <code>Html</code>, <code>Css</code> and <code>Javascript</code> code and shows the result as a webpage.</li>
-    <li>If there is something wrong, it will give notification in the <u>console</u>.</li>
-    <li>Usually you can open the console with <u>right click</u> -> <u>inspect element</u></li>
-    <li>You can output stuff in the console using the <code>console.log("sometext")</code> in your javascript code</li>
-    <li>This is obvious for people coming from web development. But isn't for people coming from other field (R?). It is essential to be able to debug your code.</li>
-  </ul>
-</div>
-</section>
-
-
-
-
-
-
-
-
-<!-- ==================== COORDINATE SYSTEM ==================== -->
-
-<section id="coord" class="bg">
-<div class="container">
-  <h1>The coordinate system</h1>
-  <hr>
-  <code>&rarr; Explanation:</code>
-  <br>
-  <ul style="margin-top: 5px">
-    <li>Building a d3.js chart starts by creating a <code>svg</code> element. This element has a <code>width</code> and a <code>height</code>, given in pixels.</li>
-    <li>It is important to understand that the top left corner has the coordinate <code>x=0</code> and <code>y=0</code>. The bottom left corner has the coordinate <code>x=0</code> and <code>y=height</code>. The top right corner has the coordinate <code>x=width</code> and <code>height=0</code></li>
-  </ul>
-  <br>
-  <code>&rarr; Example:</code>
-  <br>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-coord" ></div>
-    </div>
-  </div>
-
-
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-coord" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-coord" contenteditable="true"><xmp><!DOCTYPE html>
 
 <!-- Add a svg area, empty -->
 <svg id="dataviz_area" height=200 width=450></svg>
@@ -606,12 +671,12 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 <script src="https://d3js.org/d3.v4.js"></script>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-coord" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-coord" contenteditable="true"><xmp><script>
 var svg = d3.select("#dataviz_area")
 svg.append("circle")
   .attr("cx", 2).attr("cy", 2).attr("r", 40).style("fill", "blue");
@@ -620,92 +685,97 @@ svg.append("circle")
 svg.append("circle")
   .attr("cx", 300).attr("cy", 100).attr("r", 40).style("fill", "green");
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-coord", "res-coord");
+              myJSParser("js-coord", "res-coord");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-coord")
+                .addEventListener("input", function () {
+                  d3.select("#res-coord").html("");
+                  myHtmlParser("html-coord", "res-coord");
+                  myJSParser("js-coord", "res-coord");
+                });
 
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-coord")
+                .addEventListener("input", function () {
+                  d3.select("#res-coord").html("");
+                  myHtmlParser("html-coord", "res-coord");
+                  myJSParser("js-coord", "res-coord");
+                });
+            </script>
+          </div>
+        </div>
+        <code>&rarr; Try:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            Change the coordinate of the 3 circles to make sure you understood
+            how it works
+          </li>
+        </ul>
+      </div>
+    </section>
+    <br />
 
+    <!-- ==================== Scale ==================== -->
 
+    <section id="scale" class="bg">
+      <div class="container">
+        <h1>From data to pixel: Scales</h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            Position of element is set in <u>pixel</u>. But input dataset is
+            <u>not</u>.
+          </li>
+          <li>
+            We thus need a function that <u>translate</u> a numeric variable to
+            a position in pixel. It is called a <code>scale</code>
+          </li>
+          <li>
+            If my data are percentages and my <code>svg</code> area is 400px
+            width. 0% &rarr; 0px. 100% &rarr; 400px. 50% &rarr; 200px.
+          </li>
+          <li>
+            Scale always have a <code>domain</code> (0 to 100% here) and a
+            <code>range</code> (0 to 400px here)
+          </li>
+          <li>
+            Usually the scale for the X axis is called <code>x</code>. If you
+            run <code>x(10)</code>, d3 returns the position in px for this value
+          </li>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-scale"></div>
+            </div>
+          </div>
 
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-coord', 'res-coord')
-myJSParser('js-coord', 'res-coord')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-coord').addEventListener("input", function() {
-d3.select('#res-coord').html("");
-myHtmlParser('html-coord', 'res-coord');
-myJSParser('js-coord', 'res-coord');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-coord').addEventListener("input", function() {
-d3.select('#res-coord').html("");
-myHtmlParser('html-coord', 'res-coord');
-myJSParser('js-coord', 'res-coord');
-})
-</script>
-
-</div>
-
-
-  </div>
-  <code>&rarr; Try:</code>
-  <br>
-  <ul style="margin-top: 5px">
-    <li>Change the coordinate of the 3 circles to make sure you understood how it works</li>
-  </ul>
-
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== Scale ==================== -->
-
-<section id="scale" class="bg">
-<div class="container">
-  <h1>From data to pixel: Scales</h1>
-  <hr>
-  <code>&rarr; Explanation:</code>
-  <br>
-  <ul style="margin-top: 5px">
-    <li>Position of element is set in <u>pixel</u>. But input dataset is <u>not</u>.</li>
-    <li>We thus need a function that <u>translate</u> a numeric variable to a position in pixel. It is called a <code>scale</code></li>
-    <li>If my data are percentages and my <code>svg</code> area is 400px width. 0% &rarr; 0px. 100% &rarr; 400px. 50% &rarr; 200px.</li>
-    <li>Scale always have a <code>domain</code> (0 to 100% here) and a <code>range</code> (0 to 400px here)</li>
-    <li>Usually the scale for the X axis is called <code>x</code>. If you run <code>x(10)</code>, d3 returns the position in px for this value</li>
-  </ul>
-  <br>
-  <code>&rarr; Example:</code>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-scale" ></div>
-    </div>
-  </div>
-
-
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-scale" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-scale" contenteditable="true"><xmp><!DOCTYPE html>
 
 <!-- Add a svg area, empty -->
 <svg id="viz_area" height=200 width=450></svg>
@@ -714,12 +784,12 @@ myJSParser('js-coord', 'res-coord');
 <script src="https://d3js.org/d3.v4.js"></script>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-scale" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-scale" contenteditable="true"><xmp><script>
 // Select the svg area
 var svg = d3.select("#viz_area")
 
@@ -737,92 +807,92 @@ svg.append("circle")
 svg.append("circle")
   .attr("cx", x(100)).attr("cy", 100).attr("r", 40).style("fill", "green");
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-scale", "res-scale");
+              myJSParser("js-scale", "res-scale");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-scale")
+                .addEventListener("input", function () {
+                  d3.select("#res-scale").html("");
+                  myHtmlParser("html-scale", "res-scale");
+                  myJSParser("js-scale", "res-scale");
+                });
 
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-scale")
+                .addEventListener("input", function () {
+                  d3.select("#res-scale").html("");
+                  myHtmlParser("html-scale", "res-scale");
+                  myJSParser("js-scale", "res-scale");
+                });
+            </script>
+          </div>
+        </div>
 
+        <code>&rarr; Try:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            Change <code>domain</code> and <code>range</code> values to
+            understand how it works.
+          </li>
+          <li>
+            Add a Y scale to move the circles up or down. Remember 0px is on
+            top!
+          </li>
+        </ul>
+      </div>
+    </section>
+    <br />
 
+    <!-- ==================== Axis ==================== -->
 
+    <section id="axis" class="bg">
+      <div class="container">
+        <h1>Add axis</h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <ul style="margin-top: 5px">
+          <li>D3 offers a few function to draw <u>axis</u> automatically.</li>
+          <li>
+            These axis are always drawn on top of a <code>scale</code>. This
+            scale specifies <u>where</u> the axis must be placed, and
+            <u>what range</u> it should indicate.
+          </li>
+          <li>
+            The function <code>axisBottom()</code> creates a horizontal axis,
+            with ticks and labels at the bottom. <code>axisLeft()</code> will be
+            used later for the Y axis
+          </li>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-axis"></div>
+            </div>
+          </div>
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-scale', 'res-scale')
-myJSParser('js-scale', 'res-scale')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-scale').addEventListener("input", function() {
-d3.select('#res-scale').html("");
-myHtmlParser('html-scale', 'res-scale');
-myJSParser('js-scale', 'res-scale');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-scale').addEventListener("input", function() {
-d3.select('#res-scale').html("");
-myHtmlParser('html-scale', 'res-scale');
-myJSParser('js-scale', 'res-scale');
-})
-</script>
-
-</div>
-
-
-  </div>
-
-  <code>&rarr; Try:</code>
-  <br>
-  <ul style="margin-top: 5px">
-    <li>Change <code>domain</code> and <code>range</code> values to understand how it works.</li>
-    <li>Add a Y scale to move the circles up or down. Remember 0px is on top!</li>
-  </ul>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== Axis ==================== -->
-
-<section id="axis" class="bg">
-<div class="container">
-  <h1>Add axis</h1>
-  <hr>
-  <code>&rarr; Explanation:</code>
-  <ul style="margin-top: 5px">
-    <li>D3 offers a few function to draw <u>axis</u> automatically.</li>
-    <li>These axis are always drawn on top of a <code>scale</code>. This scale specifies <u>where</u> the axis must be placed, and <u>what range</u> it should indicate.</li>
-    <li>The function <code>axisBottom()</code> creates a horizontal axis, with ticks and labels at the bottom. <code>axisLeft()</code> will be used later for the Y axis</li>
-  </ul>
-  <br>
-  <code>&rarr; Example:</code>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-axis" ></div>
-    </div>
-  </div>
-
-
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-axis" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-axis" contenteditable="true"><xmp><!DOCTYPE html>
 
 <!-- Add a svg area, empty -->
 <svg id="Viz_area" height=200 width=450></svg>
@@ -831,12 +901,12 @@ myJSParser('js-scale', 'res-scale');
 <script src="https://d3js.org/d3.v4.js"></script>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-axis" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-axis" contenteditable="true"><xmp><script>
 // Select the svg area
 var svg = d3.select("#Viz_area")
 
@@ -856,89 +926,92 @@ svg.append("circle")
 svg.append("circle")
   .attr("cx", x(100)).attr("cy", 100).attr("r", 40).style("fill", "green");
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-axis", "res-axis");
+              myJSParser("js-axis", "res-axis");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-axis")
+                .addEventListener("input", function () {
+                  d3.select("#res-axis").html("");
+                  myHtmlParser("html-axis", "res-axis");
+                  myJSParser("js-axis", "res-axis");
+                });
 
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-axis")
+                .addEventListener("input", function () {
+                  d3.select("#res-axis").html("");
+                  myHtmlParser("html-axis", "res-axis");
+                  myJSParser("js-axis", "res-axis");
+                });
+            </script>
+          </div>
+        </div>
+        <code>&rarr; Try:</code>
+        <br />
+        <ul style="margin-top: 5px">
+          <li>
+            Change <code>domain</code> and <code>range</code> values to
+            understand how it works.
+          </li>
+        </ul>
+      </div>
+    </section>
+    <br />
 
+    <!-- ==================== MARGIN ==================== -->
 
+    <section id="margin" class="bg">
+      <div class="container">
+        <h1>Margin & translation</h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <ul style="margin-top: 5px">
+          <li>
+            The axis position often needs to be <u>adjusted</u>. For instance,
+            the X axis is usually placed at the <u>bottom</u> of the chart.
+          </li>
+          <li>
+            This is made possible thanks to <u>translation</u>. Basically,
+            applying <code>.attr("transform", "translate(20,50)")</code> to an
+            element with translate it 20px to the right and 50px to the bottom.
+          </li>
+          <li>
+            A very common strategy is to apply a translation to the general
+            <code>svg</code> area, creating a bit of margin around the chart
+            without having to think about it in the rest of the code. It is
+            important to understand how it works since almost all d3.js chart
+            start that way.
+          </li>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-margin"></div>
+            </div>
+          </div>
 
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-axis', 'res-axis')
-myJSParser('js-axis', 'res-axis')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-axis').addEventListener("input", function() {
-d3.select('#res-axis').html("");
-myHtmlParser('html-axis', 'res-axis');
-myJSParser('js-axis', 'res-axis');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-axis').addEventListener("input", function() {
-d3.select('#res-axis').html("");
-myHtmlParser('html-axis', 'res-axis');
-myJSParser('js-axis', 'res-axis');
-})
-</script>
-
-</div>
-
-
-  </div>
-  <code>&rarr; Try:</code>
-  <br>
-  <ul style="margin-top: 5px">
-    <li>Change <code>domain</code> and <code>range</code> values to understand how it works.</li>
-  </ul>
-
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== MARGIN ==================== -->
-
-<section id="margin" class="bg">
-<div class="container">
-  <h1>Margin & translation</h1>
-  <hr>
-  <code>&rarr; Explanation:</code>
-  <ul style="margin-top: 5px">
-    <li>The axis position often needs to be <u>adjusted</u>. For instance, the X axis is usually placed at the <u>bottom</u> of the chart.</li>
-    <li>This is made possible thanks to <u>translation</u>. Basically, applying <code>.attr("transform", "translate(20,50)")</code> to an element with translate it 20px to the right and 50px to the bottom.</li>
-    <li>A very common strategy is to apply a translation to the general <code>svg</code> area, creating a bit of margin around the chart without having to think about it in the rest of the code. It is important to understand how it works since almost all d3.js chart start that way.</li>
-  </ul>
-  <br>
-  <code>&rarr; Example:</code>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-margin" ></div>
-    </div>
-  </div>
-
-
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-margin" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-margin" contenteditable="true"><xmp><!DOCTYPE html>
 
 <!-- Add a svg area, empty -->
 <div id="Area"></div>
@@ -947,12 +1020,12 @@ myJSParser('js-axis', 'res-axis');
 <script src="https://d3js.org/d3.v4.js"></script>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-margin" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-margin" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 40, bottom: 30, left: 30},
@@ -986,108 +1059,106 @@ sVg
   .call(d3.axisLeft(y));
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-margin", "res-margin");
+              myJSParser("js-margin", "res-margin");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-margin")
+                .addEventListener("input", function () {
+                  d3.select("#res-margin").html("");
+                  myHtmlParser("html-margin", "res-margin");
+                  myJSParser("js-margin", "res-margin");
+                });
 
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-margin")
+                .addEventListener("input", function () {
+                  d3.select("#res-margin").html("");
+                  myHtmlParser("html-margin", "res-margin");
+                  myJSParser("js-margin", "res-margin");
+                });
+            </script>
+          </div>
+        </div>
+        <code>&rarr; Try:</code>
+        <ul style="margin-top: 5px">
+          <li>Play with the margin values to double check how it works.</li>
+          <li>Remove some lines in the <code>svg</code> variable creation.</li>
+        </ul>
+      </div>
+    </section>
+    <br />
 
+    <!-- ==================== DATA BINDING ==================== -->
 
+    <section id="data" class="bg">
+      <div class="container">
+        <h1>Data binding</h1>
+        <hr />
+        <code>&rarr; Explanation:</code>
+        <ul style="margin-top: 5px">
+          <li>
+            <u>Binding data</u> to svg elements is the last step we need to
+            complete the scatterplot. It is also the <u>hardest</u> part to
+            understand in my opinion.
+          </li>
+          <li>It always follows the same steps:</li>
+          <ul>
+            <li>
+              <code>svg</code>: this select the svg area where the chart takes
+              place
+            </li>
+            <li>
+              <code>.selectAll("whatever")</code>: select all the elements that
+              have not be created yet, I know it is weird.
+            </li>
+            <li><code>.data(data)</code>: specify the data to use.</li>
+            <li>
+              <code>.enter()</code>: start a loop for the data. Following code
+              will be applied to <code>data[0]</code>, <code>data[1]</code> and
+              so on.
+            </li>
+            <li>
+              <code>.append("circle")</code>: for each iteration, add a circle.
+            </li>
+            <li>
+              <code>.attr("cx", function(d){ return x(d.x) })</code>: gives the
+              <code>x</code> position of the circle. Here <code>d</code> will be
+              <code>data[0]</code>, then <code>data[1]</code> and so on. Thus
+              <code>d.x</code> is the value of <code>x</code>, and
+              <code>x(d.x)</code> is the corresponding position in pixel found
+              thanks to the <code>x scale</code>.
+            </li>
+          </ul>
+        </ul>
+        <br />
+        <code>&rarr; Example:</code>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-data"></div>
+            </div>
+          </div>
 
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-margin', 'res-margin')
-myJSParser('js-margin', 'res-margin')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-margin').addEventListener("input", function() {
-d3.select('#res-margin').html("");
-myHtmlParser('html-margin', 'res-margin');
-myJSParser('js-margin', 'res-margin');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-margin').addEventListener("input", function() {
-d3.select('#res-margin').html("");
-myHtmlParser('html-margin', 'res-margin');
-myJSParser('js-margin', 'res-margin');
-})
-</script>
-
-</div>
-
-
-  </div>
-  <code>&rarr; Try:</code>
-  <ul style="margin-top: 5px">
-    <li>Play with the margin values to double check how it works.</li>
-    <li>Remove some lines in the <code>svg</code> variable creation.</li>
-  </ul>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== DATA BINDING ==================== -->
-
-<section id="data" class="bg">
-<div class="container">
-  <h1>Data binding</h1>
-  <hr>
-  <code>&rarr; Explanation:</code>
-  <ul style="margin-top: 5px">
-    <li><u>Binding data</u> to svg elements is the last step we need to complete the scatterplot. It is also the <u>hardest</u> part to understand in my opinion.</li>
-    <li>It always follows the same steps:</li>
-    <ul>
-      <li><code>svg</code>: this select the svg area where the chart takes place</li>
-      <li><code>.selectAll("whatever")</code>: select all the elements that have not be created yet, I know it is weird.</li>
-      <li><code>.data(data)</code>: specify the data to use.</li>
-      <li><code>.enter()</code>: start a loop for the data. Following code will be applied to <code>data[0]</code>, <code>data[1]</code> and so on.</li>
-      <li><code>.append("circle")</code>: for each iteration, add a circle.</li>
-      <li><code>.attr("cx", function(d){ return x(d.x) })</code>: gives the <code>x</code> position of the circle. Here <code>d</code> will be <code>data[0]</code>, then <code>data[1]</code> and so on. Thus <code>d.x</code> is the value of <code>x</code>, and <code>x(d.x)</code> is the corresponding position in pixel found thanks to the <code>x scale</code>.</li>
-    </ul>
-  </ul>
-  <br>
-  <code>&rarr; Example:</code>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-data" ></div>
-    </div>
-  </div>
-
-
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-data" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-data" contenteditable="true"><xmp><!DOCTYPE html>
 
 <!-- Add a svg area, empty -->
 <div id="scatter_area"></div>
@@ -1096,12 +1167,12 @@ myJSParser('js-margin', 'res-margin');
 <script src="https://d3js.org/d3.v4.js"></script>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-data" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-data" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 40, bottom: 30, left: 30},
@@ -1149,158 +1220,92 @@ svG
 
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
-
-
-
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-data', 'res-data')
-myJSParser('js-data', 'res-data')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-data').addEventListener("input", function() {
-d3.select('#res-data').html("");
-myHtmlParser('html-data', 'res-data');
-myJSParser('js-data', 'res-data');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-data').addEventListener("input", function() {
-d3.select('#res-data').html("");
-myHtmlParser('html-data', 'res-data');
-myJSParser('js-data', 'res-data');
-})
-</script>
-
-</div>
-
-
-  </div>
-
-  <code>&rarr; Note:</code>
-  <p style="margin-top: 5px">This is probably the most difficult concept in d3.js. And it is used in almost every single chart. It is actually the power of d3: binding data to elements</p>
-  <p>It is probably a good idea to read more on this topic. Check <a href="https://d3indepth.com/datajoins/">d3 in depth</a> and <a href="https://www.dashingd3js.com/lessons/creating-svg-elements-from-data">Dashing d3.js</a>.
-
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== What's next ==================== -->
-
-<section class="bg">
-<div class="container">
-  <h1>What's <code>next</code>?</h1>
-  <hr>
-  <p>This document is a very very short intro to d3.js. However, it describes the basic concepts that are used in almost every chart.</p>
-  <p>You're now probably ready to <a href="../index.html">explore the gallery</a>. For each chart section, there is a very basic example to start with. </p>
-</div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <!-- ==================================== -->
+
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-data", "res-data");
+              myJSParser("js-data", "res-data");
+
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-data")
+                .addEventListener("input", function () {
+                  d3.select("#res-data").html("");
+                  myHtmlParser("html-data", "res-data");
+                  myJSParser("js-data", "res-data");
+                });
+
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-data")
+                .addEventListener("input", function () {
+                  d3.select("#res-data").html("");
+                  myHtmlParser("html-data", "res-data");
+                  myJSParser("js-data", "res-data");
+                });
+            </script>
+          </div>
+        </div>
+
+        <code>&rarr; Note:</code>
+        <p style="margin-top: 5px">
+          This is probably the most difficult concept in d3.js. And it is used
+          in almost every single chart. It is actually the power of d3: binding
+          data to elements
+        </p>
+        <p>
+          It is probably a good idea to read more on this topic. Check
+          <a href="https://d3indepth.com/datajoins/">d3 in depth</a> and
+          <a
+            href="https://www.dashingd3js.com/lessons/creating-svg-elements-from-data"
+            >Dashing d3.js</a
+          >.
+        </p>
+      </div>
+    </section>
+    <br />
+
+    <!-- ==================== What's next ==================== -->
+
+    <section class="bg">
+      <div class="container">
+        <h1>What's <code>next</code>?</h1>
+        <hr />
+        <p>
+          This document is a very very short intro to d3.js. However, it
+          describes the basic concepts that are used in almost every chart.
+        </p>
+        <p>
+          You're now probably ready to
+          <a href="../index.html">explore the gallery</a>. For each chart
+          section, there is a very basic example to start with.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================ CONTACT SECTION ============================ -->
+
+    <section id="contact" class="bg" style="background-color: white"></section>
+
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
+
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
+
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
+
+    <!-- ============================ -->
   </body>
-
 </html>

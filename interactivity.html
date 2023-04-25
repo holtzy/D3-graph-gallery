@@ -1,475 +1,614 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Interactivity &#124; the D3 Graph Gallery</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="General d3.js examples showing how to turn your chart interactive: animation, tooltip, zoom, hover effect and more.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,area chart">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="General d3.js examples showing how to turn your chart interactive: animation, tooltip, zoom, hover effect and more."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,area chart"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Customizing d3.js chart &#124; the D3 Graph Gallery">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="General d3.js examples showing how to turn your chart interactive: animation, tooltip, zoom, hover effect and more.">
+    <meta
+      property="og:title"
+      content="Customizing d3.js chart &#124; the D3 Graph Gallery"
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="General d3.js examples showing how to turn your chart interactive: animation, tooltip, zoom, hover effect and more."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link
+      href="vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="css/agency.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet" />
 
     <!-- JQUERY -->
     <script src="vendor/jquery/jquery.min.js"></script>
+  </head>
 
-</head>
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
+      });
+    </script>
 
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
+    </script>
 
-
-<body id="page-top">
-
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-});
-</script>
-
-  <!-- Header -->
-  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-    <div class="textlanding">
-      <h1>Interactivity with d3.js</h1>
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.yan-holtz.com">
-            <i class="fa fa-home"></i>
-          </a>
-        </li>
-      </ul>
-      <br><br>
-      <p style="max-width: 700px; margin: auto">This section aims to describe how to turn your d3.js chart interactive. It describe how to add <u>tooltips</u>, <u>animations</u>, <u>hover</u> effects, <u>zoom</u> feature and more.</p>
-  </div>
-</header>
-
-
-
-<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-<div id="position_for_images"> </div>
-<script>
-$(function(){
-  $("#position_for_images").load("html_chunk/images.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-<!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-
-
-
-    <div class="mySeryTitle">Tooltip</div>
-    <hr>
-    <p>D3.js allows to easily add a <u>tooltip</u> to any element of your chart. The idea is always the same: triggering a function when the user <code>mouseover</code>, <code>mousemove</code> or <code>mouseleave</code> the element. See the 3 examples below showing how to apply this technique to a <a href="graph/interactivity_tooltip.html">single circle</a>, how to customize the <a href="graph/interactivity_tooltip.html">tooltip content</a>, and how to apply it to <a href="graph/scatter_tooltip.html">data</a>.</p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_tooltip.html#mostbasic">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic tooltip you can do in d3.js.<br>It just create one tooltip for one circle</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/tooltip_basic.png" alt="">
-        </a>
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>Interactivity with d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          This section aims to describe how to turn your d3.js chart
+          interactive. It describe how to add <u>tooltips</u>,
+          <u>animations</u>, <u>hover</u> effects, <u>zoom</u> feature and more.
+        </p>
       </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_tooltip.html#customContent">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>HTML in tooltip</p>
-              <hr>
-              <p class="explanation_portfolio">Learn how to customize your tooltip: you can apply any html code to it!</p>
-            </div>
+    </header>
+
+    <!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+    <div id="position_for_images"></div>
+    <script>
+      $(function () {
+        $("#position_for_images").load("html_chunk/images.html");
+      });
+    </script>
+
+    <!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+    <section class="bg" id="portfolio" style="padding-top: 10px">
+      <div class="container">
+        <div class="mySeryTitle">Tooltip</div>
+        <hr />
+        <p>
+          D3.js allows to easily add a <u>tooltip</u> to any element of your
+          chart. The idea is always the same: triggering a function when the
+          user <code>mouseover</code>, <code>mousemove</code> or
+          <code>mouseleave</code> the element. See the 3 examples below showing
+          how to apply this technique to a
+          <a href="graph/interactivity_tooltip.html">single circle</a>, how to
+          customize the
+          <a href="graph/interactivity_tooltip.html">tooltip content</a>, and
+          how to apply it to <a href="graph/scatter_tooltip.html">data</a>.
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_tooltip.html#mostbasic"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic tooltip you can do in d3.js.<br />It just
+                    create one tooltip for one circle
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/graph/tooltip_basic.png" alt="" />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/tooltip_html.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_tooltip.html#template">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Tooltip linked with data</p>
-              <hr>
-              <p class="explanation_portfolio">Tooltip is different for each datapoint, customized, and element style are modified when hovered.</p>
-            </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_tooltip.html#customContent"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>HTML in tooltip</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Learn how to customize your tooltip: you can apply any html
+                    code to it!
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/graph/tooltip_html.png" alt="" />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/heatmap_tooltip.gif" alt="">
-        </a>
-      </div>
-    </div>
-
-
-    <br><br>
-    <div class="mySeryTitle">Brushing</div>
-    <hr>
-    <p>A post on the basic of <u>brushing</u> with d3.js. It starts by very <a href="graph/interactivity_brush.html">basic use</a> of the <code>d3.brush()</code> function: just initializing the functionality. Then, it explains how to <a href="graph/interactivity_brush.html#realgraph">trigger a function</a> to perform a change on the selected points. Lastly, it describes how to <a href="graph/interactivity_brush.html#brushingforzoom">smoothly zoom</a> on the selected area.</p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_brush.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Create your first brush</p>
-              <hr>
-              <p class="explanation_portfolio">A very basic example showing how to initialize a brush area with d3.brush.</p>
-            </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_tooltip.html#template"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Tooltip linked with data</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Tooltip is different for each datapoint, customized, and
+                    element style are modified when hovered.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/heatmap_tooltip.gif"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/interactivity_brushInitialize.png" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_brush.html#realgraph">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Trigger a function</p>
-              <hr>
-              <p class="explanation_portfolio">How to get the brush coordinates and apply a function to the points in the area.</p>
-            </div>
+        </div>
+
+        <br /><br />
+        <div class="mySeryTitle">Brushing</div>
+        <hr />
+        <p>
+          A post on the basic of <u>brushing</u> with d3.js. It starts by very
+          <a href="graph/interactivity_brush.html">basic use</a> of the
+          <code>d3.brush()</code> function: just initializing the functionality.
+          Then, it explains how to
+          <a href="graph/interactivity_brush.html#realgraph"
+            >trigger a function</a
+          >
+          to perform a change on the selected points. Lastly, it describes how
+          to
+          <a href="graph/interactivity_brush.html#brushingforzoom"
+            >smoothly zoom</a
+          >
+          on the selected area.
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/interactivity_brush.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Create your first brush</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    A very basic example showing how to initialize a brush area
+                    with d3.brush.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/interactivity_brushInitialize.png"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/interactivity_brushTrigger.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_brush.html#brushingforzoom">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Brushing for zooming</p>
-              <hr>
-              <p class="explanation_portfolio">How to zoom on the brushed area with a smooth transition.</p>
-            </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_brush.html#realgraph"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Trigger a function</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    How to get the brush coordinates and apply a function to the
+                    points in the area.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/interactivity_brushTrigger.gif"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/interactivity_brushZoom.gif" alt="">
-        </a>
-      </div>
-    </div>
-
-
-
-    <br><br>
-    <div class="mySeryTitle">Buttons</div>
-    <hr>
-    <p>A post on buttons: what are the different types, how to add them using html, and how to connect them with the chart to trigger transition and animation.</p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_button.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>HTML button types</p>
-              <hr>
-              <p class="explanation_portfolio">HTML natively offers different types of button: here is a description of them with the associated code.</p>
-            </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_brush.html#brushingforzoom"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Brushing for zooming</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    How to zoom on the brushed area with a smooth transition.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/interactivity_brushZoom.gif"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/interactivity_button.png" alt="">
-        </a>
-      </div>
-    </div>
+        </div>
 
+        <br /><br />
+        <div class="mySeryTitle">Buttons</div>
+        <hr />
+        <p>
+          A post on buttons: what are the different types, how to add them using
+          html, and how to connect them with the chart to trigger transition and
+          animation.
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/interactivity_button.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>HTML button types</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    HTML natively offers different types of button: here is a
+                    description of them with the associated code.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/interactivity_button.png"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
 
-
-
-        <br><br>
+        <br /><br />
         <div class="mySeryTitle">Zooming</div>
-        <hr>
-        <p>A post on the basic of <u>zooming</u> with d3.js. It starts with a very <a href="graph/interactivity_zoom.html">basic use</a> of the <code>d3.zoom()</code> function: just applied on a single circle. Then, it explains how to <a href="graph/interactivity_zoom.html#axisZoom">trigger a function</a> that update axis. Lastly, it shows that <a href="graph/interactivity_zoom.html#brushingforzoom">brushing</a> can be used for zooming as well.</p>
+        <hr />
+        <p>
+          A post on the basic of <u>zooming</u> with d3.js. It starts with a
+          very <a href="graph/interactivity_zoom.html">basic use</a> of the
+          <code>d3.zoom()</code> function: just applied on a single circle.
+          Then, it explains how to
+          <a href="graph/interactivity_zoom.html#axisZoom"
+            >trigger a function</a
+          >
+          that update axis. Lastly, it shows that
+          <a href="graph/interactivity_zoom.html#brushingforzoom">brushing</a>
+          can be used for zooming as well.
+        </p>
         <div id="portfolio-items" class="row">
           <div class="col-md-4 col-sm-6 portfolio-item">
             <a class="portfolio-link" href="graph/interactivity_zoom.html">
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">
                   <p>Most basic zoom</p>
-                  <hr>
-                  <p class="explanation_portfolio">A very basic example showing how to initialize a zoom area with d3.zoom.</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    A very basic example showing how to initialize a zoom area
+                    with d3.zoom.
+                  </p>
                 </div>
               </div>
-              <img class="img-fluid" src="img/graph/interactivity_zoomBasic.gif" alt="">
+              <img
+                class="img-fluid"
+                src="img/graph/interactivity_zoomBasic.gif"
+                alt=""
+              />
             </a>
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" href="graph/interactivity_zoom.html#axisZoom">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_zoom.html#axisZoom"
+            >
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">
                   <p>Update axis and element position</p>
-                  <hr>
-                  <p class="explanation_portfolio">An example on a real scatterplot to show how to update axis and elements.</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    An example on a real scatterplot to show how to update axis
+                    and elements.
+                  </p>
                 </div>
               </div>
-              <img class="img-fluid" src="img/graph/interactivity_zoomAxis.gif" alt="">
+              <img
+                class="img-fluid"
+                src="img/graph/interactivity_zoomAxis.gif"
+                alt=""
+              />
             </a>
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" href="graph/interactivity_zoom.html#brushingforzoom">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_zoom.html#brushingforzoom"
+            >
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">
                   <p>Brushing for zooming</p>
-                  <hr>
-                  <p class="explanation_portfolio">How to zoom on the brushed area with a smooth transition.</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    How to zoom on the brushed area with a smooth transition.
+                  </p>
                 </div>
               </div>
-              <img class="img-fluid" src="img/graph/interactivity_brushZoom.gif" alt="">
+              <img
+                class="img-fluid"
+                src="img/graph/interactivity_brushZoom.gif"
+                alt=""
+              />
             </a>
           </div>
         </div>
 
-
-
-
-    <br><br>
-    <div class="mySeryTitle">Transition</div>
-    <hr>
-    <p><u>Transition</u> is where the magic of D3 takes place. Here you will find a few examples based on a single element to understand the basic mechanism. A few examples based on a real chart are then available to illustrate the process.</p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_transition.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic transition you can do in d3.js.<br>It just modify the width attribute of a div using d3.js, keeping only the core code.</p>
-            </div>
+        <br /><br />
+        <div class="mySeryTitle">Transition</div>
+        <hr />
+        <p>
+          <u>Transition</u> is where the magic of D3 takes place. Here you will
+          find a few examples based on a single element to understand the basic
+          mechanism. A few examples based on a real chart are then available to
+          illustrate the process.
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_transition.html"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic transition you can do in d3.js.<br />It just
+                    modify the width attribute of a div using d3.js, keeping
+                    only the core code.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/transition_basic.gif"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/transition_basic.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_transition.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Pipe several transition</p>
-              <hr>
-              <p class="explanation_portfolio">Run several transitions one after another. Involves different attributes like color and width.</p>
-            </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_transition.html"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Pipe several transition</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Run several transitions one after another. Involves
+                    different attributes like color and width.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/transition_pipe.gif"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/transition_pipe.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/interactivity_transition.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Progressive transition</p>
-              <hr>
-              <p class="explanation_portfolio">This example applies a different <code>delay</code> to each element. It gives a progressive transition where elements start moving one by one.</p>
-            </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="graph/interactivity_transition.html"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Progressive transition</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    This example applies a different <code>delay</code> to each
+                    element. It gives a progressive transition where elements
+                    start moving one by one.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/transition_delay.gif"
+                alt=""
+              />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/transition_delay.gif" alt="">
-        </a>
+        </div>
       </div>
-    </div>
- </div>
-</section>
+    </section>
 
+    <!-- ======================================================================= -->
 
-<!-- ======================================================================= -->
+    <!-- ============================ RELATED SECTION ============================ -->
+    <section
+      class="bg-light"
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <p class="mySeryTitle">Related chart types</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://www.d3-graph-gallery.com/intro_d3js.html"
+            >
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/Basic150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Basics</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="custom.html">
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/Colours150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Custom</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="interactivity.html">
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/anim150.gif"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Interactivity</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="graph/shape.html">
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/Shapehelper150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Shape helpers</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://www.data-to-viz.com/caveats.html"
+            >
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/Bad150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Caveats</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://www.r-graph-gallery.com/portfolio/data-art/"
+            >
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/DataArt1150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Data art</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
 
+    <!-- ============================ -->
 
-<!-- ============================ RELATED SECTION ============================ -->
-<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-
-<div class="container">
-
-  <p class="mySeryTitle">Related chart types</p>
-  <hr>
-  <div class="row">
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link" href="https://www.d3-graph-gallery.com/intro_d3js.html">
-        <img class="img-fluid grey_on_hover" src="img/section/Basic150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Basics</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="custom.html">
-        <img class="img-fluid grey_on_hover" src="img/section/Colours150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Custom</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="interactivity.html">
-        <img class="img-fluid grey_on_hover" src="img/section/anim150.gif" alt="">
-      </a>
-      <div class="captionPortfolio">Interactivity</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="graph/shape.html">
-        <img class="img-fluid grey_on_hover" src="img/section/Shapehelper150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Shape helpers</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="https://www.data-to-viz.com/caveats.html">
-        <img class="img-fluid grey_on_hover" src="img/section/Bad150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Caveats</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="https://www.r-graph-gallery.com/portfolio/data-art/">
-        <img class="img-fluid grey_on_hover" src="img/section/DataArt1150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Data art</div>
-    </div>
-  </div>
-
-</div>
-</section>
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-<!-- ANCHOR -->
-<a name="contactanchor"></a>
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============== JAVASCRIPT SECTION =============== -->
+    <!-- =============== JAVASCRIPT SECTION =============== -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -483,18 +622,10 @@ $(function(){
     <!-- Activate the bootstrap tooltip, must be after jQuery load -->
     <script>
       $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-      })
-   </script>
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
 
-
-
-
-
-<!--============================== -->
-
-
-
+    <!--============================== -->
   </body>
-
 </html>

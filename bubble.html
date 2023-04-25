@@ -1,61 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Bubble plot &#124; the D3 Graph Gallery</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How to build bubble plots with Javascript and D3.js: from the most basic example to highly customized examples.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,bubble plot">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="How to build bubble plots with Javascript and D3.js: from the most basic example to highly customized examples."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js,bubble plot"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Bubble plot &#124; the D3 Graph Gallery">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How to build bubble plots with Javascript and D3.js: from the most basic example to highly customized examples.">
+    <meta
+      property="og:title"
+      content="Bubble plot &#124; the D3 Graph Gallery"
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="How to build bubble plots with Javascript and D3.js: from the most basic example to highly customized examples."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link
+      href="vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="css/agency.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet" />
 
     <!-- JQUERY -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -63,594 +85,602 @@
     <!-- D3.JS v4 -->
     <script src="js/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  </head>
 
-</head>
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("html_chunk/menu.html");
+      });
+    </script>
 
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
+      });
+    </script>
 
-
-<body id="page-top">
-
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("html_chunk/menu_modal.html");
-});
-</script>
-
-  <!-- Header -->
-  <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-    <div class="textlanding">
-      <h1>Bubble plot</h1>
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.yan-holtz.com">
-            <i class="fa fa-home"></i>
-          </a>
-        </li>
-      </ul>
-      <br><br>
-      <p style="max-width: 700px; margin: auto">A <a href="https://www.data-to-viz.com/graph/bubble.html">bubble plot</a> is a <a href="scatter.html">scatter plot</a> with a third numeric variable mapped to circle size. This page offers several examples of implementation with <code>d3.js</code>, from the most basic to custom versions.</p>
-  </div>
-</header>
-
-
-
-<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-<div id="position_for_images"> </div>
-<script>
-$(function(){
-  $("#position_for_images").load("html_chunk/images.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-<!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
-<section class="bg" id="portfolio" style="padding-top: 10px">
-  <div class="container">
-
-
-    <div class="mySeryTitle">Step by step</div>
-    <hr>
-    <p>Building a bubble chart basically follows the same process as for a <a href="scatter.html">scatterplot</a>, except that another scale is used to map a variable to bubble size. Thus, have a look to the <a href="scatter.html">scatterplot section</a> for more examples.</p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/bubble_basic.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Most basic</p>
-              <hr>
-              <p class="explanation_portfolio">The most basic bubble plot you can do in d3.js. Keeping only the core code.<br><br>Input format: <code>.csv</code>.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/bubble_basic.png" alt="">
-        </a>
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>Bubble plot</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          A
+          <a href="https://www.data-to-viz.com/graph/bubble.html"
+            >bubble plot</a
+          >
+          is a <a href="scatter.html">scatter plot</a> with a third numeric
+          variable mapped to circle size. This page offers several examples of
+          implementation with <code>d3.js</code>, from the most basic to custom
+          versions.
+        </p>
       </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/bubble_color.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Colored bubble</p>
-              <hr>
-              <p class="explanation_portfolio">A fourth categoric variable is mapped to the bubbles, giving a supplementary information.</p>
-            </div>
+    </header>
+
+    <!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+    <div id="position_for_images"></div>
+    <script>
+      $(function () {
+        $("#position_for_images").load("html_chunk/images.html");
+      });
+    </script>
+
+    <!-- ======================== PORTFOLIO SECTION ============================ --><!-- Images must be 480 x 480, resize them with ./script_reformat_img.sh output_name.png -->
+    <section class="bg" id="portfolio" style="padding-top: 10px">
+      <div class="container">
+        <div class="mySeryTitle">Step by step</div>
+        <hr />
+        <p>
+          Building a bubble chart basically follows the same process as for a
+          <a href="scatter.html">scatterplot</a>, except that another scale is
+          used to map a variable to bubble size. Thus, have a look to the
+          <a href="scatter.html">scatterplot section</a> for more examples.
+        </p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/bubble_basic.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Most basic</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    The most basic bubble plot you can do in d3.js. Keeping only
+                    the core code.<br /><br />Input format: <code>.csv</code>.
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/graph/bubble_basic.png" alt="" />
+            </a>
           </div>
-          <img class="img-fluid" src="img/graph/bubble_color.png" alt="">
-        </a>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/bubble_color.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Colored bubble</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    A fourth categoric variable is mapped to the bubbles, giving
+                    a supplementary information.
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/graph/bubble_color.png" alt="" />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/bubble_tooltip.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Add tooltip</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Add a tooltip to each circle of the chart with a hover
+                    effect. Allows to give detail for each data point.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/graph/bubble_tooltip.png"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="graph/bubble_legend.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Legend</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    How to build a nice legend to illustrate bubble size.
+                  </p>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/graph/bubble_legend.png" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <br /><br /><br /><br />
+        <div class="mySeryTitle">Template</div>
+        <hr />
+        <p>
+          Here is the <a href="graph/bubble_template.html">template</a> I use to
+          start a bubble chart project. Legend describes both size and color.
+          <u>Hover the legend</u> to highlight the corresponding group.
+          <u>Hover a bubble</u> to get country name.
+        </p>
+        <a
+          class="btn btn-secondary btn-md text-uppercase"
+          href="graph/bubble_template.html"
+          >Get code</a
+        >
+        <br />
+        <center><div id="my_dataviz"></div></center>
+
+        <br /><br /><br /><br />
+        <div class="mySeryTitle">Selection of blocks</div>
+        <hr />
+        <p>A selection of blocks involving bubble charts</p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://bl.ocks.org/tlfrd/aa1bb8f6f3dae3148345fbb54305bdf7"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Double bubble chart</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Two bubble chart next to each other.<br /><br />Hovering a
+                    bubble on one also highlight the group on the other.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid showBlock"
+                src="img/block/block_bubbleDouble.png"
+                alt="double bubble plot"
+              />
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/bubble_tooltip.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Add tooltip</p>
-              <hr>
-              <p class="explanation_portfolio">Add a tooltip to each circle of the chart with a hover effect. Allows to give detail for each data point.</p>
-            </div>
+    </section>
+
+    <!-- ======================================================================= -->
+
+    <!-- ============================ TEMPLATE  ============================ -->
+
+    <style>
+      .bubbles {
+        stroke-width: 1px;
+        stroke: black;
+        opacity: 0.8;
+      }
+      .bubbles:hover {
+        stroke: black;
+      }
+    </style>
+
+    <script>
+      // set the dimensions and margins of the graph
+      var margin = { top: 40, right: 150, bottom: 60, left: 30 },
+        width = 900 - margin.left - margin.right,
+        height = 540 - margin.top - margin.bottom;
+
+      // append the svg object to the body of the page
+      var svg = d3
+        .select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      //Read the data
+      d3.csv(
+        "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/4_ThreeNum.csv",
+        function (data) {
+          // ---------------------------//
+          //       AXIS  AND SCALE      //
+          // ---------------------------//
+
+          // Add X axis
+          var x = d3.scaleLinear().domain([0, 50000]).range([0, width]);
+          svg
+            .append("g")
+            .attr("transform", "translate(0," + (height + 10) + ")")
+            .call(d3.axisBottom(x).ticks(8));
+
+          // Add X axis label:
+          svg
+            .append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width)
+            .attr("y", height + 50)
+            .text("Gdp per Capita");
+
+          // Add Y axis
+          var y = d3.scaleLinear().domain([35, 90]).range([height, 0]);
+          svg
+            .append("g")
+            .attr("transform", "translate(-10,0)")
+            .call(d3.axisLeft(y));
+
+          // Add Y axis label:
+          svg
+            .append("text")
+            .attr("text-anchor", "end")
+            .attr("x", 0)
+            .attr("y", -20)
+            .text("Life expectancy")
+            .attr("text-anchor", "start");
+
+          // Add a scale for bubble size
+          var z = d3.scaleSqrt().domain([200000, 1310000000]).range([2, 30]);
+
+          // Add a scale for bubble color
+          var myColor = d3
+            .scaleOrdinal()
+            .domain(["Asia", "Europe", "Americas", "Africa", "Oceania"])
+            .range(d3.schemeSet1);
+
+          // ---------------------------//
+          //      TOOLTIP               //
+          // ---------------------------//
+
+          // -1- Create a tooltip div that is hidden by default:
+          var tooltip = d3
+            .select("#my_dataviz")
+            .style("position", "relative")
+            .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("background-color", "black")
+            .style("border-radius", "5px")
+            .style("padding", "10px")
+            .style("color", "white")
+            .style("z-index", "1070")
+            .style("position", "absolute");
+
+          // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+          var showTooltip = function (d) {
+            tooltip.html("Country: " + d.country);
+
+            tooltip
+              .transition()
+              .duration(200)
+              .style("opacity", 1)
+              .style("left", d3.event.pageX + 20 + "px")
+              .style("top", d3.event.pageY - 30 + "px");
+          };
+          var moveTooltip = function (d) {
+            tooltip
+              .style("left", d3.event.pageX + 20 + "px")
+              .style("top", d3.event.pageY - 30 + "px");
+          };
+          var hideTooltip = function (d) {
+            tooltip.transition().duration(200).style("opacity", 0);
+          };
+
+          // ---------------------------//
+          //       HIGHLIGHT GROUP      //
+          // ---------------------------//
+
+          // What to do when one group is hovered
+          var highlight = function (d) {
+            // reduce opacity of all groups
+            d3.selectAll(".bubbles").style("opacity", 0.05);
+            // expect the one that is hovered
+            d3.selectAll("." + d).style("opacity", 1);
+          };
+
+          // And when it is not hovered anymore
+          var noHighlight = function (d) {
+            d3.selectAll(".bubbles").style("opacity", 1);
+          };
+
+          // ---------------------------//
+          //       CIRCLES              //
+          // ---------------------------//
+
+          // Add dots
+          svg
+            .append("g")
+            .selectAll("dot")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("class", function (d) {
+              return "bubbles " + d.continent;
+            })
+            .attr("cx", function (d) {
+              return x(d.gdpPercap);
+            })
+            .attr("cy", function (d) {
+              return y(d.lifeExp);
+            })
+            .attr("r", function (d) {
+              return z(d.pop);
+            })
+            .style("fill", function (d) {
+              return myColor(d.continent);
+            })
+            // -3- Trigger the functions for hover
+            .on("mouseover", showTooltip)
+            .on("mousemove", moveTooltip)
+            .on("mouseleave", hideTooltip);
+
+          // ---------------------------//
+          //       LEGEND              //
+          // ---------------------------//
+
+          // Add legend: circles
+          var valuesToShow = [10000000, 200000000, 1000000000];
+          var xCircle = 790;
+          var xLabel = 840;
+          svg
+            .selectAll("legend")
+            .data(valuesToShow)
+            .enter()
+            .append("circle")
+            .attr("cx", xCircle)
+            .attr("cy", function (d) {
+              return height - 100 - z(d);
+            })
+            .attr("r", function (d) {
+              return z(d);
+            })
+            .style("fill", "none")
+            .attr("stroke", "black");
+
+          // Add legend: segments
+          svg
+            .selectAll("legend")
+            .data(valuesToShow)
+            .enter()
+            .append("line")
+            .attr("x1", function (d) {
+              return xCircle + z(d);
+            })
+            .attr("x2", xLabel)
+            .attr("y1", function (d) {
+              return height - 100 - z(d);
+            })
+            .attr("y2", function (d) {
+              return height - 100 - z(d);
+            })
+            .attr("stroke", "black")
+            .style("stroke-dasharray", "2,2");
+
+          // Add legend: labels
+          svg
+            .selectAll("legend")
+            .data(valuesToShow)
+            .enter()
+            .append("text")
+            .attr("x", xLabel)
+            .attr("y", function (d) {
+              return height - 100 - z(d);
+            })
+            .text(function (d) {
+              return d / 1000000;
+            })
+            .style("font-size", 10)
+            .attr("alignment-baseline", "middle");
+
+          // Legend title
+          svg
+            .append("text")
+            .attr("x", xCircle)
+            .attr("y", height - 100 + 30)
+            .text("Population (M)")
+            .attr("text-anchor", "middle");
+
+          // Add one dot in the legend for each name.
+          var size = 20;
+          var allgroups = ["Asia", "Europe", "Americas", "Africa", "Oceania"];
+          svg
+            .selectAll("myrect")
+            .data(allgroups)
+            .enter()
+            .append("circle")
+            .attr("cx", 790)
+            .attr("cy", function (d, i) {
+              return 150 + i * (size + 5);
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .attr("r", 7)
+            .style("fill", function (d) {
+              return myColor(d);
+            })
+            .on("mouseover", highlight)
+            .on("mouseleave", noHighlight);
+
+          // Add labels beside legend dots
+          svg
+            .selectAll("mylabels")
+            .data(allgroups)
+            .enter()
+            .append("text")
+            .attr("x", 790 + size * 0.8)
+            .attr("y", function (d, i) {
+              return 140 + i * (size + 5) + size / 2;
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .style("fill", function (d) {
+              return myColor(d);
+            })
+            .text(function (d) {
+              return d;
+            })
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+            .on("mouseover", highlight)
+            .on("mouseleave", noHighlight);
+        }
+      );
+    </script>
+
+    <!-- ============================ RELATED SECTION ============================ -->
+    <section
+      class="bg-light"
+      id="portfolio_landing"
+      style="padding-top: 30px; padding-bottom: 30px"
+    >
+      <div class="container">
+        <p class="mySeryTitle">Related chart types</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="scatter.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/ScatterPlot150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Scatter</div>
           </div>
-          <img class="img-fluid" src="img/graph/bubble_tooltip.png" alt="">
-        </a>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="#heatmap">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Heatmap150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Heatmap</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="correlogram.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Correlogram150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Correlogram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="bubble.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/BubblePlot150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Bubble</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="connectedscatter.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/ScatterConnected150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Connected scatter</div>
+          </div>
+          <div
+            class="col-md-2 col-sm-4 portfolio-item show column correlation numonly bigdata"
+          >
+            <a class="portfolio-link" href="density2d.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/2dDensity150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Density 2d</div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="graph/bubble_legend.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Legend</p>
-              <hr>
-              <p class="explanation_portfolio">How to build a nice legend to illustrate bubble size.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/graph/bubble_legend.png" alt="">
-        </a>
-      </div>
-    </div>
+    </section>
 
-    <br><br><br><br>
-    <div class="mySeryTitle">Template</div>
-    <hr>
-    <p>Here is the <a href="graph/bubble_template.html">template</a> I use to start a bubble chart project. Legend describes both size and color. <u>Hover the legend</u> to highlight the corresponding group. <u>Hover a bubble</u> to get country name.</p>
-    <a class="btn btn-secondary btn-md text-uppercase" href="graph/bubble_template.html">Get code</a>
-    <br>
-    <center><div id="my_dataviz"></div></center>
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
-    <br><br><br><br>
-    <div class="mySeryTitle">Selection of blocks</div>
-    <hr>
-    <p>A selection of blocks involving bubble charts</p>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="https://bl.ocks.org/tlfrd/aa1bb8f6f3dae3148345fbb54305bdf7">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Double bubble chart</p>
-              <hr>
-              <p class="explanation_portfolio">Two bubble chart next to each other.<br><br>Hovering a bubble on one also highlight the group on the other.</p>
-            </div>
-          </div>
-          <img class="img-fluid showBlock" src="img/block/block_bubbleDouble.png" alt="double bubble plot">
-        </a>
-      </div>
+    <section id="contact" class="bg" style="background-color: white"></section>
 
-    </div>
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
- </div>
-</section>
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("html_chunk/footer.html");
+      });
+    </script>
 
+    <!-- ============================ -->
 
-<!-- ======================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ TEMPLATE  ============================ -->
-
-<style>
-.bubbles {
-  stroke-width: 1px;
-  stroke: black;
-  opacity: .8
-}
-.bubbles:hover {
-  stroke: black;
-}
-</style>
-
-
-<script>
-
-// set the dimensions and margins of the graph
-var margin = {top: 40, right: 150, bottom: 60, left: 30},
-    width = 900 - margin.left - margin.right,
-    height = 540 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/4_ThreeNum.csv", function(data) {
-
-  // ---------------------------//
-  //       AXIS  AND SCALE      //
-  // ---------------------------//
-
-  // Add X axis
-  var x = d3.scaleLinear()
-    .domain([0, 50000])
-    .range([ 0, width ]);
-  svg.append("g")
-    .attr("transform", "translate(0," + (height+10) + ")")
-    .call(d3.axisBottom(x).ticks(8));
-
-  // Add X axis label:
-  svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", width)
-      .attr("y", height+50 )
-      .text("Gdp per Capita");
-
-  // Add Y axis
-  var y = d3.scaleLinear()
-    .domain([35, 90])
-    .range([ height, 0]);
-  svg.append("g")
-    .attr("transform", "translate(-10,0)")
-    .call(d3.axisLeft(y));
-
-  // Add Y axis label:
-  svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", 0)
-      .attr("y", -20 )
-      .text("Life expectancy")
-      .attr("text-anchor", "start")
-
-  // Add a scale for bubble size
-  var z = d3.scaleSqrt()
-    .domain([200000, 1310000000])
-    .range([ 2, 30]);
-
-  // Add a scale for bubble color
-  var myColor = d3.scaleOrdinal()
-    .domain(["Asia", "Europe", "Americas", "Africa", "Oceania"])
-    .range(d3.schemeSet1);
-
-
-  // ---------------------------//
-  //      TOOLTIP               //
-  // ---------------------------//
-
-  // -1- Create a tooltip div that is hidden by default:
-  var tooltip = d3.select("#my_dataviz")
-    .style("position", "relative")
-    .append("div")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-      .style("background-color", "black")
-      .style("border-radius", "5px")
-      .style("padding", "10px")
-      .style("color", "white")
-      .style("z-index", "1070")
-      .style("position", "absolute")
-
-  // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
-  var showTooltip = function(d) {
-    tooltip
-      .html("Country: " + d.country);
-
-    tooltip
-      .transition()
-      .duration(200)
-      .style("opacity", 1)
-      .style("left", (d3.event.pageX+20) + "px")
-      .style("top", (d3.event.pageY-30) + "px");
-  }
-  var moveTooltip = function(d) {
-    tooltip
-    .style("left", (d3.event.pageX+20) + "px")
-    .style("top", (d3.event.pageY-30) + "px")
-  }
-  var hideTooltip = function(d) {
-    tooltip
-      .transition()
-      .duration(200)
-      .style("opacity", 0)
-  }
-
-
-  // ---------------------------//
-  //       HIGHLIGHT GROUP      //
-  // ---------------------------//
-
-  // What to do when one group is hovered
-  var highlight = function(d){
-    // reduce opacity of all groups
-    d3.selectAll(".bubbles").style("opacity", .05)
-    // expect the one that is hovered
-    d3.selectAll("."+d).style("opacity", 1)
-  }
-
-  // And when it is not hovered anymore
-  var noHighlight = function(d){
-    d3.selectAll(".bubbles").style("opacity", 1)
-  }
-
-
-  // ---------------------------//
-  //       CIRCLES              //
-  // ---------------------------//
-
-  // Add dots
-  svg.append('g')
-    .selectAll("dot")
-    .data(data)
-    .enter()
-    .append("circle")
-      .attr("class", function(d) { return "bubbles " + d.continent })
-      .attr("cx", function (d) { return x(d.gdpPercap); } )
-      .attr("cy", function (d) { return y(d.lifeExp); } )
-      .attr("r", function (d) { return z(d.pop); } )
-      .style("fill", function (d) { return myColor(d.continent); } )
-    // -3- Trigger the functions for hover
-    .on("mouseover", showTooltip )
-    .on("mousemove", moveTooltip )
-    .on("mouseleave", hideTooltip )
-
-
-
-    // ---------------------------//
-    //       LEGEND              //
-    // ---------------------------//
-
-    // Add legend: circles
-    var valuesToShow = [10000000, 200000000, 1000000000]
-    var xCircle = 790
-    var xLabel = 840
-    svg
-      .selectAll("legend")
-      .data(valuesToShow)
-      .enter()
-      .append("circle")
-        .attr("cx", xCircle)
-        .attr("cy", function(d){ return height - 100 - z(d) } )
-        .attr("r", function(d){ return z(d) })
-        .style("fill", "none")
-        .attr("stroke", "black")
-
-    // Add legend: segments
-    svg
-      .selectAll("legend")
-      .data(valuesToShow)
-      .enter()
-      .append("line")
-        .attr('x1', function(d){ return xCircle + z(d) } )
-        .attr('x2', xLabel)
-        .attr('y1', function(d){ return height - 100 - z(d) } )
-        .attr('y2', function(d){ return height - 100 - z(d) } )
-        .attr('stroke', 'black')
-        .style('stroke-dasharray', ('2,2'))
-
-    // Add legend: labels
-    svg
-      .selectAll("legend")
-      .data(valuesToShow)
-      .enter()
-      .append("text")
-        .attr('x', xLabel)
-        .attr('y', function(d){ return height - 100 - z(d) } )
-        .text( function(d){ return d/1000000 } )
-        .style("font-size", 10)
-        .attr('alignment-baseline', 'middle')
-
-    // Legend title
-    svg.append("text")
-      .attr('x', xCircle)
-      .attr("y", height - 100 +30)
-      .text("Population (M)")
-      .attr("text-anchor", "middle")
-
-    // Add one dot in the legend for each name.
-    var size = 20
-    var allgroups = ["Asia", "Europe", "Americas", "Africa", "Oceania"]
-    svg.selectAll("myrect")
-      .data(allgroups)
-      .enter()
-      .append("circle")
-        .attr("cx", 790)
-        .attr("cy", function(d,i){ return 150 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("r", 7)
-        .style("fill", function(d){ return myColor(d)})
-        .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
-
-    // Add labels beside legend dots
-    svg.selectAll("mylabels")
-      .data(allgroups)
-      .enter()
-      .append("text")
-        .attr("x", 790 + size*.8)
-        .attr("y", function(d,i){ return 140 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
-        .style("fill", function(d){ return myColor(d)})
-        .text(function(d){ return d})
-        .attr("text-anchor", "left")
-        .style("alignment-baseline", "middle")
-        .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
-  })
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED SECTION ============================ -->
-<section class="bg-light" id="portfolio_landing" style="padding-top: 30px; padding-bottom: 30px">
-
-<div class="container">
-
-  <p class="mySeryTitle">Related chart types</p>
-  <hr>
-  <div class="row">
-    <div class="col-md-2 col-sm-4 portfolio-item ">
-      <a class="portfolio-link"  href="scatter.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/ScatterPlot150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Scatter</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="#heatmap">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Heatmap150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Heatmap</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="correlogram.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/Correlogram150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Correlogram</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item">
-      <a class="portfolio-link"  href="bubble.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/BubblePlot150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Bubble</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item ">
-      <a class="portfolio-link"  href="connectedscatter.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/ScatterConnected150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Connected scatter</div>
-    </div>
-    <div class="col-md-2 col-sm-4 portfolio-item show column correlation numonly bigdata">
-      <a class="portfolio-link"  href="density2d.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/section/2dDensity150.png" alt="">
-      </a>
-      <div class="captionPortfolio">Density 2d</div>
-    </div>
-  </div>
-</div>
-</section>
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-<!-- ANCHOR -->
-<a name="contactanchor"></a>
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============== JAVASCRIPT SECTION =============== -->
+    <!-- =============== JAVASCRIPT SECTION =============== -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -661,11 +691,6 @@ $(function(){
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
 
-
-<!--============================== -->
-
-
-
+    <!--============================== -->
   </body>
-
 </html>

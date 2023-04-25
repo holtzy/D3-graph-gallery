@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Zooming in d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How zooming works in d3.js: a set of tiny examples with code illustrating different techniques">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y, brushing">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="How zooming works in d3.js: a set of tiny examples with code illustrating different techniques"
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y, brushing"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Zooming in d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How zooming works in d3.js: a set of tiny examples with code illustrating different techniques.">
+    <meta property="og:title" content="Zooming in d3.js" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="How zooming works in d3.js: a set of tiny examples with code illustrating different techniques."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -71,135 +74,114 @@
     <!-- Bootstrap js -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/agency.min.js"></script>
-
   </head>
 
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
+    </script>
 
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
+    </script>
 
-
-<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
-
-  <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-  <script>
-  $(function(){
-    $("#mainNav").load("../html_chunk/menu.html");
-  });
-  </script>
-
-  <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-  <div id="modal_menu_insertion"> </div>
-  <script>
-  $(function(){
-    $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-  });
-  </script>
-
-
-
-<!-- Header = title  + social media + a few lines of general description-->
-<header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-  <div class="textlanding">
-      <h1>Zooming in d3.js</h1>
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-      </ul>
-      <br><br>
-      <p style="max-width: 700px; margin: auto">This is document gives a few insights on how to add a <u>zooming</u> feature with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
-  </div>
-</header>
-
-
-
-
-<!-- TABLE of CONTENT -->
-<div>
-    <nav class="col-sm-3 col-4" id="myScrollspy">
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="#basiczoom">Most basic</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#axisZoom">Zoom and Pan with axis</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#brushingforzoom">Brushing for zooming</a>
-        </li>
-      </ul>
-    </nav>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== MOST BASIC ZOOM ==================== -->
-
-<section class="bg" id="basiczoom">
-<div class="container" >
-  <h1>Basic zoom with <code>d3.zoom()</code></h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-basicZoom"></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>Zooming + panning. Double click zoom as well.</li>
-          <br>
-          <li>Note that the circle gets bigger when you zoom.</li>
-          <br>
-          <li>No axis</li>
-          <br>
-          <li></li>
+    <!-- Header = title  + social media + a few lines of general description-->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1>Zooming in d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
         </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          This is document gives a few insights on how to add a
+          <u>zooming</u> feature with d3.js. It is composed by several
+          interactive examples, allowing to play with the code to understand
+          better how it works.
+        </p>
       </div>
+    </header>
+
+    <!-- TABLE of CONTENT -->
+    <div>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#basiczoom">Most basic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#axisZoom">Zoom and Pan with axis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#brushingforzoom">Brushing for zooming</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </div>
 
+    <!-- ==================== MOST BASIC ZOOM ==================== -->
 
+    <section class="bg" id="basiczoom">
+      <div class="container">
+        <h1>Basic zoom with <code>d3.zoom()</code></h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-basicZoom"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>Zooming + panning. Double click zoom as well.</li>
+                  <br />
+                  <li>Note that the circle gets bigger when you zoom.</li>
+                  <br />
+                  <li>No axis</li>
+                  <br />
+                  <li></li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-basicZoom" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-basicZoom" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -209,12 +191,12 @@
 <div id="dataviz_basicZoom"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-basicZoom" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-basicZoom" contenteditable="true"><xmp><script>
 
 // append the svg object to the body of the page
 var svg = d3.select("#dataviz_basicZoom")
@@ -234,103 +216,77 @@ svg
     .style("fill", "#68b2a1")
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-basicZoom", "res-basicZoom");
+              myJSParser("js-basicZoom", "res-basicZoom");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-basicZoom")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicZoom").html("");
+                  myHtmlParser("html-basicZoom", "res-basicZoom");
+                  myJSParser("js-basicZoom", "res-basicZoom");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-basicZoom', 'res-basicZoom')
-myJSParser('js-basicZoom', 'res-basicZoom')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-basicZoom').addEventListener("input", function() {
-d3.select('#res-basicZoom').html("");
-myHtmlParser('html-basicZoom', 'res-basicZoom');
-myJSParser('js-basicZoom', 'res-basicZoom');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-basicZoom').addEventListener("input", function() {
-d3.select('#res-basicZoom').html("");
-myHtmlParser('html-basicZoom', 'res-basicZoom');
-myJSParser('js-basicZoom', 'res-basicZoom');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== ZOOM AXIS ==================== -->
-
-<section class="bg" id="axisZoom">
-<div class="container" >
-  <h1>Zoom with axis</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-axisZoom"></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>Same concept as before, but updates axis as well.</li>
-          <br>
-          <li>todo -> understand better</li>
-          <br>
-          <li></li>
-          <br>
-          <li></li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-basicZoom")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicZoom").html("");
+                  myHtmlParser("html-basicZoom", "res-basicZoom");
+                  myJSParser("js-basicZoom", "res-basicZoom");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== ZOOM AXIS ==================== -->
 
+    <section class="bg" id="axisZoom">
+      <div class="container">
+        <h1>Zoom with axis</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-axisZoom"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>Same concept as before, but updates axis as well.</li>
+                  <br />
+                  <li>todo -> understand better</li>
+                  <br />
+                  <li></li>
+                  <br />
+                  <li></li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-axisZoom" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-axisZoom" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -340,12 +296,12 @@ myJSParser('js-basicZoom', 'res-basicZoom');
 <div id="dataviz_axisZoom"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-axisZoom" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-axisZoom" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
@@ -440,111 +396,91 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
 
 })
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-axisZoom", "res-axisZoom");
+              myJSParser("js-axisZoom", "res-axisZoom");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-axisZoom")
+                .addEventListener("input", function () {
+                  d3.select("#res-axisZoom").html("");
+                  myHtmlParser("html-axisZoom", "res-axisZoom");
+                  myJSParser("js-axisZoom", "res-axisZoom");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-axisZoom', 'res-axisZoom')
-myJSParser('js-axisZoom', 'res-axisZoom')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-axisZoom').addEventListener("input", function() {
-d3.select('#res-axisZoom').html("");
-myHtmlParser('html-axisZoom', 'res-axisZoom');
-myJSParser('js-axisZoom', 'res-axisZoom');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-axisZoom').addEventListener("input", function() {
-d3.select('#res-axisZoom').html("");
-myHtmlParser('html-axisZoom', 'res-axisZoom');
-myJSParser('js-axisZoom', 'res-axisZoom');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== BRUSHING FOR ZOOMING ==================== -->
-
-<section class="bg" id="brushingforzoom">
-<div class="container" >
-  <h1>Brushing for zooming</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-brushZoom" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>Select a zone to zoom on it (X axis only). Double click to unzoom.</li>
-          <br>
-          <li>A <code>clipPath</code> is used to avoid displaying the circle outside the chart area.</li>
-          <br>
-          <li><code>all(brush.move, null)</code> is used to dismiss the grey brushing area once the selection has been done.</li>
-          <br>
-          <li>But this leads to synchronization problems: the brush boundaries are erased as soon as the selection is done --> It is necessary to wait a little bit to have time to update axis and circles</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-axisZoom")
+                .addEventListener("input", function () {
+                  d3.select("#res-axisZoom").html("");
+                  myHtmlParser("html-axisZoom", "res-axisZoom");
+                  myJSParser("js-axisZoom", "res-axisZoom");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== BRUSHING FOR ZOOMING ==================== -->
 
+    <section class="bg" id="brushingforzoom">
+      <div class="container">
+        <h1>Brushing for zooming</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-brushZoom"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Select a zone to zoom on it (X axis only). Double click to
+                    unzoom.
+                  </li>
+                  <br />
+                  <li>
+                    A <code>clipPath</code> is used to avoid displaying the
+                    circle outside the chart area.
+                  </li>
+                  <br />
+                  <li>
+                    <code>all(brush.move, null)</code> is used to dismiss the
+                    grey brushing area once the selection has been done.
+                  </li>
+                  <br />
+                  <li>
+                    But this leads to synchronization problems: the brush
+                    boundaries are erased as soon as the selection is done -->
+                    It is necessary to wait a little bit to have time to update
+                    axis and circles
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-brushZoom" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-brushZoom" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -554,12 +490,12 @@ myJSParser('js-axisZoom', 'res-axisZoom');
 <div id="dataviz_brushZoom"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-brushZoom" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-brushZoom" contenteditable="true"><xmp><script>
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
@@ -666,176 +602,125 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
 })
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-brushZoom", "res-brushZoom");
+              myJSParser("js-brushZoom", "res-brushZoom");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-brushZoom")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushZoom").html("");
+                  myHtmlParser("html-brushZoom", "res-brushZoom");
+                  myJSParser("js-brushZoom", "res-brushZoom");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-brushZoom', 'res-brushZoom')
-myJSParser('js-brushZoom', 'res-brushZoom')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-brushZoom').addEventListener("input", function() {
-d3.select('#res-brushZoom').html("");
-myHtmlParser('html-brushZoom', 'res-brushZoom');
-myJSParser('js-brushZoom', 'res-brushZoom');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-brushZoom').addEventListener("input", function() {
-d3.select('#res-brushZoom').html("");
-myHtmlParser('html-brushZoom', 'res-brushZoom');
-myJSParser('js-brushZoom', 'res-brushZoom');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-brushZoom")
+                .addEventListener("input", function () {
+                  d3.select("#res-brushZoom").html("");
+                  myHtmlParser("html-brushZoom", "res-brushZoom");
+                  myJSParser("js-brushZoom", "res-brushZoom");
+                });
+            </script>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>Simplest way to add zoom/pan on d3.js- </i>by <a href="https://coderwall.com/p/psogia/simplest-way-to-add-zoom-pan-on-d3-js">Sébastien Gruhier.</a></li>
-            <br>
-            <li><i>Click-to-Recenter Brush - </i>by <a href="https://bl.ocks.org/mbostock/6498000">Mike Bostock</a></li>
-            <br>
-            <li><i>Scatter plot with zoom</i> - by <a href="https://bl.ocks.org/EfratVil/d956f19f2e56a05c31fb6583beccfda7">Efrat Vilenski</a></li>
-            <br>
-            <li><i>D3 v4 - Scatter Plot - Semantic Zooming</i> - by <a href="https://bl.ocks.org/aleereza/d2be3d62a09360a770b79f4e5527eea8">Aleereza</a></li>
-            </ul>
+    </section>
+    <br />
+
+    <!-- ============================ RELATED BLOCKS ============================ -->
+
+    <section
+      id="related"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>Simplest way to add zoom/pan on d3.js- </i>by
+                    <a
+                      href="https://coderwall.com/p/psogia/simplest-way-to-add-zoom-pan-on-d3-js"
+                      >Sébastien Gruhier.</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Click-to-Recenter Brush - </i>by
+                    <a href="https://bl.ocks.org/mbostock/6498000"
+                      >Mike Bostock</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Scatter plot with zoom</i> - by
+                    <a
+                      href="https://bl.ocks.org/EfratVil/d956f19f2e56a05c31fb6583beccfda7"
+                      >Efrat Vilenski</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>D3 v4 - Scatter Plot - Semantic Zooming</i> - by
+                    <a
+                      href="https://bl.ocks.org/aleereza/d2be3d62a09360a770b79f4e5527eea8"
+                      >Aleereza</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
+    <!-- ============================ -->
+  </body>
 </html>

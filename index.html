@@ -1,428 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
-<head>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
+      gtag("config", "UA-79254642-6");
+    </script>
 
+    <meta charset="utf-8" />
+    <title>The D3 Graph Gallery &#8211; Simple charts made with d3.js</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="The D3 graph gallery displays hundreds of charts made with D3.js, always providing the reproducible code."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="img/logo/D3_single_small.png" />
+    <meta
+      property="og:title"
+      content="The D3 Graph Gallery &#8211; Simple charts made in d3.js"
+    />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="The D3 graph gallery displays hundreds of charts made with D3.js, always providing the reproducible code."
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/img/logo/logo_xxs.png"
+    />
 
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
+    <!-- Custom fonts for this template -->
+    <link
+      href="vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="css/agency.css" rel="stylesheet" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <!-- Load jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+  </head>
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <body id="page-top">
+    <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
+    <script>
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
+    </script>
 
-    gtag('config', 'UA-79254642-6');
-  </script>
+    <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
+    <div id="modal_menu_insertion"></div>
+    <script>
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
+    </script>
 
+    <!-- Header -->
+    <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
+      <div class="textlanding">
+        <h1 style="display: inline; padding-left: 90px">The D3.js</h1>
+        <img
+          width="90px"
+          style="
+            display: inline;
+            margin-bottom: 20px;
+            margin-right: 10px;
+            margin-left: 10px;
+          "
+          src="img/logo/Home_single_big.png"
+        />
+        <h1 style="display: inline">Graph Gallery</h1>
 
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          Welcome to the D3.js graph gallery: a collection of
+          <u>simple</u> charts made with <a href="">d3.js</a>.<br />D3.js is a
+          <u>JavaScript</u> library for manipulating documents based on data.
+          This gallery displays hundreds of chart, always providing reproducible
+          & editable source code.
+        </p>
+      </div>
+    </header>
 
-  <meta charset="utf-8">
-  <title>The D3 Graph Gallery &#8211; Simple charts made with d3.js</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="The D3 graph gallery displays hundreds of charts made with D3.js, always providing the reproducible code.">
-  <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript,D3,D3.js">
-  <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="img/logo/D3_single_small.png">
-  <meta property="og:title" content="The D3 Graph Gallery &#8211; Simple charts made in d3.js">
-  <meta property="og:image" content="img/overview_RGG.png">
-  <meta property="og:description" content="The D3 graph gallery displays hundreds of charts made with D3.js, always providing the reproducible code.">
-  <link rel="icon" href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/img/logo/logo_xxs.png">
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-  <!-- Custom styles for this template -->
-  <link href="css/agency.css" rel="stylesheet">
-
-  <!-- Load jQuery -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-
-</head>
-
-
-
-
-
-
-
-
-<body id="page-top">
-
-
-<!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
-<script>
-$(function(){
-  $("#mainNav").load("../html_chunk/menu.html");
-});
-</script>
-
-<!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-<div id="modal_menu_insertion"> </div>
-<script>
-$(function(){
-  $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-});
-</script>
-
-
-
-<!-- Header -->
-<header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
-  <div class="textlanding">
-
-    <h1 style="display:inline; padding-left: 90px">The D3.js</h1>
-    <img width="90px" style="display:inline; margin-bottom: 20px; margin-right: 10px; margin-left: 10px" src="img/logo/Home_single_big.png">
-    <h1 style="display:inline">Graph Gallery</h1>
-
-      <hr class="short_hr">
-      <br>
-      <ul class="list-inline social-buttons">
-        <li class="list-inline-item">
-          <a href="https://twitter.com/R_Graph_Gallery">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://github.com/holtzy">
-            <i class="fa fa-github" style="color: white"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="list-inline-item social-buttons">
-          <a href="https://www.yan-holtz.com">
-            <i class="fa fa-home"></i>
-          </a>
-        </li>
-      </ul>
-      <br><br>
-      <p style="max-width: 700px; margin: auto">
-        Welcome to the D3.js graph gallery: a collection of <u>simple</u> charts
-        made with <a href="">d3.js</a>.<br>D3.js is a <u>JavaScript</u> library
-        for manipulating documents based on data. This gallery displays hundreds of
-        chart, always providing reproducible & editable source code.
-      </p>
-  </div>
-</header>
-
-
-<!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-<!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
-<!-- <div id="position_for_images"> </div>
+    <!-- THIS ALLOWS TO INSERT THE ADVERTISEMENT BANNER THAT IS STORED IN A BANNER.HTML FILE-->
+    <!-- <div id="position_for_images"> </div>
 <script>
 $(function(){
   $("#position_for_images").load("../html_chunk/images.html");
 });
 </script> -->
 
+    <!-- ======================= PORTFOLIO SECTION ============================================== -->
 
+    <section class="bg" id="portfolio_landing" style="padding-top: 60px">
+      <div class="container">
+        <p class="grpdependant distribution">Distribution</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="violin.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Violin150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Violin</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="density.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Density150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Density</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="histogram.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Histogram150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Histogram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="boxplot.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Box1150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Boxplot</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="ridgeline.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Joyplot150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Ridgeline</div>
+          </div>
+        </div>
 
+        <p class="grpdependant correlation">Correlation</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="scatter.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/ScatterPlot150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Scatter</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="heatmap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Heatmap150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Heatmap</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="correlogram.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Correlogram150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Correlogram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="bubble.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/BubblePlot150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Bubble</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="connectedscatter.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/ScatterConnected150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Connected scatter</div>
+          </div>
+          <div
+            class="col-md-2 col-sm-4 portfolio-item show column correlation numonly bigdata"
+          >
+            <a class="portfolio-link" href="density2d.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/2dDensity150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Density 2d</div>
+          </div>
+        </div>
 
+        <p class="grpdependant ranking">Ranking</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="barplot.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Bar150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Barplot</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="spider.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Spider150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Spider / Radar</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="wordcloud.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Wordcloud150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Wordcloud</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="parallel.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Parallel1150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Parallel</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="lollipop.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Lollipop150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Lollipop</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="circular_barplot.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/CircularBarplot150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Circular Barplot</div>
+          </div>
+        </div>
 
-
-
-<!-- ======================= PORTFOLIO SECTION ============================================== -->
-
-<section class="bg" id="portfolio_landing" style="padding-top: 60px">
-  <div class="container">
-
-    <p class="grpdependant distribution">Distribution</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item" >
-        <a class="portfolio-link"  href="violin.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+        <p class="grpdependant partofawhole">Part of a whole</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="treemap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Tree150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Treemap</div>
           </div>
-          <img class="img-fluid" src="img/section/Violin150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Violin</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="density.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="donut.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Doughnut150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Doughnut</div>
           </div>
-          <img class="img-fluid" src="img/section/Density150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Density</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link" href="histogram.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="pie.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Pie150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Pie chart</div>
           </div>
-          <img class="img-fluid" src="img/section/Histogram150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Histogram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="boxplot.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="dendrogram.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Dendrogram150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Dendrogram</div>
           </div>
-          <img class="img-fluid" src="img/section/Box1150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Boxplot</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="ridgeline.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="circularpacking.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/CircularPacking150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Circular packing</div>
           </div>
-          <img class="img-fluid" src="img/section/Joyplot150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Ridgeline</div>
-      </div>
-    </div>
-
-
-    <p class="grpdependant correlation">Correlation</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item ">
-        <a class="portfolio-link"  href="scatter.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/ScatterPlot150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Scatter</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="heatmap.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Heatmap150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Heatmap</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="correlogram.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Correlogram150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Correlogram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="bubble.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/BubblePlot150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Bubble</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item ">
-        <a class="portfolio-link"  href="connectedscatter.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/ScatterConnected150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Connected scatter</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item show column correlation numonly bigdata">
-        <a class="portfolio-link"  href="density2d.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/2dDensity150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Density 2d</div>
-      </div>
-    </div>
-
-
-    <p class="grpdependant ranking">Ranking</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item ">
-        <a class="portfolio-link"  href="barplot.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Bar150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Barplot</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item ">
-        <a class="portfolio-link"  href="spider.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Spider150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Spider / Radar</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item ">
-        <a class="portfolio-link"  href="wordcloud.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Wordcloud150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Wordcloud</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item ">
-        <a class="portfolio-link"  href="parallel.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Parallel1150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Parallel</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item ">
-        <a class="portfolio-link"  href="lollipop.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Lollipop150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Lollipop</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item ">
-        <a class="portfolio-link" href="circular_barplot.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/CircularBarplot150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Circular Barplot</div>
-      </div>
-    </div>
-
-<!-- Ezoic - mid_content - mid_content -->
-<div id="ezoic-pub-ad-placeholder-105"> </div>
-<!-- End Ezoic - mid_content - mid_content -->
-
-    <p class="grpdependant partofawhole">Part of a whole</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="treemap.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Tree150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Treemap</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="donut.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Doughnut150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Doughnut</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="pie.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Pie150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Pie chart</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="dendrogram.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Dendrogram150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Dendrogram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="circularpacking.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/CircularPacking150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Circular packing</div>
-      </div>
-      <!-- <div class="col-md-2 col-sm-4 portfolio-item">
+          <!-- <div class="col-md-2 col-sm-4 portfolio-item">
         <a class="portfolio-link"  href="sunburst.html">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
@@ -433,339 +480,329 @@ $(function(){
         </a>
         <div class="captionPortfolio">Sunburst</div>
       </div> -->
-    </div>
+        </div>
 
+        <p class="grpdependant evolution">Evolution</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="line.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Line150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Line plot</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="area.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Area150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Area</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="stackedarea.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/StackedArea150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Stacked area</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="streamgraph.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Stream150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Streamchart</div>
+          </div>
+        </div>
 
-    <p class="grpdependant evolution">Evolution</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="line.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+        <p class="grpdependant map">Map</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="backgroundmap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Map150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Map</div>
           </div>
-          <img class="img-fluid" src="img/section/Line150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Line plot</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="area.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="choropleth.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Choropleth150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Choropleth</div>
           </div>
-          <img class="img-fluid" src="img/section/Area150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Area</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="stackedarea.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="hexbinmap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/MapHexbin150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Hexbin map</div>
           </div>
-          <img class="img-fluid" src="img/section/StackedArea150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Stacked area</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="streamgraph.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="cartogram.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/Cartogram150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Cartogram</div>
           </div>
-          <img class="img-fluid" src="img/section/Stream150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Streamchart</div>
-      </div>
-    </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="connectionmap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/ConnectedMap150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Connection</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="bubblemap.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="img/section/BubbleMap150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Bubble map</div>
+          </div>
+        </div>
 
+        <p class="grpdependant flow">Flow</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="chord.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Chord150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Chord diagram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="network.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Network150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Network</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="sankey.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Sankey150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Sankey</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="arc.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Arc150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Arc diagram</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="bundle.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/section/Bundle150.png" alt="" />
+            </a>
+            <div class="captionPortfolio">Edge bundling</div>
+          </div>
+        </div>
 
-    <p class="grpdependant map">Map</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="backgroundmap.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Map150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Map</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="choropleth.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Choropleth150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Choropleth</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="hexbinmap.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/MapHexbin150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Hexbin map</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="cartogram.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Cartogram150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Cartogram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="connectionmap.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/ConnectedMap150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Connection</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="bubblemap.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/BubbleMap150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Bubble map</div>
-      </div>
-    </div>
-
-
-    <p class="grpdependant flow">Flow</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="chord.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Chord150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Chord diagram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="network.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Network150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Network</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="sankey.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Sankey150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Sankey</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="arc.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Arc150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Arc diagram</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="bundle.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="img/section/Bundle150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Edge bundling</div>
-      </div>
-    </div>
-
-
-<!-- Keep in mind, if I want to add a tooltip on the logos
+        <!-- Keep in mind, if I want to add a tooltip on the logos
 <style>.tooltip_logo {font-size: 24px}</style>
 <a class="portfolio-link" data-toggle="tooltip" title="<p class='tooltip_logo'>A step by step introduction to d3.js<em>Tooltip</em> <u>with</u> <b>HTML</b></p>" href="basic.html" data-placement="bottom" data-html="true">
 -->
 
-
-    <p class="grpdependant">General knowledge</p>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link" href="intro_d3js.html">
-          <img class="img-fluid grey_on_hover" src="img/section/Basic150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Basics</div>
+        <p class="grpdependant">General knowledge</p>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="intro_d3js.html">
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/Basic150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Basics</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="custom.html">
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/Colours150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Custom</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="interactivity.html">
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/anim150.gif"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Interactivity</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a class="portfolio-link" href="graph/shape.html">
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/Shapehelper150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Shape helpers</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://www.data-to-viz.com/caveats.html"
+            >
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/Bad150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Caveats</div>
+          </div>
+          <div class="col-md-2 col-sm-4 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="https://www.r-graph-gallery.com/portfolio/data-art/"
+            >
+              <img
+                class="img-fluid grey_on_hover"
+                src="img/section/DataArt1150.png"
+                alt=""
+              />
+            </a>
+            <div class="captionPortfolio">Data art</div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="custom.html">
-          <img class="img-fluid grey_on_hover" src="img/section/Colours150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Custom</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="interactivity.html">
-          <img class="img-fluid grey_on_hover" src="img/section/anim150.gif" alt="">
-        </a>
-        <div class="captionPortfolio">Interactivity</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="graph/shape.html">
-          <img class="img-fluid grey_on_hover" src="img/section/Shapehelper150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Shape helpers</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="https://www.data-to-viz.com/caveats.html">
-          <img class="img-fluid grey_on_hover" src="img/section/Bad150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Caveats</div>
-      </div>
-      <div class="col-md-2 col-sm-4 portfolio-item">
-        <a class="portfolio-link"  href="https://www.r-graph-gallery.com/portfolio/data-art/">
-          <img class="img-fluid grey_on_hover" src="img/section/DataArt1150.png" alt="">
-        </a>
-        <div class="captionPortfolio">Data art</div>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <!-- =================================================================================================================== -->
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
-<!-- =================================================================================================================== -->
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
+    <!-- ============================ -->
 
+    <!-- ======================= JAVASCRIPT SECTION ======================= -->
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>
 
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-<!-- ANCHOR -->
-<a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ======================= JAVASCRIPT SECTION ======================= -->
-
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Plugin JavaScript -->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for this template -->
-<script src="js/agency.min.js"></script>
-
-
-
-
-
-
-
-
-<!--===================================================================== -->
-
-
-
+    <!--===================================================================== -->
   </body>
-
 </html>

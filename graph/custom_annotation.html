@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Annotating charts with d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Annotating a chart is a crucial step for an insightful dataviz. Learn how to do it with d3.js and d3-annotation through several reproducible example.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Annotating a chart is a crucial step for an insightful dataviz. Learn how to do it with d3.js and d3-annotation through several reproducible example."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Annotatin charts with d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Annotating a chart is a crucial step for an insightful dataviz. Learn how to do it with d3.js and d3-annotation through several reproducible example.">
+    <meta property="og:title" content="Annotatin charts with d3.js" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="Annotating a chart is a crucial step for an insightful dataviz. Learn how to do it with d3.js and d3-annotation through several reproducible example."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -74,137 +77,136 @@
 
     <!-- d3-annotation.js -->
     <script src="../LIB/d3-annotation.min.js"></script>
-
   </head>
 
-
-
-
   <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-    $(function(){
-      $("#mainNav").load("../html_chunk/menu.html");
-    });
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-    $(function(){
-      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-    });
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
     </script>
-
-
 
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>Annotating charts with d3.js</h1>
-          <hr class="short_hr">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">Annotating a chart is a crucial step for an insightful dataviz. This document is dedicated to <a href="https://d3-annotation.susielu.com/#examples">d3-annotation</a>, a d3.js library for annotation. This library has been created by <a href="http://www.susielu.com/">Susie Lu</a> and its <a href="https://d3-annotation.susielu.com/#examples">documentation</a> is truly awesome.</p>
+        <h1>Annotating charts with d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          Annotating a chart is a crucial step for an insightful dataviz. This
+          document is dedicated to
+          <a href="https://d3-annotation.susielu.com/#examples">d3-annotation</a
+          >, a d3.js library for annotation. This library has been created by
+          <a href="http://www.susielu.com/">Susie Lu</a> and its
+          <a href="https://d3-annotation.susielu.com/#examples"
+            >documentation</a
+          >
+          is truly awesome.
+        </p>
       </div>
     </header>
 
-
-
-
-
-
-
-
     <!-- TABLE of CONTENT -->
     <div>
-        <nav class="col-sm-3 col-4" id="myScrollspy">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#minimal">Most basic</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#text">Text</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#connector">Connector</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#subject">Subject</a>
-            </li>
-          </ul>
-        </nav>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== MINIMAL EXAMPLE ==================== -->
-
-<section id="minimal" class="bg">
-<div class="container" >
-  <h1>Minimal example</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-6 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg" id="res-sectionA" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>This is a minimal example describing how to use <code>d3-annotation</code>. You can edit the code beside to see what happens.</li>
-          <br>
-          <li>Here, one annotation is created. Its features are stored in an object called <code>annotations</code> created at the beginning of the script. At the very least, you have to specify the position of the thing to annotate (<code>x</code> and <code>y</code>), and the text position (<code>dx</code> and <code>dy</code>).</li>
-          <br>
-          <li>Finally, the <code>d3.annotation()</code> is called to effectively build the annotation.</li>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#minimal">Most basic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#text">Text</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#connector">Connector</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#subject">Subject</a>
+          </li>
         </ul>
-      </div>
+      </nav>
     </div>
-  </div>
 
+    <!-- ==================== MINIMAL EXAMPLE ==================== -->
 
+    <section id="minimal" class="bg">
+      <div class="container">
+        <h1>Minimal example</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg" id="res-sectionA"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    This is a minimal example describing how to use
+                    <code>d3-annotation</code>. You can edit the code beside to
+                    see what happens.
+                  </li>
+                  <br />
+                  <li>
+                    Here, one annotation is created. Its features are stored in
+                    an object called <code>annotations</code> created at the
+                    beginning of the script. At the very least, you have to
+                    specify the position of the thing to annotate (<code
+                      >x</code
+                    >
+                    and <code>y</code>), and the text position (<code>dx</code>
+                    and <code>dy</code>).
+                  </li>
+                  <br />
+                  <li>
+                    Finally, the <code>d3.annotation()</code> is called to
+                    effectively build the annotation.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-6 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-sectionA" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-sectionA" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -217,12 +219,12 @@
 <svg width="460" height="400" id="example1"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-sectionA" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-sectionA" contenteditable="true"><xmp><script>
 
 // Features of the annotation
 const annotations = [
@@ -247,97 +249,80 @@ d3.select("#example1")
 
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-sectionA", "res-sectionA");
+              myJSParser("js-sectionA", "res-sectionA");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-sectionA")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionA").html("");
+                  myHtmlParser("html-sectionA", "res-sectionA");
+                  myJSParser("js-sectionA", "res-sectionA");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-sectionA', 'res-sectionA')
-myJSParser('js-sectionA', 'res-sectionA')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-sectionA').addEventListener("input", function() {
-d3.select('#res-sectionA').html("");
-myHtmlParser('html-sectionA', 'res-sectionA');
-myJSParser('js-sectionA', 'res-sectionA');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-sectionA').addEventListener("input", function() {
-d3.select('#res-sectionA').html("");
-myHtmlParser('html-sectionA', 'res-sectionA');
-myJSParser('js-sectionA', 'res-sectionA');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== Note ==================== -->
-
-<section id="text" class="bg">
-<div class="container" >
-  <h1>Custom the <code>note</code> (~ the text)</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-6 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg" id="res-sectionB" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>The <code>note</code> is the part with the text and the border around it.</li>
-          <br>
-          <li>You can customize it providing parameters in the <code>note</code> section of the <code>annotation</code> object.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-sectionA")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionA").html("");
+                  myHtmlParser("html-sectionA", "res-sectionA");
+                  myJSParser("js-sectionA", "res-sectionA");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== Note ==================== -->
 
+    <section id="text" class="bg">
+      <div class="container">
+        <h1>Custom the <code>note</code> (~ the text)</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg" id="res-sectionB"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    The <code>note</code> is the part with the text and the
+                    border around it.
+                  </li>
+                  <br />
+                  <li>
+                    You can customize it providing parameters in the
+                    <code>note</code> section of the
+                    <code>annotation</code> object.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-6 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-sectionB" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-sectionB" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -350,12 +335,12 @@ myJSParser('js-sectionA', 'res-sectionA');
 <svg width="460" height="400" id="example2"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-sectionB" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-sectionB" contenteditable="true"><xmp><script>
 
 // Features of the annotation
 const annotations = [
@@ -384,95 +369,81 @@ d3.select("#example2")
 
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-sectionB", "res-sectionB");
+              myJSParser("js-sectionB", "res-sectionB");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-sectionB")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionB").html("");
+                  myHtmlParser("html-sectionB", "res-sectionB");
+                  myJSParser("js-sectionB", "res-sectionB");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-sectionB', 'res-sectionB')
-myJSParser('js-sectionB', 'res-sectionB')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-sectionB').addEventListener("input", function() {
-d3.select('#res-sectionB').html("");
-myHtmlParser('html-sectionB', 'res-sectionB');
-myJSParser('js-sectionB', 'res-sectionB');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-sectionB').addEventListener("input", function() {
-d3.select('#res-sectionB').html("");
-myHtmlParser('html-sectionB', 'res-sectionB');
-myJSParser('js-sectionB', 'res-sectionB');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== CONNECTOR ==================== -->
-
-<section id="connector" class="bg">
-<div class="container" >
-  <h1>Custom the <code>connector</code></h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-6 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg" id="res-sectionC" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>The connector makes the link between the subject and the note.</li>
-          <br>
-          <li>You can customize it through 2 main ways: i/ option in the <code>connector</code> part of the <code>annotations</code> object or ii/ using <code>css</code>.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-sectionB")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionB").html("");
+                  myHtmlParser("html-sectionB", "res-sectionB");
+                  myJSParser("js-sectionB", "res-sectionB");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== CONNECTOR ==================== -->
 
+    <section id="connector" class="bg">
+      <div class="container">
+        <h1>Custom the <code>connector</code></h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg" id="res-sectionC"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    The connector makes the link between the subject and the
+                    note.
+                  </li>
+                  <br />
+                  <li>
+                    You can customize it through 2 main ways: i/ option in the
+                    <code>connector</code> part of the
+                    <code>annotations</code> object or ii/ using
+                    <code>css</code>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-6 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-sectionC" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-sectionC" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -482,12 +453,12 @@ myJSParser('js-sectionB', 'res-sectionB');
 <svg width="460" height="400" id="example3"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-sectionC" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-sectionC" contenteditable="true"><xmp><script>
 
 // ==== LEFT ====== //
 const annotations = [
@@ -556,104 +527,83 @@ d3.select("#example3").selectAll(".connector-end")
   .attr('fill', "blue")
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-sectionC", "res-sectionC");
+              myJSParser("js-sectionC", "res-sectionC");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-sectionC")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionC").html("");
+                  myHtmlParser("html-sectionC", "res-sectionC");
+                  myJSParser("js-sectionC", "res-sectionC");
+                });
 
-
-
-
-
-
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-sectionC', 'res-sectionC')
-myJSParser('js-sectionC', 'res-sectionC')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-sectionC').addEventListener("input", function() {
-d3.select('#res-sectionC').html("");
-myHtmlParser('html-sectionC', 'res-sectionC');
-myJSParser('js-sectionC', 'res-sectionC');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-sectionC').addEventListener("input", function() {
-d3.select('#res-sectionC').html("");
-myHtmlParser('html-sectionC', 'res-sectionC');
-myJSParser('js-sectionC', 'res-sectionC');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== SUBJECT ==================== -->
-
-<section id="subject" class="bg">
-<div class="container" >
-  <h1>Custom the subject</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-6 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg" id="res-sectionD" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>Several <code>types</code> of annotation are available. In the examples above, the default type <code>d3.annotationLabel</code> was used. It does not display anything for the subject.</li>
-          <br>
-          <li>It is possible to highlight the zone of interest (=the subject) with a circle or a rectangle using <code>d3.annotationCalloutCircle</code> or <code>d3.annotationCalloutRect</code> as shown beside.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-sectionC")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionC").html("");
+                  myHtmlParser("html-sectionC", "res-sectionC");
+                  myJSParser("js-sectionC", "res-sectionC");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== SUBJECT ==================== -->
 
+    <section id="subject" class="bg">
+      <div class="container">
+        <h1>Custom the subject</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg" id="res-sectionD"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Several <code>types</code> of annotation are available. In
+                    the examples above, the default type
+                    <code>d3.annotationLabel</code> was used. It does not
+                    display anything for the subject.
+                  </li>
+                  <br />
+                  <li>
+                    It is possible to highlight the zone of interest (=the
+                    subject) with a circle or a rectangle using
+                    <code>d3.annotationCalloutCircle</code> or
+                    <code>d3.annotationCalloutRect</code> as shown beside.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-6 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-sectionD" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-sectionD" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -663,12 +613,12 @@ myJSParser('js-sectionC', 'res-sectionC');
 <svg width="460" height="400" id="example4"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-sectionD" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-sectionD" contenteditable="true"><xmp><script>
 
 // ==== LEFT ====== //
 const annotations = [
@@ -725,191 +675,137 @@ d3.select("#example4")
   .call(makeAnnotationsRight)
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-sectionD", "res-sectionD");
+              myJSParser("js-sectionD", "res-sectionD");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-sectionD")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionD").html("");
+                  myHtmlParser("html-sectionD", "res-sectionD");
+                  myJSParser("js-sectionD", "res-sectionD");
+                });
 
-
-
-
-
-
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-sectionD', 'res-sectionD')
-myJSParser('js-sectionD', 'res-sectionD')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-sectionD').addEventListener("input", function() {
-d3.select('#res-sectionD').html("");
-myHtmlParser('html-sectionD', 'res-sectionD');
-myJSParser('js-sectionD', 'res-sectionD');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-sectionD').addEventListener("input", function() {
-d3.select('#res-sectionD').html("");
-myHtmlParser('html-sectionD', 'res-sectionD');
-myJSParser('js-sectionD', 'res-sectionD');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-sectionD")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionD").html("");
+                  myHtmlParser("html-sectionD", "res-sectionD");
+                  myJSParser("js-sectionD", "res-sectionD");
+                });
+            </script>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>d3 annotation documentation</i> <a href="https://d3-annotation.susielu.com/#examples">link</a></li>
-            <br>
-            <li><i>Example Without Scales</i> <a href="https://bl.ocks.org/susielu/a464c24d8b42f0c4d9fafe7b48e9e60a">link</a></li>
-            <br>
-            <li><i>Tooltip</i> <a href="https://bl.ocks.org/susielu/63269cf8ec84497920f2b7ef1ac85039">link</a></li>
-            <br>
-            <li><i>Responsive Types and Hover</i> <a href="https://bl.ocks.org/susielu/974e41473737320f8db5ae711ded8542">link</a></li>
-            <br>
-            <li><i>Thresholds & Annotation Colors</i> <a href="https://bl.ocks.org/susielu/23dc3082669ee026c552b85081d90976">link</a></li>
-            </ul>
-            <i>&rarr; All by <a href="https://www.susielu.com">Susie Lu</a></i>
+    </section>
+    <br />
+
+    <!-- ============================ RELATED BLOCKS ============================ -->
+
+    <section
+      id="related"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>d3 annotation documentation</i>
+                    <a href="https://d3-annotation.susielu.com/#examples"
+                      >link</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Example Without Scales</i>
+                    <a
+                      href="https://bl.ocks.org/susielu/a464c24d8b42f0c4d9fafe7b48e9e60a"
+                      >link</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Tooltip</i>
+                    <a
+                      href="https://bl.ocks.org/susielu/63269cf8ec84497920f2b7ef1ac85039"
+                      >link</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Responsive Types and Hover</i>
+                    <a
+                      href="https://bl.ocks.org/susielu/974e41473737320f8db5ae711ded8542"
+                      >link</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Thresholds & Annotation Colors</i>
+                    <a
+                      href="https://bl.ocks.org/susielu/23dc3082669ee026c552b85081d90976"
+                      >link</a
+                    >
+                  </li>
+                </ul>
+                <i
+                  >&rarr; All by
+                  <a href="https://www.susielu.com">Susie Lu</a></i
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ============================ -->
   </body>
-
 </html>

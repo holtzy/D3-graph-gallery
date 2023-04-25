@@ -1,62 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <head>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
     <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-3523953066677938",
-            enable_page_level_ads: true
-        });
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3523953066677938",
+        enable_page_level_ads: true,
+      });
     </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-        gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Most basic hierarchical edge bundling with d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Using d3.js and javascript to create a very basic hierarchical edge bundling">
-    <meta name="keywords" content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, bubble plot">
-    <meta name="author" content="Yan Holtz">
-    <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Using d3.js and javascript to create a very basic hierarchical edge bundling"
+    />
+    <meta
+      name="keywords"
+      content="Data, Dataviz, Datavisualization, Javascript, JS, d3.js, bubble plot"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Most basic hierarchical edge bundling plot in d3.js">
-    <meta property="og:image" content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png">
-    <meta property="og:description" content="Using d3.js to create a very basic hierarchical edge bundling">
+    <meta
+      property="og:title"
+      content="Most basic hierarchical edge bundling plot in d3.js"
+    />
+    <meta
+      property="og:image"
+      content="https://www.d3-graph-gallery.com/img/logo/D3_full_medium.png"
+    />
+    <meta
+      property="og:description"
+      content="Using d3.js to create a very basic hierarchical edge bundling"
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -73,134 +87,133 @@
 
     <!-- Function to parse html and js code chunks made by Yan Holtz -->
     <script src="../js/myParser.js"></script>
+  </head>
 
-</head>
-
-
-
-
-
-
-<body id="page-top">
-
-
+  <body id="page-top">
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-        $(function () {
-            $("#mainNav").load("../html_chunk/menu.html");
-        });
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-        $(function () {
-            $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-        });
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
     </script>
-
 
     <!-- Header -->
     <header class="masthead">
-        <div class="textlanding">
-            <h1>Most basic hierarchical edge bundling in d3.js</h1>
-            <hr class="short_hr">
-            <br>
-            <ul class="list-inline social-buttons">
-                <li class="list-inline-item">
-                    <a href="https://twitter.com/R_Graph_Gallery">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item social-buttons">
-                    <a href="https://github.com/holtzy">
-                        <i class="fa fa-github" style="color: white"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item social-buttons">
-                    <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                        <i class="fa fa-linkedin"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item social-buttons">
-                    <a href="https://www.yan-holtz.com">
-                        <i class="fa fa-home"></i>
-                    </a>
-                </li>
-            </ul>
-            <br><br>
-            <p style="max-width: 700px; margin: auto">This post describes how to build a very basic <a
-                    href="../bundle.html">hierarchical edge bundling</a> with d3.js. You can see many other examples in
-                the <a href="../bundle.html">hierarchical edge bundling section</a> of the gallery. Learn more about the
-                theory of this chart in <a
-                    href="https://www.data-to-viz.com/graph/edge_bundling.html">data-to-viz.com</a>.</p>
-            <br>
-            <a class="btn btn-secondary btn-md text-uppercase" href="../bundle.html">Hierarchical edge bundling
-                section</a>
-            <button class="btn btn-secondary btn-md text-uppercase"
-                onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')">Download
-                code</button>
-        </div>
+      <div class="textlanding">
+        <h1>Most basic hierarchical edge bundling in d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.yan-holtz.com">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          This post describes how to build a very basic
+          <a href="../bundle.html">hierarchical edge bundling</a> with d3.js.
+          You can see many other examples in the
+          <a href="../bundle.html">hierarchical edge bundling section</a> of the
+          gallery. Learn more about the theory of this chart in
+          <a href="https://www.data-to-viz.com/graph/edge_bundling.html"
+            >data-to-viz.com</a
+          >.
+        </p>
+        <br />
+        <a class="btn btn-secondary btn-md text-uppercase" href="../bundle.html"
+          >Hierarchical edge bundling section</a
+        >
+        <button
+          class="btn btn-secondary btn-md text-uppercase"
+          onclick="myCodeDownload('chart_example_from_d3-graph-gallery.html', 'code', 'codejs')"
+        >
+          Download code
+        </button>
+      </div>
     </header>
 
+    <section class="bg" style="padding-top: 20px; padding-bottom: 20px">
+      <div class="container">
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
 
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="result"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    The
+                    <a
+                      href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_hierarchical_edge_bundling.json"
+                      >dataset</a
+                    >
+                    is an array. Each item represents a node of the underlying
+                    hierarchy. This node has a name, a numeric value used for
+                    the bubble, and a list of connections.
+                  </li>
+                  <br />
+                  <li>
+                    The <code>cluster()</code> function is used to compute the
+                    position of each node as a circular
+                    <a href="../dendrogram.html">dendrogram</a>. Have a look to
+                    the related
+                    <a href="../dendrogram.html">dendrogram section</a> of the
+                    gallery to understand that step.
+                  </li>
+                  <br />
+                  <li>
+                    Once the nodes are positioned, links are done thanks to the
+                    <code>radialLine</code> and
+                    <code>curveBundle</code> functions.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
+          <!-- ================================================================================= -->
 
-
-
-
-
-
-
-
-
-
-
-    <!-- Ezoic - under_first_paragraph - under_first_paragraph -->
-<div id="ezoic-pub-ad-placeholder-101"> </div>
-<!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
-
-
-
-
-<section class="bg" style="padding-top: 20px; padding-bottom: 20px">        <div class="container">
-            <div class="row">
-
-                <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-
-                <div class="col-lg-6 .align-middle">
-                    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-                        <div class="bg-light" id="result"></div>
-                        <br>
-                        <div>
-                            <h5>Steps:</h5>
-                            <ul>
-                                <br>
-                                <li>The <a href='https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_hierarchical_edge_bundling.json'>dataset</a> is an
-                                    array. Each item represents a node of the underlying hierarchy. This node has a name, a numeric value used for the bubble, and a list of connections.</li>
-                                <br>
-                                <li>The <code>cluster()</code> function is used to compute the position of each node as a circular <a href='../dendrogram.html'>dendrogram</a>. Have a look to the related <a href="../dendrogram.html">dendrogram section</a> of the
-                                gallery to understand that step.</li>
-                                <br>
-                                <li>Once the nodes are positioned, links are done thanks to the <code>radialLine</code> and <code>curveBundle</code> functions.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================================================================================= -->
-
-
-
-
-                <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-                <div class="col-lg-6 text-center .align-middle">
-
-                    <!-- ========= show html code ============== -->
-                    <aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-                    <pre class="language-html d-none d3v4-chunk"><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html d-none d3v4-chunk"
+            ><code id="code-html-v4" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -210,15 +223,12 @@
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
-                    <!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-
-
-
-                    <!-- ========= show JS code ==============  -->
-                    <pre class="language-js d-none d3v4-chunk"><code id="code-js-v4" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js d-none d3v4-chunk"
+            ><code id="code-js-v4" contenteditable="true"><xmp><script>
 // Some constants controlling the graph appearance
 const PADDING_BUBBLE = 15 // distance between edge end and bubble
 const PADDING_LABEL = 30 // distance between edge end and engineer name
@@ -344,131 +354,64 @@ function packageImports(nodes) {
     return imports;
 }
                     </script></xmp></code></pre>
-                    <!-- ==================================== -->
-
-
-
-
-
-
-
-                </div>
-
-
-            </div>
+            <!-- ==================================== -->
+          </div>
         </div>
+      </div>
     </section>
-    <br>
-
+    <br />
 
     <!-- ============================ -->
-
-
-
-
-
-
-
 
     <!-- ============================ RELATED BLOCKS ============================ -->
 
     <section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 text-center align-self-center">
-                    <h3 class="text-uppercase">Related blocks &rarr;</h3>
-                </div>
-                <div class="col-lg-5">
-                    <ul>
-                        <li><i>Hierarchical Edge Bundling section - </i><a href="../bundle.html">link</a></li>
-                    </ul>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 text-center align-self-center">
+            <h3 class="text-uppercase">Related blocks &rarr;</h3>
+          </div>
+          <div class="col-lg-5">
+            <ul>
+              <li>
+                <i>Hierarchical Edge Bundling section - </i
+                ><a href="../bundle.html">link</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-    <!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
+    <!-- ============================ CONTACT SECTION ============================ -->
 
     <!-- ANCHOR -->
     <a name="contactanchor"></a>
-
 
     <section id="contact" class="bg" style="background-color: white"></section>
 
     <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
     <script>
-        $(function () {
-            $("#contact").load("../html_chunk/contact.html");
-        });
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
     </script>
 
     <script>
-        showCodeVersion('v4')
+      showCodeVersion("v4");
     </script>
 
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ -->    <footer class="bg-light" id="myFooter"></footer>
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
     <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
     <script>
-        $(function () {
-            $("#myFooter").load("../html_chunk/footer.html");
-        });
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
     </script>
 
     <!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- ============================ JAVASCRIPT SECTION ============================ -->
 
@@ -480,32 +423,20 @@ function packageImports(nodes) {
 
     <!-- Activate the bootstrap tooltip, must be after jQuery load -->
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
     </script>
-
-
 
     <script>
-        function download() {
-            var a = document.body.appendChild(
-                document.createElement("a")
-            );
-            a.download = "export.html";
-            var command = document.getElementById('code').innerHTML;
-            command = command.replace(/<\/?span[^>]*>/g, "");
-            a.href = "data:html" + command
-            a.click(); // Trigger a click on the element
-        }
+      function download() {
+        var a = document.body.appendChild(document.createElement("a"));
+        a.download = "export.html";
+        var command = document.getElementById("code").innerHTML;
+        command = command.replace(/<\/?span[^>]*>/g, "");
+        a.href = "data:html" + command;
+        a.click(); // Trigger a click on the element
+      }
     </script>
-
-
-
-
-
-
-
-</body>
-
+  </body>
 </html>

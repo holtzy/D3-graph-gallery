@@ -1,56 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Building shapes with d3</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Drawing axis with d3.js">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, shapes">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="Drawing axis with d3.js" />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, shapes"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Drawing axis with d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="Using d3.js to draw axis">
+    <meta property="og:title" content="Drawing axis with d3.js" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta property="og:description" content="Using d3.js to draw axis" />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -71,133 +68,131 @@
     <!-- Bootstrap js -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/agency.min.js"></script>
-
   </head>
 
-
-
-
   <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-    $(function(){
-      $("#mainNav").load("../html_chunk/menu.html");
-    });
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-    $(function(){
-      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-    });
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
     </script>
-
-
-
 
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>Building shapes in d3.js</h1>
-          <hr class="short_hr">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">The d3.js allows to draw shapes, that together build a graph. This document describe a few helpers function allowing to draw svg from data more efficiently.</p>
+        <h1>Building shapes in d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          The d3.js allows to draw shapes, that together build a graph. This
+          document describe a few helpers function allowing to draw svg from
+          data more efficiently.
+        </p>
       </div>
     </header>
 
-
-
-
-
-
     <!-- TABLE of CONTENT -->
     <div>
-        <nav class="col-sm-3 col-4" id="myScrollspy">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <i class="nav-link" style="opacity: 0.5">with pure svg</i>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#mycircle">Circle</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#myrect">Rect</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#mysegment">Segment</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#mytext">Text</a>
-            </li>
-            <li class="nav-item">
-              <i class="nav-link" style="opacity: 0.5">with helper function</i>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#myline">Line</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#mycurve">Curve</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#myarea">Area</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#myarc">Arc</a>
-            </li>
-          </ul>
-        </nav>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <i class="nav-link" style="opacity: 0.5">with pure svg</i>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mycircle">Circle</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#myrect">Rect</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mysegment">Segment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mytext">Text</a>
+          </li>
+          <li class="nav-item">
+            <i class="nav-link" style="opacity: 0.5">with helper function</i>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#myline">Line</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mycurve">Curve</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#myarea">Area</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#myarc">Arc</a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
+    <!-- ==================== circle ==================== -->
 
+    <section id="mycircle">
+      <div class="container">
+        <h1>Adding a circle with <code>append("circle")</code></h1>
+        <hr />
 
+        <p>
+          Here is how a circle would be drawn in pure <code>svg</code>, using a
+          <code>circle</code> element. Three arguments are required:
+          <code>cx</code>, <code>cy</code> and <code>r</code> for x position, y
+          position and radius respectively.
+        </p>
+        <pre
+          class="language-html"
+        ><code><xmp><circle style="fill: #69b3a2" stroke="black" cx=100 cy=100 r=40></circle></xmp></code></pre>
+        <svg width="800px" height="200px">
+          <circle
+            style="fill: #69b3a2"
+            stroke="black"
+            cx="100"
+            cy="100"
+            r="40"
+          ></circle>
+        </svg>
 
-
-
-
-
-
-
-
-
-
-  <!-- ==================== circle ==================== -->
-
-  <section id="mycircle" >
-  <div class="container" >
-    <h1>Adding a circle with <code>append("circle")</code></h1>
-    <hr>
-
-    <p>Here is how a circle would be drawn in pure <code>svg</code>, using a <code>circle</code> element. Three arguments are required: <code>cx</code>, <code>cy</code> and <code>r</code> for x position, y position and radius respectively.</p>
-    <pre class="language-html"><code><xmp><circle style="fill: #69b3a2" stroke="black" cx=100 cy=100 r=40></circle></xmp></code></pre>
-    <svg width="800px" height="200px"><circle style="fill: #69b3a2" stroke="black" cx=100 cy=100 r=40></circle></svg>
-
-    <p>Now let's do it in javascript. It is basically the same process. Note that the code below expect a div with the id 'circle' somewhere in the html code.</p>
-    <div>
-
-  <aside>&larr; Edit me! </aside>
-  <pre class="language-js"><code id="code-circle" contenteditable="true"><xmp>
+        <p>
+          Now let's do it in javascript. It is basically the same process. Note
+          that the code below expect a div with the id 'circle' somewhere in the
+          html code.
+        </p>
+        <div>
+          <aside>&larr; Edit me!</aside>
+          <pre
+            class="language-js"
+          ><code id="code-circle" contenteditable="true"><xmp>
 // create svg element:
 var svg = d3.select("#circle").append("svg").attr("width", 200).attr("height", 200)
 
@@ -209,54 +204,62 @@ svg.append('circle')
   .attr('stroke', 'black')
   .attr('fill', '#69a3b2');
   </xmp></code></pre>
+        </div>
 
+        <div id="circle"></div>
+      </div>
+    </section>
 
-    </div>
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-circle");
+      document
+        .getElementById("code-circle")
+        .addEventListener("input", function () {
+          d3.select("#circle").html("");
+          myJSParser("code-circle");
+        });
+    </script>
 
-  <div id="circle"></div>
-  </div>
-  </section>
+    <!-- ================================================================================= -->
 
+    <!-- ==================== rect ==================== -->
 
-  <script>
-  // Read the JS fragment at the beginning. Read it again if it changes
-  myJSParserShort('code-circle')
-  document.getElementById('code-circle').addEventListener("input", function() {
-    d3.select('#circle').html("");
-    myJSParser('code-circle');
-  })
-  </script>
+    <section id="myrect">
+      <div class="container">
+        <h1>Adding a rectangle with <code>append("rect")</code></h1>
+        <hr />
 
+        <p>
+          Here is how a rectangle would be drawn in pure <code>svg</code>, using
+          a <code>rect</code> element. Four arguments are required:
+          <code>x</code>, <code>y</code>, <code>width</code> and
+          <code>height</code>.
+        </p>
+        <pre
+          class="language-html"
+        ><code><xmp><rect style="fill: #69b3a2" stroke="black" x=10 y=100, width=300 height=40></rect></xmp></code></pre>
+        <svg width="800px" height="100px">
+          <rect
+            style="fill: #69b3a2"
+            stroke="black"
+            x="10"
+            y="100,"
+            width="300"
+            height="40"
+          ></rect>
+        </svg>
 
-  <!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== rect ==================== -->
-
-<section id="myrect" >
-<div class="container" >
-  <h1>Adding a rectangle with <code>append("rect")</code></h1>
-  <hr>
-
-  <p>Here is how a rectangle would be drawn in pure <code>svg</code>, using a <code>rect</code> element. Four arguments are required: <code>x</code>, <code>y</code>, <code>width</code> and <code>height</code>.</p>
-  <pre class="language-html"><code><xmp><rect style="fill: #69b3a2" stroke="black" x=10 y=100, width=300 height=40></rect></xmp></code></pre>
-  <svg width="800px" height="100px"><rect style="fill: #69b3a2" stroke="black" x=10 y=100, width=300 height=40></rect></svg>
-
-  <p>Now let's do it in javascript. It is basically the same process. Note that the code below expect a div with the id 'rect' somewhere in the html code.</p>
-  <div>
-
-<aside>&larr; Edit me! </aside>
-<pre class="language-js"><code id="code-rect" contenteditable="true"><xmp>
+        <p>
+          Now let's do it in javascript. It is basically the same process. Note
+          that the code below expect a div with the id 'rect' somewhere in the
+          html code.
+        </p>
+        <div>
+          <aside>&larr; Edit me!</aside>
+          <pre
+            class="language-js"
+          ><code id="code-rect" contenteditable="true"><xmp>
 // create svg element:
 var svg = d3.select("#rect").append("svg").attr("width", 800).attr("height", 200)
 
@@ -269,60 +272,54 @@ svg.append('rect')
   .attr('stroke', 'black')
   .attr('fill', '#69a3b2');
 </xmp></code></pre>
+        </div>
 
+        <div id="rect"></div>
+      </div>
+    </section>
 
-  </div>
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-rect");
+      document
+        .getElementById("code-rect")
+        .addEventListener("input", function () {
+          d3.select("#rect").html("");
+          myJSParser("code-rect");
+        });
+    </script>
 
-<div id="rect"></div>
-</div>
-</section>
+    <!-- ================================================================================= -->
 
+    <!-- ==================== segment ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-rect')
-document.getElementById('code-rect').addEventListener("input", function() {
-  d3.select('#rect').html("");
-  myJSParser('code-rect');
-})
-</script>
+    <section id="mysegment">
+      <div class="container">
+        <h1>Adding a segment with <code>append("line")</code></h1>
+        <hr />
 
+        <p>
+          Here is how a segment would be drawn in pure <code>svg</code>, using a
+          <code>line</code> element. Four arguments are required:
+          <code>x0</code>, <code>y0</code>, <code>x1</code> and <code>y1</code>.
+        </p>
+        <pre
+          class="language-html"
+        ><code><xmp><line stroke="red" x0=10 y0=10, x1=500 y1=100></line></xmp></code></pre>
+        <svg width="800px" height="100px">
+          <line stroke="red" x0="10" y0="10," x1="500" y1="100"></line>
+        </svg>
 
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== segment ==================== -->
-
-<section id="mysegment" >
-<div class="container" >
-  <h1>Adding a segment with <code>append("line")</code></h1>
-  <hr>
-
-  <p>Here is how a segment would be drawn in pure <code>svg</code>, using a <code>line</code> element. Four arguments are required: <code>x0</code>, <code>y0</code>, <code>x1</code> and <code>y1</code>.</p>
-  <pre class="language-html"><code><xmp><line stroke="red" x0=10 y0=10, x1=500 y1=100></line></xmp></code></pre>
-  <svg width="800px" height="100px"><line stroke="red" x0=10 y0=10, x1=500 y1=100></line></svg>
-
-  <p>Now let's do it in javascript. It is basically the same process. Note that the code below expect a div with the id 'segment' somewhere in the html code.</p>
-  <div>
-
-<aside>&larr; Edit me! </aside>
-<pre class="language-js"><code id="code-segment" contenteditable="true"><xmp>
+        <p>
+          Now let's do it in javascript. It is basically the same process. Note
+          that the code below expect a div with the id 'segment' somewhere in
+          the html code.
+        </p>
+        <div>
+          <aside>&larr; Edit me!</aside>
+          <pre
+            class="language-js"
+          ><code id="code-segment" contenteditable="true"><xmp>
 // create svg element:
 var svg = d3.select("#segment").append("svg").attr("width", 800).attr("height", 200)
 
@@ -334,59 +331,56 @@ svg.append('line')
   .attr('y2', 100)
   .attr('stroke', 'red')
 </xmp></code></pre>
+        </div>
 
+        <div id="segment"></div>
+      </div>
+    </section>
 
-  </div>
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-segment");
+      document
+        .getElementById("code-segment")
+        .addEventListener("input", function () {
+          d3.select("#segment").html("");
+          myJSParser("code-segment");
+        });
+    </script>
 
-<div id="segment"></div>
-</div>
-</section>
+    <!-- ================================================================================= -->
 
+    <!-- ==================== text ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-segment')
-document.getElementById('code-segment').addEventListener("input", function() {
-  d3.select('#segment').html("");
-  myJSParser('code-segment');
-})
-</script>
+    <section id="mytext">
+      <div class="container">
+        <h1>Adding text with <code>append("text")</code></h1>
+        <hr />
 
+        <p>
+          Here is how text would be drawn in pure <code>svg</code>, using a
+          <code>text</code> element. Three arguments are required:
+          <code>x</code>, <code>y</code> and <code>text</code>.
+        </p>
+        <pre
+          class="language-html"
+        ><code><xmp><text stroke="green" style="font-size: 19px" x=100 y=50>I'm a piece of text</text></xmp></code></pre>
+        <svg width="800px" height="100px">
+          <text stroke="green" style="font-size: 19px" x="100" y="50">
+            I'm a piece of text
+          </text>
+        </svg>
 
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== text ==================== -->
-
-<section id="mytext" >
-<div class="container" >
-  <h1>Adding text with <code>append("text")</code></h1>
-  <hr>
-
-  <p>Here is how text would be drawn in pure <code>svg</code>, using a <code>text</code> element. Three arguments are required: <code>x</code>, <code>y</code> and <code>text</code>.</p>
-  <pre class="language-html"><code><xmp><text stroke="green" style="font-size: 19px" x=100 y=50>I'm a piece of text</text></xmp></code></pre>
-  <svg width="800px" height="100px"><text stroke="green" style="font-size: 19px" x=100 y=50>I'm a piece of text</text></svg>
-
-  <p>Now let's do it in javascript. It is basically the same process. Note that the code below expect a div with the id 'text' somewhere in the html code.</p>
-  <div>
-
-<aside>&larr; Edit me! </aside>
-<pre class="language-js"><code id="code-text" contenteditable="true"><xmp>
+        <p>
+          Now let's do it in javascript. It is basically the same process. Note
+          that the code below expect a div with the id 'text' somewhere in the
+          html code.
+        </p>
+        <div>
+          <aside>&larr; Edit me!</aside>
+          <pre
+            class="language-js"
+          ><code id="code-text" contenteditable="true"><xmp>
 // create svg element:
 var svg = d3.select("#text").append("svg").attr("width", 800).attr("height", 200)
 
@@ -399,55 +393,59 @@ svg.append('text')
   .text("I'm another piece of text")
 
 </xmp></code></pre>
+        </div>
 
+        <div id="text"></div>
+      </div>
+    </section>
 
-  </div>
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-text");
+      document
+        .getElementById("code-text")
+        .addEventListener("input", function () {
+          d3.select("#text").html("");
+          myJSParser("code-text");
+        });
+    </script>
 
-<div id="text"></div>
-</div>
-</section>
+    <!-- ================================================================================= -->
 
+    <!-- ==================== Line ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-text')
-document.getElementById('code-text').addEventListener("input", function() {
-  d3.select('#text').html("");
-  myJSParser('code-text');
-})
-</script>
+    <section id="myline">
+      <div class="container">
+        <h1>Adding a line with <code>d3.line()</code></h1>
+        <hr />
 
+        <p>
+          Here is how a line would be drawn in pure <code>svg</code>, using a
+          <code>path</code> element. You can learn more about the obscure syntax
+          of the <code>d</code> argument
+          <a href="https://www.w3schools.com/graphics/svg_path.asp">here</a>.
+        </p>
+        <pre
+          class="language-html"
+        ><code><xmp><path style="fill: none" stroke="black" d="M0 20 L150 150 L300 100 L450 20 L600 130"></path></xmp></code></pre>
+        <svg width="800px" height="200px">
+          <path
+            style="fill: none"
+            stroke="black"
+            d="M0 20 L150 150 L300 100 L450 20 L600 130"
+          ></path>
+        </svg>
 
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== Line ==================== -->
-
-<section id="myline" >
-<div class="container" >
-  <h1>Adding a line with <code>d3.line()</code></h1>
-  <hr>
-
-  <p>Here is how a line would be drawn in pure <code>svg</code>, using a <code>path</code> element. You can learn more about the obscure syntax of the <code>d</code> argument <a href="https://www.w3schools.com/graphics/svg_path.asp">here</a>.</p>
-  <pre class="language-html"><code><xmp><path style="fill: none" stroke="black" d="M0 20 L150 150 L300 100 L450 20 L600 130"></path></xmp></code></pre>
-  <svg width="800px" height="200px"><path style="fill: none" stroke="black" d="M0 20 L150 150 L300 100 L450 20 L600 130"></path></svg>
-
-  <p>Fortunately, d3.js provides the <code>d3.line()</code> function, allowing to draw a line more efficiently. Basically it takes our data and convert it into the SVG Path we wrote above.</p>
-  <div>
-
-<aside>&larr; Edit me! </aside>
-<pre class="language-js"><code id="code-line" contenteditable="true"><xmp>// create data
+        <p>
+          Fortunately, d3.js provides the <code>d3.line()</code> function,
+          allowing to draw a line more efficiently. Basically it takes our data
+          and convert it into the SVG Path we wrote above.
+        </p>
+        <div>
+          <aside>&larr; Edit me!</aside>
+          <pre
+            class="language-js"
+          ><code id="code-line" contenteditable="true"><xmp>// create data
 var data = [{x: 0, y: 20}, {x: 150, y: 150}, {x: 300, y: 100}, {x: 450, y: 20}, {x: 600, y: 130}]
 
 // create svg element:
@@ -464,53 +462,48 @@ svg.append('path')
   .attr('stroke', 'black')
   .attr('fill', 'none');
 </xmp></code></pre>
+        </div>
 
+        <div id="line"></div>
 
-  </div>
+        <p>
+          <u>Going further:</u> This
+          <a href="https://www.dashingd3js.com/svg-paths-and-d3js">page</a> by
+          dashingd3.js is awesome to go more in depth
+        </p>
+      </div>
+    </section>
 
-<div id="line"></div>
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-line");
+      document
+        .getElementById("code-line")
+        .addEventListener("input", function () {
+          d3.select("#line").html("");
+          myJSParser("code-line");
+        });
+    </script>
 
-<p><u>Going further:</u> This <a href="https://www.dashingd3js.com/svg-paths-and-d3js">page</a> by dashingd3.js is awesome to go more in depth</p>
-</div>
-</section>
+    <!-- ================================================================================= -->
 
+    <!-- ==================== curve ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-line')
-document.getElementById('code-line').addEventListener("input", function() {
-  d3.select('#line').html("");
-  myJSParser('code-line');
-})
-</script>
+    <section id="mycurve">
+      <div class="container">
+        <h1>Adding a curve with <code>d3.line()</code></h1>
+        <hr />
 
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== curve ==================== -->
-
-<section id=mycurve>
-<div class="container" >
-  <h1>Adding a curve with <code>d3.line()</code></h1>
-  <hr>
-
-  <p>The <code>d3.line()</code> function has an option that allows to draw different <u>line interpolations</u>. Here is an example using a <u>curve</u>.</p>
-  <div>
-
-<aside>&larr; Edit me! </aside>
-<pre class="language-js"><code id="code-curve" contenteditable="true"><xmp>// create data
+        <p>
+          The <code>d3.line()</code> function has an option that allows to draw
+          different <u>line interpolations</u>. Here is an example using a
+          <u>curve</u>.
+        </p>
+        <div>
+          <aside>&larr; Edit me!</aside>
+          <pre
+            class="language-js"
+          ><code id="code-curve" contenteditable="true"><xmp>// create data
 var data = [{x: 0, y: 20}, {x: 150, y: 150}, {x: 300, y: 100}, {x: 450, y: 20}, {x: 600, y: 130}]
 
 // create svg element:
@@ -528,53 +521,69 @@ svg.append('path')
   .attr('stroke', 'black')
   .attr('fill', 'none');
 </xmp></code></pre>
+        </div>
 
+        <div id="curve"></div>
 
-  </div>
+        <p>
+          <u>Going further:</u> Different type of curve are available: curve
+          Basis, Linear, Step, StepBefore, StepAfter, Cardinal and more. See
+          them all on
+          <a href="https://bl.ocks.org/d3noob/ced1b9b18bd8192d2c898884033b5529"
+            >this block</a
+          >.
+        </p>
+      </div>
+    </section>
 
-<div id="curve"></div>
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-curve");
+      document
+        .getElementById("code-curve")
+        .addEventListener("input", function () {
+          d3.select("#curve").html("");
+          myJSParser("code-curve");
+        });
+    </script>
 
-<p><u>Going further:</u> Different type of curve are available: curve Basis, Linear, Step, StepBefore, StepAfter, Cardinal and more. See them all on <a href="https://bl.ocks.org/d3noob/ced1b9b18bd8192d2c898884033b5529">this block</a>.</p>
-</div>
-</section>
+    <!-- ================================================================================= -->
 
+    <!-- ==================== Area ==================== -->
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-curve')
-document.getElementById('code-curve').addEventListener("input", function() {
-  d3.select('#curve').html("");
-  myJSParser('code-curve');
-})
-</script>
+    <section id="myarea">
+      <div class="container">
+        <h1>Build an area with <code>d3.area()</code></h1>
+        <hr />
+        <p>
+          In pure <code>svg</code>, an area would also been drawn using a
+          <code>path</code> element. You can learn more about the obscure syntax
+          of the <code>d</code> argument
+          <a href="https://www.w3schools.com/graphics/svg_path.asp">here</a>.
+        </p>
+        <pre
+          class="language-html"
+        ><code><xmp><path style="fill: #69b3a2" stroke="black" d="M0 200 L0 20 L150 150 L300 100 L450 20 L600 130 L600 200"></path></xmp></code></pre>
+        <svg width="800px" height="200px">
+          <path
+            style="fill: #69b3a2"
+            stroke="black"
+            d="M0 200 L0 20 L150 150 L300 100 L450 20 L600 130 L600 200"
+          ></path>
+        </svg>
 
+        <br />
+        <p>
+          Fortunately, d3.js provides the <code>d3.area()</code> function,
+          allowing to draw an area more efficiently. Basically it takes our data
+          and convert it into the SVG Path we wrote above. An area is defined by
+          two bounding lines that often share the same X axis.
+        </p>
 
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-<!-- ==================== Area ==================== -->
-
-  <section id="myarea">
-  <div class="container" >
-
-    <h1>Build an area with <code>d3.area()</code></h1>
-    <hr>
-    <p>In pure <code>svg</code>, an area would also been drawn using a <code>path</code> element. You can learn more about the obscure syntax of the <code>d</code> argument <a href="https://www.w3schools.com/graphics/svg_path.asp">here</a>.</p>
-    <pre class="language-html"><code><xmp><path style="fill: #69b3a2" stroke="black" d="M0 200 L0 20 L150 150 L300 100 L450 20 L600 130 L600 200"></path></xmp></code></pre>
-    <svg width="800px" height="200px"><path style="fill: #69b3a2" stroke="black" d="M0 200 L0 20 L150 150 L300 100 L450 20 L600 130 L600 200"></path></svg>
-
-    <br>
-    <p>Fortunately, d3.js provides the <code>d3.area()</code> function, allowing to draw an area more efficiently. Basically it takes our data and convert it into the SVG Path we wrote above. An area is defined by two bounding lines that often share the same X axis.</p>
-
-      <div>
-        <pre class="language-js"><code id="code-area" contenteditable="true"><xmp>// create data
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code-area" contenteditable="true"><xmp>// create data
 var data = [{x: 0, y: 20}, {x: 150, y: 150}, {x: 300, y: 100}, {x: 450, y: 20}, {x: 600, y: 130}]
 
 // create svg element:
@@ -592,51 +601,61 @@ svg.append('path')
   .attr('stroke', 'black')
   .attr('fill', '#69b3a2');
 </xmp></code></pre>
+        </div>
+
+        <div id="area"></div>
+        <br />
+        <p>
+          <u>Note:</u> It is also possible to give specific X position for the
+          bottom line. See the doc.
+        </p>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-area");
+      document
+        .getElementById("code-area")
+        .addEventListener("input", function () {
+          d3.select("#area").html("");
+          myJSParser("code-area");
+        });
+    </script>
 
-<div id="area"></div>
-<br>
-<p><u>Note:</u> It is also possible to give specific X position for the bottom line. See the doc.</p>
+    <!-- ================================================================================= -->
 
-  </div>
-</section>
+    <!-- ==================== arc ==================== -->
 
+    <section id="myarc">
+      <div class="container">
+        <h1>Draw arcs with <code>d3.arc()</code></h1>
+        <hr />
+        <p>Let's see how drawing an arc in pure <code>svg</code> looks like:</p>
+        <pre
+          class="language-html"
+        ><code><xmp><path style="fill: #69b3a2" stroke="black" transform="translate(400,200)" d="M0,149 A150,150,0,0,1,-0.47,-149.9 L-0.3,-99.9 A100,100,0,0,0,0.15,99.9Z"></path></xmp></code></pre>
+        <svg width="800px" height="400px">
+          <path
+            style="fill: #69b3a2"
+            stroke="black"
+            transform="translate(400,200)"
+            d="M0,149 A150,150,0,0,1,-0.47,-149.9 L-0.3,-99.9 A100,100,0,0,0,0.15,99.9Z"
+          ></path>
+        </svg>
+        <p>
+          That was a bit tough. Now let's use the <code>d3.arc()</code> helper
+          function to draw the same kind of shape. We need to provide 4
+          arguments: <code>innerRadius</code>, <code>outerRadius</code>,
+          <code>startAngle</code>, <code>endAngle</code>. If you're not sure
+          what these argument control, just play with the code below to figure
+          it out.
+        </p>
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-area')
-document.getElementById('code-area').addEventListener("input", function() {
-  d3.select('#area').html("");
-  myJSParser('code-area');
-})
-</script>
-
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-<!-- ==================== arc ==================== -->
-
-<section id="myarc">
-<div class="container" >
-
-  <h1>Draw arcs with <code>d3.arc()</code></h1>
-  <hr>
-  <p> Let's see how drawing an arc in pure <code>svg</code> looks like:</p>
-  <pre class="language-html"><code><xmp><path style="fill: #69b3a2" stroke="black" transform="translate(400,200)" d="M0,149 A150,150,0,0,1,-0.47,-149.9 L-0.3,-99.9 A100,100,0,0,0,0.15,99.9Z"></path></xmp></code></pre>
-  <svg width="800px" height="400px"><path style="fill: #69b3a2" stroke="black" transform="translate(400,200)" d="M0,149 A150,150,0,0,1,-0.47,-149.9 L-0.3,-99.9 A100,100,0,0,0,0.15,99.9Z"></path></svg>
-  <p>That was a bit tough. Now let's use the <code>d3.arc()</code> helper function to draw the same kind of shape. We need to provide 4 arguments: <code>innerRadius</code>, <code>outerRadius</code>, <code>startAngle</code>, <code>endAngle</code>. If you're not sure what these argument control, just play with the code below to figure it out.</p>
-
-      <div>
-        <pre class="language-js"><code id="code-arc" contenteditable="true"><xmp>// create svg element
+        <div>
+          <pre
+            class="language-js"
+          ><code id="code-arc" contenteditable="true"><xmp>// create svg element
 var svg = d3.select("#arc").append("svg").attr("width", 1000).attr("height", 400)
 
 // add an arc
@@ -652,148 +671,109 @@ svg
   .attr('stroke', 'black')
   .attr('fill', '#69b3a2');
 </xmp></code></pre>
+        </div>
+
+        <div id="arc"></div>
+
+        <p>
+          <u>Note:</u> It is of interest to note that with a
+          <code>innerRadius</code> of 0, the shape looks like a part of a
+          <a href="../pie.html">pie chart</a>.
+        </p>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myJSParserShort("code-arc");
+      document
+        .getElementById("code-arc")
+        .addEventListener("input", function () {
+          d3.select("#arc").html("");
+          myJSParser("code-arc");
+        });
+    </script>
 
-<div id="arc"></div>
+    <!-- ================================================================================= -->
 
-<p><u>Note:</u> It is of interest to note that with a <code>innerRadius</code> of 0, the shape looks like a part of a <a href="../pie.html">pie chart</a>.</p>
+    <!-- ============================ RELATED BLOCKS ============================ -->
 
-  </div>
-</section>
-
-
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myJSParserShort('code-arc')
-document.getElementById('code-arc').addEventListener("input", function() {
-  d3.select('#arc').html("");
-  myJSParser('code-arc');
-})
-</script>
-
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+    <section
+      id="related"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>v4 curve interpolation comparison - </i>by
+                    <a
+                      href="https://bl.ocks.org/d3noob/ced1b9b18bd8192d2c898884033b5529"
+                      >d3noob</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>d3-shape documentation - </i>by
+                    <a href="https://github.com/d3/d3-shape#curves"
+                      >Mike Bostock</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>SVG Paths and D3.js - </i>by
+                    <a href="https://www.dashingd3js.com/svg-paths-and-d3js"
+                      >Dashing D3.js</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>v4 curve interpolation comparison - </i>by <a href="https://bl.ocks.org/d3noob/ced1b9b18bd8192d2c898884033b5529">d3noob</a></li>
-            <br>
-            <li><i>d3-shape documentation - </i>by <a href="https://github.com/d3/d3-shape#curves">Mike Bostock</a></li>
-            <br>
-            <li><i>SVG Paths and D3.js - </i>by <a href="https://www.dashingd3js.com/svg-paths-and-d3js">Dashing D3.js</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-<!-- ANCHOR -->
-<a name="contactanchor"></a>
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ============================ -->
   </body>
-
 </html>

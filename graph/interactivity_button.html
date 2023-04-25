@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Adding and using buttons in d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="How to any type of button to your d3.js plot, and allows it to interact with the chart. Explanation and reproducible code.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="How to any type of button to your d3.js plot, and allows it to interact with the chart. Explanation and reproducible code."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="Adding and using buttons in d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="How to any type of button to your d3.js plot, and allows it to interact with the chart. Explanation and reproducible code.">
+    <meta property="og:title" content="Adding and using buttons in d3.js" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="How to any type of button to your d3.js plot, and allows it to interact with the chart. Explanation and reproducible code."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -71,140 +74,133 @@
     <!-- Bootstrap js -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/agency.min.js"></script>
-
   </head>
 
-
-
   <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-    $(function(){
-      $("#mainNav").load("../html_chunk/menu.html");
-    });
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-    $(function(){
-      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-    });
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
     </script>
-
-
 
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>Adding buttons on d3.js charts</h1>
-          <hr class="short_hr">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">This document provides information on how to add <u>buttons</u> with d3.js. It is composed by several interactive examples, allowing to play with the code to understand better how it works.</p>
+        <h1>Adding buttons on d3.js charts</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          This document provides information on how to add <u>buttons</u> with
+          d3.js. It is composed by several interactive examples, allowing to
+          play with the code to understand better how it works.
+        </p>
       </div>
     </header>
 
-
-
-
-
-
-
-
     <!-- TABLE of CONTENT -->
     <div>
-        <nav class="col-sm-3 col-4" id="myScrollspy" >
-          <ul class="nav nav-pills flex-column" style="top: 30%">
-            <li class="nav-item">
-              <i class="nav-link" style="opacity: 0.5">&rarr; how it works</i>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#buttonTypes">Button Types</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#triggerExample">Trigger an event</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#eventListener">Event listener</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#buildWithD3">Build buttons with d3</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#buttonStyle">Button style</a>
-            </li>
-            <br>
-            <li class="nav-item">
-              <i class="nav-link" style="opacity: 0.5">&rarr; application</i>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#button">simple button</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#radio">radio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#text">text input</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#slider">slider</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#checkbox">checkbox</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#number">number</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#dropdown">dropdown</a>
-            </li>
-          </ul>
-        </nav>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column" style="top: 30%">
+          <li class="nav-item">
+            <i class="nav-link" style="opacity: 0.5">&rarr; how it works</i>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#buttonTypes">Button Types</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#triggerExample">Trigger an event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#eventListener">Event listener</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#buildWithD3">Build buttons with d3</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#buttonStyle">Button style</a>
+          </li>
+          <br />
+          <li class="nav-item">
+            <i class="nav-link" style="opacity: 0.5">&rarr; application</i>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#button">simple button</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#radio">radio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#text">text input</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#slider">slider</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#checkbox">checkbox</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#number">number</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#dropdown">dropdown</a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
+    <!-- ==================== BUTTON TYPES ==================== -->
 
+    <section id="buttonTypes" style="padding-top: 20px; padding-bottom: 20px">
+      <div class="container">
+        <h1>Button types offered in <code>HTML</code></h1>
+        <hr />
+        <p>
+          Buttons are natively offered by the <code>html</code> language, thanks
+          to the <code>input</code> tag. Their type is controlled by the
+          <code>type</code> attribute. Here is an overview of the main button
+          types. Following code snippets <u>only create</u> buttons. We'll see
+          later how to use d3.js to actually make them do something.
+        </p>
 
+        <div class="row">
+          <div
+            class="col-lg-5 bg-light"
+            style="padding: 50px"
+            id="res-allType"
+          ></div>
 
-
-
-
-<!-- ==================== BUTTON TYPES ==================== -->
-
-  <section id="buttonTypes" style="padding-top: 20px; padding-bottom: 20px">
-  <div class="container" >
-
-    <h1>Button types offered in <code>HTML</code></h1>
-    <hr>
-    <p>Buttons are natively offered by the <code>html</code> language, thanks to the <code>input</code> tag. Their type is controlled by the <code>type</code> attribute. Here is an overview of the main button types. Following code snippets <u>only create</u> buttons. We'll see later how to use d3.js to actually make them do something.</p>
-
-    <div class="row">
-
-    <div  class="col-lg-5 bg-light" style="padding: 50px" id="res-allType"></div>
-
-
-    <div class="col-lg-7">
-        <pre class="language-html"><code id="code-allType" contenteditable="true"><xmp><!-- Clickable button -->
+          <div class="col-lg-7">
+            <pre
+              class="language-html"
+            ><code id="code-allType" contenteditable="true"><xmp><!-- Clickable button -->
 <button type="button">Click Me!</button>
 
 <!-- Radio button: one item selected only -->
@@ -250,73 +246,76 @@
 </select>
 
 </xmp></code></pre>
+          </div>
+        </div>
       </div>
+    </section>
 
+    <script>
+      // Read the JS fragment at the beginning. Read it again if it changes
+      myHtmlParser("code-allType", "res-allType");
+      document
+        .getElementById("code-allType")
+        .addEventListener("input", function () {
+          d3.select("#res-allType").html("");
+          myHtmlParser("code-allType", "res-allType");
+        });
+    </script>
 
+    <!-- ================================================================================= -->
 
-</div>
-  </div>
-</section>
+    <!-- ==================== BASIC TRIGGER EXEMPLE ==================== -->
 
+    <section id="triggerExample" class="bg">
+      <div class="container">
+        <h1>
+          Trigger function in <code>html</code> with <code>onclick()</code>.
+        </h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-basicTrigger"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Here, the button is created in <code>html</code>, and an
+                    <code>onclick</code> attribute is added.
+                  </li>
+                  <br />
+                  <li>
+                    Thus, a click will trigger the
+                    <code>changeColor()</code> function.
+                  </li>
+                  <br />
+                  <li>
+                    <code>onclick</code> is not the only method, try also
+                    <code>onchange</code>, <code>onmouseover</code>, and more.
+                    See more
+                    <a href="https://www.w3schools.com/js/js_htmldom_events.asp"
+                      >here</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<script>
-// Read the JS fragment at the beginning. Read it again if it changes
-myHtmlParser('code-allType', 'res-allType')
-document.getElementById('code-allType').addEventListener("input", function() {
-  d3.select('#res-allType').html("");
-  myHtmlParser('code-allType', 'res-allType');
-})
-</script>
-
-
-<!-- ================================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== BASIC TRIGGER EXEMPLE ==================== -->
-
-<section id="triggerExample" class="bg">
-<div class="container" >
-  <h1>Trigger function in <code>html</code> with <code>onclick()</code>.</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-basicTrigger" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Here, the button is created in <code>html</code>, and an <code>onclick</code> attribute is added.</li>
-          <br>
-          <li>Thus, a click will trigger the <code>changeColor()</code> function.</li>
-          <br>
-          <li><code>onclick</code> is not the only method, try also <code>onchange</code>, <code>onmouseover</code>, and more. See more <a href="https://www.w3schools.com/js/js_htmldom_events.asp">here</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-basicTrigger" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-basicTrigger" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -330,12 +329,12 @@ document.getElementById('code-allType').addEventListener("input", function() {
 <div id="dataviz_buttonTriger"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-basicTrigger" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-basicTrigger" contenteditable="true"><xmp><script>
 
 // Initialize a circle
 var myCircle = d3.select("#dataviz_buttonTriger")
@@ -353,88 +352,91 @@ var changeColor = function(color){
 }
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-basicTrigger", "res-basicTrigger");
+              myJSParser("js-basicTrigger", "res-basicTrigger");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-basicTrigger")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicTrigger").html("");
+                  myHtmlParser("html-basicTrigger", "res-basicTrigger");
+                  myJSParser("js-basicTrigger", "res-basicTrigger");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-basicTrigger', 'res-basicTrigger')
-myJSParser('js-basicTrigger', 'res-basicTrigger')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-basicTrigger').addEventListener("input", function() {
-d3.select('#res-basicTrigger').html("");
-myHtmlParser('html-basicTrigger', 'res-basicTrigger');
-myJSParser('js-basicTrigger', 'res-basicTrigger');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-basicTrigger').addEventListener("input", function() {
-d3.select('#res-basicTrigger').html("");
-myHtmlParser('html-basicTrigger', 'res-basicTrigger');
-myJSParser('js-basicTrigger', 'res-basicTrigger');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== ADD EVENT LISTENER ==================== -->
-
-<section id="eventListener" class="bg">
-<div class="container" >
-  <h1>Event listener in <code>javascript</code></h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-basicEventListener" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Here the button is created in <code>html</code>, but is made active thanks to <code>javascript</code>.</li>
-          <br>
-          <li>The button is selected thanks to this <code>id</code> and an event listener is setup: <code>.on("input", changeSize )</code>. Each type the input of the button changes, the <code>changeSize</code> function is triggered.</li>
-          <br>
-          <li>The event listener syntax is different depending on the button type. Use <code>input</code> to listen to a numeric input button. But listen to <code>change</code> for a dropdown button. This is a bit tricky and a small example of each type is provided in the application part of this document.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-basicTrigger")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicTrigger").html("");
+                  myHtmlParser("html-basicTrigger", "res-basicTrigger");
+                  myJSParser("js-basicTrigger", "res-basicTrigger");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== ADD EVENT LISTENER ==================== -->
 
+    <section id="eventListener" class="bg">
+      <div class="container">
+        <h1>Event listener in <code>javascript</code></h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-basicEventListener"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Here the button is created in <code>html</code>, but is made
+                    active thanks to <code>javascript</code>.
+                  </li>
+                  <br />
+                  <li>
+                    The button is selected thanks to this <code>id</code> and an
+                    event listener is setup:
+                    <code>.on("input", changeSize )</code>. Each type the input
+                    of the button changes, the <code>changeSize</code> function
+                    is triggered.
+                  </li>
+                  <br />
+                  <li>
+                    The event listener syntax is different depending on the
+                    button type. Use <code>input</code> to listen to a numeric
+                    input button. But listen to <code>change</code> for a
+                    dropdown button. This is a bit tricky and a small example of
+                    each type is provided in the application part of this
+                    document.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-basicEventListener" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-basicEventListener" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -447,12 +449,12 @@ myJSParser('js-basicTrigger', 'res-basicTrigger');
 <div id="dataviz_buttonEventListener"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-basicEventListener" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-basicEventListener" contenteditable="true"><xmp><script>
 
 // Initialize a circle
 var theCircle = d3.select("#dataviz_buttonEventListener")
@@ -474,93 +476,87 @@ function changeSize() {
 d3.select("#buttonSize").on("input", changeSize )
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-basicEventListener", "res-basicEventListener");
+              myJSParser("js-basicEventListener", "res-basicEventListener");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-basicEventListener")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicEventListener").html("");
+                  myHtmlParser(
+                    "html-basicEventListener",
+                    "res-basicEventListener"
+                  );
+                  myJSParser("js-basicEventListener", "res-basicEventListener");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-basicEventListener', 'res-basicEventListener')
-myJSParser('js-basicEventListener', 'res-basicEventListener')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-basicEventListener').addEventListener("input", function() {
-d3.select('#res-basicEventListener').html("");
-myHtmlParser('html-basicEventListener', 'res-basicEventListener');
-myJSParser('js-basicEventListener', 'res-basicEventListener');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-basicEventListener').addEventListener("input", function() {
-d3.select('#res-basicEventListener').html("");
-myHtmlParser('html-basicEventListener', 'res-basicEventListener');
-myJSParser('js-basicEventListener', 'res-basicEventListener');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== BUILD BUTTON WITH D3 ==================== -->
-
-<section id="buildWithD3" class="bg">
-<div class="container" >
-  <h1>Build buttons in <code>d3.js</code></h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-builtWithD3" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Sometimes it is handy to build the button in javascript. It is typically the case with dropdown button: the list of option often depends on the data itself.</li>
-          <br>
-          <li>Note the use of the <code>this</code> magic variable to recover the option that has been chosen before calling the <code>updateChart()</code> function,</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-basicEventListener")
+                .addEventListener("input", function () {
+                  d3.select("#res-basicEventListener").html("");
+                  myHtmlParser(
+                    "html-basicEventListener",
+                    "res-basicEventListener"
+                  );
+                  myJSParser("js-basicEventListener", "res-basicEventListener");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== BUILD BUTTON WITH D3 ==================== -->
 
+    <section id="buildWithD3" class="bg">
+      <div class="container">
+        <h1>Build buttons in <code>d3.js</code></h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-builtWithD3"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Sometimes it is handy to build the button in javascript. It
+                    is typically the case with dropdown button: the list of
+                    option often depends on the data itself.
+                  </li>
+                  <br />
+                  <li>
+                    Note the use of the <code>this</code> magic variable to
+                    recover the option that has been chosen before calling the
+                    <code>updateChart()</code> function,
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-builtWithD3" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-builtWithD3" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -570,12 +566,12 @@ myJSParser('js-basicEventListener', 'res-basicEventListener');
 <div id="dataviz_builtWithD3"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-builtWithD3" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-builtWithD3" contenteditable="true"><xmp><script>
 
 // Create data = list of groups
 var allGroup = ["yellow", "blue", "red", "green", "purple", "black"]
@@ -625,100 +621,102 @@ dropdownButton.on("change", function(d) {
 
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-builtWithD3", "res-builtWithD3");
+              myJSParser("js-builtWithD3", "res-builtWithD3");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-builtWithD3")
+                .addEventListener("input", function () {
+                  d3.select("#res-builtWithD3").html("");
+                  myHtmlParser("html-builtWithD3", "res-builtWithD3");
+                  myJSParser("js-builtWithD3", "res-builtWithD3");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-builtWithD3', 'res-builtWithD3')
-myJSParser('js-builtWithD3', 'res-builtWithD3')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-builtWithD3').addEventListener("input", function() {
-d3.select('#res-builtWithD3').html("");
-myHtmlParser('html-builtWithD3', 'res-builtWithD3');
-myJSParser('js-builtWithD3', 'res-builtWithD3');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-builtWithD3').addEventListener("input", function() {
-d3.select('#res-builtWithD3').html("");
-myHtmlParser('html-builtWithD3', 'res-builtWithD3');
-myJSParser('js-builtWithD3', 'res-builtWithD3');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== BUTTON STYLE: BOOTSTRAP ==================== -->
-
-<section id="buttonStyle" class="bg">
-<div class="container" >
-  <h1>Change button style with <code>Bootstrap</code></h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-buttonStyle" ></div>
-      <br>
-      <div>
-        <h5>Steps:</h5>
-        <ul>
-          <br>
-          <li>Changing button style using pure <code>css</code> is a real pain as far as I know.</li>
-          <br>
-          <li>There are workaround: hiding the button and building a better one of top of it as described <a href="https://www.w3schools.com/howto/howto_css_custom_checkbox.asp">here</a>.</li>
-          <br>
-          <li>I personally prefer to rely on the <code>bootstrap</code> framework, that offers specific ready-to-go class for good looking buttons. You need to load it in your document like you load d3.</li>
-          <br>
-          <li>Main useful class:
-            <ul>
-              <li><code>btn</code> transforms any input in a button</li>
-              <li><code>btn-primary</code> and <code>btn-secondary</code></li>
-              <li><code>active</code></li>
-              <li><code>btn</code></li>
-            </ul>
-          </li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-builtWithD3")
+                .addEventListener("input", function () {
+                  d3.select("#res-builtWithD3").html("");
+                  myHtmlParser("html-builtWithD3", "res-builtWithD3");
+                  myJSParser("js-builtWithD3", "res-builtWithD3");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== BUTTON STYLE: BOOTSTRAP ==================== -->
 
+    <section id="buttonStyle" class="bg">
+      <div class="container">
+        <h1>Change button style with <code>Bootstrap</code></h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-buttonStyle"></div>
+              <br />
+              <div>
+                <h5>Steps:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    Changing button style using pure <code>css</code> is a real
+                    pain as far as I know.
+                  </li>
+                  <br />
+                  <li>
+                    There are workaround: hiding the button and building a
+                    better one of top of it as described
+                    <a
+                      href="https://www.w3schools.com/howto/howto_css_custom_checkbox.asp"
+                      >here</a
+                    >.
+                  </li>
+                  <br />
+                  <li>
+                    I personally prefer to rely on the
+                    <code>bootstrap</code> framework, that offers specific
+                    ready-to-go class for good looking buttons. You need to load
+                    it in your document like you load d3.
+                  </li>
+                  <br />
+                  <li>
+                    Main useful class:
+                    <ul>
+                      <li><code>btn</code> transforms any input in a button</li>
+                      <li>
+                        <code>btn-primary</code> and <code>btn-secondary</code>
+                      </li>
+                      <li><code>active</code></li>
+                      <li><code>btn</code></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-buttonStyle" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-buttonStyle" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load bootstrap -->
@@ -791,142 +789,148 @@ myJSParser('js-builtWithD3', 'res-builtWithD3');
 <br><br>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-buttonStyle" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-buttonStyle" contenteditable="true"><xmp><script>
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-buttonStyle", "res-buttonStyle");
+              myJSParser("js-buttonStyle", "res-buttonStyle");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-buttonStyle")
+                .addEventListener("input", function () {
+                  d3.select("#res-buttonStyle").html("");
+                  myHtmlParser("html-buttonStyle", "res-buttonStyle");
+                  myJSParser("js-buttonStyle", "res-buttonStyle");
+                });
 
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-buttonStyle")
+                .addEventListener("input", function () {
+                  d3.select("#res-buttonStyle").html("");
+                  myHtmlParser("html-buttonStyle", "res-buttonStyle");
+                  myJSParser("js-buttonStyle", "res-buttonStyle");
+                });
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br />
 
+    <!-- ======================== BASIC BUTTON ============================ -->
+    <section class="bg" id="button" style="margin: 30px; padding: 0px">
+      <div class="container" id="portfolio">
+        <h1>Simple button</h1>
+        <hr />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="../graph/connectedscatter_legend.html"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Interactive legend</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Legend that allows to make group markers appear or
+                    disappear.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/connectedscatter_legend.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/barplot_button_color.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Change color with a button</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Clicking on a button triggers a function that changes the
+                    style of all rectangles
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/barplot_button_color.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/line_change_data.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>1/ Transition between<br />input data</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Add a button that allows to go from one dataset to another
+                    with a smooth transition. Useful to understand how to build
+                    a <code>update()</code> function.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/line_change_data.gif"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ======================== Radio ============================ -->
 
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-buttonStyle', 'res-buttonStyle')
-myJSParser('js-buttonStyle', 'res-buttonStyle')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-buttonStyle').addEventListener("input", function() {
-d3.select('#res-buttonStyle').html("");
-myHtmlParser('html-buttonStyle', 'res-buttonStyle');
-myJSParser('js-buttonStyle', 'res-buttonStyle');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-buttonStyle').addEventListener("input", function() {
-d3.select('#res-buttonStyle').html("");
-myHtmlParser('html-buttonStyle', 'res-buttonStyle');
-myJSParser('js-buttonStyle', 'res-buttonStyle');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-<!-- ======================== BASIC BUTTON ============================ -->
-<section class="bg" id="button" style="margin: 30px; padding: 0px">
-  <div class="container" id="portfolio">
-    <h1>Simple button</h1>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/connectedscatter_legend.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Interactive legend</p>
-              <hr>
-              <p class="explanation_portfolio">Legend that allows to make group markers appear or disappear.</p>
+    <section class="bg" id="radio">
+      <div class="container">
+        <h1>Radio buttons</h1>
+        <hr />
+        <p>
+          This example shows how to create a radio button and an event listener
+          to it. This event listener is able to figure out when the radio button
+          state changes. Then, the trickiest part is to recover the current
+          value of the radio button.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-delay"></div>
             </div>
           </div>
-          <img class="img-fluid" src="../img/graph/connectedscatter_legend.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/barplot_button_color.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Change color with a button</p>
-              <hr>
-              <p class="explanation_portfolio">Clicking on a button triggers a function that changes the style of all rectangles</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/barplot_button_color.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/line_change_data.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>1/ Transition between<br>input data</p>
-              <hr>
-              <p class="explanation_portfolio">Add a button that allows to go from one dataset to another with a smooth transition. Useful to understand how to build a <code>update()</code> function.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/line_change_data.gif" alt="">
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ======================== Radio ============================ -->
-
-<section class="bg" id="radio">
-<div class="container" >
-  <h1>Radio buttons</h1>
-  <hr>
-  <p>This example shows how to create a radio button and an event listener to it. This event listener is able to figure out when the radio button state changes. Then, the trickiest part is to recover the current value of the radio button.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-delay" ></div>
-    </div>
-  </div>
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-delay" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-delay" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -943,12 +947,12 @@ myJSParser('js-buttonStyle', 'res-buttonStyle');
 <svg id="dataviz_delay" width="400px" height="200px"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-delay" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-delay" contenteditable="true"><xmp><script>
 
 // Position of the circles on the X axis
 var position = [50, 150, 250, 350]
@@ -976,95 +980,84 @@ function changeColor() {
 d3.select("#colorButton").on("change", changeColor )
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-delay", "res-delay");
+              myJSParser("js-delay", "res-delay");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-delay")
+                .addEventListener("input", function () {
+                  d3.select("#res-delay").html("");
+                  myHtmlParser("html-delay", "res-delay");
+                  myJSParser("js-delay", "res-delay");
+                });
 
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-delay")
+                .addEventListener("input", function () {
+                  d3.select("#res-delay").html("");
+                  myHtmlParser("html-delay", "res-delay");
+                  myJSParser("js-delay", "res-delay");
+                });
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br />
 
+    <!-- ======================== Text input ============================ -->
+    <section class="bg" id="text" style="margin: 30px; padding: 0px">
+      <div class="container" id="portfolio">
+        <h1>Text input</h1>
+        <hr />
+        <div id="portfolio-items" class="row">
+          <img
+            style="width: 100px; height: 100px"
+            src="../img/other/workinprogress.png"
+          />
+          <br /><br /><br /><br /><br /><br />
+        </div>
+      </div>
+    </section>
 
+    <!-- ======================== Radio ============================ -->
 
+    <section class="bg" id="slider">
+      <div class="container">
+        <h1>Sliders</h1>
+        <hr />
+        <p>
+          This example shows how to create a <u>slider</u> that controls circle
+          size. An <u>event listener</u> constantly checks if the slider value
+          is modified thanks to an <code>on("change",..)</code> statement.
+          Recovering the slider value is simple using <code>this.value</code>.
+        </p>
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-5 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg-light" id="res-mySlider"></div>
+            </div>
+          </div>
 
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-delay', 'res-delay')
-myJSParser('js-delay', 'res-delay')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-delay').addEventListener("input", function() {
-d3.select('#res-delay').html("");
-myHtmlParser('html-delay', 'res-delay');
-myJSParser('js-delay', 'res-delay');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-delay').addEventListener("input", function() {
-d3.select('#res-delay').html("");
-myHtmlParser('html-delay', 'res-delay');
-myJSParser('js-delay', 'res-delay');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-<!-- ======================== Text input ============================ -->
-<section class="bg" id="text" style="margin: 30px; padding: 0px">
-  <div class="container" id="portfolio">
-    <h1>Text input</h1>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <img style="width:100px; height: 100px;" src="../img/other/workinprogress.png"/>
-      <br><br><br><br><br><br>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ======================== Radio ============================ -->
-
-<section class="bg" id="slider">
-<div class="container" >
-  <h1>Sliders</h1>
-  <hr>
-  <p>This example shows how to create a <u>slider</u> that controls circle size. An <u>event listener</u> constantly checks if the slider value is modified thanks to an <code>on("change",..)</code> statement. Recovering the slider value is simple using <code>this.value</code>.</p>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-5 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg-light" id="res-mySlider" ></div>
-    </div>
-  </div>
-
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-7 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-mySlider" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-7 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-mySlider" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -1077,12 +1070,12 @@ myJSParser('js-delay', 'res-delay');
 <svg id="dataviz_mySlider" width="400px" height="200px"></svg>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-mySlider" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-mySlider" contenteditable="true"><xmp><script>
 
 // Position of the circles on the X axis
 var position = [50, 150, 250, 350]
@@ -1110,311 +1103,291 @@ d3.select("#mySlider").on("change", function(d){
 })
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-mySlider", "res-mySlider");
+              myJSParser("js-mySlider", "res-mySlider");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-mySlider")
+                .addEventListener("input", function () {
+                  d3.select("#res-mySlider").html("");
+                  myHtmlParser("html-mySlider", "res-mySlider");
+                  myJSParser("js-mySlider", "res-mySlider");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-mySlider', 'res-mySlider')
-myJSParser('js-mySlider', 'res-mySlider')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-mySlider').addEventListener("input", function() {
-d3.select('#res-mySlider').html("");
-myHtmlParser('html-mySlider', 'res-mySlider');
-myJSParser('js-mySlider', 'res-mySlider');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-mySlider').addEventListener("input", function() {
-d3.select('#res-mySlider').html("");
-myHtmlParser('html-mySlider', 'res-mySlider');
-myJSParser('js-mySlider', 'res-mySlider');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-
-<div class="container" id="portfolio">
-  <br><br>
-  <p>Other examples involving sliders</p>
-  <div id="portfolio-items" class="row">
-    <div class="col-md-4 col-sm-6 portfolio-item">
-      <a class="portfolio-link" href="../graph/density_slider.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <p>Slider to control bandwidth</p>
-            <hr>
-            <p class="explanation_portfolio">Slider update the bandwidth used for kernel density estimation with a smooth transition.</p>
-          </div>
-        </div>
-        <img class="img-fluid" src="../img/graph/density_slider.gif" alt="">
-      </a>
-    </div>
-  </div>
-</div>
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ======================== Check box ============================ -->
-<section class="bg" id="checkbox" style="margin: 30px; padding: 0px">
-  <div class="container" id="portfolio">
-    <h1>Check box</h1>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/bubblemap_buttonControl.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Group selection</p>
-              <hr>
-              <p class="explanation_portfolio">Add a button to select displayed group, with smooth transition.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/bubblemap_buttonControl.gif" alt="">
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-<!-- ======================== Number ============================ -->
-<section class="bg" id="number" style="margin: 30px; padding: 0px">
-  <div class="container"  id="portfolio">
-    <h1>Numeric input</h1>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/histogram_binSize.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Button to control bin size</p>
-              <hr>
-              <p class="explanation_portfolio">Add a button that controls bin size. Good example to learn how to create an update function that also update an axis.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/histogram_binSize.gif" alt="">
-        </a>
-      </div>
-    </div>
-    <div class="col-md-4 col-sm-6 portfolio-item">
-      <a class="portfolio-link" href="scatter_buttonXlim.html">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <p>Update X axis limits</p>
-            <hr>
-            <p class="explanation_portfolio">A button control the X axis upper limit and trigger a smooth transition to the new limit</p>
-          </div>
-        </div>
-        <img class="img-fluid" src="img/graph/scatter_buttonXlim.gif" alt="">
-      </a>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-<!-- ======================== DROPDOWN ============================ -->
-<section class="bg" id="dropdown" style="margin: 30px; padding: 0px">
-  <div class="container" id="portfolio">
-    <h1>Dropdown button</h1>
-    <hr>
-    <div id="portfolio-items" class="row">
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/density_filter.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Dropdown to filter data</p>
-              <hr>
-              <p class="explanation_portfolio">Dropdown allows to filter data, keeping one group or the other.</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/density_filter.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/connectedscatter_select.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>Dropdown to select group</p>
-              <hr>
-              <p class="explanation_portfolio">A dropdown button allows to switch from one group to another with smooth transition.<br><br>Note: each group is in a different column in input</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/connectedscatter_select.gif" alt="">
-        </a>
-      </div>
-      <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" href="../graph/line_filter.html">
-          <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-              <p>3/ Transition between<br>value of a column</p>
-              <hr>
-              <p class="explanation_portfolio">Dropdown button controls which value of a column is displayed on the chart.<br><br>Long format</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="../img/graph/line_filter.gif" alt="">
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-mySlider")
+                .addEventListener("input", function () {
+                  d3.select("#res-mySlider").html("");
+                  myHtmlParser("html-mySlider", "res-mySlider");
+                  myJSParser("js-mySlider", "res-mySlider");
+                });
+            </script>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>Introduction to browser events- </i>by <a href="https://javascript.info/introduction-browser-events">Javascript Info</a></li>
-            <br>
-            <li><i>Multiple Simple graphs on one page - </i><a href="http://bl.ocks.org/d3noob/5987480">link</a></li>
-            <br>
-            <li><i>Axis Labels in v4</i> - by <a href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e">d3noob</a></li>
-            </ul>
+
+      <div class="container" id="portfolio">
+        <br /><br />
+        <p>Other examples involving sliders</p>
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/density_slider.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Slider to control bandwidth</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Slider update the bandwidth used for kernel density
+                    estimation with a smooth transition.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/density_slider.gif"
+                alt=""
+              />
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ======================== Check box ============================ -->
+    <section class="bg" id="checkbox" style="margin: 30px; padding: 0px">
+      <div class="container" id="portfolio">
+        <h1>Check box</h1>
+        <hr />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="../graph/bubblemap_buttonControl.html"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Group selection</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Add a button to select displayed group, with smooth
+                    transition.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/bubblemap_buttonControl.gif"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ======================== Number ============================ -->
+    <section class="bg" id="number" style="margin: 30px; padding: 0px">
+      <div class="container" id="portfolio">
+        <h1>Numeric input</h1>
+        <hr />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/histogram_binSize.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Button to control bin size</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Add a button that controls bin size. Good example to learn
+                    how to create an update function that also update an axis.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/histogram_binSize.gif"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" href="scatter_buttonXlim.html">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <p>Update X axis limits</p>
+                <hr />
+                <p class="explanation_portfolio">
+                  A button control the X axis upper limit and trigger a smooth
+                  transition to the new limit
+                </p>
+              </div>
+            </div>
+            <img
+              class="img-fluid"
+              src="img/graph/scatter_buttonXlim.gif"
+              alt=""
+            />
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- ======================== DROPDOWN ============================ -->
+    <section class="bg" id="dropdown" style="margin: 30px; padding: 0px">
+      <div class="container" id="portfolio">
+        <h1>Dropdown button</h1>
+        <hr />
+        <div id="portfolio-items" class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/density_filter.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Dropdown to filter data</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Dropdown allows to filter data, keeping one group or the
+                    other.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/density_filter.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a
+              class="portfolio-link"
+              href="../graph/connectedscatter_select.html"
+            >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>Dropdown to select group</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    A dropdown button allows to switch from one group to another
+                    with smooth transition.<br /><br />Note: each group is in a
+                    different column in input
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/connectedscatter_select.gif"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" href="../graph/line_filter.html">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <p>3/ Transition between<br />value of a column</p>
+                  <hr />
+                  <p class="explanation_portfolio">
+                    Dropdown button controls which value of a column is
+                    displayed on the chart.<br /><br />Long format
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="../img/graph/line_filter.gif"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============================ RELATED BLOCKS ============================ -->
 
+    <section
+      id="related"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>Introduction to browser events- </i>by
+                    <a
+                      href="https://javascript.info/introduction-browser-events"
+                      >Javascript Info</a
+                    >
+                  </li>
+                  <br />
+                  <li>
+                    <i>Multiple Simple graphs on one page - </i
+                    ><a href="http://bl.ocks.org/d3noob/5987480">link</a>
+                  </li>
+                  <br />
+                  <li>
+                    <i>Axis Labels in v4</i> - by
+                    <a
+                      href="https://bl.ocks.org/d3noob/23e42c8f67210ac6c678db2cd07a747e"
+                      >d3noob</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ============================ -->
   </body>
-
 </html>

@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-  <!-- Allow Ezoic to place ads on the page -->
-  <script type="text/javascript">
-    var ezstandalone = ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    ezstandalone.cmd.push(function() {
-      ezstandalone.define(101,102,103,105);
-      ezstandalone.enable();
-      ezstandalone.display();
-    });
-  </script>
-
-  <script src="//www.ezojs.com/ezoic/sa.min.js"></script>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-6"
+    ></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-79254642-6');
+      gtag("config", "UA-79254642-6");
     </script>
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>A few theme templates for d3.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="This post provides code snippet to implement several themes to your d3.js chart.">
-    <meta name="keywords" content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y">
-    <meta name="author" content="Yan Holtz">
-  <link rel="icon" href="../img/logo/D3_single_small.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="This post provides code snippet to implement several themes to your d3.js chart."
+    />
+    <meta
+      name="keywords"
+      content="Data,Dataviz,Datavisualization,Javascript, JS, d3.js, axis, x, y"
+    />
+    <meta name="author" content="Yan Holtz" />
+    <link rel="icon" href="../img/logo/D3_single_small.png" />
 
-    <meta property="og:title" content="A few theme templates for d3.js">
-    <meta property="og:image" content="img/overview_RGG.png">
-    <meta property="og:description" content="This post provides code snippet to implement several themes to your d3.js chart.">
+    <meta property="og:title" content="A few theme templates for d3.js" />
+    <meta property="og:image" content="img/overview_RGG.png" />
+    <meta
+      property="og:description"
+      content="This post provides code snippet to implement several themes to your d3.js chart."
+    />
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link
+      href="../vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Custom styles for this template -->
-    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet" />
 
     <!-- PRISM -->
     <script src="../LIB/prism.js"></script>
@@ -72,136 +75,132 @@
     <!-- Bootstrap js -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/agency.min.js"></script>
-
   </head>
 
-
-
   <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
-
     <!-- THIS ALLOWS TO INSERT THE MENU THAT IS STORED IN A MENU.HTML FILE-->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav"></nav>
     <script>
-    $(function(){
-      $("#mainNav").load("../html_chunk/menu.html");
-    });
+      $(function () {
+        $("#mainNav").load("../html_chunk/menu.html");
+      });
     </script>
 
     <!-- THIS ALLOWS TO INSERT THE MODAL OF THE MENU THAT IS STORED IN A MENU_MODAL.HTML FILE-->
-    <div id="modal_menu_insertion"> </div>
+    <div id="modal_menu_insertion"></div>
     <script>
-    $(function(){
-      $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
-    });
+      $(function () {
+        $("#modal_menu_insertion").load("../html_chunk/menu_modal.html");
+      });
     </script>
-
-
 
     <!-- Header -->
     <header class="masthead" style="padding-top: 150px; padding-bottom: 80px">
       <div class="textlanding">
-          <h1>A few theme templates for d3.js</h1>
-          <hr class="short_hr">
-          <br>
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/R_Graph_Gallery">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://github.com/holtzy">
-                <i class="fa fa-github" style="color: white"></i>
-              </a>
-            </li>
-            <li class="list-inline-item social-buttons">
-              <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-          <br><br>
-          <p style="max-width: 700px; margin: auto">It is a common and necessary practice in data visualization to personalize the general appearance of your chart. This post takes a <a href="scatter_basic">basic scatterplot</a> and suggest different themes to display it. These themes are often inspired from existing library in other languages but not only.</p>
+        <h1>A few theme templates for d3.js</h1>
+        <hr class="short_hr" />
+        <br />
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/R_Graph_Gallery">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://github.com/holtzy">
+              <i class="fa fa-github" style="color: white"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-buttons">
+            <a href="https://www.linkedin.com/in/yan-holtz-2477534a/">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+        <br /><br />
+        <p style="max-width: 700px; margin: auto">
+          It is a common and necessary practice in data visualization to
+          personalize the general appearance of your chart. This post takes a
+          <a href="scatter_basic">basic scatterplot</a> and suggest different
+          themes to display it. These themes are often inspired from existing
+          library in other languages but not only.
+        </p>
       </div>
     </header>
 
-
-
-
-
-
-
-
     <!-- TABLE of CONTENT -->
     <div>
-        <nav class="col-sm-3 col-4" id="myScrollspy">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#ggplot2">R ggplot2 library</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#ipsum">R ipsum theme</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#publication">Publication</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#dark">Dark mode</a>
-            </li>
-          </ul>
-        </nav>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== GGPLOT2==================== -->
-
-<section id="ggplot2" class="bg">
-<div class="container" >
-  <h1>Mimicking <code>ggplot2</code> style in d3.js</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-6 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg" id="res-sectionA" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li><a href="https://www.r-graph-gallery.com/portfolio/ggplot2-package/">ggplot2</a> is the most famous R library for data visualization. It is known for this grey background that makes it easy to recognize.</li>
-          <br>
-          <li>Note that a <code>g</code> element can not receive any style. Thus, a rectangle must be drawn on the chart area with a grey fill.</li>
-          <br>
-          <li>An axis is a path element of class <code>domain</code> with g elements of class <code>tick</code>. This allow customization modifying the css of these classes.</li>
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#ggplot2">R ggplot2 library</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ipsum">R ipsum theme</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#publication">Publication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#dark">Dark mode</a>
+          </li>
         </ul>
-      </div>
+      </nav>
     </div>
-  </div>
 
+    <!-- ==================== GGPLOT2==================== -->
 
+    <section id="ggplot2" class="bg">
+      <div class="container">
+        <h1>Mimicking <code>ggplot2</code> style in d3.js</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg" id="res-sectionA"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    <a
+                      href="https://www.r-graph-gallery.com/portfolio/ggplot2-package/"
+                      >ggplot2</a
+                    >
+                    is the most famous R library for data visualization. It is
+                    known for this grey background that makes it easy to
+                    recognize.
+                  </li>
+                  <br />
+                  <li>
+                    Note that a <code>g</code> element can not receive any
+                    style. Thus, a rectangle must be drawn on the chart area
+                    with a grey fill.
+                  </li>
+                  <br />
+                  <li>
+                    An axis is a path element of class <code>domain</code> with
+                    g elements of class <code>tick</code>. This allow
+                    customization modifying the css of these classes.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-6 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-sectionA" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-sectionA" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -211,12 +210,12 @@
 <div id="my_dataviz"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-sectionA" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-sectionA" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 40, left: 50},
@@ -299,97 +298,87 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
 })
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-sectionA", "res-sectionA");
+              myJSParser("js-sectionA", "res-sectionA");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-sectionA")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionA").html("");
+                  myHtmlParser("html-sectionA", "res-sectionA");
+                  myJSParser("js-sectionA", "res-sectionA");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-sectionA', 'res-sectionA')
-myJSParser('js-sectionA', 'res-sectionA')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-sectionA').addEventListener("input", function() {
-d3.select('#res-sectionA').html("");
-myHtmlParser('html-sectionA', 'res-sectionA');
-myJSParser('js-sectionA', 'res-sectionA');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-sectionA').addEventListener("input", function() {
-d3.select('#res-sectionA').html("");
-myHtmlParser('html-sectionA', 'res-sectionA');
-myJSParser('js-sectionA', 'res-sectionA');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== IPSUM STYLE ==================== -->
-
-<section id="ipsum" class="bg">
-<div class="container" >
-  <h1>Mimicking the <code>ipsum</code> style of the hrbrmstr R library in d3.js</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-6 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg" id="res-sectionB" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>The <a href="https://github.com/hrbrmstr/hrbrthemes">hrbrmstr library</a> is widely used in R, notably for its ipsum theme that you can see in action in <a href="https://www.data-to-viz.com">data-to-viz.com</a>.</li>
-          <br>
-          <li>Background is wide but a light grey grid is conserved. Axis names are at the extremity of the chart</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-sectionA")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionA").html("");
+                  myHtmlParser("html-sectionA", "res-sectionA");
+                  myJSParser("js-sectionA", "res-sectionA");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== IPSUM STYLE ==================== -->
 
+    <section id="ipsum" class="bg">
+      <div class="container">
+        <h1>
+          Mimicking the <code>ipsum</code> style of the hrbrmstr R library in
+          d3.js
+        </h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg" id="res-sectionB"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    The
+                    <a href="https://github.com/hrbrmstr/hrbrthemes"
+                      >hrbrmstr library</a
+                    >
+                    is widely used in R, notably for its ipsum theme that you
+                    can see in action in
+                    <a href="https://www.data-to-viz.com">data-to-viz.com</a>.
+                  </li>
+                  <br />
+                  <li>
+                    Background is wide but a light grey grid is conserved. Axis
+                    names are at the extremity of the chart
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-6 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-sectionB" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-sectionB" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -399,12 +388,12 @@ myJSParser('js-sectionA', 'res-sectionA');
 <div id="my_dataviz2"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-sectionB" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-sectionB" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 40, left: 50},
@@ -480,95 +469,83 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
 })
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-sectionB", "res-sectionB");
+              myJSParser("js-sectionB", "res-sectionB");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-sectionB")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionB").html("");
+                  myHtmlParser("html-sectionB", "res-sectionB");
+                  myJSParser("js-sectionB", "res-sectionB");
+                });
 
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-sectionB', 'res-sectionB')
-myJSParser('js-sectionB', 'res-sectionB')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-sectionB').addEventListener("input", function() {
-d3.select('#res-sectionB').html("");
-myHtmlParser('html-sectionB', 'res-sectionB');
-myJSParser('js-sectionB', 'res-sectionB');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-sectionB').addEventListener("input", function() {
-d3.select('#res-sectionB').html("");
-myHtmlParser('html-sectionB', 'res-sectionB');
-myJSParser('js-sectionB', 'res-sectionB');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== PUBLICATION ==================== -->
-
-<section id="publication" class="bg">
-<div class="container" >
-  <h1>Old school publication style in d3.js</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-6 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg" id="res-sectionC" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>A black and white old school template. Looks like the good old base R.</li>
-          <br>
-          <li>It shows how to custom the symbols used on the chart. A list of available symbols are <a href="https://github.com/d3/d3-shape/blob/master/README.md#symbols">here</a>.</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-sectionB")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionB").html("");
+                  myHtmlParser("html-sectionB", "res-sectionB");
+                  myJSParser("js-sectionB", "res-sectionB");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== PUBLICATION ==================== -->
 
+    <section id="publication" class="bg">
+      <div class="container">
+        <h1>Old school publication style in d3.js</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg" id="res-sectionC"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>
+                    A black and white old school template. Looks like the good
+                    old base R.
+                  </li>
+                  <br />
+                  <li>
+                    It shows how to custom the symbols used on the chart. A list
+                    of available symbols are
+                    <a
+                      href="https://github.com/d3/d3-shape/blob/master/README.md#symbols"
+                      >here</a
+                    >.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-6 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-sectionC" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-sectionC" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -578,12 +555,12 @@ myJSParser('js-sectionB', 'res-sectionB');
 <div id="my_dataviz3"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-sectionC" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-sectionC" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 40, left: 50},
@@ -665,104 +642,73 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
 })
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-sectionC", "res-sectionC");
+              myJSParser("js-sectionC", "res-sectionC");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-sectionC")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionC").html("");
+                  myHtmlParser("html-sectionC", "res-sectionC");
+                  myJSParser("js-sectionC", "res-sectionC");
+                });
 
-
-
-
-
-
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-sectionC', 'res-sectionC')
-myJSParser('js-sectionC', 'res-sectionC')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-sectionC').addEventListener("input", function() {
-d3.select('#res-sectionC').html("");
-myHtmlParser('html-sectionC', 'res-sectionC');
-myJSParser('js-sectionC', 'res-sectionC');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-sectionC').addEventListener("input", function() {
-d3.select('#res-sectionC').html("");
-myHtmlParser('html-sectionC', 'res-sectionC');
-myJSParser('js-sectionC', 'res-sectionC');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================== DARK MODE ==================== -->
-
-<section id="dark" class="bg">
-<div class="container" >
-  <h1>Dark mode</h1>
-  <hr>
-  <div class="row">
-
-<!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
-  <div class="col-lg-6 .align-middle">
-    <div style="position: -webkit-sticky; position: sticky; top: 120px">
-      <div class="bg" id="res-sectionD" ></div>
-      <br>
-      <div>
-        <h5>Notes:</h5>
-        <ul>
-          <br>
-          <li>Not very happy with it yet.</li>
-          <br>
-          <li>Just inverse the colors</li>
-        </ul>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-sectionC")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionC").html("");
+                  myHtmlParser("html-sectionC", "res-sectionC");
+                  myJSParser("js-sectionC", "res-sectionC");
+                });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <br />
 
+    <!-- ==================== DARK MODE ==================== -->
 
+    <section id="dark" class="bg">
+      <div class="container">
+        <h1>Dark mode</h1>
+        <hr />
+        <div class="row">
+          <!-- ==================== GRAPH SECTION = WHERE THE GRAPH APPEARS ==================== -->
+          <div class="col-lg-6 .align-middle">
+            <div style="position: -webkit-sticky; position: sticky; top: 120px">
+              <div class="bg" id="res-sectionD"></div>
+              <br />
+              <div>
+                <h5>Notes:</h5>
+                <ul>
+                  <br />
+                  <li>Not very happy with it yet.</li>
+                  <br />
+                  <li>Just inverse the colors</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
-<div class="col-lg-6 text-center .align-middle">
-
-<!-- ========= show html code ============== -->
-<aside style="position: -webkit-sticky; position: sticky; top: 120px">&larr; Edit me! </aside>
-<pre class="language-html"><code id="html-sectionD" contenteditable="true"><xmp><!DOCTYPE html>
+          <!-- ==================== CODE SECTION = WHERE THE CODE APPEARS ==================== -->
+          <div class="col-lg-6 text-center .align-middle">
+            <!-- ========= show html code ============== -->
+            <aside
+              style="position: -webkit-sticky; position: sticky; top: 120px"
+            >
+              &larr; Edit me!
+            </aside>
+            <pre
+              class="language-html"
+            ><code id="html-sectionD" contenteditable="true"><xmp><!DOCTYPE html>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
@@ -772,12 +718,12 @@ myJSParser('js-sectionC', 'res-sectionC');
 <div id="my_dataviz4"></div>
 
 </xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
-
-
-<!-- ========= show JS code ==============  -->
-<pre class="language-js"><code id="js-sectionD" contenteditable="true"><xmp><script>
+            <!-- ========= show JS code ==============  -->
+            <pre
+              class="language-js"
+            ><code id="js-sectionD" contenteditable="true"><xmp><script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 40, left: 50},
@@ -867,182 +813,99 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
 })
 
 </script></xmp></code></pre>
-<!-- ==================================== -->
+            <!-- ==================================== -->
 
+            <!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
+            <script>
+              // At the beginning, I read the html and JS fragments
+              myHtmlParser("html-sectionD", "res-sectionD");
+              myJSParser("js-sectionD", "res-sectionD");
 
+              // If the user change the JS fragment, I run it again:
+              document
+                .getElementById("js-sectionD")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionD").html("");
+                  myHtmlParser("html-sectionD", "res-sectionD");
+                  myJSParser("js-sectionD", "res-sectionD");
+                });
 
-
-
-
-
-
-
-
-
-
-<!-- ==================== JAVASCRIPT SECTION : EXECUTE THIS CODE AND MAKE IT INTERACTIVE ==================== -->
-<script>
-// At the beginning, I read the html and JS fragments
-myHtmlParser('html-sectionD', 'res-sectionD')
-myJSParser('js-sectionD', 'res-sectionD')
-
-// If the user change the JS fragment, I run it again:
-document.getElementById('js-sectionD').addEventListener("input", function() {
-d3.select('#res-sectionD').html("");
-myHtmlParser('html-sectionD', 'res-sectionD');
-myJSParser('js-sectionD', 'res-sectionD');
-})
-
-// If the user change the HTML fragment, I run it again:
-document.getElementById('html-sectionD').addEventListener("input", function() {
-d3.select('#res-sectionD').html("");
-myHtmlParser('html-sectionD', 'res-sectionD');
-myJSParser('js-sectionD', 'res-sectionD');
-})
-</script>
-
-</div>
-
-
-  </div>
-</div>
-</section>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ============================ RELATED BLOCKS ============================ -->
-
-<section id="related" class="bg-light" style="padding-top: 70px; padding-bottom: 70px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 text-center .align-middle" style="border-right: solid; ">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <h2 class="section-heading text-uppercase" style="color: black">Related blocks</h2>
+              // If the user change the HTML fragment, I run it again:
+              document
+                .getElementById("html-sectionD")
+                .addEventListener("input", function () {
+                  d3.select("#res-sectionD").html("");
+                  myHtmlParser("html-sectionD", "res-sectionD");
+                  myJSParser("js-sectionD", "res-sectionD");
+                });
+            </script>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div style="display: table; height: 150px; overflow: hidden;">
-          <div style="display: table-cell; vertical-align: middle;">
-            <ul>
-            <li><i>Customizing axis in d3.js</i> by <a href="custom_axis.html">the d3 graph gallery</a></li>
-            </ul>
+    </section>
+    <br />
+
+    <!-- ============================ RELATED BLOCKS ============================ -->
+
+    <section
+      id="related"
+      class="bg-light"
+      style="padding-top: 70px; padding-bottom: 70px"
+    >
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 text-center .align-middle"
+            style="border-right: solid"
+          >
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <h2 class="section-heading text-uppercase" style="color: black">
+                  Related blocks
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div style="display: table; height: 150px; overflow: hidden">
+              <div style="display: table-cell; vertical-align: middle">
+                <ul>
+                  <li>
+                    <i>Customizing axis in d3.js</i> by
+                    <a href="custom_axis.html">the d3 graph gallery</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ============================ CONTACT SECTION ============================ -->
 
+    <!-- ANCHOR -->
+    <a name="contactanchor"></a>
 
+    <section id="contact" class="bg" style="background-color: white"></section>
 
+    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
+    <script>
+      $(function () {
+        $("#contact").load("../html_chunk/contact.html");
+      });
+    </script>
 
+    <!-- ============================ FOOTER SECTION ============================ -->
+    <footer class="bg-light" id="myFooter"></footer>
 
+    <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
+    <script>
+      $(function () {
+        $("#myFooter").load("../html_chunk/footer.html");
+      });
+    </script>
 
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-102"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-
-
-
-
-<!-- ============================ CONTACT SECTION ============================ -->
-
-  <!-- ANCHOR -->
-  <a name="contactanchor"></a>
-
-
-<section id="contact" class="bg" style="background-color: white"></section>
-
-<!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-<script>
-$(function(){
-  $("#contact").load("../html_chunk/contact.html");
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Ezoic - bottom_of_page - bottom_of_page -->
-<div id="ezoic-pub-ad-placeholder-103"> </div>
-<!-- End Ezoic - bottom_of_page - bottom_of_page -->
-
-
-<!-- ============================ FOOTER SECTION ============================ --><footer class="bg-light" id="myFooter"></footer>
-
-<!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
-<script>
-$(function(){
-  $("#myFooter").load("../html_chunk/footer.html");
-});
-</script>
-
-<!-- ============================ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ============================ -->
   </body>
-
 </html>
