@@ -1,0 +1,31 @@
+name: "Update Ads.txt file"
+
+# on:
+#   schedule:
+#     - cron: "*/5 * * * *"
+on: push
+
+jobs:
+  update-ads-txt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch ads.txt content
+        run: |
+          curl -L https://ads.adthrive.com/sites/643436a4e6d20859e40a446b/ads.txt > ads.txt
+          if [ $? -eq 0 ]; then
+            echo "ads.txt fetched successfully."
+          else
+            echo "Failed to fetch ads.txt."
+            exit 1
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ads.txt
+          git commit -m "Update ads.txt"
+          git push
