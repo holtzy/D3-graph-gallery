@@ -12,19 +12,38 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Fetch ads.txt content
-        run: |
-          curl -L https://ads.adthrive.com/sites/643436a4e6d20859e40a446b/ads.txt > ads.txt
-          if [ $? -eq 0 ]; then
-            echo "ads.txt fetched successfully."
-          else
-            echo "Failed to fetch ads.txt."
-            exit 1
-          fi
+      run: |
+        curl -L https://ads.adthrive.com/sites/643436a4e6d20859e40a446b/ads.txt > fetched_ads.txt
+        if [ $? -eq 0 ]; then
+          echo "ads.txt fetched successfully."
+        else
+          echo "Failed to fetch ads.txt."
+          exit 1
+        fi
 
-      - name: Commit and push changes
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add ads.txt
-          git commit -m "Update ads.txt"
-          git push
+    - name: Compare fetched file with existing ads.txt
+      id: compare-files
+      run: |
+        if cmp -s fetched_ads.txt ads.txt; then
+          echo "No changes in ads.txt."
+          exit 0
+        else
+          echo "ads.txt has changed."
+          mv fetched_ads.txt ads.txt
+        fi
+
+    - name: Commit and push changes
+      if: steps.compare-files.outputs.result != 'No changes in ads.txt.'
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add ads.txt
+        git commit -m "Update ads.txt"
+        git push
+
+
+
+
+
+
+
