@@ -10,3 +10,7 @@ Please feel free to open issues or pull request if you see anything that could b
 
 ![image](https://user-images.githubusercontent.com/10254401/157419049-d97c5338-2ee2-4ab9-b3a4-5182790f2123.png)
 
+## License
+
+[MIT](LICENSE.md) © [Holtz Yan](https://github.com/holtzy)
+
