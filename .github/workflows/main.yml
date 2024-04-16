@@ -1,12 +1,8 @@
 name: "Update Ads.txt file"
 
-# on:
-#   schedule:
-#     - cron: "0 0 * * *"
 on:
-  push:
-    branches:
-      - "*"
+  schedule:
+    - cron: "0 0 * * *" # Runs at midnight every day
 
 jobs:
   update-ads-txt:
@@ -39,8 +35,12 @@ jobs:
       - name: Commit and push changes
         if: steps.compare-files.outputs.result != 'No changes in ads.txt.'
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add ads.txt
-          git commit -m "Update ads.txt"
-          git push
+          if [ "$(git status --porcelain ads.txt)" ]; then
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add ads.txt
+            git commit -m "Update ads.txt"
+            git push
+          else
+            echo "No changes to commit."
+          fi
