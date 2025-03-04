@@ -242,14 +242,14 @@ svg.append("circle")
   .attr("r", 40)
   .attr("fill", "#69b3a2")
 
-// create a tooltip
+// Create a tooltip
 var tooltip = d3.select("#my_dataviz")
   .append("div")
     .style("position", "absolute")
     .style("visibility", "hidden")
     .text("I'm a circle!");
 
-//
+// Show, move and hide the tooltip
 d3.select("#circleBasicTooltip")
   .on("mouseover", () => tooltip.style("visibility", "visible"))
   .on("mousemove", () => tooltip.style("top", (event.offsetY-30)+"px").style("left",(event.offsetX+10)+"px"))
@@ -371,7 +371,7 @@ svg_customContent.append("circle")
   .attr("r", 40)
   .attr("fill", "#69b3a2")
 
-// create a tooltip
+// Create a tooltip
 var tooltip2 = d3.select("#div_customContent")
   .append("div")
     .style("position", "absolute")
@@ -388,7 +388,7 @@ var tooltip2 = d3.select("#div_customContent")
       <span style='font-size: 40px;'>Isn't it?</span>
     `);
 
-
+// Show, move and hide the tooltip
 d3.select("#circleCustomTooltip")
   .on("mouseover", () => tooltip2.style("visibility", "visible"))
   .on("mousemove", () => tooltip2.style("top", (event.offsetY+30)+"px").style("left",(event.offsetX-90)+"px"))
