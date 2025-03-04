@@ -251,9 +251,9 @@ var tooltip = d3.select("#my_dataviz")
 
 //
 d3.select("#circleBasicTooltip")
-  .on("mouseover", function(){return tooltip.style("visibility", "visible");})
-  .on("mousemove", function(){return tooltip.style("top", (event.pageY-800)+"px").style("left",(event.pageX-800)+"px");})
-  .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+  .on("mouseover", () => tooltip.style("visibility", "visible"))
+  .on("mousemove", () => tooltip.style("top", (event.offsetY-30)+"px").style("left",(event.offsetX+10)+"px"))
+  .on("mouseout", () => tooltip.style("visibility", "hidden"));
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -385,9 +385,9 @@ var tooltip2 = d3.select("#div_customContent")
 
 
 d3.select("#circleCustomTooltip")
-  .on("mouseover", function(){return tooltip2.style("visibility", "visible");})
-  .on("mousemove", function(){return tooltip2.style("top", (event.pageY-2390)+"px").style("left",(event.pageX-800)+"px");})
-  .on("mouseout", function(){return tooltip2.style("visibility", "hidden");});
+  .on("mouseover", () => tooltip2.style("visibility", "visible"))
+  .on("mousemove", () => tooltip2.style("top", (event.offsetY-30)+"px").style("left",(event.offsetX+10)+"px"))
+  .on("mouseout", () => tooltip2.style("visibility", "hidden"));
 
 </script></xmp></code></pre>
 <!-- ==================================== -->
@@ -446,23 +446,24 @@ myJSParser('js-customContent', 'res-customContent');
 
 <section id="position" class="bg">
 <div class="container" >
-  <h1>Control tooltip position: <code>event.pageX</code> or <code>d3.select(this)</code></h1>
+  <h1>Control tooltip position: <code>event.offsetX</code> or <code>d3.select(this)</code></h1>
   <hr>
-  <p>Two different functions allow to recover the mouse position and use it to control the tooltip position.
+  <p>There are a number of different ways to recover the mouse position and use it to control the tooltip position.
   <br><br>
   <ul>
     <li>
-      <p><code>event.pageX()</code> and <code>event.pageY()</code>. Recover the mouse position when the event happens. Used in the above example. Code looks like that:</p>
+      <p><code>event.offsetX</code> and <code>event.offsetY</code> are properties of <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">MouseEvent</a>. They provide the mouse position when the event happens. Used in the above example. The code looks like this:</p>
       <pre class="language-js"><code id="js-customContent" contenteditable="false"><xmp>
       tooltip
-        .style("top", (event.pageY)+"px")
-        .style("left",(event.pageX)+"px")
+        .style("top", (event.offsetY)+"px")
+        .style("left",(event.offsetX)+"px")
       </xmp></code></pre>
-      <p>Note that you can add a numeric value next to <code>event.pageX</code> or Y to adjust the tooltip position</p>
+      <p>You can add a numeric value next to <code>event.offsetX</code> or Y to adjust the tooltip position</p>
+      <p><u>Note</u>: As well as <code>event.offsetX</code>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">MouseEvent</a> provides a number of other position properties like <code>pageX</code>, <code>screenX</code> and <code>clientX</code>. See <a href="https://stackoverflow.com/q/6073505/13762264">here</a> for more information about the differences between these.</p>
     </li>
     <br><br>
     <li>
-      <code>d3.select(this)</code> is the second option. It selects the element that is hovered. Thus, it is possible to get whatever attribute or style of this element, like its position. If the element is a circle, you can get the <code>cx</code> attribute, which is the horizontal positioning.</p>
+      <code>d3.select(this)</code> is a second option. It selects the element that is hovered. Thus, it is possible to get whatever attribute or style of this element, like its position. If the element is a circle, you can get the <code>cx</code> attribute, which is the horizontal positioning.</p>
       <pre class="language-js"><code id="js-customContent" contenteditable="false"><xmp>
       tooltip
         .style("top", d3.select(this).attr("cy") + "px");
@@ -480,8 +481,6 @@ myJSParser('js-customContent', 'res-customContent');
     </li>
   </ul>
   <br><br>
-  <p><u>Note</u>: It can sometimes be quite a pain to position tooltips if you have a complex layout in your webpage. For instance, this post uses the <u>bootstrap</u> framework to build columns. Thus the <code>event.pageY()</code> position must be corrected.</p>
-  <p><u>ToDo</u>: Dig <a href="https://stackoverflow.com/questions/16256454/d3-js-position-tooltips-using-element-position-not-mouse-position">here</a> to understand this problem more in depth</p>
 </div>
 </section>
 
