@@ -391,7 +391,7 @@ var tooltip2 = d3.select("#div_customContent")
 
 d3.select("#circleCustomTooltip")
   .on("mouseover", () => tooltip2.style("visibility", "visible"))
-  .on("mousemove", () => tooltip2.style("top", (event.offsetY-30)+"px").style("left",(event.offsetX-90)+"px"))
+  .on("mousemove", () => tooltip2.style("top", (event.offsetY+30)+"px").style("left",(event.offsetX-90)+"px"))
   .on("mouseout", () => tooltip2.style("visibility", "hidden"));
 
 </script></xmp></code></pre>
