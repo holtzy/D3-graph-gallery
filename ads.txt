@@ -99,3 +99,5 @@ indexexchange.com, 206233, RESELLER, 50b1c356f2c5c8fc #banner, video
 cafemedia.com, 643436a4e6d20859e40a446b, DIRECT, ecc1a0488da6f87f
 cafemedia.com, 6434363f8715be59e646235f, DIRECT, ecc1a0488da6f87f
 ownerdomain=r-graph-gallery.com
+# END OF RAPTIVE LINE ITEMS
+# START OF d3-graph-gallery.com CONTROLLED LINES
