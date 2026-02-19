@@ -301,11 +301,10 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Stack the data: each group will be represented on top of each other
   var mygroups = ["Helen", "Amanda", "Ashley"] // list of group names
-  var mygroup = [1,2,3] // list of group names
   var stackedData = d3.stack()
-    .keys(mygroup)
+    .keys(mygroups)
     .value(function(d, key){
-      return d.values[key].n
+      return d.values.find((row) => row.name === key)?.n || 0;
     })
     (sumstat)
 
@@ -335,7 +334,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .data(stackedData)
     .enter()
     .append("path")
-      .style("fill", function(d) { name = mygroups[d.key-1] ;  return color(name); })
+      .style("fill", function(d) { return color(d.key); })
       .attr("d", d3.area()
         .x(function(d, i) { return x(d.data.key); })
         .y0(function(d) { return y(d[0]); })
@@ -373,14 +372,13 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Stack the data: each group will be represented on top of each other
   const mygroups = ["Helen", "Amanda", "Ashley"] // list of group names
-  const mygroup = [1,2,3] // list of group names
   const stackedData = d3.stack()
-    .keys(mygroup)
+    .keys(mygroups)
     .value(function(d, key){
-      return d[1][key].n
+      return d[1].find((row) => row.name === key)?.n || 0;
     })
     (sumstat)
-
+    
   // Add X axis --> it is a date format
   const x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d.year; }))
@@ -406,7 +404,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .selectAll("mylayers")
     .data(stackedData)
     .join("path")
-      .style("fill", function(d) { name = mygroups[d.key-1] ;  return color(name); })
+      .style("fill", function(d) { return color(d.key); })
       .attr("d", d3.area()
         .x(function(d, i) { return x(d.data[0]); })
         .y0(function(d) { return y(d[0]); })
