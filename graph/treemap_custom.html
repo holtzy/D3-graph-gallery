@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- AdThrive Head Tag Manual -->
-    <script data-no-optimize="1" data-cfasync="false">
-      (function (w, d) {
-        w.adthrive = w.adthrive || {};
-        w.adthrive.cmd = w.adthrive.cmd || [];
-        w.adthrive.plugin = "adthrive-ads-manual";
-        w.adthrive.host = "ads.adthrive.com";
-        var s = d.createElement("script");
-        s.async = true;
-        s.referrerpolicy = "no-referrer-when-downgrade";
-        s.src =
-          "https://" +
-          w.adthrive.host +
-          "/sites/643436a4e6d20859e40a446b/ads.min.js?referrer=" +
-          w.encodeURIComponent(w.location.href) +
-          "&cb=" +
-          (Math.floor(Math.random() * 100) + 1);
-        var n = d.getElementsByTagName("script")[0];
-        n.parentNode.insertBefore(s, n);
-      })(window, document);
-    </script>
-    <!-- End of AdThrive Head Tag -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
@@ -576,50 +554,6 @@ write(a, "data_dendrogram_full.json")
     <!-- ============================ FOOTER SECTION ============================ -->
     <footer class="bg-light" id="myFooter"></footer>
 
-    <!-- Start Added by AdThrive -->
-    <script
-      type="text/javascript"
-      async
-      src="https://btloader.com/tag?o=5698917485248512&upapi=true&domain=d3-graph-gallery.com"
-    ></script>
-    <script>
-      !(function () {
-        "use strict";
-        var e;
-        (e = document),
-          (function () {
-            var t, n;
-            function r() {
-              var t = e.createElement("script");
-              (t.src =
-                "https://cafemedia-com.videoplayerhub.com/galleryplayer.js"),
-                e.head.appendChild(t);
-            }
-            function a() {
-              var t = e.cookie.match("(^|[^;]+)\s*__adblocker\s*=\s*([^;]+)");
-              return t && t.pop();
-            }
-            function c() {
-              clearInterval(n);
-            }
-            return {
-              init: function () {
-                var e;
-                "true" === (t = a())
-                  ? r()
-                  : ((e = 0),
-                    (n = setInterval(function () {
-                      (100 !== e && "false" !== t) || c(),
-                        "true" === t && (r(), c()),
-                        (t = a()),
-                        e++;
-                    }, 50)));
-              },
-            };
-          })().init();
-      })();
-    </script>
-    <!-- End Added by AdThrive -->
 
     <!-- THIS ALLOWS TO INSERT THE FOOTER THAT IS STORED IN A FOOTER.HTML FILE-->
     <script>
