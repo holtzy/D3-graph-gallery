@@ -393,6 +393,25 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
 
     <!-- ============================ -->
 
+    <!-- ============================ NEWSLETTER SECTION ============================ -->
+    <section style="background-color: #edf6f3; padding-top: 90px; padding-bottom: 90px">
+      <!-- Reusable visual + pitch (edit once in html_chunk/newsletter.html) -->
+      <div id="newsletter"></div>
+      <script>
+        $(function () {
+          $("#newsletter").load("../html_chunk/newsletter.html");
+        });
+      </script>
+      <!-- Kit subscribe form - inline so it renders reliably -->
+      <div class="container" style="max-width: 480px; margin-top: 10px">
+        <script
+          async
+          data-uid="4de2a37b7b"
+          src="https://prodigious-trailblazer-3628.kit.com/4de2a37b7b/index.js"
+        ></script>
+      </div>
+    </section>
+
     <!-- ============================ RELATED BLOCKS ============================ -->
 
     <section class="bg-light" style="padding-top: 70px; padding-bottom: 70px">

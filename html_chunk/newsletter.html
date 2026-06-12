@@ -1,0 +1,111 @@
+<!--
+  Reusable newsletter visual + pitch for the "Learn D3 in 6 steps" email course.
+  Loaded via jQuery .load() into a <div id="newsletter"></div>.
+  The Kit subscribe form (<script data-uid=...>) is embedded INLINE on the page,
+  directly below this chunk - not here - so it renders reliably.
+-->
+<style>
+  .nl-wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 16px;
+  }
+  .nl-strip {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .nl-frame {
+    width: 54px;
+  }
+  .nl-plot {
+    height: 44px;
+    border-left: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 3px;
+    padding: 0 4px 0 3px;
+  }
+  .nl-plot span {
+    width: 7px;
+    display: block;
+    background: #cccccc;
+  }
+  .nl-frame.nl-done .nl-plot span {
+    background: #69b3a2;
+  }
+  .nl-frame.nl-done .nl-plot {
+    border-color: #b35900;
+  }
+  .nl-step {
+    font-size: 11px;
+    color: #999;
+    margin-top: 7px;
+  }
+  .nl-frame.nl-done .nl-step {
+    color: #b35900;
+    font-weight: 600;
+  }
+  .nl-title {
+    font-size: 34px;
+    margin: 0 0 14px;
+  }
+  .nl-sub {
+    font-size: 16px;
+    color: #555;
+    margin: 0 auto;
+    max-width: 470px;
+  }
+</style>
+
+<div class="nl-wrap">
+  <div class="nl-strip">
+    <div class="nl-frame">
+      <div class="nl-plot"></div>
+      <div class="nl-step">1</div>
+    </div>
+    <div class="nl-frame">
+      <div class="nl-plot"><span style="height: 30%"></span></div>
+      <div class="nl-step">2</div>
+    </div>
+    <div class="nl-frame">
+      <div class="nl-plot">
+        <span style="height: 30%"></span><span style="height: 55%"></span>
+      </div>
+      <div class="nl-step">3</div>
+    </div>
+    <div class="nl-frame">
+      <div class="nl-plot">
+        <span style="height: 45%"></span><span style="height: 70%"></span
+        ><span style="height: 35%"></span>
+      </div>
+      <div class="nl-step">4</div>
+    </div>
+    <div class="nl-frame">
+      <div class="nl-plot">
+        <span style="height: 60%"></span><span style="height: 90%"></span
+        ><span style="height: 45%"></span><span style="height: 75%"></span>
+      </div>
+      <div class="nl-step">5</div>
+    </div>
+    <div class="nl-frame nl-done">
+      <div class="nl-plot">
+        <span style="height: 60%"></span><span style="height: 90%"></span
+        ><span style="height: 45%"></span><span style="height: 75%"></span>
+      </div>
+      <div class="nl-step">6 &#10003;</div>
+    </div>
+  </div>
+
+  <h3 class="nl-title">Struggle to learn D3.js?</h3>
+  <p class="nl-sub">
+    Get my free 6-step email course. One email, one concept &mdash; from a blank
+    page to your first real chart.
+  </p>
+</div>
