@@ -1,14 +1,10 @@
 <!--
-  Reusable newsletter section (the "Struggling with D3.js?" pitch + Kit form).
-  Same wording as the bottom-right newsletter toast.
+  Site-wide footer newsletter section (the "Struggling with D3.js?" pitch + Kit
+  form). Same wording as the bottom-right newsletter toast. This replaced the old
+  "Dataviz decision tree" footer (contact.html) on every page.
 
-  Use it by loading it into a container, e.g.:
-    <div id="newsletter_section"></div>
-    <script>
-      $(function () {
-        $("#newsletter_section").load("../html_chunk/newsletter_section.html");
-      });
-    </script>
+  Every page loads it into its <section id="contact"> via:
+    $("#contact").load("../html_chunk/newsletter_section.html");
 
   The Kit (ConvertKit) form is injected via JS into #nls-form below, rather than
   left as a static <script data-uid> tag, because the data-uid embed does NOT
@@ -17,9 +13,9 @@
 -->
 <style>
   .nls-section {
-    background-color: #f7f7f7;
-    padding-top: 90px;
-    padding-bottom: 90px;
+    background-color: #fff;
+    padding-top: 70px;
+    padding-bottom: 20px;
   }
   .nls-inner {
     max-width: 520px;
