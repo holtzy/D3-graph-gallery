@@ -770,14 +770,16 @@ $(function(){
     <!-- ANCHOR -->
     <a name="contactanchor"></a>
 
-    <section id="contact" class="bg" style="background-color: white"></section>
-
-    <!-- THIS ALLOWS TO INSERT THE CONTACT CHUNK THAT IS STORED IN A CONTACT.HTML FILE-->
-    <script>
-      $(function () {
-        $("#contact").load("../html_chunk/contact.html");
-      });
-    </script>
+    <!-- ============================ NEWSLETTER SECTION ============================ -->
+    <!-- Reusable newsletter pitch + Kit form (edit once in html_chunk/newsletter_section.html) -->
+    <section id="contact" class="bg" style="background-color: white">
+      <div id="newsletter_section"></div>
+      <script>
+        $(function () {
+          $("#newsletter_section").load("../html_chunk/newsletter_section.html");
+        });
+      </script>
+    </section>
 
     <!-- ============================ FOOTER SECTION ============================ -->
     <footer class="bg-light" id="myFooter"></footer>

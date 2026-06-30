@@ -1,0 +1,83 @@
+<!--
+  Reusable newsletter section (the "Struggling with D3.js?" pitch + Kit form).
+  Same wording as the bottom-right newsletter toast.
+
+  Use it by loading it into a container, e.g.:
+    <div id="newsletter_section"></div>
+    <script>
+      $(function () {
+        $("#newsletter_section").load("../html_chunk/newsletter_section.html");
+      });
+    </script>
+
+  The Kit (ConvertKit) form is injected via JS into #nls-form below, rather than
+  left as a static <script data-uid> tag, because the data-uid embed does NOT
+  render reliably when this chunk is pulled in through jQuery .load(). Injecting
+  it ourselves once the container exists renders it every time.
+-->
+<style>
+  .nls-section {
+    background-color: #f7f7f7;
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+  .nls-inner {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 16px;
+    text-align: center;
+  }
+  .nls-title {
+    color: #222;
+    margin-bottom: 18px;
+  }
+  .nls-body {
+    font-size: 16px;
+    color: #555;
+    margin: 0 auto;
+  }
+  .nls-prompt {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 18px 0 0;
+  }
+  .nls-form {
+    margin-top: 32px;
+    min-height: 40px;
+  }
+  .nls-foot {
+    font-size: 12px;
+    color: #9a9a9a;
+    margin-top: 10px;
+  }
+</style>
+
+<section class="nls-section">
+  <div class="nls-inner">
+    <h2 class="section-heading text-uppercase nls-title">
+      Struggling with D3.js?
+    </h2>
+    <p class="nls-body">
+      I know the pain and have been there before. A few key concepts and tips
+      can be a real game changer when working with D3. Want me to send them your
+      way?
+    </p>
+    <p class="nls-prompt">Want to receive a few emails to help?</p>
+    <div id="nls-form" class="nls-form"></div>
+    <p class="nls-foot">Join 19k+ subscribers, and leave whenever you want.</p>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var c = document.getElementById("nls-form");
+    // Avoid double-injection if the chunk is loaded more than once.
+    if (!c || c.querySelector("script, form")) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.setAttribute("data-uid", "2fe2715a3b");
+    s.src = "https://prodigious-trailblazer-3628.kit.com/2fe2715a3b/index.js";
+    c.appendChild(s);
+  })();
+</script>
