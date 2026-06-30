@@ -40,16 +40,27 @@
     font-size: 16px;
     font-weight: 700;
     color: #333;
-    margin: 18px 0 0;
+    margin: 32px 0 24px;
   }
   .nls-form {
-    margin-top: 32px;
     min-height: 40px;
+  }
+  /* Kit ships the embedded form with its own (sometimes negative) top margin,
+     which collapses up over the prompt. Reset it and let .nls-prompt own the gap. */
+  .nls-form .formkit-form,
+  .nls-form form {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .nls-form [data-element="fields"] {
+    margin: 0 !important;
+    padding: 0 !important;
   }
   .nls-foot {
     font-size: 12px;
     color: #9a9a9a;
-    margin-top: 10px;
+    margin-top: 16px;
   }
 </style>
 

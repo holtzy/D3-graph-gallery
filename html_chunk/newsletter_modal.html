@@ -1,0 +1,109 @@
+<!--
+  Reusable newsletter MODAL (the "Struggling with D3.js?" pitch + Kit form).
+  Triggered from the envelope icon in the navbar (html_chunk/menu.html):
+    <a data-toggle="modal" href="#newsletterModal"> ... envelope ... </a>
+
+  It is loaded once, globally, from menu.html (which is itself on every page), so
+  this file is the single source of truth for the modal - edit it here only.
+
+  Like the other newsletter containers, the Kit (ConvertKit) form is injected via
+  JS into #nlm-form rather than left as a static <script data-uid> tag, because
+  that embed does not render reliably when the chunk is pulled in via jQuery .load().
+-->
+<style>
+  .nlm-body {
+    font-size: 16px;
+    color: #555;
+    margin: 0 auto;
+    max-width: 460px;
+  }
+  .nlm-prompt {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 32px 0 24px;
+  }
+  .nlm-form {
+    min-height: 40px;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+  /* Kit ships the embedded form with its own (sometimes negative) top margin,
+     which collapses up over the prompt. Reset it and let .nlm-prompt own the gap. */
+  .nlm-form .formkit-form,
+  .nlm-form form {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .nlm-form [data-element="fields"] {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .nlm-foot {
+    font-size: 12px;
+    color: #9a9a9a;
+    margin-top: 16px;
+  }
+</style>
+
+<div
+  class="modal fade"
+  id="newsletterModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+  style="margin-right: 20px; margin-left: 20px"
+>
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px">
+    <div class="modal-content">
+      <div class="close-modal" data-dismiss="modal">
+        <a href=""
+          ><p
+            style="
+              color: #b8b8b8;
+              padding-right: 15px;
+              padding-top: 5px;
+              text-align: right;
+              font-size: 23px;
+            "
+          >
+            &#10005;
+          </p></a
+        >
+      </div>
+      <div class="container">
+        <div
+          class="modal-body"
+          style="padding: 10px 30px 50px; text-align: center"
+        >
+          <h2 class="section-heading text-uppercase" style="color: #222">
+            Struggling with D3.js?
+          </h2>
+          <p class="nlm-body">
+            I know the pain and have been there before. Every now and then I
+            share the key concepts, tips and tricks that make D3 finally click.
+          </p>
+          <p class="nlm-prompt">Want to receive a few emails to help?</p>
+          <div id="nlm-form" class="nlm-form"></div>
+          <p class="nlm-foot">
+            Join 19k+ subscribers, and leave whenever you want.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var c = document.getElementById("nlm-form");
+    // Avoid double-injection if the chunk is loaded more than once.
+    if (!c || c.querySelector("script, form")) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.setAttribute("data-uid", "2fe2715a3b");
+    s.src = "https://prodigious-trailblazer-3628.kit.com/2fe2715a3b/index.js";
+    c.appendChild(s);
+  })();
+</script>

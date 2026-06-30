@@ -170,13 +170,34 @@
       <li class="nav-item">
         <a class="nav-link js-scroll-trigger" href="../about.html">About</a>
       </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          data-toggle="modal"
+          href="#newsletterModal"
+          title="Get D3 tips by email"
+          ><i class="fa fa-envelope-o" style="font-size: 22px"></i
+        ></a>
+      </li>
     </ul>
   </div>
 </div>
-<a
-  class="nav-link btn btn-primary d-none d-lg-block"
-  style="border-width: 1px"
-  data-toggle="modal"
-  href="#dataToVizPoster"
-  >Dataviz Decision Tree</a
->
+
+<!--
+  Load the newsletter modal once, at body level. The navbar is on every page, so
+  this gives every page the #newsletterModal opened by the envelope icon above.
+  The modal markup itself lives in html_chunk/newsletter_modal.html.
+-->
+<script>
+  $(function () {
+    if (!document.getElementById("newsletterModalInsertion")) {
+      var d = document.createElement("div");
+      d.id = "newsletterModalInsertion";
+      document.body.appendChild(d);
+      $("#newsletterModalInsertion").load(
+        "../html_chunk/newsletter_modal.html"
+      );
+    }
+  });
+</script>
