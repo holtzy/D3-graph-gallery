@@ -96,9 +96,9 @@
     var body = document.createElement("p");
     body.className = "nlt-body";
     body.innerHTML =
-      "I know the pain and have been there before. A few key concepts and " +
-      "tips can be a real game changer when working with D3. Want me to send " +
-      "them your way?";
+      "I've been there too. So I made a free 6-email course: one email, one " +
+      "concept, from a blank page to your first real D3 chart. Want it in your " +
+      "inbox?";
 
     var formWrap = document.createElement("div");
     formWrap.className = "nlt-form";

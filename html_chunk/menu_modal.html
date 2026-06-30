@@ -66,7 +66,7 @@
                 src="../img/section/ScatterPlot150.png"
                 alt=""
               /> </a
-            ><a href="../heatmap">
+            ><a href="../heatmap.html">
               <img
                 class="img-fluid imageOfMenu"
                 src="../img/section/Heatmap150.png"
@@ -381,7 +381,6 @@
   </div>
 </div>
 
-
 <script src="../js/d3.v4.js"></script>
 <script>
   // A function that returns a list of interesting pages for the query
@@ -408,7 +407,7 @@
         // If no result, display a no result message
         if (data.items.length == 0) {
           div.html(
-            "<center><p>😔<i>No result found, sorry...</i>😔</p></center>"
+            "<center><p>😔<i>No result found, sorry...</i>😔</p></center>",
           );
         }
 
@@ -429,7 +428,9 @@
               .replace("<li>", "")
               .replace(
                 toSearch,
-                "<span style='background-color: yellow'>" + toSearch + "</span>"
+                "<span style='background-color: yellow'>" +
+                  toSearch +
+                  "</span>",
               );
             codeReady =
               "<p class='codeResearch'>....." + cleanCode + ".....</p>";
