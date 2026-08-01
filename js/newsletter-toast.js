@@ -91,14 +91,15 @@
 
     var title = document.createElement("p");
     title.className = "nlt-title";
-    title.textContent = "Build anything with AI + D3.";
+    title.textContent = "A golden age for dataviz.";
 
     var body = document.createElement("p");
     body.className = "nlt-body";
     body.innerHTML =
-      "Here's my exact setup — which libraries to reach for, my Claude Skills, " +
-      "and the workflow that turns an idea into a working chart in minutes. " +
-      "Want it in your inbox?";
+      "AI + D3 now builds literally any bespoke, interactive chart in minutes. " +
+      "I recorded a 5-minute video walking through my setup: agentic AI, D3 " +
+      "Skills, the fastest way to deploy, and the libraries that changed " +
+      "everything. Want it in your inbox?";
 
     var formWrap = document.createElement("div");
     formWrap.className = "nlt-form";
