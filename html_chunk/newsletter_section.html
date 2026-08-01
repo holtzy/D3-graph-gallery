@@ -1,7 +1,10 @@
 <!--
-  Site-wide footer newsletter section (the "Struggling with D3.js?" pitch + Kit
-  form). Same wording as the bottom-right newsletter toast. This replaced the old
+  Site-wide footer newsletter section (the "Build anything with AI + D3." pitch
+  + Kit form). Same wording as the bottom-right newsletter toast. This replaced the old
   "Dataviz decision tree" footer (contact.html) on every page.
+
+  Keep the wording here in sync with js/newsletter-toast.js and
+  newsletter_modal.html - the three surfaces share one pitch and one Kit form.
 
   Every page loads it into its <section id="contact"> via:
     $("#contact").load("../html_chunk/newsletter_section.html");
@@ -63,11 +66,11 @@
 <section class="nls-section">
   <div class="nls-inner">
     <h2 class="section-heading text-uppercase nls-title">
-      Struggling with D3.js?
+      Build anything with AI + D3.
     </h2>
     <p class="nls-body">
-      I've been there too. So I made a free 6-email course: one email, one
-      concept, from a blank page to your first real D3 chart.
+      Here's my exact setup — which libraries to reach for, my Claude Skills,
+      and the workflow that turns an idea into a working chart in minutes.
     </p>
     <p class="nls-prompt">Want it in your inbox?</p>
     <div id="nls-form" class="nls-form"></div>
@@ -82,8 +85,8 @@
     if (!c || c.querySelector("script, form")) return;
     var s = document.createElement("script");
     s.async = true;
-    s.setAttribute("data-uid", "2fe2715a3b");
-    s.src = "https://prodigious-trailblazer-3628.kit.com/2fe2715a3b/index.js";
+    s.setAttribute("data-uid", "cf3cd90a5f");
+    s.src = "https://prodigious-trailblazer-3628.kit.com/cf3cd90a5f/index.js";
     c.appendChild(s);
   })();
 </script>

@@ -18,7 +18,7 @@
   "use strict";
 
   // --- Config (tweak freely) ------------------------------------------------
-  var KIT_FORM_UID = "2fe2715a3b";
+  var KIT_FORM_UID = "cf3cd90a5f";
   var KIT_SCRIPT_SRC =
     "https://prodigious-trailblazer-3628.kit.com/" + KIT_FORM_UID + "/index.js";
   var DELAY_MS = 8000; // show after a few seconds of usage
@@ -91,14 +91,14 @@
 
     var title = document.createElement("p");
     title.className = "nlt-title";
-    title.textContent = "Struggling with D3.js?";
+    title.textContent = "Build anything with AI + D3.";
 
     var body = document.createElement("p");
     body.className = "nlt-body";
     body.innerHTML =
-      "I've been there too. So I made a free 6-email course: one email, one " +
-      "concept, from a blank page to your first real D3 chart. Want it in your " +
-      "inbox?";
+      "Here's my exact setup — which libraries to reach for, my Claude Skills, " +
+      "and the workflow that turns an idea into a working chart in minutes. " +
+      "Want it in your inbox?";
 
     var formWrap = document.createElement("div");
     formWrap.className = "nlt-form";
